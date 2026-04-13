@@ -284,6 +284,9 @@ export function CheckerClient() {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string | string[]>>({});
   const [showResults, setShowResults] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [results, setResults] = useState<RegResult[]>([]);
+  const [sessionId] = useState(() => crypto.randomUUID());
 
   const question = QUESTIONS[step];
   const currentAnswer = answers[question?.id];
@@ -320,10 +323,40 @@ export function CheckerClient() {
     return typeof ans === "string" && ans.length > 0;
   }
 
-  function next() {
+  async function next() {
     if (step < QUESTIONS.length - 1) {
       setStep((s) => s + 1);
     } else {
+      setLoading(true);
+      let computedResults: RegResult[];
+      try {
+        const res = await fetch("/api/checker/analyze", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ answers }),
+        });
+        if (res.ok) {
+          const data = (await res.json()) as { results: RegResult[] };
+          computedResults = data.results;
+        } else {
+          computedResults = computeResults(answers);
+        }
+      } catch {
+        computedResults = computeResults(answers);
+      }
+      setResults(computedResults);
+      // Save to DB (fire and forget)
+      fetch("/api/checker/save", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          sessionId,
+          answers,
+          results: computedResults,
+          reportTier: "free",
+        }),
+      }).catch(() => {});
+      setLoading(false);
       setShowResults(true);
     }
   }
@@ -340,11 +373,41 @@ export function CheckerClient() {
     setStep(0);
     setAnswers({});
     setShowResults(false);
+    setResults([]);
   }
 
   if (showResults) {
-    const results = computeResults(answers);
     return <Results results={results} answers={answers} onReset={reset} onBack={back} />;
+  }
+
+  if (loading) {
+    return (
+      <div className="mx-auto max-w-2xl text-center py-16">
+        <div className="inline-flex items-center gap-3 text-neutral-600">
+          <svg
+            className="h-5 w-5 animate-spin"
+            fill="none"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <circle
+              className="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeWidth="4"
+            />
+            <path
+              className="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8v8H4z"
+            />
+          </svg>
+          <span className="text-base font-medium">Analyzing your compliance profile…</span>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -430,8 +493,8 @@ export function CheckerClient() {
         </button>
         <button
           type="button"
-          onClick={next}
-          disabled={!canAdvance()}
+          onClick={() => { void next(); }}
+          disabled={!canAdvance() || loading}
           className="inline-flex items-center gap-2 rounded-lg bg-brand-700 px-6 py-2.5 text-sm font-semibold text-white hover:bg-brand-800 disabled:opacity-40 disabled:cursor-not-allowed transition-colors shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-700"
         >
           {step === QUESTIONS.length - 1 ? "See My Results" : "Next →"}
