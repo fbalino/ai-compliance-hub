@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const FROM_EMAIL =
   process.env.RESEND_FROM_EMAIL ?? "AI Compliance Hub <hello@aicompliancehub.com>";
 
@@ -146,7 +144,15 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Invalid email address" }, { status: 400 });
     }
 
-    // Add contact to Resend (non-blocking — failures should not prevent redirect)
+    // Add contact and send email via Resend (non-blocking — failures should not prevent redirect)
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      console.warn("[subscribe] RESEND_API_KEY not set — skipping Resend integration");
+      return redirectSuccess();
+    }
+
+    const resend = new Resend(apiKey);
+
     const contactPromise = resend.contacts.create({ email }).catch((err: unknown) => {
       console.error("[subscribe] Resend contacts.create error:", err);
     });
