@@ -383,7 +383,7 @@ export function CheckerClient() {
               key={opt.value}
               type="button"
               onClick={() => selectOption(question.id, opt.value, !!question.multi)}
-              className={`w-full flex items-start gap-3 rounded-xl border-2 p-4 text-left transition-all ${
+              className={`w-full flex items-start gap-3 rounded-xl border-2 p-4 text-left transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-700 focus-visible:outline-offset-2 ${
                 selected
                   ? "border-brand-600 bg-brand-50 shadow-sm"
                   : "border-neutral-200 bg-white hover:border-brand-300 hover:bg-neutral-50"
@@ -431,7 +431,7 @@ export function CheckerClient() {
           type="button"
           onClick={next}
           disabled={!canAdvance()}
-          className="inline-flex items-center gap-2 rounded-lg bg-brand-700 px-6 py-2.5 text-sm font-semibold text-white hover:bg-brand-800 disabled:opacity-40 disabled:cursor-not-allowed transition-colors shadow-sm"
+          className="inline-flex items-center gap-2 rounded-lg bg-brand-700 px-6 py-2.5 text-sm font-semibold text-white hover:bg-brand-800 disabled:opacity-40 disabled:cursor-not-allowed transition-colors shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-700"
         >
           {step === QUESTIONS.length - 1 ? "See My Results" : "Next →"}
         </button>
