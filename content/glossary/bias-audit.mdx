@@ -18,23 +18,130 @@ export const frontmatter = {
 
 ## Overview
 
-A **bias audit** is an independent, impartial evaluation of an automated system to identify whether it produces disparate outcomes across protected demographic groups such as race/ethnicity, gender, or age.
+A **bias audit** is an independent, impartial evaluation of an automated system to identify whether it produces disparate outcomes across protected demographic groups such as race/ethnicity, gender, or age. Bias audits are the primary mechanism that regulators use to make AI fairness obligations enforceable — they turn abstract principles like "no algorithmic discrimination" into measurable, documentable facts.
 
-### NYC Local Law 144 Requirements
+The term is used broadly in the AI industry but has a specific legal meaning under **NYC Local Law 144**, which was the first US law to mandate bias audits as a compliance prerequisite for AI-powered hiring tools.
 
-Under NYC LL 144, employers must:
-- Commission an independent bias audit from a qualified third party before using an AEDT
-- Repeat the audit annually
-- Publicly post a summary of the most recent audit results on their website
-- Retain audit results for at least three years
+---
 
-### What Auditors Evaluate
+## Legal Requirements Under NYC Local Law 144
 
-A bias audit typically analyzes:
+NYC Local Law 144 requires employers and employment agencies using an **Automated Employment Decision Tool (AEDT)** to screen candidates for NYC employment or promotions to:
 
-- **Selection rates** by race/ethnicity, gender, and other protected classes
-- **Impact ratio** — the rate at which each demographic group passes screening
-- **Adverse impact** — whether differences exceed the 80% rule or statistical significance thresholds
-- **False positive/negative rates** by demographic group
+1. **Commission an independent bias audit** before first use
+2. **Repeat the audit at least annually** — or immediately after any material update to the AEDT
+3. **Post a summary of results publicly** on the company's website for at least six months
+4. **Retain all audit records** for at least three years
 
-*Full content coming soon.*
+### Who Can Conduct a Bias Audit?
+
+Under NYC's rules, an **independent auditor** is someone who has no current or prior business or employment relationship with the employer or AEDT vendor. Academic researchers, third-party AI auditing firms, and specialized consultancies typically qualify.
+
+The auditor must be given access to historical or test data sufficient to calculate meaningful selection rates by race/ethnicity and sex.
+
+---
+
+## What a Bias Audit Measures
+
+A bias audit under NYC LL 144 follows a specific methodology grounded in the EEOC's **Uniform Guidelines on Employee Selection Procedures**:
+
+### Selection Rate
+
+The **selection rate** is the proportion of applicants from a given demographic group who are selected, recommended, or advanced by the AEDT — calculated separately for each race/ethnicity and sex category.
+
+For example: if the AEDT screens 500 Black female applicants and advances 60, the selection rate for Black women is 12%.
+
+### Impact Ratio
+
+The **impact ratio** compares each demographic group's selection rate to the highest selection rate among all groups. It is calculated as:
+
+> Impact Ratio = (Group's selection rate) ÷ (Highest selection rate across all groups)
+
+A ratio of **1.00** means a group is selected at the same rate as the most-selected group. A ratio **below 0.80** triggers the EEOC's "four-fifths rule" — indicating potential adverse impact and warranting further scrutiny.
+
+### Adverse Impact
+
+**Adverse impact** is the term for selection rate disparities that are large enough to suggest discriminatory effects. Under the four-fifths (80%) rule, any group with an impact ratio below 0.80 is flagged for adverse impact.
+
+Adverse impact does not automatically mean illegal discrimination — employers may have a defense if the tool is job-related and consistent with business necessity — but it is a red flag that demands review.
+
+---
+
+## The Four-Fifths (80%) Rule
+
+The four-fifths rule is the most widely used statistical benchmark for adverse impact:
+
+> A selection rate for any race, sex, or ethnic group that is less than four-fifths (80%) of the rate for the group with the highest rate will generally be regarded as evidence of adverse impact.
+
+**Example:**
+- White male applicants: 20% selection rate
+- Hispanic male applicants: 14% selection rate
+- Impact ratio for Hispanic males: 14 ÷ 20 = 0.70 → **Below 0.80 — adverse impact flag**
+
+The four-fifths rule is a practical screen, not a rigid legal standard. Courts and regulators may consider other statistical tests (e.g., Fisher's exact test, z-score analysis) when sample sizes are small or the four-fifths rule gives misleading results.
+
+---
+
+## Practical Challenges in Bias Auditing
+
+### Data Availability
+
+The most significant practical challenge is obtaining sufficient demographic data. Employers often lack self-reported race/ethnicity and sex data for job applicants, particularly early in the funnel. NYC's rules permit auditors to use "historical data" or, where unavailable, "other data sources" — which can include vendor-provided test datasets, but this is less reliable than actual usage data.
+
+### Intersectionality
+
+NYC LL 144 requires auditing by race/ethnicity AND sex separately, but not necessarily by intersectional combinations (e.g., Black women). Intersectional bias — where discrimination occurs at the intersection of two or more protected characteristics — can be missed by category-by-category analysis.
+
+### What Audits Don't Capture
+
+Bias audits measure **outcome disparities** in a specific dataset. They do not:
+- Identify the root cause of disparate outcomes
+- Test the AEDT against hypothetical future applicant pools
+- Evaluate whether the tool is actually valid for predicting job performance
+- Assess non-statistical fairness concerns (procedural fairness, transparency, dignity)
+
+---
+
+## Beyond NYC: Bias Audits in Other Frameworks
+
+### Colorado AI Act
+
+The Colorado AI Act requires **impact assessments** (not formal bias audits) for high-risk AI systems. Impact assessments are broader than bias audits — they cover the full range of risks from algorithmic discrimination, not just selection rate disparities. However, a bias audit can be a component of or substitute for a Colorado impact assessment in employment contexts.
+
+### EU AI Act
+
+The EU AI Act does not use the term "bias audit" but requires providers of high-risk AI systems to implement **data governance practices** — including examination of training data for biases — and to conduct **post-market monitoring** for unintended bias that emerges after deployment. These requirements share the same underlying goal as bias audits: detecting and mitigating discriminatory AI behavior.
+
+### NIST AI RMF
+
+The NIST AI Risk Management Framework recommends bias testing and fairness evaluations as part of the "Measure" function, though it does not mandate specific audit methodologies.
+
+---
+
+## How to Prepare for a Bias Audit
+
+1. **Identify all AEDTs** in your hiring and promotion technology stack.
+2. **Collect historical data**: gather application outcomes, demographic data (if available through voluntary disclosure or EEOC records), and tool-specific inputs and outputs.
+3. **Engage an independent auditor** with experience in employment law and algorithmic fairness — well before any enforcement deadline.
+4. **Review the audit report** for flagged adverse impact ratios and understand what they mean for your specific tool and use case.
+5. **Publish results** in a publicly accessible location on your website, formatted to meet NYC DCWP requirements.
+6. **Schedule annual re-audits** — or trigger an immediate audit whenever the AEDT vendor releases a material update.
+
+---
+
+## Frequently Asked Questions
+
+**Do we need a bias audit if we just use AI to help screen — not to make the final decision?**
+Under NYC LL 144, if the AI tool "substantially assists or replaces" human decision-making in screening, it qualifies as an AEDT regardless of whether a human makes the final call. A tool that generates scores, rankings, or recommendations that humans routinely rely on typically meets this threshold.
+
+**Can the AEDT vendor conduct the bias audit?**
+No. The auditor must be independent — with no business relationship to the employer or the vendor. Vendors sometimes offer "internal fairness testing," which is valuable but does not substitute for an independent bias audit under NYC LL 144.
+
+**What if we don't have enough data for a statistically valid audit?**
+NYC's rules allow auditors to use test datasets provided by the vendor or constructed specifically for the audit when historical data is insufficient. The auditor must disclose this in the audit summary and explain the methodology used.
+
+**How do we handle adverse impact findings?**
+An adverse impact finding does not automatically require you to stop using the AEDT. You should work with legal counsel and the vendor to understand whether bias mitigation is feasible (e.g., retraining, threshold adjustments) and document your reasoning. In some cases, the tool may be job-related and consistent with business necessity even with disparate impact — but this is a high bar.
+
+**Is a bias audit the same as a fairness certification?**
+No. A bias audit is a one-time or periodic empirical evaluation. A fairness certification (like those offered by some third-party firms) typically involves ongoing monitoring, process reviews, and sometimes a formal certification mark. NYC LL 144 requires the audit, not certification.

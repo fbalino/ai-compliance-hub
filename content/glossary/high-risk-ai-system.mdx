@@ -5,39 +5,137 @@ export const frontmatter = {
   relatedRegulations: [
     { slug: "colorado-ai-act", name: "Colorado AI Act" },
     { slug: "eu-ai-act", name: "EU AI Act" },
+    { slug: "nyc-local-law-144", name: "NYC Local Law 144" },
   ],
   relatedTerms: [
     { slug: "algorithmic-discrimination", term: "Algorithmic Discrimination" },
     { slug: "conformity-assessment", term: "Conformity Assessment" },
     { slug: "impact-assessment", term: "Impact Assessment" },
+    { slug: "consequential-decision", term: "Consequential Decision" },
   ],
   publishedAt: "2026-04-13",
   updatedAt: "2026-04-13",
 };
 
+## Overview
+
+A **high-risk AI system** is an AI system that legislators and regulators have determined poses significant potential harm — to individuals, groups, or society — and therefore warrants heightened oversight and compliance obligations before deployment.
+
+The concept is central to modern AI regulation: rather than regulating all AI uniformly, risk-based frameworks concentrate the heaviest compliance burdens on the systems most likely to cause meaningful harm. Critically, the definition varies substantially across jurisdictions — an AI system that is "high-risk" in Colorado may not be classified that way in the EU, and vice versa. Organizations operating across jurisdictions must map their AI systems against each applicable law's definition independently.
+
+---
+
 ## Definitions by Law
-
-The term "high-risk AI system" is defined differently across key regulations:
-
-### Colorado AI Act
-
-Under Colorado SB 24-205, a high-risk AI system is any AI that makes, or is a substantial factor in making, a **consequential decision** affecting Colorado consumers in areas including:
-- Employment (hiring, promotion, termination, pay)
-- Education (enrollment, financial aid)
-- Financial services (credit, lending, insurance)
-- Healthcare (diagnosis, treatment, coverage)
-- Housing (rental, mortgage)
-- Legal services
 
 ### EU AI Act
 
-The EU AI Act uses a broader definition based on application domain. High-risk AI includes systems used in:
-- Critical infrastructure
-- Education and vocational training
-- Employment and workers management
-- Essential private and public services
-- Law enforcement
-- Migration and border control
-- Administration of justice
+The EU AI Act uses the most granular definition, based on **application domain** and **product category**. High-risk AI includes:
 
-*Full content coming soon.*
+**Annex I — Safety components of regulated products:**
+AI used as a safety component in products already governed by EU product safety directives. Examples include:
+- AI in medical devices (MDR/IVDR)
+- AI in machinery (Machinery Regulation)
+- AI in aviation systems (Regulation (EC) No 216/2008)
+- AI in motor vehicles (type approval regulations)
+
+These systems must comply with both the relevant product regulation and the EU AI Act, and typically require third-party notified body assessment.
+
+**Annex III — Standalone high-risk AI systems in eight domains:**
+
+1. **Biometric identification and categorization** — AI used to identify or categorize individuals by biometric data (with narrow exceptions for permitted real-time RBI)
+2. **Critical infrastructure** — AI used to manage or operate road traffic, water, gas, heating, electricity, or Internet infrastructure where failure could endanger life or property
+3. **Education and vocational training** — AI determining access to educational institutions, assessing students, evaluating exam results, or detecting prohibited behavior during tests
+4. **Employment, workers management, and access to self-employment** — AI for recruiting, screening, selecting, promoting, terminating, or allocating tasks and monitoring performance
+5. **Essential private and public services** — AI for creditworthiness assessment, life/health insurance pricing, social benefits eligibility, emergency services dispatch, or similar essential decisions
+6. **Law enforcement** — AI for individual risk assessment, polygraphs, evidence reliability evaluation, predicting crime or re-offense, profiling in criminal investigations
+7. **Migration, asylum, and border control** — AI for risk assessments of persons seeking asylum, visa applications, or crossing borders
+8. **Administration of justice and democratic processes** — AI assisting courts, researching facts or laws, or influencing elections
+
+### Colorado AI Act
+
+Under Colorado SB 24-205, the definition is simpler and more flexible: any AI system that **makes, or is a substantial factor in making, a consequential decision** affecting Colorado consumers.
+
+**Consequential decisions** are decisions that have a material effect on access to:
+- Employment (hiring, termination, compensation, promotion)
+- Education (enrollment, financial aid)
+- Financial services (credit, lending, insurance underwriting)
+- Healthcare (diagnosis, treatment, health coverage)
+- Housing (rental, mortgage, real estate)
+- Legal services (access to legal representation)
+- Essential government services (benefits, licensing)
+
+Unlike the EU AI Act, Colorado's definition has no carve-out for specific domains — any AI that makes consequential decisions in covered categories is high-risk, regardless of how the model was built.
+
+### NYC Local Law 144
+
+NYC LL 144 does not use the term "high-risk" but functionally regulates a subset of high-risk employment AI: **Automated Employment Decision Tools (AEDTs)**. An AEDT is any computational process derived from machine learning, statistical modeling, or AI that substantially assists or replaces discretionary decision-making for hiring or promotions affecting NYC-based candidates or employees.
+
+AEDTs trigger NYC's most significant compliance obligations (annual bias audit, public posting, candidate notice), making them functionally equivalent to high-risk AI in the employment context.
+
+---
+
+## Comparing High-Risk AI Definitions
+
+| Dimension | EU AI Act | Colorado AI Act | NYC LL 144 |
+|---|---|---|---|
+| **Basis** | Application domain (Annex I/III) | Decision context (consequential decisions) | Tool type (AEDTs for hiring/promotion) |
+| **Scope** | Broad — 8 domains + product safety | Any consequential decision in 7 categories | Narrow — employment only |
+| **Who it covers** | Providers (builders) primarily | Deployers AND developers | Employers and employment agencies |
+| **Key threshold** | Fixed list in annexes | "Substantial factor" in consequential decision | "Substantially assists or replaces" discretion |
+| **Exclusions** | Minimal risk AI (spam, video games, etc.) | Cybersecurity, fraud prevention, research AI | Non-employment use cases |
+
+---
+
+## What Makes an AI System "High-Risk"?
+
+Beyond the legal definitions, regulators and researchers use a common set of risk factors to assess AI system risk:
+
+### 1. Decision Stakes
+High stakes decisions — those affecting access to jobs, housing, healthcare, credit, or legal rights — warrant greater scrutiny than low-stakes ones (recommending a playlist).
+
+### 2. Affected Population Size
+AI that affects large numbers of people at once, or entire communities, creates aggregate harm even when individual impacts seem small.
+
+### 3. Vulnerability of Affected Persons
+AI systems targeting vulnerable populations — people with limited legal resources, job seekers, patients, asylum seekers — are treated with greater skepticism because affected parties often cannot effectively opt out or seek recourse.
+
+### 4. Opacity and Uncontestability
+AI systems whose outputs are difficult for humans to understand, explain, or challenge are higher risk because errors are harder to detect and correct.
+
+### 5. Irreversibility of Harm
+Decisions that are difficult or impossible to reverse — criminal risk scores, denial of insurance, termination of employment — demand more careful pre-deployment evaluation than decisions that can be easily undone.
+
+### 6. Extrapolation Beyond Training Distribution
+AI systems deployed in contexts that differ significantly from their training environment are more likely to produce unreliable or discriminatory outputs.
+
+---
+
+## Compliance Obligations for High-Risk AI
+
+The specific obligations triggered by "high-risk" classification depend on the applicable law, but across frameworks, high-risk AI systems typically must:
+
+- **Undergo pre-deployment assessment** (impact assessment under Colorado; conformity assessment under EU AI Act; bias audit under NYC LL 144)
+- **Maintain documentation** describing the system's design, data, intended purpose, performance, and limitations
+- **Provide disclosures** to affected consumers and/or deployers about AI use
+- **Enable human oversight** — meaningful human review of AI-driven decisions
+- **Monitor for ongoing risks** — post-deployment monitoring to detect emerging bias or performance degradation
+- **Report incidents** to regulators when harm occurs
+
+---
+
+## Frequently Asked Questions
+
+**How do I know if my AI system is "high-risk"?**
+Start with the jurisdiction-specific definitions. For the EU AI Act, map your system against Annexes I and III. For Colorado, ask whether your AI makes consequential decisions affecting Colorado consumers. For NYC LL 144, determine whether your tool qualifies as an AEDT. When in doubt, consult legal counsel — the consequences of misclassification (treating a high-risk system as low-risk) can be severe.
+
+**Can an AI system be high-risk under one law but not another?**
+Yes, frequently. A large language model used for internal drafting assistance might be minimal-risk under the EU AI Act but high-risk under Colorado if it generates output that influences hiring decisions. Multi-jurisdictional compliance requires separate analysis under each applicable law.
+
+**Does "high-risk" classification mean the AI system is illegal to use?**
+No. High-risk AI can be lawfully deployed — it simply triggers a set of pre-deployment and ongoing compliance requirements. The only AI that is categorically illegal (in the EU) is that which falls under the "prohibited AI practices" tier.
+
+**What if we use a third-party vendor's AI system?**
+You may still be a "deployer" with obligations even if you didn't build the AI. Under both the EU AI Act and the Colorado AI Act, deployers bear distinct compliance obligations. Obtain the required documentation from your vendor and ensure it is covered by your own compliance program.
+
+**If our AI is used only internally (not sold), does high-risk classification apply?**
+Under the EU AI Act, "putting into service" — using an AI system in a professional context, not just selling it — also triggers high-risk obligations. Colorado similarly covers internal deployment when it affects Colorado consumers. There is generally no "internal use only" exemption for high-risk AI.

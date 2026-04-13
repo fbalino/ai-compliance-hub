@@ -2,7 +2,7 @@ export const frontmatter = {
   term: "Impact Assessment",
   definition:
     "A structured evaluation of the potential harms, risks, and benefits of an AI system, required by several AI regulations before deploying high-risk systems.",
-  aliases: ["AI impact assessment", "algorithmic impact assessment", "AIA"],
+  aliases: ["AI impact assessment", "algorithmic impact assessment", "AIA", "AIIA"],
   relatedRegulations: [
     { slug: "colorado-ai-act", name: "Colorado AI Act" },
     { slug: "eu-ai-act", name: "EU AI Act" },
@@ -11,6 +11,8 @@ export const frontmatter = {
     { slug: "high-risk-ai-system", term: "High-Risk AI System" },
     { slug: "algorithmic-discrimination", term: "Algorithmic Discrimination" },
     { slug: "bias-audit", term: "Bias Audit" },
+    { slug: "fundamental-rights-impact-assessment", term: "Fundamental Rights Impact Assessment" },
+    { slug: "risk-management-system", term: "Risk Management System" },
   ],
   publishedAt: "2026-04-13",
   updatedAt: "2026-04-13",
@@ -18,16 +20,151 @@ export const frontmatter = {
 
 ## Overview
 
-An **impact assessment** (sometimes called an algorithmic impact assessment or AIA) is a structured review of how an AI system may affect people, particularly in high-stakes decision-making contexts.
+An **impact assessment** — also called an algorithmic impact assessment (AIA) or AI impact assessment (AIIA) — is a structured, documented review of how an AI system may affect people, particularly in contexts where AI-driven decisions carry significant consequences for individuals' lives, livelihoods, or rights.
 
-### Under the Colorado AI Act
+Impact assessments are a preventive tool: they are designed to surface potential harms before an AI system is deployed, giving organizations the opportunity to mitigate risks, improve the system, or decide not to deploy it at all. They are required by multiple AI regulations and are increasingly considered a baseline expectation for responsible AI governance even where not legally mandated.
 
-The Colorado AI Act requires deployers of high-risk AI systems to conduct impact assessments that evaluate:
-- The system's known risks of algorithmic discrimination
-- The deployer's policies for managing those risks
-- The data used to train and test the system
-- Metrics used to evaluate system performance
+---
 
-Assessments must be completed before deployment and updated annually or whenever there is a material change to the system.
+## Why Impact Assessments Matter
 
-*Full content coming soon.*
+AI systems that make consequential decisions — who gets hired, who gets approved for a loan, who is referred for healthcare services — can cause real harm at scale. Because AI operates at speed and volume impossible for human review alone, a biased or inaccurate model can affect thousands of people before anyone notices a problem.
+
+Impact assessments create a structured forcing function: before you deploy, you must stop, document, and think through:
+- Who does this system affect?
+- What are the worst-case failure modes?
+- Are there known or foreseeable risks of discrimination?
+- What safeguards are in place?
+- Who is responsible if something goes wrong?
+
+This documentation also creates accountability — it is harder to claim ignorance of a harm that your own pre-deployment assessment identified.
+
+---
+
+## Under the Colorado AI Act
+
+The **Colorado AI Act (SB 24-205)** requires deployers of high-risk AI systems to conduct **impact assessments** before deployment and update them at least annually or whenever there is a material change to the system.
+
+### What Must Be Documented
+
+Colorado's impact assessment must evaluate:
+
+1. **The system's intended purpose** and the consequential decision context in which it is used
+2. **Known or reasonably foreseeable risks of algorithmic discrimination** — disparate impacts based on protected characteristics such as race, sex, age, disability, or national origin
+3. **The data used to train and test the system** — including the source, scope, and any known limitations or gaps
+4. **Performance metrics used to evaluate the system** — accuracy, false positive/negative rates, performance by demographic group
+5. **The deployer's policies and governance procedures** for managing algorithmic discrimination risks
+6. **Any safeguards in place** — human review, override mechanisms, audit processes
+
+### Who Conducts the Assessment?
+
+Unlike NYC LL 144's bias audit, Colorado's impact assessment does not need to be conducted by an independent third party. Deployers may conduct it internally. However, the assessment must be documented and available for review by the Colorado Attorney General upon request.
+
+### Update Triggers
+
+A new impact assessment is required:
+- Before the initial deployment of a high-risk AI system
+- Annually, on a rolling basis
+- Whenever the AI system undergoes a **material change** — such as a significant update to the underlying model, a change in the training data, or deployment in a new consequential decision context
+
+---
+
+## Under the EU AI Act
+
+The EU AI Act uses slightly different terminology. For most high-risk AI, the required pre-market evaluation is called a **conformity assessment** — a broader technical process that verifies the system meets all EU AI Act requirements before CE marking and EU AI database registration.
+
+However, the EU AI Act introduces a distinct **Fundamental Rights Impact Assessment (FRIA)** for public bodies and private entities providing regulated public services when they deploy high-risk AI. The FRIA is closer in concept to a traditional impact assessment: it specifically evaluates how the AI system may affect fundamental rights, with particular attention to discrimination, privacy, and access to justice.
+
+See: [Fundamental Rights Impact Assessment](/glossary/fundamental-rights-impact-assessment)
+
+### NIST AI RMF Alignment
+
+The US National Institute of Standards and Technology (NIST) AI Risk Management Framework (AI RMF) includes an "Impact Assessment" as a core component of the "Map" and "Measure" functions — identifying and quantifying the potential negative impacts of AI on individuals, groups, communities, and broader society. While the NIST AI RMF is voluntary, it is increasingly used as the baseline governance framework for federal contractors and large enterprises.
+
+---
+
+## Comparing Impact Assessment Requirements
+
+| Dimension | Colorado AI Act | EU AI Act FRIA | NIST AI RMF |
+|---|---|---|---|
+| **Legal status** | Mandatory (for covered deployers) | Mandatory (public bodies + regulated services deployers) | Voluntary |
+| **Who conducts it** | Deployer (can be internal) | Deployer (public body or regulated services entity) | Organization (self-assessment encouraged) |
+| **Independent auditor required?** | No | No | No |
+| **Focus** | Algorithmic discrimination risks | Fundamental rights impacts broadly | Full risk landscape (safety, fairness, reliability, etc.) |
+| **Frequency** | Pre-deployment + annual + material changes | Pre-deployment | Recommended ongoing |
+| **Public disclosure** | Not required (but AG can request) | Results may be disclosed to supervisory authorities | Not required |
+
+---
+
+## What a Good Impact Assessment Looks Like
+
+A high-quality impact assessment for a high-risk AI system typically covers:
+
+### System Description
+- Intended purpose and deployment context
+- Technical architecture overview
+- Key stakeholders and decision-makers
+- Scope of affected population
+
+### Risk Identification
+- Potential harms to individuals: discriminatory outcomes, erroneous decisions, loss of access to essential services
+- Potential harms to groups: aggregate disparate impacts, systemic effects
+- Known limitations: accuracy gaps, edge cases, training data deficiencies
+- Foreseeable misuse or scope creep
+
+### Risk Quantification
+- Selection rates and impact ratios by protected class (where data is available)
+- Error rates and confidence intervals
+- Frequency and severity of potential harms
+- Comparison to human decision-making baseline
+
+### Mitigation Measures
+- Technical controls: model retraining, threshold adjustments, ensemble methods
+- Process controls: human oversight, mandatory review triggers, override procedures
+- Governance controls: regular audits, escalation paths, incident response procedures
+
+### Residual Risk Assessment
+- After mitigation: what risk remains?
+- Is the residual risk acceptable given the benefits of deployment?
+- Who has approved deployment at this residual risk level?
+
+### Accountability and Monitoring
+- Who is responsible for the AI system's performance?
+- How will the system be monitored post-deployment?
+- What triggers a re-assessment?
+
+---
+
+## Impact Assessment vs. Bias Audit
+
+These are related but distinct processes:
+
+| Dimension | Impact Assessment | Bias Audit |
+|---|---|---|
+| **Scope** | Broad: all potential harms from AI deployment | Narrow: statistical disparities in outcomes by demographic group |
+| **Legal basis** | Colorado AI Act, FRIA (EU AI Act) | NYC Local Law 144 |
+| **Conducted by** | Can be internal | Must be independent third party (under NYC LL 144) |
+| **Output** | Internal governance document | Publicly posted summary (under NYC LL 144) |
+| **Timing** | Pre-deployment and annual | Pre-use and annual |
+| **Format** | Flexible | Specific methodology required (EEOC four-fifths rule) |
+
+A bias audit can be incorporated as a component of an impact assessment, but is a narrower and more specific exercise.
+
+---
+
+## Frequently Asked Questions
+
+**Does a Colorado impact assessment need to be done by an outside firm?**
+No. Colorado does not require independent third-party review for impact assessments. Many organizations choose to use external consultants for objectivity and credibility, but the law permits internal assessment.
+
+**How long must impact assessments be retained?**
+The Colorado AI Act does not specify a retention period explicitly, but records should be kept long enough to demonstrate compliance in the event of an AG investigation. Best practice is three to five years, aligned with typical document retention policies.
+
+**Do we need a new impact assessment if we update our AI model?**
+Yes, if the update constitutes a "material change" — a significant modification to the model's architecture, training data, performance characteristics, or deployment scope. Routine bug fixes or minor updates that do not change the system's risk profile generally do not trigger a new assessment, but you should document your reasoning.
+
+**Can an impact assessment substitute for a bias audit under NYC LL 144?**
+No. NYC LL 144 specifically requires an independent bias audit conducted by a qualified third party and posted publicly. An internal impact assessment does not satisfy this requirement, even if it includes demographic performance analysis.
+
+**Is an impact assessment a one-time exercise?**
+No. Both the Colorado AI Act and best-practice governance frameworks require ongoing impact assessment — before deployment, annually, and whenever the system materially changes. AI systems are not static, and their risk profiles change as the model, data, and deployment context evolve.

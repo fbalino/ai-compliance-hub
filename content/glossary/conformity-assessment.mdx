@@ -7,7 +7,9 @@ export const frontmatter = {
   ],
   relatedTerms: [
     { slug: "high-risk-ai-system", term: "High-Risk AI System" },
+    { slug: "ce-marking", term: "CE Marking" },
     { slug: "bias-audit", term: "Bias Audit" },
+    { slug: "risk-management-system", term: "Risk Management System" },
   ],
   publishedAt: "2026-04-13",
   updatedAt: "2026-04-13",
@@ -15,14 +17,131 @@ export const frontmatter = {
 
 ## Overview
 
-A **conformity assessment** is the mandatory verification process that high-risk AI system providers must complete before placing their system on the EU market or putting it into service within the EU.
+A **conformity assessment** is the mandatory verification process that providers of high-risk AI systems must complete before placing their system on the EU market or putting it into service within the EU. It is the EU AI Act's primary gate-keeping mechanism: AI systems that have not undergone a conformity assessment and received an EU Declaration of Conformity cannot lawfully be sold or deployed in high-risk contexts in the EU.
 
-The EU AI Act requires conformity assessments to evaluate whether a high-risk AI system complies with all applicable requirements, including:
+Conformity assessments draw on a long tradition of EU product safety regulation — the same general framework is used for medical devices, machinery, and construction products. The EU AI Act adapts this framework to the unique characteristics of software-based AI systems.
 
-- Data and data governance requirements
-- Technical documentation
-- Transparency and provision of information to users
-- Human oversight measures
-- Accuracy, robustness, and cybersecurity requirements
+---
 
-*Full content coming soon.*
+## Who Must Conduct a Conformity Assessment?
+
+**Providers** — the organizations that develop or place high-risk AI systems on the EU market — bear the primary obligation to conduct or commission a conformity assessment. This applies to:
+
+- Companies that develop high-risk AI systems and sell or license them to others
+- Companies that substantially modify an existing high-risk AI system for a new purpose
+- Companies that place their name or brand on a third-party AI system (importers)
+
+**Deployers** (organizations that use high-risk AI in professional contexts) are generally not required to conduct their own conformity assessment, but they must use only AI systems that have completed the process and carry the CE marking.
+
+---
+
+## Types of Conformity Assessment
+
+The EU AI Act establishes two types of conformity assessment procedures, depending on the category of the AI system:
+
+### 1. Internal (Self-Assessment)
+
+The majority of high-risk AI systems listed in **Annex III** can be assessed by the provider itself, without involving a third-party body. The provider:
+
+- Reviews the system against all applicable requirements in the Act
+- Documents the evaluation in the required **technical documentation**
+- Signs an **EU Declaration of Conformity**
+- Affixes the **CE marking**
+
+Self-assessment is permitted for most high-risk AI in employment, education, creditworthiness, essential services, and law enforcement categories.
+
+### 2. Third-Party Assessment (Notified Body)
+
+For the highest-risk AI categories, the Act requires an independent **notified body** to conduct or verify the conformity assessment. This applies to:
+
+- **Real-time remote biometric identification (RBI)** systems — such as live facial recognition in public spaces (to the extent these are permitted at all under the prohibited AI rules)
+- **Biometric categorization systems** that are not prohibited
+- **AI systems used as safety components** in products already governed by EU product safety directives (e.g., medical devices, machinery)
+
+Notified bodies are independent certification organizations designated by EU member states. Providers must pay for the assessment, and the notified body issues a conformity certificate if requirements are met.
+
+---
+
+## What the Assessment Evaluates
+
+A conformity assessment verifies that the high-risk AI system satisfies all eight core requirements of the EU AI Act:
+
+### 1. Risk Management System
+The provider has implemented a documented, iterative risk management system that identifies known and foreseeable risks throughout the system's lifecycle and has taken appropriate risk mitigation measures.
+
+### 2. Data and Data Governance
+Training, validation, and testing datasets have been subject to appropriate data governance — including relevance checks, bias examination, and quality assurance sufficient for the intended purpose.
+
+### 3. Technical Documentation
+Comprehensive technical documentation has been prepared and kept up to date, covering system design, development methodology, data, intended purpose, performance metrics, and limitations.
+
+### 4. Record-Keeping / Logging
+The AI system has been designed to automatically log events (traceability logs) sufficient to enable post-hoc auditing for at least the duration required by applicable sectoral law.
+
+### 5. Transparency and Information to Deployers
+The provider has prepared instructions for use that give deployers sufficient information to understand the system, its risks, and how to comply with their own obligations under the Act.
+
+### 6. Human Oversight
+The AI system has been designed with interfaces and features allowing natural persons to monitor, override, and stop the system — including detection of failures, anomalies, and unexpected behavior.
+
+### 7. Accuracy, Robustness, and Cybersecurity
+The system meets appropriate accuracy benchmarks for its intended purpose, is robust against errors and adversarial inputs, and incorporates cybersecurity measures proportionate to its risk profile.
+
+### 8. Quality Management System
+The provider has put in place a quality management system covering policies, technical standards, data governance processes, conformity assessment procedures, and post-market monitoring plans.
+
+---
+
+## After the Assessment: Required Steps
+
+Once conformity is verified, the provider must:
+
+1. **Draw up an EU Declaration of Conformity** — a formal document stating that the AI system meets all applicable EU AI Act requirements, signed by an authorized representative.
+
+2. **Affix the CE marking** — the CE mark on the product (or its documentation) signals to the market and to enforcement authorities that a conformity assessment has been completed.
+
+3. **Register in the EU AI Database** — providers must register their high-risk AI systems in the EU-wide database maintained by the European Commission, with key information about the system's intended purpose, capabilities, and conformity status.
+
+4. **Maintain documentation** — conformity documentation must be kept for at least 10 years after the system is placed on the market, and updated whenever the system undergoes a substantial modification.
+
+---
+
+## Substantial Modification and Re-Assessment
+
+A **substantial modification** to a high-risk AI system — one that changes its intended purpose, significantly alters its performance, or introduces new risks — triggers a new conformity assessment. Routine software updates and bug fixes that do not materially change the system's risk profile generally do not require re-assessment, but providers must assess and document each change.
+
+---
+
+## Conformity Assessment vs. Bias Audit
+
+These terms are sometimes confused but refer to different processes:
+
+| Dimension | Conformity Assessment | Bias Audit |
+|---|---|---|
+| **Legal basis** | EU AI Act (all high-risk AI) | NYC Local Law 144 (AEDTs) |
+| **Scope** | Full system: technical, governance, safety, data | Outcome disparities by demographic group |
+| **Conducted by** | Provider (self) or notified body (third-party) | Independent third party only |
+| **Timing** | Before market placement; updated on changes | Annually (or before first use) |
+| **Output** | EU Declaration of Conformity + CE marking | Published audit summary (selection rates, impact ratios) |
+| **Geography** | EU (and EEA) | New York City (with global supply chain effects) |
+
+A bias audit can be part of the evidence a provider compiles to satisfy the EU AI Act's data governance and accuracy requirements in a conformity assessment, but it is not a substitute for the full conformity assessment process.
+
+---
+
+## Frequently Asked Questions
+
+**Does my company need to hire a notified body, or can we self-certify?**
+For most Annex III AI categories (employment, education, credit, healthcare, etc.), self-assessment is permitted. Only real-time remote biometric identification systems and AI integrated into Annex I regulated products require a notified body. Verify your specific use case against the Act's annexes.
+
+**When must the conformity assessment be completed?**
+Before placing the system on the EU market or putting it into service in the EU. For most Annex III high-risk AI, the enforcement date is August 2, 2026.
+
+**What happens if we update our AI system after the assessment?**
+You must assess whether the update constitutes a "substantial modification." If yes, a new conformity assessment is required. If no, update your technical documentation to reflect the change and note your assessment rationale.
+
+**What does "placing on the market" mean for software?**
+The EU AI Act defines placing on the market broadly — it includes making a system available through a cloud API, software-as-a-service, or any other means. Your assessment obligations apply even if you are not selling physical hardware.
+
+**Is there a grace period for systems already in use before August 2026?**
+High-risk AI systems that were placed on the market before August 2, 2026 have until August 2030 to comply with the conformity assessment and other high-risk AI requirements — but only if the system has not been substantially modified since that date.
