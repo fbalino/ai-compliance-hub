@@ -27,6 +27,20 @@ export const users = pgTable("users", {
 });
 
 // ─────────────────────────────────────────────
+// Provider categories (bias-audit, legal, etc.)
+// ─────────────────────────────────────────────
+export const providerCategories = pgTable("provider_categories", {
+  slug: text("slug").primaryKey(),
+  label: text("label").notNull(),
+  icon: text("icon").notNull(),
+  description: text("description").notNull(),
+  longDescription: text("long_description").notNull(),
+  // display names of relevant regulations, stored as array
+  regulations: text("regulations").array(),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+});
+
+// ─────────────────────────────────────────────
 // Core provider directory
 // ─────────────────────────────────────────────
 export const providers = pgTable(
@@ -35,6 +49,10 @@ export const providers = pgTable(
     id: uuid("id").primaryKey().defaultRandom(),
     slug: text("slug").unique().notNull(),
     name: text("name").notNull(),
+    // primary category slug (references providerCategories.slug)
+    category: text("category"),
+    // short description for listing cards (~150 chars)
+    tagline: text("tagline"),
     description: text("description"),
     logoUrl: text("logo_url"),
     websiteUrl: text("website_url"),
@@ -42,6 +60,8 @@ export const providers = pgTable(
     headquarters: text("headquarters"),
     // '1-10', '11-50', '51-200', '201-500', '500+'
     employeeCountRange: text("employee_count_range"),
+    // geographic scopes: ['US', 'EU', 'UK', 'Global']
+    jurisdictions: text("jurisdictions").array(),
     // 'free', 'premium', 'enterprise'
     tier: text("tier").default("free"),
     isVerified: boolean("is_verified").default(false),
@@ -53,6 +73,7 @@ export const providers = pgTable(
   (t) => [
     index("idx_providers_tier").on(t.tier),
     index("idx_providers_verified").on(t.isVerified),
+    index("idx_providers_category").on(t.category),
   ]
 );
 
@@ -198,6 +219,8 @@ export const regulations = pgTable("regulations", {
 // ─────────────────────────────────────────────
 export type User = typeof users.$inferSelect;
 export type NewUser = typeof users.$inferInsert;
+export type ProviderCategory = typeof providerCategories.$inferSelect;
+export type NewProviderCategory = typeof providerCategories.$inferInsert;
 export type Provider = typeof providers.$inferSelect;
 export type NewProvider = typeof providers.$inferInsert;
 export type ProviderRegulation = typeof providerRegulations.$inferSelect;

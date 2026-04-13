@@ -1,6 +1,15 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { eq } from "drizzle-orm";
+import { db } from "@/db";
+import {
+  providers,
+  providerServices,
+  providerRegulations,
+  providerIndustries,
+  reviews,
+} from "@/db/schema";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Badge } from "@/components/ui/Badge";
 import { Card, CardTitle, CardDescription } from "@/components/ui/Card";
@@ -11,7 +20,7 @@ const SITE_URL =
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
-interface Review {
+interface ReviewData {
   id: string;
   authorName: string;
   rating: number;
@@ -36,259 +45,65 @@ interface ProviderData {
   serviceTypes: string[];
   regulations: string[];
   industries: string[];
-  reviews: Review[];
+  reviews: ReviewData[];
   averageRating?: number;
 }
 
-// ── Data fetching (will query Neon DB once credentials provisioned) ────────────
-
-// Static sample providers — will be replaced with DB query once Neon is provisioned.
-const STATIC_PROVIDERS: Record<string, ProviderData> = {
-  "holistic-ai": {
-    id: "holistic-ai",
-    slug: "holistic-ai",
-    name: "Holistic AI",
-    description:
-      "Holistic AI is a global AI governance, assurance, and compliance platform. They provide enterprises with tools and services to audit, monitor, and mitigate AI risks across EU AI Act, NYC Local Law 144, NIST AI RMF, and other frameworks. Services span algorithmic bias audits, risk assessments, technical documentation, and ongoing compliance monitoring.",
-    websiteUrl: "https://holisticai.com",
-    foundedYear: 2018,
-    headquarters: "London, UK / New York, US",
-    employeeCountRange: "50–200",
-    tier: "premium",
-    isVerified: true,
-    serviceTypes: ["Bias Audits", "Risk Assessment", "Compliance Software", "EU AI Act Advisory"],
-    regulations: ["EU AI Act", "NYC LL 144", "NIST AI RMF", "Colorado AI Act"],
-    industries: ["Financial Services", "Healthcare", "HR Technology", "Retail"],
-    reviews: [],
-  },
-  "babl-ai": {
-    id: "babl-ai",
-    slug: "babl-ai",
-    name: "BABL AI",
-    description:
-      "BABL AI is an independent auditing firm specializing in algorithmic bias and fairness audits for automated employment decision tools. They are one of the leading auditors for NYC Local Law 144 compliance and have audited hundreds of hiring AI systems across industries. Their audits produce the publicly-postable summaries required by law.",
-    websiteUrl: "https://bablai.com",
-    foundedYear: 2021,
-    headquarters: "New York, NY",
-    employeeCountRange: "10–49",
-    tier: "premium",
-    isVerified: true,
-    serviceTypes: ["Bias Audits", "NYC LL 144 Compliance", "Algorithmic Audits"],
-    regulations: ["NYC LL 144", "Colorado AI Act", "EEOC Guidelines"],
-    industries: ["HR Technology", "Financial Services", "Healthcare", "Enterprise"],
-    reviews: [],
-  },
-  "orcaa": {
-    id: "orcaa",
-    slug: "orcaa",
-    name: "ORCAA",
-    description:
-      "ORCAA (O'Neil Risk Consulting and Algorithmic Auditing) is an algorithm accountability auditing firm founded by Cathy O'Neil, author of 'Weapons of Math Destruction'. They conduct independent audits of algorithmic systems for bias, fairness, and transparency, with deep expertise in hiring, lending, and recidivism algorithms.",
-    websiteUrl: "https://orcaarisk.com",
-    foundedYear: 2017,
-    headquarters: "New York, NY",
-    employeeCountRange: "10–49",
-    tier: "premium",
-    isVerified: true,
-    serviceTypes: ["Algorithmic Audits", "Bias Analysis", "Fair Housing", "NYC LL 144"],
-    regulations: ["NYC LL 144", "Fair Housing Act", "ECOA", "Colorado AI Act"],
-    industries: ["Financial Services", "HR Technology", "Criminal Justice", "Insurance"],
-    reviews: [],
-  },
-  "credo-ai": {
-    id: "credo-ai",
-    slug: "credo-ai",
-    name: "Credo AI",
-    description:
-      "Credo AI is an AI governance platform that helps enterprises build responsible AI programs at scale. The platform provides a centralized system for AI policy management, risk assessments, model cards, compliance tracking across EU AI Act and other frameworks, and evidence collection for audits.",
-    websiteUrl: "https://credo.ai",
-    foundedYear: 2020,
-    headquarters: "San Francisco, CA",
-    employeeCountRange: "50–200",
-    tier: "premium",
-    isVerified: true,
-    serviceTypes: ["AI Governance Platform", "Policy Management", "Risk Assessment", "Compliance Tracking"],
-    regulations: ["EU AI Act", "NIST AI RMF", "ISO 42001", "Colorado AI Act"],
-    industries: ["Financial Services", "Healthcare", "Technology", "Enterprise"],
-    reviews: [],
-  },
-  "fairly-ai": {
-    id: "fairly-ai",
-    slug: "fairly-ai",
-    name: "Fairly AI",
-    description:
-      "Fairly AI is an AI compliance automation platform designed for financial services and healthcare organizations. It automates the evidence collection, documentation, and monitoring required for ongoing AI compliance, with pre-built workflows for model risk management and regulatory examination readiness.",
-    websiteUrl: "https://fairly.ai",
-    headquarters: "Toronto, Canada / New York, US",
-    employeeCountRange: "10–49",
-    tier: "free",
-    isVerified: false,
-    serviceTypes: ["Compliance Automation", "Model Risk Management", "Audit Readiness"],
-    regulations: ["EU AI Act", "SR 11-7", "NIST AI RMF"],
-    industries: ["Financial Services", "Healthcare", "Insurance"],
-    reviews: [],
-  },
-  "aletheia-ai": {
-    id: "aletheia-ai",
-    slug: "aletheia-ai",
-    name: "AletheiAI",
-    description:
-      "AletheiAI provides enterprise AI governance strategy and NIST AI RMF implementation services. Their consultants help organizations design and deploy AI governance programs, including risk registers, policy frameworks, board-level oversight structures, and vendor due diligence protocols.",
-    headquarters: "Washington, DC",
-    tier: "premium",
-    isVerified: true,
-    serviceTypes: ["AI Governance Strategy", "NIST AI RMF", "Policy Development", "Board Advisory"],
-    regulations: ["NIST AI RMF", "EU AI Act", "ISO 42001", "Colorado AI Act"],
-    industries: ["Government", "Defense", "Financial Services", "Healthcare"],
-    reviews: [],
-  },
-  "responsible-ai-institute": {
-    id: "responsible-ai-institute",
-    slug: "responsible-ai-institute",
-    name: "Responsible AI Institute",
-    description:
-      "The Responsible AI Institute (RAI Institute) provides AI governance certifications and consulting for enterprise and government organizations. Their RAI Certification program evaluates AI systems against a comprehensive framework covering fairness, explainability, accountability, and security.",
-    websiteUrl: "https://responsible.ai",
-    foundedYear: 2019,
-    headquarters: "Austin, TX",
-    employeeCountRange: "10–49",
-    tier: "premium",
-    isVerified: true,
-    serviceTypes: ["AI Certification", "Governance Consulting", "Risk Assessment"],
-    regulations: ["NIST AI RMF", "EU AI Act", "ISO 42001"],
-    industries: ["Technology", "Healthcare", "Financial Services", "Government"],
-    reviews: [],
-  },
-  "impartial-ai": {
-    id: "impartial-ai",
-    slug: "impartial-ai",
-    name: "Impartial AI",
-    description:
-      "Impartial AI provides automated bias detection and annual audit reports specifically designed for NYC Local Law 144 compliance. Their platform streamlines the auditing process for employers using AI hiring tools, producing compliant audit summaries ready for public posting.",
-    tier: "free",
-    isVerified: false,
-    serviceTypes: ["NYC LL 144 Audits", "Bias Detection", "Hiring AI Compliance"],
-    regulations: ["NYC LL 144"],
-    industries: ["HR Technology", "Staffing", "Enterprise"],
-    reviews: [],
-  },
-  "ai-policy-lab": {
-    id: "ai-policy-lab",
-    slug: "ai-policy-lab",
-    name: "AI Policy Lab",
-    description:
-      "AI Policy Lab provides strategic AI policy consulting for enterprises navigating global AI regulatory frameworks. Their advisors specialize in multi-jurisdictional compliance strategies, regulatory advocacy, and preparing organizations for emerging AI laws before they take effect.",
-    tier: "free",
-    isVerified: false,
-    serviceTypes: ["Policy Development", "Regulatory Strategy", "Multi-jurisdictional Compliance"],
-    regulations: ["EU AI Act", "Colorado AI Act", "UK AI Regulations", "Singapore AI Governance"],
-    industries: ["Technology", "Financial Services", "Healthcare", "Retail"],
-    reviews: [],
-  },
-  "fieldfisher-ai": {
-    id: "fieldfisher-ai",
-    slug: "fieldfisher-ai",
-    name: "Fieldfisher — AI Practice",
-    description:
-      "Fieldfisher's AI practice group provides EU AI Act compliance counsel and cross-border AI regulatory advice for technology companies and enterprises deploying AI in Europe. Services include AI system classification, conformity assessment support, contractual compliance, and AI liability analysis.",
-    websiteUrl: "https://fieldfisher.com",
-    foundedYear: 1980,
-    headquarters: "London / Brussels / Munich",
-    tier: "free",
-    isVerified: true,
-    serviceTypes: ["EU AI Act Counsel", "GDPR Intersection", "Product Liability", "Regulatory Advice"],
-    regulations: ["EU AI Act", "GDPR", "EU Product Liability Directive"],
-    industries: ["Technology", "Financial Services", "Healthcare", "Manufacturing"],
-    reviews: [],
-  },
-  "wiley-ai-law": {
-    id: "wiley-ai-law",
-    slug: "wiley-ai-law",
-    name: "Wiley Rein — AI & Tech",
-    description:
-      "Wiley Rein's AI and Technology practice advises US companies on AI regulatory compliance, government contracting requirements, and policy advocacy. Their team monitors US federal agency AI guidance and state-level AI legislation to keep clients ahead of compliance obligations.",
-    websiteUrl: "https://wiley.law",
-    headquarters: "Washington, DC",
-    tier: "free",
-    isVerified: false,
-    serviceTypes: ["US AI Regulatory", "Government Contracting", "Policy Advocacy", "State AI Laws"],
-    regulations: ["Colorado AI Act", "NYC LL 144", "California AB 2013", "Federal AI Guidance"],
-    industries: ["Government Contracting", "Technology", "Healthcare", "Financial Services"],
-    reviews: [],
-  },
-  "venable-ai": {
-    id: "venable-ai",
-    slug: "venable-ai",
-    name: "Venable LLP — AI Group",
-    description:
-      "Venable LLP's AI group provides AI regulatory risk assessment, contract review, and enforcement defense for technology companies and their enterprise customers. Their team advises on FTC AI-related enforcement risk and prepares clients for state-level AI law obligations.",
-    websiteUrl: "https://venable.com",
-    headquarters: "Washington, DC / New York",
-    tier: "free",
-    isVerified: false,
-    serviceTypes: ["Risk Assessment", "Contract Review", "FTC Defense", "State AI Law Compliance"],
-    regulations: ["FTC Guidelines", "Colorado AI Act", "NYC LL 144", "California AI Laws"],
-    industries: ["Technology", "Retail", "Financial Services", "Healthcare"],
-    reviews: [],
-  },
-  "vanta-ai": {
-    id: "vanta-ai",
-    slug: "vanta-ai",
-    name: "Vanta — AI Compliance",
-    description:
-      "Vanta's AI compliance module extends their automated compliance platform to cover AI-specific frameworks including ISO 42001 and emerging AI regulations. The platform automates evidence collection, monitors AI system controls, and generates audit-ready reports.",
-    websiteUrl: "https://vanta.com",
-    headquarters: "San Francisco, CA",
-    tier: "free",
-    isVerified: false,
-    serviceTypes: ["Compliance Automation", "Audit Readiness", "SOC 2", "ISO 42001"],
-    regulations: ["ISO 42001", "NIST AI RMF", "EU AI Act"],
-    industries: ["Technology", "SaaS", "Financial Services", "Healthcare"],
-    reviews: [],
-  },
-  "ai-governance-professional": {
-    id: "ai-governance-professional",
-    slug: "ai-governance-professional",
-    name: "AI Governance Professional (AIGP)",
-    description:
-      "The IAPP's AI Governance Professional (AIGP) credential is the leading certification program for AI governance practitioners. It covers global AI regulations, ethics frameworks, governance program design, and practical compliance skills. Holders are recognized across industries as qualified AI governance professionals.",
-    websiteUrl: "https://iapp.org/certify/aigp/",
-    foundedYear: 2023,
-    headquarters: "Portsmouth, NH (IAPP)",
-    tier: "free",
-    isVerified: true,
-    serviceTypes: ["AI Governance Certification", "Training", "Professional Development"],
-    regulations: ["EU AI Act", "NIST AI RMF", "ISO 42001", "OECD AI Principles"],
-    industries: ["Legal", "Compliance", "Technology", "Financial Services", "Healthcare"],
-    reviews: [],
-  },
-  "isaca-ai-audit": {
-    id: "isaca-ai-audit",
-    slug: "isaca-ai-audit",
-    name: "ISACA — AI Audit Training",
-    description:
-      "ISACA offers AI auditing frameworks, training programs, and certifications for IT audit and risk professionals. Their courses cover AI risk assessment methodologies, audit program design, and how to apply COBIT and NIST frameworks to AI system governance.",
-    websiteUrl: "https://isaca.org",
-    headquarters: "Schaumburg, IL",
-    tier: "free",
-    isVerified: true,
-    serviceTypes: ["AI Audit Training", "Risk Management Certification", "IT Governance"],
-    regulations: ["NIST AI RMF", "ISO 42001", "COBIT"],
-    industries: ["Audit", "IT Governance", "Financial Services", "Government"],
-    reviews: [],
-  },
-};
+// ── Data fetching ─────────────────────────────────────────────────────────────
 
 async function getProvider(slug: string): Promise<ProviderData | null> {
-  // Static data for sample listings.
-  // TODO: Replace with DB query once Neon is provisioned:
-  //   const db = getDb();
-  //   const provider = await db.query.providers.findFirst({ where: eq(providers.slug, slug) });
-  return STATIC_PROVIDERS[slug] ?? null;
+  const [provider] = await db
+    .select()
+    .from(providers)
+    .where(eq(providers.slug, slug))
+    .limit(1);
+
+  if (!provider) return null;
+
+  const [services, regs, industries, providerReviews] = await Promise.all([
+    db.select().from(providerServices).where(eq(providerServices.providerId, provider.id)),
+    db.select().from(providerRegulations).where(eq(providerRegulations.providerId, provider.id)),
+    db.select().from(providerIndustries).where(eq(providerIndustries.providerId, provider.id)),
+    db.select().from(reviews).where(eq(reviews.providerId, provider.id)),
+  ]);
+
+  const ratings = providerReviews
+    .map((r) => r.rating)
+    .filter((r): r is number => r !== null);
+  const averageRating =
+    ratings.length > 0 ? ratings.reduce((a, b) => a + b, 0) / ratings.length : undefined;
+
+  return {
+    id: provider.id,
+    slug: provider.slug,
+    name: provider.name,
+    description: provider.description ?? "",
+    logoUrl: provider.logoUrl ?? undefined,
+    websiteUrl: provider.websiteUrl ?? undefined,
+    foundedYear: provider.foundedYear ?? undefined,
+    headquarters: provider.headquarters ?? undefined,
+    employeeCountRange: provider.employeeCountRange ?? undefined,
+    tier: (provider.tier as "free" | "premium" | "enterprise") ?? "free",
+    isVerified: provider.isVerified ?? false,
+    serviceTypes: services.map((s) => s.serviceType),
+    regulations: regs.map((r) => r.regulationSlug),
+    industries: industries.map((i) => i.industry),
+    reviews: providerReviews.map((r) => ({
+      id: r.id,
+      authorName: "Verified User",
+      rating: r.rating ?? 0,
+      title: r.title ?? "",
+      body: r.body ?? "",
+      createdAt: r.createdAt?.toISOString() ?? new Date().toISOString(),
+      isVerified: r.isVerified ?? false,
+    })),
+    averageRating,
+  };
 }
 
 export async function generateStaticParams() {
-  return Object.keys(STATIC_PROVIDERS).map((slug) => ({ slug }));
+  const rows = await db.select({ slug: providers.slug }).from(providers);
+  return rows.map((r) => ({ slug: r.slug }));
 }
 
 // ── Page ──────────────────────────────────────────────────────────────────────
@@ -441,7 +256,7 @@ export default async function ProviderPage({ params }: Props) {
                 <div className="flex flex-wrap gap-2">
                   {provider.serviceTypes.map((svc) => (
                     <Badge key={svc} variant="default">
-                      {formatServiceType(svc)}
+                      {svc}
                     </Badge>
                   ))}
                 </div>
@@ -473,7 +288,7 @@ export default async function ProviderPage({ params }: Props) {
                 <div className="flex flex-wrap gap-2">
                   {provider.industries.map((ind) => (
                     <Badge key={ind} variant="default">
-                      {formatIndustry(ind)}
+                      {ind}
                     </Badge>
                   ))}
                 </div>
@@ -553,7 +368,7 @@ function StarRating({ rating }: { rating: number }) {
   );
 }
 
-function ReviewCard({ review }: { review: Review }) {
+function ReviewCard({ review }: { review: ReviewData }) {
   return (
     <Card>
       <div className="flex items-start justify-between gap-3 mb-2">
@@ -592,35 +407,29 @@ function InfoRow({ label, value }: { label: string; value: string }) {
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
-function formatServiceType(slug: string): string {
-  const map: Record<string, string> = {
-    "bias-audit": "Bias Audit",
-    "governance-consulting": "Governance Consulting",
-    legal: "Legal & Compliance",
-    "compliance-software": "Compliance Software",
-    training: "Training",
-  };
-  return map[slug] ?? slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
-}
-
 function formatRegulationSlug(slug: string): string {
   const map: Record<string, string> = {
-    "colorado-ai-act": "Colorado AI Act",
     "eu-ai-act": "EU AI Act",
-    "nyc-local-law-144": "NYC LL 144",
+    "nyc-ll-144": "NYC LL 144",
+    "nist-ai-rmf": "NIST AI RMF",
+    "colorado-ai-act": "Colorado AI Act",
+    "eeoc-guidelines": "EEOC Guidelines",
+    "fair-housing-act": "Fair Housing Act",
+    ecoa: "ECOA",
+    "iso-42001": "ISO 42001",
+    "sr-11-7": "SR 11-7",
+    "uk-ai-regulations": "UK AI Regulations",
+    "singapore-ai-governance": "Singapore AI Governance",
+    gdpr: "GDPR",
+    "eu-product-liability-directive": "EU Product Liability Directive",
     "california-ab-2013": "California AB 2013",
-    "illinois-ai-video-interview-act": "Illinois AIVIRA",
-  };
-  return map[slug] ?? slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
-}
-
-function formatIndustry(slug: string): string {
-  const map: Record<string, string> = {
-    healthcare: "Healthcare",
-    fintech: "Fintech",
-    "hr-recruiting": "HR & Recruiting",
-    insurance: "Insurance",
-    education: "Education",
+    "ftc-guidelines": "FTC Guidelines",
+    "california-ai-laws": "California AI Laws",
+    "oecd-ai-principles": "OECD AI Principles",
+    cobit: "COBIT",
+    "general-compliance": "General Compliance",
+    "federal-ai-guidance": "Federal AI Guidance",
+    "state-ai-laws": "State AI Laws",
   };
   return map[slug] ?? slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 }
