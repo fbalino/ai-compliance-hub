@@ -1,0 +1,198 @@
+export const frontmatter = {
+  name: "Colorado AI Act (SB 24-205)",
+  shortName: "CO SB 24-205",
+  description:
+    "Colorado's landmark AI regulation requiring deployers of high-risk AI systems to use reasonable care to protect consumers from known risks of algorithmic discrimination.",
+  jurisdiction: "US · Colorado",
+  status: "enacted",
+  effectiveDate: "June 30, 2026",
+  enforcementDate: "June 30, 2026",
+  maxPenalty: "$20,000 per violation",
+  publishedAt: "2024-05-17",
+  updatedAt: "2026-04-13",
+  toc: [
+    { id: "overview", label: "Overview" },
+    { id: "who-it-applies-to", label: "Who It Applies To" },
+    { id: "high-risk-ai-systems", label: "High-Risk AI Systems" },
+    { id: "key-requirements", label: "Key Requirements" },
+    { id: "compliance-timeline", label: "Compliance Timeline" },
+    { id: "penalties", label: "Penalties & Enforcement" },
+    { id: "compliance-steps", label: "Compliance Steps" },
+    { id: "faqs", label: "Frequently Asked Questions" },
+  ],
+  relatedRegulations: [
+    { slug: "eu-ai-act", name: "EU AI Act" },
+    { slug: "nyc-local-law-144", name: "NYC Local Law 144" },
+    { slug: "illinois-ai-video-interview-act", name: "Illinois AIVIRA" },
+  ],
+  faqs: [
+    {
+      question: "When does the Colorado AI Act take effect?",
+      answer:
+        "The Colorado AI Act (SB 24-205) takes effect on June 30, 2026.",
+    },
+    {
+      question: "Does the Colorado AI Act apply to companies outside Colorado?",
+      answer:
+        "Yes. Any organization deploying AI systems that make consequential decisions affecting Colorado consumers must comply, regardless of where the business is headquartered.",
+    },
+    {
+      question: "What is a 'high-risk AI system' under the Colorado AI Act?",
+      answer:
+        "A high-risk AI system is any AI that makes, or is a substantial factor in making, a consequential decision — including credit, education, employment, healthcare, housing, insurance, and legal services decisions for Colorado consumers.",
+    },
+    {
+      question: "What are the penalties for non-compliance?",
+      answer:
+        "The Colorado Attorney General can impose civil penalties of up to $20,000 per violation. Businesses that discover a violation and cure it within 60 days may avoid penalties under the cure provision.",
+    },
+  ],
+};
+
+## Overview
+
+The **Colorado Artificial Intelligence Act** (SB 24-205), signed into law in May 2024 by Governor Jared Polis, is the first comprehensive US state AI law to impose substantive obligations on companies deploying AI systems in consequential decision-making contexts.
+
+Unlike the EU AI Act's prescriptive conformity assessments, the Colorado law centers on a **reasonable care** standard: deployers of high-risk AI systems must take reasonable care to protect consumers from known risks of **algorithmic discrimination** based on protected characteristics.
+
+The law applies to **deployers** (organizations using AI) and **developers** (organizations that develop AI for others) separately, with different — but complementary — obligations for each.
+
+---
+
+## Who It Applies To
+
+The Colorado AI Act applies to **any entity** that:
+
+- **Deploys** a high-risk AI system that makes, or is a substantial factor in making, a consequential decision affecting a Colorado consumer, **or**
+- **Develops** a high-risk AI system and permits others to deploy it in Colorado
+
+**There is no revenue threshold, employee count minimum, or residency requirement.** If your AI system touches Colorado consumers in a consequential decision context, you are in scope.
+
+### Developer vs. Deployer
+
+| Role | Definition | Primary Obligation |
+|------|-----------|-------------------|
+| **Developer** | Creates a high-risk AI system for deployment by others | Provide documentation; disclose known discrimination risks |
+| **Deployer** | Integrates a high-risk AI system into its products/services | Impact assessment; consumer disclosures; appeal process |
+
+---
+
+## High-Risk AI Systems
+
+A **high-risk AI system** is any AI system that makes, or is a substantial factor in making, a **consequential decision** in one of these categories:
+
+- **Education** — enrollment, financial aid
+- **Employment** — hiring, termination, compensation, promotion
+- **Financial services** — credit, lending, insurance underwriting
+- **Healthcare** — diagnosis, treatment, coverage decisions
+- **Housing** — rental, mortgage, real estate
+- **Legal services** — access to legal representation
+- **Essential government services** — benefits, licensing
+
+### What Is NOT High-Risk?
+
+The law explicitly excludes:
+- Cybersecurity applications
+- Anti-fraud systems
+- AI used solely for research, testing, or development
+- AI systems that only assist humans who make final decisions (with proper disclosure)
+
+---
+
+## Key Requirements
+
+### For Deployers
+
+1. **Risk Assessment (Impact Assessment)**
+   Conduct an impact assessment before deploying any high-risk AI system. The assessment must evaluate the system's known risks of algorithmic discrimination and document the deployer's policies for mitigating those risks.
+
+2. **Consumer Disclosure**
+   When a high-risk AI system makes a consequential decision, notify the affected consumer:
+   - That a high-risk AI system was used
+   - The type of AI system
+   - The deployer's contact information
+   - How to request a human review
+
+3. **Right to Appeal / Human Review**
+   Provide consumers the ability to appeal consequential decisions and receive a meaningful human review.
+
+4. **Non-Discrimination Policy**
+   Implement a governance program with a written policy stating the deployer's commitment to managing known algorithmic discrimination risks.
+
+5. **Incident Reporting**
+   If the AI system causes or is reasonably likely to cause algorithmic discrimination, notify the Colorado Attorney General within 90 days of discovery.
+
+### For Developers
+
+1. **Transparency Documentation**
+   Provide deployers with documentation covering:
+   - Intended uses and known high-risk use cases
+   - Known limitations and risks of algorithmic discrimination
+   - Summary of training data
+   - Performance metrics across protected classes
+
+2. **Contractual Obligations**
+   Include terms in deployer contracts requiring the deployer to comply with the Act.
+
+---
+
+## Compliance Timeline
+
+| Date | Milestone |
+|------|-----------|
+| **May 17, 2024** | SB 24-205 signed into law |
+| **February 1, 2026** | AG's office publishes final implementing guidance |
+| **June 30, 2026** | **Act takes effect — compliance required** |
+| **Ongoing** | Annual impact assessment renewal required |
+
+---
+
+## Penalties & Enforcement
+
+The Colorado Attorney General has exclusive enforcement authority. There is no private right of action.
+
+- **Civil penalties**: Up to **$20,000 per violation**
+- **Cure period**: 60-day cure opportunity before penalties attach (if the violation was not willful)
+- **Injunctive relief**: AG can seek court orders to stop non-compliant practices
+
+### The Cure Provision
+
+If you discover a violation and implement a cure plan within 60 days of the AG's notification, penalties can be avoided. This makes proactive compliance programs especially valuable.
+
+---
+
+## Compliance Steps
+
+Follow this checklist to prepare for the June 30, 2026 effective date:
+
+1. **Inventory your AI systems.** Map all AI systems used in decision-making and determine which affect Colorado consumers.
+
+2. **Classify each system.** Does it make consequential decisions in a covered category? If yes, it is likely high-risk.
+
+3. **Conduct impact assessments.** For each high-risk system, document known risks of algorithmic discrimination, the intended use case, and your mitigation policies.
+
+4. **Update consumer-facing disclosures.** Add notices to workflows where high-risk AI is used in consequential decisions.
+
+5. **Build an appeal process.** Create a pathway for consumers to request human review of adverse AI-driven decisions.
+
+6. **Review vendor contracts.** If you use third-party AI (e.g., hiring software, lending models), ensure your contracts require developer-level compliance disclosures.
+
+7. **Train your team.** Ensure the people overseeing high-risk AI systems understand the Act's requirements.
+
+8. **Document everything.** Regulators will want to see your governance program, impact assessments, and incident response procedures.
+
+---
+
+## Frequently Asked Questions
+
+**When does the Colorado AI Act take effect?**
+June 30, 2026.
+
+**Does it apply to my out-of-state company?**
+Yes, if you deploy high-risk AI that makes consequential decisions affecting Colorado consumers, regardless of where your company is based.
+
+**We use a third-party AI tool for hiring. Are we responsible?**
+Yes — as the deployer, you bear compliance responsibility even if you didn't build the AI. You should obtain the required developer documentation from your vendor and ensure the tool is covered by your impact assessment.
+
+**What if our AI only flags candidates for human review — are we still in scope?**
+If the AI is a "substantial factor" in the final decision, yes. Purely advisory AI with documented human override (and proper disclosure) may be treated differently, but consult legal counsel on your specific workflow.

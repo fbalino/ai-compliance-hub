@@ -1,0 +1,37 @@
+export const frontmatter = {
+  term: "Algorithmic Discrimination",
+  definition:
+    "When an automated system treats people differently based on protected characteristics — such as race, gender, age, or disability — resulting in unfair or unlawful outcomes.",
+  aliases: ["AI discrimination", "automated discrimination", "discriminatory algorithm"],
+  relatedRegulations: [
+    { slug: "colorado-ai-act", name: "Colorado AI Act" },
+    { slug: "nyc-local-law-144", name: "NYC Local Law 144" },
+    { slug: "eu-ai-act", name: "EU AI Act" },
+  ],
+  relatedTerms: [
+    { slug: "bias-audit", term: "Bias Audit" },
+    { slug: "high-risk-ai-system", term: "High-Risk AI System" },
+    { slug: "impact-assessment", term: "Impact Assessment" },
+  ],
+  publishedAt: "2026-04-13",
+  updatedAt: "2026-04-13",
+};
+
+## Detailed Definition
+
+**Algorithmic discrimination** occurs when an AI or automated decision-making system produces outcomes that systematically disadvantage individuals based on protected characteristics, even if those characteristics are not explicitly used as inputs.
+
+### How It Happens
+
+Algorithmic discrimination can emerge from:
+
+- **Biased training data** — historical data that reflects past discrimination gets encoded into the model
+- **Proxy variables** — features that correlate with protected characteristics (e.g., zip code as a proxy for race)
+- **Feedback loops** — systems trained on their own outputs can amplify initial biases over time
+- **Measurement bias** — labels or outcomes in training data that reflect human bias
+
+### Legal Significance
+
+Under the **Colorado AI Act**, deployers must use "reasonable care" to protect consumers from known risks of algorithmic discrimination. The law specifically requires impact assessments to identify and mitigate such risks.
+
+Under **NYC Local Law 144**, employers using AI tools for hiring must conduct annual independent bias audits — a direct mechanism for detecting and disclosing algorithmic discrimination.
