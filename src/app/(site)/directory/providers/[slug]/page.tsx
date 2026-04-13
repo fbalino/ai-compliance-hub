@@ -14,6 +14,7 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Badge } from "@/components/ui/Badge";
 import { Card, CardTitle, CardDescription } from "@/components/ui/Card";
 import { providerSchema, breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
+import { RequestQuoteForm } from "@/components/RequestQuoteForm";
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
@@ -328,20 +329,16 @@ export default async function ProviderPage({ params }: Props) {
               </dl>
             </Card>
 
-            <Card>
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-3">
-                Get in Touch
-              </h3>
-              <p className="text-sm text-neutral-600 mb-3">
-                Get a free quote for your compliance project.
+            <div className="rounded-xl border border-brand-200 bg-brand-50 p-6">
+              <h2 className="font-bold text-neutral-900 mb-1">Request a Quote</h2>
+              <p className="text-sm text-neutral-600 mb-4">
+                Get a proposal from {provider.name}.
               </p>
-              <Link
-                href={`/directory/providers/${slug}/request-quote`}
-                className="block w-full rounded-md bg-brand-700 px-4 py-2.5 text-center text-sm font-medium text-white hover:bg-brand-800 transition-colors"
-              >
-                Request a Quote
-              </Link>
-            </Card>
+              <RequestQuoteForm
+                providerSlug={provider.slug}
+                providerServices={provider.serviceTypes}
+              />
+            </div>
           </aside>
         </div>
       </div>
