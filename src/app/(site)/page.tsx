@@ -105,11 +105,11 @@ export default function HomePage() {
             <span className="h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
             Colorado AI Act takes effect June 30, 2026 — are you ready?
           </div>
-          <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
+          <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
             Know what&apos;s required.{" "}
             <span className="text-brand-300">Find who can help.</span>
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-brand-200 leading-relaxed">
+          <p className="mx-auto mt-6 max-w-2xl text-base sm:text-lg text-brand-200 leading-relaxed">
             The only platform that combines AI regulation intelligence with a verified provider marketplace. From the EU AI Act to state laws — we track it all so you can focus on compliance.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
@@ -135,9 +135,9 @@ export default function HomePage() {
         <div className="relative mx-auto mt-16 max-w-3xl">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-px rounded-xl overflow-hidden bg-brand-800/40">
             {STATS.map((stat) => (
-              <div key={stat.label} className="bg-brand-900/60 px-6 py-4 text-center">
-                <div className="text-2xl font-bold text-white">{stat.value}</div>
-                <div className="mt-0.5 text-xs text-brand-300">{stat.label}</div>
+              <div key={stat.label} className="bg-brand-900/60 px-3 sm:px-6 py-4 text-center">
+                <div className="text-xl sm:text-2xl font-bold text-white">{stat.value}</div>
+                <div className="mt-0.5 text-xs text-brand-300 leading-snug">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -170,7 +170,7 @@ export default function HomePage() {
                 <Card hover className="h-full transition-all group-hover:border-brand-300">
                   <div className="flex items-start justify-between gap-3 mb-3">
                     <div>
-                      <span className="text-xs font-medium text-neutral-400">
+                      <span className="text-xs font-medium text-neutral-500">
                         {reg.jurisdiction}
                       </span>
                       <h3 className="mt-0.5 font-semibold text-neutral-900 group-hover:text-brand-800 transition-colors">
@@ -184,7 +184,7 @@ export default function HomePage() {
                   <p className="text-sm text-neutral-600 leading-relaxed mb-3">
                     {reg.summary}
                   </p>
-                  <div className="flex items-center gap-1.5 text-xs text-neutral-400">
+                  <div className="flex items-center gap-1.5 text-xs text-neutral-500">
                     <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
@@ -225,7 +225,7 @@ export default function HomePage() {
               Get Pro Report ($49)
             </Link>
           </div>
-          <p className="mt-4 text-xs text-neutral-400">
+          <p className="mt-4 text-xs text-neutral-500">
             Not legal advice. Results are for informational purposes only.
           </p>
         </div>
@@ -267,7 +267,7 @@ export default function HomePage() {
                 <span className="text-sm font-medium text-neutral-800 group-hover:text-brand-800 transition-colors leading-snug">
                   {cat.label}
                 </span>
-                <span className="mt-1 text-xs text-neutral-400">
+                <span className="mt-1 text-xs text-neutral-500">
                   {cat.count} providers
                 </span>
               </Link>

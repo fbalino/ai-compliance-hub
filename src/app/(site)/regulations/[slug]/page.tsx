@@ -101,7 +101,7 @@ export default async function RegulationPage({ params }: Props) {
                     frontmatter.status.slice(1)}
                 </Badge>
                 {frontmatter.shortName && (
-                  <span className="text-xs text-neutral-400 font-mono">
+                  <span className="text-xs text-neutral-500 font-mono">
                     {frontmatter.shortName}
                   </span>
                 )}
@@ -113,7 +113,7 @@ export default async function RegulationPage({ params }: Props) {
                 {frontmatter.description}
               </p>
               {frontmatter.updatedAt && (
-                <p className="mt-2 text-xs text-neutral-400">
+                <p className="mt-2 text-xs text-neutral-500">
                   Last updated:{" "}
                   <time dateTime={frontmatter.updatedAt}>
                     {new Date(frontmatter.updatedAt).toLocaleDateString("en-US", {
@@ -189,20 +189,20 @@ export default async function RegulationPage({ params }: Props) {
           </article>
 
           {/* Sidebar */}
-          <aside className="w-full lg:w-72 shrink-0 space-y-5">
+          <aside className="w-full lg:w-72 shrink-0 lg:sticky lg:top-24 lg:self-start space-y-5">
             {/* Table of contents */}
             {frontmatter.toc && frontmatter.toc.length > 0 && (
               <Card>
-                <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-3">
+                <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-3">
                   On This Page
                 </h3>
-                <nav>
+                <nav aria-label="Table of contents">
                   <ul className="space-y-1.5">
                     {frontmatter.toc.map((item) => (
                       <li key={item.id}>
                         <a
                           href={`#${item.id}`}
-                          className="text-sm text-neutral-600 hover:text-brand-700 transition-colors"
+                          className="text-sm text-neutral-600 hover:text-brand-700 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-700 rounded"
                         >
                           {item.label}
                         </a>
@@ -217,7 +217,7 @@ export default async function RegulationPage({ params }: Props) {
             {frontmatter.relatedRegulations &&
               frontmatter.relatedRegulations.length > 0 && (
                 <Card>
-                  <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-3">
+                  <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-3">
                     Related Regulations
                   </h3>
                   <ul className="space-y-2">
@@ -254,7 +254,7 @@ export default async function RegulationPage({ params }: Props) {
 function FactCard({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-lg border border-neutral-200 bg-neutral-50 px-4 py-3">
-      <dt className="text-xs font-medium text-neutral-400">{label}</dt>
+      <dt className="text-xs font-medium text-neutral-500">{label}</dt>
       <dd className="mt-0.5 text-sm font-semibold text-neutral-900">{value}</dd>
     </div>
   );

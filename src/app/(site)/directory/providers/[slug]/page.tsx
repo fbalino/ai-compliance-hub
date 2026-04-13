@@ -496,7 +496,7 @@ export default async function ProviderPage({ params }: Props) {
           {/* Sidebar */}
           <aside className="w-full lg:w-64 shrink-0 space-y-4">
             <Card>
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-3">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-3">
                 Quick Info
               </h3>
               <dl className="space-y-2.5">
@@ -514,7 +514,7 @@ export default async function ProviderPage({ params }: Props) {
             </Card>
 
             <Card>
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-3">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-3">
                 Get in Touch
               </h3>
               <p className="text-sm text-neutral-600 mb-3">
@@ -571,7 +571,7 @@ function ReviewCard({ review }: { review: Review }) {
         <StarRating rating={review.rating} />
       </div>
       <p className="text-sm text-neutral-600 leading-relaxed">{review.body}</p>
-      <p className="mt-2 text-xs text-neutral-400">
+      <p className="mt-2 text-xs text-neutral-500">
         {new Date(review.createdAt).toLocaleDateString("en-US", {
           year: "numeric",
           month: "long",
@@ -584,7 +584,7 @@ function ReviewCard({ review }: { review: Review }) {
 function InfoRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex justify-between gap-2 text-sm">
-      <dt className="text-neutral-400">{label}</dt>
+      <dt className="text-neutral-500">{label}</dt>
       <dd className="text-neutral-800 font-medium text-right">{value}</dd>
     </div>
   );

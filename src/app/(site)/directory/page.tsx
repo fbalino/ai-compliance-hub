@@ -180,7 +180,7 @@ export default function DirectoryPage() {
                         <h3 className="font-semibold text-neutral-900 group-hover:text-brand-800 transition-colors">
                           {cat.label}
                         </h3>
-                        <span className="shrink-0 text-xs font-medium text-neutral-400">
+                        <span className="shrink-0 text-xs font-medium text-neutral-500">
                           {cat.count} providers
                         </span>
                       </div>
@@ -209,7 +209,7 @@ export default function DirectoryPage() {
         <section>
           <div className="flex items-end justify-between mb-5">
             <h2 className="text-lg font-bold text-neutral-900">Featured Providers</h2>
-            <span className="text-xs text-neutral-400">Sample listings — full directory coming soon</span>
+            <span className="text-xs text-neutral-500">Sample listings — full directory coming soon</span>
           </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {FEATURED_PROVIDERS.map((provider) => (

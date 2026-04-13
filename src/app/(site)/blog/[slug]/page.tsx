@@ -762,8 +762,8 @@ export default async function BlogPostPage({ params }: Props) {
               <span className="inline-flex rounded-full bg-neutral-100 px-3 py-0.5 text-xs font-medium text-neutral-600">
                 {post.category}
               </span>
-              <span className="text-xs text-neutral-400">{post.readTime}</span>
-              <time dateTime={post.date} className="text-xs text-neutral-400">
+              <span className="text-xs text-neutral-500">{post.readTime}</span>
+              <time dateTime={post.date} className="text-xs text-neutral-500">
                 {formatDate(post.date)}
               </time>
             </div>
@@ -838,7 +838,7 @@ export default async function BlogPostPage({ params }: Props) {
           </Link>
         </div>
 
-        <p className="mt-8 text-xs text-neutral-400 leading-relaxed">
+        <p className="mt-8 text-xs text-neutral-500 leading-relaxed">
           Not legal advice. This article is for informational purposes only. Always consult a qualified attorney for compliance decisions.
         </p>
       </div>

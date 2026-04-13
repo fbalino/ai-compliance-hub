@@ -502,7 +502,7 @@ function Results({
             Start Over
           </button>
         </div>
-        <p className="mt-6 text-xs text-neutral-400">
+        <p className="mt-6 text-xs text-neutral-500">
           Not legal advice. This tool is for informational purposes only. Consult a qualified attorney for compliance decisions.
         </p>
       </div>
@@ -538,7 +538,7 @@ function Results({
                       <span className={`h-1.5 w-1.5 rounded-full ${cfg.dot}`} />
                       {cfg.label}
                     </span>
-                    <span className="text-xs text-neutral-400">{reg.jurisdiction}</span>
+                    <span className="text-xs text-neutral-500">{reg.jurisdiction}</span>
                   </div>
                   <h3 className="font-bold text-neutral-900">{reg.name}</h3>
                   <p className="text-xs text-neutral-500">{reg.effectiveDate}</p>
@@ -603,7 +603,7 @@ function Results({
         </div>
       </div>
 
-      <p className="mt-5 text-xs text-neutral-400 leading-relaxed">
+      <p className="mt-5 text-xs text-neutral-500 leading-relaxed">
         <strong>Not legal advice.</strong> This tool is for informational purposes only and does not constitute legal, compliance, or professional advice. Regulations change frequently. Always consult a qualified attorney or compliance professional before making compliance decisions.
       </p>
     </div>

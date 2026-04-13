@@ -69,7 +69,7 @@ export default async function GlossaryIndexPage() {
       <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8 space-y-10">
         {letters.map((letter) => (
           <section key={letter} id={`letter-${letter}`}>
-            <h2 className="text-xs font-semibold uppercase tracking-wider text-neutral-400 border-b border-neutral-200 pb-2 mb-4">
+            <h2 className="text-xs font-semibold uppercase tracking-wider text-neutral-500 border-b border-neutral-200 pb-2 mb-4">
               {letter}
             </h2>
             <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">

@@ -303,7 +303,7 @@ export default async function CategoryPage({ params }: Props) {
             <h2 className="text-lg font-bold text-neutral-900">
               {providers.length > 0 ? `${providers.length} Providers` : "Providers"}
             </h2>
-            <span className="text-xs text-neutral-400">
+            <span className="text-xs text-neutral-500">
               Sample listings — more being added
             </span>
           </div>
@@ -331,7 +331,7 @@ export default async function CategoryPage({ params }: Props) {
                       )}
                     </div>
                     {provider.founded && (
-                      <p className="text-xs text-neutral-400 mb-1.5">Est. {provider.founded}</p>
+                      <p className="text-xs text-neutral-500 mb-1.5">Est. {provider.founded}</p>
                     )}
                     <p className="text-sm text-neutral-600 leading-relaxed mb-3">
                       {provider.tagline}

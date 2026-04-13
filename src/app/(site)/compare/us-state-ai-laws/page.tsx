@@ -201,7 +201,7 @@ export default function UsStateAiLawsPage() {
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-xl">{law.flag}</span>
                 <div>
-                  <div className="text-xs text-neutral-400 font-mono">{law.shortName}</div>
+                  <div className="text-xs text-neutral-500 font-mono">{law.shortName}</div>
                   <div className="font-semibold text-sm text-neutral-900 group-hover:text-brand-800 transition-colors">
                     {law.name}
                   </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const NAV_LINKS = [
@@ -13,6 +14,11 @@ const NAV_LINKS = [
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
+
+  function isActive(href: string) {
+    return pathname === href || pathname.startsWith(href + "/");
+  }
 
   return (
     <header className="sticky top-0 z-50 border-b border-neutral-200 bg-white/95 backdrop-blur-sm">
@@ -43,15 +49,23 @@ export function Header() {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="px-3 py-2 text-sm font-medium text-neutral-600 rounded-md hover:text-neutral-900 hover:bg-neutral-100 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-700"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {NAV_LINKS.map((link) => {
+              const active = isActive(link.href);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  aria-current={active ? "page" : undefined}
+                  className={`px-3 py-2 text-sm font-medium rounded-md transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-700 ${
+                    active
+                      ? "text-brand-800 bg-brand-50 font-semibold"
+                      : "text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Desktop CTA */}
@@ -95,16 +109,24 @@ export function Header() {
       {mobileOpen && (
         <div className="md:hidden border-t border-neutral-200 bg-white px-4 py-3">
           <nav className="flex flex-col gap-1" aria-label="Mobile navigation">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="rounded-md px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900 transition-colors"
-                onClick={() => setMobileOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {NAV_LINKS.map((link) => {
+              const active = isActive(link.href);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  aria-current={active ? "page" : undefined}
+                  className={`rounded-md px-3 py-2.5 text-sm font-medium transition-colors ${
+                    active
+                      ? "bg-brand-50 text-brand-800 font-semibold border-l-2 border-brand-700 pl-2.5"
+                      : "text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900"
+                  }`}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
             <div className="mt-3 flex flex-col gap-2 pt-3 border-t border-neutral-100">
               <Link
                 href="/checker"

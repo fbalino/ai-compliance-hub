@@ -39,6 +39,8 @@ const REGULATION_MODULES: Record<string, () => Promise<MdxModule>> = {
     import("content/regulations/california-ab-2013.mdx") as Promise<MdxModule>,
   "illinois-ai-video-interview-act": () =>
     import("content/regulations/illinois-ai-video-interview-act.mdx") as Promise<MdxModule>,
+  "texas-hb-1709": () =>
+    import("content/regulations/texas-hb-1709.mdx") as Promise<MdxModule>,
 };
 
 export async function getAllRegulationSlugs(): Promise<string[]> {

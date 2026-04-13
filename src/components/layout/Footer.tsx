@@ -70,7 +70,7 @@ export function Footer() {
           {/* Link columns */}
           {Object.entries(FOOTER_LINKS).map(([section, links]) => (
             <div key={section}>
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
                 {section}
               </h3>
               <ul className="mt-3 space-y-2">
@@ -90,14 +90,14 @@ export function Footer() {
         </div>
 
         <div className="mt-10 border-t border-neutral-200 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-neutral-400">
+          <p className="text-xs text-neutral-500">
             &copy; {new Date().getFullYear()} AI Compliance Hub. Not legal advice. Always consult a qualified attorney.
           </p>
           <div className="flex items-center gap-4">
-            <Link href="/privacy" className="text-xs text-neutral-400 hover:text-neutral-600 transition-colors">
+            <Link href="/privacy" className="text-xs text-neutral-500 hover:text-neutral-600 transition-colors">
               Privacy
             </Link>
-            <Link href="/terms" className="text-xs text-neutral-400 hover:text-neutral-600 transition-colors">
+            <Link href="/terms" className="text-xs text-neutral-500 hover:text-neutral-600 transition-colors">
               Terms
             </Link>
           </div>

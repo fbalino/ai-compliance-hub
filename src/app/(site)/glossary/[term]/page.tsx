@@ -84,7 +84,7 @@ export default async function GlossaryTermPage({ params }: Props) {
             {frontmatter.definition}
           </p>
           {frontmatter.aliases && frontmatter.aliases.length > 0 && (
-            <p className="mt-2 text-sm text-neutral-400">
+            <p className="mt-2 text-sm text-neutral-500">
               Also known as:{" "}
               {frontmatter.aliases.map((a, i) => (
                 <span key={a}>
@@ -114,7 +114,7 @@ export default async function GlossaryTermPage({ params }: Props) {
             {/* Related regulations */}
             {frontmatter.relatedRegulations && frontmatter.relatedRegulations.length > 0 && (
               <Card>
-                <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-3">
+                <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-3">
                   Related Regulations
                 </h3>
                 <ul className="space-y-2">
@@ -135,7 +135,7 @@ export default async function GlossaryTermPage({ params }: Props) {
             {/* Related terms */}
             {frontmatter.relatedTerms && frontmatter.relatedTerms.length > 0 && (
               <Card>
-                <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-3">
+                <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-3">
                   Related Terms
                 </h3>
                 <ul className="space-y-2">

@@ -83,6 +83,7 @@ const REGULATIONS = [
 
 const UPCOMING = [
   {
+    slug: null,
     name: "EU AI Act — GPAI Rules",
     jurisdiction: "European Union",
     status: "enacted" as const,
@@ -90,13 +91,15 @@ const UPCOMING = [
     summary: "General-purpose AI model obligations including capability evaluations and incident reporting for systemic-risk models.",
   },
   {
-    name: "Texas HB 1709",
+    slug: "texas-hb-1709",
+    name: "Texas Responsible AI Governance Act (HB 1709)",
     jurisdiction: "US · Texas",
     status: "draft" as const,
-    effectiveDate: "TBD",
-    summary: "Proposed AI regulation modeled on the Colorado AI Act, covering high-risk AI system obligations for Texas businesses.",
+    effectiveDate: "TBD (pending enactment)",
+    summary: "Proposed AI regulation modeled on the Colorado AI Act, covering high-risk AI system obligations for Texas businesses. Passed House committee; awaiting floor vote.",
   },
   {
+    slug: null,
     name: "Virginia HB 2094",
     jurisdiction: "US · Virginia",
     status: "draft" as const,
@@ -179,11 +182,11 @@ export default function RegulationsPage() {
                   <div className="flex items-start justify-between gap-3 mb-3">
                     <div className="flex-1 min-w-0">
                       <div className="flex flex-wrap items-center gap-1.5 mb-1">
-                        <span className="text-xs font-medium text-neutral-400">
+                        <span className="text-xs font-medium text-neutral-500">
                           {reg.jurisdiction}
                         </span>
                         <span className="text-xs text-neutral-300">·</span>
-                        <span className="text-xs font-medium text-neutral-400">
+                        <span className="text-xs font-medium text-neutral-500">
                           {reg.category}
                         </span>
                       </div>
@@ -191,7 +194,7 @@ export default function RegulationsPage() {
                         {reg.name}
                       </h3>
                       {reg.shortName && (
-                        <span className="text-xs font-mono text-neutral-400">{reg.shortName}</span>
+                        <span className="text-xs font-mono text-neutral-500">{reg.shortName}</span>
                       )}
                     </div>
                     <Badge variant={regulationStatusVariant(reg.status)}>
@@ -201,7 +204,7 @@ export default function RegulationsPage() {
                   <p className="text-sm text-neutral-600 leading-relaxed mb-4">
                     {reg.summary}
                   </p>
-                  <div className="flex flex-wrap gap-4 text-xs text-neutral-400">
+                  <div className="flex flex-wrap gap-4 text-xs text-neutral-500">
                     <span className="flex items-center gap-1">
                       <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -229,29 +232,40 @@ export default function RegulationsPage() {
             Upcoming &amp; In Development
           </h2>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {UPCOMING.map((reg) => (
-              <Card key={reg.name} className="opacity-80">
-                <div className="flex items-start justify-between gap-3 mb-3">
-                  <div>
-                    <span className="text-xs font-medium text-neutral-400">
-                      {reg.jurisdiction}
-                    </span>
-                    <h3 className="mt-0.5 font-semibold text-neutral-700">{reg.name}</h3>
+            {UPCOMING.map((reg) => {
+              const inner = (
+                <Card hover={!!reg.slug} className={`h-full ${reg.slug ? "group-hover:border-brand-300 transition-all" : "opacity-80"}`}>
+                  <div className="flex items-start justify-between gap-3 mb-3">
+                    <div>
+                      <span className="text-xs font-medium text-neutral-500">
+                        {reg.jurisdiction}
+                      </span>
+                      <h3 className={`mt-0.5 font-semibold ${reg.slug ? "text-neutral-900 group-hover:text-brand-800 transition-colors" : "text-neutral-700"}`}>
+                        {reg.name}
+                      </h3>
+                    </div>
+                    <Badge variant={regulationStatusVariant(reg.status)}>
+                      {reg.status.charAt(0).toUpperCase() + reg.status.slice(1)}
+                    </Badge>
                   </div>
-                  <Badge variant={regulationStatusVariant(reg.status)}>
-                    {reg.status.charAt(0).toUpperCase() + reg.status.slice(1)}
-                  </Badge>
-                </div>
-                <p className="text-sm text-neutral-500 leading-relaxed mb-3">
-                  {reg.summary}
-                </p>
-                <p className="text-xs text-neutral-400">
-                  Expected: {reg.effectiveDate}
-                </p>
-              </Card>
-            ))}
+                  <p className="text-sm text-neutral-500 leading-relaxed mb-3">
+                    {reg.summary}
+                  </p>
+                  <p className="text-xs text-neutral-500">
+                    Expected: {reg.effectiveDate}
+                  </p>
+                </Card>
+              );
+              return reg.slug ? (
+                <Link key={reg.name} href={`/regulations/${reg.slug}`} className="group block">
+                  {inner}
+                </Link>
+              ) : (
+                <div key={reg.name}>{inner}</div>
+              );
+            })}
           </div>
-          <p className="mt-4 text-xs text-neutral-400">
+          <p className="mt-4 text-xs text-neutral-500">
             We monitor legislative databases, government feeds, and legal news to keep this list current.{" "}
             <Link href="/newsletter" className="underline hover:text-neutral-600 transition-colors">
               Subscribe for updates

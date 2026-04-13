@@ -70,6 +70,7 @@
 
 /* Base */
 :root {
+  color-scheme: light;
   --background: var(--color-background);
   --foreground: var(--color-foreground);
 }

@@ -166,14 +166,14 @@ export default function BlogPage() {
               <div className="flex-1">
                 <div className="flex flex-wrap items-center gap-2 mb-2">
                   <Badge variant="enacted">{featured.category}</Badge>
-                  <span className="text-xs text-neutral-400">{featured.readTime}</span>
+                  <span className="text-xs text-neutral-500">{featured.readTime}</span>
                 </div>
                 <h2 className="text-xl font-bold text-neutral-900 group-hover:text-brand-800 transition-colors mb-2">
                   {featured.title}
                 </h2>
                 <p className="text-neutral-600 leading-relaxed mb-3">{featured.excerpt}</p>
                 <div className="flex flex-wrap items-center gap-3">
-                  <time dateTime={featured.date} className="text-xs text-neutral-400">
+                  <time dateTime={featured.date} className="text-xs text-neutral-500">
                     {formatDate(featured.date)}
                   </time>
                   <div className="flex gap-1.5">
@@ -196,7 +196,7 @@ export default function BlogPage() {
               <Card hover className="h-full group-hover:border-brand-300 transition-all">
                 {/* Thumbnail placeholder */}
                 <div className="mb-4 h-32 rounded-lg bg-gradient-to-br from-neutral-100 to-neutral-200 flex items-center justify-center">
-                  <svg className="h-8 w-8 text-neutral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} aria-hidden="true">
+                  <svg className="h-8 w-8 text-neutral-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" />
                   </svg>
                 </div>
@@ -204,7 +204,7 @@ export default function BlogPage() {
                   <span className="inline-flex rounded-full bg-neutral-100 px-2 py-0.5 text-xs font-medium text-neutral-600">
                     {post.category}
                   </span>
-                  <span className="text-xs text-neutral-400">{post.readTime}</span>
+                  <span className="text-xs text-neutral-500">{post.readTime}</span>
                 </div>
                 <h3 className="font-bold text-neutral-900 group-hover:text-brand-800 transition-colors mb-2 leading-snug">
                   {post.title}
@@ -212,7 +212,7 @@ export default function BlogPage() {
                 <p className="text-sm text-neutral-600 leading-relaxed line-clamp-3 mb-3">
                   {post.excerpt}
                 </p>
-                <time dateTime={post.date} className="text-xs text-neutral-400">
+                <time dateTime={post.date} className="text-xs text-neutral-500">
                   {formatDate(post.date)}
                 </time>
               </Card>
