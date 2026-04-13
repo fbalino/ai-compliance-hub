@@ -39,6 +39,7 @@ const QUESTIONS: Question[] = [
       { value: "us_co", label: "Colorado", hint: "Consumers or employees in Colorado" },
       { value: "us_ca", label: "California", hint: "Employees or consumers in California" },
       { value: "us_il", label: "Illinois", hint: "Employees in Illinois" },
+      { value: "us_va", label: "Virginia", hint: "Consumers or employees in Virginia" },
       { value: "other", label: "Other / Not listed", hint: "Other US states or countries" },
     ],
   },
@@ -264,6 +265,27 @@ function computeResults(answers: Record<string, string | string[]>): RegResult[]
         "Explain what characteristics the AI evaluates",
         "Limit sharing video data with third parties",
         "Delete candidate videos within 30 days of a written request",
+      ],
+    });
+  }
+
+  // Virginia HB 2094
+  if (ops.includes("us_va") && uses.some((u) => ["hiring", "credit", "healthcare"].includes(u))) {
+    results.push({
+      slug: "virginia-hb-2094",
+      name: "Virginia HB 2094",
+      jurisdiction: "US · Virginia",
+      status: "enacted",
+      effectiveDate: "July 1, 2026",
+      reason:
+        "You deploy automated decision systems affecting Virginia residents in a covered use case (employment, credit, or healthcare). Virginia HB 2094 requires impact assessments, consumer notifications, and opt-out rights.",
+      urgency: "medium",
+      actions: [
+        "Conduct an impact assessment for each covered automated decision system",
+        "Add consumer notifications where AI is used in consequential decisions",
+        "Implement an opt-out / human review mechanism for Virginia residents",
+        "Obtain developer documentation from any third-party AI vendors",
+        "Update privacy policy to reflect automated decision-making disclosures",
       ],
     });
   }

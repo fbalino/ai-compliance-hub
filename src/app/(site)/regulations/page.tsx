@@ -79,6 +79,18 @@ const REGULATIONS = [
       "Requires employers using AI to analyze video interviews to notify candidates, obtain consent, explain how the AI is used, and limit sharing of video data with third parties.",
     category: "Employment / Hiring AI",
   },
+  {
+    slug: "virginia-hb-2094",
+    name: "Virginia HB 2094",
+    shortName: "VA HB 2094",
+    jurisdiction: "US · Virginia",
+    status: "enacted" as const,
+    effectiveDate: "July 1, 2026",
+    maxPenalty: "$7,500 per violation",
+    summary:
+      "Virginia's legislation governing automated decision systems used in consequential decisions. Requires impact assessments, consumer notifications, and opt-out rights for covered AI deployments.",
+    category: "Automated Decision Systems",
+  },
 ];
 
 const UPCOMING = [
@@ -97,14 +109,6 @@ const UPCOMING = [
     status: "draft" as const,
     effectiveDate: "TBD (pending enactment)",
     summary: "Proposed AI regulation modeled on the Colorado AI Act, covering high-risk AI system obligations for Texas businesses. Passed House committee; awaiting floor vote.",
-  },
-  {
-    slug: null,
-    name: "Virginia HB 2094",
-    jurisdiction: "US · Virginia",
-    status: "draft" as const,
-    effectiveDate: "TBD",
-    summary: "High-risk AI framework bill requiring impact assessments and transparency disclosures for covered AI systems.",
   },
 ];
 
@@ -155,7 +159,7 @@ export default function RegulationsPage() {
             <div className="flex items-center gap-1.5">
               <span className="h-2 w-2 rounded-full bg-amber-500" />
               <span className="text-sm text-neutral-600">
-                <strong className="text-neutral-900">2</strong> Enacted — Effective Soon
+                <strong className="text-neutral-900">3</strong> Enacted — Effective Soon
               </span>
             </div>
             <div className="flex items-center gap-1.5">
