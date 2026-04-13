@@ -1,0 +1,81 @@
+export const frontmatter = {
+  term: "Explainability (AI)",
+  definition:
+    "The ability to describe how an AI system reached a specific output or decision in terms that are understandable to a human audience — whether technical experts, affected individuals, or regulators. Required in various forms by the EU AI Act, GDPR, and US state AI laws.",
+  aliases: ["AI explainability", "model explainability", "XAI", "interpretability"],
+  relatedRegulations: [
+    { slug: "eu-ai-act", name: "EU AI Act" },
+    { slug: "colorado-ai-act", name: "Colorado AI Act" },
+    { slug: "nyc-local-law-144", name: "NYC Local Law 144" },
+  ],
+  relatedTerms: [
+    { slug: "high-risk-ai-system", term: "High-Risk AI System" },
+    { slug: "automated-decision-making", term: "Automated Decision-Making" },
+    { slug: "impact-assessment", term: "Impact Assessment" },
+  ],
+  publishedAt: "2026-04-13",
+  updatedAt: "2026-04-13",
+};
+
+## Overview
+
+**Explainability** refers to the degree to which the reasoning behind an AI system's output can be described and understood by humans. It is a foundational concept in responsible AI, directly connected to accountability, appeals rights, and regulatory compliance.
+
+Explainability is often discussed alongside **interpretability** — but there is a distinction:
+
+- **Interpretability** is a property of the model itself: how transparent its internal mechanics are (e.g., a decision tree is inherently interpretable; a deep neural network is not)
+- **Explainability** refers to post-hoc methods that produce human-understandable descriptions of a model's behavior, regardless of its inherent interpretability
+
+Most modern AI compliance law does not require fully interpretable models — it requires that explanations can be generated for specific decisions affecting individuals.
+
+## Regulatory Explainability Requirements
+
+### EU AI Act
+
+The EU AI Act requires high-risk AI providers to:
+- Provide **instructions for use** that allow deployers to understand the system's outputs and limitations
+- Enable effective **human oversight**, which presupposes that humans can understand why the system produced a given output
+- Maintain **logs** sufficient for post-hoc analysis of high-stakes decisions
+
+GDPR Article 22 goes further: individuals subject to solely automated significant decisions have the right to obtain **meaningful information about the logic involved** in the decision.
+
+### Colorado AI Act
+
+Consumers who receive an adverse consequential decision from a high-risk AI system have the right to:
+- Know that a high-risk AI was used
+- Request a **human review** of the decision
+- Receive an explanation of the factors that contributed to the decision
+
+### NYC Local Law 144
+
+Employers using AEDTs must notify candidates which job qualifications the AI system evaluates — an implicit explainability requirement about what the model is assessing.
+
+## Types of AI Explanation Methods
+
+### Feature Importance
+
+Methods that identify which input features (variables) most influenced the model's output for a specific prediction:
+- **SHAP (SHapley Additive exPlanations)**: Calculates each feature's contribution using game theory
+- **LIME (Local Interpretable Model-Agnostic Explanations)**: Approximates the model locally with an interpretable model
+
+### Example-Based Explanations
+
+- **Counterfactuals**: "If you had a credit score of X instead of Y, you would have been approved"
+- **Prototypes**: "Your application was most similar to approved applications that also had..."
+
+### Natural Language Explanations
+
+Some AI systems generate plain-language explanations of their outputs. These are increasingly used in customer-facing AI but raise questions about whether the language explanation accurately reflects the model's actual logic.
+
+### Saliency Maps (Vision Models)
+
+For image classification, saliency maps highlight regions of an image that most influenced the model's classification — useful for understanding what visual features drive a decision.
+
+## The Explainability Trade-Off
+
+More complex, higher-performing models (deep neural networks, ensemble methods) are typically less inherently interpretable. This creates a tension:
+
+- Simpler models (logistic regression, decision trees) are easy to explain but may perform worse
+- Complex models achieve higher accuracy but require post-hoc explanation methods that approximate rather than reveal the true model logic
+
+Regulators are increasingly accepting post-hoc explanations as sufficient for compliance — what matters is that affected individuals receive **meaningful** explanations, not that the model itself is simple.

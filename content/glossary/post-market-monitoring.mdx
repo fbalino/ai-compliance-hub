@@ -1,0 +1,92 @@
+export const frontmatter = {
+  term: "Post-Market Monitoring",
+  definition:
+    "The ongoing process of collecting and analyzing data about an AI system's performance, behavior, and real-world impacts after deployment, to detect and address risks, drifts, biases, or failures that were not apparent during pre-deployment testing.",
+  aliases: ["AI monitoring", "AI surveillance", "model monitoring", "continuous monitoring"],
+  relatedRegulations: [
+    { slug: "eu-ai-act", name: "EU AI Act" },
+    { slug: "colorado-ai-act", name: "Colorado AI Act" },
+  ],
+  relatedTerms: [
+    { slug: "risk-management-system", term: "AI Risk Management System" },
+    { slug: "impact-assessment", term: "Impact Assessment" },
+    { slug: "algorithmic-discrimination", term: "Algorithmic Discrimination" },
+  ],
+  publishedAt: "2026-04-13",
+  updatedAt: "2026-04-13",
+};
+
+## Overview
+
+**Post-market monitoring** (also called post-deployment monitoring) is the ongoing collection and evaluation of data about an AI system's real-world behavior after it has been deployed. Pre-deployment testing is conducted in controlled conditions with known datasets — post-market monitoring captures how the system actually performs in the unpredictable complexity of real-world use.
+
+The EU AI Act makes post-market monitoring a **mandatory obligation** for providers of high-risk AI systems, recognizing that AI risks often emerge only after deployment through:
+
+- **Distribution shift**: Real-world data distributions differ from training distributions
+- **Model drift**: Performance degrades over time as the world changes
+- **Edge cases**: Rare inputs that were not represented in pre-deployment testing
+- **Adversarial adaptation**: Users learn to manipulate the system over time
+- **Emergent biases**: Discriminatory patterns that only become statistically detectable at scale
+
+## EU AI Act Requirements
+
+### Provider Obligations (Article 72)
+
+High-risk AI providers must implement a **post-market monitoring system** that:
+
+- Actively collects and analyzes data from deployers about the system's performance
+- Covers the system's entire operational lifetime
+- Is proportionate to the nature of the AI technologies and the risks
+- Includes mechanisms for detecting serious incidents and malfunctions
+
+Providers must document the post-market monitoring plan in their technical documentation and update it as new risks emerge.
+
+### Serious Incident Reporting
+
+When a high-risk AI system causes a serious incident — defined as a malfunction that results in death, serious injury, or a significant fundamental rights violation — the provider must report it to national market surveillance authorities within:
+
+- **Immediately** (without undue delay) for incidents involving risk to life
+- **15 days** for incidents causing serious injury or harm
+
+### Deployer Obligations (Article 26)
+
+Deployers of high-risk AI must:
+
+- Monitor the AI system for unexpected behavior, outputs, or discrimination risks
+- Keep logs for at least **6 months** after the decision (or longer per applicable law)
+- Report serious incidents to providers and (for public body deployers) to market surveillance authorities
+- Provide feedback to providers about system performance and incidents
+
+## Colorado AI Act Connection
+
+The Colorado AI Act requires deployers to notify the Colorado Attorney General within **90 days** of discovering that a high-risk AI system caused or is reasonably likely to cause algorithmic discrimination. This functions as a targeted post-market incident reporting obligation.
+
+## Practical Monitoring Program Components
+
+An effective post-market monitoring program typically includes:
+
+### Technical Monitoring
+
+- **Model performance metrics**: Accuracy, precision, recall tracked over time
+- **Data drift detection**: Statistical tests comparing incoming data distributions to training distributions
+- **Output distribution monitoring**: Detecting shifts in the distribution of model outputs (e.g., increasing rejection rates for certain groups)
+- **Latency and availability**: System reliability metrics
+
+### Fairness Monitoring
+
+- **Disaggregated performance metrics**: Tracking accuracy and error rates separately by demographic group
+- **Selection rate monitoring**: Detecting changes in approval/rejection rates by group
+- **Adverse impact alerts**: Automated alerting when impact ratios fall below thresholds
+
+### User Feedback Loops
+
+- **Appeal tracking**: How often users appeal AI-driven decisions, and outcomes
+- **Complaint analysis**: Patterns in user complaints that may indicate systematic failures
+- **Frontline staff feedback**: Reports from humans who work alongside the AI system
+
+### Incident Management
+
+- **Incident detection**: Criteria for what constitutes a reportable serious incident
+- **Investigation process**: Root cause analysis procedures
+- **Regulatory reporting**: Workflows for notifying authorities within required timeframes
+- **Remediation tracking**: Follow-up actions taken and their effectiveness

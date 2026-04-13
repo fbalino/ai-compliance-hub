@@ -1,0 +1,75 @@
+export const frontmatter = {
+  term: "Fundamental Rights Impact Assessment (FRIA)",
+  definition:
+    "A structured evaluation required by the EU AI Act for public bodies and private entities deploying high-risk AI systems, assessing the potential impact on fundamental rights including privacy, non-discrimination, freedom of expression, and access to justice.",
+  aliases: ["FRIA", "AI fundamental rights assessment", "rights impact assessment"],
+  relatedRegulations: [
+    { slug: "eu-ai-act", name: "EU AI Act" },
+  ],
+  relatedTerms: [
+    { slug: "impact-assessment", term: "Impact Assessment" },
+    { slug: "high-risk-ai-system", term: "High-Risk AI System" },
+    { slug: "algorithmic-discrimination", term: "Algorithmic Discrimination" },
+  ],
+  publishedAt: "2026-04-13",
+  updatedAt: "2026-04-13",
+};
+
+## Overview
+
+A **Fundamental Rights Impact Assessment (FRIA)** is a structured analysis required by the EU AI Act (Article 27) for certain deployers of high-risk AI systems. It evaluates how the AI system may affect individuals' fundamental rights as recognized under EU law — including rights protected by the EU Charter of Fundamental Rights, the European Convention on Human Rights, and EU secondary legislation.
+
+The FRIA is distinct from a technical risk management assessment: it focuses specifically on **rights-based impacts** on individuals and communities affected by the AI system, not merely on technical accuracy or safety.
+
+## Who Must Conduct a FRIA?
+
+The FRIA obligation applies to **deployers** — not providers — of Annex III high-risk AI systems that are:
+
+- **Public bodies** (government agencies, public sector entities), or
+- **Private entities providing regulated services** to the public — specifically:
+  - Banking and financial services (credit, insurance)
+  - Healthcare services
+  - Social security and benefits administration
+  - Essential public services
+
+## What a FRIA Must Cover
+
+The EU AI Act requires a FRIA to include:
+
+1. **Description of the AI system and its deployment context**: Purpose, the population affected, and the nature of consequential decisions made
+
+2. **Identification of affected persons and groups**: Who is subject to the AI system's outputs, with particular attention to vulnerable groups
+
+3. **Assessment of rights impacts**: For each right potentially affected, an analysis of:
+   - Whether the right is engaged
+   - The nature, severity, and reversibility of potential impact
+   - The likelihood of impact materializing
+
+4. **Mitigation measures**: Technical, organizational, and procedural measures adopted to prevent or minimize rights impacts
+
+5. **Human oversight arrangements**: How humans will monitor the system, intervene in concerning cases, and ensure accountability
+
+6. **Registration in EU database**: Deployers must notify the EU AI database of their FRIA before operational deployment
+
+## Core Fundamental Rights Under Assessment
+
+Common rights examined in AI FRIAs include:
+
+| Right | Examples of AI Impact |
+|-------|----------------------|
+| **Non-discrimination** | Biased outputs disadvantaging protected groups |
+| **Privacy and data protection** | Use of personal data without adequate safeguards |
+| **Freedom of expression** | Content moderation systems suppressing legitimate speech |
+| **Fair trial / access to justice** | AI-assisted legal decisions limiting due process |
+| **Dignity and autonomy** | Manipulation, exploitation, or dehumanizing treatment |
+| **Equal access to services** | Discriminatory eligibility decisions for public services |
+
+## Relationship to Other Assessments
+
+A FRIA is one of several overlapping assessment requirements for high-risk AI deployers:
+
+- **Data Protection Impact Assessment (DPIA)** under GDPR: Required when processing is likely to result in high risk to individuals' rights and freedoms. Significant overlap with FRIA for AI systems processing personal data.
+- **Conformity Assessment** under EU AI Act: Required of providers (not deployers), covering technical requirements
+- **Impact Assessment** under Colorado AI Act: A US equivalent for algorithmic discrimination risk
+
+Organizations deploying high-risk AI in the EU should design integrated assessment processes that satisfy both FRIA and DPIA requirements simultaneously to reduce duplication.

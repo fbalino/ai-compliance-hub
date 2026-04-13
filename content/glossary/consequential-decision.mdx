@@ -1,0 +1,74 @@
+export const frontmatter = {
+  term: "Consequential Decision",
+  definition:
+    "Under the Colorado AI Act, a decision made by a high-risk AI system that has a material, legal, or similarly significant effect on a consumer's access to or the cost of education, employment, financial services, healthcare, housing, insurance, or legal services.",
+  aliases: ["significant decision", "high-stakes decision", "material decision"],
+  relatedRegulations: [
+    { slug: "colorado-ai-act", name: "Colorado AI Act" },
+    { slug: "eu-ai-act", name: "EU AI Act" },
+  ],
+  relatedTerms: [
+    { slug: "high-risk-ai-system", term: "High-Risk AI System" },
+    { slug: "automated-decision-making", term: "Automated Decision-Making" },
+    { slug: "impact-assessment", term: "Impact Assessment" },
+  ],
+  publishedAt: "2026-04-13",
+  updatedAt: "2026-04-13",
+};
+
+## Overview
+
+A **consequential decision** is a foundational concept in the Colorado Artificial Intelligence Act (SB 24-205). It defines the scope of when an AI system qualifies as "high-risk" and when the law's consumer protection obligations are triggered.
+
+Under the Colorado AI Act, a consequential decision is one that:
+
+1. Has a **material, legal, or similarly significant effect** on a consumer's life, and
+2. Concerns the consumer's access to, or the cost of, one of eight protected domains
+
+If an AI system makes, or is a **substantial factor** in making, a consequential decision affecting Colorado consumers, it qualifies as a high-risk AI system subject to the Act's obligations.
+
+## Protected Domains
+
+The Colorado AI Act defines consequential decisions as those affecting a consumer's access to or the cost of:
+
+| Domain | Examples |
+|--------|---------|
+| **Education** | Admissions, financial aid, academic assessments |
+| **Employment** | Hiring, termination, compensation, promotion, performance reviews |
+| **Financial services** | Credit approval, loan terms, insurance underwriting |
+| **Healthcare** | Diagnosis, treatment recommendations, coverage decisions |
+| **Housing** | Rental applications, mortgage approvals, real estate transactions |
+| **Insurance** | Eligibility, premium pricing, claims decisions |
+| **Legal services** | Access to legal representation, bail recommendations |
+| **Essential government services** | Benefits eligibility, licensing |
+
+## "Substantial Factor" Standard
+
+The trigger is not only that an AI system **makes** a consequential decision — it also triggers when the AI is a **substantial factor** in a human's decision. This prevents employers, lenders, and others from using AI as a screen but claiming a human "made the decision."
+
+A system is likely a substantial factor when:
+- Its output is the primary basis for a decision (even if a human signs off)
+- A human routinely follows the AI's recommendation without independent analysis
+- The AI flags candidates for human review and humans only review flagged candidates
+
+## Comparison: Colorado vs. EU AI Act
+
+Both the Colorado AI Act and the EU AI Act center their high-risk frameworks on decisions that significantly affect individuals in sensitive domains. The key differences:
+
+| | Colorado AI Act | EU AI Act |
+|---|---|---|
+| **Key term** | Consequential decision | High-risk AI use case (Annex III) |
+| **Standard** | Substantial factor | Substantial factor or intended use |
+| **Domains** | 8 defined categories | 8 Annex III categories (broadly similar) |
+| **Consumer right** | Appeal + human review | Human oversight mechanism |
+
+## Practical Classification Exercise
+
+To determine if your AI system makes consequential decisions under Colorado law:
+
+1. **What outputs does the system produce?** (score, ranking, recommendation, classification)
+2. **Do those outputs affect one of the eight listed domains?**
+3. **Are Colorado consumers affected?**
+4. **Is the AI a substantial factor in the final decision?** (Consider: what would happen if the AI were removed from the process?)
+
+If all four are yes, you are likely deploying a high-risk AI system under the Colorado AI Act.

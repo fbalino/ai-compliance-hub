@@ -1,0 +1,74 @@
+export const frontmatter = {
+  term: "Adverse Impact",
+  definition:
+    "A statistical finding that a selection process, test, or AI system produces substantially different pass rates, selection rates, or outcomes for different demographic groups, typically measured using the four-fifths (80%) rule from EEOC Uniform Guidelines.",
+  aliases: ["disparate impact", "disproportionate impact", "four-fifths rule"],
+  relatedRegulations: [
+    { slug: "nyc-local-law-144", name: "NYC Local Law 144" },
+    { slug: "colorado-ai-act", name: "Colorado AI Act" },
+    { slug: "eu-ai-act", name: "EU AI Act" },
+  ],
+  relatedTerms: [
+    { slug: "bias-audit", term: "Bias Audit" },
+    { slug: "algorithmic-discrimination", term: "Algorithmic Discrimination" },
+    { slug: "impact-assessment", term: "Impact Assessment" },
+  ],
+  publishedAt: "2026-04-13",
+  updatedAt: "2026-04-13",
+};
+
+## Overview
+
+**Adverse impact** (also called **disparate impact**) is a legal and statistical concept describing a situation where a facially neutral policy, test, or decision-making process produces substantially different outcomes for different demographic groups — even without discriminatory intent.
+
+In the context of AI and automated systems, adverse impact analysis is the primary tool for detecting whether an AI model is discriminating against protected classes in hiring, lending, housing, or other regulated domains.
+
+## The Four-Fifths Rule
+
+The most widely used standard for detecting adverse impact is the **four-fifths rule** (also called the **80% rule**), established in the EEOC Uniform Guidelines on Employee Selection Procedures (1978).
+
+**Formula:**
+> Impact Ratio = (Selection rate of disadvantaged group) ÷ (Selection rate of most-selected group)
+
+An impact ratio below **0.80 (80%)** is generally evidence of adverse impact.
+
+**Example:**
+- Selection rate for white applicants: 60%
+- Selection rate for Black applicants: 40%
+- Impact ratio: 40% ÷ 60% = **0.67** → Below 0.80 → Adverse impact indicated
+
+## NYC Local Law 144 Application
+
+NYC Local Law 144 requires bias auditors of automated employment decision tools (AEDTs) to calculate:
+- Selection rates by race/ethnicity and sex
+- Impact ratios comparing each group to the most-selected group
+- Results must be published publicly on the employer's website
+
+An impact ratio below 0.80 in an audit report signals adverse impact but does not automatically constitute illegal discrimination — the employer must then determine whether the AEDT is justified by business necessity and whether less discriminatory alternatives exist.
+
+## Adverse Impact vs. Disparate Treatment
+
+| Concept | Definition | Intent Required? |
+|---------|-----------|-----------------|
+| **Adverse impact** | Neutral practice that has disproportionate negative effect | No — effect is what matters |
+| **Disparate treatment** | Intentional discrimination against protected class | Yes — discriminatory intent |
+
+Both can constitute illegal discrimination under US employment law (Title VII) and fair housing/lending statutes.
+
+## Limitations of the Four-Fifths Rule
+
+The four-fifths rule has known limitations:
+
+- **Sample size sensitivity**: Unreliable with small datasets (below ~30 observations per group)
+- **Binary framing**: Designed for pass/fail selection, less suited for continuous score outputs
+- **Group definition**: Results can vary significantly depending on how demographic groups are defined
+- **Statistical significance**: A ratio below 0.80 may not be statistically significant in small samples
+
+Bias auditors often supplement the four-fifths rule with:
+- Chi-square tests for statistical significance
+- Effect size measures (Cohen's d, odds ratios)
+- Intersectional analysis across multiple group attributes simultaneously
+
+## EU AI Act Connection
+
+The EU AI Act does not use the term "adverse impact" directly but requires high-risk AI providers to ensure training data is subject to data governance measures addressing **potential biases that could lead to discrimination**. The Act also requires post-market monitoring to detect discriminatory effects. Auditing for adverse impact is a core methodology for satisfying these obligations.

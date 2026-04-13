@@ -1,0 +1,58 @@
+export const frontmatter = {
+  term: "Systemic Risk (AI)",
+  definition:
+    "Under the EU AI Act, systemic risk refers to risks posed by general-purpose AI models that, due to their capabilities, widespread deployment, or scale of training compute (above 10²⁵ FLOPs), have the potential to cause widespread negative effects across multiple sectors of society simultaneously.",
+  aliases: ["GPAI systemic risk", "large-scale AI risk"],
+  relatedRegulations: [
+    { slug: "eu-ai-act", name: "EU AI Act" },
+  ],
+  relatedTerms: [
+    { slug: "gpai-model", term: "General Purpose AI Model (GPAI)" },
+    { slug: "risk-management-system", term: "AI Risk Management System" },
+    { slug: "conformity-assessment", term: "Conformity Assessment" },
+  ],
+  publishedAt: "2026-04-13",
+  updatedAt: "2026-04-13",
+};
+
+## Overview
+
+**Systemic risk** in the context of the EU AI Act refers to risks that are not limited to specific use cases or individual users, but that could affect entire sectors of society, critical infrastructure, democratic institutions, or fundamental rights at scale. It is the defining characteristic that triggers the EU AI Act's most demanding obligations for general-purpose AI (GPAI) model providers.
+
+The concept acknowledges that some AI systems — particularly very large foundation models — pose qualitatively different risks from narrow AI applications. A bias in a single hiring tool affects the users of that tool. A bias or capability gap in a widely-deployed GPAI model can affect millions of downstream applications simultaneously.
+
+## The 10²⁵ FLOP Threshold
+
+The EU AI Act defines a presumption of systemic risk based on **training compute**: GPAI models trained using more than **10²⁵ floating point operations (FLOPs)** are presumed to be systemic-risk models.
+
+This threshold corresponds roughly to models at the frontier of AI capability as of 2024 — models like GPT-4, Claude 3 Opus, and Gemini Ultra. The European Commission can adjust this threshold as technology evolves.
+
+Models below this threshold may still be designated systemic risk if they meet other criteria — such as having disproportionate reach in critical sectors, or posing specific risks identified through adversarial testing.
+
+## Additional Obligations for Systemic Risk GPAI
+
+GPAI providers whose models are classified as systemic risk must comply with enhanced requirements beyond the baseline GPAI obligations:
+
+### Adversarial Testing
+
+Providers must conduct **red-teaming** and adversarial testing to identify potential misuse scenarios, capability elicitation risks, and failure modes. Results must be documented and shared with the European AI Office.
+
+### Incident Reporting
+
+Providers must report **serious incidents** involving systemic-risk GPAI models to the European AI Office within defined timeframes. A serious incident is one that causes or could cause significant harm — death, serious injury, major disruption of critical infrastructure, or large-scale fundamental rights violations.
+
+### Cybersecurity Measures
+
+Systemic-risk GPAI providers must implement cybersecurity protections proportionate to the risk, including measures to prevent model theft, unauthorized fine-tuning, and capability extraction.
+
+### Energy and Compute Disclosure
+
+Providers must report training compute usage and energy consumption to the European AI Office. This supports regulatory tracking of frontier model development and environmental impact assessment.
+
+## Why Systemic Risk Matters for Enterprises
+
+If your organization uses a GPAI-based API (from OpenAI, Anthropic, Google, or others) and that model is classified as systemic risk under the EU AI Act:
+
+- Your provider bears the primary systemic risk compliance obligations
+- Your downstream application may still be classified as **high-risk AI** under Annex III if it operates in a sensitive domain — in which case *you* bear the high-risk AI obligations
+- You should obtain documentation from your GPAI provider about their compliance status and any known systemic risk classifications

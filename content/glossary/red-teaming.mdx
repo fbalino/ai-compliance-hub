@@ -1,0 +1,74 @@
+export const frontmatter = {
+  term: "Red-Teaming (AI)",
+  definition:
+    "A structured adversarial testing process where a dedicated team attempts to find ways to make an AI system behave harmfully, unsafely, or contrary to its intended design — including generating dangerous content, bypassing safety filters, or being manipulated into misuse.",
+  aliases: ["AI red teaming", "adversarial testing", "AI safety testing"],
+  relatedRegulations: [
+    { slug: "eu-ai-act", name: "EU AI Act" },
+  ],
+  relatedTerms: [
+    { slug: "systemic-risk", term: "Systemic Risk (AI)" },
+    { slug: "gpai-model", term: "General Purpose AI Model (GPAI)" },
+    { slug: "risk-management-system", term: "AI Risk Management System" },
+  ],
+  publishedAt: "2026-04-13",
+  updatedAt: "2026-04-13",
+};
+
+## Overview
+
+**Red-teaming** in AI refers to the practice of deliberately attempting to break, manipulate, or elicit harmful behavior from an AI system before deployment. The term comes from military and cybersecurity traditions where "red teams" simulate adversary attacks on systems to find vulnerabilities before real adversaries do.
+
+In AI safety, red-teaming has become a critical pre-deployment practice — and under the EU AI Act, a **mandatory requirement** for GPAI models with systemic risk.
+
+## Why Red-Teaming Matters
+
+AI systems can fail in ways that are not apparent from standard evaluation benchmarks:
+
+- **Jailbreaking**: Users craft inputs to bypass safety guardrails and elicit content the model was trained not to produce
+- **Prompt injection**: Malicious content in user inputs manipulates the AI to override system-level instructions
+- **Dual-use misuse**: The model correctly performs a task (e.g., summarizing) but the task is applied to harmful content (e.g., summarizing instructions for weapons)
+- **Hallucination in high-stakes contexts**: The model confidently produces false information that causes harm when acted upon
+- **Demographic disparities**: The model behaves differently for different demographic groups in ways not captured by standard benchmarks
+
+## EU AI Act Requirements
+
+The EU AI Act (Article 55) requires providers of **GPAI models with systemic risk** to conduct adversarial testing as part of their compliance obligations:
+
+- Testing must be conducted **before market placement**
+- Testing must be documented and the results made available to the **European AI Office**
+- Testing must cover the model's most significant potential misuse scenarios
+- Ongoing adversarial testing is expected as part of post-market monitoring
+
+## Types of Red-Team Exercises
+
+### Manual Red-Teaming
+
+Human testers — often domain experts, security researchers, and people with lived experience of harm — craft prompts and interaction sequences designed to elicit harmful outputs. Manual red-teaming is effective for discovering novel attack strategies but is resource-intensive.
+
+### Automated Red-Teaming
+
+AI systems are used to automatically generate adversarial prompts and evaluate model responses at scale. Automated approaches can cover more of the input space but may miss the creative attack strategies that human red-teamers find.
+
+### Domain-Specific Testing
+
+Red-team exercises focused on specific high-risk domains:
+- **CBRN (Chemical, Biological, Radiological, Nuclear)**: Can the model provide operational guidance for creating weapons?
+- **Cybersecurity**: Does the model assist with developing malware or cyberattack tools?
+- **Child safety**: Does the model generate CSAM or facilitate contact with minors?
+- **Political manipulation**: Can the model be weaponized for large-scale influence operations?
+
+## Red-Teaming vs. Bias Auditing
+
+| | Red-Teaming | Bias Auditing |
+|---|---|---|
+| **Focus** | Misuse, safety failures, adversarial manipulation | Demographic disparities in outputs |
+| **Method** | Adversarial prompts, jailbreaking attempts | Statistical analysis of selection rates |
+| **Required by** | EU AI Act (GPAI systemic risk) | NYC LL 144, Colorado AI Act |
+| **Who conducts** | Safety researchers, internal red teams | Independent auditors |
+
+Both are important and complementary — a system can be safe from adversarial misuse but still discriminatory, and vice versa.
+
+## Industry Practice
+
+Leading AI labs including Anthropic, OpenAI, and Google DeepMind now publish red-team findings as part of model safety reports. The **Frontier Model Forum** (a consortium of major AI labs) has developed shared guidance on red-teaming methodology for frontier models.

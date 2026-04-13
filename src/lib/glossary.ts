@@ -31,6 +31,40 @@ const GLOSSARY_MODULES: Record<string, () => Promise<MdxModule>> = {
     import("content/glossary/impact-assessment.mdx") as Promise<MdxModule>,
   "bias-audit": () =>
     import("content/glossary/bias-audit.mdx") as Promise<MdxModule>,
+  "automated-decision-making": () =>
+    import("content/glossary/automated-decision-making.mdx") as Promise<MdxModule>,
+  "gpai-model": () =>
+    import("content/glossary/gpai-model.mdx") as Promise<MdxModule>,
+  "risk-management-system": () =>
+    import("content/glossary/risk-management-system.mdx") as Promise<MdxModule>,
+  "systemic-risk": () =>
+    import("content/glossary/systemic-risk.mdx") as Promise<MdxModule>,
+  "training-data-transparency": () =>
+    import("content/glossary/training-data-transparency.mdx") as Promise<MdxModule>,
+  "prohibited-ai-practices": () =>
+    import("content/glossary/prohibited-ai-practices.mdx") as Promise<MdxModule>,
+  "ai-governance": () =>
+    import("content/glossary/ai-governance.mdx") as Promise<MdxModule>,
+  "fundamental-rights-impact-assessment": () =>
+    import("content/glossary/fundamental-rights-impact-assessment.mdx") as Promise<MdxModule>,
+  "adverse-impact": () =>
+    import("content/glossary/adverse-impact.mdx") as Promise<MdxModule>,
+  "ce-marking": () =>
+    import("content/glossary/ce-marking.mdx") as Promise<MdxModule>,
+  "explainability": () =>
+    import("content/glossary/explainability.mdx") as Promise<MdxModule>,
+  "red-teaming": () =>
+    import("content/glossary/red-teaming.mdx") as Promise<MdxModule>,
+  "post-market-monitoring": () =>
+    import("content/glossary/post-market-monitoring.mdx") as Promise<MdxModule>,
+  "ai-deployer": () =>
+    import("content/glossary/ai-deployer.mdx") as Promise<MdxModule>,
+  "ai-sandbox": () =>
+    import("content/glossary/ai-sandbox.mdx") as Promise<MdxModule>,
+  "consequential-decision": () =>
+    import("content/glossary/consequential-decision.mdx") as Promise<MdxModule>,
+  "ai-literacy": () =>
+    import("content/glossary/ai-literacy.mdx") as Promise<MdxModule>,
 };
 
 export async function getAllGlossarySlugs(): Promise<string[]> {

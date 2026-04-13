@@ -1,0 +1,75 @@
+export const frontmatter = {
+  term: "AI Deployer",
+  definition:
+    "An organization or individual that integrates an AI system into its products, services, or internal processes for use in a specific application — as distinguished from the AI provider (developer) who built the underlying model or system.",
+  aliases: ["AI operator", "AI user (B2B)", "downstream user"],
+  relatedRegulations: [
+    { slug: "eu-ai-act", name: "EU AI Act" },
+    { slug: "colorado-ai-act", name: "Colorado AI Act" },
+    { slug: "nyc-local-law-144", name: "NYC Local Law 144" },
+  ],
+  relatedTerms: [
+    { slug: "high-risk-ai-system", term: "High-Risk AI System" },
+    { slug: "impact-assessment", term: "Impact Assessment" },
+    { slug: "automated-decision-making", term: "Automated Decision-Making" },
+  ],
+  publishedAt: "2026-04-13",
+  updatedAt: "2026-04-13",
+};
+
+## Overview
+
+An **AI deployer** is an entity that puts an AI system into use for a specific application or purpose. This is distinguished from the **AI provider** (or developer) who designed, trained, and built the AI system. The same AI technology can pass through multiple hands:
+
+- **Provider**: OpenAI builds and maintains GPT models
+- **Integrator/Deployer**: A hiring software company builds a recruitment screening tool using GPT via the API
+- **End deployer**: An HR department at a bank uses the hiring software to screen job applicants
+
+In this chain, the hiring software company and the bank's HR department are both deployers — each with different compliance obligations depending on the regulatory framework.
+
+## Deployer vs. Provider Obligations
+
+AI regulations consistently distinguish between the obligations of providers (who build AI) and deployers (who use it), because the parties are best positioned to control different aspects of risk.
+
+### EU AI Act
+
+| Role | Primary Obligations |
+|------|-------------------|
+| **Provider** | Risk management system, technical documentation, conformity assessment, CE marking, registration |
+| **Deployer** | Use per provider's instructions, human oversight, log retention, Fundamental Rights Impact Assessment (for certain deployers), incident reporting |
+
+A crucial EU AI Act rule: if a deployer substantially **modifies** a high-risk AI system — changing its purpose, retraining it, or integrating it in ways that materially alter its behavior — the deployer becomes a **provider** for that modified system and must fulfill all provider obligations.
+
+### Colorado AI Act
+
+Colorado explicitly separates deployer and developer obligations:
+- **Deployers**: Impact assessment, consumer disclosures, human review process, governance program, incident reporting
+- **Developers**: Technical documentation, risk disclosure to deployers, contractual requirements
+
+### NYC Local Law 144
+
+The bias audit and notice obligations fall on **employers** (deployers) — not on the vendors who built the AEDT. The employer is responsible for ensuring the tool is audited and that candidates are notified.
+
+## Key Deployer Compliance Questions
+
+Regardless of jurisdiction, deployers should address these questions for each AI system they use:
+
+1. **Is this system subject to regulation?** Does it process personal data? Does it affect high-stakes decisions? Is it used in a regulated sector?
+
+2. **Who is the provider, and what documentation have they provided?** Do you have the technical documentation, instructions for use, and risk disclosures required by applicable law?
+
+3. **What are your obligations as a deployer?** Based on the system's classification, what assessments, disclosures, and oversight mechanisms must you implement?
+
+4. **Are you relying on the provider's compliance?** A provider's CE marking or bias audit does not automatically satisfy all your deployer-level obligations.
+
+5. **Do you modify the system?** Even configuration changes, fine-tuning, or substantial prompt engineering may elevate your role to that of a provider.
+
+## Third-Party AI Tool Procurement
+
+A common compliance challenge for deployers: when purchasing a commercial AI tool (e.g., an AI-powered ATS, credit scoring service, or fraud detection platform), deployers often lack visibility into the AI's design. Best practices for AI procurement:
+
+- Request the provider's technical documentation and risk disclosures
+- Include AI compliance representations and warranties in vendor contracts
+- Verify the provider has conducted required conformity assessments (for EU AI Act) or bias audits (for NYC LL 144)
+- Establish data processing agreements covering AI training data use
+- Include audit rights in vendor contracts

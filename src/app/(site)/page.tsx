@@ -4,6 +4,9 @@ import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
+// ISR: homepage revalidates every 6 hours
+export const revalidate = 21600;
+
 export const metadata: Metadata = {
   title: "AI Compliance Hub — Know What's Required. Find Who Can Help.",
   description:

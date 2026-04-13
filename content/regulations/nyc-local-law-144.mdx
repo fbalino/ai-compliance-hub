@@ -2,7 +2,7 @@ export const frontmatter = {
   name: "NYC Local Law 144",
   shortName: "NYC LL 144",
   description:
-    "New York City law requiring employers using AI in hiring or promotion decisions affecting NYC employees to conduct annual bias audits and post results publicly.",
+    "New York City law requiring employers using automated employment decision tools (AEDTs) for hiring or promotion decisions affecting NYC employees to conduct annual independent bias audits and publicly disclose results.",
   jurisdiction: "US · New York City",
   status: "enforced",
   effectiveDate: "July 5, 2023",
@@ -13,33 +13,243 @@ export const frontmatter = {
   toc: [
     { id: "overview", label: "Overview" },
     { id: "who-it-applies-to", label: "Who It Applies To" },
-    { id: "bias-audit-requirement", label: "Bias Audit Requirement" },
+    { id: "aedt-definition", label: "What Is an AEDT?" },
+    { id: "bias-audit-requirement", label: "Bias Audit Requirements" },
     { id: "notice-requirements", label: "Notice Requirements" },
-    { id: "penalties", label: "Penalties" },
+    { id: "compliance-timeline", label: "Compliance Timeline" },
+    { id: "penalties", label: "Penalties & Enforcement" },
+    { id: "compliance-steps", label: "Compliance Steps" },
+    { id: "faqs", label: "Frequently Asked Questions" },
   ],
   relatedRegulations: [
     { slug: "colorado-ai-act", name: "Colorado AI Act" },
     { slug: "illinois-ai-video-interview-act", name: "Illinois AIVIRA" },
+    { slug: "eu-ai-act", name: "EU AI Act" },
   ],
   faqs: [
     {
-      question: "What is an AEDT under NYC LL 144?",
+      question: "What is an AEDT under NYC Local Law 144?",
       answer:
-        "An Automated Employment Decision Tool (AEDT) is any computational process derived from machine learning, statistical modeling, data analytics, or AI that substantially assists or replaces human decision-making in screening or ranking candidates for employment or promotions.",
+        "An Automated Employment Decision Tool (AEDT) is any computational process derived from machine learning, statistical modeling, data analytics, or AI that substantially assists or replaces discretionary decision-making in screening or ranking candidates for employment or promotions.",
+    },
+    {
+      question: "Who must conduct a bias audit?",
+      answer:
+        "Employers and employment agencies that use an AEDT to screen candidates for employment in NYC, or to screen current employees for promotions in NYC, must commission an independent bias audit before using the tool and annually thereafter.",
+    },
+    {
+      question: "What does a bias audit measure?",
+      answer:
+        "The audit must calculate the selection rate and impact ratio for each race/ethnicity and sex category included in the dataset, using the most recent EEOC Uniform Guidelines on Employee Selection Procedures as a reference standard.",
+    },
+    {
+      question: "How far in advance must candidates be notified?",
+      answer:
+        "Employers must notify candidates or employees residing in NYC at least 10 business days before using an AEDT to evaluate them. The notice must explain the tool's role in the process and allow candidates to request an alternative selection process or accommodation.",
+    },
+    {
+      question: "What are the penalties for non-compliance?",
+      answer:
+        "Civil penalties range from $375 for the first violation (if cured within 30 days) up to $1,500 per violation per day for repeated or uncured violations. The NYC Department of Consumer and Worker Protection (DCWP) enforces the law.",
+    },
+    {
+      question: "Does NYC Local Law 144 apply to remote workers?",
+      answer:
+        "Yes. The law applies when a candidate or employee is located in New York City at the time of the screening, regardless of where the employer is based or where the role is located.",
+    },
+    {
+      question: "Is there a private right of action under NYC LL 144?",
+      answer:
+        "No. Only the NYC Department of Consumer and Worker Protection (DCWP) can bring enforcement actions. There is no private lawsuit mechanism for individuals.",
     },
   ],
 };
 
 ## Overview
 
-**New York City Local Law 144** requires employers and employment agencies to conduct independent annual bias audits of any automated employment decision tools (AEDTs) used for hiring or promotion decisions affecting NYC residents.
+**NYC Local Law 144 of 2021**, signed on December 11, 2021 and effective as of July 5, 2023, is the first US law to mandate independent bias audits of AI-powered hiring and promotion tools. The law targets **automated employment decision tools (AEDTs)** — AI systems that help employers screen job candidates or evaluate current employees for promotion opportunities in New York City.
 
-Full detailed content will be published by the Content team. This is a placeholder.
+The law was motivated by growing evidence that algorithmic hiring tools can perpetuate and amplify racial, gender, and other forms of discrimination at scale. NYC Local Law 144 addresses this by requiring:
+
+1. An **annual independent bias audit** before using an AEDT
+2. **Public disclosure** of audit results on the employer's website
+3. **Advance notice** to candidates and employees that an AEDT will be used
+
+The NYC Department of Consumer and Worker Protection (DCWP) issued final implementing rules in April 2023, which clarified key definitions and set audit methodology standards.
+
+---
 
 ## Who It Applies To
 
-The law applies to employers and employment agencies that:
-- Use an AEDT to screen candidates or employees for employment in NYC
-- The candidate or employee is physically present in NYC at the time of the screening
+NYC Local Law 144 applies to:
 
-*Detailed content coming soon.*
+- **Employers** that use an AEDT to screen **candidates** for employment in NYC, or
+- **Employers** that use an AEDT to screen **current employees** for promotion opportunities in NYC, or
+- **Employment agencies** that use an AEDT on behalf of such employers
+
+### Geographic Scope
+
+The law applies when the **candidate or employee is located in New York City** at the time of the screening — not where the employer is based. A San Francisco employer using an AI resume screener to evaluate NYC-based applicants must comply.
+
+### No Revenue or Size Threshold
+
+There is no minimum number of employees, annual revenue threshold, or industry carve-out. Any employer that uses a qualifying AEDT for NYC-located applicants or employees is in scope.
+
+---
+
+## What Is an AEDT?
+
+An **Automated Employment Decision Tool** is defined as any computational process — derived from machine learning, statistical modeling, data analytics, or artificial intelligence — that issues a simplified output (including a score, classification, or recommendation) that is used to **substantially assist or replace** discretionary decision-making in hiring or promotion.
+
+### Key Phrase: "Substantially Assist or Replace"
+
+DCWP's final rules clarify that a tool "substantially assists or replaces" decision-making when:
+- It is the only assessment used
+- It overrides an assessment of another criterion, or
+- It is weighted more heavily than all other criteria combined
+
+### What Is NOT an AEDT?
+
+The law does **not** cover:
+- Tools that solely automate administrative tasks (scheduling, document collection)
+- AI used in the assessment process that does not produce a simplified output affecting selection decisions
+- Manual rule-based systems without machine learning components (e.g., simple keyword filters)
+- Tools used only after a human interviewer has already assessed a candidate
+
+---
+
+## Bias Audit Requirements
+
+### Who May Conduct the Audit?
+
+The bias audit must be conducted by an **independent auditor** — a person or organization not employed by or affiliated with the employer or AEDT vendor. The auditor must assess impact across the following categories:
+
+- **Race/ethnicity** (as defined by the EEOC)
+- **Sex** (including gender categories recognized by the EEOC)
+- **Intersectional categories** are permitted but not required
+
+### What the Audit Must Calculate
+
+The bias audit must compute:
+
+| Metric | Definition |
+|--------|-----------|
+| **Selection rate** | The proportion of each demographic group selected or advanced by the AEDT |
+| **Impact ratio** | The selection rate of a given group divided by the selection rate of the highest-selected group |
+
+An impact ratio below **0.80** (the "four-fifths rule" from EEOC Guidelines) generally indicates adverse impact — though the auditor may also use statistical significance tests.
+
+### Data Requirements
+
+The audit must use **historical data** from actual use of the AEDT in employment decisions. If insufficient historical data is available, the auditor may use test data — but must clearly disclose this limitation in the audit summary.
+
+### Audit Frequency
+
+Audits must be conducted **at least annually**. A new audit is also required if the AEDT is materially changed.
+
+### Public Disclosure
+
+Employers must post a summary of the **most recent bias audit** on their website in a location accessible to applicants. The summary must include:
+- The date of the most recent audit
+- The selection rates and impact ratios for each demographic group
+- The historical data used (or disclosure that test data was used)
+
+The summary must remain posted for at least 3 years after the AEDT is no longer used.
+
+---
+
+## Notice Requirements
+
+### Candidate / Employee Notice
+
+Before using an AEDT, employers must notify affected candidates or employees who are located in NYC **at least 10 business days** in advance. The notice must state:
+
+1. That an AEDT will be used in the employment or promotion decision
+2. The job qualifications or characteristics being assessed
+3. How candidates can request an alternative selection process or accommodation
+
+### Job Posting Notice
+
+If the employer posts a job listing for NYC positions, the notice must be included in the posting or provided through another reasonable means.
+
+### Alternative Selection Process
+
+Employers must accommodate **reasonable requests** from candidates who object to being evaluated by an AEDT. What constitutes a "reasonable alternative" is fact-specific, but DCWP has indicated it could include a human review of the candidate's application without AEDT involvement.
+
+---
+
+## Compliance Timeline
+
+| Date | Milestone |
+|------|-----------|
+| **December 11, 2021** | Local Law 144 signed into law |
+| **April 6, 2023** | DCWP final implementing rules effective |
+| **July 5, 2023** | **Law fully enforceable** (bias audit + notice requirements) |
+| **Annually** | Bias audit must be renewed each year |
+
+---
+
+## Penalties & Enforcement
+
+The NYC Department of Consumer and Worker Protection (DCWP) has exclusive enforcement authority. There is no private right of action.
+
+| Violation | Penalty |
+|-----------|---------|
+| First violation (cured within 30 days) | $375 |
+| First violation (not cured within 30 days) | Up to $1,500 |
+| Each subsequent violation | Up to $1,500 **per day** |
+
+"Per violation per day" means that failing to post audit results, failing to provide required candidate notice, and using an unaudited AEDT are each treated as separate violations — and fines accrue daily for uncured violations.
+
+### DCWP Enforcement Process
+
+DCWP may:
+- Respond to complaints from individuals
+- Conduct proactive investigations
+- Issue subpoenas and inspect records
+- Impose civil penalties
+
+---
+
+## Compliance Steps
+
+1. **Audit your hiring and promotion technology stack.** Identify every tool that uses machine learning, statistical modeling, or AI to score, rank, or screen candidates or employees for NYC roles.
+
+2. **Determine if any tool qualifies as an AEDT.** Apply the "substantially assists or replaces" test. When in doubt, treat the tool as an AEDT.
+
+3. **Commission an independent bias audit.** Engage an auditor with no affiliation to your company or the vendor. Provide historical selection data; if unavailable, discuss test data methodology.
+
+4. **Review the audit results.** Examine impact ratios. If an adverse impact ratio (below 0.80) is flagged, work with legal counsel and the AEDT vendor to understand whether bias mitigation is feasible.
+
+5. **Publish the audit summary.** Post the results on your company's careers page or website. Include the audit date, selection rates, impact ratios, and data disclosure.
+
+6. **Update candidate-facing communications.** Add AEDT disclosure language to job postings for NYC roles and ensure the 10-business-day advance notice process is in place.
+
+7. **Build an alternative process.** Create a documented process for accommodating candidates who request an AEDT-free review.
+
+8. **Calendar annual re-audits.** Set a reminder to re-commission the bias audit at least once every 12 months, or sooner if the AEDT is materially updated.
+
+---
+
+## Frequently Asked Questions
+
+**What is an AEDT?**
+Any computational process (ML, AI, statistical modeling) that issues a score, classification, or recommendation substantially assisting or replacing discretionary hiring or promotion decisions affecting NYC residents.
+
+**Who must conduct the audit?**
+An independent auditor — someone with no employment or business relationship with the employer or AEDT vendor.
+
+**What does the audit measure?**
+Selection rates and impact ratios by race/ethnicity and sex, calculated against the EEOC's four-fifths (80%) rule as a standard benchmark.
+
+**When must candidates be notified?**
+At least 10 business days before the AEDT is used to evaluate them, with disclosure of what the tool assesses.
+
+**Does it apply to remote workers?**
+Yes — the trigger is the candidate's or employee's NYC location at the time of screening, not where the job is based.
+
+**Are employment agencies covered?**
+Yes. Employment agencies using an AEDT on behalf of employers to screen NYC-based candidates must comply.
+
+**Is there a private lawsuit option?**
+No. Only DCWP can enforce the law. Individuals cannot sue employers directly under NYC LL 144.

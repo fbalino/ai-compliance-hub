@@ -17,39 +17,263 @@ export const frontmatter = {
     { id: "high-risk-requirements", label: "High-Risk AI Requirements" },
     { id: "gpai-models", label: "General Purpose AI Models" },
     { id: "compliance-timeline", label: "Compliance Timeline" },
-    { id: "penalties", label: "Penalties" },
+    { id: "penalties", label: "Penalties & Enforcement" },
+    { id: "compliance-steps", label: "Compliance Steps" },
+    { id: "faqs", label: "Frequently Asked Questions" },
   ],
   relatedRegulations: [
     { slug: "colorado-ai-act", name: "Colorado AI Act" },
     { slug: "nyc-local-law-144", name: "NYC Local Law 144" },
+    { slug: "california-ab-2013", name: "California AB 2013" },
   ],
   faqs: [
     {
       question: "Does the EU AI Act apply to non-EU companies?",
       answer:
-        "Yes. The EU AI Act has extraterritorial reach — any company placing AI systems on the EU market or using AI systems that affect EU residents must comply.",
+        "Yes. The EU AI Act has extraterritorial reach — any company placing AI systems on the EU market or using AI systems that affect EU residents must comply, regardless of where the company is headquartered.",
     },
     {
       question: "What are the highest penalties under the EU AI Act?",
       answer:
-        "Up to €35 million or 7% of global annual turnover for violations of prohibited AI practices. High-risk AI violations can reach €15 million or 3% of global turnover.",
+        "Up to €35 million or 7% of global annual turnover (whichever is higher) for violations of prohibited AI practices. High-risk AI violations can reach €15 million or 3% of global turnover.",
+    },
+    {
+      question: "What is a General Purpose AI (GPAI) model under the EU AI Act?",
+      answer:
+        "A GPAI model is an AI model trained on large amounts of data, capable of serving a wide range of downstream tasks. Examples include large language models (LLMs) like GPT-4 or Claude. GPAI models with systemic risk face additional obligations.",
+    },
+    {
+      question: "When do high-risk AI requirements take effect?",
+      answer:
+        "The core obligations for high-risk AI systems (Annex III) take effect in August 2026. Some provisions, including prohibited AI and GPAI model rules, apply earlier — from August 2025.",
+    },
+    {
+      question: "What is a conformity assessment under the EU AI Act?",
+      answer:
+        "A conformity assessment is a process through which a high-risk AI system is evaluated to verify it meets the Act's requirements before being placed on the EU market. For some categories, this can be a self-assessment; others require a third-party notified body.",
+    },
+    {
+      question: "Do SMEs get any relief under the EU AI Act?",
+      answer:
+        "Yes. SMEs and startups benefit from reduced administrative burdens, access to regulatory sandboxes, and proportionate compliance requirements. Member States must establish AI regulatory sandboxes specifically to support SME innovation.",
     },
   ],
 };
 
 ## Overview
 
-The **EU Artificial Intelligence Act** (Regulation 2024/1689) is the world's first comprehensive legal framework for AI, establishing a risk-based approach to AI governance across the European Union.
+The **EU Artificial Intelligence Act** (Regulation 2024/1689), published in the Official Journal of the EU on July 12, 2024, is the world's first comprehensive legal framework for artificial intelligence. It establishes a **risk-based approach** to AI governance, imposing obligations proportional to the potential harm an AI system could cause.
 
-Full detailed content will be published by the Content team. This is a placeholder.
+The Act applies to providers who place AI systems on the EU market, deployers who use AI systems in a professional context in the EU, and importers and distributors of AI systems — regardless of whether they are established inside or outside the EU.
+
+The regulation is organized around four risk tiers: **unacceptable risk** (banned outright), **high risk** (extensive pre-market requirements), **limited risk** (transparency obligations), and **minimal risk** (no specific requirements). This tiered approach means most commercial AI applications fall under limited or minimal risk, while only systems with significant potential for harm face the heaviest compliance burden.
+
+---
 
 ## Risk Classification
 
-The Act divides AI systems into four risk tiers:
+The EU AI Act divides AI systems into four tiers based on the potential risk they pose to fundamental rights, health, and safety.
 
-1. **Unacceptable risk** — banned outright (social scoring, real-time biometric surveillance)
-2. **High risk** — extensive requirements before market placement
-3. **Limited risk** — transparency obligations only
-4. **Minimal risk** — no specific requirements
+### Tier 1 — Unacceptable Risk (Prohibited)
 
-*Detailed content coming soon.*
+AI applications that pose an unacceptable risk to fundamental rights are **banned outright**. See the [Prohibited AI Practices](#prohibited-ai) section below.
+
+### Tier 2 — High Risk
+
+High-risk AI systems must meet extensive requirements before they can be placed on the EU market. There are two sub-categories:
+
+**Annex I — AI used as a safety component** in products already governed by EU product safety legislation (medical devices, machinery, aviation, automotive, etc.)
+
+**Annex III — Standalone high-risk AI systems** in eight sensitive areas:
+1. Biometric identification and categorization
+2. Critical infrastructure management (energy, water, transport)
+3. Education — access to educational institutions, assessment of learners
+4. Employment — recruitment, selection, promotion, termination, task allocation
+5. Essential private and public services — creditworthiness, insurance risk assessment, social benefits
+6. Law enforcement — risk assessments, polygraphs, evidence reliability evaluation
+7. Migration, asylum, and border control — risk assessment, visa applications
+8. Administration of justice — AI assisting courts
+
+### Tier 3 — Limited Risk
+
+AI systems that interact directly with humans (e.g., chatbots, deepfake generators) must disclose their AI nature. Emotion recognition and biometric categorization systems have additional transparency requirements.
+
+### Tier 4 — Minimal Risk
+
+The vast majority of AI applications — spam filters, AI-powered video games, inventory management tools — fall here. There are no mandatory requirements, though providers are encouraged to adopt voluntary codes of conduct.
+
+---
+
+## Prohibited AI Practices
+
+The following AI applications are **banned across the EU** as of February 2, 2025:
+
+1. **Social scoring by public authorities** — government systems that classify individuals based on behavior, social characteristics, or personality to assign scores affecting their access to services or benefits.
+
+2. **Real-time remote biometric identification (RBI) in public spaces** — using live facial recognition or similar AI in publicly accessible areas for law enforcement purposes (with narrow exceptions for specific crimes and with judicial authorization).
+
+3. **Biometric categorization by protected characteristics** — inferring race, political opinions, trade union membership, religious beliefs, or sexual orientation from biometrics.
+
+4. **Subliminal manipulation** — AI that exploits unconscious vulnerabilities to manipulate behavior in ways that harm the person.
+
+5. **Exploitation of vulnerabilities** — targeting AI specifically at vulnerable groups (children, people with disabilities) to distort behavior harmfully.
+
+6. **Untargeted facial scraping** — mass harvesting of facial images from the internet or CCTV to build facial recognition databases.
+
+7. **Emotion recognition in workplaces and educational institutions** — inferring employees' or students' emotional states through AI.
+
+8. **Predictive policing based solely on profiling** — risk assessments for criminal behavior based purely on profiling without objective evidence of prior activity.
+
+---
+
+## High-Risk AI Requirements
+
+Providers of high-risk AI systems (Annex III) must fulfill these requirements **before placing the system on the EU market**:
+
+### 1. Risk Management System
+Implement and maintain a documented risk management system throughout the AI system's lifecycle, identifying and mitigating foreseeable risks.
+
+### 2. Data Governance
+Training, validation, and testing datasets must be subject to appropriate data governance practices, including examination for biases and relevance to the intended purpose.
+
+### 3. Technical Documentation
+Prepare comprehensive technical documentation before market placement, covering system design, development methodology, performance metrics, and known limitations.
+
+### 4. Record-Keeping / Logging
+High-risk AI systems must automatically log events ("traceability") sufficient to enable post-hoc auditing, including the period of operation and reference data inputs where relevant.
+
+### 5. Transparency & Instructions for Use
+Provide clear instructions for use to deployers, including the system's purpose, performance characteristics, circumstances that may lead to risks, and human oversight requirements.
+
+### 6. Human Oversight
+Design systems to allow natural persons to effectively oversee them, detect and address failures, and override, stop, or intervene in their operation.
+
+### 7. Accuracy, Robustness & Cybersecurity
+Meet appropriate levels of accuracy for the intended purpose, demonstrate robustness against errors and adversarial attacks, and implement cybersecurity measures.
+
+### 8. Conformity Assessment
+Before market placement, conduct a conformity assessment (self-assessment for most Annex III systems; third-party assessment for biometric identification and critical infrastructure AI) and draw up an EU Declaration of Conformity.
+
+### 9. CE Marking & Registration
+Affix CE marking and register the AI system in the EU-wide AI database operated by the European Commission.
+
+### Obligations for Deployers
+
+Organizations **using** high-risk AI (deployers) must:
+- Use the system in accordance with the provider's instructions for use
+- Assign human oversight to competent individuals
+- Monitor operation for unexpected risks
+- Keep logs for at least 6 months (or longer per sectoral law)
+- Conduct a Fundamental Rights Impact Assessment (FRIA) for public bodies and private entities providing regulated services
+
+---
+
+## General Purpose AI Models
+
+A significant addition in the EU AI Act covers **General Purpose AI (GPAI) models** — AI models trained on vast data capable of serving many different downstream tasks. All GPAI model providers must:
+
+- Draw up and maintain technical documentation
+- Provide information to downstream providers who integrate the model
+- Comply with EU copyright law and publish summaries of training data
+- Comply with the EU's AI Code of Practice
+
+### GPAI Models with Systemic Risk
+
+GPAI models trained using more than **10^25 FLOPs** of compute are presumed to pose systemic risk and face additional obligations:
+
+- Conduct and document adversarial testing (red-teaming)
+- Report serious incidents to the European AI Office
+- Implement cybersecurity protections
+- Report energy consumption
+- Cooperate with the European AI Office's evaluations
+
+---
+
+## Compliance Timeline
+
+| Date | Milestone |
+|------|-----------|
+| **July 12, 2024** | EU AI Act enters into force |
+| **August 1, 2024** | Act officially takes effect (20 days after publication) |
+| **February 2, 2025** | Prohibited AI provisions enforceable |
+| **August 2, 2025** | GPAI model obligations and governance provisions apply |
+| **August 2, 2026** | **High-risk AI (Annex III) requirements enforceable** |
+| **August 2, 2027** | High-risk AI (Annex I — product safety integrated) requirements enforceable |
+| **August 2, 2030** | High-risk AI systems already on the market before August 2026 must comply |
+
+---
+
+## Penalties & Enforcement
+
+The EU AI Act establishes a tiered penalty structure:
+
+| Violation | Maximum Fine |
+|-----------|-------------|
+| Prohibited AI practices (Tier 1) | **€35 million or 7% of global annual turnover** |
+| High-risk AI obligations (Tier 2) | €15 million or 3% of global annual turnover |
+| Providing incorrect/misleading information to authorities | €7.5 million or 1.5% of global annual turnover |
+
+**SME cap**: For small and medium enterprises, fines are capped at the lower of the above amounts.
+
+### Who Enforces?
+
+- **Member State authorities**: Each EU country must designate a National Competent Authority (NCA) to supervise market operators.
+- **European AI Office**: Supervises GPAI model providers directly and coordinates cross-border enforcement.
+- **Market Surveillance Authorities**: Existing product safety authorities enforce compliance for AI integrated into regulated products.
+
+---
+
+## Compliance Steps
+
+Follow this roadmap to prepare for EU AI Act compliance:
+
+1. **Inventory your AI systems.** Catalog all AI systems your organization develops, deploys, or uses in a professional context affecting EU residents.
+
+2. **Classify each system by risk tier.** Determine if each system falls under prohibited, high-risk, limited-risk, or minimal-risk categories using Annexes I and III.
+
+3. **Check if any systems are prohibited.** If you run social scoring, mass facial scraping, or real-time RBI systems, you must cease operation by February 2, 2025.
+
+4. **For high-risk AI (Annex III):**
+   - Build a risk management system with documented procedures
+   - Review training data governance practices
+   - Prepare technical documentation
+   - Implement logging and human oversight mechanisms
+   - Conduct conformity assessment
+   - Register in the EU AI database
+
+5. **For GPAI models:**
+   - Evaluate whether your model exceeds the 10^25 FLOP threshold (systemic risk)
+   - Prepare technical documentation and training data summaries
+   - Engage with the EU AI Code of Practice process
+
+6. **For limited-risk AI:**
+   - Implement required transparency notices (chatbots must disclose their AI nature; deepfakes must be labeled)
+
+7. **Appoint an EU representative** if your organization is established outside the EU and places high-risk AI on the EU market.
+
+8. **Engage with regulatory sandboxes** if you are an SME — member states are required to make these available to support compliance without full-scale implementation overhead.
+
+---
+
+## Frequently Asked Questions
+
+**Does the EU AI Act apply to non-EU companies?**
+Yes. If your AI system is placed on the EU market, used in the EU, or its outputs affect EU residents, you must comply — regardless of where your company is headquartered.
+
+**What are the highest penalties?**
+Up to €35 million or 7% of global annual turnover for prohibited AI violations. High-risk AI requirement violations: up to €15 million or 3% of global turnover.
+
+**What is a GPAI model?**
+A general-purpose AI model capable of serving many different downstream tasks, typically a large language model. Models exceeding 10^25 FLOPs of training compute face additional systemic-risk obligations.
+
+**When do high-risk AI requirements become enforceable?**
+August 2, 2026 for most Annex III systems. Prohibited AI was enforceable from February 2025.
+
+**Do I need a third-party assessment for all high-risk AI?**
+No — most Annex III systems can self-certify. Third-party notified body assessment is required only for real-time remote biometric identification and certain critical infrastructure AI.
+
+**What is the EU AI Office?**
+The European AI Office is a new body within the European Commission responsible for directly supervising GPAI model providers, coordinating national enforcement, and developing standardization.
+
+**Are open-source AI models exempt?**
+GPAI models released under a free and open-source license are largely exempt from technical documentation and information-sharing requirements — unless they pose systemic risk (>10^25 FLOPs).

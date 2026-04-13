@@ -1,0 +1,99 @@
+export const frontmatter = {
+  term: "AI Governance",
+  definition:
+    "The frameworks, policies, processes, and organizational structures that an organization establishes to ensure its AI systems are developed and used responsibly, in compliance with applicable laws, and aligned with ethical principles.",
+  aliases: ["AI governance framework", "responsible AI", "AI management"],
+  relatedRegulations: [
+    { slug: "eu-ai-act", name: "EU AI Act" },
+    { slug: "colorado-ai-act", name: "Colorado AI Act" },
+  ],
+  relatedTerms: [
+    { slug: "risk-management-system", term: "AI Risk Management System" },
+    { slug: "impact-assessment", term: "Impact Assessment" },
+    { slug: "high-risk-ai-system", term: "High-Risk AI System" },
+  ],
+  publishedAt: "2026-04-13",
+  updatedAt: "2026-04-13",
+};
+
+## Overview
+
+**AI governance** encompasses the organizational structures, policies, and processes that guide how an organization develops, deploys, and monitors AI systems. Effective AI governance bridges compliance requirements (what the law mandates) with organizational values and risk appetite (what the organization believes is right).
+
+AI governance has become an enterprise priority for three reasons:
+
+1. **Regulatory pressure**: The EU AI Act, Colorado AI Act, NYC LL 144, and dozens of other regulations impose specific governance obligations on organizations deploying AI
+2. **Reputational risk**: High-profile AI failures — biased hiring tools, discriminatory credit models, deepfake misuse — carry significant brand risk
+3. **Operational risk**: AI systems that malfunction, hallucinate, or behave unexpectedly can cause direct business harm
+
+## Key Components of an AI Governance Framework
+
+### 1. AI Inventory and Classification
+
+A governance program must begin with knowing what AI systems exist. Organizations should maintain an **AI inventory** that:
+- Catalogs all AI systems in use (including third-party tools)
+- Classifies each system by risk level (high-risk vs. lower-risk)
+- Identifies applicable regulations for each system
+- Records the business owner and technical owner of each system
+
+### 2. Policies and Standards
+
+Documented policies set expectations for how AI should and should not be used:
+- **Acceptable use policy**: What AI systems may be used for
+- **Procurement standards**: Due diligence required before adopting a third-party AI tool
+- **Data governance standards**: Rules for training data quality, consent, and retention
+- **Human oversight standards**: When and how humans must review AI-driven decisions
+
+### 3. Accountability Structures
+
+Clear accountability is essential. Governance frameworks typically assign:
+- **AI Owner / Product Owner**: Responsible for the business purpose and outcomes
+- **AI Engineer / Model Owner**: Responsible for technical performance and documentation
+- **Legal / Compliance**: Responsible for regulatory classification and compliance obligations
+- **Ethics Board / AI Review Committee**: Senior oversight for high-stakes AI deployments
+
+### 4. Testing and Evaluation
+
+Governance requires systematic pre-deployment and ongoing testing:
+- Accuracy and performance testing
+- Bias and fairness evaluation across demographic groups
+- Adversarial testing / red-teaming for misuse scenarios
+- Regression testing after model updates
+
+### 5. Monitoring and Incident Management
+
+Post-deployment governance includes:
+- Continuous performance monitoring
+- Drift detection (model performance degradation over time)
+- Incident reporting and investigation process
+- Feedback loops from affected users and frontline staff
+
+### 6. Documentation
+
+Comprehensive documentation is both a governance best practice and a regulatory requirement:
+- Technical documentation (architecture, training, performance)
+- Risk assessments and impact assessments
+- Audit trails and decision logs
+- Human oversight records
+
+## Regulatory Governance Obligations
+
+### Colorado AI Act
+
+Deployers must implement a **governance program** that includes a written policy on managing known risks of algorithmic discrimination. This is the law's minimum governance requirement.
+
+### EU AI Act
+
+High-risk AI providers must maintain documented quality management systems covering the entire lifecycle: design, development, testing, deployment, monitoring, and decommissioning. The AI Act effectively mandates a comprehensive governance program for high-risk AI.
+
+## Maturity Models
+
+Organizations often use maturity models to assess and improve their AI governance posture. Common levels:
+
+| Level | Characteristics |
+|-------|----------------|
+| **Initial** | Ad hoc, reactive; no formal governance |
+| **Developing** | Some policies exist; inconsistently applied |
+| **Defined** | Formal governance framework; consistent application |
+| **Managed** | Metrics-driven; documented processes; regular audits |
+| **Optimizing** | Continuous improvement; proactive risk management |

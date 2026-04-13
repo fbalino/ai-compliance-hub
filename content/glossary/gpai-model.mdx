@@ -1,0 +1,68 @@
+export const frontmatter = {
+  term: "General Purpose AI Model (GPAI)",
+  definition:
+    "An AI model trained on large amounts of data at significant compute scale that can perform a wide range of distinct tasks, including text generation, translation, image creation, and code writing. Large language models like GPT-4 and Claude are leading examples.",
+  aliases: ["GPAI", "foundation model", "general-purpose AI", "large language model", "LLM"],
+  relatedRegulations: [
+    { slug: "eu-ai-act", name: "EU AI Act" },
+    { slug: "california-ab-2013", name: "California AB 2013" },
+  ],
+  relatedTerms: [
+    { slug: "high-risk-ai-system", term: "High-Risk AI System" },
+    { slug: "systemic-risk", term: "Systemic Risk" },
+    { slug: "conformity-assessment", term: "Conformity Assessment" },
+  ],
+  publishedAt: "2026-04-13",
+  updatedAt: "2026-04-13",
+};
+
+## Overview
+
+A **General Purpose AI (GPAI) model** — also known as a foundation model — is an AI model trained on vast, diverse datasets using significant computational resources, resulting in a model capable of performing many different downstream tasks without being specifically designed for any of them.
+
+GPAIs are typically large neural networks trained using self-supervised learning on internet-scale text, images, code, or multimodal data. Their versatility distinguishes them from narrow AI systems built for a single purpose (e.g., a model trained only to detect spam).
+
+## The EU AI Act Framework for GPAI
+
+The EU AI Act introduced dedicated rules for GPAI models in Chapter V — a significant regulatory innovation, since prior AI governance frameworks focused on applications (the deployed system) rather than foundation models (the underlying capability).
+
+### All GPAI Providers Must
+
+Regardless of systemic risk status, all GPAI providers placing models on the EU market must:
+
+- Draw up and maintain **technical documentation**
+- Make available to downstream providers who integrate the GPAI model: technical documentation, instructions for use, and information about limitations
+- Comply with **EU copyright law** and publish summaries of training data content
+- Register in the **EU GPAI model database** maintained by the European AI Office
+- Cooperate with the **EU AI Code of Practice** (developed through multi-stakeholder process)
+
+### GPAI Models with Systemic Risk
+
+GPAI models trained using more than **10²⁵ FLOPs** of computational power are presumed to pose systemic risk and face enhanced obligations:
+
+- **Adversarial testing** (red-teaming) — must be conducted and documented before market placement
+- **Serious incident reporting** — must notify the European AI Office of serious incidents within a defined timeframe
+- **Cybersecurity protections** — must implement measures proportionate to systemic risk
+- **Energy consumption reporting** — must disclose training compute and energy usage
+
+### Open-Source Exemption
+
+GPAI models released under a **free and open-source license** are exempt from most GPAI-specific documentation and information-sharing requirements — unless they are classified as systemic risk.
+
+## California AB 2013 Connection
+
+California AB 2013 (AI Training Data Transparency Act) targets a similar population: generative AI systems trained beyond a compute threshold (~10²³ FLOPs). Providers must disclose training data sources, known biases, data licensing, and synthetic data usage.
+
+## Practical Implications
+
+For **enterprises deploying GPAI-based products** (e.g., building on top of GPT, Claude, or Gemini APIs):
+
+- Verify your provider's EU AI Act GPAI compliance status
+- Obtain technical documentation from your provider about the underlying model
+- Assess whether your downstream application falls into a high-risk category under Annex III — if so, high-risk AI obligations apply to your product, not just to the underlying model
+
+For **GPAI model providers**:
+
+- Calculate your training compute — models approaching 10²⁵ FLOPs should proactively prepare for systemic risk obligations
+- Begin preparing technical documentation and training data summaries now
+- Engage with the EU AI Code of Practice process

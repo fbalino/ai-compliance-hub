@@ -1,0 +1,77 @@
+export const frontmatter = {
+  term: "AI Risk Management System",
+  definition:
+    "A documented, continuous process for identifying, analyzing, evaluating, and mitigating risks associated with an AI system throughout its entire lifecycle, from design through deployment and decommissioning.",
+  aliases: ["AI RMS", "algorithmic risk management", "AI risk framework"],
+  relatedRegulations: [
+    { slug: "eu-ai-act", name: "EU AI Act" },
+    { slug: "colorado-ai-act", name: "Colorado AI Act" },
+  ],
+  relatedTerms: [
+    { slug: "impact-assessment", term: "Impact Assessment" },
+    { slug: "conformity-assessment", term: "Conformity Assessment" },
+    { slug: "high-risk-ai-system", term: "High-Risk AI System" },
+  ],
+  publishedAt: "2026-04-13",
+  updatedAt: "2026-04-13",
+};
+
+## Overview
+
+An **AI Risk Management System (AI RMS)** is a structured, iterative process through which an organization identifies, analyzes, evaluates, and treats risks posed by AI systems. The concept draws from established risk management standards (ISO 31000, NIST AI RMF) and is now a mandatory compliance requirement under the EU AI Act for high-risk AI systems.
+
+Unlike a one-time risk assessment, an AI RMS is a **continuous lifecycle process** — risks are identified before deployment, monitored during operation, and reassessed whenever the system is materially updated.
+
+## EU AI Act Requirements
+
+Article 9 of the EU AI Act requires providers of **high-risk AI systems** to establish, implement, document, and maintain a risk management system. Key elements:
+
+### 1. Risk Identification and Analysis
+
+- Identify the intended purpose and reasonably foreseeable uses and misuses
+- Catalog known and reasonably foreseeable risks to health, safety, and fundamental rights
+- Estimate and evaluate risks based on severity and probability
+
+### 2. Risk Evaluation
+
+Risks must be evaluated against the benefits of the AI system. The risk management system must produce documented evidence that identified risks are acceptable or that residual risks have been mitigated.
+
+### 3. Risk Treatment (Mitigation Measures)
+
+- Eliminate or reduce risks through design and technical measures
+- Implement residual risk controls
+- Provide information and instructions for use to deployers
+- Design for human oversight
+
+### 4. Iterative Updates
+
+The risk management system must be updated when:
+- The AI system is materially changed
+- Post-market monitoring reveals new risks
+- Serious incidents occur
+
+## NIST AI Risk Management Framework
+
+The US National Institute of Standards and Technology (NIST) published the **AI Risk Management Framework (AI RMF 1.0)** in January 2023. While voluntary, the NIST AI RMF is increasingly referenced in regulatory guidance and procurement requirements. It organizes AI risk management into four functions:
+
+| Function | Description |
+|----------|-------------|
+| **GOVERN** | Establish organizational culture, accountability structures, and policies |
+| **MAP** | Identify and contextualize AI risks |
+| **MEASURE** | Analyze and assess identified risks |
+| **MANAGE** | Prioritize and treat risks; implement risk response |
+
+## Colorado AI Act Connection
+
+The Colorado AI Act requires deployers of high-risk AI systems to implement a **governance program** — which must include a written policy on managing known risks of algorithmic discrimination. This functions as a lightweight AI risk management framework tailored to discrimination risk.
+
+## Practical Components of an AI RMS
+
+A robust AI risk management system typically includes:
+
+- **Risk register**: Documented inventory of identified AI risks with severity and likelihood ratings
+- **Risk owner assignments**: Designated responsible parties for each identified risk
+- **Control library**: Technical and procedural controls mapped to specific risks
+- **Testing and validation records**: Pre-deployment and ongoing testing results
+- **Incident log**: Record of near-misses, failures, and adverse events
+- **Review cadence**: Schedule for periodic risk reassessment

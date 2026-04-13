@@ -6,6 +6,9 @@ import { Card } from "@/components/ui/Card";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import { getGlossaryTerm, getAllGlossarySlugs } from "@/lib/glossary";
 
+// ISR: glossary pages revalidate at build (static content)
+export const revalidate = false;
+
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
 

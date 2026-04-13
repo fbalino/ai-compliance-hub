@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+
+// ISR: regulation pages revalidate every 24 hours
+export const revalidate = 86400;
 import { Badge, regulationStatusVariant } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import {
@@ -28,7 +31,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const reg = await getRegulationBySlug(slug);
   if (!reg) return {};
 
-  const title = `${reg.frontmatter.name} — Complete Compliance Guide`;
+  // Meta title template per CMO SEO strategy Section 4.3
+  const title = `${reg.frontmatter.name}: Compliance Guide (${new Date().getFullYear()})`;
   const description = reg.frontmatter.description;
 
   return {
@@ -39,6 +43,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       type: "article",
       url: `${SITE_URL}/regulations/${slug}`,
+      publishedTime: reg.frontmatter.publishedAt,
+      modifiedTime: reg.frontmatter.updatedAt,
     },
     alternates: {
       canonical: `${SITE_URL}/regulations/${slug}`,
@@ -106,6 +112,18 @@ export default async function RegulationPage({ params }: Props) {
               <p className="mt-2 text-neutral-600 leading-relaxed">
                 {frontmatter.description}
               </p>
+              {frontmatter.updatedAt && (
+                <p className="mt-2 text-xs text-neutral-400">
+                  Last updated:{" "}
+                  <time dateTime={frontmatter.updatedAt}>
+                    {new Date(frontmatter.updatedAt).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </time>
+                </p>
+              )}
             </div>
             <Link
               href="/checker"

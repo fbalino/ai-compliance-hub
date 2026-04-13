@@ -1,0 +1,79 @@
+export const frontmatter = {
+  term: "Training Data Transparency",
+  definition:
+    "The practice of publicly disclosing information about the datasets used to train an AI system, including data sources, licensing status, known biases, and data governance practices. Required by California AB 2013 and the EU AI Act for covered AI developers.",
+  aliases: ["AI training data disclosure", "dataset transparency", "data documentation"],
+  relatedRegulations: [
+    { slug: "california-ab-2013", name: "California AB 2013" },
+    { slug: "eu-ai-act", name: "EU AI Act" },
+  ],
+  relatedTerms: [
+    { slug: "gpai-model", term: "General Purpose AI Model (GPAI)" },
+    { slug: "algorithmic-discrimination", term: "Algorithmic Discrimination" },
+    { slug: "bias-audit", term: "Bias Audit" },
+  ],
+  publishedAt: "2026-04-13",
+  updatedAt: "2026-04-13",
+};
+
+## Overview
+
+**Training data transparency** is the principle that AI developers should publicly disclose meaningful information about the data used to train their systems. This disclosure enables regulators, researchers, auditors, and affected individuals to evaluate whether an AI model was built on data that was lawfully obtained, responsibly curated, and likely to produce fair and reliable outputs.
+
+The lack of training data transparency has been a central criticism of commercial AI development. Without knowing what data a model was trained on, it is nearly impossible to:
+
+- Assess whether the model may perpetuate or amplify biases present in the training data
+- Determine whether the training data was lawfully obtained (e.g., respecting copyright, privacy rights, and opt-outs)
+- Predict the model's performance across different demographic groups, languages, or domains
+- Evaluate claims about model capabilities and limitations
+
+## Regulatory Requirements
+
+### California AB 2013
+
+California's AI Training Data Transparency Act, effective January 1, 2026, requires developers of covered generative AI systems to publicly disclose:
+
+- **Data categories and sources**: Web-scraped data, licensed datasets, user-generated content, synthetic data, and their approximate proportions
+- **Licensing status**: Whether data was licensed from rightsholders or scraped without specific permission
+- **Known biases and limitations**: Demographic underrepresentation, temporal gaps, domain-specific weaknesses
+- **Synthetic data usage**: Whether AI-generated data was used in training, and its characteristics
+- **Data governance practices**: How the training corpus was filtered, deduplicated, and quality-controlled
+
+### EU AI Act — GPAI Model Requirements
+
+Under the EU AI Act, all GPAI model providers must:
+
+- Comply with EU copyright law and publish **summaries of training data content**
+- Make training data documentation available to downstream providers
+- Maintain technical documentation covering the training methodology
+
+Systemic-risk GPAI models have additional documentation requirements including adversarial testing results and training compute disclosure.
+
+## Standardized Documentation Formats
+
+Several industry frameworks have emerged for structured AI documentation:
+
+### Model Cards (Google, 2019)
+
+A model card is a short document attached to a trained AI model that discloses intended uses, evaluation results, ethical considerations, and training data characteristics. Model cards have become standard practice on Hugging Face and other model-sharing platforms.
+
+### Datasheets for Datasets (Gebru et al., 2018)
+
+Datasheets for Datasets propose standardized questionnaires for dataset documentation, covering motivation, composition, collection process, preprocessing, uses, distribution, and maintenance. This format directly maps to the kinds of disclosures required by California AB 2013.
+
+### Transparency Notes (Microsoft)
+
+Microsoft's Transparency Notes are product-level disclosures for Azure AI services, describing intended uses, limitations, and responsible use guidance. Similar to model cards but focused on deployed products.
+
+## What Good Training Data Transparency Includes
+
+| Element | Description |
+|---------|-------------|
+| Source types | Web scraping, licensed APIs, crowdsourcing, proprietary datasets, synthetic generation |
+| Temporal range | Date range of collected data; knowledge cutoff |
+| Language distribution | Languages represented and their approximate proportions |
+| Geographic distribution | Geographic diversity or concentration of data sources |
+| Demographic representation | Known gaps in representation by race, gender, age, etc. |
+| Filtering practices | How harmful, low-quality, or duplicated data was removed |
+| Licensing | Whether data collection respected copyright, robots.txt, and opt-outs |
+| Consent | Whether individuals whose data was included had meaningful opportunity to opt out |

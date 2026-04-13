@@ -1,0 +1,83 @@
+export const frontmatter = {
+  term: "Prohibited AI Practices",
+  definition:
+    "AI applications that are banned outright because they pose an unacceptable risk to fundamental rights, safety, or human dignity. The EU AI Act establishes the most comprehensive list of prohibited AI practices globally, effective February 2, 2025.",
+  aliases: ["banned AI", "unacceptable risk AI", "AI prohibitions"],
+  relatedRegulations: [
+    { slug: "eu-ai-act", name: "EU AI Act" },
+  ],
+  relatedTerms: [
+    { slug: "high-risk-ai-system", term: "High-Risk AI System" },
+    { slug: "algorithmic-discrimination", term: "Algorithmic Discrimination" },
+    { slug: "automated-decision-making", term: "Automated Decision-Making" },
+  ],
+  publishedAt: "2026-04-13",
+  updatedAt: "2026-04-13",
+};
+
+## Overview
+
+**Prohibited AI practices** are AI applications deemed so dangerous or incompatible with fundamental rights that regulators have banned them entirely — no compliance pathway exists. The EU AI Act Article 5 establishes the most extensive list of prohibited AI practices in global law, enforceable from February 2, 2025.
+
+Understanding prohibited AI is critical for compliance because the penalties are the highest in the AI regulatory landscape: **up to €35 million or 7% of global annual turnover** for violations.
+
+## EU AI Act Prohibitions (Article 5)
+
+### 1. Social Scoring by Public Authorities
+
+AI systems used by or on behalf of public authorities to evaluate individuals based on their social behavior, personal characteristics, or predicted behavior — and that assign scores leading to detrimental treatment unrelated to the original data collection context or disproportionate to the behavior's severity.
+
+**Example**: A government credit-style scoring system that restricts access to public services based on a person's past behavior across unrelated domains.
+
+### 2. Real-Time Remote Biometric Identification in Public Spaces
+
+AI systems that identify individuals from a distance in real time using biometric data (e.g., facial recognition) in publicly accessible spaces, for law enforcement purposes.
+
+**Narrow exceptions permitted** (with judicial authorization):
+- Targeted search for specific victims of trafficking, kidnapping, or sexual exploitation
+- Prevention of specific, substantial, and imminent terrorist threats
+- Identification of suspects in serious crimes (defined list)
+
+**Post-hoc** biometric identification (reviewing recorded footage after an incident) is regulated as high-risk, not prohibited.
+
+### 3. Biometric Categorization by Protected Characteristics
+
+AI systems that categorize individuals based on biometric data to infer their race, ethnicity, political opinions, trade union membership, religious or philosophical beliefs, or sexual orientation.
+
+**Note**: This prohibition covers inference from biometrics specifically — general ethnicity analysis of demographic datasets for permitted research purposes is a different category.
+
+### 4. Subliminal Manipulation
+
+AI systems that use techniques operating **below the threshold of conscious awareness** to materially distort a person's behavior in ways that cause or are likely to cause psychological harm or a decision they would not have made otherwise.
+
+### 5. Exploitation of Vulnerabilities
+
+AI systems that exploit vulnerabilities of specific groups — including children, people with disabilities, or people in economic distress — in ways that are likely to cause harm.
+
+**Example**: An AI-powered gambling or lending product specifically designed to target individuals with gambling addiction or financial hardship.
+
+### 6. Untargeted Facial Image Scraping
+
+AI systems that create or expand facial recognition databases by untargeted scraping of facial images from the internet or CCTV footage.
+
+**Example**: Building a facial recognition training dataset by mass-downloading social media profile photos without consent.
+
+### 7. Emotion Recognition in Workplaces and Educational Institutions
+
+AI systems that infer the emotional state of natural persons in workplaces or educational institutions.
+
+**Limited exceptions**: Medical or safety reasons (e.g., detecting driver fatigue in transportation).
+
+### 8. Predictive Policing Based Solely on Profiling
+
+AI systems used by law enforcement that assess the risk of a natural person committing a criminal offense **based solely on profiling** or personality traits — without objective evidence of specific prior activity.
+
+## US Context
+
+While the US has no direct equivalent to EU Article 5, several US jurisdictions have enacted narrower prohibitions:
+
+- **Illinois (BIPA)**: Effectively prohibits certain biometric data collection without consent
+- **Multiple cities** (San Francisco, Portland, Boston): Have banned government use of facial recognition
+- **Colorado AI Act**: Does not prohibit specific AI practices but imposes risk management requirements on high-risk AI
+
+US federal regulation remains largely absent as of 2026 for comprehensive AI prohibitions.

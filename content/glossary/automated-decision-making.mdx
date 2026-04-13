@@ -1,0 +1,65 @@
+export const frontmatter = {
+  term: "Automated Decision-Making",
+  definition:
+    "The use of computerized systems to make decisions about individuals with little or no human involvement, including decisions based on AI, machine learning, or rule-based algorithms that have legal or similarly significant effects.",
+  aliases: ["ADM", "algorithmic decision-making", "automated decisions"],
+  relatedRegulations: [
+    { slug: "eu-ai-act", name: "EU AI Act" },
+    { slug: "colorado-ai-act", name: "Colorado AI Act" },
+    { slug: "nyc-local-law-144", name: "NYC Local Law 144" },
+  ],
+  relatedTerms: [
+    { slug: "high-risk-ai-system", term: "High-Risk AI System" },
+    { slug: "algorithmic-discrimination", term: "Algorithmic Discrimination" },
+    { slug: "impact-assessment", term: "Impact Assessment" },
+  ],
+  publishedAt: "2026-04-13",
+  updatedAt: "2026-04-13",
+};
+
+## Overview
+
+**Automated decision-making (ADM)** refers to a process where a system — rather than a human — makes or substantially contributes to a decision that affects an individual. ADM spans a spectrum from simple rule-based systems (if credit score > X, approve loan) to complex machine learning models that weigh hundreds of variables.
+
+The legal significance of ADM depends on context. Decisions in high-stakes domains — employment, credit, healthcare, housing, insurance — attract the most regulatory attention because errors or biases can cause serious harm and are often difficult for affected individuals to detect or challenge.
+
+## Regulatory Landscape
+
+### EU AI Act
+
+The EU AI Act treats high-risk automated decision systems with strict requirements: risk management, data governance, logging, human oversight, and conformity assessment. Certain ADM in Annex III (e.g., AI for creditworthiness, employment selection) requires registration in the EU AI database.
+
+### Colorado AI Act
+
+Colorado's law requires deployers of "high-risk AI systems" — AI that makes or substantially contributes to **consequential decisions** — to conduct impact assessments and provide consumers rights to appeal and human review.
+
+### GDPR Article 22
+
+Under GDPR, individuals have the right not to be subject to a decision based **solely** on automated processing if it produces legal or similarly significant effects. Data subjects must be informed of the existence of ADM and may request human review. Many AI compliance programs address both GDPR Article 22 and the EU AI Act together.
+
+### NYC Local Law 144
+
+NYC LL 144 focuses specifically on ADM in employment — automated employment decision tools (AEDTs) must undergo annual bias audits before being used to screen NYC job applicants or employees.
+
+## Key Concepts
+
+### Solely vs. Substantially Automated
+
+Regulations differ on thresholds. GDPR applies only to decisions made **solely** by automated processing. The Colorado AI Act covers decisions where AI is a **substantial factor**. Understanding the threshold that applies to your system is critical for compliance classification.
+
+### Human-in-the-Loop vs. Human-on-the-Loop
+
+- **Human-in-the-loop**: A human reviews and approves each individual decision before it takes effect.
+- **Human-on-the-loop**: A human monitors the system and can intervene but does not review every decision.
+- **Human-out-of-the-loop**: The system makes decisions autonomously without human review.
+
+Regulators increasingly look at whether human review is **meaningful** — a rubber-stamp approval does not satisfy human oversight requirements under the EU AI Act or Colorado AI Act.
+
+## Common Examples
+
+- Credit scoring systems that approve or deny loan applications
+- Resume screening tools that rank or filter job candidates
+- Insurance underwriting algorithms that set premiums
+- Fraud detection systems that flag and block transactions
+- Medical triage algorithms that prioritize patient care
+- Bail and sentencing recommendation tools in criminal justice
