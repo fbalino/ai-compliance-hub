@@ -80,6 +80,26 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Skip to main content link (accessibility) */
+.skip-to-content {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  padding: 0.5rem 1rem;
+  background: var(--color-brand-700);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 0 0 0.375rem 0.375rem;
+  text-decoration: none;
+  transition: top 0.1s;
+}
+.skip-to-content:focus {
+  top: 0;
 }
 
 /* Typography defaults for prose-like MDX content */
@@ -179,4 +199,45 @@ body {
 
 .prose-compliance tr:nth-child(even) td {
   background: var(--color-neutral-50);
+}
+
+.prose-compliance h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--color-neutral-800);
+  margin-top: 1.5rem;
+  margin-bottom: 0.375rem;
+}
+
+.prose-compliance h5,
+.prose-compliance h6 {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--color-neutral-700);
+  margin-top: 1.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.prose-compliance strong {
+  font-weight: 700;
+  color: var(--color-neutral-900);
+}
+
+.prose-compliance em {
+  font-style: italic;
+}
+
+.prose-compliance hr {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 2rem 0;
+}
+
+.prose-compliance img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
 }

@@ -196,7 +196,7 @@ export default function UsStateAiLawsPage() {
             <Link
               key={law.slug}
               href={`/regulations/${law.slug}`}
-              className="group rounded-xl border border-neutral-200 bg-white p-4 hover:border-brand-300 hover:shadow-sm transition-all"
+              className="group rounded-xl border border-neutral-200 bg-white p-4 hover:border-brand-300 hover:shadow-sm transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-700"
             >
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-xl">{law.flag}</span>

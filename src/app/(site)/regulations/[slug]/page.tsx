@@ -235,17 +235,15 @@ export default async function RegulationPage({ params }: Props) {
                 </Card>
               )}
 
-            {/* Last updated */}
-            {frontmatter.updatedAt && (
-              <p className="text-xs text-neutral-400">
-                Last updated:{" "}
-                {new Date(frontmatter.updatedAt).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </p>
-            )}
+            {/* Compare CTA */}
+            <div className="pt-2">
+              <Link
+                href="/compare"
+                className="text-sm font-medium text-brand-700 hover:text-brand-900 transition-colors"
+              >
+                Compare regulations →
+              </Link>
+            </div>
           </aside>
         </div>
       </div>

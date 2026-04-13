@@ -166,7 +166,7 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {FEATURED_REGULATIONS.map((reg) => (
-              <Link key={reg.slug} href={`/regulations/${reg.slug}`} className="group block">
+              <Link key={reg.slug} href={`/regulations/${reg.slug}`} className="group block rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-700">
                 <Card hover className="h-full transition-all group-hover:border-brand-300">
                   <div className="flex items-start justify-between gap-3 mb-3">
                     <div>
@@ -259,7 +259,7 @@ export default function HomePage() {
               <Link
                 key={cat.slug}
                 href={`/directory/categories/${cat.slug}`}
-                className="group flex flex-col items-center rounded-xl border border-neutral-200 bg-white p-4 text-center hover:border-brand-300 hover:shadow-sm transition-all"
+                className="group flex flex-col items-center rounded-xl border border-neutral-200 bg-white p-4 text-center hover:border-brand-300 hover:shadow-sm transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-700"
               >
                 <span className="text-2xl mb-2" role="img" aria-label={cat.label}>
                   {cat.icon}

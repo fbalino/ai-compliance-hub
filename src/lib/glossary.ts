@@ -71,6 +71,17 @@ export async function getAllGlossarySlugs(): Promise<string[]> {
   return Object.keys(GLOSSARY_MODULES);
 }
 
+/** Load all glossary entries (for index page). */
+export async function getAllGlossaryEntries(): Promise<GlossaryEntry[]> {
+  const slugs = Object.keys(GLOSSARY_MODULES);
+  const entries = await Promise.all(
+    slugs.map((slug) => getGlossaryTerm(slug))
+  );
+  return (entries.filter(Boolean) as GlossaryEntry[]).sort((a, b) =>
+    a.frontmatter.term.localeCompare(b.frontmatter.term)
+  );
+}
+
 export async function getGlossaryTerm(
   slug: string
 ): Promise<GlossaryEntry | null> {

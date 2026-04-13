@@ -62,7 +62,7 @@ export default function ComparePage() {
       <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           {COMPARISONS.map((comp) => (
-            <Link key={comp.href} href={comp.href} className="group block">
+            <Link key={comp.href} href={comp.href} className="group block rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-700">
               <Card hover className="h-full group-hover:border-brand-300 transition-all">
                 <h2 className="font-semibold text-neutral-900 group-hover:text-brand-800 transition-colors mb-2">
                   {comp.title}
