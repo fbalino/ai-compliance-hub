@@ -38,8 +38,9 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
-# vercel
-.vercel
+# vercel — keep project.json for CI/CD linkage, ignore output
+.vercel/output
+.vercel/cache
 
 # typescript
 *.tsbuildinfo
