@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 // --- Types ---
 
@@ -343,7 +344,7 @@ export function CheckerClient() {
 
   if (showResults) {
     const results = computeResults(answers);
-    return <Results results={results} onReset={reset} onBack={back} />;
+    return <Results results={results} answers={answers} onReset={reset} onBack={back} />;
   }
 
   return (
@@ -468,13 +469,51 @@ const urgencyConfig = {
 
 function Results({
   results,
+  answers,
   onReset,
   onBack,
 }: {
   results: RegResult[];
+  answers: Record<string, string | string[]>;
   onReset: () => void;
   onBack: () => void;
 }) {
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [purchasing, setPurchasing] = useState(false);
+  const [purchaseError, setPurchaseError] = useState<string | null>(null);
+
+  async function handlePurchase() {
+    if (!email.trim()) {
+      setPurchaseError("Please enter your email address.");
+      return;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setPurchaseError("Please enter a valid email address.");
+      return;
+    }
+    setPurchaseError(null);
+    setPurchasing(true);
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ answers, email }),
+      });
+      const data = (await res.json()) as { url?: string; error?: string };
+      if (!res.ok || !data.url) {
+        setPurchaseError(data.error ?? "Something went wrong. Please try again.");
+        setPurchasing(false);
+        return;
+      }
+      router.push(data.url);
+    } catch {
+      setPurchaseError("Network error. Please try again.");
+      setPurchasing(false);
+    }
+  }
+
   if (results.length === 0) {
     return (
       <div className="mx-auto max-w-2xl text-center py-8">
@@ -573,8 +612,58 @@ function Results({
         })}
       </div>
 
+      {/* Pro Report CTA */}
+      <div className="mt-8 rounded-2xl bg-brand-900 px-6 py-7">
+        <div className="flex items-start justify-between gap-4 mb-4">
+          <div>
+            <span className="inline-flex items-center rounded-full bg-amber-400/20 px-2.5 py-0.5 text-xs font-medium text-amber-300 mb-2">
+              Pro Report
+            </span>
+            <h3 className="text-lg font-bold text-white">Get the Full Pro Report — $49</h3>
+            <p className="mt-1 text-sm text-brand-300 leading-relaxed max-w-sm">
+              Detailed gap analysis, NIST AI RMF mapping, prioritized action plan with deadlines, and a downloadable PDF you can share with your team.
+            </p>
+          </div>
+        </div>
+        <div className="flex flex-col sm:flex-row gap-2.5">
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handlePurchase()}
+            placeholder="you@company.com"
+            className="flex-1 rounded-lg border border-brand-700 bg-brand-800 px-4 py-2.5 text-sm text-white placeholder:text-brand-400 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
+            disabled={purchasing}
+          />
+          <button
+            type="button"
+            onClick={handlePurchase}
+            disabled={purchasing}
+            className="inline-flex items-center justify-center gap-2 rounded-lg bg-white px-5 py-2.5 text-sm font-bold text-brand-900 hover:bg-brand-50 disabled:opacity-60 disabled:cursor-not-allowed transition-colors shadow-sm whitespace-nowrap"
+          >
+            {purchasing ? (
+              <>
+                <svg className="h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
+                </svg>
+                Redirecting…
+              </>
+            ) : (
+              "Purchase Report ($49)"
+            )}
+          </button>
+        </div>
+        {purchaseError && (
+          <p className="mt-2 text-sm text-red-300">{purchaseError}</p>
+        )}
+        <p className="mt-3 text-xs text-brand-400">
+          Secure payment via Stripe. PDF delivered by email.
+        </p>
+      </div>
+
       {/* Next steps */}
-      <div className="mt-8 rounded-xl bg-white border border-neutral-200 p-5">
+      <div className="mt-5 rounded-xl bg-white border border-neutral-200 p-5">
         <h3 className="font-bold text-neutral-900 mb-1">Need help with compliance?</h3>
         <p className="text-sm text-neutral-600 mb-4">
           Browse verified auditors, consultants, and software platforms that specialize in these regulations.
