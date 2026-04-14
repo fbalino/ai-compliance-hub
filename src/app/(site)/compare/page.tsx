@@ -30,6 +30,20 @@ const COMPARISONS = [
       "Colorado, New York City, Illinois, and California — how do the four most significant US AI compliance laws compare on scope, obligations, and enforcement?",
     tags: ["Colorado", "NYC LL 144", "Illinois AIVIRA", "California AB 2013"],
   },
+  {
+    href: "/compare/ai-regulation-by-industry",
+    title: "AI Regulation by Industry",
+    description:
+      "Which AI laws apply to your industry? Healthcare, HR/recruiting, fintech, and insurance across the EU AI Act, NYC LL 144, Colorado AI Act, and Illinois AIVIRA — who must comply and what they must do.",
+    tags: ["Healthcare", "HR / Recruiting", "Fintech", "Insurance"],
+  },
+  {
+    href: "/compare/compliance-frameworks-nist-vs-iso-42001",
+    title: "NIST AI RMF vs. ISO/IEC 42001",
+    description:
+      "The two leading AI governance frameworks compared side-by-side. Coverage, certification, cost, timeline, and which AI regulations each one satisfies — so you can choose the right foundation.",
+    tags: ["NIST AI RMF", "ISO 42001", "Certification", "Governance"],
+  },
 ];
 
 export default function ComparePage() {

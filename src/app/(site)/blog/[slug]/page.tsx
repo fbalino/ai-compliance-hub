@@ -426,6 +426,441 @@ The practical implication: **build your AI compliance program around the Colorad
 - [Find AI governance consultants](/directory/categories/governance-consulting)
     `,
   },
+  "how-to-prepare-for-colorado-ai-act-june-2026": {
+    slug: "how-to-prepare-for-colorado-ai-act-june-2026",
+    title: "How to Prepare for the Colorado AI Act Before June 30, 2026",
+    excerpt:
+      "A practical 5-step preparation guide for Colorado deployers: what triggers compliance, impact assessments, consumer notification, and vendor due diligence.",
+    category: "Compliance Guides",
+    date: "2026-04-14",
+    readTime: "8 min read",
+    tags: ["Colorado AI Act", "Preparation", "June 2026"],
+    relatedRegulations: [
+      { slug: "colorado-ai-act", name: "Colorado AI Act" },
+      { slug: "eu-ai-act", name: "EU AI Act" },
+    ],
+    body: `
+The Colorado AI Act (SB 24-205) takes effect **June 30, 2026** — and the clock is running. If you deploy AI systems that make consequential decisions about Colorado consumers, you have roughly two months to get ready. Here's a focused five-step guide to becoming compliant before the deadline.
+
+## Step 1: Determine Whether You're Covered
+
+Not every business that uses AI is covered. The law applies to **deployers** of high-risk AI systems when:
+
+1. The AI makes or substantially contributes to a **consequential decision** — one that materially affects an individual's access to education, employment, credit, housing, insurance, healthcare, or legal services.
+2. The individual affected is a **Colorado consumer** (resident, not necessarily a citizen).
+
+**You're likely covered if you:**
+- Use AI tools for hiring, promotion, or termination of employees in Colorado
+- Use automated underwriting for loans, insurance, or leases for Colorado customers
+- Deploy clinical decision support AI used with Colorado patients
+- Use AI-driven admissions tools for Colorado students
+
+**You're likely NOT covered if:**
+- Your AI is purely for internal operations (not consumer-facing)
+- Your AI output is advisory only, with a human making the final consequential decision independently
+- You meet the small-business exemption (review carefully — it's narrow)
+
+## Step 2: Inventory Your High-Risk AI Systems
+
+Walk through every AI tool your business uses. For each one, ask:
+- Does it make or substantially contribute to a consequential decision?
+- Does it affect Colorado consumers?
+
+Document your findings in a simple spreadsheet: tool name, vendor, domain (employment / credit / etc.), whether it's high-risk, and who owns compliance for it.
+
+## Step 3: Complete Impact Assessments
+
+For every high-risk AI system, you must complete a written **impact assessment** before the June 30 deadline. The assessment must document:
+
+- The intended purpose of the AI system
+- Known and reasonably foreseeable risks of algorithmic discrimination
+- How the system was evaluated for discriminatory outcomes
+- Training data sources and how data quality was ensured
+- How explainability and transparency are provided
+- What human oversight mechanisms are in place
+- How the business will monitor for disparate impact post-deployment
+
+Impact assessments must be updated **annually** and whenever the system is materially changed.
+
+## Step 4: Set Up Consumer Notifications and Appeal Rights
+
+Under the Colorado AI Act, when a high-risk AI system makes a consequential decision about a consumer, you must:
+
+- **Notify** the consumer that AI was used in the decision
+- Provide a **plain-language explanation** of how the AI influenced the decision
+- If the decision is **adverse**, tell the consumer which factors led to it
+- Give the consumer a way to **appeal** or request human review
+- **Opt-out** mechanisms must be available for consumers who don't want AI-assisted decisions
+
+Prepare template language for these notifications now. Get them reviewed by counsel before deployment.
+
+## Step 5: Conduct Vendor Due Diligence
+
+If you use third-party AI systems (from vendors), you need documentation from those vendors. Specifically:
+
+- Written description of the AI system's purpose and capabilities
+- Information about training data sources and validation
+- Known risks of algorithmic discrimination and how they're mitigated
+- How the vendor supports deployer compliance (documentation, API for explanations, audit trails)
+
+Review your AI vendor contracts. Add data processing agreements and representations about AI Act compliance where missing. Some vendors are well ahead of this — others aren't.
+
+## What Happens If You Miss the Deadline?
+
+The Colorado AG's office enforces the law. Penalties can reach **$20,000 per violation**. The AG must provide 60 days' notice before initiating action (cure period), so early enforcement is likely to be directed at businesses that haven't made a good-faith compliance effort.
+
+## Resources
+
+- [Full Colorado AI Act compliance guide](/regulations/colorado-ai-act)
+- [Free compliance checker — does this law apply to you?](/checker)
+- [Find AI governance consultants in our directory](/directory/categories/governance-consulting)
+- [Compare Colorado AI Act vs. EU AI Act](/compare/colorado-vs-eu-ai-act)
+    `,
+  },
+  "virginia-hb-2094-what-businesses-need-to-know": {
+    slug: "virginia-hb-2094-what-businesses-need-to-know",
+    title: "Virginia HB 2094: What Businesses Need to Know Before July 2026",
+    excerpt:
+      "Virginia's new AI law takes effect July 1, 2026. Here's who it covers, how it compares to Colorado, and what you need to do now.",
+    category: "Regulation Analysis",
+    date: "2026-04-12",
+    readTime: "6 min read",
+    tags: ["Virginia HB 2094", "State Laws", "July 2026"],
+    relatedRegulations: [
+      { slug: "colorado-ai-act", name: "Colorado AI Act" },
+      { slug: "virginia-hb-2094", name: "Virginia HB 2094" },
+    ],
+    body: `
+Virginia has joined Colorado as the second US state to pass comprehensive AI legislation. The Virginia High-Risk Artificial Intelligence Developer and Deployer Act (HB 2094) takes effect **July 1, 2026** — one day after the Colorado AI Act. If you operate in both states, you're facing a simultaneous compliance deadline.
+
+## What Is Virginia HB 2094?
+
+HB 2094 establishes requirements for businesses that develop or deploy "high-risk AI systems" — defined as AI that makes consequential decisions about Virginia consumers in domains including:
+
+- **Employment**: Hiring, promotion, termination, compensation decisions
+- **Housing**: Rental, purchase, and housing assistance decisions
+- **Credit and Finance**: Lending, insurance underwriting, and financial product access
+- **Education**: Admissions, financial aid, and academic evaluation
+- **Healthcare**: Diagnosis, treatment, and medication recommendations
+- **Criminal Justice**: Bail, parole, or sentencing decisions (for applicable deployers)
+
+The law applies to businesses that deploy these systems to make or substantially assist in making consequential decisions affecting Virginia residents.
+
+## How Does Virginia Compare to Colorado?
+
+Virginia HB 2094 was drafted with Colorado's SB 24-205 as a model — the core requirements are very similar. Here's where they align and diverge:
+
+### Where They're the Same
+
+- **Impact assessments** required before deployment
+- **Consumer notice** when AI is used in a consequential decision
+- **Human review** must be available for adverse decisions
+- **Vendor documentation** obligations — deployers must get key info from developers
+- **AG enforcement** (no private right of action)
+- **Small business exemptions** (with different thresholds)
+
+### Key Differences
+
+- **Effective date**: Virginia is July 1, 2026 vs. Colorado's June 30 — essentially simultaneous
+- **Criminal justice coverage**: Virginia explicitly addresses AI in bail and sentencing contexts; Colorado does not
+- **Penalty structure**: Virginia penalties are per-violation, with a 30-day cure period (Colorado is 60 days)
+- **Annual reporting**: Colorado requires reporting to the AG; Virginia's reporting obligations are lighter
+- **Documentation retention**: Virginia requires a 3-year retention minimum on impact assessments
+
+## Who Is Affected?
+
+You're affected if:
+1. You deploy AI that makes or assists in consequential decisions
+2. Affected individuals include Virginia residents
+3. The AI falls in one of the covered decision domains
+
+**Common affected use cases:**
+- HR software with AI screening for Virginia-based positions
+- Insurance underwriting tools used for Virginia policyholders
+- Mortgage/loan AI for Virginia properties or borrowers
+- Healthcare AI used in Virginia hospitals or telehealth for Virginia patients
+
+## What You Need to Do
+
+**If you're already building Colorado AI Act compliance:**
+Good news — you're about 80% of the way there for Virginia. The core documents and processes are the same. You need to:
+
+1. Extend your impact assessments to explicitly cover Virginia consumers
+2. Adjust notification templates for Virginia's specific requirements
+3. Review Virginia's criminal justice provisions if applicable
+4. Align retention schedules to Virginia's 3-year minimum
+
+**If you haven't started yet:**
+Start with Colorado's framework (it's better documented and has more regulatory guidance available), then layer in Virginia-specific differences.
+
+## The Bigger Picture
+
+Virginia joining Colorado signals that US state-level AI legislation is now a durable trend — not a one-state experiment. Texas, Connecticut, and Illinois have similar bills in active consideration. If you build a robust compliance program now for Colorado + Virginia, you'll be well-positioned as more states enact similar laws.
+
+## Resources
+
+- [Free compliance checker — does Virginia HB 2094 apply to you?](/checker)
+- [Compare US state AI laws side-by-side](/compare/us-state-ai-laws)
+- [Find AI governance consultants](/directory/categories/governance-consulting)
+- [Colorado AI Act compliance guide](/regulations/colorado-ai-act)
+    `,
+  },
+  "request-for-quote-ai-bias-audit-what-to-expect": {
+    slug: "request-for-quote-ai-bias-audit-what-to-expect",
+    title: "What to Expect When You Request an AI Bias Audit",
+    excerpt:
+      "A practical walkthrough of the RFQ process for an AI bias audit: what auditors assess, typical timelines and costs, and the right questions to ask.",
+    category: "Compliance Guides",
+    date: "2026-04-09",
+    readTime: "7 min read",
+    tags: ["Bias Audit", "RFQ", "Vendors"],
+    relatedRegulations: [
+      { slug: "nyc-local-law-144", name: "NYC Local Law 144" },
+      { slug: "colorado-ai-act", name: "Colorado AI Act" },
+    ],
+    body: `
+If you use AI in hiring, credit, healthcare, or other regulated domains, there's a good chance you need a bias audit. New York City's Local Law 144 mandates one for AI hiring tools. The Colorado AI Act requires deployers to demonstrate bias testing. Similar requirements are spreading to Virginia, Texas, and other states.
+
+But if you've never procured a bias audit before, the process can be opaque. Here's what to expect — from the initial request for quote (RFQ) through receiving your results.
+
+## What Is an AI Bias Audit?
+
+An AI bias audit (also called an algorithmic bias audit or impact analysis) is an independent review of an AI system's outcomes across demographic groups. The core goal is identifying whether the AI produces **disparate impact** — outcomes that are significantly worse for some demographic groups than others.
+
+Under NYC LL 144, a bias audit specifically measures:
+- **Selection rates** by sex, race/ethnicity, and intersectional categories
+- **Impact ratios** comparing selection rates of each group to the highest-rate group
+- Whether any group's selection rate falls below 80% of the highest group (the "4/5ths rule")
+
+For Colorado AI Act compliance, impact assessments are broader — they must document algorithmic discrimination risks, evaluation methodology, and mitigation measures.
+
+## Step 1: Assembling Your RFQ
+
+When you reach out to bias auditors, you'll need to provide:
+
+**About your AI system:**
+- What does it do? (e.g., "resumes screening tool that ranks candidates 1-100")
+- What vendor provides it? Do you have an API or batch export?
+- What outputs does it produce? (scores, decisions, recommendations)
+- What domains/roles is it used for?
+
+**About your data:**
+- How many decisions has the system made in the past 12 months?
+- Do you have demographic data on subjects? If not, is it collectible?
+- What data formats are available (CSV, API, database export)?
+
+**Scope and jurisdiction:**
+- Which law(s) must the audit satisfy? (NYC LL 144, Colorado AI Act, etc.)
+- Is this the first audit or a renewal?
+
+## Step 2: What Auditors Will Quote You On
+
+After reviewing your RFQ, auditors will scope based on:
+
+- **Data complexity**: More decision records = more analysis = higher cost
+- **Demographic data availability**: If you don't have direct demographic data, the auditor will use proxy methods (like BISG — Bayesian Improved Surname Geocoding), which adds analytical work
+- **Number of AI tools**: Each tool is typically a separate audit engagement
+- **Regulatory scope**: NYC LL 144 audits are standardized and narrower; Colorado AI Act impact assessments are broader
+- **Timeline**: Rush engagements cost more
+
+**Typical cost ranges:**
+- Simple NYC LL 144 audit (one tool, good data): $3,000–$8,000
+- Complex audit (multiple tools, proxy demographics, Colorado + NYC scope): $10,000–$25,000
+- Enterprise multi-tool program: $25,000–$75,000+ annually
+
+## Step 3: The Audit Process
+
+A typical bias audit engagement runs in three phases:
+
+### Phase 1: Data Collection (1–3 weeks)
+
+The auditor will request:
+- Decision logs with timestamps and outcomes
+- Any demographic data collected
+- Documentation of the AI system's methodology from the vendor
+
+You'll need to coordinate with your data team and, often, your AI vendor.
+
+### Phase 2: Analysis (2–4 weeks)
+
+The auditor runs statistical analysis:
+- Calculating selection/outcome rates by demographic group
+- Computing impact ratios
+- Testing for statistical significance
+- Reviewing the AI system's methodology documentation
+
+### Phase 3: Results and Report (1 week)
+
+You'll receive:
+- A draft report for your review
+- Required publication summary (for NYC LL 144)
+- Recommendations if disparate impact is found
+- A final signed report for your records
+
+**Total typical timeline: 4–8 weeks end-to-end**
+
+## Key Questions to Ask Auditors
+
+Before you engage, ask potential auditors:
+
+1. **Have you audited this specific tool or vendor before?** (Familiarity speeds things up)
+2. **What methodology do you use when demographic data is unavailable?**
+3. **Will your report meet NYC DCWP's specific format requirements?**
+4. **What happens if we find significant disparate impact?** (Do they help you remediate?)
+5. **Do you offer annual renewal programs at a discount?**
+6. **Are you truly independent?** (The auditor cannot be your AI vendor)
+
+## What to Do With the Results
+
+If the audit finds no significant disparate impact: post the required summary, keep the report, and set your annual renewal calendar.
+
+If the audit finds disparate impact: you have options — you are not automatically disqualified from using the tool. Common next steps include:
+- Adjusting thresholds or weights
+- Supplementing AI decisions with additional human review
+- Requesting remediation from the AI vendor
+- In some cases, replacing the tool
+
+**Do not post audit results that show disparate impact and then continue using the tool unchanged** — that is the highest-risk outcome legally.
+
+## Finding a Qualified Auditor
+
+Browse verified bias audit firms in our directory, filterable by jurisdiction and AI system type.
+
+- [Find bias auditors in our directory →](/directory/categories/bias-audit)
+- [NYC LL 144 compliance guide](/regulations/nyc-local-law-144)
+- [Colorado AI Act compliance guide](/regulations/colorado-ai-act)
+    `,
+  },
+  "nist-ai-rmf-explainer-for-compliance-teams": {
+    slug: "nist-ai-rmf-explainer-for-compliance-teams",
+    title: "NIST AI RMF Explained: A Compliance Team's Field Guide",
+    excerpt:
+      "What the NIST AI Risk Management Framework is, how its four core functions work, and how it maps to the EU AI Act and Colorado requirements.",
+    category: "Compliance Guides",
+    date: "2026-04-07",
+    readTime: "9 min read",
+    tags: ["NIST AI RMF", "Frameworks", "Risk Management"],
+    relatedRegulations: [
+      { slug: "eu-ai-act", name: "EU AI Act" },
+      { slug: "colorado-ai-act", name: "Colorado AI Act" },
+    ],
+    body: `
+If you work in AI compliance, you've probably seen "NIST AI RMF" referenced in vendor documentation, regulatory guidance, and board presentations. But what does it actually require, and how does it relate to the regulations you must comply with?
+
+This field guide explains the NIST AI Risk Management Framework (AI RMF 1.0) in practical terms for compliance teams.
+
+## What Is the NIST AI RMF?
+
+The **NIST AI Risk Management Framework** (NIST AI 100-1) is a voluntary framework published by the US National Institute of Standards and Technology in January 2023. Unlike laws like the EU AI Act or Colorado AI Act, it doesn't carry legal penalties — but it has become the de facto standard reference for organizations building AI governance programs in the US.
+
+**Why it matters for compliance teams:**
+- The EU AI Act explicitly references NIST-compatible standards as one path to demonstrating conformity
+- Colorado's AI Act guidance points to NIST AI RMF as a best-practice framework for impact assessments and risk management programs
+- Many AI vendors use NIST AI RMF as their governance reference — understanding it helps you evaluate vendor documentation
+- Board-level AI governance expectations are increasingly framed around NIST AI RMF
+
+## The Four Core Functions
+
+The NIST AI RMF organizes AI risk management into four functions, often written as **GOVERN → MAP → MEASURE → MANAGE**. Here's what each means in practice.
+
+### GOVERN
+
+Governance is the foundational function — it sets up the organizational structures, policies, and culture that make AI risk management possible.
+
+**In practice, GOVERN means:**
+- Assigning clear accountability for AI systems (who owns each AI tool?)
+- Creating an AI policy that defines acceptable use, prohibited use, and governance processes
+- Establishing how new AI tools are evaluated before adoption
+- Ensuring leadership understands AI risk and has visibility into high-risk systems
+- Building a cross-functional AI governance team (legal, engineering, compliance, HR)
+
+**GOVERN maps to:**
+- Colorado AI Act: governance programs and accountability structures
+- EU AI Act: Article 17 quality management systems; human oversight requirements
+- NYC LL 144: employer accountability for AEDT use
+
+### MAP
+
+Mapping is about identifying and contextualizing AI risk — you can't manage what you haven't found.
+
+**In practice, MAP means:**
+- Maintaining an inventory of all AI systems your organization uses or builds
+- Classifying systems by risk level (high / medium / low)
+- Documenting the intended purpose, affected populations, and potential harms of each system
+- Understanding how each AI system interacts with existing processes and decisions
+- Identifying which regulations apply to each system
+
+**MAP maps to:**
+- Colorado AI Act: AI inventory and impact assessment scope identification
+- EU AI Act: Annex III high-risk classification; provider technical documentation
+- NYC LL 144: Identifying AEDTs and audit scope
+
+### MEASURE
+
+Measuring means rigorously evaluating AI systems for the risks you've identified.
+
+**In practice, MEASURE means:**
+- Conducting bias testing and disparate impact analysis
+- Running accuracy and performance evaluations across population subgroups
+- Testing for robustness to adversarial inputs or distribution shift
+- Assessing explainability — can the system's outputs be explained to affected individuals?
+- Documenting evaluation results and their limitations
+
+**MEASURE maps to:**
+- Colorado AI Act: Impact assessment requirement to document bias evaluation
+- EU AI Act: Conformity assessment; technical documentation on testing and performance
+- NYC LL 144: Bias audit statistical analysis and impact ratios
+
+### MANAGE
+
+Managing means acting on what you've measured — implementing controls, monitoring, and incident response.
+
+**In practice, MANAGE means:**
+- Implementing mitigations for identified risks (human review, thresholds, access controls)
+- Setting up ongoing monitoring for model drift and disparate outcomes in production
+- Running periodic reviews and updating impact assessments when systems change
+- Documenting how consumer complaints or harm reports are handled
+- Maintaining audit trails
+
+**MANAGE maps to:**
+- Colorado AI Act: Annual updates to impact assessments; consumer appeal processes; monitoring
+- EU AI Act: Post-market monitoring; incident reporting; human oversight requirements
+- NYC LL 144: Annual audit renewal; public posting of updated results
+
+## How NIST AI RMF Maps to Key Regulations
+
+| NIST Function | Colorado AI Act | EU AI Act | NYC LL 144 |
+|---|---|---|---|
+| GOVERN | Risk management program | Quality management system | Employer accountability |
+| MAP | AI inventory + impact assessment scope | Annex I/III classification | AEDT identification |
+| MEASURE | Bias evaluation in impact assessment | Conformity assessment + testing | Third-party bias audit |
+| MANAGE | Monitoring + consumer rights | Post-market monitoring + incident reporting | Annual audit renewal |
+
+## Is NIST AI RMF Compliance Enough?
+
+No. NIST AI RMF is a framework, not a legal standard. Following it does not mean you're compliant with the Colorado AI Act, EU AI Act, or NYC LL 144.
+
+However, NIST AI RMF provides an excellent **organizational structure** for your compliance program. If you build your governance program around GOVERN/MAP/MEASURE/MANAGE, you'll have the right building blocks to satisfy each regulation's specific requirements — you'll just need to layer in the law-specific elements (exact assessment formats, required consumer disclosures, audit standards, etc.).
+
+## Getting Started
+
+For most compliance teams, the practical starting point is:
+
+1. **GOVERN first** — assign AI ownership and establish a simple policy
+2. **MAP second** — inventory your AI systems and classify risk
+3. **MEASURE next** — start impact assessments for high-risk systems
+4. **MANAGE last** — implement monitoring and controls
+
+Don't try to implement everything at once. A credible, documented partial program is better than an aspirational undocumented one.
+
+## Resources
+
+- [Building an AI Governance Program — practical guide for mid-size companies](/blog/ai-governance-program-guide)
+- [Colorado AI Act compliance guide](/regulations/colorado-ai-act)
+- [EU AI Act compliance guide](/regulations/eu-ai-act)
+- [Find AI governance consultants in our directory](/directory/categories/governance-consulting)
+    `,
+  },
   "ai-governance-program-guide": {
     slug: "ai-governance-program-guide",
     title: "Building an AI Governance Program: The Practical Guide for Mid-Size Companies",

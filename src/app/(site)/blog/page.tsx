@@ -28,6 +28,46 @@ const CATEGORIES = [
 
 const POSTS = [
   {
+    slug: "how-to-prepare-for-colorado-ai-act-june-2026",
+    title: "How to Prepare for the Colorado AI Act Before June 30, 2026",
+    excerpt:
+      "A practical 5-step preparation guide for Colorado deployers: what triggers compliance, impact assessments, consumer notification, and vendor due diligence.",
+    category: "Compliance Guides",
+    date: "2026-04-14",
+    readTime: "8 min read",
+    tags: ["Colorado AI Act", "Preparation", "June 2026"],
+  },
+  {
+    slug: "virginia-hb-2094-what-businesses-need-to-know",
+    title: "Virginia HB 2094: What Businesses Need to Know Before July 2026",
+    excerpt:
+      "Virginia's new AI law takes effect July 1, 2026. Here's who it covers, how it compares to Colorado, and what you need to do now.",
+    category: "Regulation Analysis",
+    date: "2026-04-12",
+    readTime: "6 min read",
+    tags: ["Virginia HB 2094", "State Laws", "July 2026"],
+  },
+  {
+    slug: "request-for-quote-ai-bias-audit-what-to-expect",
+    title: "What to Expect When You Request an AI Bias Audit",
+    excerpt:
+      "A practical walkthrough of the RFQ process for an AI bias audit: what auditors assess, typical timelines and costs, and the right questions to ask.",
+    category: "Compliance Guides",
+    date: "2026-04-09",
+    readTime: "7 min read",
+    tags: ["Bias Audit", "RFQ", "Vendors"],
+  },
+  {
+    slug: "nist-ai-rmf-explainer-for-compliance-teams",
+    title: "NIST AI RMF Explained: A Compliance Team's Field Guide",
+    excerpt:
+      "What the NIST AI Risk Management Framework is, how its four core functions work, and how it maps to the EU AI Act and Colorado requirements.",
+    category: "Compliance Guides",
+    date: "2026-04-07",
+    readTime: "9 min read",
+    tags: ["NIST AI RMF", "Frameworks", "Risk Management"],
+  },
+  {
     slug: "colorado-ai-act-2026-deadline",
     title: "Colorado AI Act Takes Effect June 30, 2026 — What You Need to Do Now",
     excerpt:
