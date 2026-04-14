@@ -13,7 +13,6 @@ export const metadata: Metadata = {
     "The central destination for understanding, navigating, and acting on AI regulation worldwide. Track regulations, use our free compliance checker, and find verified providers.",
 };
 
-// Static data — will be replaced with DB queries once Neon is provisioned
 const FEATURED_REGULATIONS = [
   {
     slug: "colorado-ai-act",
@@ -46,30 +45,30 @@ const FEATURED_REGULATIONS = [
       "Requires employers using AI in hiring or promotion decisions affecting NYC employees to conduct annual bias audits and post results publicly.",
   },
   {
-    slug: "california-ab-2013",
-    name: "California AB 2013",
-    shortName: "CA AB 2013",
-    jurisdiction: "US · California",
+    slug: "virginia-hb-2094",
+    name: "Virginia HB 2094",
+    shortName: "VA HB 2094",
+    jurisdiction: "US · Virginia",
     status: "enacted" as const,
-    effectiveDate: "January 1, 2026",
+    effectiveDate: "July 1, 2026",
     summary:
-      "Requires developers of generative AI systems trained on data exceeding certain compute thresholds to publish training data transparency reports.",
+      "Requires businesses using high-risk automated decision systems affecting Virginia residents to conduct impact assessments and provide consumers with opt-out rights.",
   },
 ];
 
 const STATS = [
-  { value: "8+", label: "AI Regulations Tracked" },
-  { value: "50+", label: "Verified Providers" },
-  { value: "Free", label: "Compliance Checker" },
+  { value: "7", label: "AI Regulations Tracked" },
+  { value: "15+", label: "Verified Providers" },
+  { value: "Free", label: "AI-Powered Checker" },
   { value: "48h", label: "Average Time to Publish New Laws" },
 ];
 
 const PROVIDER_CATEGORIES = [
-  { slug: "bias-audit", label: "Bias Auditors", icon: "🔬", count: 12 },
-  { slug: "governance-consulting", label: "Governance Consulting", icon: "🏛", count: 18 },
-  { slug: "legal", label: "Legal & Compliance", icon: "⚖️", count: 14 },
-  { slug: "compliance-software", label: "Compliance Software", icon: "💻", count: 9 },
-  { slug: "training", label: "Training & Education", icon: "📚", count: 7 },
+  { slug: "bias-audit", label: "Bias Auditors", icon: "🔬", count: 3 },
+  { slug: "governance-consulting", label: "Governance Consulting", icon: "🏛", count: 4 },
+  { slug: "legal", label: "Legal & Compliance", icon: "⚖️", count: 3 },
+  { slug: "compliance-software", label: "Compliance Software", icon: "💻", count: 3 },
+  { slug: "training", label: "Training & Education", icon: "📚", count: 2 },
 ];
 
 const statusVariant: Record<string, "enforced" | "enacted" | "draft"> = {
