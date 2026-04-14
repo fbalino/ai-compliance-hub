@@ -58,17 +58,17 @@ const FEATURED_REGULATIONS = [
 
 const STATS = [
   { value: "7", label: "AI Regulations Tracked" },
-  { value: "15+", label: "Verified Providers" },
+  { value: "30+", label: "Verified Providers" },
   { value: "Free", label: "AI-Powered Checker" },
   { value: "48h", label: "Average Time to Publish New Laws" },
 ];
 
 const PROVIDER_CATEGORIES = [
-  { slug: "bias-audit", label: "Bias Auditors", icon: "🔬", count: 3 },
-  { slug: "governance-consulting", label: "Governance Consulting", icon: "🏛", count: 4 },
-  { slug: "legal", label: "Legal & Compliance", icon: "⚖️", count: 3 },
-  { slug: "compliance-software", label: "Compliance Software", icon: "💻", count: 3 },
-  { slug: "training", label: "Training & Education", icon: "📚", count: 2 },
+  { slug: "bias-audit", label: "Bias Auditors", icon: "🔬", count: 6 },
+  { slug: "governance-consulting", label: "Governance Consulting", icon: "🏛", count: 6 },
+  { slug: "legal", label: "Legal & Compliance", icon: "⚖️", count: 6 },
+  { slug: "compliance-software", label: "Compliance Software", icon: "💻", count: 7 },
+  { slug: "training", label: "Training & Education", icon: "📚", count: 6 },
 ];
 
 const statusVariant: Record<string, "enforced" | "enacted" | "draft"> = {
