@@ -2,6 +2,7 @@
 
 import { useState, FormEvent } from "react";
 import { Button } from "@/components/ui/Button";
+import posthog from "posthog-js";
 
 interface RequestQuoteFormProps {
   providerSlug: string;
@@ -70,6 +71,10 @@ export function RequestQuoteForm({ providerSlug, providerServices }: RequestQuot
       });
 
       if (!res.ok) throw new Error("Request failed");
+      posthog.capture("rfq_submitted", {
+        provider_slug: providerSlug,
+        service_type: serviceType || undefined,
+      });
       setState("success");
     } catch {
       setState("error");

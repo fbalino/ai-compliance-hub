@@ -123,19 +123,30 @@ AI Compliance Hub — ${SITE_URL}
 
 export async function POST(request: NextRequest) {
   const referer = request.headers.get("referer") ?? "/newsletter";
+  const contentType = request.headers.get("content-type") ?? "";
+  const isJson = contentType.includes("application/json");
 
-  // Helper: redirect to success URL
-  const redirectSuccess = () => {
+  // Helper: respond with success (redirect for form submissions, JSON for API calls)
+  const respondSuccess = () => {
+    if (isJson) return NextResponse.json({ success: true });
     const successUrl = new URL(referer, SITE_URL);
     successUrl.searchParams.set("subscribed", "1");
     return NextResponse.redirect(successUrl.toString(), { status: 303 });
   };
 
   try {
-    const body = await request.formData();
-    const email = body.get("email");
+    let email: string | null = null;
 
-    if (!email || typeof email !== "string") {
+    if (isJson) {
+      const body = (await request.json()) as { email?: unknown };
+      email = typeof body.email === "string" ? body.email : null;
+    } else {
+      const body = await request.formData();
+      const raw = body.get("email");
+      email = typeof raw === "string" ? raw : null;
+    }
+
+    if (!email) {
       return NextResponse.json({ error: "Email is required" }, { status: 400 });
     }
 
@@ -148,7 +159,7 @@ export async function POST(request: NextRequest) {
     const apiKey = process.env.RESEND_API_KEY;
     if (!apiKey) {
       console.warn("[subscribe] RESEND_API_KEY not set — skipping Resend integration");
-      return redirectSuccess();
+      return respondSuccess();
     }
 
     const resend = new Resend(apiKey);
@@ -171,10 +182,10 @@ export async function POST(request: NextRequest) {
     // Wait for both — errors already caught above
     await Promise.all([contactPromise, emailPromise]);
 
-    return redirectSuccess();
+    return respondSuccess();
   } catch (err) {
     console.error("[subscribe] Unexpected error:", err);
-    // Still redirect on unexpected error so UX is not broken
-    return redirectSuccess();
+    // Still respond on unexpected error so UX is not broken
+    return respondSuccess();
   }
 }

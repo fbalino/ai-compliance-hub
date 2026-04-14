@@ -4,6 +4,7 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
+import { NewsletterForm } from "@/components/NewsletterForm";
 
 export const revalidate = 3600;
 
@@ -228,22 +229,10 @@ export default function BlogPage() {
           <p className="mt-2 text-sm text-brand-200 max-w-md mx-auto">
             Weekly digest of new AI laws, enforcement actions, and compliance deadlines. Free. No spam.
           </p>
-          <form action="/api/subscribe" method="POST" className="mt-5 flex flex-col sm:flex-row gap-2 max-w-sm mx-auto">
-            <input
-              type="email"
-              name="email"
-              required
-              placeholder="you@company.com"
-              className="flex-1 rounded-lg border border-brand-700 bg-brand-800 px-4 py-2.5 text-sm text-white placeholder:text-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400"
-              aria-label="Email address"
-            />
-            <button
-              type="submit"
-              className="shrink-0 rounded-lg bg-white px-4 py-2.5 text-sm font-semibold text-brand-900 hover:bg-brand-50 transition-colors"
-            >
-              Subscribe
-            </button>
-          </form>
+          <NewsletterForm
+            source="blog"
+            className="mt-5 max-w-sm mx-auto"
+          />
         </section>
       </div>
     </>

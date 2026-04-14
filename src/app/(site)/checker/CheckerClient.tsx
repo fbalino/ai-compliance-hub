@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import posthog from "posthog-js";
 
 // --- Types ---
 
@@ -351,6 +352,7 @@ export function CheckerClient() {
     } else {
       setLoading(true);
       let computedResults: RegResult[];
+      let source: "claude" | "fallback" = "fallback";
       try {
         const res = await fetch("/api/checker/analyze", {
           method: "POST",
@@ -360,6 +362,7 @@ export function CheckerClient() {
         if (res.ok) {
           const data = (await res.json()) as { results: RegResult[] };
           computedResults = data.results;
+          source = "claude";
         } else {
           computedResults = computeResults(answers);
         }
@@ -367,6 +370,12 @@ export function CheckerClient() {
         computedResults = computeResults(answers);
       }
       setResults(computedResults);
+      posthog.capture("checker_completed", {
+        result_count: computedResults.length,
+        regulations: computedResults.map((r) => r.slug),
+        source,
+        has_high_urgency: computedResults.some((r) => r.urgency === "high"),
+      });
       // Save to DB (fire and forget)
       fetch("/api/checker/save", {
         method: "POST",
@@ -579,6 +588,11 @@ function Results({
       return;
     }
     setPurchaseError(null);
+    posthog.capture("pro_report_purchase_clicked", {
+      email_provided: !!email,
+      result_count: results.length,
+      regulations: results.map((r) => r.slug),
+    });
     setPurchasing(true);
     try {
       const res = await fetch("/api/checkout", {

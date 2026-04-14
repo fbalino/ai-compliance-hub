@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
+import { NewsletterForm } from "@/components/NewsletterForm";
 
 // ISR: homepage revalidates every 6 hours
 export const revalidate = 21600;
@@ -293,26 +294,10 @@ export default function HomePage() {
           <p className="mt-2 text-sm text-brand-200">
             Weekly digest of new laws, enforcement actions, and compliance deadlines. Free, no spam.
           </p>
-          <form
-            action="/api/subscribe"
-            method="POST"
-            className="mt-5 flex flex-col sm:flex-row gap-2 max-w-md mx-auto"
-          >
-            <input
-              type="email"
-              name="email"
-              required
-              placeholder="you@company.com"
-              className="flex-1 rounded-lg border border-brand-700 bg-brand-800 px-4 py-2.5 text-sm text-white placeholder:text-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400"
-              aria-label="Email address"
-            />
-            <button
-              type="submit"
-              className="rounded-lg bg-white px-4 py-2.5 text-sm font-semibold text-brand-900 hover:bg-brand-50 transition-colors shrink-0"
-            >
-              Subscribe
-            </button>
-          </form>
+          <NewsletterForm
+            source="homepage"
+            className="mt-5 max-w-md mx-auto"
+          />
         </div>
       </section>
     </>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
+import { NewsletterForm } from "@/components/NewsletterForm";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
 
@@ -91,26 +92,11 @@ export default function NewsletterPage() {
           </div>
 
           {/* Subscribe form */}
-          <form
-            action="/api/subscribe"
-            method="POST"
-            className="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
-          >
-            <input
-              type="email"
-              name="email"
-              required
-              placeholder="you@company.com"
-              className="flex-1 rounded-xl border border-brand-700 bg-brand-800/60 px-4 py-3 text-sm text-white placeholder:text-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400"
-              aria-label="Your email address"
-            />
-            <button
-              type="submit"
-              className="shrink-0 rounded-xl bg-white px-6 py-3 text-sm font-bold text-brand-900 hover:bg-brand-50 transition-colors shadow-sm"
-            >
-              Subscribe Free
-            </button>
-          </form>
+          <NewsletterForm
+            source="newsletter_page"
+            variant="hero"
+            className="mt-8 max-w-md mx-auto"
+          />
           <p className="mt-3 text-xs text-brand-400">
             Join compliance and legal professionals at companies navigating AI regulation.
           </p>
