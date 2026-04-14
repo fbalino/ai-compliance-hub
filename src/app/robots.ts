@@ -11,7 +11,7 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
         disallow: [
           "/api/",
-          "/checker/pro-report",
+          "/checker/pro-report/success",
           "/_next/",
         ],
       },

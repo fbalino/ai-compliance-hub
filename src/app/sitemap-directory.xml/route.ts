@@ -1,28 +1,35 @@
+import { db } from "@/db";
+import { providers, providerCategories } from "@/db/schema";
+
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
 
-// ISR: revalidate every 24 hours (as provider listings update)
+// ISR: revalidate every 24 hours (provider listings update)
 export const revalidate = 86400;
 
-// Placeholder: will be populated from DB once Neon provider table is live.
-const DIRECTORY_PATHS = [
-  "/directory",
-  "/directory/categories/bias-audit",
-  "/directory/categories/governance-consulting",
-  "/directory/categories/legal",
-  "/directory/categories/compliance-software",
-  "/directory/categories/training",
-];
-
 export async function GET() {
-  const urls = DIRECTORY_PATHS.map(
-    (path) => `
+  // Fetch provider and category slugs from DB
+  const [providerRows, categoryRows] = await Promise.all([
+    db.select({ slug: providers.slug }).from(providers),
+    db.select({ slug: providerCategories.slug }).from(providerCategories),
+  ]);
+
+  const paths = [
+    "/directory",
+    ...categoryRows.map((c) => `/directory/categories/${c.slug}`),
+    ...providerRows.map((p) => `/directory/providers/${p.slug}`),
+  ];
+
+  const urls = paths
+    .map(
+      (path) => `
   <url>
     <loc>${SITE_URL}${path}</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+    <priority>${path === "/directory" ? "0.8" : path.includes("/categories/") ? "0.7" : "0.6"}</priority>
   </url>`
-  ).join("");
+    )
+    .join("");
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
