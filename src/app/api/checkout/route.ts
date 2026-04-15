@@ -10,6 +10,11 @@ function getStripe(): Stripe {
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
 
+// Stripe metadata values are capped at 500 chars
+function safeMetadataValue(value: string, maxLength = 500): string {
+  return value.length > maxLength ? value.slice(0, maxLength) : value;
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = (await request.json()) as {
@@ -19,6 +24,8 @@ export async function POST(request: NextRequest) {
     const { answers, email } = body;
 
     const stripe = getStripe();
+
+    const answersJson = safeMetadataValue(JSON.stringify(answers ?? {}));
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
@@ -34,13 +41,24 @@ export async function POST(request: NextRequest) {
       ],
       success_url: `${SITE_URL}/checker/pro-report/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${SITE_URL}/checker/pro-report`,
-      metadata: { answers: JSON.stringify(answers ?? {}) },
+      metadata: { answers: answersJson },
       ...(email ? { customer_email: email } : {}),
     });
 
     return NextResponse.json({ url: session.url });
   } catch (err) {
-    console.error("[checkout] Error creating session:", err);
+    // Log full Stripe error details for diagnostics
+    if (err instanceof Stripe.errors.StripeError) {
+      console.error("[checkout] Stripe error:", {
+        type: err.type,
+        code: err.code,
+        message: err.message,
+        statusCode: err.statusCode,
+        requestId: err.requestId,
+      });
+    } else {
+      console.error("[checkout] Unexpected error:", err);
+    }
     return NextResponse.json(
       { error: "Failed to create checkout session" },
       { status: 500 }
