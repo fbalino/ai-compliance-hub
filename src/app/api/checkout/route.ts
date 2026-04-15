@@ -47,17 +47,13 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ url: session.url });
   } catch (err) {
-    // Log full Stripe error details for diagnostics
+    // Single-line log so Vercel doesn't truncate across fields
     if (err instanceof Stripe.errors.StripeError) {
-      console.error("[checkout] Stripe error:", {
-        type: err.type,
-        code: err.code,
-        message: err.message,
-        statusCode: err.statusCode,
-        requestId: err.requestId,
-      });
+      console.error(
+        `[checkout] stripe_error type=${err.type} code=${err.code ?? "none"} status=${err.statusCode} msg="${err.message}" reqId=${err.requestId ?? "none"}`
+      );
     } else {
-      console.error("[checkout] Unexpected error:", err);
+      console.error(`[checkout] unexpected_error ${String(err)}`);
     }
     return NextResponse.json(
       { error: "Failed to create checkout session" },
