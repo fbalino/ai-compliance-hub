@@ -52,64 +52,66 @@ const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL
 const OUTPUT_DIR = path.join(process.cwd(), "public", "images", "blog");
 const MAX_BYTES = 150 * 1024; // 150 KB
 const MIN_QUALITY = 80;
+const FORCE = process.argv.includes("--force");
 
 // ──────────────────────────────────────────────────────────────────────────────
 // Blog posts with image generation prompts
-// Professional B2B style: dark navy palette, clean abstract/tech imagery,
-// no text in image. Style is consistent across all posts.
-// Prompts can be regenerated once UX Designer publishes guidelines (AIC-21).
+// Style: AIC-21 visual guidelines — photorealistic 3D render, deep navy
+// backgrounds (#1e3a8a to #172554), electric blue/cyan accents, abstract
+// governance/compliance subject matter, no human figures, text-safe 16:9
+// composition (left third clean for text overlay).
 // ──────────────────────────────────────────────────────────────────────────────
 
 const POSTS: Array<{ slug: string; prompt: string }> = [
   {
     slug: "how-to-prepare-for-colorado-ai-act-june-2026",
     prompt:
-      "Professional B2B illustration: a clean digital compliance checklist on a glowing tablet screen, dark navy blue background, teal accent lines, minimalist corporate style, abstract data nodes, no text, 16:9",
+      "Dark navy abstract 3D render of a hierarchical regulatory compliance checklist structure, geometric nodes interconnected by glowing data pathways representing state AI Act requirements, structured framework with document hierarchy flows, deep navy background (#1e3a8a to #172554), subtle low-opacity hex-grid texture, precise ambient occlusion shadows, cool electric blue and cyan accent highlights on focal nodes, photorealistic 3D render with shallow depth of field, left third clean dark navy space for text overlay, right two-thirds focal composition, 16:9 landscape, minimal professional B2B aesthetic, no human figures, no text in image",
   },
   {
     slug: "virginia-hb-2094-what-businesses-need-to-know",
     prompt:
-      "Professional corporate illustration: abstract state capitol dome silhouette integrated with flowing digital data streams, dark navy and slate blue palette, clean geometric lines, no text, 16:9",
+      "Dark navy abstract 3D render of regulatory framework chains forming a structured legislative architecture, geometric compliance nodes connected by glowing pathway networks, document hierarchy flows against deep navy background (#1e3a8a to #172554), subtle hex-mesh background texture at low opacity, focal compliance structure at right-of-center with restrained electric blue and cyan luminescence, photorealistic 3D render with ambient occlusion, left third clean dark navy space for text overlay, 16:9 landscape, professional B2B aesthetic, no human figures, no text in image",
   },
   {
     slug: "request-for-quote-ai-bias-audit-what-to-expect",
     prompt:
-      "Professional B2B illustration: abstract scales of justice merged with AI neural network nodes, dark navy blue background, cool teal accent glow, balanced geometric composition, no text, 16:9",
+      "Dark navy abstract 3D render of a structured data lattice with balanced dual-framework geometric forms suggesting precision evaluation and measurement, interconnected compliance audit nodes with glowing cyan accent highlights, deep navy background (#172554 to #1e3a8a), subtle low-opacity hex-grid texture, ambient occlusion shadows on precise geometric forms, focal element at right-of-center with restrained luminescence, shallow depth of field, left third clean dark navy space for text overlay, 16:9 landscape, minimal B2B aesthetic, no human figures, no text in image",
   },
   {
     slug: "nist-ai-rmf-explainer-for-compliance-teams",
     prompt:
-      "Professional tech illustration: structured risk management framework depicted as an interconnected grid of glowing nodes on dark navy, four quadrants suggesting governance structure, teal and slate blue, no text, 16:9",
+      "Dark navy abstract 3D render of interconnected governance framework architecture, four-pillar structured compliance network with hierarchical nodes connected by glowing data pathways suggesting risk management quadrants, deep navy background (#1e3a8a to #172554), subtle hex-mesh texture at low opacity, cool electric blue and cyan accent lighting on focal governance structure, photorealistic 3D render with ambient occlusion and shallow depth of field, left third clean dark space for text overlay, right two-thirds primary composition, 16:9 landscape, professional B2B aesthetic, no human figures, no text in image",
   },
   {
     slug: "colorado-ai-act-2026-deadline",
     prompt:
-      "Professional corporate illustration: abstract mountain silhouette with glowing digital calendar grid overlay, dark navy background, teal highlight on June date, clean minimalist B2B style, no text, 16:9",
+      "Dark navy abstract 3D render of a regulatory timeline structure, geometric compliance checkpoint nodes arranged in hierarchical sequence with glowing progression pathways suggesting milestone tracking, structured framework with document flows, deep navy background (#172554), subtle low-opacity hex-grid texture, cool electric blue and cyan accent highlights on milestone nodes, photorealistic 3D render with ambient occlusion, focal structure at right-of-center, left third clean dark navy space for text overlay, 16:9 landscape composition, minimal professional B2B aesthetic, no human figures, no text in image",
   },
   {
     slug: "eu-ai-act-gpai-obligations",
     prompt:
-      "Professional B2B illustration: abstract circle of stars pattern (EU motif) interwoven with neural network connections, dark navy background, deep gold and teal accent lines, clean corporate tech style, no text, 16:9",
+      "Dark navy abstract 3D render of an interconnected regulatory compliance network with hierarchical governance nodes representing EU AI Act GPAI framework, structured geometric compliance tree diagram with flowing data pathways, deep navy background (#1e3a8a to #172554), subtle low-opacity hex-grid texture, precise ambient occlusion shadows, cool electric blue and cyan accent highlights on focal governance nodes, photorealistic 3D render with shallow depth of field, left third clean dark space for text overlay, right two-thirds focal composition, 16:9 landscape, minimal professional B2B aesthetic, no human figures, no text in image",
   },
   {
     slug: "nyc-ll-144-enforcement-update",
     prompt:
-      "Professional corporate illustration: abstract NYC skyline silhouette with legal enforcement gavel icon rendered as glowing geometric shape, dark navy and slate blue, teal accent lines, no text, 16:9",
+      "Dark navy abstract 3D render of a structured enforcement framework architecture, hierarchical compliance nodes with geometric shield motif dissolved into clean data lattice forms, regulatory framework chains against deep navy background (#1e3a8a to #172554), subtle hex-mesh texture at low opacity, electric blue and cyan accent glow on focal enforcement structure at right-of-center, photorealistic 3D render with ambient occlusion and restrained luminescence, left third clean dark space for text overlay, 16:9 landscape, professional B2B aesthetic, no human figures, no text in image",
   },
   {
     slug: "bias-audit-guide",
     prompt:
-      "Professional B2B illustration: step-by-step flow diagram with abstract human silhouettes connected by AI data nodes, dark navy background, clean teal and white lines, corporate minimalist, no text, 16:9",
+      "Dark navy abstract 3D render of a systematic evaluation framework with structured data lattice and analytical node network, geometric measurement forms with precise compliance pathway connections, deep navy background (#172554 to #1e3a8a), subtle low-opacity hex-grid texture, cool cyan and electric blue accent highlights on focal audit nodes at right-of-center, photorealistic 3D render with ambient occlusion and shallow depth of field, left third clean dark space for text overlay, 16:9 landscape composition, minimal professional B2B aesthetic, no human figures, no text in image",
   },
   {
     slug: "texas-ai-regulation-2026",
     prompt:
-      "Professional corporate illustration: abstract lone star geometric shape integrated with digital regulatory framework grid, dark navy background, warm gold and teal accents, clean B2B tech style, no text, 16:9",
+      "Dark navy abstract 3D render of a regulatory framework structure with hierarchical compliance nodes and geometric data lattice representing state AI legislation architecture, interconnected governance pathways against deep navy background (#1e3a8a to #172554), subtle hex-mesh background texture at low opacity, precise ambient occlusion shadows, cool electric blue and cyan accent highlights on focal compliance nodes at right-of-center, photorealistic 3D render with shallow depth of field, left third clean dark space for text overlay, 16:9 landscape, minimal B2B aesthetic, no human figures, no text in image",
   },
   {
     slug: "ai-governance-program-guide",
     prompt:
-      "Professional B2B illustration: organizational hierarchy chart merging seamlessly into an AI neural network, dark navy background, teal gradient accent lines, clean corporate minimalist style, no text, 16:9",
+      "Dark navy abstract 3D render of a hierarchical organizational governance architecture, interconnected compliance network nodes forming a structured AI governance framework, document hierarchy flows with regulatory framework chains, deep navy background (#1e3a8a to #172554), subtle low-opacity hex-grid texture, precise ambient occlusion shadows with restrained glow on focal governance nodes, cool electric blue and cyan accent highlights, photorealistic 3D render with shallow depth of field, focal structure at right-of-center, left third clean dark space for text overlay, 16:9 landscape, minimal professional B2B aesthetic, no human figures, no text in image",
   },
 ];
 
@@ -188,9 +190,9 @@ async function compressToJpeg(imageBuffer: Buffer, slug: string): Promise<Buffer
 async function processSlug(slug: string, prompt: string): Promise<void> {
   const outPath = path.join(OUTPUT_DIR, `${slug}.jpg`);
 
-  if (fs.existsSync(outPath)) {
+  if (fs.existsSync(outPath) && !FORCE) {
     const kb = (fs.statSync(outPath).size / 1024).toFixed(1);
-    console.log(`⏭️  Skip   ${slug}.jpg (already exists, ${kb} KB)`);
+    console.log(`⏭️  Skip   ${slug}.jpg (already exists, ${kb} KB — use --force to regenerate)`);
     return;
   }
 
