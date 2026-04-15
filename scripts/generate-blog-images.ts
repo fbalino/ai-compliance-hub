@@ -9,9 +9,13 @@
  *   # or, if set in .env.local:
  *   tsx scripts/generate-blog-images.ts
  *
+ * Flags:
+ *   --force   Overwrite existing images
+ *   --v2      Generate alternative style images saved as [slug]-v2.jpg
+ *
  * Idempotent: skips slugs that already have an image on disk.
  *
- * Model: imagen-4.0-fast-generate-001 (Imagen 4 Fast)
+ * Model: imagen-4.0-generate-001 (Imagen 4 Standard)
  * Docs: https://ai.google.dev/gemini-api/docs/imagen
  */
 
@@ -44,15 +48,16 @@ if (!API_KEY) {
   process.exit(1);
 }
 
-// Imagen 4 Fast — current fastest model (docs: https://ai.google.dev/gemini-api/docs/imagen)
-// The task referenced imagen-3.0-fast-generate-001 but Imagen 4 is the current generation.
-const MODEL = "imagen-4.0-fast-generate-001";
-const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:predict`;
+// Gemini 3 Pro Image (nano banana pro) — uses generateContent, not the Imagen predict endpoint
+// Docs: https://ai.google.dev/gemini-api/docs/image-generation
+const MODEL = "gemini-3-pro-image-preview";
+const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`;
 
 const OUTPUT_DIR = path.join(process.cwd(), "public", "images", "blog");
 const MAX_BYTES = 150 * 1024; // 150 KB
 const MIN_QUALITY = 80;
 const FORCE = process.argv.includes("--force");
+const V2 = process.argv.includes("--v2");
 
 // ──────────────────────────────────────────────────────────────────────────────
 // Blog posts with image generation prompts
@@ -116,18 +121,81 @@ const POSTS: Array<{ slug: string; prompt: string }> = [
 ];
 
 // ──────────────────────────────────────────────────────────────────────────────
+// V2: Alternative style — bright editorial, clean professional photography
+// Style: Crisp light backgrounds (soft white to warm pearl), real-world
+// compliance metaphors (documents, scales, checklists), natural window light,
+// professional desk/office context, muted slate-blue accents, editorial calm
+// with strong negative space. No dark navy, no 3D renders.
+// ──────────────────────────────────────────────────────────────────────────────
+
+const POSTS_V2: Array<{ slug: string; prompt: string }> = [
+  {
+    slug: "how-to-prepare-for-colorado-ai-act-june-2026",
+    prompt:
+      "Clean professional editorial photograph of a minimalist compliance checklist on premium white paper, organized on a bright white desk with soft natural window light casting gentle shadows, slate-blue pen and subtle geometric ruler detail, muted corporate blue accents, crisp white and warm pearl background, wide negative space on left third for text overlay, 16:9 landscape, no people, no text visible on paper, calm editorial B2B aesthetic",
+  },
+  {
+    slug: "virginia-hb-2094-what-businesses-need-to-know",
+    prompt:
+      "Clean editorial photograph of formal legislative documents with an engraved state seal detail, neatly arranged on a bright white marble surface with soft natural sidelighting, cool slate-blue folder and clean pen beside the documents, wide empty white space on left third for text overlay, 16:9 landscape, warm natural light, muted professional B2B aesthetic, no people, no legible text",
+  },
+  {
+    slug: "request-for-quote-ai-bias-audit-what-to-expect",
+    prompt:
+      "Crisp editorial photograph of a precision measurement instrument and calibration blocks arranged on a clean white surface, soft diffused studio lighting with warm undertones, slate-blue geometric accent element, wide negative white space on left third for text overlay, 16:9 landscape, calm minimal professional B2B aesthetic, no people, no text visible",
+  },
+  {
+    slug: "nist-ai-rmf-explainer-for-compliance-teams",
+    prompt:
+      "Editorial photograph of four clean printed framework cards fanned on a bright white desk, soft natural sidelighting, minimal geometric diagram visible on card surfaces but not legible, slate-blue binding clip, warm white and light pearl background tones, wide empty space on left third for text overlay, 16:9 landscape, professional editorial B2B aesthetic, no people",
+  },
+  {
+    slug: "colorado-ai-act-2026-deadline",
+    prompt:
+      "Clean editorial photograph of a minimal desk calendar open to a key date page, crisp white and cream paper tones, soft natural light from upper left, slate-blue ribbon bookmark and clean pen, wide white negative space on left third for text overlay, 16:9 landscape, editorial calm B2B aesthetic, no people, no legible calendar text",
+  },
+  {
+    slug: "eu-ai-act-gpai-obligations",
+    prompt:
+      "Editorial photograph of a EU-inspired arrangement of formal regulation documents with a subtle circular motif, bright white and soft ivory surface, gentle studio window light, cool slate-blue document folder, clean modern geometry with wide negative space on left third for text overlay, 16:9 landscape, professional editorial B2B aesthetic, no people, no legible text",
+  },
+  {
+    slug: "nyc-ll-144-enforcement-update",
+    prompt:
+      "Clean editorial photograph of an official notice document with a subtle city seal watermark, placed on a bright white surface with sharp natural sidelighting, dark slate-blue pen and geometric ruler, warm white background, wide empty white space on left third for text overlay, 16:9 landscape, minimal professional editorial aesthetic, no people, no legible text",
+  },
+  {
+    slug: "bias-audit-guide",
+    prompt:
+      "Editorial photograph of a balanced analytical scale with precision weights on a clean white marble surface, soft studio light from upper right, cool slate-blue accents, clean geometric forms, wide white negative space on left third for text overlay, 16:9 landscape, calm minimal B2B professional aesthetic, no people, no text",
+  },
+  {
+    slug: "texas-ai-regulation-2026",
+    prompt:
+      "Clean editorial photograph of a formal regulation document with a subtle lone star watermark detail, arranged on a bright white surface with soft warm natural light from upper left, slate-blue binding strip and clean pen, wide white negative space on left third for text overlay, 16:9 landscape, professional editorial B2B aesthetic, no people, no legible text",
+  },
+  {
+    slug: "ai-governance-program-guide",
+    prompt:
+      "Editorial photograph of an organizational chart printed in clean minimal style on premium white paper, arranged on a bright white desk with soft natural sidelighting, slate-blue connecting lines visible on the chart, neutral pen and ruler accent, wide white negative space on left third for text overlay, 16:9 landscape, calm professional B2B editorial aesthetic, no people, no legible text",
+  },
+];
+
+// ──────────────────────────────────────────────────────────────────────────────
 // Image generation
 // ──────────────────────────────────────────────────────────────────────────────
 
-interface ImagenResponse {
-  predictions?: Array<{
-    bytesBase64Encoded?: string;
-    mimeType?: string;
+interface GeminiResponse {
+  candidates?: Array<{
+    content?: {
+      parts?: Array<{
+        text?: string;
+        inlineData?: { mimeType?: string; data?: string };
+        inline_data?: { mimeType?: string; data?: string };
+      }>;
+    };
   }>;
-  // Newer SDK format
-  generatedImages?: Array<{
-    image?: { imageBytes?: string };
-  }>;
+  error?: { message: string; status: string };
 }
 
 async function generateImage(prompt: string): Promise<Buffer> {
@@ -138,34 +206,35 @@ async function generateImage(prompt: string): Promise<Buffer> {
       "x-goog-api-key": API_KEY!,
     },
     body: JSON.stringify({
-      instances: [{ prompt }],
-      parameters: {
-        sampleCount: 1,
-        aspectRatio: "16:9",
+      contents: [{ parts: [{ text: prompt }] }],
+      generationConfig: {
+        responseModalities: ["IMAGE"],
+        imageConfig: { aspectRatio: "16:9" },
       },
     }),
   });
 
   if (!res.ok) {
     const text = await res.text();
-    throw new Error(`Imagen API error ${res.status}: ${text}`);
+    throw new Error(`Gemini API error ${res.status}: ${text}`);
   }
 
-  const data = (await res.json()) as ImagenResponse;
+  const data = (await res.json()) as GeminiResponse;
 
-  // Handle both REST API response formats
-  let b64: string | undefined;
-  if (data.predictions?.[0]?.bytesBase64Encoded) {
-    b64 = data.predictions[0].bytesBase64Encoded;
-  } else if (data.generatedImages?.[0]?.image?.imageBytes) {
-    b64 = data.generatedImages[0].image.imageBytes;
+  if (data.error) {
+    throw new Error(`Gemini API error: ${data.error.message}`);
   }
 
-  if (!b64) {
-    throw new Error(`No image bytes in response: ${JSON.stringify(data).slice(0, 300)}`);
+  const parts = data.candidates?.[0]?.content?.parts ?? [];
+  for (const part of parts) {
+    // API may use camelCase or snake_case for inline data
+    const inlineData = part.inlineData ?? part.inline_data;
+    if (inlineData?.data) {
+      return Buffer.from(inlineData.data, "base64");
+    }
   }
 
-  return Buffer.from(b64, "base64");
+  throw new Error(`No image in response: ${JSON.stringify(data).slice(0, 400)}`);
 }
 
 async function compressToJpeg(imageBuffer: Buffer, slug: string): Promise<Buffer> {
@@ -187,25 +256,28 @@ async function compressToJpeg(imageBuffer: Buffer, slug: string): Promise<Buffer
   return result;
 }
 
-async function processSlug(slug: string, prompt: string): Promise<void> {
-  const outPath = path.join(OUTPUT_DIR, `${slug}.jpg`);
+async function processSlug(slug: string, prompt: string, suffix = ""): Promise<"ok" | "skipped" | "failed"> {
+  const filename = `${slug}${suffix}.jpg`;
+  const outPath = path.join(OUTPUT_DIR, filename);
 
   if (fs.existsSync(outPath) && !FORCE) {
     const kb = (fs.statSync(outPath).size / 1024).toFixed(1);
-    console.log(`⏭️  Skip   ${slug}.jpg (already exists, ${kb} KB — use --force to regenerate)`);
-    return;
+    console.log(`⏭️  Skip   ${filename} (already exists, ${kb} KB — use --force to regenerate)`);
+    return "skipped";
   }
 
-  console.log(`🎨  Generating ${slug}...`);
+  console.log(`🎨  Generating ${filename}...`);
   try {
     const rawBuffer = await generateImage(prompt);
-    const jpegBuffer = await compressToJpeg(rawBuffer, slug);
+    const jpegBuffer = await compressToJpeg(rawBuffer, slug + suffix);
     fs.writeFileSync(outPath, jpegBuffer);
-    console.log(`✅  Saved   public/images/blog/${slug}.jpg`);
+    console.log(`✅  Saved   public/images/blog/${filename}`);
   } catch (err) {
-    console.error(`❌  Failed  ${slug}: ${err instanceof Error ? err.message : err}`);
-    throw err;
+    console.error(`❌  Failed  ${filename}: ${err instanceof Error ? err.message : err}`);
+    // Non-fatal: continue to next image rather than aborting the batch
+    return "failed";
   }
+  return "ok";
 }
 
 // ──────────────────────────────────────────────────────────────────────────────
@@ -213,12 +285,24 @@ async function processSlug(slug: string, prompt: string): Promise<void> {
 // ──────────────────────────────────────────────────────────────────────────────
 
 async function main() {
-  console.log(`\n📸  Blog image generator — model: ${MODEL}\n`);
+  const posts = V2 ? POSTS_V2 : POSTS;
+  const suffix = V2 ? "-v2" : "";
+  const styleLabel = V2 ? "v2 (bright editorial)" : "v1 (dark navy 3D)";
+
+  console.log(`\n📸  Blog image generator — model: ${MODEL} — style: ${styleLabel}\n`);
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
-  // Process sequentially to avoid rate-limiting the free-tier Imagen API
-  for (const { slug, prompt } of POSTS) {
-    await processSlug(slug, prompt);
+  // Process sequentially to avoid rate-limiting the Gemini API
+  const failed: string[] = [];
+  for (const { slug, prompt } of posts) {
+    const result = await processSlug(slug, prompt, suffix);
+    if (result === "failed") failed.push(slug);
+  }
+
+  if (failed.length > 0) {
+    console.log(`\n⚠️  ${failed.length} image(s) failed — re-run to retry (script is idempotent):`);
+    failed.forEach((s) => console.log(`   • ${s}${suffix}.jpg`));
+    process.exit(1);
   }
 
   console.log("\n✨  Done. All images are in public/images/blog/\n");
