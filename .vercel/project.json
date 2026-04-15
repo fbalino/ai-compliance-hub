@@ -1,1 +1,16 @@
-{"projectId":"prj_mF4jQhlyH3Z2EyGpsK5cV5t6SonG","orgId":"team_2pjI7T8LYAvKOXdDL5IJtn6j","projectName":"ai-compliance-hub"}
+{
+  "projectId": "prj_mF4jQhlyH3Z2EyGpsK5cV5t6SonG",
+  "orgId": "team_2pjI7T8LYAvKOXdDL5IJtn6j",
+  "projectName": "ai-compliance-hub",
+  "settings": {
+    "createdAt": 1776072796751,
+    "framework": null,
+    "devCommand": null,
+    "installCommand": null,
+    "buildCommand": null,
+    "outputDirectory": null,
+    "rootDirectory": null,
+    "directoryListing": false,
+    "nodeVersion": "24.x"
+  }
+}
