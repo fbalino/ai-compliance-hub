@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
@@ -1207,6 +1208,20 @@ export default async function BlogPostPage({ params }: Props) {
             </h1>
             <p className="mt-3 text-neutral-600 leading-relaxed">{post.excerpt}</p>
           </div>
+        </div>
+      </div>
+
+      {/* Cover image */}
+      <div className="mx-auto max-w-3xl px-4 pt-8 sm:px-6 lg:px-8">
+        <div className="rounded-xl overflow-hidden bg-gradient-to-br from-brand-800 to-brand-950 aspect-video">
+          <Image
+            src={`/images/blog/${slug}.jpg`}
+            alt={post.title}
+            width={1200}
+            height={675}
+            className="w-full h-full object-cover"
+            priority
+          />
         </div>
       </div>
 
