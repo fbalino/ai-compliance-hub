@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Mountain, Globe, Check } from "lucide-react";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Card } from "@/components/ui/Card";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
@@ -162,7 +163,7 @@ export default function ColoradoVsEuPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-12">
           <Card className="border-blue-200 bg-blue-50">
             <div className="flex items-center gap-2 mb-3">
-              <span className="text-lg">🏔️</span>
+              <Mountain className="h-5 w-5 text-blue-600 shrink-0" aria-hidden="true" />
               <h2 className="font-bold text-blue-900">Colorado AI Act</h2>
               <span className="ml-auto text-xs font-mono text-blue-500">CO SB 24-205</span>
             </div>
@@ -177,7 +178,7 @@ export default function ColoradoVsEuPage() {
           </Card>
           <Card className="border-yellow-200 bg-yellow-50">
             <div className="flex items-center gap-2 mb-3">
-              <span className="text-lg">🇪🇺</span>
+              <Globe className="h-5 w-5 text-yellow-600 shrink-0" aria-hidden="true" />
               <h2 className="font-bold text-yellow-900">EU AI Act</h2>
               <span className="ml-auto text-xs font-mono text-yellow-600">Reg. 2024/1689</span>
             </div>
@@ -202,10 +203,16 @@ export default function ColoradoVsEuPage() {
                   Attribute
                 </th>
                 <th className="text-left px-4 py-3 font-semibold text-blue-700 uppercase tracking-wider text-xs">
-                  🏔️ Colorado AI Act
+                  <span className="inline-flex items-center gap-1.5">
+                    <Mountain className="h-3.5 w-3.5" aria-hidden="true" />
+                    Colorado AI Act
+                  </span>
                 </th>
                 <th className="text-left px-4 py-3 font-semibold text-yellow-700 uppercase tracking-wider text-xs">
-                  🇪🇺 EU AI Act
+                  <span className="inline-flex items-center gap-1.5">
+                    <Globe className="h-3.5 w-3.5" aria-hidden="true" />
+                    EU AI Act
+                  </span>
                 </th>
               </tr>
             </thead>
@@ -229,23 +236,23 @@ export default function ColoradoVsEuPage() {
             <h2 className="text-lg font-bold text-neutral-900 mb-4">Where They Align</h2>
             <ul className="space-y-3 text-sm text-neutral-700">
               <li className="flex gap-2">
-                <span className="text-green-600 shrink-0 mt-0.5">✓</span>
+                <Check className="h-4 w-4 text-green-600 shrink-0 mt-0.5" aria-hidden="true" />
                 <span><strong>Similar domain scope:</strong> Both cover employment, credit/finance, healthcare, housing, and education as the highest-priority areas</span>
               </li>
               <li className="flex gap-2">
-                <span className="text-green-600 shrink-0 mt-0.5">✓</span>
+                <Check className="h-4 w-4 text-green-600 shrink-0 mt-0.5" aria-hidden="true" />
                 <span><strong>Extraterritorial reach:</strong> Both apply to any organization whose AI affects residents in their jurisdiction, regardless of headquarters location</span>
               </li>
               <li className="flex gap-2">
-                <span className="text-green-600 shrink-0 mt-0.5">✓</span>
+                <Check className="h-4 w-4 text-green-600 shrink-0 mt-0.5" aria-hidden="true" />
                 <span><strong>Developer/provider obligations:</strong> Both place upstream documentation and disclosure obligations on the organizations that build AI systems</span>
               </li>
               <li className="flex gap-2">
-                <span className="text-green-600 shrink-0 mt-0.5">✓</span>
+                <Check className="h-4 w-4 text-green-600 shrink-0 mt-0.5" aria-hidden="true" />
                 <span><strong>Human oversight:</strong> Both require that humans can meaningfully review and override AI decisions in high-risk contexts</span>
               </li>
               <li className="flex gap-2">
-                <span className="text-green-600 shrink-0 mt-0.5">✓</span>
+                <Check className="h-4 w-4 text-green-600 shrink-0 mt-0.5" aria-hidden="true" />
                 <span><strong>Simultaneous enforcement:</strong> Both take effect for most high-risk AI systems in summer 2026, creating aligned compliance deadlines</span>
               </li>
             </ul>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Flag, Globe, Check } from "lucide-react";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Card } from "@/components/ui/Card";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
@@ -174,7 +175,7 @@ export default function NistVsIsoPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <Card className="border-blue-200 bg-blue-50">
             <div className="flex items-center gap-2 mb-3">
-              <span className="text-lg">🇺🇸</span>
+              <Flag className="h-5 w-5 text-blue-600 shrink-0" aria-hidden="true" />
               <h2 className="font-bold text-blue-900">NIST AI RMF 1.0</h2>
               <span className="ml-auto text-xs font-mono text-blue-500">NIST AI 100-1</span>
             </div>
@@ -189,7 +190,7 @@ export default function NistVsIsoPage() {
           </Card>
           <Card className="border-purple-200 bg-purple-50">
             <div className="flex items-center gap-2 mb-3">
-              <span className="text-lg">🌐</span>
+              <Globe className="h-5 w-5 text-purple-600 shrink-0" aria-hidden="true" />
               <h2 className="font-bold text-purple-900">ISO/IEC 42001:2023</h2>
               <span className="ml-auto text-xs font-mono text-purple-500">ISO 42001</span>
             </div>
@@ -215,10 +216,16 @@ export default function NistVsIsoPage() {
                     Attribute
                   </th>
                   <th className="text-left px-4 py-3 font-semibold text-blue-700 uppercase tracking-wider text-xs">
-                    🇺🇸 NIST AI RMF 1.0
+                    <span className="inline-flex items-center gap-1.5">
+                      <Flag className="h-3.5 w-3.5" aria-hidden="true" />
+                      NIST AI RMF 1.0
+                    </span>
                   </th>
                   <th className="text-left px-4 py-3 font-semibold text-purple-700 uppercase tracking-wider text-xs">
-                    🌐 ISO/IEC 42001
+                    <span className="inline-flex items-center gap-1.5">
+                      <Globe className="h-3.5 w-3.5" aria-hidden="true" />
+                      ISO/IEC 42001
+                    </span>
                   </th>
                 </tr>
               </thead>
@@ -244,7 +251,7 @@ export default function NistVsIsoPage() {
             <ul className="space-y-2">
               {CHOOSE_NIST.map((item, i) => (
                 <li key={i} className="flex gap-2 text-sm text-blue-800">
-                  <span className="text-blue-500 shrink-0 mt-0.5">✓</span>
+                  <Check className="h-4 w-4 text-blue-500 shrink-0 mt-0.5" aria-hidden="true" />
                   <span>{item}</span>
                 </li>
               ))}
@@ -255,7 +262,7 @@ export default function NistVsIsoPage() {
             <ul className="space-y-2">
               {CHOOSE_ISO.map((item, i) => (
                 <li key={i} className="flex gap-2 text-sm text-purple-800">
-                  <span className="text-purple-500 shrink-0 mt-0.5">✓</span>
+                  <Check className="h-4 w-4 text-purple-500 shrink-0 mt-0.5" aria-hidden="true" />
                   <span>{item}</span>
                 </li>
               ))}

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Microscope, Building2, Scale, Monitor, BookOpen } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
@@ -64,12 +66,12 @@ const STATS = [
   { value: "48h", label: "Average Time to Publish New Laws" },
 ];
 
-const PROVIDER_CATEGORIES = [
-  { slug: "bias-audit", label: "Bias Auditors", icon: "🔬", count: 6 },
-  { slug: "governance-consulting", label: "Governance Consulting", icon: "🏛", count: 6 },
-  { slug: "legal", label: "Legal & Compliance", icon: "⚖️", count: 6 },
-  { slug: "compliance-software", label: "Compliance Software", icon: "💻", count: 7 },
-  { slug: "training", label: "Training & Education", icon: "📚", count: 6 },
+const PROVIDER_CATEGORIES: { slug: string; label: string; icon: LucideIcon; count: number }[] = [
+  { slug: "bias-audit", label: "Bias Auditors", icon: Microscope, count: 6 },
+  { slug: "governance-consulting", label: "Governance Consulting", icon: Building2, count: 6 },
+  { slug: "legal", label: "Legal & Compliance", icon: Scale, count: 6 },
+  { slug: "compliance-software", label: "Compliance Software", icon: Monitor, count: 7 },
+  { slug: "training", label: "Training & Education", icon: BookOpen, count: 6 },
 ];
 
 const statusVariant: Record<string, "enforced" | "enacted" | "draft"> = {
@@ -261,8 +263,8 @@ export default function HomePage() {
                 href={`/directory/categories/${cat.slug}`}
                 className="group flex flex-col items-center rounded-xl border border-neutral-200 bg-white p-4 text-center hover:border-brand-300 hover:shadow-sm transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-700"
               >
-                <span className="text-2xl mb-2" role="img" aria-label={cat.label}>
-                  {cat.icon}
+                <span className="mb-2 flex h-10 w-10 items-center justify-center rounded-lg bg-brand-50 text-brand-700 group-hover:bg-brand-100 transition-colors">
+                  <cat.icon className="h-5 w-5" aria-hidden="true" />
                 </span>
                 <span className="text-sm font-medium text-neutral-800 group-hover:text-brand-800 transition-colors leading-snug">
                   {cat.label}

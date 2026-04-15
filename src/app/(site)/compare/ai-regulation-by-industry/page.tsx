@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Stethoscope, Users, Landmark, Shield } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
@@ -38,7 +40,7 @@ interface Cell {
 
 interface IndustryRow {
   industry: string;
-  icon: string;
+  icon: LucideIcon;
   eu: Cell;
   nyc: Cell;
   co: Cell;
@@ -48,7 +50,7 @@ interface IndustryRow {
 const MATRIX: IndustryRow[] = [
   {
     industry: "Healthcare",
-    icon: "🏥",
+    icon: Stethoscope,
     eu: {
       applies: true,
       note: "Annex III Class IIb+ medical device AI is high-risk. Clinical decision support, diagnosis, treatment recommendation AI requires conformity assessment, CE marking, and post-market monitoring.",
@@ -68,7 +70,7 @@ const MATRIX: IndustryRow[] = [
   },
   {
     industry: "HR / Recruiting",
-    icon: "👥",
+    icon: Users,
     eu: {
       applies: true,
       note: "Annex III Item 2: AI used for recruitment, selection, CV screening, promotion, and termination is high-risk. Full conformity assessment required.",
@@ -88,7 +90,7 @@ const MATRIX: IndustryRow[] = [
   },
   {
     industry: "Fintech / Lending",
-    icon: "🏦",
+    icon: Landmark,
     eu: {
       applies: true,
       note: "Annex III Item 5b: AI for creditworthiness assessment and credit scoring is high-risk. Full conformity requirements apply. GDPR Art. 22 profiling rules also apply.",
@@ -108,7 +110,7 @@ const MATRIX: IndustryRow[] = [
   },
   {
     industry: "Insurance",
-    icon: "🛡️",
+    icon: Shield,
     eu: {
       applies: true,
       note: "Annex III Item 5c: AI for life and health insurance risk assessment and pricing is high-risk. Third-party conformity assessment required for some uses.",
@@ -235,7 +237,9 @@ export default function AIRegulationByIndustryPage() {
             >
               {/* Industry header */}
               <div className="bg-neutral-50 border-b border-neutral-200 px-5 py-3 flex items-center gap-2">
-                <span className="text-xl">{row.icon}</span>
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-neutral-200 text-neutral-700">
+                  <row.icon className="h-4 w-4" aria-hidden="true" />
+                </span>
                 <h2 className="font-bold text-neutral-900 text-lg">{row.industry}</h2>
               </div>
 

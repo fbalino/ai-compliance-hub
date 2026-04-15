@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Mountain, Landmark, Wheat, TreePine } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
@@ -24,10 +26,25 @@ export const metadata: Metadata = {
   },
 };
 
-const LAWS = [
+const LAWS: {
+  slug: string;
+  flag: LucideIcon;
+  name: string;
+  shortName: string;
+  jurisdiction: string;
+  effectiveDate: string;
+  focus: string;
+  scope: string;
+  trigger: string;
+  mainObligation: string;
+  penalty: string;
+  enforcement: string;
+  privateAction: boolean;
+  keyColor: string;
+}[] = [
   {
     slug: "colorado-ai-act",
-    flag: "🏔️",
+    flag: Mountain,
     name: "Colorado AI Act",
     shortName: "CO SB 24-205",
     jurisdiction: "Colorado (statewide)",
@@ -43,7 +60,7 @@ const LAWS = [
   },
   {
     slug: "nyc-local-law-144",
-    flag: "🗽",
+    flag: Landmark,
     name: "NYC Local Law 144",
     shortName: "NYC LL 144",
     jurisdiction: "New York City",
@@ -59,7 +76,7 @@ const LAWS = [
   },
   {
     slug: "illinois-ai-video-interview-act",
-    flag: "🌾",
+    flag: Wheat,
     name: "Illinois AIVIRA",
     shortName: "IL AIVIRA",
     jurisdiction: "Illinois (statewide)",
@@ -75,7 +92,7 @@ const LAWS = [
   },
   {
     slug: "california-ab-2013",
-    flag: "🌴",
+    flag: TreePine,
     name: "California AB 2013",
     shortName: "CA AB 2013",
     jurisdiction: "California (statewide)",
@@ -199,7 +216,9 @@ export default function UsStateAiLawsPage() {
               className="group rounded-xl border border-neutral-200 bg-white p-4 hover:border-brand-300 hover:shadow-sm transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-700"
             >
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-xl">{law.flag}</span>
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-neutral-100 text-neutral-600">
+                  <law.flag className="h-4 w-4" aria-hidden="true" />
+                </span>
                 <div>
                   <div className="text-xs text-neutral-500 font-mono">{law.shortName}</div>
                   <div className="font-semibold text-sm text-neutral-900 group-hover:text-brand-800 transition-colors">
@@ -227,7 +246,10 @@ export default function UsStateAiLawsPage() {
                 </th>
                 {LAWS.map((law) => (
                   <th key={law.slug} className="text-left px-4 py-3 font-semibold text-neutral-700 uppercase tracking-wider text-xs">
-                    {law.flag} {law.shortName}
+                    <span className="inline-flex items-center gap-1.5">
+                      <law.flag className="h-3.5 w-3.5" aria-hidden="true" />
+                      {law.shortName}
+                    </span>
                   </th>
                 ))}
               </tr>
@@ -323,7 +345,8 @@ export default function UsStateAiLawsPage() {
               href={`/regulations/${law.slug}`}
               className="inline-flex items-center gap-1.5 rounded-md border border-neutral-300 bg-white px-3 py-1.5 text-sm font-medium text-neutral-700 hover:bg-neutral-50 transition-colors"
             >
-              {law.flag} {law.name} Guide
+              <law.flag className="h-3.5 w-3.5" aria-hidden="true" />
+              {law.name} Guide
             </Link>
           ))}
           <Link

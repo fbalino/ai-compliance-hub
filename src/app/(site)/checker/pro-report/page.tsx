@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ClipboardList, Target, Map, ListChecks, FileText, RefreshCw, Check } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
@@ -14,39 +16,39 @@ export const metadata: Metadata = {
   },
 };
 
-const WHATS_INCLUDED = [
+const WHATS_INCLUDED: { icon: LucideIcon; title: string; description: string }[] = [
   {
-    icon: "📋",
+    icon: ClipboardList,
     title: "Full Regulatory Mapping",
     description:
       "Every regulation that applies to your business, with specific obligations broken out by category. No vague summaries — exact requirements.",
   },
   {
-    icon: "🎯",
+    icon: Target,
     title: "Gap Analysis",
     description:
       "Your current compliance posture vs. what's required. We identify exactly what you're missing and prioritize by legal risk.",
   },
   {
-    icon: "🗺",
+    icon: Map,
     title: "NIST AI RMF Alignment",
     description:
       "Your obligations mapped to the NIST AI Risk Management Framework so you can build one governance program that covers all your regulations.",
   },
   {
-    icon: "✅",
+    icon: ListChecks,
     title: "Action Plan with Timelines",
     description:
       "A prioritized, deadline-driven action plan. Which items are due before which enforcement dates. What to do first.",
   },
   {
-    icon: "📄",
+    icon: FileText,
     title: "Downloadable PDF Report",
     description:
       "A professional report you can share with your legal team, board, or external auditors as evidence of compliance due diligence.",
   },
   {
-    icon: "🔄",
+    icon: RefreshCw,
     title: "30-Day Update Guarantee",
     description:
       "If a relevant regulation changes within 30 days of your report, we send you an updated version at no additional charge.",
@@ -160,7 +162,9 @@ export default function ProReportPage() {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {WHATS_INCLUDED.map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-xl border border-neutral-200 bg-white p-4">
-                <span className="text-xl shrink-0" role="img" aria-label={item.title}>{item.icon}</span>
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-100 text-brand-700">
+                <item.icon className="h-4 w-4" aria-hidden="true" />
+              </span>
                 <div>
                   <h3 className="font-semibold text-neutral-900 text-sm">{item.title}</h3>
                   <p className="mt-0.5 text-sm text-neutral-600 leading-relaxed">{item.description}</p>
@@ -223,14 +227,14 @@ export default function ProReportPage() {
                     <td className="px-5 py-3 text-neutral-700">{feature}</td>
                     <td className="px-5 py-3 text-center">
                       {free ? (
-                        <span className="text-green-600">✓</span>
+                        <Check className="h-4 w-4 text-green-600 mx-auto" aria-label="Included" />
                       ) : (
                         <span className="text-neutral-300">—</span>
                       )}
                     </td>
                     <td className="px-5 py-3 text-center">
                       {pro ? (
-                        <span className="text-brand-700 font-bold">✓</span>
+                        <Check className="h-4 w-4 text-brand-700 mx-auto" strokeWidth={2.5} aria-label="Included" />
                       ) : (
                         <span className="text-neutral-300">—</span>
                       )}

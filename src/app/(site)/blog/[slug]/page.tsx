@@ -1127,8 +1127,11 @@ function renderMarkdown(text: string): string {
         inList = true;
       }
       const checked = trimmed.startsWith("☑");
+      const iconSvg = checked
+        ? `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mt-0.5 shrink-0 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`
+        : `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mt-0.5 shrink-0 text-neutral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>`;
       html.push(
-        `<li class="flex items-start gap-2 text-neutral-700"><span class="mt-1 text-${checked ? "green" : "neutral"}-500">${checked ? "☑" : "☐"}</span><span>${processInline(trimmed.slice(2))}</span></li>`
+        `<li class="flex items-start gap-2 text-neutral-700">${iconSvg}<span>${processInline(trimmed.slice(2))}</span></li>`
       );
       continue;
     }

@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { ClipboardList, Scale, Calendar, Wrench } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import { NewsletterForm } from "@/components/NewsletterForm";
@@ -14,24 +16,24 @@ export const metadata: Metadata = {
   },
 };
 
-const WHAT_TO_EXPECT = [
+const WHAT_TO_EXPECT: { icon: LucideIcon; title: string; description: string }[] = [
   {
-    icon: "📋",
+    icon: ClipboardList,
     title: "Regulation Roundup",
     description: "New laws, proposed rules, and regulatory guidance from the US and EU — summarized in plain English.",
   },
   {
-    icon: "⚖️",
+    icon: Scale,
     title: "Enforcement Watch",
     description: "Fines, investigations, and enforcement actions as they happen. Know what regulators are actually going after.",
   },
   {
-    icon: "📅",
+    icon: Calendar,
     title: "Deadline Calendar",
     description: "Upcoming compliance deadlines you can't miss — 90-day, 30-day, and 7-day alerts.",
   },
   {
-    icon: "🛠",
+    icon: Wrench,
     title: "Compliance How-To",
     description: "Practical guides, templates, and step-by-step instructions from our compliance team.",
   },
@@ -114,8 +116,8 @@ export default function NewsletterPage() {
               key={item.title}
               className="flex items-start gap-4 rounded-xl border border-neutral-200 bg-white p-5"
             >
-              <span className="text-2xl shrink-0" role="img" aria-label={item.title}>
-                {item.icon}
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-100 text-brand-700">
+                <item.icon className="h-5 w-5" aria-hidden="true" />
               </span>
               <div>
                 <h3 className="font-semibold text-neutral-900">{item.title}</h3>
