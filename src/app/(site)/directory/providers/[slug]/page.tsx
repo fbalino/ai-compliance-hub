@@ -184,17 +184,7 @@ export default async function ProviderPage({ params }: Props) {
 
             <div className="flex-1 min-w-0">
               <div className="flex flex-wrap items-center gap-2 mb-1">
-                {provider.isVerified && (
-                  <Badge variant="brand">
-                    <svg className="mr-1 h-3 w-3" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                    Verified
-                  </Badge>
-                )}
-                {provider.tier === "premium" && (
-                  <Badge variant="warning">Premium</Badge>
-                )}
+                {/* TODO: Verified + Premium badges hidden — verification process and provider subscription flow not yet defined */}
               </div>
               <h1 className="text-2xl font-bold text-neutral-900">{provider.name}</h1>
               {provider.headquarters && (
@@ -325,7 +315,7 @@ export default async function ProviderPage({ params }: Props) {
                 {provider.employeeCountRange && (
                   <InfoRow label="Team Size" value={`${provider.employeeCountRange} employees`} />
                 )}
-                <InfoRow label="Listing" value={provider.tier === "free" ? "Standard" : "Premium"} />
+                {/* TODO: Listing tier row hidden — no provider subscription flow yet */}
               </dl>
             </Card>
 
@@ -374,9 +364,7 @@ function ReviewCard({ review }: { review: ReviewData }) {
             <span className="font-medium text-neutral-900 text-sm">
               {review.authorName}
             </span>
-            {review.isVerified && (
-              <Badge variant="success" className="text-xs">Verified</Badge>
-            )}
+            {/* TODO: Verified review badge hidden — no review verification process defined yet */}
           </div>
           <p className="text-sm font-medium text-neutral-700 mt-0.5">{review.title}</p>
         </div>
