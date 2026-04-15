@@ -33,7 +33,7 @@ export default function PrivacyPage() {
       </div>
 
       <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8">
-        <div className="prose prose-neutral max-w-none">
+        <div className="prose-compliance">
           <h2>1. Information We Collect</h2>
           <p>
             We collect information you provide directly (such as your email address when subscribing to our newsletter), information collected automatically (such as usage data via PostHog analytics), and information you submit through our compliance checker tool.

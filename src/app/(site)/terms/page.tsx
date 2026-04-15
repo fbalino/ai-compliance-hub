@@ -33,7 +33,7 @@ export default function TermsPage() {
       </div>
 
       <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8">
-        <div className="prose prose-neutral max-w-none">
+        <div className="prose-compliance">
           <h2>1. Acceptance of Terms</h2>
           <p>
             By accessing or using AI Compliance Hub (&ldquo;the Service&rdquo;), you agree to these Terms of Service. If you do not agree, do not use the Service.
