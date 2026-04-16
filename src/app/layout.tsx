@@ -18,17 +18,17 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "AI Compliance Hub — Know What's Required. Find Who Can Help.",
-    template: "%s | AI Compliance Hub",
+    default: "regulome.io — Regulatory Intelligence for AI Compliance",
+    template: "%s | regulome.io",
   },
   description:
-    "The central destination for understanding, navigating, and acting on AI regulation worldwide. Regulation tracker + provider marketplace.",
+    "Map your AI products to applicable laws worldwide. Track regulations, use our free compliance checker, and find verified providers. EU AI Act, US state laws, and more.",
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com"
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://regulome.io"
   ),
   openGraph: {
     type: "website",
-    siteName: "AI Compliance Hub",
+    siteName: "regulome.io",
     locale: "en_US",
   },
   twitter: {

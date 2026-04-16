@@ -1,5 +1,5 @@
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
-const SITE_NAME = "AI Compliance Hub";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://regulome.io";
+const SITE_NAME = "regulome.io";
 const LOGO_URL = `${SITE_URL}/logo.png`;
 
 // ─────────────────────────────────────────────
