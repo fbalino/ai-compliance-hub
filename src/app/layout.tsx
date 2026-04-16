@@ -18,17 +18,17 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "AI Compliance Hub — Know What's Required. Find Who Can Help.",
-    template: "%s | AI Compliance Hub",
+    default: "regulome.io — The Regulatory Intelligence Platform for AI Compliance",
+    template: "%s | regulome.io",
   },
   description:
-    "The central destination for understanding, navigating, and acting on AI regulation worldwide. Regulation tracker + provider marketplace.",
+    "Map your AI systems to applicable regulations worldwide. Track the EU AI Act, Colorado AI Act, NYC LL 144, and more. Free compliance checker + verified provider marketplace.",
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com"
   ),
   openGraph: {
     type: "website",
-    siteName: "AI Compliance Hub",
+    siteName: "regulome.io",
     locale: "en_US",
   },
   twitter: {
@@ -47,6 +47,20 @@ export const metadata: Metadata = {
   },
 };
 
+// Injected before React hydrates to set theme class and prevent flash
+const themeScript = `
+(function() {
+  try {
+    var stored = localStorage.getItem('theme');
+    var theme = stored === 'light' ? 'light' : 'dark';
+    document.documentElement.classList.remove('dark', 'light');
+    document.documentElement.classList.add(theme);
+  } catch(e) {
+    document.documentElement.classList.add('dark');
+  }
+})();
+`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -55,9 +69,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
     >
       <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script {...jsonLdScriptProps(organizationSchema())} />
       </head>
       <body className="min-h-full flex flex-col">

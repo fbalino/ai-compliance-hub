@@ -3,11 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { Dna, Menu, X } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const NAV_LINKS = [
   { label: "Regulations", href: "/regulations" },
   { label: "Directory", href: "/directory" },
-  { label: "Compliance Checker", href: "/checker" },
+  { label: "Checker", href: "/checker" },
   { label: "Glossary", href: "/glossary" },
   { label: "Blog", href: "/blog" },
 ];
@@ -21,34 +23,38 @@ export function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-neutral-200 bg-white/95 backdrop-blur-sm">
+    <header
+      className="sticky top-0 z-50"
+      style={{
+        background: "var(--bg-page)",
+        borderBottom: "1px solid var(--border-subtle)",
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
+      }}
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-14 items-center justify-between gap-4">
+
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-700 rounded-sm">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-800">
-              <svg
-                className="h-4 w-4 text-white"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"
-                />
-              </svg>
+          <Link
+            href="/"
+            className="flex items-center gap-2 shrink-0 rounded-md focus-visible:outline focus-visible:outline-2"
+            style={{ outlineColor: "var(--accent-primary)" }}
+          >
+            <div
+              className="flex h-7 w-7 items-center justify-center rounded-lg"
+              style={{ background: "var(--accent-primary)" }}
+            >
+              <Dna className="h-4 w-4 text-white" aria-hidden="true" />
             </div>
-            <span className="text-base font-bold text-neutral-900 tracking-tight">
-              AI Compliance Hub
+            <span className="text-[15px] font-bold tracking-tight" style={{ color: "var(--text-primary)" }}>
+              regulome
+              <span style={{ color: "var(--accent-primary)" }}>.io</span>
             </span>
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">
+          <nav className="hidden md:flex items-center gap-0.5 flex-1 justify-center" aria-label="Main navigation">
             {NAV_LINKS.map((link) => {
               const active = isActive(link.href);
               return (
@@ -56,11 +62,25 @@ export function Header() {
                   key={link.href}
                   href={link.href}
                   aria-current={active ? "page" : undefined}
-                  className={`px-3 py-2 text-sm font-medium rounded-md transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-700 ${
-                    active
-                      ? "text-brand-800 bg-brand-50 font-semibold"
-                      : "text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100"
-                  }`}
+                  className="px-3 py-1.5 text-sm font-medium rounded-md transition-colors focus-visible:outline focus-visible:outline-2"
+                  style={{
+                    outlineColor: "var(--accent-primary)",
+                    color: active ? "var(--accent-primary)" : "var(--text-muted)",
+                    background: active ? "var(--bg-accent)" : "transparent",
+                    fontWeight: active ? "600" : "500",
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!active) {
+                      (e.currentTarget as HTMLElement).style.color = "var(--text-primary)";
+                      (e.currentTarget as HTMLElement).style.background = "var(--bg-elevated)";
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!active) {
+                      (e.currentTarget as HTMLElement).style.color = "var(--text-muted)";
+                      (e.currentTarget as HTMLElement).style.background = "transparent";
+                    }
+                  }}
                 >
                   {link.label}
                 </Link>
@@ -68,47 +88,65 @@ export function Header() {
             })}
           </nav>
 
-          {/* Desktop CTA */}
-          <div className="hidden md:flex items-center gap-3">
-            <Link
-              href="/directory"
-              className="rounded-md px-4 py-2 text-sm font-medium text-brand-700 hover:text-brand-900 transition-colors"
-            >
-              Find a Provider
-            </Link>
+          {/* Desktop right side */}
+          <div className="hidden md:flex items-center gap-2 shrink-0">
+            <ThemeToggle />
             <Link
               href="/checker"
-              className="rounded-md bg-brand-700 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-brand-800 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-700"
+              className="inline-flex items-center gap-1.5 rounded-md px-3.5 py-1.5 text-sm font-semibold text-white shadow-sm transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+              style={{
+                background: "var(--accent-primary)",
+                outlineColor: "var(--accent-primary)",
+              }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.opacity = "0.9"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.opacity = "1"; }}
             >
               Check Compliance
             </Link>
           </div>
 
-          {/* Mobile menu button */}
-          <button
-            type="button"
-            className="md:hidden rounded-md p-2 text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900"
-            aria-expanded={mobileOpen}
-            aria-label="Toggle navigation menu"
-            onClick={() => setMobileOpen((o) => !o)}
-          >
-            {mobileOpen ? (
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            )}
-          </button>
+          {/* Mobile: theme toggle + menu */}
+          <div className="md:hidden flex items-center gap-1">
+            <ThemeToggle />
+            <button
+              type="button"
+              className="rounded-md p-2 transition-colors focus-visible:outline focus-visible:outline-2"
+              style={{
+                color: "var(--text-muted)",
+                outlineColor: "var(--accent-primary)",
+              }}
+              aria-expanded={mobileOpen}
+              aria-label="Toggle navigation menu"
+              onClick={() => setMobileOpen((o) => !o)}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.background = "var(--bg-elevated)";
+                (e.currentTarget as HTMLElement).style.color = "var(--text-primary)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.background = "transparent";
+                (e.currentTarget as HTMLElement).style.color = "var(--text-muted)";
+              }}
+            >
+              {mobileOpen ? (
+                <X className="h-5 w-5" aria-hidden="true" />
+              ) : (
+                <Menu className="h-5 w-5" aria-hidden="true" />
+              )}
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Mobile nav */}
+      {/* Mobile nav drawer */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-neutral-200 bg-white px-4 py-3">
-          <nav className="flex flex-col gap-1" aria-label="Mobile navigation">
+        <div
+          className="md:hidden px-4 py-3"
+          style={{
+            borderTop: "1px solid var(--border-subtle)",
+            background: "var(--bg-surface)",
+          }}
+        >
+          <nav className="flex flex-col gap-0.5" aria-label="Mobile navigation">
             {NAV_LINKS.map((link) => {
               const active = isActive(link.href);
               return (
@@ -116,21 +154,24 @@ export function Header() {
                   key={link.href}
                   href={link.href}
                   aria-current={active ? "page" : undefined}
-                  className={`rounded-md px-3 py-2.5 text-sm font-medium transition-colors ${
-                    active
-                      ? "bg-brand-50 text-brand-800 font-semibold border-l-2 border-brand-700 pl-2.5"
-                      : "text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900"
-                  }`}
+                  className="rounded-md px-3 py-2.5 text-sm font-medium transition-colors"
+                  style={{
+                    color: active ? "var(--accent-primary)" : "var(--text-secondary)",
+                    background: active ? "var(--bg-accent)" : "transparent",
+                    borderLeft: active ? "2px solid var(--accent-primary)" : "2px solid transparent",
+                    paddingLeft: "10px",
+                  }}
                   onClick={() => setMobileOpen(false)}
                 >
                   {link.label}
                 </Link>
               );
             })}
-            <div className="mt-3 flex flex-col gap-2 pt-3 border-t border-neutral-100">
+            <div className="mt-3 pt-3" style={{ borderTop: "1px solid var(--border-subtle)" }}>
               <Link
                 href="/checker"
-                className="rounded-md bg-brand-700 px-4 py-2.5 text-center text-sm font-medium text-white hover:bg-brand-800 transition-colors"
+                className="flex items-center justify-center rounded-md px-4 py-2.5 text-sm font-semibold text-white transition-colors"
+                style={{ background: "var(--accent-primary)" }}
                 onClick={() => setMobileOpen(false)}
               >
                 Check Compliance
