@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import posthog from "posthog-js";
+import { NewsletterForm } from "@/components/NewsletterForm";
 
 // --- Types ---
 
@@ -711,8 +712,17 @@ function Results({
         })}
       </div>
 
+      {/* Newsletter signup */}
+      <div className="mt-6 rounded-xl border border-neutral-200 bg-neutral-50 p-5">
+        <h3 className="font-semibold text-neutral-900">Get weekly compliance updates</h3>
+        <p className="mt-1 text-sm text-neutral-600">
+          New regulations, enforcement actions, and deadlines — delivered every Monday, free.
+        </p>
+        <NewsletterForm source="checker_results" className="mt-3" />
+      </div>
+
       {/* Pro Report CTA */}
-      <div className="mt-8 rounded-2xl bg-brand-900 px-6 py-7">
+      <div className="mt-6 rounded-2xl bg-brand-900 px-6 py-7">
         <div className="flex items-start justify-between gap-4 mb-4">
           <div>
             <span className="inline-flex items-center rounded-full bg-amber-400/20 px-2.5 py-0.5 text-xs font-medium text-amber-300 mb-2">

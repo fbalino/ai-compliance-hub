@@ -3,7 +3,7 @@
 import { useState, FormEvent } from "react";
 import posthog from "posthog-js";
 
-type Source = "homepage" | "blog" | "newsletter_page";
+type Source = "homepage" | "blog" | "newsletter_page" | "regulation_page" | "checker_results";
 type Variant = "default" | "hero";
 
 interface NewsletterFormProps {

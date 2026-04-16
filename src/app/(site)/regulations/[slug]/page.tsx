@@ -13,6 +13,7 @@ import {
   jsonLdScriptProps,
 } from "@/lib/jsonld";
 import { getRegulationBySlug, getAllRegulationSlugs } from "@/lib/regulations";
+import { NewsletterForm } from "@/components/NewsletterForm";
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
@@ -163,8 +164,19 @@ export default async function RegulationPage({ params }: Props) {
               <Content />
             </div>
 
+            {/* Newsletter signup */}
+            <div className="mt-10 rounded-xl border border-neutral-200 bg-neutral-50 p-6">
+              <h2 className="text-base font-semibold text-neutral-900">
+                Stay ahead of AI compliance changes
+              </h2>
+              <p className="mt-1 text-sm text-neutral-600">
+                Get weekly regulation updates, enforcement news, and compliance deadlines — free.
+              </p>
+              <NewsletterForm source="regulation_page" className="mt-4 max-w-md" />
+            </div>
+
             {/* Related providers CTA */}
-            <div className="mt-12 rounded-xl border border-brand-200 bg-brand-50 p-6">
+            <div className="mt-6 rounded-xl border border-brand-200 bg-brand-50 p-6">
               <h2 className="text-lg font-semibold text-brand-900">
                 Need help complying with {frontmatter.name}?
               </h2>
