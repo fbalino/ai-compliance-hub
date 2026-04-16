@@ -38,7 +38,7 @@ function buildConfirmationHtml(email: string): string {
               <table cellpadding="0" cellspacing="0" width="100%" style="margin:0 0 24px;">
                 <tr>
                   <td style="padding:10px 14px;background:#f8fafc;border-left:3px solid #0f172a;border-radius:4px;margin-bottom:8px;">
-                    <p style="margin:0;font-size:14px;font-weight:600;color:#1e293b;">📋 Regulation Roundup</p>
+                    <p style="margin:0;font-size:14px;font-weight:600;color:#1e293b;">Regulation Roundup</p>
                     <p style="margin:4px 0 0;font-size:13px;color:#64748b;">New laws and guidance from the US and EU — summarized in plain English.</p>
                   </td>
                 </tr>
@@ -46,7 +46,7 @@ function buildConfirmationHtml(email: string): string {
               <table cellpadding="0" cellspacing="0" width="100%" style="margin:0 0 24px;">
                 <tr>
                   <td style="padding:10px 14px;background:#f8fafc;border-left:3px solid #0f172a;border-radius:4px;">
-                    <p style="margin:0;font-size:14px;font-weight:600;color:#1e293b;">⚖️ Enforcement Watch</p>
+                    <p style="margin:0;font-size:14px;font-weight:600;color:#1e293b;">Enforcement Watch</p>
                     <p style="margin:4px 0 0;font-size:13px;color:#64748b;">Fines, investigations, and enforcement actions as they happen.</p>
                   </td>
                 </tr>
@@ -54,7 +54,7 @@ function buildConfirmationHtml(email: string): string {
               <table cellpadding="0" cellspacing="0" width="100%" style="margin:0 0 24px;">
                 <tr>
                   <td style="padding:10px 14px;background:#f8fafc;border-left:3px solid #0f172a;border-radius:4px;">
-                    <p style="margin:0;font-size:14px;font-weight:600;color:#1e293b;">📅 Deadline Calendar</p>
+                    <p style="margin:0;font-size:14px;font-weight:600;color:#1e293b;">Deadline Calendar</p>
                     <p style="margin:4px 0 0;font-size:13px;color:#64748b;">Upcoming compliance deadlines you can&rsquo;t miss.</p>
                   </td>
                 </tr>
@@ -62,7 +62,7 @@ function buildConfirmationHtml(email: string): string {
               <table cellpadding="0" cellspacing="0" width="100%" style="margin:0 0 32px;">
                 <tr>
                   <td style="padding:10px 14px;background:#f8fafc;border-left:3px solid #0f172a;border-radius:4px;">
-                    <p style="margin:0;font-size:14px;font-weight:600;color:#1e293b;">🛠 Compliance How-To</p>
+                    <p style="margin:0;font-size:14px;font-weight:600;color:#1e293b;">Compliance How-To</p>
                     <p style="margin:4px 0 0;font-size:13px;color:#64748b;">Practical guides and templates from our compliance team.</p>
                   </td>
                 </tr>
@@ -106,10 +106,10 @@ function buildConfirmationText(email: string): string {
 
 You're subscribed. Every Monday you'll get:
 
-- 📋 Regulation Roundup — new laws and guidance summarized in plain English
-- ⚖️ Enforcement Watch — fines and investigations as they happen
-- 📅 Deadline Calendar — upcoming compliance deadlines
-- 🛠 Compliance How-To — practical guides and templates
+- Regulation Roundup — new laws and guidance summarized in plain English
+- Enforcement Watch — fines and investigations as they happen
+- Deadline Calendar — upcoming compliance deadlines
+- Compliance How-To — practical guides and templates
 
 Explore the site while you wait for your first issue:
 ${SITE_URL}/regulations

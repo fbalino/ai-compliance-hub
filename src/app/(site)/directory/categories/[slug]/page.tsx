@@ -8,6 +8,7 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
+import { CategoryIcon } from "@/lib/category-icons";
 
 export const revalidate = 3600;
 
@@ -120,8 +121,8 @@ export default async function CategoryPage({ params }: Props) {
             ]}
           />
           <div className="mt-4 flex items-start gap-4">
-            <span className="text-4xl" role="img" aria-label={cat.label}>
-              {cat.icon}
+            <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-brand-100 text-brand-700">
+              <CategoryIcon name={cat.icon} className="h-7 w-7" />
             </span>
             <div>
               <h1 className="text-3xl font-extrabold tracking-tight text-neutral-900">

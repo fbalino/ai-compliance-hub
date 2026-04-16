@@ -44,7 +44,7 @@ if (fs.existsSync(envLocalPath)) {
 
 const API_KEY = process.env.GEMINI_API_KEY;
 if (!API_KEY) {
-  console.error("❌  GEMINI_API_KEY is not set. Add it to .env.local or export it.");
+  console.error("[error] GEMINI_API_KEY is not set. Add it to .env.local or export it.");
   process.exit(1);
 }
 
@@ -262,18 +262,18 @@ async function processSlug(slug: string, prompt: string, suffix = ""): Promise<"
 
   if (fs.existsSync(outPath) && !FORCE) {
     const kb = (fs.statSync(outPath).size / 1024).toFixed(1);
-    console.log(`⏭️  Skip   ${filename} (already exists, ${kb} KB — use --force to regenerate)`);
+    console.log(`[skip]  ${filename} (already exists, ${kb} KB — use --force to regenerate)`);
     return "skipped";
   }
 
-  console.log(`🎨  Generating ${filename}...`);
+  console.log(`[gen]   Generating ${filename}...`);
   try {
     const rawBuffer = await generateImage(prompt);
     const jpegBuffer = await compressToJpeg(rawBuffer, slug + suffix);
     fs.writeFileSync(outPath, jpegBuffer);
-    console.log(`✅  Saved   public/images/blog/${filename}`);
+    console.log(`[saved] public/images/blog/${filename}`);
   } catch (err) {
-    console.error(`❌  Failed  ${filename}: ${err instanceof Error ? err.message : err}`);
+    console.error(`[error] ${filename}: ${err instanceof Error ? err.message : err}`);
     // Non-fatal: continue to next image rather than aborting the batch
     return "failed";
   }
@@ -289,7 +289,7 @@ async function main() {
   const suffix = V2 ? "-v2" : "";
   const styleLabel = V2 ? "v2 (bright editorial)" : "v1 (dark navy 3D)";
 
-  console.log(`\n📸  Blog image generator — model: ${MODEL} — style: ${styleLabel}\n`);
+  console.log(`\nBlog image generator — model: ${MODEL} — style: ${styleLabel}\n`);
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
   // Process sequentially to avoid rate-limiting the Gemini API
@@ -300,12 +300,12 @@ async function main() {
   }
 
   if (failed.length > 0) {
-    console.log(`\n⚠️  ${failed.length} image(s) failed — re-run to retry (script is idempotent):`);
+    console.log(`\n[warn] ${failed.length} image(s) failed — re-run to retry (script is idempotent):`);
     failed.forEach((s) => console.log(`   • ${s}${suffix}.jpg`));
     process.exit(1);
   }
 
-  console.log("\n✨  Done. All images are in public/images/blog/\n");
+  console.log("\nDone. All images are in public/images/blog/\n");
 }
 
 main().catch((err) => {

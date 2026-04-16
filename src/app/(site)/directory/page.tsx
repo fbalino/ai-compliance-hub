@@ -5,6 +5,7 @@ import { providers, providerCategories, providerServices } from "@/db/schema";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Card } from "@/components/ui/Card";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
+import { CategoryIcon } from "@/lib/category-icons";
 import { DirectorySearchClient, type ProviderSearchItem } from "@/components/directory/DirectorySearchClient";
 
 export const revalidate = 3600;
@@ -139,8 +140,8 @@ export default async function DirectoryPage() {
                 >
                   <Card hover className="h-full group-hover:border-brand-300 transition-all">
                     <div className="flex items-start gap-3">
-                      <span className="text-2xl shrink-0" role="img" aria-label={cat.label}>
-                        {cat.icon}
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-100 text-brand-700">
+                        <CategoryIcon name={cat.icon} className="h-5 w-5" />
                       </span>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center justify-between gap-2">

@@ -26,7 +26,7 @@ const CATEGORIES = [
   {
     slug: "bias-audit",
     label: "Bias Auditors",
-    icon: "🔬",
+    icon: "microscope",
     description:
       "Firms that conduct algorithmic bias and fairness audits required by NYC LL 144, Colorado AI Act, and other laws.",
     longDescription:
@@ -36,7 +36,7 @@ const CATEGORIES = [
   {
     slug: "governance-consulting",
     label: "Governance Consulting",
-    icon: "🏛",
+    icon: "building2",
     description:
       "Consultants who build AI governance programs, risk management frameworks, and compliance policies.",
     longDescription:
@@ -46,7 +46,7 @@ const CATEGORIES = [
   {
     slug: "legal",
     label: "Legal & Compliance",
-    icon: "⚖️",
+    icon: "scale",
     description:
       "Law firms and legal consultants specializing in AI regulatory compliance and risk assessment.",
     longDescription:
@@ -56,7 +56,7 @@ const CATEGORIES = [
   {
     slug: "compliance-software",
     label: "Compliance Software",
-    icon: "💻",
+    icon: "monitor",
     description:
       "SaaS platforms for AI risk assessment, documentation, policy management, and audit trails.",
     longDescription:
@@ -66,7 +66,7 @@ const CATEGORIES = [
   {
     slug: "training",
     label: "Training & Education",
-    icon: "📚",
+    icon: "bookopen",
     description:
       "AI literacy, compliance training, and certification programs for teams and executives.",
     longDescription:
@@ -631,7 +631,7 @@ const PROVIDERS: ProviderSeed[] = [
 // ── Main seed function ─────────────────────────────────────────────────────────
 
 async function seed() {
-  console.log("🌱 Seeding database...\n");
+  console.log("Seeding database...\n");
 
   // 1. Upsert categories
   console.log("Seeding provider categories...");
@@ -649,7 +649,7 @@ async function seed() {
           regulations: cat.regulations,
         },
       });
-    console.log(`  ✓ ${cat.label}`);
+    console.log(`  + ${cat.label}`);
   }
 
   // 2. Upsert providers and their relations
@@ -716,10 +716,10 @@ async function seed() {
       );
     }
 
-    console.log(`  ✓ ${p.name}`);
+    console.log(`  + ${p.name}`);
   }
 
-  console.log("\n✅ Seed complete!");
+  console.log("\nSeed complete.");
 }
 
 seed().catch((err) => {
