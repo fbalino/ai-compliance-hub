@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Dna } from "lucide-react";
 
 const FOOTER_LINKS = {
   Regulations: [
@@ -28,33 +27,39 @@ const FOOTER_LINKS = {
 
 export function Footer() {
   return (
-    <footer style={{ borderTop: "1px solid var(--border-subtle)", background: "var(--bg-surface)" }}>
+    <footer className="border-t border-neutral-200 bg-neutral-50">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-
           {/* Brand */}
           <div className="col-span-1">
             <Link href="/" className="flex items-center gap-2">
-              <div
-                className="flex h-7 w-7 items-center justify-center rounded-lg"
-                style={{ background: "var(--accent-primary)" }}
-              >
-                <Dna className="h-3.5 w-3.5 text-white" aria-hidden="true" />
+              <div className="flex h-7 w-7 items-center justify-center rounded-md bg-brand-800">
+                <svg
+                  className="h-3.5 w-3.5 text-white"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"
+                  />
+                </svg>
               </div>
-              <span className="text-sm font-bold" style={{ color: "var(--text-primary)" }}>
-                regulome<span style={{ color: "var(--accent-primary)" }}>.io</span>
-              </span>
+              <span className="text-sm font-bold text-neutral-900">AI Compliance Hub</span>
             </Link>
-            <p className="mt-3 text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
-              The regulatory intelligence platform for AI compliance. Map your exposure to applicable laws worldwide.
+            <p className="mt-3 text-sm text-neutral-500 leading-relaxed">
+              Know what&apos;s required. Find who can help. The central destination for AI regulation intelligence and compliance providers.
             </p>
             <div className="mt-4">
               <Link
                 href="/newsletter"
-                className="inline-flex items-center gap-1.5 text-sm font-medium transition-colors"
-                style={{ color: "var(--accent-primary)" }}
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-brand-700 hover:text-brand-900 transition-colors"
               >
-                Subscribe to updates
+                Subscribe to our newsletter
                 <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -65,10 +70,7 @@ export function Footer() {
           {/* Link columns */}
           {Object.entries(FOOTER_LINKS).map(([section, links]) => (
             <div key={section}>
-              <h3
-                className="text-xs font-semibold uppercase tracking-wider"
-                style={{ color: "var(--text-muted)" }}
-              >
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
                 {section}
               </h3>
               <ul className="mt-3 space-y-2">
@@ -76,8 +78,7 @@ export function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm transition-colors"
-                      style={{ color: "var(--text-secondary)" }}
+                      className="text-sm text-neutral-600 hover:text-neutral-900 transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -88,26 +89,15 @@ export function Footer() {
           ))}
         </div>
 
-        <div
-          className="mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3"
-          style={{ borderTop: "1px solid var(--border-subtle)" }}
-        >
-          <p className="text-xs" style={{ color: "var(--text-muted)" }}>
-            &copy; {new Date().getFullYear()} regulome.io. Not legal advice. Always consult a qualified attorney.
+        <div className="mt-10 border-t border-neutral-200 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-xs text-neutral-500">
+            &copy; {new Date().getFullYear()} AI Compliance Hub. Not legal advice. Always consult a qualified attorney.
           </p>
           <div className="flex items-center gap-4">
-            <Link
-              href="/privacy"
-              className="text-xs transition-colors"
-              style={{ color: "var(--text-muted)" }}
-            >
+            <Link href="/privacy" className="text-xs text-neutral-500 hover:text-neutral-600 transition-colors">
               Privacy
             </Link>
-            <Link
-              href="/terms"
-              className="text-xs transition-colors"
-              style={{ color: "var(--text-muted)" }}
-            >
+            <Link href="/terms" className="text-xs text-neutral-500 hover:text-neutral-600 transition-colors">
               Terms
             </Link>
           </div>

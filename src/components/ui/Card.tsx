@@ -4,22 +4,16 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
   hover?: boolean;
 }
 
-export function Card({ hover = false, className = "", style, children, ...props }: CardProps) {
+export function Card({ hover = false, className = "", children, ...props }: CardProps) {
   return (
     <div
       className={[
-        "rounded-xl p-6",
-        hover ? "transition-all" : "",
+        "rounded-xl border border-neutral-200 bg-white p-6 shadow-sm",
+        hover ? "transition-shadow hover:shadow-md" : "",
         className,
       ]
         .filter(Boolean)
         .join(" ")}
-      style={{
-        background: "var(--bg-surface)",
-        border: "1px solid var(--border-subtle)",
-        boxShadow: hover ? undefined : "none",
-        ...style,
-      }}
       {...props}
     >
       {children}
@@ -39,12 +33,11 @@ export function CardTitle({ className = "", children, ...props }: HTMLAttributes
   return (
     <h3
       className={[
-        "text-lg font-semibold leading-snug",
+        "text-lg font-semibold leading-snug text-neutral-900",
         className,
       ]
         .filter(Boolean)
         .join(" ")}
-      style={{ color: "var(--text-primary)" }}
       {...props}
     >
       {children}
@@ -55,10 +48,9 @@ export function CardTitle({ className = "", children, ...props }: HTMLAttributes
 export function CardDescription({ className = "", children, ...props }: HTMLAttributes<HTMLParagraphElement>) {
   return (
     <p
-      className={["mt-1 text-sm", className]
+      className={["mt-1 text-sm text-neutral-500", className]
         .filter(Boolean)
         .join(" ")}
-      style={{ color: "var(--text-muted)" }}
       {...props}
     >
       {children}
@@ -70,12 +62,11 @@ export function CardFooter({ className = "", children, ...props }: HTMLAttribute
   return (
     <div
       className={[
-        "mt-4 flex items-center gap-3 pt-4",
+        "mt-4 flex items-center gap-3 border-t border-neutral-100 pt-4",
         className,
       ]
         .filter(Boolean)
         .join(" ")}
-      style={{ borderTop: "1px solid var(--border-subtle)" }}
       {...props}
     >
       {children}
