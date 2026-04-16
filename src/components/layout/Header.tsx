@@ -3,11 +3,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { Dna, Menu, X } from "lucide-react";
 
 const NAV_LINKS = [
   { label: "Regulations", href: "/regulations" },
   { label: "Directory", href: "/directory" },
-  { label: "Compliance Checker", href: "/checker" },
   { label: "Glossary", href: "/glossary" },
   { label: "Blog", href: "/blog" },
 ];
@@ -26,24 +26,11 @@ export function Header() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-700 rounded-sm">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-800">
-              <svg
-                className="h-4 w-4 text-white"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"
-                />
-              </svg>
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600">
+              <Dna className="h-4 w-4 text-white" aria-hidden="true" />
             </div>
-            <span className="text-base font-bold text-neutral-900 tracking-tight">
-              AI Compliance Hub
+            <span className="text-base font-extrabold tracking-tight text-neutral-900">
+              regulome<span className="text-brand-600">.io</span>
             </span>
           </Link>
 
@@ -58,7 +45,7 @@ export function Header() {
                   aria-current={active ? "page" : undefined}
                   className={`px-3 py-2 text-sm font-medium rounded-md transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-700 ${
                     active
-                      ? "text-brand-800 bg-brand-50 font-semibold"
+                      ? "text-brand-700 bg-brand-50 font-semibold"
                       : "text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100"
                   }`}
                 >
@@ -71,16 +58,16 @@ export function Header() {
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-3">
             <Link
-              href="/directory"
+              href="/checker"
               className="rounded-md px-4 py-2 text-sm font-medium text-brand-700 hover:text-brand-900 transition-colors"
             >
-              Find a Provider
+              Compliance Checker
             </Link>
             <Link
-              href="/checker"
-              className="rounded-md bg-brand-700 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-brand-800 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-700"
+              href="/directory"
+              className="rounded-md bg-brand-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-700 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-700"
             >
-              Check Compliance
+              Find Providers
             </Link>
           </div>
 
@@ -93,13 +80,9 @@ export function Header() {
             onClick={() => setMobileOpen((o) => !o)}
           >
             {mobileOpen ? (
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
+              <X className="h-5 w-5" aria-hidden="true" />
             ) : (
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
+              <Menu className="h-5 w-5" aria-hidden="true" />
             )}
           </button>
         </div>
@@ -118,7 +101,7 @@ export function Header() {
                   aria-current={active ? "page" : undefined}
                   className={`rounded-md px-3 py-2.5 text-sm font-medium transition-colors ${
                     active
-                      ? "bg-brand-50 text-brand-800 font-semibold border-l-2 border-brand-700 pl-2.5"
+                      ? "bg-brand-50 text-brand-700 font-semibold border-l-2 border-brand-600 pl-2.5"
                       : "text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900"
                   }`}
                   onClick={() => setMobileOpen(false)}
@@ -130,7 +113,7 @@ export function Header() {
             <div className="mt-3 flex flex-col gap-2 pt-3 border-t border-neutral-100">
               <Link
                 href="/checker"
-                className="rounded-md bg-brand-700 px-4 py-2.5 text-center text-sm font-medium text-white hover:bg-brand-800 transition-colors"
+                className="rounded-md bg-brand-600 px-4 py-2.5 text-center text-sm font-semibold text-white hover:bg-brand-700 transition-colors"
                 onClick={() => setMobileOpen(false)}
               >
                 Check Compliance

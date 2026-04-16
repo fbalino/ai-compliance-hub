@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Dna } from "lucide-react";
 
 const FOOTER_LINKS = {
   Regulations: [
@@ -33,26 +34,15 @@ export function Footer() {
           {/* Brand */}
           <div className="col-span-1">
             <Link href="/" className="flex items-center gap-2">
-              <div className="flex h-7 w-7 items-center justify-center rounded-md bg-brand-800">
-                <svg
-                  className="h-3.5 w-3.5 text-white"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"
-                  />
-                </svg>
+              <div className="flex h-7 w-7 items-center justify-center rounded-md bg-brand-600">
+                <Dna className="h-3.5 w-3.5 text-white" aria-hidden="true" />
               </div>
-              <span className="text-sm font-bold text-neutral-900">AI Compliance Hub</span>
+              <span className="text-sm font-extrabold tracking-tight text-neutral-900">
+                regulome<span className="text-brand-600">.io</span>
+              </span>
             </Link>
             <p className="mt-3 text-sm text-neutral-500 leading-relaxed">
-              Know what&apos;s required. Find who can help. The central destination for AI regulation intelligence and compliance providers.
+              Regulatory intelligence for AI compliance teams. Know what&apos;s required. Find who can help.
             </p>
             <div className="mt-4">
               <Link
@@ -91,7 +81,7 @@ export function Footer() {
 
         <div className="mt-10 border-t border-neutral-200 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-neutral-500">
-            &copy; {new Date().getFullYear()} AI Compliance Hub. Not legal advice. Always consult a qualified attorney.
+            &copy; {new Date().getFullYear()} regulome.io — Not legal advice. Always consult a qualified attorney.
           </p>
           <div className="flex items-center gap-4">
             <Link href="/privacy" className="text-xs text-neutral-500 hover:text-neutral-600 transition-colors">

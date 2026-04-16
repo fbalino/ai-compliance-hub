@@ -1,24 +1,24 @@
 @import "tailwindcss";
 
 /* ─────────────────────────────────────────────
-   AI Compliance Hub — Design System
-   Aesthetic: professional, trustworthy, legal/compliance
-   Palette: blues + slates, clean typography
+   regulome.io — Design System
+   Aesthetic: modern SaaS, regulatory intelligence
+   Palette: violet + slate, editorial typography
 ────────────────────────────────────────────── */
 
 @theme inline {
-  /* Brand — Compliance Blue */
-  --color-brand-50: #eff6ff;
-  --color-brand-100: #dbeafe;
-  --color-brand-200: #bfdbfe;
-  --color-brand-300: #93c5fd;
-  --color-brand-400: #60a5fa;
-  --color-brand-500: #3b82f6;
-  --color-brand-600: #2563eb;
-  --color-brand-700: #1d4ed8;
-  --color-brand-800: #1e40af;
-  --color-brand-900: #1e3a8a;
-  --color-brand-950: #172554;
+  /* Brand — Violet */
+  --color-brand-50: #f5f3ff;
+  --color-brand-100: #ede9fe;
+  --color-brand-200: #ddd6fe;
+  --color-brand-300: #c4b5fd;
+  --color-brand-400: #a78bfa;
+  --color-brand-500: #8b5cf6;
+  --color-brand-600: #7c3aed;
+  --color-brand-700: #6d28d9;
+  --color-brand-800: #5b21b6;
+  --color-brand-900: #4c1d95;
+  --color-brand-950: #2e1065;
 
   /* Neutral — Slate */
   --color-neutral-50: #f8fafc;
