@@ -2,15 +2,12 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
-import { Card } from "@/components/ui/Card";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import { getGlossaryTerm, getAllGlossarySlugs } from "@/lib/glossary";
 
-// ISR: glossary pages revalidate at build (static content)
 export const revalidate = false;
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
 
 interface Props {
   params: Promise<{ term: string }>;
@@ -67,9 +64,8 @@ export default async function GlossaryTermPage({ params }: Props) {
     <>
       <script {...jsonLdScriptProps(schemas)} />
 
-      {/* Header */}
-      <div className="border-b border-neutral-200 bg-white">
-        <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="rg-page-head">
+        <div className="rg-container" style={{ maxWidth: 1000 }}>
           <Breadcrumbs
             items={[
               { label: "Home", href: "/" },
@@ -77,14 +73,10 @@ export default async function GlossaryTermPage({ params }: Props) {
               { label: frontmatter.term },
             ]}
           />
-          <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-neutral-900">
-            {frontmatter.term}
-          </h1>
-          <p className="mt-2 text-lg text-neutral-600 leading-relaxed max-w-2xl">
-            {frontmatter.definition}
-          </p>
+          <h1>{frontmatter.term}</h1>
+          <p className="rg-page-desc">{frontmatter.definition}</p>
           {frontmatter.aliases && frontmatter.aliases.length > 0 && (
-            <p className="mt-2 text-sm text-neutral-500">
+            <p style={{ marginTop: 8, fontSize: 13, color: "var(--rg-ink-dim)" }}>
               Also known as:{" "}
               {frontmatter.aliases.map((a, i) => (
                 <span key={a}>
@@ -97,75 +89,56 @@ export default async function GlossaryTermPage({ params }: Props) {
         </div>
       </div>
 
-      <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row gap-10">
-          {/* Main */}
-          <div className="flex-1 min-w-0">
-            {/* Extended definition / body */}
-            {Content && (
-              <div className="prose-compliance">
-                <Content />
+      <div className="rg-page-body">
+        <div className="rg-container" style={{ maxWidth: 1000 }}>
+          <div className="rg-2col">
+            <div className="rg-2col-main">
+              {Content && (
+                <div className="prose-compliance">
+                  <Content />
+                </div>
+              )}
+            </div>
+
+            <aside className="rg-2col-side">
+              {frontmatter.relatedRegulations && frontmatter.relatedRegulations.length > 0 && (
+                <div className="rg-scard">
+                  <h4>Related Regulations</h4>
+                  <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 8 }}>
+                    {frontmatter.relatedRegulations.map((reg) => (
+                      <li key={reg.slug}>
+                        <Link href={`/regulations/${reg.slug}`} style={{ fontSize: 14, fontWeight: 500, color: "var(--rg-ink)" }}>
+                          {reg.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {frontmatter.relatedTerms && frontmatter.relatedTerms.length > 0 && (
+                <div className="rg-scard">
+                  <h4>Related Terms</h4>
+                  <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 8 }}>
+                    {frontmatter.relatedTerms.map((t) => (
+                      <li key={t.slug}>
+                        <Link href={`/glossary/${t.slug}`} style={{ fontSize: 14, fontWeight: 500, color: "var(--rg-ink)" }}>
+                          {t.term}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              <div className="rg-scard">
+                <p style={{ marginBottom: 12 }}>See how this applies to your business.</p>
+                <Link href="/checker" className="rg-btn rg-btn-primary" style={{ width: "100%", textAlign: "center" }}>
+                  Free Compliance Check
+                </Link>
               </div>
-            )}
+            </aside>
           </div>
-
-          {/* Sidebar */}
-          <aside className="w-full lg:w-64 shrink-0 space-y-4">
-            {/* Related regulations */}
-            {frontmatter.relatedRegulations && frontmatter.relatedRegulations.length > 0 && (
-              <Card>
-                <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-3">
-                  Related Regulations
-                </h3>
-                <ul className="space-y-2">
-                  {frontmatter.relatedRegulations.map((reg) => (
-                    <li key={reg.slug}>
-                      <Link
-                        href={`/regulations/${reg.slug}`}
-                        className="text-sm font-medium text-neutral-700 hover:text-brand-700 transition-colors"
-                      >
-                        {reg.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </Card>
-            )}
-
-            {/* Related terms */}
-            {frontmatter.relatedTerms && frontmatter.relatedTerms.length > 0 && (
-              <Card>
-                <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-3">
-                  Related Terms
-                </h3>
-                <ul className="space-y-2">
-                  {frontmatter.relatedTerms.map((t) => (
-                    <li key={t.slug}>
-                      <Link
-                        href={`/glossary/${t.slug}`}
-                        className="text-sm font-medium text-neutral-700 hover:text-brand-700 transition-colors"
-                      >
-                        {t.term}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </Card>
-            )}
-
-            {/* Checker CTA */}
-            <Card>
-              <p className="text-sm text-neutral-600 mb-3">
-                See how this applies to your business.
-              </p>
-              <Link
-                href="/checker"
-                className="block w-full rounded-md bg-brand-700 px-4 py-2.5 text-center text-sm font-medium text-white hover:bg-brand-800 transition-colors"
-              >
-                Free Compliance Check
-              </Link>
-            </Card>
-          </aside>
         </div>
       </div>
     </>

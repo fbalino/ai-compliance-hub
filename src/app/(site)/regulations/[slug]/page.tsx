@@ -2,11 +2,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
-
-// ISR: regulation pages revalidate every 24 hours
-export const revalidate = 86400;
-import { Badge, regulationStatusVariant } from "@/components/ui/Badge";
-import { Card } from "@/components/ui/Card";
 import {
   breadcrumbListSchema,
   regulationArticleSchema,
@@ -14,6 +9,8 @@ import {
 } from "@/lib/jsonld";
 import { getRegulationBySlug, getAllRegulationSlugs } from "@/lib/regulations";
 import { NewsletterForm } from "@/components/NewsletterForm";
+
+export const revalidate = 86400;
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
@@ -32,7 +29,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const reg = await getRegulationBySlug(slug);
   if (!reg) return {};
 
-  // Meta title template per CMO SEO strategy Section 4.3
   const title = `${reg.frontmatter.name}: Compliance Guide (${new Date().getFullYear()})`;
   const description = reg.frontmatter.description;
 
@@ -51,6 +47,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       canonical: `${SITE_URL}/regulations/${slug}`,
     },
   };
+}
+
+function statusPill(status: string) {
+  if (status === "enforced") return "rg-pill-status rg-pill-applies";
+  if (status === "enacted") return "rg-pill-status rg-pill-action";
+  if (status === "draft") return "rg-pill-status rg-pill-watch";
+  return "rg-pill-status rg-pill-watch";
 }
 
 export default async function RegulationPage({ params }: Props) {
@@ -83,9 +86,8 @@ export default async function RegulationPage({ params }: Props) {
     <>
       <script {...jsonLdScriptProps(schemas)} />
 
-      {/* Page header */}
-      <div className="border-b border-neutral-200 bg-white">
-        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="rg-page-head">
+        <div className="rg-container">
           <Breadcrumbs
             items={[
               { label: "Home", href: "/" },
@@ -93,28 +95,23 @@ export default async function RegulationPage({ params }: Props) {
               { label: frontmatter.name },
             ]}
           />
-          <div className="mt-4 flex flex-wrap items-start gap-3">
-            <div className="flex-1 min-w-0">
-              <div className="flex flex-wrap items-center gap-2 mb-2">
-                <Badge variant="default">{frontmatter.jurisdiction}</Badge>
-                <Badge variant={regulationStatusVariant(frontmatter.status)}>
-                  {frontmatter.status.charAt(0).toUpperCase() +
-                    frontmatter.status.slice(1)}
-                </Badge>
+          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-start", gap: 16 }}>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div className="rg-meta-row">
+                <span className="rg-tag">{frontmatter.jurisdiction}</span>
+                <span className={statusPill(frontmatter.status)}>
+                  {frontmatter.status.charAt(0).toUpperCase() + frontmatter.status.slice(1)}
+                </span>
                 {frontmatter.shortName && (
-                  <span className="text-xs text-neutral-500 font-mono">
+                  <span style={{ fontSize: 11, fontFamily: "var(--font-mono)", color: "var(--rg-ink-dim)" }}>
                     {frontmatter.shortName}
                   </span>
                 )}
               </div>
-              <h1 className="text-3xl font-extrabold tracking-tight text-neutral-900">
-                {frontmatter.name}
-              </h1>
-              <p className="mt-2 text-neutral-600 leading-relaxed">
-                {frontmatter.description}
-              </p>
+              <h1>{frontmatter.name}</h1>
+              <p className="rg-page-desc">{frontmatter.description}</p>
               {frontmatter.updatedAt && (
-                <p className="mt-2 text-xs text-neutral-500">
+                <p style={{ marginTop: 8, fontSize: 12, color: "var(--rg-ink-dim)" }}>
                   Last updated:{" "}
                   <time dateTime={frontmatter.updatedAt}>
                     {new Date(frontmatter.updatedAt).toLocaleDateString("en-US", {
@@ -126,148 +123,103 @@ export default async function RegulationPage({ params }: Props) {
                 </p>
               )}
             </div>
-            <Link
-              href="/checker"
-              className="shrink-0 inline-flex items-center gap-2 rounded-lg bg-brand-700 px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-800 transition-colors shadow-sm"
-            >
-              Check My Compliance
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
+            <Link href="/checker" className="rg-btn rg-btn-primary" style={{ flexShrink: 0 }}>
+              Check My Compliance <span className="rg-arrow">&rarr;</span>
             </Link>
           </div>
         </div>
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row gap-10">
-          {/* Main content */}
-          <article className="flex-1 min-w-0">
-            {/* Quick facts */}
-            <div className="mb-8 grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {frontmatter.effectiveDate && (
-                <FactCard label="Effective Date" value={frontmatter.effectiveDate} />
-              )}
-              {frontmatter.enforcementDate && (
-                <FactCard label="Enforcement" value={frontmatter.enforcementDate} />
-              )}
-              {frontmatter.maxPenalty && (
-                <FactCard label="Max Penalty" value={frontmatter.maxPenalty} />
-              )}
-              {frontmatter.jurisdiction && (
-                <FactCard label="Jurisdiction" value={frontmatter.jurisdiction} />
-              )}
-            </div>
+      <div className="rg-page-body">
+        <div className="rg-container">
+          <div className="rg-2col">
+            <article className="rg-2col-main">
+              <div className="rg-fact-grid">
+                {frontmatter.effectiveDate && (
+                  <dl className="rg-fact">
+                    <dt>Effective Date</dt>
+                    <dd>{frontmatter.effectiveDate}</dd>
+                  </dl>
+                )}
+                {frontmatter.enforcementDate && (
+                  <dl className="rg-fact">
+                    <dt>Enforcement</dt>
+                    <dd>{frontmatter.enforcementDate}</dd>
+                  </dl>
+                )}
+                {frontmatter.maxPenalty && (
+                  <dl className="rg-fact">
+                    <dt>Max Penalty</dt>
+                    <dd>{frontmatter.maxPenalty}</dd>
+                  </dl>
+                )}
+                {frontmatter.jurisdiction && (
+                  <dl className="rg-fact">
+                    <dt>Jurisdiction</dt>
+                    <dd>{frontmatter.jurisdiction}</dd>
+                  </dl>
+                )}
+              </div>
 
-            {/* MDX body */}
-            <div className="prose-compliance">
-              <Content />
-            </div>
+              <div className="prose-compliance">
+                <Content />
+              </div>
 
-            {/* Newsletter signup */}
-            <div className="mt-10 rounded-xl border border-neutral-200 bg-neutral-50 p-6">
-              <h2 className="text-base font-semibold text-neutral-900">
-                Stay ahead of AI compliance changes
-              </h2>
-              <p className="mt-1 text-sm text-neutral-600">
-                Get weekly regulation updates, enforcement news, and compliance deadlines — free.
-              </p>
-              <NewsletterForm source="regulation_page" className="mt-4 max-w-md" />
-            </div>
+              <div className="rg-inline-nl" style={{ marginTop: 40 }}>
+                <h3>Stay ahead of AI compliance changes</h3>
+                <p>Get weekly regulation updates, enforcement news, and compliance deadlines &mdash; free.</p>
+                <NewsletterForm source="regulation_page" className="max-w-sm" />
+              </div>
 
-            {/* Related providers CTA */}
-            <div className="mt-6 rounded-xl border border-brand-200 bg-brand-50 p-6">
-              <h2 className="text-lg font-semibold text-brand-900">
-                Need help complying with {frontmatter.name}?
-              </h2>
-              <p className="mt-1.5 text-sm text-brand-700">
-                Browse verified consultants, auditors, and software platforms that specialize in this regulation.
-              </p>
-              <div className="mt-4 flex flex-wrap gap-3">
-                <Link
-                  href={`/directory?regulation=${slug}`}
-                  className="inline-flex items-center gap-1.5 rounded-md bg-brand-700 px-4 py-2 text-sm font-medium text-white hover:bg-brand-800 transition-colors"
-                >
-                  Find Providers
-                </Link>
-                <Link
-                  href="/checker"
-                  className="inline-flex items-center gap-1.5 rounded-md border border-brand-300 bg-white px-4 py-2 text-sm font-medium text-brand-700 hover:bg-brand-50 transition-colors"
-                >
-                  Check My Compliance
+              <div className="rg-cta-banner" style={{ marginTop: 20 }}>
+                <h2>Need help complying with {frontmatter.name}?</h2>
+                <p>Browse verified consultants, auditors, and software platforms that specialize in this regulation.</p>
+                <div className="rg-cta-actions">
+                  <Link href={`/directory?regulation=${slug}`} className="rg-btn rg-btn-primary">Find Providers</Link>
+                  <Link href="/checker" className="rg-btn rg-btn-outline">Check My Compliance</Link>
+                </div>
+              </div>
+            </article>
+
+            <aside className="rg-2col-side">
+              {frontmatter.toc && frontmatter.toc.length > 0 && (
+                <div className="rg-scard">
+                  <h4>On This Page</h4>
+                  <nav aria-label="Table of contents">
+                    <ul>
+                      {frontmatter.toc.map((item) => (
+                        <li key={item.id}>
+                          <a href={`#${item.id}`}>{item.label}</a>
+                        </li>
+                      ))}
+                    </ul>
+                  </nav>
+                </div>
+              )}
+
+              {frontmatter.relatedRegulations &&
+                frontmatter.relatedRegulations.length > 0 && (
+                  <div className="rg-scard">
+                    <h4>Related Regulations</h4>
+                    <ul>
+                      {frontmatter.relatedRegulations.map((rel) => (
+                        <li key={rel.slug}>
+                          <Link href={`/regulations/${rel.slug}`}>{rel.name}</Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+              <div style={{ paddingTop: 8 }}>
+                <Link href="/compare" style={{ fontSize: 13, fontWeight: 600, color: "var(--rg-primary)", textDecoration: "none" }}>
+                  Compare regulations &rarr;
                 </Link>
               </div>
-            </div>
-          </article>
-
-          {/* Sidebar */}
-          <aside className="w-full lg:w-72 shrink-0 lg:sticky lg:top-24 lg:self-start space-y-5">
-            {/* Table of contents */}
-            {frontmatter.toc && frontmatter.toc.length > 0 && (
-              <Card>
-                <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-3">
-                  On This Page
-                </h3>
-                <nav aria-label="Table of contents">
-                  <ul className="space-y-1.5">
-                    {frontmatter.toc.map((item) => (
-                      <li key={item.id}>
-                        <a
-                          href={`#${item.id}`}
-                          className="text-sm text-neutral-600 hover:text-brand-700 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-700 rounded"
-                        >
-                          {item.label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </nav>
-              </Card>
-            )}
-
-            {/* Related regulations */}
-            {frontmatter.relatedRegulations &&
-              frontmatter.relatedRegulations.length > 0 && (
-                <Card>
-                  <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-3">
-                    Related Regulations
-                  </h3>
-                  <ul className="space-y-2">
-                    {frontmatter.relatedRegulations.map((rel) => (
-                      <li key={rel.slug}>
-                        <Link
-                          href={`/regulations/${rel.slug}`}
-                          className="text-sm font-medium text-neutral-700 hover:text-brand-700 transition-colors"
-                        >
-                          {rel.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </Card>
-              )}
-
-            {/* Compare CTA */}
-            <div className="pt-2">
-              <Link
-                href="/compare"
-                className="text-sm font-medium text-brand-700 hover:text-brand-900 transition-colors"
-              >
-                Compare regulations →
-              </Link>
-            </div>
-          </aside>
+            </aside>
+          </div>
         </div>
       </div>
     </>
-  );
-}
-
-function FactCard({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="rounded-lg border border-neutral-200 bg-neutral-50 px-4 py-3">
-      <dt className="text-xs font-medium text-neutral-500">{label}</dt>
-      <dd className="mt-0.5 text-sm font-semibold text-neutral-900">{value}</dd>
-    </div>
   );
 }

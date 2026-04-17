@@ -5,8 +5,6 @@ import { eq } from "drizzle-orm";
 import { db } from "@/db";
 import { providerCategories, providers, providerServices } from "@/db/schema";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
-import { Badge } from "@/components/ui/Badge";
-import { Card } from "@/components/ui/Card";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import { CategoryIcon } from "@/lib/category-icons";
 
@@ -51,7 +49,7 @@ async function getCategoryProviders(categorySlug: string): Promise<ProviderCard[
       return {
         slug: p.slug,
         name: p.name,
-        tagline: p.tagline ?? (p.description ? p.description.slice(0, 140) + "…" : ""),
+        tagline: p.tagline ?? (p.description ? p.description.slice(0, 140) + "\u2026" : ""),
         verified: p.isVerified ?? false,
         specializations: services.map((s) => s.serviceType),
         jurisdictions: (p.jurisdictions as string[] | null) ?? [],
@@ -110,9 +108,8 @@ export default async function CategoryPage({ params }: Props) {
     <>
       <script {...jsonLdScriptProps(breadcrumbs)} />
 
-      {/* Header */}
-      <div className="border-b border-neutral-200 bg-white">
-        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+      <div className="rg-page-head">
+        <div className="rg-container" style={{ maxWidth: 1000 }}>
           <Breadcrumbs
             items={[
               { label: "Home", href: "/" },
@@ -120,124 +117,92 @@ export default async function CategoryPage({ params }: Props) {
               { label: cat.label },
             ]}
           />
-          <div className="mt-4 flex items-start gap-4">
-            <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-brand-100 text-brand-700">
+          <div style={{ marginTop: 16, display: "flex", alignItems: "flex-start", gap: 16 }}>
+            <span style={{
+              display: "flex", width: 56, height: 56, flexShrink: 0, alignItems: "center", justifyContent: "center",
+              borderRadius: 14, background: "var(--rg-primary-faint)", color: "var(--rg-primary-deep)",
+            }}>
               <CategoryIcon name={cat.icon} className="h-7 w-7" />
             </span>
             <div>
-              <h1 className="text-3xl font-extrabold tracking-tight text-neutral-900">
-                {cat.label}
-              </h1>
-              <p className="mt-2 text-lg text-neutral-600 max-w-2xl">
-                {cat.description}
-              </p>
+              <h1>{cat.label}</h1>
+              <p className="rg-page-desc">{cat.description}</p>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 space-y-10">
-        {/* What are these providers */}
-        <section className="prose prose-neutral max-w-none">
-          <p className="text-neutral-600 leading-relaxed">{cat.longDescription}</p>
-          {regulations.length > 0 && (
-            <div className="mt-4 flex flex-wrap gap-2">
-              <span className="text-sm font-medium text-neutral-500">Relevant regulations:</span>
-              {regulations.map((reg) => (
-                <span
-                  key={reg}
-                  className="inline-flex items-center rounded-full bg-brand-100 px-2.5 py-0.5 text-xs font-medium text-brand-700"
-                >
-                  {reg}
-                </span>
-              ))}
-            </div>
-          )}
-        </section>
+      <div className="rg-page-body">
+        <div className="rg-container" style={{ maxWidth: 1000 }}>
+          <section>
+            <p style={{ color: "var(--rg-ink-dim)", lineHeight: 1.7 }}>{cat.longDescription}</p>
+            {regulations.length > 0 && (
+              <div style={{ marginTop: 12, display: "flex", flexWrap: "wrap", gap: 6, alignItems: "center" }}>
+                <span style={{ fontSize: 13, fontWeight: 500, color: "var(--rg-ink-dim)" }}>Relevant regulations:</span>
+                {regulations.map((reg) => (
+                  <span key={reg} className="rg-tag">{reg}</span>
+                ))}
+              </div>
+            )}
+          </section>
 
-        {/* Provider list */}
-        <section>
-          <div className="flex items-center justify-between mb-5">
-            <h2 className="text-lg font-bold text-neutral-900">
+          <section style={{ marginTop: 40 }}>
+            <div className="rg-kicker" style={{ marginBottom: 16 }}>
               {categoryProviders.length > 0
                 ? `${categoryProviders.length} Provider${categoryProviders.length !== 1 ? "s" : ""}`
                 : "Providers"}
-            </h2>
-          </div>
+            </div>
 
-          {categoryProviders.length > 0 ? (
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              {categoryProviders.map((provider) => (
-                <Link
-                  key={provider.slug}
-                  href={`/directory/providers/${provider.slug}`}
-                  className="group block"
-                >
-                  <Card hover className="h-full group-hover:border-brand-300 transition-all">
-                    <div className="flex items-start justify-between gap-2 mb-2">
-                      <h3 className="font-semibold text-neutral-900 group-hover:text-brand-800 transition-colors">
-                        {provider.name}
-                      </h3>
-                      {/* TODO: Verified badge hidden — no verification process defined yet */}
+            {categoryProviders.length > 0 ? (
+              <div className="rg-scard-grid">
+                {categoryProviders.map((provider) => (
+                  <Link key={provider.slug} href={`/directory/providers/${provider.slug}`} className="rg-scard-link">
+                    <div className="rg-scard" style={{ height: "100%" }}>
+                      <h3>{provider.name}</h3>
+                      {provider.founded && (
+                        <p style={{ fontSize: 12, color: "var(--rg-ink-dim)", marginBottom: 6 }}>Est. {provider.founded}</p>
+                      )}
+                      <p style={{ marginBottom: 12 }}>{provider.tagline}</p>
+                      {provider.specializations.length > 0 && (
+                        <div style={{ display: "flex", flexWrap: "wrap", gap: 5, marginBottom: 10 }}>
+                          {provider.specializations.slice(0, 3).map((spec) => (
+                            <span key={spec} className="rg-tag">{spec}</span>
+                          ))}
+                        </div>
+                      )}
+                      {provider.jurisdictions.length > 0 && (
+                        <div style={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
+                          {provider.jurisdictions.map((j) => (
+                            <span key={j} className="rg-tag">{j}</span>
+                          ))}
+                        </div>
+                      )}
                     </div>
-                    {provider.founded && (
-                      <p className="text-xs text-neutral-500 mb-1.5">Est. {provider.founded}</p>
-                    )}
-                    <p className="text-sm text-neutral-600 leading-relaxed mb-3">
-                      {provider.tagline}
-                    </p>
-                    {provider.specializations.length > 0 && (
-                      <div className="flex flex-wrap gap-1.5 mb-3">
-                        {provider.specializations.slice(0, 3).map((spec) => (
-                          <span
-                            key={spec}
-                            className="inline-flex items-center rounded-full bg-neutral-100 px-2 py-0.5 text-xs font-medium text-neutral-600"
-                          >
-                            {spec}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                    {provider.jurisdictions.length > 0 && (
-                      <div className="flex flex-wrap gap-1.5">
-                        {provider.jurisdictions.map((j) => (
-                          <Badge key={j} variant="default">{j}</Badge>
-                        ))}
-                      </div>
-                    )}
-                  </Card>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <div className="rg-scard" style={{ textAlign: "center", padding: "40px 24px" }}>
+                <p style={{ color: "var(--rg-ink-dim)" }}>Providers in this category are being added shortly.</p>
+                <Link href="/directory" className="rg-btn rg-btn-outline" style={{ marginTop: 12 }}>
+                  Browse all categories &rarr;
                 </Link>
-              ))}
-            </div>
-          ) : (
-            <Card className="text-center py-10">
-              <p className="text-neutral-500">Providers in this category are being added shortly.</p>
-              <Link href="/directory" className="mt-3 inline-block text-sm font-medium text-brand-700 hover:text-brand-900 transition-colors">
-                Browse all categories →
-              </Link>
-            </Card>
-          )}
-        </section>
+              </div>
+            )}
+          </section>
 
-        {/* CTA */}
-        <section className="rounded-xl bg-brand-50 border border-brand-100 p-6">
-          <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-            <div>
-              <h2 className="font-bold text-brand-900">
-                Are you a {cat.label.toLowerCase().replace(/s$/, "")}?
-              </h2>
-              <p className="mt-1 text-sm text-brand-700">
+          <div className="rg-cta-banner" style={{ marginTop: 40 }}>
+            <div style={{ flex: 1 }}>
+              <strong>Are you a {cat.label.toLowerCase().replace(/s$/, "")}?</strong>
+              <span style={{ display: "block", marginTop: 6 }}>
                 Get listed in this directory and reach businesses looking for your expertise.
-              </p>
+              </span>
             </div>
-            <a
-              href="mailto:providers@aicompliancehub.com"
-              className="shrink-0 inline-flex items-center gap-2 rounded-lg bg-brand-700 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-800 transition-colors"
-            >
+            <a href="mailto:providers@aicompliancehub.com" className="rg-btn rg-btn-primary">
               Apply to List
             </a>
           </div>
-        </section>
+        </div>
       </div>
     </>
   );

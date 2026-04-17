@@ -20,38 +20,32 @@ const WHATS_INCLUDED: { icon: LucideIcon; title: string; description: string }[]
   {
     icon: ClipboardList,
     title: "Full Regulatory Mapping",
-    description:
-      "Every regulation that applies to your business, with specific obligations broken out by category. No vague summaries — exact requirements.",
+    description: "Every regulation that applies to your business, with specific obligations broken out by category. No vague summaries \u2014 exact requirements.",
   },
   {
     icon: Target,
     title: "Gap Analysis",
-    description:
-      "Your current compliance posture vs. what's required. We identify exactly what you're missing and prioritize by legal risk.",
+    description: "Your current compliance posture vs. what\u2019s required. We identify exactly what you\u2019re missing and prioritize by legal risk.",
   },
   {
     icon: Map,
     title: "NIST AI RMF Alignment",
-    description:
-      "Your obligations mapped to the NIST AI Risk Management Framework so you can build one governance program that covers all your regulations.",
+    description: "Your obligations mapped to the NIST AI Risk Management Framework so you can build one governance program that covers all your regulations.",
   },
   {
     icon: ListChecks,
     title: "Action Plan with Timelines",
-    description:
-      "A prioritized, deadline-driven action plan. Which items are due before which enforcement dates. What to do first.",
+    description: "A prioritized, deadline-driven action plan. Which items are due before which enforcement dates. What to do first.",
   },
   {
     icon: FileText,
     title: "Downloadable PDF Report",
-    description:
-      "A professional report you can share with your legal team, board, or external auditors as evidence of compliance due diligence.",
+    description: "A professional report you can share with your legal team, board, or external auditors as evidence of compliance due diligence.",
   },
   {
     icon: RefreshCw,
     title: "30-Day Update Guarantee",
-    description:
-      "If a relevant regulation changes within 30 days of your report, we send you an updated version at no additional charge.",
+    description: "If a relevant regulation changes within 30 days of your report, we send you an updated version at no additional charge.",
   },
 ];
 
@@ -62,6 +56,12 @@ const SAMPLE_REGULATIONS = [
   { name: "California AB 2013", status: "Training data transparency report required", urgency: "medium" },
   { name: "Illinois AIVIRA", status: "Candidate consent required", urgency: "low" },
 ];
+
+function urgencyStyle(urgency: string) {
+  if (urgency === "high") return { background: "rgba(220,38,38,0.1)", color: "#b91c1c" };
+  if (urgency === "medium") return { background: "rgba(217,119,6,0.1)", color: "#92400e" };
+  return { background: "var(--rg-bg)", color: "var(--rg-ink-dim)" };
+}
 
 export default function ProReportPage() {
   const breadcrumbs = breadcrumbListSchema([
@@ -74,9 +74,8 @@ export default function ProReportPage() {
     <>
       <script {...jsonLdScriptProps(breadcrumbs)} />
 
-      {/* Header */}
-      <div className="border-b border-neutral-200 bg-white">
-        <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8">
+      <div className="rg-page-head">
+        <div className="rg-container" style={{ maxWidth: 900 }}>
           <Breadcrumbs
             items={[
               { label: "Home", href: "/" },
@@ -84,171 +83,158 @@ export default function ProReportPage() {
               { label: "Pro Report" },
             ]}
           />
-          <div className="mt-4 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6">
-            <div>
-              <div className="inline-flex items-center gap-2 rounded-full bg-amber-100 px-3 py-1 text-xs font-medium text-amber-700 mb-3">
-                <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+          <div style={{ marginTop: 16, display: "flex", gap: 24, flexWrap: "wrap", alignItems: "flex-start", justifyContent: "space-between" }}>
+            <div style={{ flex: 1, minWidth: 280 }}>
+              <span className="rg-pill-status" style={{ background: "rgba(217,119,6,0.12)", color: "#92400e", marginBottom: 12 }}>
+                <svg style={{ width: 14, height: 14 }} fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                 </svg>
                 Pro Report
-              </div>
-              <h1 className="text-3xl font-extrabold tracking-tight text-neutral-900">
-                Detailed AI Compliance Gap Analysis
-              </h1>
-              <p className="mt-2 text-neutral-600 leading-relaxed max-w-xl">
-                Go beyond the free checker. Get a detailed report that maps your specific situation to every applicable regulation — with a prioritized action plan and PDF you can share with your team.
+              </span>
+              <h1>Detailed AI Compliance Gap Analysis</h1>
+              <p className="rg-page-desc">
+                Go beyond the free checker. Get a detailed report that maps your specific situation to every applicable regulation &mdash; with a prioritized action plan and PDF you can share with your team.
               </p>
             </div>
-            <div className="shrink-0 rounded-2xl border border-neutral-200 bg-neutral-50 p-5 text-center sm:min-w-[180px]">
-              <div className="text-4xl font-extrabold text-neutral-900">$49</div>
-              <div className="text-sm text-neutral-500 mt-0.5">one-time payment</div>
-              <div className="text-xs text-neutral-500 mt-1">PDF + 30-day updates</div>
+            <div className="rg-scard" style={{ textAlign: "center", minWidth: 180 }}>
+              <div style={{ fontSize: 40, fontWeight: 800 }}>$49</div>
+              <div style={{ fontSize: 13, color: "var(--rg-ink-dim)" }}>one-time payment</div>
+              <div style={{ fontSize: 12, color: "var(--rg-ink-dim)", marginTop: 4 }}>PDF + 30-day updates</div>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8 space-y-12">
+      <div className="rg-page-body">
+        <div className="rg-container" style={{ maxWidth: 900 }}>
 
-        {/* Sample report preview */}
-        <section>
-          <h2 className="text-lg font-bold text-neutral-900 mb-4">Sample: What Your Report Includes</h2>
-          <div className="rounded-xl border border-neutral-200 bg-white overflow-hidden">
-            <div className="px-5 py-3 bg-neutral-50 border-b border-neutral-200 flex items-center gap-2">
-              <div className="h-3 w-3 rounded-full bg-red-400" />
-              <div className="h-3 w-3 rounded-full bg-amber-400" />
-              <div className="h-3 w-3 rounded-full bg-green-400" />
-              <span className="ml-2 text-xs font-mono text-neutral-500">AI Compliance Gap Analysis Report.pdf</span>
-            </div>
-            <div className="p-5">
-              <div className="mb-4">
-                <h3 className="font-bold text-neutral-900 mb-1">Regulations Applicable to Your Business</h3>
-                <p className="text-xs text-neutral-500 mb-3">Based on: SaaS company · US + EU operations · Hiring AI + LLM product</p>
-                <div className="space-y-2">
+          {/* Sample report preview */}
+          <section>
+            <div className="rg-kicker" style={{ marginBottom: 16 }}>Sample: What Your Report Includes</div>
+            <div className="rg-scard" style={{ padding: 0, overflow: "hidden" }}>
+              <div style={{ padding: "10px 20px", background: "var(--rg-bg)", borderBottom: "1px solid var(--rg-border)", display: "flex", alignItems: "center", gap: 8 }}>
+                <span style={{ width: 12, height: 12, borderRadius: "50%", background: "#f87171" }} />
+                <span style={{ width: 12, height: 12, borderRadius: "50%", background: "#fbbf24" }} />
+                <span style={{ width: 12, height: 12, borderRadius: "50%", background: "#4ade80" }} />
+                <span style={{ marginLeft: 8, fontSize: 12, fontFamily: "monospace", color: "var(--rg-ink-dim)" }}>AI Compliance Gap Analysis Report.pdf</span>
+              </div>
+              <div style={{ padding: 20 }}>
+                <h3 style={{ marginBottom: 4 }}>Regulations Applicable to Your Business</h3>
+                <p style={{ fontSize: 12, color: "var(--rg-ink-dim)", marginBottom: 12 }}>Based on: SaaS company &middot; US + EU operations &middot; Hiring AI + LLM product</p>
+                <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                   {SAMPLE_REGULATIONS.map((reg) => (
-                    <div key={reg.name} className="flex items-center justify-between gap-3 text-sm">
-                      <span className="font-medium text-neutral-800">{reg.name}</span>
-                      <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${
-                        reg.urgency === "high" ? "bg-red-100 text-red-700" :
-                        reg.urgency === "medium" ? "bg-amber-100 text-amber-700" :
-                        "bg-neutral-100 text-neutral-600"
-                      }`}>
-                        {reg.status}
-                      </span>
+                    <div key={reg.name} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, fontSize: 14 }}>
+                      <span style={{ fontWeight: 500 }}>{reg.name}</span>
+                      <span className="rg-pill-status" style={urgencyStyle(reg.urgency)}>{reg.status}</span>
                     </div>
                   ))}
                 </div>
-              </div>
-              <div className="border-t border-neutral-100 pt-4">
-                <h3 className="font-bold text-neutral-900 mb-2">Priority Action Items</h3>
-                <ol className="space-y-1.5 text-sm text-neutral-600">
-                  <li className="flex gap-2"><span className="text-red-500 font-bold">1.</span> Commission NYC LL 144 bias audit before Q3 2026</li>
-                  <li className="flex gap-2"><span className="text-red-500 font-bold">2.</span> Complete EU AI Act high-risk system documentation by July 2026</li>
-                  <li className="flex gap-2"><span className="text-amber-600 font-bold">3.</span> Complete Colorado AI Act impact assessment by May 2026</li>
-                  <li className="flex gap-2"><span className="text-amber-600 font-bold">4.</span> Publish California AB 2013 training data transparency report by December 2026</li>
-                  <li className="flex gap-2"><span className="text-neutral-500 font-bold">5.</span> Add Illinois AIVIRA candidate notices to hiring process</li>
-                </ol>
-              </div>
-              <div className="mt-4 text-xs text-neutral-500 italic">
-                Plus: NIST AI RMF mapping, full obligation checklists per regulation, vendor compliance requirements, and implementation templates.
+                <div style={{ borderTop: "1px solid var(--rg-border-soft)", marginTop: 16, paddingTop: 16 }}>
+                  <h3 style={{ marginBottom: 8 }}>Priority Action Items</h3>
+                  <ol style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 6, fontSize: 14, color: "var(--rg-ink-dim)" }}>
+                    <li style={{ display: "flex", gap: 8 }}><span style={{ color: "#b91c1c", fontWeight: 700 }}>1.</span> Commission NYC LL 144 bias audit before Q3 2026</li>
+                    <li style={{ display: "flex", gap: 8 }}><span style={{ color: "#b91c1c", fontWeight: 700 }}>2.</span> Complete EU AI Act high-risk system documentation by July 2026</li>
+                    <li style={{ display: "flex", gap: 8 }}><span style={{ color: "#92400e", fontWeight: 700 }}>3.</span> Complete Colorado AI Act impact assessment by May 2026</li>
+                    <li style={{ display: "flex", gap: 8 }}><span style={{ color: "#92400e", fontWeight: 700 }}>4.</span> Publish California AB 2013 training data transparency report by December 2026</li>
+                    <li style={{ display: "flex", gap: 8 }}><span style={{ color: "var(--rg-ink-dim)", fontWeight: 700 }}>5.</span> Add Illinois AIVIRA candidate notices to hiring process</li>
+                  </ol>
+                </div>
+                <p style={{ marginTop: 16, fontSize: 12, color: "var(--rg-ink-dim)", fontStyle: "italic" }}>
+                  Plus: NIST AI RMF mapping, full obligation checklists per regulation, vendor compliance requirements, and implementation templates.
+                </p>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* What's included */}
-        <section>
-          <h2 className="text-lg font-bold text-neutral-900 mb-5">What&apos;s Included</h2>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {WHATS_INCLUDED.map((item) => (
-              <div key={item.title} className="flex items-start gap-3 rounded-xl border border-neutral-200 bg-white p-4">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-100 text-brand-700">
-                <item.icon className="h-4 w-4" aria-hidden="true" />
-              </span>
-                <div>
-                  <h3 className="font-semibold text-neutral-900 text-sm">{item.title}</h3>
-                  <p className="mt-0.5 text-sm text-neutral-600 leading-relaxed">{item.description}</p>
+          {/* What's included */}
+          <section style={{ marginTop: 48 }}>
+            <div className="rg-kicker" style={{ marginBottom: 20 }}>What&apos;s Included</div>
+            <div className="rg-scard-grid">
+              {WHATS_INCLUDED.map((item) => (
+                <div key={item.title} className="rg-scard" style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
+                  <span style={{
+                    display: "grid", placeItems: "center", width: 36, height: 36, borderRadius: 8, flexShrink: 0,
+                    background: "var(--rg-primary-faint)", color: "var(--rg-primary-deep)",
+                  }}>
+                    <item.icon className="h-4 w-4" aria-hidden="true" />
+                  </span>
+                  <div>
+                    <h3 style={{ fontSize: 14, marginBottom: 2 }}>{item.title}</h3>
+                    <p>{item.description}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </section>
+              ))}
+            </div>
+          </section>
 
-        {/* CTA */}
-        <section className="rounded-2xl bg-brand-900 px-6 py-8 sm:px-10 text-center">
-          <h2 className="text-xl font-bold text-white">
-            Get Your Pro Compliance Report
-          </h2>
-          <p className="mt-2 text-brand-200 text-sm max-w-md mx-auto">
-            First, complete the free compliance checker to tell us about your business. Then upgrade for the full report.
-          </p>
-          <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
-            <Link
-              href="/checker"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-bold text-brand-900 hover:bg-brand-50 transition-colors shadow-sm"
-            >
-              Purchase Now ($49)
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </Link>
+          {/* CTA */}
+          <div className="rg-cta-dark" style={{ marginTop: 48, textAlign: "center" }}>
+            <h2>Get Your Pro Compliance Report</h2>
+            <p style={{ maxWidth: 460, margin: "8px auto 0" }}>
+              First, complete the free compliance checker to tell us about your business. Then upgrade for the full report.
+            </p>
+            <div style={{ marginTop: 24 }}>
+              <Link href="/checker" className="rg-btn" style={{ background: "#fff", color: "var(--rg-primary-deep)", fontWeight: 700 }}>
+                Purchase Now ($49) &rarr;
+              </Link>
+            </div>
+            <p style={{ marginTop: 16, fontSize: 12, opacity: 0.6 }}>
+              Complete the free checker to tell us about your business, then upgrade for the full report.
+            </p>
           </div>
-          <p className="mt-4 text-xs text-brand-400">
-            Complete the free checker to tell us about your business, then upgrade for the full report.
-          </p>
-        </section>
 
-        {/* Free vs Pro comparison */}
-        <section>
-          <h2 className="text-lg font-bold text-neutral-900 mb-5">Free vs. Pro</h2>
-          <div className="overflow-x-auto rounded-xl border border-neutral-200">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-neutral-200 bg-neutral-50">
-                  <th className="px-5 py-3 text-left font-semibold text-neutral-700">Feature</th>
-                  <th className="px-5 py-3 text-center font-semibold text-neutral-700">Free</th>
-                  <th className="px-5 py-3 text-center font-semibold text-brand-700">Pro ($49)</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-neutral-100">
-                {[
-                  ["Identifies applicable regulations", true, true],
-                  ["Required action overview", true, true],
-                  ["Links to regulation guides", true, true],
-                  ["Detailed obligation breakdown by law", false, true],
-                  ["NIST AI RMF mapping", false, true],
-                  ["Gap analysis vs. current posture", false, true],
-                  ["Prioritized action plan with deadlines", false, true],
-                  ["Downloadable PDF report", false, true],
-                  ["30-day update guarantee", false, true],
-                  ["Board-ready summary", false, true],
-                ].map(([feature, free, pro]) => (
-                  <tr key={String(feature)} className="bg-white">
-                    <td className="px-5 py-3 text-neutral-700">{feature}</td>
-                    <td className="px-5 py-3 text-center">
-                      {free ? (
-                        <Check className="h-4 w-4 text-green-600 mx-auto" aria-label="Included" />
-                      ) : (
-                        <span className="text-neutral-300">—</span>
-                      )}
-                    </td>
-                    <td className="px-5 py-3 text-center">
-                      {pro ? (
-                        <Check className="h-4 w-4 text-brand-700 mx-auto" strokeWidth={2.5} aria-label="Included" />
-                      ) : (
-                        <span className="text-neutral-300">—</span>
-                      )}
-                    </td>
+          {/* Free vs Pro comparison */}
+          <section style={{ marginTop: 48 }}>
+            <div className="rg-kicker" style={{ marginBottom: 20 }}>Free vs. Pro</div>
+            <div className="rg-table-wrap">
+              <table className="rg-table">
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th style={{ textAlign: "center" }}>Free</th>
+                    <th style={{ textAlign: "center", color: "var(--rg-primary-deep)" }}>Pro ($49)</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
+                </thead>
+                <tbody>
+                  {[
+                    ["Identifies applicable regulations", true, true],
+                    ["Required action overview", true, true],
+                    ["Links to regulation guides", true, true],
+                    ["Detailed obligation breakdown by law", false, true],
+                    ["NIST AI RMF mapping", false, true],
+                    ["Gap analysis vs. current posture", false, true],
+                    ["Prioritized action plan with deadlines", false, true],
+                    ["Downloadable PDF report", false, true],
+                    ["30-day update guarantee", false, true],
+                    ["Board-ready summary", false, true],
+                  ].map(([feature, free, pro]) => (
+                    <tr key={String(feature)}>
+                      <td>{feature}</td>
+                      <td style={{ textAlign: "center" }}>
+                        {free ? (
+                          <Check className="h-4 w-4" style={{ color: "#16a34a", margin: "0 auto" }} aria-label="Included" />
+                        ) : (
+                          <span style={{ color: "var(--rg-border)" }}>&mdash;</span>
+                        )}
+                      </td>
+                      <td style={{ textAlign: "center" }}>
+                        {pro ? (
+                          <Check className="h-4 w-4" style={{ color: "var(--rg-primary-deep)", margin: "0 auto" }} strokeWidth={2.5} aria-label="Included" />
+                        ) : (
+                          <span style={{ color: "var(--rg-border)" }}>&mdash;</span>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
 
-        <p className="text-xs text-neutral-500 leading-relaxed text-center">
-          Not legal advice. This report is for informational purposes only. Always consult a qualified attorney for compliance decisions.
-        </p>
+          <p style={{ marginTop: 32, fontSize: 12, color: "var(--rg-ink-dim)", textAlign: "center" }}>
+            Not legal advice. This report is for informational purposes only. Always consult a qualified attorney for compliance decisions.
+          </p>
+        </div>
       </div>
     </>
   );

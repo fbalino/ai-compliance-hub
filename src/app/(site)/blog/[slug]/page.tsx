@@ -20,6 +20,216 @@ interface BlogPost {
 }
 
 const POSTS: Record<string, BlogPost> = {
+  "colorado-ai-act-60-day-checklist": {
+    slug: "colorado-ai-act-60-day-checklist",
+    title: "Colorado AI Act 60-Day Compliance Checklist (SB 24-205)",
+    excerpt:
+      "75 days until enforcement. Use this step-by-step checklist to get your business compliant with the Colorado AI Act before the June 30, 2026 deadline.",
+    category: "Compliance Guides",
+    date: "2026-04-16",
+    readTime: "10 min read",
+    tags: ["Colorado AI Act", "Checklist", "June 2026", "SB 205"],
+    relatedRegulations: [
+      { slug: "colorado-ai-act", name: "Colorado AI Act" },
+      { slug: "eu-ai-act", name: "EU AI Act" },
+      { slug: "nyc-local-law-144", name: "NYC Local Law 144" },
+    ],
+    body: `
+The Colorado AI Act (SB 24-205) takes effect **June 30, 2026** — 75 days from now. If your business deploys AI systems that make consequential decisions about Colorado consumers, you have a legal obligation. Penalties reach **$20,000 per violation per consumer**.
+
+This colorado ai act compliance checklist breaks the work into five phases you can execute over the next 75 days. Work through each section in order. Check off each item as you complete it.
+
+---
+
+## What Is the Colorado AI Act (SB 24-205)?
+
+Colorado SB 24-205 — signed by Governor Polis on May 17, 2024 — is the first comprehensive US state AI law to take effect. It requires businesses that deploy **high-risk AI systems** affecting Colorado consumers to use reasonable care to prevent algorithmic discrimination.
+
+The law covers **deployers** (businesses using AI to make decisions) and **developers** (businesses building or selling AI systems). Most compliance obligations fall on deployers.
+
+Enforcement begins June 30, 2026. The Colorado Attorney General has exclusive enforcement authority — there is no private right of action. However, the AG must issue a 60-day cure notice before initiating formal enforcement, so businesses that have made a documented good-faith compliance effort have a meaningful opportunity to correct issues.
+
+---
+
+## Who Must Comply?
+
+### Deployers — You Are Covered If:
+
+You use an AI system that makes, or is a **substantial factor** in making, a consequential decision affecting a Colorado consumer. Consequential decisions include:
+
+- **Employment**: Hiring, promotion, termination, compensation, scheduling
+- **Credit and Lending**: Loan approvals, credit limits, interest rates, lease decisions
+- **Education**: Admissions, financial aid, academic evaluation, credentialing
+- **Healthcare**: Diagnosis, treatment recommendations, medication decisions
+- **Housing**: Rental applications, purchase decisions, pricing
+- **Insurance**: Applications, underwriting, claims decisions, pricing
+- **Legal Services**: Legal representation, referrals, bail, sentencing (if applicable)
+- **Government Services**: Access to essential government benefits or services
+
+You do not need to be headquartered in Colorado. If your AI affects Colorado residents in these domains, you are covered.
+
+### Developers — You Are Covered If:
+
+You build, train, or sell a high-risk AI system to deployers. Your obligations are narrower: primarily documentation and disclosures to deployers.
+
+### Small Business Exemption (Narrow)
+
+The law includes scaled obligations for small businesses, but the thresholds are narrow. Review the exemption carefully with counsel — do not assume you qualify.
+
+---
+
+## The Colorado AI Act 60-Day Compliance Checklist
+
+### Phase 1: Inventory and Scoping (Days 1–10)
+
+☐ Identify every AI system your organization uses that makes or influences decisions about individuals
+
+☐ For each system, determine: does it make consequential decisions (employment, credit, housing, healthcare, education, insurance, legal, or government services)?
+
+☐ Determine whether any affected individuals are Colorado consumers (residents — this is broader than Colorado employees)
+
+☐ Classify each covered system as high-risk or not, and document your reasoning
+
+☐ Build a simple AI inventory spreadsheet: system name, vendor, domain, risk classification, compliance owner
+
+☐ Assign a compliance owner for each high-risk AI system
+
+☐ Brief your legal, HR, engineering, and product teams on the law's requirements
+
+### Phase 2: Documentation and Vendor Due Diligence (Days 5–20)
+
+☐ For each high-risk AI system you use, request the following from your AI vendor in writing:
+- General description of the system's purpose and capabilities
+- Known risks of algorithmic discrimination and how they are mitigated
+- Training data sources and validation methodology
+- How the vendor supports deployer compliance (documentation, audit trail, explanation APIs)
+
+☐ Review your contracts with AI vendors — add representations about AI Act compliance if missing
+
+☐ Confirm whether your vendor has conducted or can provide bias testing results for the system
+
+☐ If a vendor cannot provide adequate documentation, escalate to legal — this is a compliance gap
+
+☐ For internally built AI systems, document the above directly from your engineering and data science teams
+
+### Phase 3: Impact Assessments (Days 10–40)
+
+☐ Complete a written impact assessment for each high-risk AI system. Each assessment must document:
+
+- The intended purpose of the system and its reasonably foreseeable uses
+- Known and reasonably foreseeable risks of **algorithmic discrimination**
+- Categories of training data used and how data quality was ensured
+- How the system was evaluated for discriminatory outcomes (bias testing methodology)
+- What transparency and explainability measures are in place
+- How human oversight is implemented before consequential decisions are final
+- How the organization will monitor for disparate impact in production
+- Any mitigation controls in place to reduce discrimination risk
+
+☐ Have your impact assessment reviewed by legal counsel before the June 30 deadline
+
+☐ Set a calendar reminder to update impact assessments annually and within 90 days of any material system change
+
+### Phase 4: Consumer-Facing Compliance (Days 25–50)
+
+☐ Draft consumer notification language disclosing that a high-risk AI system was used in a consequential decision
+
+☐ Draft plain-language explanation language describing how the AI contributed to the decision
+
+☐ For **adverse decisions** (denial, rejection, unfavorable outcome), prepare language explaining which factors led to the adverse result
+
+☐ Design or document an **opt-out mechanism** for consumers who do not want AI-assisted decisions
+
+☐ Design or document an **appeal or human review process** for consumers who wish to contest AI-influenced decisions
+
+☐ Have consumer-facing notification and explanation templates reviewed by legal before launch
+
+☐ Implement notification delivery in your systems (email, in-app, letter, or other appropriate channel for your use case)
+
+### Phase 5: Governance and Ongoing Program (Days 40–60)
+
+☐ Establish a written **AI risk management policy** that includes:
+- Scope (which AI systems are covered)
+- Principles for responsible AI use
+- Approval process for new AI tools
+- Vendor due diligence requirements
+- Monitoring and incident response procedures
+- Consumer rights and appeal process
+
+☐ Assign executive ownership for the AI compliance program
+
+☐ Set up a quarterly monitoring process for each high-risk system (check for model drift, disparate impact, and output anomalies)
+
+☐ Train relevant employees on the policy and their obligations
+
+☐ Document your compliance program — a written, dated record of your good-faith effort is your most important protection if the AG initiates a review
+
+☐ Consider adopting NIST AI RMF as your governance framework — the Colorado AG has indicated it as a best-practice reference, and compliance with a recognized framework is an affirmative defense under the law
+
+---
+
+## Key Definitions
+
+**High-Risk AI System**: An AI system that makes, or is a substantial factor in making, a consequential decision. The key word is "substantial factor" — a system that significantly influences the decision (even if a human approves it) may still qualify as high-risk.
+
+**Algorithmic Discrimination**: Any condition in which the use of an AI system results in unlawful differential treatment or impact that disfavors an individual based on a protected characteristic including age, color, disability, ethnicity, genetic information, limited English proficiency, national origin, pregnancy, race, religion, sex, veteran status, or other protected class.
+
+**Consequential Decision**: A decision that has a material legal or similarly significant effect on an individual's access to or the terms of a specific set of opportunities or services, including the categories listed above.
+
+**Deployer**: A person doing business in Colorado that deploys a high-risk AI system in a product or service.
+
+**Developer**: A person doing business in Colorado that develops or substantially modifies a high-risk AI system for deployment.
+
+---
+
+## Penalties for Non-Compliance
+
+| Item | Detail |
+|------|--------|
+| Maximum civil penalty | $20,000 per violation |
+| How violations are counted | Per consumer or per transaction — penalties can compound rapidly across large user bases |
+| Enforcement authority | Colorado Attorney General (exclusive — no private right of action) |
+| Cure period | AG must provide 60 days' written notice before initiating enforcement |
+| Good-faith defense | Compliance with a recognized AI risk management framework (e.g., NIST AI RMF) is an affirmative defense |
+
+The cure period means early enforcement will likely target businesses that have made no compliance effort at all, rather than those with documented programs that have minor gaps.
+
+---
+
+## Frequently Asked Questions
+
+### Does this apply to us if we're not in Colorado?
+
+Yes. The law applies based on where your **consumers** are located, not where your business is headquartered. If your AI system makes consequential decisions affecting Colorado residents, you are covered regardless of your business location.
+
+### Our AI vendor says they're compliant — does that cover us?
+
+No. Under the Colorado AI Act, **deployers are responsible for compliance** — not the vendor. You must conduct your own impact assessments and implement consumer notification and opt-out mechanisms. Vendor documentation helps you complete your assessment, but it does not substitute for it.
+
+### What if a human makes the final decision, not the AI?
+
+It depends. If the AI output is a "substantial factor" in the human's decision — for example, a resume screening score that determines which candidates are reviewed — the system is likely still high-risk. If the AI is purely advisory and the human independently reviews all candidates regardless, the analysis is different. Get legal guidance on your specific workflow.
+
+### We're a small business — are we exempt?
+
+Possibly, but the exemption is narrow. Review it carefully with counsel. Do not assume you qualify based on headcount or revenue alone.
+
+---
+
+## How regulome.io Can Help
+
+**Not sure if the Colorado AI Act applies to your business?** Use our free compliance checker — answer four questions, get an instant analysis of which AI laws apply to you and what you need to do.
+
+[Check My Compliance — Free →](/checker)
+
+**Need a full compliance roadmap?** Our Pro Report ($49) gives you a personalized analysis of every AI law applicable to your business, prioritized by deadline and risk level — including the Colorado AI Act, EU AI Act, NYC Local Law 144, and emerging state laws.
+
+[Get Your Pro Report →](/checker/pro-report)
+
+**Need an AI governance consultant or bias auditor?** Browse our directory of verified providers, filterable by jurisdiction and service type.
+
+[Browse the Directory →](/directory)
+    `,
+  },
   "colorado-ai-act-2026-deadline": {
     slug: "colorado-ai-act-2026-deadline",
     title: "Colorado AI Act Takes Effect June 30, 2026 — What You Need to Do Now",
@@ -1186,9 +1396,8 @@ export default async function BlogPostPage({ params }: Props) {
     <>
       <script {...jsonLdScriptProps(breadcrumbs)} />
 
-      {/* Header */}
-      <div className="border-b border-neutral-200 bg-white">
-        <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="rg-page-head">
+        <div className="rg-container" style={{ maxWidth: 780 }}>
           <Breadcrumbs
             items={[
               { label: "Home", href: "/" },
@@ -1196,104 +1405,84 @@ export default async function BlogPostPage({ params }: Props) {
               { label: post.category },
             ]}
           />
-          <div className="mt-4">
-            <div className="flex flex-wrap items-center gap-3 mb-3">
-              <span className="inline-flex rounded-full bg-neutral-100 px-3 py-0.5 text-xs font-medium text-neutral-600">
-                {post.category}
-              </span>
-              <span className="text-xs text-neutral-500">{post.readTime}</span>
-              <time dateTime={post.date} className="text-xs text-neutral-500">
+          <div style={{ marginTop: 16 }}>
+            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 10, marginBottom: 12 }}>
+              <span className="rg-tag">{post.category}</span>
+              <span style={{ fontSize: 12, color: "var(--rg-ink-dim)" }}>{post.readTime}</span>
+              <time dateTime={post.date} style={{ fontSize: 12, color: "var(--rg-ink-dim)" }}>
                 {formatDate(post.date)}
               </time>
             </div>
-            <h1 className="text-2xl font-extrabold tracking-tight text-neutral-900 sm:text-3xl">
-              {post.title}
-            </h1>
-            <p className="mt-3 text-neutral-600 leading-relaxed">{post.excerpt}</p>
+            <h1>{post.title}</h1>
+            <p className="rg-page-desc">{post.excerpt}</p>
           </div>
         </div>
       </div>
 
-      {/* Cover image */}
-      <div className="mx-auto max-w-3xl px-4 pt-8 sm:px-6 lg:px-8">
-        <div className="rounded-xl overflow-hidden bg-gradient-to-br from-brand-800 to-brand-950 aspect-video">
-          <Image
-            src={`/images/blog/${slug}.jpg`}
-            alt={post.title}
-            width={1200}
-            height={675}
-            className="w-full h-full object-cover"
-            priority
+      <div className="rg-page-body">
+        <div className="rg-container" style={{ maxWidth: 780 }}>
+
+          {/* Cover image */}
+          <div style={{ borderRadius: 12, overflow: "hidden", background: "linear-gradient(135deg, var(--rg-primary-deep), var(--rg-primary))", aspectRatio: "16/9", marginBottom: 40 }}>
+            <Image
+              src={`/images/blog/${slug}.jpg`}
+              alt={post.title}
+              width={1200}
+              height={675}
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              priority
+            />
+          </div>
+
+          {/* Article body */}
+          <div
+            className="prose-compliance"
+            dangerouslySetInnerHTML={{ __html: renderMarkdown(post.body) }}
           />
-        </div>
-      </div>
 
-      {/* Body */}
-      <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8">
-        <div
-          className="prose-compliance"
-          dangerouslySetInnerHTML={{ __html: renderMarkdown(post.body) }}
-        />
-
-        {/* Related regulations */}
-        {post.relatedRegulations && post.relatedRegulations.length > 0 && (
-          <div className="mt-10 rounded-xl bg-brand-50 border border-brand-100 p-5">
-            <h3 className="font-bold text-brand-900 mb-3">Related Regulations</h3>
-            <div className="flex flex-wrap gap-3">
-              {post.relatedRegulations.map((reg) => (
-                <Link
-                  key={reg.slug}
-                  href={`/regulations/${reg.slug}`}
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-brand-300 bg-white px-3 py-1.5 text-sm font-medium text-brand-700 hover:bg-brand-50 transition-colors"
-                >
-                  {reg.name} →
-                </Link>
-              ))}
+          {/* Related regulations */}
+          {post.relatedRegulations && post.relatedRegulations.length > 0 && (
+            <div className="rg-cta-banner" style={{ marginTop: 40, flexDirection: "column", alignItems: "stretch" }}>
+              <strong style={{ fontSize: 16 }}>Related Regulations</strong>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 12 }}>
+                {post.relatedRegulations.map((reg) => (
+                  <Link key={reg.slug} href={`/regulations/${reg.slug}`} className="rg-btn rg-btn-outline" style={{ fontSize: 13 }}>
+                    {reg.name} &rarr;
+                  </Link>
+                ))}
+              </div>
             </div>
+          )}
+
+          {/* Tags */}
+          <div style={{ marginTop: 24, display: "flex", flexWrap: "wrap", gap: 6 }}>
+            {post.tags.map((tag) => (
+              <span key={tag} className="rg-tag">{tag}</span>
+            ))}
           </div>
-        )}
 
-        {/* Tags */}
-        <div className="mt-6 flex flex-wrap gap-2">
-          {post.tags.map((tag) => (
-            <span
-              key={tag}
-              className="inline-flex rounded-full bg-neutral-100 px-3 py-0.5 text-xs font-medium text-neutral-600"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
+          {/* CTA */}
+          <div className="rg-scard" style={{ marginTop: 40, textAlign: "center" }}>
+            <p style={{ fontWeight: 600, marginBottom: 4 }}>
+              Not sure which AI laws apply to your business?
+            </p>
+            <p style={{ fontSize: 14, color: "var(--rg-ink-dim)", marginBottom: 16 }}>
+              Use our free compliance checker &mdash; answer 4 questions, get instant results.
+            </p>
+            <Link href="/checker" className="rg-btn rg-btn-primary">Check My Compliance</Link>
+          </div>
 
-        {/* CTA */}
-        <div className="mt-10 rounded-xl border border-neutral-200 bg-neutral-50 p-5 text-center">
-          <p className="font-semibold text-neutral-900 mb-1">
-            Not sure which AI laws apply to your business?
+          {/* Back to blog */}
+          <div style={{ marginTop: 24 }}>
+            <Link href="/blog" style={{ fontSize: 14, fontWeight: 500, color: "var(--rg-ink-dim)" }}>
+              &larr; Back to blog
+            </Link>
+          </div>
+
+          <p style={{ marginTop: 32, fontSize: 12, color: "var(--rg-ink-dim)", lineHeight: 1.6 }}>
+            Not legal advice. This article is for informational purposes only. Always consult a qualified attorney for compliance decisions.
           </p>
-          <p className="text-sm text-neutral-600 mb-4">
-            Use our free compliance checker — answer 4 questions, get instant results.
-          </p>
-          <Link
-            href="/checker"
-            className="inline-flex items-center gap-2 rounded-lg bg-brand-700 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-800 transition-colors"
-          >
-            Check My Compliance
-          </Link>
         </div>
-
-        {/* Back to blog */}
-        <div className="mt-6">
-          <Link
-            href="/blog"
-            className="text-sm font-medium text-neutral-500 hover:text-neutral-900 transition-colors"
-          >
-            ← Back to blog
-          </Link>
-        </div>
-
-        <p className="mt-8 text-xs text-neutral-500 leading-relaxed">
-          Not legal advice. This article is for informational purposes only. Always consult a qualified attorney for compliance decisions.
-        </p>
       </div>
     </>
   );
