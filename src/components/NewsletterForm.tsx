@@ -40,43 +40,73 @@ export function NewsletterForm({ source, variant = "default", className }: Newsl
 
   if (state === "success") {
     return (
-      <p className={`text-sm font-semibold text-green-400 ${className ?? ""}`}>
+      <p
+        className={className}
+        style={{
+          fontSize: 13.5,
+          fontWeight: 600,
+          color: "var(--rg-green)",
+          padding: "10px 0",
+        }}
+      >
         You&apos;re subscribed! Check your inbox.
       </p>
     );
   }
 
+  if (isHero) {
+    return (
+      <form onSubmit={handleSubmit} className={className}>
+        <div className="flex flex-col sm:flex-row gap-3">
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            placeholder="you@company.com"
+            className="flex-1 rounded-xl border border-white/25 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-white/40"
+            aria-label="Your email address"
+            disabled={state === "submitting"}
+          />
+          <button
+            type="submit"
+            disabled={state === "submitting"}
+            className="rg-btn rg-btn-on-dark rg-btn-lg"
+          >
+            {state === "submitting" ? "Subscribing\u2026" : "Subscribe Free"}
+          </button>
+        </div>
+        {state === "error" && (
+          <p className="mt-2 text-xs" style={{ color: "#fca5a5" }}>
+            Something went wrong. Please try again.
+          </p>
+        )}
+      </form>
+    );
+  }
+
   return (
     <form onSubmit={handleSubmit} className={className}>
-      <div className={`flex flex-col sm:flex-row ${isHero ? "gap-3" : "gap-2"}`}>
+      <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
         <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
           placeholder="you@company.com"
-          className={
-            isHero
-              ? "flex-1 rounded-xl border border-brand-700 bg-brand-800/60 px-4 py-3 text-sm text-white placeholder:text-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400"
-              : "flex-1 rounded-lg border border-brand-700 bg-brand-800 px-4 py-2.5 text-sm text-white placeholder:text-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400"
-          }
+          className="rg-input"
+          style={{ flex: "1 1 200px" }}
           aria-label="Your email address"
           disabled={state === "submitting"}
         />
-        <button
-          type="submit"
-          disabled={state === "submitting"}
-          className={
-            isHero
-              ? "shrink-0 rounded-xl bg-white px-6 py-3 text-sm font-bold text-brand-900 hover:bg-brand-50 transition-colors shadow-sm disabled:opacity-60"
-              : "shrink-0 rounded-lg bg-white px-4 py-2.5 text-sm font-semibold text-brand-900 hover:bg-brand-50 transition-colors disabled:opacity-60"
-          }
-        >
-          {state === "submitting" ? "Subscribing\u2026" : isHero ? "Subscribe Free" : "Subscribe"}
+        <button type="submit" disabled={state === "submitting"} className="rg-btn rg-btn-primary">
+          {state === "submitting" ? "Subscribing\u2026" : "Subscribe"} <span className="rg-arrow">→</span>
         </button>
       </div>
       {state === "error" && (
-        <p className="mt-2 text-xs text-red-400">Something went wrong. Please try again.</p>
+        <p style={{ marginTop: 8, fontSize: 12, color: "var(--rg-red)" }}>
+          Something went wrong. Please try again.
+        </p>
       )}
     </form>
   );

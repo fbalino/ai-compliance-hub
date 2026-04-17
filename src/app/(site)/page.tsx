@@ -1,23 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  ArrowRight,
-  Microscope,
-  Building2,
-  Scale,
-  Monitor,
-  BookOpen,
-  Globe,
-  Zap,
-  Users,
-  TrendingUp,
-  CheckCircle,
-  Shield,
-  ChevronRight,
-  Activity,
-} from "lucide-react";
-import type { LucideIcon } from "lucide-react";
-import { Badge } from "@/components/ui/Badge";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import { NewsletterForm } from "@/components/NewsletterForm";
 
@@ -25,356 +7,651 @@ import { NewsletterForm } from "@/components/NewsletterForm";
 export const revalidate = 21600;
 
 export const metadata: Metadata = {
-  title: "regulome.io — Regulatory Intelligence for AI Compliance",
+  title: "regulome.io — The directory of AI regulations",
   description:
-    "Map your AI products to applicable laws worldwide. Track regulations, use our free compliance checker, and find verified providers. EU AI Act, US state laws, and more.",
+    "Browse every AI law that applies to your business — current, upcoming, and in draft — and connect with vetted compliance providers.",
 };
 
-const FEATURED_REGULATIONS = [
-  {
-    slug: "colorado-ai-act",
-    name: "Colorado AI Act",
-    jurisdiction: "US · Colorado",
-    status: "enacted" as const,
-    effectiveDate: "June 30, 2026",
-    summary:
-      "Requires deployers of high-risk AI systems to use reasonable care to protect consumers from known risks of algorithmic discrimination.",
-  },
+// ── Preview card rows ──────────────────────────────────
+const PREVIEW_ROWS: {
+  jur: string;
+  name: string;
+  sub: string;
+  status: "applies" | "action" | "clear" | "watch";
+  label: string;
+}[] = [
+  { jur: "EU", name: "EU AI Act", sub: "transparency · Article 52", status: "applies", label: "Applies" },
+  { jur: "CO", name: "Colorado AI Act", sub: "effective 30 Jun 2026", status: "action", label: "Action needed" },
+  { jur: "NY", name: "NYC Local Law 144", sub: "automated hiring tools", status: "applies", label: "Applies" },
+  { jur: "CA", name: "California SB 1047", sub: "frontier-model safety — vetoed", status: "clear", label: "Does not apply" },
+  { jur: "UK", name: "UK AI Bill", sub: "principles framework · in draft", status: "watch", label: "Watch" },
+];
+
+// ── Featured regulations ──────────────────────────────
+type Status = "applies" | "action" | "clear" | "watch";
+type Tint = "blue" | "green" | "amber" | "slate" | "teal" | "rose" | "plum";
+
+const REGS: {
+  slug: string;
+  sigil: string;
+  name: string;
+  meta: string;
+  status: Status;
+  statusLabel: string;
+  who: string;
+  footLeft: React.ReactNode;
+  feature?: boolean;
+  tint: Tint;
+}[] = [
   {
     slug: "eu-ai-act",
+    sigil: "EU",
     name: "EU AI Act",
-    jurisdiction: "European Union",
-    status: "enforced" as const,
-    effectiveDate: "August 2026",
-    summary:
-      "A comprehensive risk-based framework governing AI systems in the EU, with strict requirements for high-risk applications and outright bans on unacceptable-risk AI.",
+    meta: "EU-001 · Reg. 2024/1689",
+    status: "applies",
+    statusLabel: "In force",
+    who: "any company offering AI products or services in the EU, or whose AI output is used in the EU — regardless of where the company is based.",
+    footLeft: <>27 member states · <strong>GPAI effective Aug 2026</strong></>,
+    feature: true,
+    tint: "blue",
+  },
+  {
+    slug: "colorado-ai-act",
+    sigil: "CO",
+    name: "Colorado AI Act",
+    meta: "US-CO-014 · SB 24-205",
+    status: "action",
+    statusLabel: "In 75 days",
+    who: "companies deploying high-risk AI affecting Colorado consumers in employment, lending, insurance, housing, education, or healthcare.",
+    footLeft: <>Effective <strong>30 Jun 2026</strong></>,
+    tint: "green",
   },
   {
     slug: "nyc-local-law-144",
+    sigil: "NY",
     name: "NYC Local Law 144",
-    jurisdiction: "US · New York City",
-    status: "enforced" as const,
-    effectiveDate: "July 5, 2023",
-    summary:
-      "Requires employers using AI in hiring or promotion decisions affecting NYC employees to conduct annual bias audits and post results publicly.",
+    meta: "US-NY-007 · LL 144",
+    status: "applies",
+    statusLabel: "Enforcing",
+    who: "employers using automated tools to screen, rank, or decide on candidates for jobs or promotions in New York City.",
+    footLeft: <>Enforcing since <strong>Jul 2023</strong></>,
+    tint: "amber",
   },
   {
     slug: "virginia-hb-2094",
+    sigil: "VA",
     name: "Virginia HB 2094",
-    jurisdiction: "US · Virginia",
-    status: "enacted" as const,
-    effectiveDate: "July 1, 2026",
-    summary:
-      "Requires businesses using high-risk automated decision systems affecting Virginia residents to conduct impact assessments and provide opt-out rights.",
+    meta: "US-VA-011 · HB 2094",
+    status: "action",
+    statusLabel: "Incoming",
+    who: "businesses using high-risk automated decision systems affecting Virginia residents — impact assessments and opt-out rights required.",
+    footLeft: <>Effective <strong>1 Jul 2026</strong></>,
+    tint: "slate",
+  },
+  {
+    slug: "utah-ai-policy-act",
+    sigil: "UT",
+    name: "Utah AI Policy Act",
+    meta: "US-UT-009 · SB 149",
+    status: "applies",
+    statusLabel: "Enforcing",
+    who: "businesses using generative AI in interactions with Utah consumers — especially in regulated occupations like healthcare, law, and finance.",
+    footLeft: <>Amendments <strong>Q3 2026</strong></>,
+    tint: "teal",
+  },
+  {
+    slug: "california-ab-2013",
+    sigil: "CA",
+    name: "California AB 2013",
+    meta: "US-CA-019 · AB 2013",
+    status: "action",
+    statusLabel: "In 260 days",
+    who: "developers of generative AI models released or substantially modified for use in California on or after Jan 1, 2022.",
+    footLeft: <>Effective <strong>Jan 2027</strong></>,
+    tint: "rose",
+  },
+  {
+    slug: "uk-ai-bill",
+    sigil: "UK",
+    name: "UK AI Regulation Bill",
+    meta: "UK-023 · AI Bill",
+    status: "watch",
+    statusLabel: "In draft",
+    who: "any company offering AI products in the UK — obligations flow through existing regulators (ICO, FCA, MHRA, CMA) by sector.",
+    footLeft: <>Consultation <strong>open</strong></>,
+    tint: "plum",
   },
 ];
 
-const STATS = [
-  { value: "7", label: "Regulations tracked" },
-  { value: "30+", label: "Verified providers" },
-  { value: "Free", label: "Compliance checker" },
-  { value: "48h", label: "Avg. publish time" },
+// ── Featured providers ────────────────────────────────
+const PROVIDERS = [
+  {
+    id: "PRV-001",
+    slug: "babl-ai",
+    type: "Bias auditor · US",
+    logo: "Ba",
+    name: "BABL AI",
+    loc: "Iowa City · Remote",
+    body: "NYC Local Law 144 bias audits and AI impact assessments for HR tech, financial services, and public-sector deployments.",
+    tags: ["NYC LL 144", "CO AI Act", "NIST AI RMF"],
+  },
+  {
+    id: "PRV-008",
+    slug: "credo-ai",
+    type: "Platform · US + EU",
+    logo: "Cr",
+    name: "Credo AI",
+    loc: "San Francisco · Berlin",
+    body: "Governance platform for AI policy enforcement, risk assessment, and compliance reporting across mid-market and enterprise AI teams.",
+    tags: ["EU AI Act", "GDPR", "ISO 42001"],
+  },
+  {
+    id: "PRV-014",
+    slug: "luminos-law",
+    type: "Law firm · US",
+    logo: "Ll",
+    name: "Luminos.Law",
+    loc: "New York · Washington DC",
+    body: "Full-service AI law firm covering Colorado AI Act, NYC LL 144, and federal enforcement. Pragmatic memos for product and policy teams.",
+    tags: ["Multi-jurisdictional", "CO AI Act", "SOC 2"],
+  },
+  {
+    id: "PRV-019",
+    slug: "orcaa",
+    type: "Auditor · US",
+    logo: "Or",
+    name: "ORCAA",
+    loc: "New York",
+    body: "Independent algorithmic bias and governance audits under NYC LL 144 and high-risk-system reviews for Colorado deployers.",
+    tags: ["NYC LL 144", "CO AI Act", "NIST AI RMF"],
+  },
+  {
+    id: "PRV-025",
+    slug: "holistic-ai",
+    type: "Platform · UK",
+    logo: "Ha",
+    name: "Holistic AI",
+    loc: "London · New York",
+    body: "AI risk management suite with automated testing for bias, robustness, privacy, and explainability — trusted by Fortune 500 deployers.",
+    tags: ["EU AI Act", "NYC LL 144", "ISO 42001"],
+  },
+  {
+    id: "PRV-031",
+    slug: "trustible",
+    type: "Fractional CCO",
+    logo: "Tr",
+    name: "Trustible",
+    loc: "Virginia · Remote",
+    body: "Embedded AI governance for Series A–C AI companies. Build programs, draft policies, handle the regulator call so founders don't have to.",
+    tags: ["Multi-jurisdictional", "VA HB 2094", "NIST AI RMF"],
+  },
 ];
 
-const FEATURES: { icon: LucideIcon; title: string; body: string }[] = [
-  {
-    icon: Globe,
-    title: "Every AI regulation, tracked",
-    body: "EU AI Act, US state laws, UK and Canada frameworks — continuously updated as regulations evolve.",
-  },
-  {
-    icon: Zap,
-    title: "Know your exposure in minutes",
-    body: "Answer 4 questions about your product and org. Get a precise map of which laws apply and what they require.",
-  },
-  {
-    icon: Users,
-    title: "Verified compliance experts",
-    body: "A vetted network of auditors, legal counsel, and software platforms matched to your regulatory situation.",
-  },
-  {
-    icon: TrendingUp,
-    title: "Stay ahead of enforcement",
-    body: "Deadline tracking, enforcement alerts, and weekly regulatory intelligence delivered to your inbox.",
-  },
-  {
-    icon: Scale,
-    title: "Side-by-side comparisons",
-    body: "Compare requirements across jurisdictions to understand where you have overlapping obligations.",
-  },
-  {
-    icon: BookOpen,
-    title: "Plain-English explanations",
-    body: "Every regulation broken down into clear obligations — no legal degree required to understand your duties.",
-  },
-];
-
-const PROVIDER_CATEGORIES: { slug: string; label: string; icon: LucideIcon; count: number }[] = [
-  { slug: "bias-audit", label: "Bias Auditors", icon: Microscope, count: 6 },
-  { slug: "governance-consulting", label: "Governance Consulting", icon: Building2, count: 6 },
-  { slug: "legal", label: "Legal & Compliance", icon: Scale, count: 6 },
-  { slug: "compliance-software", label: "Compliance Software", icon: Monitor, count: 7 },
-  { slug: "training", label: "Training & Education", icon: BookOpen, count: 6 },
-];
-
-const WHY_POINTS = [
-  "Always current — updated within 48h of any regulatory change",
-  "Plain-English breakdowns of complex legal text",
-  "Free compliance checker — no account, no credit card",
-  "Vetted provider directory — every listing manually reviewed",
-  "Covers 7+ jurisdictions from EU to US state laws",
-  "Built for product and compliance teams, not just lawyers",
-];
+function StatusPill({ status, label }: { status: Status; label: string }) {
+  const cls =
+    status === "applies"
+      ? "rg-pill-applies"
+      : status === "action"
+      ? "rg-pill-action"
+      : status === "clear"
+      ? "rg-pill-clear"
+      : "rg-pill-watch";
+  return <span className={`rg-pill-status ${cls}`}>{label}</span>;
+}
 
 export default function HomePage() {
-  const breadcrumbs = breadcrumbListSchema([
-    { name: "Home", url: "/" },
-  ]);
+  const breadcrumbs = breadcrumbListSchema([{ name: "Home", url: "/" }]);
 
   return (
     <>
       <script {...jsonLdScriptProps(breadcrumbs)} />
 
-      {/* ── Hero ── */}
-      <section className="bg-white px-4 pt-16 pb-14 sm:pt-20 sm:pb-16 text-center border-b border-neutral-100">
-        <div className="mx-auto max-w-3xl">
-          {/* Announcement pill */}
-          <div className="mb-6 inline-flex items-center gap-1.5 rounded-full bg-brand-50 border border-brand-200 px-4 py-1.5 text-xs font-semibold text-brand-700">
-            <Activity className="h-3 w-3" aria-hidden="true" />
-            Colorado AI Act effective June 30, 2026
-            <ChevronRight className="h-3 w-3" aria-hidden="true" />
-          </div>
-
-          {/* Headline */}
-          <h1 className="text-4xl font-black tracking-tight text-neutral-900 sm:text-5xl md:text-6xl leading-[1.05]">
-            Regulatory intelligence
-            <br />
-            <span className="text-brand-600">for your AI stack.</span>
-          </h1>
-
-          <p className="mx-auto mt-5 max-w-xl text-lg text-neutral-600 leading-relaxed">
-            Map your AI products to applicable laws worldwide. Know exactly which regulations apply, what they require, and who can help you comply.
-          </p>
-
-          <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-            <Link
-              href="/checker"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-3.5 text-sm font-bold text-white shadow-md hover:bg-brand-700 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
-            >
-              Check my compliance
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-            <Link
-              href="/regulations"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-neutral-200 bg-white px-6 py-3.5 text-sm font-semibold text-neutral-700 hover:bg-neutral-50 transition-colors"
-            >
-              Browse regulations
-            </Link>
-          </div>
-
-          <p className="mt-4 text-xs text-neutral-400">
-            Free · No account required · Instant results
-          </p>
-        </div>
-
-        {/* Stats bar */}
-        <div className="mx-auto mt-14 max-w-2xl grid grid-cols-2 sm:grid-cols-4 divide-x divide-y sm:divide-y-0 divide-neutral-200 rounded-xl border border-neutral-200 overflow-hidden">
-          {STATS.map((stat) => (
-            <div key={stat.label} className="bg-white px-4 py-5 text-center">
-              <div className="text-2xl font-extrabold text-neutral-900 tracking-tight">{stat.value}</div>
-              <div className="mt-0.5 text-xs text-neutral-500">{stat.label}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── Features ── */}
-      <section className="bg-neutral-50 px-4 py-16 sm:py-20 border-b border-neutral-200">
-        <div className="mx-auto max-w-6xl">
-          <div className="text-center mb-12">
-            <p className="text-xs font-bold uppercase tracking-widest text-brand-600 mb-2">Platform</p>
-            <h2 className="text-3xl font-extrabold tracking-tight text-neutral-900">
-              Everything you need to stay compliant
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {FEATURES.map((f) => (
-              <div key={f.title} className="rounded-xl border border-neutral-200 bg-white p-6">
-                <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-lg bg-brand-50">
-                  <f.icon className="h-5 w-5 text-brand-600" aria-hidden="true" />
-                </div>
-                <h3 className="text-sm font-bold text-neutral-900 mb-1">{f.title}</h3>
-                <p className="text-sm text-neutral-500 leading-relaxed">{f.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Featured Regulations ── */}
-      <section className="bg-white px-4 py-16 sm:py-20 border-b border-neutral-100">
-        <div className="mx-auto max-w-4xl">
-          <div className="flex items-end justify-between mb-8">
+      {/* ── HERO ── */}
+      <section
+        style={{
+          padding: "72px 0 88px",
+          position: "relative",
+          overflow: "hidden",
+          borderBottom: "1px solid var(--rg-border)",
+          background:
+            "radial-gradient(ellipse 900px 600px at 85% 20%, rgba(37,99,235,0.06) 0%, transparent 60%), radial-gradient(ellipse 700px 500px at 10% 90%, rgba(14,165,233,0.05) 0%, transparent 60%), var(--rg-page)",
+        }}
+      >
+        <div
+          aria-hidden
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage:
+              "linear-gradient(var(--rg-border-soft) 1px, transparent 1px), linear-gradient(90deg, var(--rg-border-soft) 1px, transparent 1px)",
+            backgroundSize: "44px 44px",
+            opacity: 0.4,
+            maskImage:
+              "radial-gradient(ellipse at 70% 40%, rgba(0,0,0,0.7) 0%, transparent 70%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse at 70% 40%, rgba(0,0,0,0.7) 0%, transparent 70%)",
+            pointerEvents: "none",
+          }}
+        />
+        <div className="rg-container">
+          <div
+            className="hero-grid"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1.02fr 0.98fr",
+              gap: 72,
+              alignItems: "center",
+              position: "relative",
+              zIndex: 2,
+            }}
+          >
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-brand-600 mb-1.5">
-                Regulation Tracker
+              <div className="rg-eyebrow rg-rise" style={{ marginBottom: 26 }}>
+                <span className="rg-eyebrow-pill">New</span>
+                14 regulations · 38 vetted providers
+              </div>
+              <h1 className="rg-display rg-rise rg-d1" style={{ marginBottom: 24 }}>
+                The directory of <span className="rg-blue">AI regulations</span> and the experts who know them.
+              </h1>
+              <p className="rg-lead rg-rise rg-d2" style={{ maxWidth: 520, marginBottom: 32 }}>
+                Browse every AI law that applies to your business — current, upcoming, and in draft — and connect with{" "}
+                <strong style={{ color: "var(--rg-ink)", fontWeight: 600 }}>vetted compliance providers</strong> in a few clicks.
               </p>
-              <h2 className="text-2xl font-extrabold tracking-tight text-neutral-900">
-                Key regulations right now
-              </h2>
-            </div>
-            <Link
-              href="/regulations"
-              className="inline-flex items-center gap-1 text-sm font-semibold text-brand-600 hover:text-brand-800 transition-colors"
-            >
-              View all <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-            </Link>
-          </div>
-
-          <div className="rounded-xl border border-neutral-200 overflow-hidden divide-y divide-neutral-100">
-            {FEATURED_REGULATIONS.map((reg) => (
-              <Link
-                key={reg.slug}
-                href={`/regulations/${reg.slug}`}
-                className="flex items-start gap-4 px-6 py-5 bg-white hover:bg-neutral-50 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-600"
+              <div
+                className="rg-rise rg-d3"
+                style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}
               >
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2.5 mb-1.5">
-                    <span className="text-sm font-bold text-neutral-900">{reg.name}</span>
-                    <Badge variant={reg.status}>
-                      {reg.status.charAt(0).toUpperCase() + reg.status.slice(1)}
-                    </Badge>
+                <Link href="/regulations" className="rg-btn rg-btn-primary rg-btn-lg">
+                  Browse regulations <span className="rg-arrow">→</span>
+                </Link>
+                <Link href="/directory" className="rg-btn rg-btn-outline rg-btn-lg">
+                  Find a provider
+                </Link>
+              </div>
+            </div>
+
+            {/* Preview card */}
+            <div className="rg-drift rg-d4" style={{ position: "relative" }}>
+              <div
+                style={{
+                  background: "var(--rg-card)",
+                  border: "1px solid var(--rg-border)",
+                  borderRadius: 14,
+                  padding: "22px 22px 18px",
+                  boxShadow:
+                    "0 1px 0 rgba(12,22,40,0.02), 0 2px 4px rgba(12,22,40,0.04), 0 12px 32px -8px rgba(12,22,40,0.08), 0 40px 80px -20px rgba(12,22,40,0.12)",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "flex-start",
+                    paddingBottom: 16,
+                    borderBottom: "1px solid var(--rg-hair)",
+                    marginBottom: 8,
+                  }}
+                >
+                  <div>
+                    <div
+                      style={{
+                        fontSize: 17,
+                        fontWeight: 700,
+                        color: "var(--rg-ink)",
+                        letterSpacing: "-0.4px",
+                        lineHeight: 1.25,
+                        marginBottom: 4,
+                      }}
+                    >
+                      Mid-market SaaS — US &amp; EU
+                    </div>
+                    <div style={{ fontSize: 12.5, color: "var(--rg-ink-dim)", fontWeight: 500 }}>
+                      ~180 employees · classification &amp; retrieval AI
+                    </div>
                   </div>
-                  <p className="text-sm text-neutral-500 leading-relaxed">{reg.summary}</p>
+                  <span
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: 10.5,
+                      fontWeight: 500,
+                      letterSpacing: 0.2,
+                      color: "var(--rg-ink-dim)",
+                      padding: "4px 8px",
+                      background: "var(--rg-card-soft)",
+                      border: "1px solid var(--rg-border)",
+                      borderRadius: 6,
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    preview
+                  </span>
                 </div>
-                <div className="text-right shrink-0">
-                  <div className="text-xs text-neutral-400 mb-1">{reg.jurisdiction}</div>
-                  <div className="text-xs font-semibold text-neutral-700">{reg.effectiveDate}</div>
+
+                {PREVIEW_ROWS.map((row, i) => (
+                  <div
+                    key={row.name}
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "40px 1fr auto",
+                      gap: 14,
+                      padding: "14px 0",
+                      borderBottom: i === PREVIEW_ROWS.length - 1 ? "none" : "1px solid var(--rg-hair)",
+                      paddingBottom: i === PREVIEW_ROWS.length - 1 ? 16 : 14,
+                      alignItems: "center",
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: 11,
+                        fontWeight: 600,
+                        color: "var(--rg-ink-dim)",
+                        letterSpacing: 0.2,
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      {row.jur}
+                    </span>
+                    <div
+                      style={{
+                        fontSize: 14.5,
+                        fontWeight: 600,
+                        color: "var(--rg-ink)",
+                        letterSpacing: "-0.2px",
+                        lineHeight: 1.3,
+                      }}
+                    >
+                      {row.name}
+                      <small
+                        style={{
+                          display: "block",
+                          fontSize: 12.5,
+                          fontWeight: 400,
+                          color: "var(--rg-ink-dim)",
+                          letterSpacing: "-0.05px",
+                          marginTop: 2,
+                        }}
+                      >
+                        {row.sub}
+                      </small>
+                    </div>
+                    <StatusPill status={row.status} label={row.label} />
+                  </div>
+                ))}
+
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    paddingTop: 14,
+                    marginTop: 6,
+                    borderTop: "1px solid var(--rg-hair)",
+                    fontSize: 12.5,
+                    color: "var(--rg-ink-dim)",
+                    fontWeight: 500,
+                  }}
+                >
+                  <span>12 matched providers</span>
+                  <Link
+                    href="/directory"
+                    style={{
+                      color: "var(--rg-primary)",
+                      textDecoration: "none",
+                      fontWeight: 600,
+                    }}
+                  >
+                    Browse all →
+                  </Link>
+                </div>
+              </div>
+
+              {/* Floating number badges */}
+              <div
+                className="preview-badges"
+                style={{
+                  position: "absolute",
+                  bottom: -24,
+                  left: 40,
+                  right: 40,
+                  display: "flex",
+                  justifyContent: "space-around",
+                  gap: 10,
+                  padding: "14px 20px",
+                  background: "var(--rg-card)",
+                  border: "1px solid var(--rg-border)",
+                  borderRadius: 10,
+                  boxShadow: "0 8px 20px -6px rgba(12,22,40,0.12)",
+                }}
+              >
+                {[
+                  { n: "14", l: "Regulations" },
+                  { n: "14", l: "Jurisdictions" },
+                  { n: "38", l: "Providers" },
+                  { n: "48h", l: "Refresh" },
+                ].map((b) => (
+                  <div key={b.l} style={{ textAlign: "center" }}>
+                    <div
+                      style={{
+                        fontWeight: 700,
+                        fontSize: 18,
+                        letterSpacing: "-0.5px",
+                        color: "var(--rg-ink)",
+                        lineHeight: 1,
+                      }}
+                    >
+                      {b.n}
+                    </div>
+                    <div
+                      style={{
+                        fontSize: 11,
+                        fontWeight: 500,
+                        color: "var(--rg-ink-dim)",
+                        marginTop: 4,
+                      }}
+                    >
+                      {b.l}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── REGULATIONS GRID ── */}
+      <section className="rg-section" id="regs" style={{ paddingTop: 120 }}>
+        <div className="rg-container">
+          <header className="rg-section-head">
+            <div>
+              <div className="rg-kicker">Regulations</div>
+              <h2 className="rg-h1">
+                Every AI law that matters,<br />
+                <span className="rg-blue">in one place.</span>
+              </h2>
+            </div>
+            <p className="rg-section-lead">
+              Filter by jurisdiction, deadline, or risk tier. Every summary is written in plain English and{" "}
+              <strong>reviewed by a lawyer licensed in that jurisdiction.</strong>
+            </p>
+          </header>
+
+          <div className="rg-reg-grid">
+            {REGS.map((r) => (
+              <Link
+                key={r.slug}
+                href={`/regulations/${r.slug}`}
+                className={`rg-reg ${r.feature ? "rg-reg-feature" : ""} rg-t-${r.tint}`}
+              >
+                <div className="rg-plate">
+                  <div className="rg-plate-corners">
+                    <span className="tl" /><span className="tr" /><span className="bl" /><span className="br" />
+                  </div>
+                  <span className="rg-plate-glyph">{r.sigil}</span>
+                </div>
+                <div className="rg-reg-body">
+                  <div className="rg-reg-meta">
+                    <span>{r.meta}</span>
+                    <StatusPill status={r.status} label={r.statusLabel} />
+                  </div>
+                  <h3>{r.name}</h3>
+                  <p className="rg-reg-who">
+                    <strong>Who it covers:</strong> {r.who}
+                  </p>
+                  <div className="rg-reg-foot">
+                    <span>{r.footLeft}</span>
+                    <span className="rg-reg-open">
+                      Open <span aria-hidden>→</span>
+                    </span>
+                  </div>
                 </div>
               </Link>
             ))}
           </div>
+
+          <div className="rg-section-end">
+            <Link href="/regulations" className="rg-btn rg-btn-outline rg-btn-lg">
+              See all 14 regulations <span className="rg-arrow">→</span>
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* ── Compliance Checker CTA ── */}
-      <section className="bg-brand-600 px-4 py-16 sm:py-20">
-        <div className="mx-auto max-w-2xl text-center">
-          <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-white/15">
-            <Shield className="h-6 w-6 text-white" aria-hidden="true" />
-          </div>
-          <h2 className="text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
-            Find out which AI laws apply to your business
-          </h2>
-          <p className="mt-3 text-brand-100 leading-relaxed">
-            Answer 4 questions about your organization and AI systems. Get an instant map of the regulations that apply and exactly what you need to do.
-          </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-            <Link
-              href="/checker"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-bold text-brand-600 hover:bg-brand-50 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
-            >
-              Start free compliance check
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-            <Link
-              href="/checker/pro-report"
-              className="inline-flex items-center justify-center rounded-xl border border-white/30 bg-white/15 px-6 py-3.5 text-sm font-semibold text-white hover:bg-white/20 transition-colors"
-            >
-              Pro Report — $49
-            </Link>
-          </div>
-          <p className="mt-4 text-xs text-brand-200">Not legal advice. For informational purposes only.</p>
-        </div>
-      </section>
-
-      {/* ── Provider Directory CTA ── */}
-      <section className="bg-white px-4 py-16 sm:py-20 border-b border-neutral-100">
-        <div className="mx-auto max-w-6xl">
-          <div className="flex items-end justify-between mb-8">
+      {/* ── PROVIDERS GRID ── */}
+      <section className="rg-section" id="providers" style={{ paddingTop: 40 }}>
+        <div className="rg-container">
+          <header className="rg-section-head">
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-brand-600 mb-1.5">
-                Provider Directory
-              </p>
-              <h2 className="text-2xl font-extrabold tracking-tight text-neutral-900">
-                Find compliance experts
+              <div className="rg-kicker">Providers</div>
+              <h2 className="rg-h1">
+                The people who actually<br />
+                <span className="rg-blue">do the work.</span>
               </h2>
-              <p className="mt-1.5 text-neutral-500 max-w-xl text-sm">
-                Auditors, consultants, lawyers, and software platforms vetted for AI compliance expertise.
+            </div>
+            <p className="rg-section-lead">
+              Law firms, auditors, and fractional compliance officers — searchable by regulation.{" "}
+              <strong>Every listing is vetted, none are paid placements.</strong>
+            </p>
+          </header>
+
+          <div className="rg-prov-grid">
+            {PROVIDERS.map((p) => (
+              <Link key={p.slug} href={`/directory/providers/${p.slug}`} className="rg-prov">
+                <div className="rg-prov-label">
+                  <span>{p.id}</span>
+                  <span className="rg-prov-type">{p.type}</span>
+                </div>
+                <div className="rg-prov-head">
+                  <div className="rg-prov-logo">{p.logo}</div>
+                  <div>
+                    <h3>{p.name}</h3>
+                    <div className="rg-prov-loc">{p.loc}</div>
+                  </div>
+                </div>
+                <p>{p.body}</p>
+                <div className="rg-prov-tags">
+                  {p.tags.map((t, i) => (
+                    <span key={t} className={`rg-tag${i === 0 ? " rg-tag-primary" : ""}`}>
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <div className="rg-section-end">
+            <Link href="/directory" className="rg-btn rg-btn-outline rg-btn-lg">
+              Browse all 38 providers <span className="rg-arrow">→</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── FOR PROVIDERS (dark callout) ── */}
+      <section className="rg-join">
+        <div className="rg-container">
+          <div className="rg-join-card">
+            <div>
+              <div className="rg-join-label">For compliance providers</div>
+              <h2>Get in front of buyers who are already searching.</h2>
+              <p>
+                Regulome routes <strong>14,000+ founders, general counsel, and heads of policy</strong>{" "}
+                every month toward the regulations they need help with — listed by what you actually do,
+                not who paid the most.
+              </p>
+              <div className="rg-join-ctas">
+                <Link href="/directory" className="rg-btn rg-btn-on-dark rg-btn-lg">
+                  Apply to be listed <span className="rg-arrow">→</span>
+                </Link>
+                <Link href="/directory" className="rg-btn rg-btn-dark-ghost rg-btn-lg">
+                  See what we require
+                </Link>
+              </div>
+            </div>
+            <div className="rg-join-plan">
+              <div className="rg-join-plan-head">
+                <span className="rg-jp-title">Verified listing</span>
+                <span className="rg-jp-tier">Standard</span>
+              </div>
+              <div className="rg-join-plan-body">
+                <div className="rg-jp-row"><span>Status</span><strong>Vetted · active</strong></div>
+                <div className="rg-jp-row"><span>Regulations you can tag</span><strong>Up to 6</strong></div>
+                <div className="rg-jp-row"><span>Monthly readers</span><strong>14k+ qualified</strong></div>
+                <div className="rg-jp-row"><span>Warm introductions</span><strong>Unlimited</strong></div>
+                <div className="rg-jp-row"><span>Annual fee</span><strong>$2,400<em>/ yr</em></strong></div>
+                <div className="rg-jp-row"><span>Trial</span><strong>30 days free</strong></div>
+              </div>
+              <div className="rg-jp-foot">
+                <strong>No-lead guarantee:</strong> if the trial doesn&apos;t produce a single qualified introduction,
+                we remove the listing and cancel the invoice.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── NEWSLETTER ── */}
+      <section className="rg-sub-wrap" id="newsletter">
+        <div className="rg-container">
+          <div className="rg-sub-grid">
+            <div>
+              <div className="rg-kicker">Weekly newsletter</div>
+              <h2>
+                One short email on <span className="rg-blue">what changed.</span>
+              </h2>
+              <p>
+                Every Thursday: <strong>what regulators published this week, who it affects, and what to do about it.</strong>{" "}
+                No marketing, no digest filler, one-click unsubscribe.
+              </p>
+              <div className="rg-sub-meta">
+                <div><strong><em>14,203</em></strong>Subscribers</div>
+                <div><strong><em>61%</em></strong>Open rate</div>
+                <div><strong><em>78</em></strong>Issues sent</div>
+              </div>
+            </div>
+            <div className="rg-sub-form">
+              <div className="rg-fl">
+                <label>Your work email</label>
+                <span className="rg-req">required</span>
+              </div>
+              <NewsletterForm source="homepage" />
+              <p
+                style={{
+                  marginTop: 14,
+                  paddingTop: 14,
+                  borderTop: "1px solid var(--rg-hair)",
+                  fontSize: 12,
+                  color: "var(--rg-ink-dim)",
+                  lineHeight: 1.45,
+                  letterSpacing: "-0.05px",
+                }}
+              >
+                We&apos;ll never share your address, and every email has a one-click unsubscribe.
               </p>
             </div>
-            <Link
-              href="/directory"
-              className="hidden sm:inline-flex items-center gap-1 text-sm font-semibold text-brand-600 hover:text-brand-800 transition-colors"
-            >
-              Browse all <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-            </Link>
           </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-            {PROVIDER_CATEGORIES.map((cat) => (
-              <Link
-                key={cat.slug}
-                href={`/directory/categories/${cat.slug}`}
-                className="group flex flex-col items-center rounded-xl border border-neutral-200 bg-white p-5 text-center hover:border-brand-300 hover:shadow-sm transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-600"
-              >
-                <span className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-brand-50 text-brand-600 group-hover:bg-brand-100 transition-colors">
-                  <cat.icon className="h-5 w-5" aria-hidden="true" />
-                </span>
-                <span className="text-sm font-semibold text-neutral-800 group-hover:text-brand-700 transition-colors leading-snug">
-                  {cat.label}
-                </span>
-                <span className="mt-1 text-xs text-neutral-400">
-                  {cat.count} providers
-                </span>
-              </Link>
-            ))}
-          </div>
-
-          <div className="mt-6 sm:hidden">
-            <Link
-              href="/directory"
-              className="flex w-full items-center justify-center rounded-lg border border-neutral-200 bg-white px-4 py-2.5 text-sm font-medium text-neutral-700 hover:bg-neutral-50 transition-colors"
-            >
-              Browse all providers
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Why regulome.io ── */}
-      <section className="bg-neutral-50 px-4 py-16 sm:py-20 border-b border-neutral-200">
-        <div className="mx-auto max-w-4xl">
-          <div className="text-center mb-10">
-            <h2 className="text-2xl font-extrabold tracking-tight text-neutral-900">
-              Why compliance teams use regulome.io
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {WHY_POINTS.map((point) => (
-              <div key={point} className="flex items-start gap-3">
-                <CheckCircle className="h-5 w-5 text-green-600 shrink-0 mt-0.5" aria-hidden="true" />
-                <span className="text-sm text-neutral-600 leading-relaxed">{point}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Newsletter ── */}
-      <section className="bg-white px-4 py-14 sm:py-16 text-center">
-        <div className="mx-auto max-w-md">
-          <h2 className="text-xl font-extrabold tracking-tight text-neutral-900">
-            Stay ahead of AI regulation
-          </h2>
-          <p className="mt-2 text-sm text-neutral-500">
-            Weekly digest of new laws, enforcement actions, and compliance deadlines.
-          </p>
-          <NewsletterForm
-            source="homepage"
-            className="mt-6"
-          />
-          <p className="mt-3 text-xs text-neutral-400">No spam, unsubscribe any time.</p>
         </div>
       </section>
     </>

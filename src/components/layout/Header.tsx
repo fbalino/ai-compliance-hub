@@ -3,13 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Dna, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const NAV_LINKS = [
   { label: "Regulations", href: "/regulations" },
-  { label: "Directory", href: "/directory" },
-  { label: "Glossary", href: "/glossary" },
-  { label: "Blog", href: "/blog" },
+  { label: "Providers", href: "/directory" },
+  { label: "Checker", href: "/checker" },
+  { label: "Newsletter", href: "/newsletter" },
 ];
 
 export function Header() {
@@ -21,107 +21,92 @@ export function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-neutral-200 bg-white/95 backdrop-blur-sm">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-700 rounded-sm">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600">
-              <Dna className="h-4 w-4 text-white" aria-hidden="true" />
-            </div>
-            <span className="text-base font-extrabold tracking-tight text-neutral-900">
-              regulome<span className="text-brand-600">.io</span>
-            </span>
+    <nav className="rg-nav" aria-label="Main navigation">
+      <div className="rg-container rg-nav-inner">
+        <Link href="/" className="rg-brand">
+          <span className="rg-brand-mark" aria-hidden="true" />
+          <span className="rg-brand-name">
+            regulome<span className="rg-brand-dot">.</span>
+          </span>
+        </Link>
+
+        <ul className="rg-nav-links">
+          {NAV_LINKS.map((link) => (
+            <li key={link.href}>
+              <Link
+                href={link.href}
+                aria-current={isActive(link.href) ? "page" : undefined}
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        <div className="rg-nav-right">
+          <Link
+            href="/newsletter"
+            className="rg-btn rg-btn-ghost"
+            style={{ display: "none" }}
+          >
+            Sign in
+          </Link>
+          <Link href="/checker" className="rg-btn rg-btn-primary">
+            Run a free check <span className="rg-arrow" aria-hidden="true">→</span>
           </Link>
 
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">
-            {NAV_LINKS.map((link) => {
-              const active = isActive(link.href);
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  aria-current={active ? "page" : undefined}
-                  className={`px-3 py-2 text-sm font-medium rounded-md transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-700 ${
-                    active
-                      ? "text-brand-700 bg-brand-50 font-semibold"
-                      : "text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-          </nav>
-
-          {/* Desktop CTA */}
-          <div className="hidden md:flex items-center gap-3">
-            <Link
-              href="/checker"
-              className="rounded-md px-4 py-2 text-sm font-medium text-brand-700 hover:text-brand-900 transition-colors"
-            >
-              Compliance Checker
-            </Link>
-            <Link
-              href="/directory"
-              className="rounded-md bg-brand-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-700 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-700"
-            >
-              Find Providers
-            </Link>
-          </div>
-
-          {/* Mobile menu button */}
           <button
             type="button"
-            className="md:hidden rounded-md p-2 text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900"
+            className="md:hidden"
             aria-expanded={mobileOpen}
             aria-label="Toggle navigation menu"
             onClick={() => setMobileOpen((o) => !o)}
+            style={{
+              background: "transparent",
+              border: "1px solid var(--rg-border)",
+              borderRadius: 8,
+              padding: 8,
+              color: "var(--rg-ink-muted)",
+              cursor: "pointer",
+              marginLeft: 4,
+            }}
           >
-            {mobileOpen ? (
-              <X className="h-5 w-5" aria-hidden="true" />
-            ) : (
-              <Menu className="h-5 w-5" aria-hidden="true" />
-            )}
+            {mobileOpen ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile nav */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-neutral-200 bg-white px-4 py-3">
-          <nav className="flex flex-col gap-1" aria-label="Mobile navigation">
-            {NAV_LINKS.map((link) => {
-              const active = isActive(link.href);
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  aria-current={active ? "page" : undefined}
-                  className={`rounded-md px-3 py-2.5 text-sm font-medium transition-colors ${
-                    active
-                      ? "bg-brand-50 text-brand-700 font-semibold border-l-2 border-brand-600 pl-2.5"
-                      : "text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900"
-                  }`}
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-            <div className="mt-3 flex flex-col gap-2 pt-3 border-t border-neutral-100">
+        <div
+          style={{
+            borderTop: "1px solid var(--rg-border)",
+            background: "var(--rg-card)",
+            padding: "14px 0",
+          }}
+        >
+          <div className="rg-container" style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+            {NAV_LINKS.map((link) => (
               <Link
-                href="/checker"
-                className="rounded-md bg-brand-600 px-4 py-2.5 text-center text-sm font-semibold text-white hover:bg-brand-700 transition-colors"
+                key={link.href}
+                href={link.href}
                 onClick={() => setMobileOpen(false)}
+                aria-current={isActive(link.href) ? "page" : undefined}
+                style={{
+                  padding: "10px 12px",
+                  borderRadius: 8,
+                  fontSize: 14,
+                  fontWeight: 500,
+                  color: isActive(link.href) ? "var(--rg-primary-deep)" : "var(--rg-ink-muted)",
+                  background: isActive(link.href) ? "var(--rg-primary-faint)" : "transparent",
+                  textDecoration: "none",
+                }}
               >
-                Check Compliance
+                {link.label}
               </Link>
-            </div>
-          </nav>
+            ))}
+          </div>
         </div>
       )}
-    </header>
+    </nav>
   );
 }
