@@ -49,7 +49,7 @@ export default function AboutPage() {
         <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "About" }]} />
 
         <div className="eyebrow" style={{ marginTop: 16, marginBottom: 12 }}>Colophon</div>
-        <h1 className="display" style={{ fontSize: 72 }}>About Regulome.</h1>
+        <h1 className="display">About Regulome.</h1>
         <p className="lede" style={{ marginTop: 20 }}>
           An open register of the world&apos;s AI &amp; cyber regulations &mdash; and a directory of the people who can help you comply.
         </p>

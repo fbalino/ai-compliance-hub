@@ -5,6 +5,7 @@ import { providers, providerCategories, providerServices } from "@/db/schema";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import { DirectorySearchClient, type ProviderSearchItem } from "@/components/directory/DirectorySearchClient";
+import { SidebarToggle } from "@/components/directory/SidebarToggle";
 import { CategoryIcon } from "@/lib/category-icons";
 
 export const revalidate = 3600;
@@ -92,7 +93,7 @@ export default async function DirectoryPage() {
       <div className="container sidebar-layout">
 
         {/* Left sidebar filters */}
-        <aside>
+        <SidebarToggle>
           <div className="eyebrow" style={{ marginBottom: 12 }}>Filters</div>
 
           <div style={{ marginBottom: 24 }}>
@@ -126,7 +127,7 @@ export default async function DirectoryPage() {
               ))}
             </div>
           </div>
-        </aside>
+        </SidebarToggle>
 
         {/* Main content */}
         <div>

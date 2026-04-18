@@ -53,6 +53,7 @@ export function RegulationsFilterClient({ regulations }: Props) {
   const [jurisdictions, setJurisdictions] = useState<Set<string>>(new Set());
   const [sort, setSort] = useState("newest");
   const [showSortMenu, setShowSortMenu] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const toggleStatus = (s: string) => {
     setStatuses((prev) => {
@@ -125,8 +126,15 @@ export function RegulationsFilterClient({ regulations }: Props) {
 
   return (
     <section className="container sidebar-layout">
+      <button
+        className="mobile-filter-toggle btn btn-ghost btn-sm w-full"
+        onClick={() => setSidebarOpen((o) => !o)}
+      >
+        {sidebarOpen ? "Hide Filters" : "Show Filters"}
+      </button>
+
       {/* Sidebar filters */}
-      <aside>
+      <aside className={sidebarOpen ? "sidebar-open" : undefined}>
         <div className="eyebrow" style={{ marginBottom: 12 }}>Filters</div>
 
         <div style={{ marginBottom: 20 }}>

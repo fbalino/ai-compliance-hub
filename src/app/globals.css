@@ -647,13 +647,18 @@ dl.kv dd { margin: 0; color: var(--ink); }
   .grid-main-aside { grid-template-columns: 1.3fr 1fr; }
 }
 
+/* ── Mobile filter toggle ── */
+.mobile-filter-toggle {
+  display: none;
+}
+
 @media (max-width: 720px) {
   .container, .container-narrow { padding: 0 20px; }
   .topbar { padding: 12px 20px; gap: 12px; }
   .topbar nav { display: none; }
   .topbar-search { display: none; }
   .topbar-cta { display: none; }
-  .mobile-menu-btn { display: flex; }
+  .mobile-menu-btn { display: flex; margin-left: auto; }
   .footer .cols { grid-template-columns: 1fr; gap: 24px; }
   .footer { padding: 36px 20px 20px; }
   .footer .bottom { flex-direction: column; gap: 8px; padding-top: 16px; margin-top: 24px; }
@@ -668,10 +673,19 @@ dl.kv dd { margin: 0; color: var(--ink); }
   .grid-ledger,
   .grid-providers-cta { grid-template-columns: 1fr; }
 
-  /* Sidebar layouts stack */
+  /* Sidebar layouts stack — hide aside by default */
   .sidebar-layout {
     grid-template-columns: 1fr;
     padding: var(--s-5) 20px;
+  }
+  .sidebar-layout > aside {
+    display: none;
+  }
+  .sidebar-layout > aside.sidebar-open {
+    display: block;
+  }
+  .mobile-filter-toggle {
+    display: flex;
   }
   .grid-article-sidebar {
     grid-template-columns: 1fr;
@@ -684,6 +698,6 @@ dl.kv dd { margin: 0; color: var(--ink); }
   /* KV list narrower label on mobile */
   dl.kv { grid-template-columns: 90px 1fr; }
 
-  /* Topbar spacer collapses */
-  .topbar .spacer { display: none; }
+  /* Prevent horizontal overflow on narrow pages */
+  .container-narrow { overflow-x: hidden; }
 }

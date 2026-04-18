@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
+import { existsSync } from "fs";
+import { join } from "path";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import { NewsletterForm } from "@/components/NewsletterForm";
+import { BlogFilterClient } from "@/components/blog/BlogFilterClient";
 
 export const revalidate = 3600;
 
@@ -136,21 +138,16 @@ const POSTS = [
   },
 ];
 
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-}
-
 export default function BlogPage() {
   const breadcrumbs = breadcrumbListSchema([
     { name: "Home", url: "/" },
     { name: "Blog", url: "/blog" },
   ]);
 
-  const [featured, ...rest] = POSTS;
+  const postsWithImages = POSTS.map((post) => ({
+    ...post,
+    hasImage: existsSync(join(process.cwd(), "public", "images", "blog", `${post.slug}.jpg`)),
+  }));
 
   return (
     <>
@@ -174,75 +171,11 @@ export default function BlogPage() {
             </Link>
           </div>
 
-          <div className="tag-strip" style={{ marginTop: 20 }}>
-            <span className="chip chip-accent">All</span>
-            {CATEGORIES.map((cat) => (
-              <span key={cat} className="chip" style={{ cursor: "pointer" }}>{cat}</span>
-            ))}
-          </div>
         </div>
       </div>
 
-      <div className="container" style={{ maxWidth: 1000, padding: "var(--s-8) var(--s-7)" }}>
-
-        {/* Featured post */}
-        <Link href={`/blog/${featured.slug}`} style={{ textDecoration: "none" }}>
-          <div className="card" style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
-            <div style={{ width: 200, flexShrink: 0, borderRadius: 10, overflow: "hidden", background: "linear-gradient(135deg, var(--accent), var(--gold))", aspectRatio: "16/9" }}>
-              <Image
-                src={`/images/blog/${featured.slug}.jpg`}
-                alt={featured.title}
-                width={400}
-                height={225}
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                priority
-              />
-            </div>
-            <div style={{ flex: 1, minWidth: 240 }}>
-              <div className="tag-strip" style={{ marginBottom: 8 }}>
-                <span className="chip chip-accent">{featured.category}</span>
-                <span className="xs" style={{ color: "var(--ink-2)" }}>{featured.readTime}</span>
-              </div>
-              <h2 className="h3" style={{ marginBottom: 8 }}>{featured.title}</h2>
-              <p className="small" style={{ marginBottom: 12, color: "var(--ink-2)" }}>{featured.excerpt}</p>
-              <div className="tag-strip">
-                <time dateTime={featured.date} className="xs" style={{ color: "var(--ink-2)" }}>{formatDate(featured.date)}</time>
-                {featured.tags.map((tag) => (
-                  <span key={tag} className="chip" style={{ fontSize: 11 }}>{tag}</span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </Link>
-
-        {/* Post grid */}
-        <div className="grid" style={{ marginTop: 32, gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 16 }}>
-          {rest.map((post) => (
-            <Link key={post.slug} href={`/blog/${post.slug}`} style={{ textDecoration: "none" }}>
-              <div className="card" style={{ height: "100%" }}>
-                <div style={{ marginBottom: 14, height: 120, borderRadius: 8, overflow: "hidden", background: "linear-gradient(135deg, var(--paper-2), var(--line))" }}>
-                  <Image
-                    src={`/images/blog/${post.slug}.jpg`}
-                    alt={post.title}
-                    width={400}
-                    height={225}
-                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                  />
-                </div>
-                <div className="tag-strip" style={{ marginBottom: 8 }}>
-                  <span className="chip" style={{ fontSize: 11 }}>{post.category}</span>
-                  <span className="xs" style={{ color: "var(--ink-2)" }}>{post.readTime}</span>
-                </div>
-                <h3 className="h4" style={{ lineHeight: 1.35, marginBottom: 8 }}>{post.title}</h3>
-                <p className="small" style={{ display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden", marginBottom: 10, color: "var(--ink-2)" }}>
-                  {post.excerpt}
-                </p>
-                <time dateTime={post.date} className="xs" style={{ color: "var(--ink-2)" }}>{formatDate(post.date)}</time>
-              </div>
-            </Link>
-          ))}
-        </div>
-
+      <div className="container" style={{ maxWidth: 1000, padding: "0 var(--s-7) var(--s-8)" }}>
+        <BlogFilterClient categories={CATEGORIES} posts={postsWithImages} />
         {/* Newsletter CTA */}
         <div className="card" style={{ marginTop: 48, textAlign: "center", padding: "var(--s-6)", background: "var(--ink)", color: "var(--paper)" }}>
           <h2 className="h3" style={{ color: "var(--paper)" }}>Never miss a regulation update</h2>
