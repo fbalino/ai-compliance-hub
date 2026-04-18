@@ -1,0 +1,243 @@
+export const frontmatter = {
+  name: "Illinois Biometric Information Privacy Act",
+  shortName: "IL BIPA",
+  description:
+    "Illinois law regulating the collection, use, storage, and destruction of biometric identifiers and information, including fingerprints, retina scans, and facial geometry.",
+  jurisdiction: "US · Illinois",
+  status: "enforced",
+  effectiveDate: "October 3, 2008",
+  enforcementDate: "October 3, 2008",
+  maxPenalty: "$5,000 per intentional/reckless violation",
+  publishedAt: "2008-10-03",
+  updatedAt: "2026-04-18",
+  toc: [
+    { id: "overview", label: "Overview" },
+    { id: "who-it-applies-to", label: "Who It Applies To" },
+    { id: "biometric-identifiers", label: "Biometric Identifiers Covered" },
+    { id: "consent-requirements", label: "Consent Requirements" },
+    { id: "retention-and-destruction", label: "Retention & Destruction" },
+    { id: "disclosure-restrictions", label: "Disclosure Restrictions" },
+    { id: "penalties", label: "Penalties & Enforcement" },
+    { id: "compliance-steps", label: "Compliance Steps" },
+    { id: "faqs", label: "Frequently Asked Questions" },
+  ],
+  relatedRegulations: [
+    { slug: "illinois-ai-video-interview-act", name: "Illinois AI Video Interview Act" },
+    { slug: "gdpr", name: "EU GDPR" },
+    { slug: "texas-cubi", name: "Texas CUBI" },
+  ],
+  faqs: [
+    {
+      question: "What is a biometric identifier under BIPA?",
+      answer:
+        "BIPA defines biometric identifiers as retina or iris scans, fingerprints, voiceprints, scans of hand or face geometry, and any biologically unique identifier used to identify an individual. It excludes writing samples, photographs (unless used for facial geometry), demographics, and physical descriptions.",
+    },
+    {
+      question: "Does BIPA apply to AI systems that use facial recognition?",
+      answer:
+        "Yes. Any system that collects or captures facial geometry — including AI-powered facial recognition, emotion detection, or identity verification — must comply with BIPA's notice, consent, and data handling requirements when processing Illinois residents' biometric data.",
+    },
+    {
+      question: "Can individuals sue under BIPA?",
+      answer:
+        "Yes. BIPA provides a private right of action. Individuals can sue for $1,000 per negligent violation or $5,000 per intentional or reckless violation, plus attorneys' fees and injunctive relief. Class actions under BIPA have resulted in hundreds of millions of dollars in settlements.",
+    },
+    {
+      question: "Do I need consent before collecting biometric data?",
+      answer:
+        "Yes. Before collecting any biometric identifier, you must: (1) inform the individual in writing that their biometric data is being collected, (2) explain the purpose and duration of storage, and (3) obtain a written release from the individual.",
+    },
+    {
+      question: "What are the retention and destruction requirements?",
+      answer:
+        "Private entities must develop a publicly available written policy establishing a retention schedule and guidelines for permanently destroying biometric data. Data must be destroyed when the initial purpose is satisfied or within 3 years of the individual's last interaction, whichever comes first.",
+    },
+  ],
+};
+
+## Overview
+
+The **Illinois Biometric Information Privacy Act** (BIPA), enacted on October 3, 2008, is the most consequential US biometric privacy law. BIPA regulates how private entities collect, use, safeguard, handle, store, retain, and destroy biometric identifiers and biometric information.
+
+BIPA was the **first US state law** to provide a private right of action for biometric privacy violations, and its enforcement through class action litigation has driven over **$4 billion in settlements** since 2015. It is the primary legal framework shaping how companies deploy facial recognition, fingerprint scanning, voiceprint analysis, and other biometric technologies in Illinois.
+
+Key requirements:
+
+1. **Written notice** before collecting biometric identifiers
+2. **Written consent** (release) from the individual
+3. **Published retention and destruction policy**
+4. **Restrictions on disclosure** to third parties
+5. **Reasonable security measures** for stored biometric data
+
+---
+
+## Who It Applies To
+
+### Private Entities
+
+BIPA applies to any **private entity** — corporations, LLCs, partnerships, sole proprietors, and other non-government organizations — that collects, captures, purchases, receives through trade, or otherwise obtains biometric identifiers or biometric information of Illinois residents.
+
+### No Size Threshold
+
+There is no revenue minimum, employee count requirement, or industry carve-out. A startup scanning employee fingerprints for time-and-attendance must comply just as a Fortune 500 company deploying facial recognition at scale.
+
+### Exemptions
+
+BIPA does **not** apply to:
+- State or local government agencies
+- Financial institutions subject to GLBA
+- Contractors or subcontractors of government agencies when working under a government contract
+- Information collected under the Health Insurance Portability and Accountability Act (HIPAA)
+
+---
+
+## Biometric Identifiers Covered
+
+BIPA covers these biometric identifiers:
+
+| Identifier | Examples |
+|-----------|----------|
+| Retina or iris scan | Eye-scanning access control |
+| Fingerprint | Time clocks, device unlock, identity verification |
+| Voiceprint | Voice authentication, voice-based AI analysis |
+| Scan of hand geometry | Hand scanners for access control |
+| Scan of face geometry | Facial recognition, emotion detection, identity verification |
+
+### What Is NOT Covered
+
+- Writing samples
+- Written signatures
+- Photographs (unless used to extract facial geometry)
+- Demographic data
+- Tattoo descriptions
+- Physical descriptions (height, weight, hair color, eye color)
+- Biological samples used for scientific testing or screening
+- Information collected under HIPAA
+
+---
+
+## Consent Requirements
+
+### Three-Step Process
+
+Before collecting any biometric identifier, private entities must:
+
+1. **Inform** the individual in writing that biometric data is being collected or stored
+2. **Disclose** the specific purpose and length of term for which the data will be collected, stored, and used
+3. **Obtain** a written release executed by the individual (or the individual's legally authorized representative)
+
+### Written Release
+
+The release must be a standalone document or clearly identified section — burying consent in a general terms-of-service agreement may not satisfy BIPA's requirements. Illinois courts have held that the release must be:
+- Informed (based on the specific written notice described above)
+- Voluntary (not coerced or conditioned on unrelated services)
+- Written or electronic (verbal consent is insufficient)
+
+---
+
+## Retention & Destruction
+
+### Written Policy Required
+
+Every private entity possessing biometric identifiers or information must develop a **publicly available written policy** establishing:
+- A retention schedule
+- Guidelines for permanently destroying biometric data
+
+### Destruction Triggers
+
+Biometric data must be permanently destroyed when:
+- The initial purpose for collecting the data has been satisfied, **or**
+- Within **3 years** of the individual's last interaction with the private entity
+
+Whichever occurs first.
+
+### Scope of Destruction
+
+Destruction must cover all copies of the biometric data, including backups, replicas, and any derived data (such as mathematical representations or templates created from the original biometric identifier).
+
+---
+
+## Disclosure Restrictions
+
+Private entities may **not** sell, lease, trade, or otherwise profit from biometric identifiers or information.
+
+Disclosure to third parties is prohibited unless:
+- The individual consents
+- The disclosure completes a financial transaction requested by the individual
+- Disclosure is required by law or municipal ordinance
+- Disclosure is required pursuant to a valid warrant or subpoena
+
+### Vendor and Subcontractor Relationships
+
+When using third-party processors (e.g., cloud biometric services, AI vendors), the private entity remains responsible for ensuring BIPA compliance throughout the data lifecycle, including at the vendor level.
+
+---
+
+## Penalties & Enforcement
+
+### Private Right of Action
+
+BIPA's private right of action is its most powerful enforcement mechanism. Any person aggrieved by a violation may sue and recover:
+
+| Violation Type | Statutory Damages | Details |
+|---------------|-------------------|---------|
+| Negligent | $1,000 per violation | Or actual damages, whichever is greater |
+| Intentional or reckless | $5,000 per violation | Or actual damages, whichever is greater |
+
+Courts may also award:
+- **Attorneys' fees** and costs to prevailing plaintiffs
+- **Injunctive relief** to stop ongoing violations
+
+### Class Action Exposure
+
+BIPA has generated the largest biometric privacy class action settlements in US history:
+- **Facebook (Meta):** $650 million (2021) — facial recognition in photo tagging
+- **Google:** $100 million (2022) — face grouping in Google Photos
+- **TikTok:** $92 million (2021) — biometric data collection
+- **BNSF Railway:** $228 million jury verdict (2022) — fingerprint scans without consent
+
+### Per-Scan Accrual
+
+In *Cothron v. White Castle* (2023), the Illinois Supreme Court held that a separate BIPA violation accrues **each time** biometric data is scanned or transmitted without consent — not just upon the first collection. This ruling dramatically increased potential damages for repeat-scan scenarios like employee fingerprint time clocks.
+
+---
+
+## Compliance Steps
+
+1. **Inventory biometric data collection points.** Identify every system, device, and application that collects biometric identifiers — fingerprint scanners, facial recognition cameras, voice authentication, access control systems, AI tools analyzing facial geometry.
+
+2. **Draft and publish a retention and destruction policy.** Create a publicly available written policy with a specific retention schedule and destruction guidelines. Post it on your website or make it available upon request.
+
+3. **Implement notice and consent workflows.** Before any biometric collection, provide written notice of the specific purpose and retention period, and obtain a signed written release from each individual.
+
+4. **Audit vendor contracts.** Ensure all third-party vendors handling biometric data have contractual obligations to comply with BIPA requirements, including deletion and security obligations.
+
+5. **Set retention limits.** Configure systems to automatically delete biometric data when the initial purpose is satisfied or within 3 years of the individual's last interaction.
+
+6. **Implement security safeguards.** Store biometric data using a standard of care reasonable within the industry and at least as protective as the measures used for other confidential and sensitive information.
+
+7. **Train employees.** Educate HR, IT, security, and operations staff on BIPA requirements, particularly the consent workflow and prohibition on sharing biometric data.
+
+8. **Document everything.** Maintain records of consent, retention periods, deletion actions, and vendor compliance for defense in potential litigation.
+
+---
+
+## Frequently Asked Questions
+
+**What is a biometric identifier under BIPA?**
+Retina or iris scans, fingerprints, voiceprints, scans of hand or face geometry, and any biologically unique identifier used to identify an individual. Photographs alone are excluded unless used to extract facial geometry.
+
+**Does BIPA apply to AI facial recognition systems?**
+Yes. Any system capturing or analyzing facial geometry — including AI-powered facial recognition, emotion detection, or liveness checks — must comply with BIPA when processing data of Illinois residents.
+
+**Can individuals sue under BIPA?**
+Yes. BIPA provides a private right of action with statutory damages of $1,000 per negligent violation or $5,000 per intentional violation, plus attorneys' fees.
+
+**Do I need consent before collecting biometric data?**
+Yes. Written notice and a signed written release are required before any collection of biometric identifiers.
+
+**What are the retention requirements?**
+You must publish a written retention and destruction policy. Data must be destroyed when the initial purpose is satisfied or within 3 years of the individual's last interaction, whichever comes first.
+
+**Does BIPA apply to out-of-state companies?**
+Yes. If an out-of-state company collects biometric identifiers of Illinois residents, BIPA applies regardless of where the company is headquartered.

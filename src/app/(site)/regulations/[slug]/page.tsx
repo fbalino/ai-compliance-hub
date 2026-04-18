@@ -164,6 +164,65 @@ const REG_EXTRAS: Record<string, {
     ],
     sources: ["HB 2557 (Illinois Legislature)"],
   },
+  "illinois-bipa": {
+    timeline: [
+      { date: "Oct 2008", label: "Enacted", reached: true },
+      { date: "Oct 2008", label: "Effective", reached: true },
+      { date: "Jan 2023", label: "Cothron ruling", reached: true },
+    ],
+    penalties: [
+      { tier: "Negligent", amount: "$1,000", scope: "per violation" },
+      { tier: "Intentional", amount: "$5,000", scope: "per violation" },
+    ],
+    providers: [
+      { name: "Holistic AI", type: "Governance", hq: "London / New York", slug: "holistic-ai" },
+      { name: "OneTrust", type: "Software", hq: "Atlanta", slug: "onetrust-ai" },
+    ],
+    articles: [
+      { kind: "Analysis", title: "BIPA class actions in 2025" },
+      { kind: "Explainer", title: "The biometric patchwork, mapped" },
+    ],
+    sources: ["740 ILCS 14 (Illinois Legislature)", "Cothron v. White Castle (2023)"],
+  },
+  "gdpr": {
+    timeline: [
+      { date: "Apr 2016", label: "Adopted", reached: true },
+      { date: "May 2018", label: "Enforceable", reached: true },
+    ],
+    penalties: [
+      { tier: "Lower tier", amount: "\u20ac10M / 2%", scope: "controller/processor obligations" },
+      { tier: "Upper tier", amount: "\u20ac20M / 4%", scope: "principles, rights, transfers" },
+    ],
+    providers: [
+      { name: "OneTrust", type: "Software", hq: "Atlanta", slug: "onetrust-ai" },
+      { name: "Fieldfisher", type: "Legal", hq: "London / Brussels", slug: "fieldfisher-ai" },
+    ],
+    articles: [
+      { kind: "Comparison", title: "GDPR vs EU AI Act: where the rules overlap" },
+      { kind: "Analysis", title: "Clearview AI fines across Europe" },
+    ],
+    sources: ["Regulation (EU) 2016/679 (EUR-Lex)", "EDPB Guidelines on Automated Decision-Making"],
+  },
+  "texas-cubi": {
+    timeline: [
+      { date: "Jun 2009", label: "Enacted", reached: true },
+      { date: "Sep 2009", label: "Effective", reached: true },
+      { date: "Feb 2022", label: "Meta lawsuit filed", reached: true },
+      { date: "Jul 2024", label: "Meta settlement", reached: true },
+    ],
+    penalties: [
+      { tier: "Per violation", amount: "$25,000", scope: "AG enforcement only" },
+    ],
+    providers: [
+      { name: "Holistic AI", type: "Governance", hq: "London / New York", slug: "holistic-ai" },
+      { name: "OneTrust", type: "Software", hq: "Atlanta", slug: "onetrust-ai" },
+    ],
+    articles: [
+      { kind: "Analysis", title: "Texas AG vs Meta: the $1.4B biometric settlement" },
+      { kind: "Comparison", title: "BIPA vs CUBI: two biometric laws, two enforcement models" },
+    ],
+    sources: ["Texas Business & Commerce Code Chapter 503", "TX AG v. Meta Platforms (2022)"],
+  },
 };
 
 export default async function RegulationPage({ params }: Props) {

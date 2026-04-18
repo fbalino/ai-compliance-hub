@@ -731,6 +731,39 @@ const REGULATIONS = [
     summary:
       "EU directive strengthening cybersecurity obligations for essential and important entities across critical sectors, including risk management and incident reporting.",
   },
+  {
+    slug: "illinois-bipa",
+    name: "Illinois Biometric Information Privacy Act",
+    jurisdiction: "US · Illinois",
+    status: "enforced",
+    effectiveDate: "2008-10-03",
+    enforcementDate: "2008-10-03",
+    maxPenalty: "$5,000 per intentional/reckless violation",
+    summary:
+      "Illinois law regulating the collection, use, storage, and destruction of biometric identifiers and information, with a private right of action that has driven over $4 billion in class action settlements.",
+  },
+  {
+    slug: "gdpr",
+    name: "General Data Protection Regulation (GDPR)",
+    jurisdiction: "European Union",
+    status: "enforced",
+    effectiveDate: "2018-05-25",
+    enforcementDate: "2018-05-25",
+    maxPenalty: "€20 million or 4% of global annual turnover",
+    summary:
+      "The EU's comprehensive data protection framework governing the processing of personal data, including biometric and AI-processed data, with extraterritorial reach and significant penalties.",
+  },
+  {
+    slug: "texas-cubi",
+    name: "Texas Capture or Use of Biometric Identifier Act",
+    jurisdiction: "US · Texas",
+    status: "enforced",
+    effectiveDate: "2009-09-01",
+    enforcementDate: "2009-09-01",
+    maxPenalty: "$25,000 per violation (AG enforcement)",
+    summary:
+      "Texas law regulating the capture, use, storage, and destruction of biometric identifiers including retina scans, voiceprints, and face geometry records, enforced by the Texas Attorney General.",
+  },
 ];
 
 // ── Main seed function ─────────────────────────────────────────────────────────

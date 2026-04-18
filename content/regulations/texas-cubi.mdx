@@ -1,0 +1,249 @@
+export const frontmatter = {
+  name: "Texas Capture or Use of Biometric Identifier Act",
+  shortName: "TX CUBI",
+  description:
+    "Texas law regulating the capture, use, storage, and destruction of biometric identifiers including retina scans, iris scans, voiceprints, and hand or face geometry records.",
+  jurisdiction: "US · Texas",
+  status: "enforced",
+  effectiveDate: "September 1, 2009",
+  enforcementDate: "September 1, 2009",
+  maxPenalty: "$25,000 per violation (AG enforcement)",
+  publishedAt: "2009-06-19",
+  updatedAt: "2026-04-18",
+  toc: [
+    { id: "overview", label: "Overview" },
+    { id: "who-it-applies-to", label: "Who It Applies To" },
+    { id: "biometric-identifiers", label: "Biometric Identifiers Covered" },
+    { id: "consent-and-notice", label: "Consent & Notice Requirements" },
+    { id: "retention-and-destruction", label: "Retention & Destruction" },
+    { id: "disclosure-restrictions", label: "Disclosure Restrictions" },
+    { id: "penalties", label: "Penalties & Enforcement" },
+    { id: "compliance-steps", label: "Compliance Steps" },
+    { id: "faqs", label: "Frequently Asked Questions" },
+  ],
+  relatedRegulations: [
+    { slug: "illinois-bipa", name: "Illinois BIPA" },
+    { slug: "texas-hb-1709", name: "Texas HB 1709" },
+    { slug: "colorado-ai-act", name: "Colorado AI Act" },
+  ],
+  faqs: [
+    {
+      question: "What biometric identifiers does Texas CUBI cover?",
+      answer:
+        "CUBI covers retina or iris scans, fingerprints, voiceprints, and records of hand or face geometry. It does not cover photographs, voice or video recordings (unless used to extract a biometric identifier), or data collected for healthcare or scientific purposes.",
+    },
+    {
+      question: "Does Texas CUBI have a private right of action?",
+      answer:
+        "No. Unlike Illinois BIPA, Texas CUBI does not allow private lawsuits. Only the Texas Attorney General can bring enforcement actions, with civil penalties of up to $25,000 per violation.",
+    },
+    {
+      question: "How does Texas CUBI compare to Illinois BIPA?",
+      answer:
+        "Both laws regulate biometric data collection and require consent, but they differ significantly. BIPA provides a private right of action and statutory damages; CUBI is AG-enforced only. BIPA requires written consent; CUBI requires informed consent without specifying written form. BIPA has generated billions in class action settlements; CUBI has seen limited enforcement until the 2022 Meta action.",
+    },
+    {
+      question: "Does CUBI apply to AI facial recognition systems?",
+      answer:
+        "Yes. Any system that captures or uses face geometry records — including AI-powered facial recognition, verification, or analysis — must comply with CUBI's notice, consent, and data handling requirements when processing the biometric data of Texas residents.",
+    },
+    {
+      question: "What are the destruction requirements under CUBI?",
+      answer:
+        "Biometric identifiers must be destroyed within a reasonable time, but not later than the first anniversary (one year) of the date the purpose for collecting them expires. This is shorter than BIPA's three-year window.",
+    },
+  ],
+};
+
+## Overview
+
+The **Texas Capture or Use of Biometric Identifier Act** (CUBI), codified as Texas Business & Commerce Code Chapter 503, was enacted on June 19, 2009 and became effective September 1, 2009. CUBI regulates the capture, use, storage, and destruction of biometric identifiers by commercial entities operating in Texas.
+
+While CUBI predates the current AI regulation wave, it has become increasingly relevant as companies deploy facial recognition, voice authentication, and other biometric AI technologies that process Texas residents' data. The law gained national attention in 2022 when the Texas Attorney General filed a landmark $1.4 billion enforcement action against Meta for alleged violations related to Facebook's facial recognition feature.
+
+Key requirements:
+
+1. **Informed consent** before capturing biometric identifiers
+2. **Restrictions on disclosure** to third parties
+3. **Reasonable care** in storing and protecting biometric data
+4. **Destruction within one year** of when the purpose for collection expires
+5. **Prohibition on selling** biometric identifiers
+
+---
+
+## Who It Applies To
+
+### Persons (Entities)
+
+CUBI applies to any **person** — defined broadly to include corporations, partnerships, associations, and other legal entities — that captures, possesses, or uses biometric identifiers for a **commercial purpose** in connection with Texas residents.
+
+### Commercial Purpose Requirement
+
+CUBI's consent and handling requirements apply only when biometric identifiers are collected for a **commercial purpose**. This includes:
+- Employee time-and-attendance tracking
+- Customer identity verification
+- Access control systems
+- AI-powered facial recognition in retail or services
+- Voice authentication for financial transactions
+
+### Exemptions
+
+CUBI does **not** apply to:
+- Biometric data collected for **healthcare** purposes by covered entities under HIPAA
+- Biometric data collected for **scientific research** by academic institutions
+- **Voiceprints** used by financial institutions for fraud prevention (specific carve-out)
+- **Law enforcement** activities and government agencies
+- **Photographs or video recordings** (unless used to extract a biometric identifier)
+
+---
+
+## Biometric Identifiers Covered
+
+CUBI covers the following biometric identifiers:
+
+| Identifier | Examples |
+|-----------|----------|
+| Retina or iris scan | Eye-scanning biometric systems |
+| Fingerprint | Time clocks, device authentication, physical access control |
+| Voiceprint | Voice authentication, speaker recognition systems |
+| Record of hand geometry | Hand scanners for access control |
+| Record of face geometry | Facial recognition, facial verification, emotion detection |
+
+### Exclusions
+
+CUBI explicitly excludes:
+- Items that do not contain biometric identifiers (photographs, voice recordings, video recordings — unless used to create a covered identifier)
+- Data captured for health care purposes by HIPAA-covered entities
+- Data captured for scientific research
+
+---
+
+## Consent & Notice Requirements
+
+### Informed Consent
+
+Before capturing a biometric identifier, the collecting entity must **inform the individual** and receive the individual's **consent** to the capture. Unlike Illinois BIPA, CUBI does not explicitly require the consent to be **written** — but obtaining written or electronic consent is strongly recommended as evidence of compliance.
+
+### No Specific Notice Format
+
+CUBI does not prescribe a specific format for notice or consent. However, best practices include:
+- Clear written notice that biometric data will be collected
+- Description of what biometric identifiers will be captured
+- Explanation of the purpose of collection
+- Documented consent (electronic checkbox, signed form, or equivalent)
+
+### Exception: Law Enforcement Purposes
+
+Consent is not required when biometric identifiers are captured for law enforcement purposes by or on behalf of a law enforcement agency.
+
+---
+
+## Retention & Destruction
+
+### Destruction Deadline
+
+Biometric identifiers must be destroyed within a **reasonable time**, but not later than the **first anniversary (one year)** of the date the purpose for collecting the identifier expires.
+
+This is notably shorter than Illinois BIPA's three-year retention window, making Texas CUBI's destruction requirements more aggressive.
+
+### What Triggers the Clock
+
+The destruction deadline starts when the **purpose for collection** expires — for example:
+- An employee leaves the company (for time-and-attendance fingerprints)
+- A customer closes their account (for facial verification data)
+- A vendor contract ends (for access control biometrics)
+
+### Scope of Destruction
+
+Destruction must cover:
+- The original biometric identifier
+- All copies and backups
+- Derived templates or mathematical representations
+- Data held by third-party processors
+
+---
+
+## Disclosure Restrictions
+
+### Prohibition on Sale
+
+CUBI **prohibits the sale, lease, or other disclosure** of biometric identifiers for commercial purposes unless:
+- The individual consents to the disclosure
+- The disclosure is required or permitted by federal or state law
+- The disclosure is made by or to a law enforcement agency for a law enforcement purpose
+
+### Third-Party Sharing
+
+Sharing biometric identifiers with third parties — including technology vendors, processors, or affiliates — requires the individual's consent. Organizations using cloud-based biometric processing services must ensure their consent mechanisms cover the third-party data transfer.
+
+---
+
+## Penalties & Enforcement
+
+### Attorney General Enforcement Only
+
+Unlike Illinois BIPA, CUBI does **not** provide a private right of action. Only the **Texas Attorney General** can bring enforcement actions for CUBI violations.
+
+### Civil Penalties
+
+| Violation | Maximum Penalty |
+|-----------|----------------|
+| Per violation | $25,000 |
+
+The AG may also seek:
+- Injunctive relief
+- Civil investigative demands
+- Consent decrees
+
+### Notable Enforcement
+
+| Entity | Action | Year | Details |
+|--------|--------|------|---------|
+| Meta (Facebook) | AG lawsuit | 2022 | $1.4 billion sought for capturing facial geometry of millions of Texans without consent; settled for $1.4 billion in 2024 — the largest privacy settlement by a single state |
+| Google | AG lawsuit | 2022 | Alleged capture of voiceprints and face geometry through Google Assistant, Photos, and Nest without consent |
+
+### Increased Enforcement Trend
+
+The Texas AG's office has significantly increased biometric privacy enforcement since 2022, signaling that CUBI — once considered dormant — is now actively enforced against major technology companies deploying AI and biometric technologies.
+
+---
+
+## Compliance Steps
+
+1. **Inventory biometric collection points.** Identify every system capturing biometric identifiers — fingerprint scanners, facial recognition cameras, voice authentication, AI-powered identity verification, and access control systems.
+
+2. **Implement consent workflows.** Before capturing any biometric identifier, provide clear notice and obtain the individual's consent. Document consent electronically for each individual.
+
+3. **Review the commercial purpose.** Confirm that your biometric data collection is for a commercial purpose (triggering CUBI) and check whether any exemptions apply (healthcare, law enforcement, research).
+
+4. **Set destruction timelines.** Configure systems to destroy biometric identifiers within one year of when the purpose for collection expires. This is shorter than BIPA's timeline — audit retention periods accordingly.
+
+5. **Audit third-party sharing.** Review all vendor and processor agreements involving biometric data. Ensure consent covers any third-party transfers, and that vendors have destruction obligations.
+
+6. **Implement security safeguards.** Store biometric identifiers using reasonable care and in a manner that is the same as or more protective than the manner in which you store other confidential information.
+
+7. **Monitor AG enforcement guidance.** Track Texas Attorney General enforcement actions and guidance for evolving interpretation of CUBI requirements, particularly around AI and facial recognition technologies.
+
+8. **Coordinate with other biometric laws.** If you operate across multiple states, coordinate CUBI compliance with Illinois BIPA and other state biometric privacy laws — requirements differ significantly on consent form, retention periods, and enforcement mechanisms.
+
+---
+
+## Frequently Asked Questions
+
+**What biometric identifiers does CUBI cover?**
+Retina or iris scans, fingerprints, voiceprints, and records of hand or face geometry. Photographs and recordings are excluded unless used to extract a biometric identifier.
+
+**Does CUBI have a private right of action?**
+No. Only the Texas Attorney General can enforce CUBI. Individuals cannot file private lawsuits, unlike under Illinois BIPA.
+
+**How does CUBI compare to Illinois BIPA?**
+Both regulate biometric data, but BIPA allows private lawsuits with statutory damages while CUBI is AG-enforced only. CUBI requires destruction within one year (vs. BIPA's three years). BIPA requires written consent; CUBI requires informed consent without specifying written form.
+
+**Does CUBI apply to AI systems?**
+Yes. Any AI system capturing or using face geometry, voiceprints, or other covered biometric identifiers must comply with CUBI when processing data of Texas residents.
+
+**What are the destruction requirements?**
+Biometric identifiers must be destroyed within a reasonable time, not later than one year after the purpose for collection expires.
+
+**How large can CUBI fines be?**
+Up to $25,000 per violation. In the Meta case, the Texas AG sought $1.4 billion based on millions of individual violations, demonstrating that aggregate penalties can be enormous.

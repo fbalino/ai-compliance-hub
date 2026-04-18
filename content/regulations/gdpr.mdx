@@ -1,0 +1,280 @@
+export const frontmatter = {
+  name: "General Data Protection Regulation",
+  shortName: "EU GDPR",
+  description:
+    "The EU's comprehensive data protection framework governing the processing of personal data, including biometric and AI-processed data, with extraterritorial reach and significant penalties.",
+  jurisdiction: "European Union",
+  status: "enforced",
+  effectiveDate: "May 25, 2018",
+  enforcementDate: "May 25, 2018",
+  maxPenalty: "€20 million or 4% of global annual turnover",
+  publishedAt: "2016-04-27",
+  updatedAt: "2026-04-18",
+  toc: [
+    { id: "overview", label: "Overview" },
+    { id: "who-it-applies-to", label: "Who It Applies To" },
+    { id: "key-principles", label: "Key Principles" },
+    { id: "lawful-bases", label: "Lawful Bases for Processing" },
+    { id: "data-subject-rights", label: "Data Subject Rights" },
+    { id: "ai-and-automated-decisions", label: "AI & Automated Decision-Making" },
+    { id: "special-categories", label: "Special Categories (Art. 9)" },
+    { id: "penalties", label: "Penalties & Enforcement" },
+    { id: "compliance-steps", label: "Compliance Steps" },
+    { id: "faqs", label: "Frequently Asked Questions" },
+  ],
+  relatedRegulations: [
+    { slug: "eu-ai-act", name: "EU AI Act" },
+    { slug: "illinois-bipa", name: "Illinois BIPA" },
+    { slug: "dora", name: "DORA" },
+    { slug: "nis2-directive", name: "NIS2 Directive" },
+  ],
+  faqs: [
+    {
+      question: "Does GDPR apply to AI systems?",
+      answer:
+        "Yes. GDPR applies to any processing of personal data, including data processed by AI systems. This covers training data, inference inputs, and AI-generated outputs that relate to identified or identifiable individuals. The GDPR intersects with the EU AI Act — organizations must comply with both.",
+    },
+    {
+      question: "What is GDPR Article 22 and how does it relate to AI?",
+      answer:
+        "Article 22 gives individuals the right not to be subject to decisions based solely on automated processing — including profiling — that produce legal or similarly significant effects. This directly applies to AI systems making automated decisions about hiring, credit, insurance, or benefits.",
+    },
+    {
+      question: "What are 'special categories' of data under GDPR?",
+      answer:
+        "Article 9 defines special categories as: racial or ethnic origin, political opinions, religious beliefs, trade union membership, genetic data, biometric data (for identification), health data, and data concerning sex life or sexual orientation. Processing these categories requires explicit consent or another Article 9 exemption.",
+    },
+    {
+      question: "Does GDPR apply to companies outside the EU?",
+      answer:
+        "Yes. GDPR has extraterritorial reach under Article 3. It applies to any organization — regardless of location — that processes personal data of individuals in the EU when offering goods/services to them or monitoring their behavior within the EU.",
+    },
+    {
+      question: "What is a Data Protection Impact Assessment?",
+      answer:
+        "A DPIA (Article 35) is a mandatory risk assessment for processing likely to result in high risk to individuals' rights and freedoms. It is required for systematic profiling with significant effects, large-scale processing of special categories, and large-scale systematic monitoring of public areas — all common in AI deployments.",
+    },
+  ],
+};
+
+## Overview
+
+The **General Data Protection Regulation** (GDPR), Regulation (EU) 2016/679, is the European Union's comprehensive data protection framework. Adopted on April 27, 2016 and enforceable from May 25, 2018, GDPR governs the processing of personal data of individuals within the EU and the European Economic Area (EEA).
+
+GDPR is foundational to AI compliance because virtually every AI system that processes information about people involves personal data. GDPR's requirements for lawful processing, data minimization, transparency, and automated decision-making directly shape how AI systems must be designed, trained, and deployed.
+
+Key principles:
+
+1. **Lawfulness, fairness, and transparency** in data processing
+2. **Purpose limitation** — data collected for specified, explicit, and legitimate purposes
+3. **Data minimization** — adequate, relevant, and limited to what is necessary
+4. **Accuracy** — personal data must be kept accurate and up to date
+5. **Storage limitation** — kept no longer than necessary
+6. **Integrity and confidentiality** — appropriate security measures
+7. **Accountability** — the controller must demonstrate compliance
+
+---
+
+## Who It Applies To
+
+### Material Scope
+
+GDPR applies to the processing of personal data wholly or partly by automated means, and to non-automated processing of personal data that forms part of a filing system.
+
+### Territorial Scope (Article 3)
+
+GDPR applies to:
+- **Establishments in the EU** — any controller or processor with an establishment in the EU, regardless of whether processing takes place in the EU
+- **Targeting EU residents** — controllers or processors outside the EU that offer goods or services to individuals in the EU, or monitor their behavior within the EU
+
+### Who Must Comply
+
+| Entity | Obligation |
+|--------|-----------|
+| Data controllers | Organizations that determine the purposes and means of processing |
+| Data processors | Organizations that process data on behalf of controllers |
+| Sub-processors | Must be bound by equivalent data protection obligations |
+
+---
+
+## Key Principles
+
+### Article 5 — Principles
+
+1. **Lawfulness, fairness, transparency** — Processing must have a lawful basis, be fair to the data subject, and be transparent about how data is used.
+
+2. **Purpose limitation** — Data must be collected for specified, explicit, and legitimate purposes and not further processed in a manner incompatible with those purposes.
+
+3. **Data minimization** — Only data that is adequate, relevant, and limited to what is necessary for the stated purpose may be collected.
+
+4. **Accuracy** — Personal data must be accurate and, where necessary, kept up to date. Inaccurate data must be erased or rectified without delay.
+
+5. **Storage limitation** — Data must be kept in a form that permits identification of data subjects for no longer than necessary for the purposes of processing.
+
+6. **Integrity and confidentiality** — Data must be processed in a manner that ensures appropriate security, including protection against unauthorized processing, accidental loss, destruction, or damage.
+
+7. **Accountability** — The controller must be able to demonstrate compliance with all of the above principles.
+
+---
+
+## Lawful Bases for Processing
+
+Article 6 establishes six lawful bases for processing personal data:
+
+| Basis | Description |
+|-------|-------------|
+| Consent | Freely given, specific, informed, and unambiguous indication of agreement |
+| Contract | Necessary for performing or entering into a contract with the data subject |
+| Legal obligation | Necessary to comply with a legal obligation of the controller |
+| Vital interests | Necessary to protect someone's life |
+| Public interest | Necessary for a task carried out in the public interest |
+| Legitimate interests | Necessary for the legitimate interests of the controller or a third party, balanced against the data subject's rights |
+
+For AI systems, the most common bases are **consent**, **contract**, and **legitimate interests**. Each has specific requirements and limitations that affect how AI training data is collected and how inference results are used.
+
+---
+
+## Data Subject Rights
+
+GDPR establishes comprehensive rights for individuals:
+
+| Right | Article | Description |
+|-------|---------|-------------|
+| Information | 13–14 | Right to be informed about how data is processed |
+| Access | 15 | Right to obtain a copy of personal data being processed |
+| Rectification | 16 | Right to correct inaccurate personal data |
+| Erasure | 17 | Right to have personal data deleted ("right to be forgotten") |
+| Restriction | 18 | Right to limit processing in certain circumstances |
+| Portability | 20 | Right to receive data in a structured, machine-readable format |
+| Object | 21 | Right to object to processing based on legitimate interests or public interest |
+| Automated decisions | 22 | Right not to be subject to solely automated decisions with significant effects |
+
+---
+
+## AI & Automated Decision-Making
+
+### Article 22 — Automated Individual Decision-Making
+
+Article 22 is GDPR's most AI-relevant provision. It provides that individuals have the right **not to be subject to a decision based solely on automated processing** — including profiling — which produces legal effects or similarly significant effects.
+
+### When Article 22 Applies
+
+The prohibition applies when:
+- The decision is **based solely on automated processing** (no meaningful human involvement)
+- The decision produces **legal effects** (e.g., contract denial, employment termination) or **similarly significant effects** (e.g., credit scoring, insurance pricing, targeted advertising)
+
+### Exceptions
+
+Automated decisions are permitted when:
+- Necessary for entering into or performing a contract
+- Authorized by EU or member state law
+- Based on the individual's **explicit consent**
+
+Even when an exception applies, the controller must implement **suitable safeguards**, including the right to obtain human intervention, express a point of view, and contest the decision.
+
+### Data Protection Impact Assessment (Article 35)
+
+A DPIA is mandatory for:
+- Systematic and extensive profiling with significant effects
+- Large-scale processing of special category data
+- Large-scale systematic monitoring of publicly accessible areas
+
+Most AI deployments that make decisions about individuals trigger the DPIA requirement.
+
+---
+
+## Special Categories (Art. 9)
+
+Article 9 imposes heightened protections on special categories of personal data:
+
+- Racial or ethnic origin
+- Political opinions
+- Religious or philosophical beliefs
+- Trade union membership
+- Genetic data
+- **Biometric data** (when processed for identification purposes)
+- Health data
+- Data concerning sex life or sexual orientation
+
+### Processing Restrictions
+
+Processing special category data is **prohibited** unless one of the Article 9(2) exemptions applies:
+- Explicit consent
+- Employment and social security obligations
+- Vital interests
+- Legitimate activities of non-profit bodies
+- Data manifestly made public
+- Legal claims
+- Substantial public interest
+- Health purposes
+- Public health
+- Archiving, research, or statistical purposes
+
+### AI Implications
+
+AI systems frequently process or infer special category data — for example, facial recognition (biometric data), health prediction models (health data), or sentiment analysis that may reveal political opinions. Organizations must ensure they have a valid Article 9 exemption before using AI to process or derive any of these categories.
+
+---
+
+## Penalties & Enforcement
+
+### Two-Tier Penalty Structure
+
+| Tier | Maximum Fine | Violations |
+|------|-------------|------------|
+| Lower tier | €10 million or 2% of global annual turnover | Controller/processor obligations, certification bodies, monitoring bodies |
+| Upper tier | €20 million or 4% of global annual turnover | Data processing principles, lawful bases, consent, data subject rights, international transfers |
+
+### Enforcement Authorities
+
+Each EU member state has an independent **Data Protection Authority** (DPA) responsible for enforcement. The lead supervisory authority is determined by where the controller has its main establishment.
+
+### Notable AI-Related Enforcement
+
+| Entity | Fine | Year | Issue |
+|--------|------|------|-------|
+| Clearview AI | €20M (France), €20M (Italy), €9M (UK) | 2022 | Scraping facial images for AI training without consent |
+| Meta | €1.2B (Ireland) | 2023 | EU-US data transfers (affecting AI model training) |
+| OpenAI | Under investigation | 2024+ | GDPR compliance of ChatGPT data processing |
+
+---
+
+## Compliance Steps
+
+1. **Map your data processing activities.** Create a Record of Processing Activities (Article 30) covering every AI system that processes personal data — inputs, training data, outputs, and downstream uses.
+
+2. **Identify lawful bases.** For each AI processing activity, document which Article 6 lawful basis applies. For special category data, identify the applicable Article 9 exemption.
+
+3. **Conduct DPIAs for AI systems.** Perform Data Protection Impact Assessments for any AI system that profiles individuals, processes special category data at scale, or makes automated decisions with significant effects.
+
+4. **Implement transparency.** Provide clear privacy notices explaining how AI systems process personal data, including the logic involved in automated decision-making and its significance.
+
+5. **Build data subject rights workflows.** Implement processes for access requests, erasure requests, and objections that account for data held within AI training sets and model outputs.
+
+6. **Review Article 22 compliance.** For any AI system making automated decisions with significant effects, ensure meaningful human oversight is in place or that a valid exception and suitable safeguards exist.
+
+7. **Establish data processing agreements.** Ensure contracts with AI vendors (processors) include Article 28-compliant terms covering data protection obligations, sub-processing, security measures, and audit rights.
+
+8. **Appoint a DPO if required.** Organizations whose core activities involve large-scale processing of special category data or systematic monitoring must appoint a Data Protection Officer.
+
+---
+
+## Frequently Asked Questions
+
+**Does GDPR apply to AI systems?**
+Yes. Any AI system processing personal data must comply with GDPR, covering training data, inference inputs, and AI-generated outputs about identified or identifiable individuals.
+
+**What is Article 22's impact on AI?**
+Article 22 gives individuals the right not to be subject to solely automated decisions with legal or significant effects — directly applicable to AI-driven hiring, credit scoring, insurance pricing, and benefits determinations.
+
+**What are special categories under Article 9?**
+Biometric data, health data, racial or ethnic origin, political opinions, religious beliefs, genetic data, trade union membership, and data concerning sex life or sexual orientation.
+
+**Does GDPR apply outside the EU?**
+Yes. GDPR applies to any organization processing EU residents' personal data when offering goods/services to them or monitoring their behavior.
+
+**When is a DPIA required for AI?**
+When AI processing is likely to result in high risk — including systematic profiling, large-scale special category processing, or large-scale public monitoring.
+
+**How does GDPR interact with the EU AI Act?**
+They are complementary. The EU AI Act regulates AI systems by risk level; GDPR regulates the personal data those systems process. Organizations deploying AI in the EU must comply with both simultaneously.

@@ -47,6 +47,12 @@ const REGULATION_MODULES: Record<string, () => Promise<MdxModule>> = {
     import("content/regulations/nis2-directive.mdx") as Promise<MdxModule>,
   "dora": () =>
     import("content/regulations/dora.mdx") as Promise<MdxModule>,
+  "illinois-bipa": () =>
+    import("content/regulations/illinois-bipa.mdx") as Promise<MdxModule>,
+  "gdpr": () =>
+    import("content/regulations/gdpr.mdx") as Promise<MdxModule>,
+  "texas-cubi": () =>
+    import("content/regulations/texas-cubi.mdx") as Promise<MdxModule>,
 };
 
 export async function getAllRegulationSlugs(): Promise<string[]> {
