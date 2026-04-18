@@ -39,7 +39,7 @@ const REGULATIONS: RegulationItem[] = [
     shortName: "CO SB 24-205",
     jurisdiction: "US · Colorado",
     status: "pending",
-    effectiveDate: "01 Feb 2026",
+    effectiveDate: "30 Jun 2026",
     maxPenalty: "CCPA enforcement",
     summary:
       "The first US state comprehensive AI law. Requires deployers of high-risk AI systems to use reasonable care to protect consumers from known risks of algorithmic discrimination.",

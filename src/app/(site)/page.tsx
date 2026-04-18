@@ -274,7 +274,7 @@ export default async function HomePage() {
                 code="US-CO-205"
                 title="Colorado AI Act"
                 juris="US · Colorado"
-                effective="01 Feb 2026"
+                effective="30 Jun 2026"
                 status="pending"
                 providers={7}
                 topics={["Algorithmic hiring"]}
