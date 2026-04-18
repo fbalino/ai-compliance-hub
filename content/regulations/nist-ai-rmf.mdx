@@ -1,0 +1,349 @@
+export const frontmatter = {
+  name: "NIST AI Risk Management Framework",
+  shortName: "NIST AI 100-1",
+  description:
+    "The NIST AI Risk Management Framework (AI RMF 1.0) provides a voluntary, flexible, and structured approach for organizations to manage AI risks throughout the AI lifecycle — widely referenced by US and international AI regulations as the baseline governance standard.",
+  jurisdiction: "United States (Federal)",
+  status: "enforced",
+  effectiveDate: "January 26, 2023",
+  enforcementDate: "Voluntary framework — no direct enforcement",
+  maxPenalty: "N/A — voluntary framework; however, referenced by enforceable state AI laws",
+  publishedAt: "2023-01-26",
+  updatedAt: "2026-04-18",
+  toc: [
+    { id: "overview", label: "Overview" },
+    { id: "who-it-applies-to", label: "Who It Applies To" },
+    { id: "core-functions", label: "Core Functions" },
+    { id: "ai-intersection", label: "AI & NIST AI RMF Intersection" },
+    { id: "profiles-and-tiers", label: "Profiles & Tiers" },
+    { id: "use-case-guidance", label: "Use-Case Guidance" },
+    { id: "compliance-timeline", label: "Compliance Timeline" },
+    { id: "regulatory-references", label: "Regulatory References" },
+    { id: "implementation-steps", label: "Implementation Steps" },
+    { id: "faqs", label: "Frequently Asked Questions" },
+  ],
+  relatedRegulations: [
+    { slug: "eu-ai-act", name: "EU AI Act" },
+    { slug: "colorado-ai-act", name: "Colorado AI Act" },
+    { slug: "nyc-local-law-144", name: "NYC Local Law 144" },
+  ],
+  faqs: [
+    {
+      question: "Is the NIST AI RMF legally binding?",
+      answer:
+        "No. The NIST AI RMF is a voluntary framework. However, several enforceable AI laws — including the Colorado AI Act — explicitly reference NIST AI RMF compliance as evidence of reasonable care or a safe harbor. Federal agencies are required to use the framework under Executive Order 14110, and many state regulators treat alignment with NIST AI RMF as a compliance benchmark.",
+    },
+    {
+      question: "What are the four core functions of the NIST AI RMF?",
+      answer:
+        "The four core functions are Govern, Map, Measure, and Manage. Govern establishes organizational AI risk governance and culture. Map identifies and contextualizes AI risks. Measure assesses and monitors those risks quantitatively and qualitatively. Manage prioritizes and implements risk treatments. Each function contains categories and subcategories with specific outcomes.",
+    },
+    {
+      question: "How does NIST AI RMF differ from ISO/IEC 42001?",
+      answer:
+        "NIST AI RMF is a free, US-government-published risk management framework with no certification mechanism. ISO/IEC 42001 is an international standard with a formal third-party certification process. NIST AI RMF focuses on risk outcomes through its four-function structure; ISO 42001 follows the ISO management system structure (Plan-Do-Check-Act). Many organizations use both: NIST AI RMF for practical risk management and ISO 42001 for certifiable governance.",
+    },
+    {
+      question: "Does the NIST AI RMF apply to generative AI?",
+      answer:
+        "Yes. NIST published a companion document — the Generative AI Profile (NIST AI 600-1) — in July 2024 that maps generative AI-specific risks to the AI RMF's core functions. It addresses risks unique to foundation models and generative AI systems including confabulation, data privacy, environmental impact, information integrity, and CBRN misuse.",
+    },
+    {
+      question: "Which US state AI laws reference the NIST AI RMF?",
+      answer:
+        "The Colorado AI Act (SB 24-205) explicitly references the NIST AI RMF, treating alignment with the framework as evidence of reasonable care. Several other state proposals and federal agency guidance also point to the NIST AI RMF as a compliance baseline. The framework is increasingly becoming the de facto US standard for AI governance.",
+    },
+    {
+      question: "What is a NIST AI RMF 'profile'?",
+      answer:
+        "A profile is a customized selection of AI RMF outcomes tailored to a specific use case, sector, or organizational context. Profiles help organizations prioritize which AI RMF subcategories are most relevant to their situation. NIST has published profiles for generative AI (AI 600-1) and encourages sector-specific profiles for healthcare, financial services, and other domains.",
+    },
+  ],
+};
+
+## Overview
+
+The **NIST AI Risk Management Framework** (AI RMF 1.0, NIST AI 100-1) is the United States' primary framework for managing risks associated with artificial intelligence systems. Published by the National Institute of Standards and Technology on **January 26, 2023**, it provides organizations with a structured, flexible approach to identifying, assessing, and mitigating AI risks throughout the entire AI lifecycle.
+
+Unlike sector-specific regulations such as the EU AI Act or DORA, the NIST AI RMF is a **voluntary framework** — it does not impose legal obligations on its own. However, its influence on the AI regulatory landscape is substantial: the Colorado AI Act explicitly references NIST AI RMF alignment as evidence of reasonable care, Executive Order 14110 directs federal agencies to use the framework, and regulators increasingly treat it as the US benchmark for responsible AI governance.
+
+The framework is designed to be **technology-agnostic**, **use-case-agnostic**, and applicable to organizations of all sizes — from startups deploying a single ML model to enterprises operating hundreds of AI systems across regulated industries.
+
+---
+
+## Who It Applies To
+
+Because the NIST AI RMF is voluntary, there is no statutory "in-scope" entity list. However, several categories of organizations have strong reasons to adopt it:
+
+### Organizations That Should Adopt NIST AI RMF
+
+- **Federal agencies and contractors** — Executive Order 14110 (October 2023) directs federal agencies to use the NIST AI RMF for AI governance, making adoption effectively mandatory for government AI programs and their contractors
+- **Companies subject to state AI laws** — The Colorado AI Act provides a safe harbor for organizations that demonstrate compliance with recognized AI risk management frameworks including NIST AI RMF
+- **Enterprises in regulated industries** — Financial services, healthcare, and insurance organizations deploying AI benefit from NIST AI RMF alignment as evidence of reasonable risk management practices
+- **AI developers and deployers** — Organizations building or deploying AI systems who want a structured approach to AI governance before mandatory regulation arrives
+- **Organizations pursuing ISO 42001 certification** — NIST AI RMF provides practical risk management substance that complements ISO 42001's management system structure
+
+### Roles Within the Framework
+
+The NIST AI RMF addresses distinct organizational roles:
+
+- **AI actors** — all individuals and organizations involved in the AI lifecycle: designers, developers, deployers, operators, evaluators, and end users
+- **Governance bodies** — boards, executives, and oversight committees responsible for AI risk governance
+- **Third parties** — vendors, suppliers, and service providers in the AI supply chain
+
+---
+
+## Core Functions
+
+The NIST AI RMF is organized around **four core functions** that together provide a comprehensive structure for AI risk management. Each function contains categories, and each category contains subcategories that describe specific outcomes.
+
+### Govern
+
+The **Govern** function establishes the organizational foundation for AI risk management. It is cross-cutting — its outcomes inform and are informed by the other three functions.
+
+Key outcomes:
+
+- **Policies and procedures** — documented AI governance policies, roles, and responsibilities
+- **Accountability structures** — clear ownership of AI risk at leadership and board level
+- **Organizational culture** — fostering a culture of responsible AI development and use
+- **Risk tolerances** — defined risk appetite and tolerance levels for AI systems
+- **Workforce diversity and expertise** — interdisciplinary teams with the skills to identify and manage AI-specific risks
+- **Third-party oversight** — governance of AI risks in the supply chain, including vendor AI systems
+
+### Map
+
+The **Map** function identifies the context and risks associated with specific AI systems. It grounds risk management in the specifics of each use case.
+
+Key outcomes:
+
+- **Intended purpose and use context** — documenting why the AI system exists, who uses it, and in what operational environment
+- **Stakeholder identification** — identifying all affected parties, including individuals and communities who may be impacted by AI system outputs
+- **Benefit and cost analysis** — assessing whether the AI system's benefits justify its risks
+- **Risk identification** — cataloguing risks across trustworthiness characteristics: validity, reliability, safety, security, accountability, transparency, explainability, privacy, and fairness
+- **Interdependency mapping** — understanding how the AI system interacts with other systems, data sources, and organizational processes
+
+### Measure
+
+The **Measure** function provides quantitative and qualitative assessment of identified AI risks. It establishes the evidence base for risk management decisions.
+
+Key outcomes:
+
+- **Metrics and measurement approaches** — appropriate metrics for assessing AI risks, including bias metrics, performance benchmarks, and robustness tests
+- **AI system testing** — testing AI systems against identified risks, including adversarial testing, red-teaming, and scenario analysis
+- **Tracking and monitoring** — ongoing monitoring of AI system performance, drift, and emergent risks in production
+- **Feedback mechanisms** — processes for collecting input from AI system users and affected communities
+- **Independent evaluation** — third-party assessment and audit where appropriate
+
+### Manage
+
+The **Manage** function prioritizes and allocates resources to respond to identified and measured AI risks. It closes the loop from identification to action.
+
+Key outcomes:
+
+- **Risk prioritization** — ranking risks based on likelihood, severity, and organizational risk tolerance
+- **Risk treatment** — selecting and implementing responses: accept, mitigate, transfer, or avoid
+- **Resource allocation** — dedicating appropriate personnel, tools, and budget to AI risk management
+- **Incident response** — processes for responding to AI system failures, errors, and adverse impacts
+- **Risk communication** — transparent communication about AI risks to stakeholders, regulators, and the public
+- **Continuous improvement** — updating risk assessments and treatments based on new information, incidents, and evolving best practices
+
+---
+
+## AI & NIST AI RMF Intersection
+
+The NIST AI RMF is, by its nature, entirely about AI — but understanding how it intersects with the broader AI regulatory landscape is critical for compliance teams managing multi-framework obligations.
+
+### The Framework as Regulatory Infrastructure
+
+The NIST AI RMF is increasingly functioning as the **infrastructure layer** for AI compliance in the United States:
+
+- **Colorado AI Act (SB 24-205)** explicitly references NIST AI RMF alignment as evidence of "reasonable care" by deployers of high-risk AI systems
+- **Executive Order 14110** (October 2023) directs all federal agencies to use the NIST AI RMF for AI risk governance
+- **OMB Memorandum M-24-10** (March 2024) requires agencies to implement minimum risk management practices for AI that align with NIST AI RMF
+- State attorneys general increasingly reference NIST AI RMF alignment in enforcement guidance and settlement negotiations
+
+### Mapping to Enforceable Requirements
+
+| Enforceable Requirement | NIST AI RMF Function | Relevant Subcategories |
+|-------------------------|----------------------|------------------------|
+| Impact assessment (Colorado AI Act) | Map + Measure | MAP 1, MAP 2, MAP 5, MEASURE 1 |
+| Bias testing (NYC LL 144) | Measure | MEASURE 2.6, MEASURE 2.7, MEASURE 2.11 |
+| Risk classification (EU AI Act) | Map + Govern | MAP 1, MAP 2, GOVERN 1 |
+| Transparency and disclosure | Govern + Map | GOVERN 4, MAP 3, MAP 5 |
+| Human oversight | Govern + Manage | GOVERN 1, MANAGE 1, MANAGE 2 |
+| Post-market monitoring | Measure + Manage | MEASURE 3, MANAGE 3, MANAGE 4 |
+
+### Trustworthiness Characteristics
+
+The NIST AI RMF defines seven characteristics of trustworthy AI that organizations should assess across all AI systems:
+
+1. **Valid and Reliable** — the AI system performs as intended under expected and unexpected conditions
+2. **Safe** — the AI system does not endanger human life, health, property, or the environment
+3. **Secure and Resilient** — the AI system maintains confidentiality, integrity, and availability, and can withstand adverse events
+4. **Accountable and Transparent** — the AI system's processes and decisions can be explained and attributed to responsible parties
+5. **Explainable and Interpretable** — AI system outputs and processes can be understood by intended users and stakeholders
+6. **Privacy-Enhanced** — the AI system respects data privacy norms and minimizes privacy risks
+7. **Fair — with Harmful Bias Managed** — the AI system's outcomes do not systematically disadvantage individuals or groups
+
+### Generative AI Profile (NIST AI 600-1)
+
+In July 2024, NIST published the **Generative AI Profile** — a companion document that maps generative AI-specific risks to the AI RMF's core functions. It identifies 12 unique risk categories for generative AI:
+
+- **CBRN Information** — risks of generating chemical, biological, radiological, or nuclear weapon information
+- **Confabulation** — generating false but plausible content (hallucination)
+- **Data Privacy** — training data memorization and regurgitation of personal information
+- **Environmental** — computational and energy costs of large model training and inference
+- **Information Integrity** — generation of misleading or manipulated content
+- **Information Security** — novel attack vectors including prompt injection and model extraction
+- **Intellectual Property** — copyright and IP risks from training data and generated outputs
+- **Obscene, Degrading, and/or Abusive Content** — generation of harmful content
+- **Toxicity, Bias, and Homogenization** — amplification of biases and reduction of content diversity
+- **Human-AI Configuration** — risks from over-reliance, anthropomorphization, or inappropriate trust calibration
+- **Value Chain and Component Integration** — supply chain risks from foundation models through deployment
+- **Dangerous or Violent Recommendations** — generating actionable harmful instructions
+
+---
+
+## Profiles & Tiers
+
+### AI RMF Profiles
+
+A **profile** is a customized implementation of the AI RMF tailored to a specific context. Profiles allow organizations to select and prioritize the subcategories most relevant to their situation.
+
+**Current NIST-published profiles:**
+
+- **Generative AI Profile (AI 600-1)** — maps GAI-specific risks to AI RMF subcategories
+- **Crosswalk profiles** — NIST maintains mappings between the AI RMF and other frameworks (ISO 42001, EU AI Act requirements)
+
+**How organizations use profiles:**
+
+1. **Current Profile** — document which AI RMF outcomes you are currently achieving
+2. **Target Profile** — define which outcomes you need to achieve based on your regulatory obligations, risk appetite, and stakeholder expectations
+3. **Gap Analysis** — identify the difference between current and target profiles and create an action plan
+
+### Implementation Tiers
+
+While the NIST AI RMF does not prescribe formal maturity tiers like the NIST Cybersecurity Framework, organizations commonly adopt a tiered approach:
+
+- **Tier 1 — Partial** — AI risk management is ad hoc and reactive; limited awareness of AI-specific risks at the organizational level
+- **Tier 2 — Risk-Informed** — AI risk management practices exist but may not be organization-wide; management is aware of AI risks but processes are inconsistent
+- **Tier 3 — Repeatable** — organization-wide AI risk management policies are established and consistently applied; regular review and update cycles are in place
+- **Tier 4 — Adaptive** — AI risk management is fully integrated into organizational decision-making; continuous improvement based on lessons learned, incidents, and evolving best practices
+
+---
+
+## Use-Case Guidance
+
+The NIST AI RMF is designed to be applied to specific AI use cases rather than adopted as a blanket organizational policy. Key considerations for common enterprise use cases:
+
+### High-Risk Use Cases
+
+Use cases where AI system outputs directly affect individuals' rights, safety, or access to critical services:
+
+- **Hiring and employment decisions** — resume screening, candidate scoring, performance evaluation (governed by NYC LL 144, Colorado AI Act, Illinois AIVIRA)
+- **Credit and lending decisions** — underwriting models, credit scoring, loan approval systems (ECOA, Fair Lending)
+- **Healthcare diagnostics and treatment** — clinical decision support, diagnostic imaging, treatment recommendations (FDA, HIPAA)
+- **Criminal justice** — risk assessment tools, predictive policing, recidivism prediction (no federal law, but significant litigation and state-level scrutiny)
+- **Insurance underwriting** — pricing models, claims assessment, fraud detection (state insurance regulation)
+
+For high-risk use cases, organizations should implement **all four core functions comprehensively** and document their risk management processes in detail, as this documentation may serve as evidence of reasonable care under state AI laws.
+
+### Medium-Risk Use Cases
+
+Use cases with meaningful but less direct impacts on individuals:
+
+- **Customer service automation** — chatbots, virtual assistants, automated ticket routing
+- **Content moderation** — AI-driven content filtering and classification
+- **Supply chain optimization** — demand forecasting, logistics planning
+
+For medium-risk use cases, organizations should focus on **Map and Measure** functions to understand and monitor risks, with proportionate Govern and Manage processes.
+
+### Lower-Risk Use Cases
+
+Use cases with limited direct impact on individuals:
+
+- **Internal analytics** — business intelligence, operational dashboards
+- **Code generation** — developer tools, code completion
+- **Document summarization** — internal document processing
+
+Even for lower-risk use cases, the **Govern** function should be in place to ensure organizational oversight and the ability to escalate if risk characteristics change.
+
+---
+
+## Compliance Timeline
+
+| Date | Milestone |
+|------|-----------|
+| **January 26, 2023** | NIST AI RMF 1.0 (AI 100-1) published |
+| **January 26, 2023** | AI RMF Playbook companion resource published |
+| **October 30, 2023** | Executive Order 14110 directs federal agencies to use NIST AI RMF |
+| **March 28, 2024** | OMB M-24-10 requires agency AI risk management aligned with NIST AI RMF |
+| **July 26, 2024** | Generative AI Profile (AI 600-1) published |
+| **2025 (ongoing)** | NIST developing sector-specific profiles and crosswalk documents |
+| **June 1, 2026** | Colorado AI Act enforcement begins — NIST AI RMF alignment serves as evidence of reasonable care |
+
+---
+
+## Regulatory References
+
+Although the NIST AI RMF is voluntary, it is referenced by or aligned with numerous enforceable requirements:
+
+### Direct References
+
+- **Colorado AI Act (SB 24-205)** — deployers who align with recognized AI risk management frameworks (including NIST AI RMF) can demonstrate reasonable care
+- **Executive Order 14110** — directs federal agencies to adopt AI governance consistent with the NIST AI RMF
+- **OMB M-24-10** — requires minimum AI risk management practices for federal agencies based on NIST AI RMF principles
+
+### Alignment and Crosswalks
+
+- **EU AI Act** — NIST has published crosswalk documents mapping AI RMF subcategories to EU AI Act requirements; organizations subject to both US state laws and the EU AI Act can use the AI RMF as a unifying governance layer
+- **ISO/IEC 42001** — the AI RMF's four functions (Govern, Map, Measure, Manage) map to ISO 42001's management system structure, enabling organizations pursuing certification to build on their AI RMF implementation
+- **NIST Cybersecurity Framework (CSF)** — the AI RMF is designed to complement the CSF; organizations already using CSF can extend their governance processes to cover AI-specific risks
+
+---
+
+## Implementation Steps
+
+Use this roadmap to implement the NIST AI RMF in your organization:
+
+1. **Establish AI governance (Govern).** Designate an AI risk management owner — whether a Chief AI Officer, risk committee, or existing governance body. Document AI policies, roles, and accountability structures. Define your organization's AI risk appetite and tolerance levels.
+
+2. **Inventory your AI systems.** Create a comprehensive inventory of all AI systems in development, deployment, and production. Include vendor-provided AI systems and AI components embedded in third-party software.
+
+3. **Categorize by risk level.** For each AI system, assess the potential impact on individuals, communities, and the organization. Use the Map function to document intended purposes, stakeholders, and identified risks. Prioritize high-risk systems for immediate attention.
+
+4. **Build your profiles.** Create a Current Profile documenting your existing AI risk management practices. Define a Target Profile based on your regulatory obligations (Colorado AI Act, EU AI Act, sector-specific requirements) and risk appetite. Identify gaps.
+
+5. **Implement measurement and testing (Measure).** Establish metrics for each AI system's trustworthiness characteristics. Implement bias testing, performance monitoring, adversarial testing, and drift detection. For generative AI systems, apply the AI 600-1 profile's risk categories.
+
+6. **Establish risk treatments (Manage).** For each identified and measured risk, select a treatment: mitigate, accept, transfer, or avoid. Allocate resources and assign owners. Build incident response procedures for AI system failures.
+
+7. **Document and communicate.** Maintain comprehensive documentation of your AI risk management process — this documentation is your evidence of reasonable care under state AI laws. Communicate your AI governance practices to stakeholders, regulators, and the public as appropriate.
+
+8. **Monitor and iterate.** AI risk management is continuous, not one-time. Schedule regular reviews of AI system performance, risk assessments, and governance processes. Update profiles as regulations evolve, new risks emerge, and organizational context changes.
+
+9. **Align with regulatory requirements.** Map your NIST AI RMF implementation to specific regulatory obligations: Colorado AI Act impact assessments, NYC LL 144 bias audits, EU AI Act conformity assessments. Use the AI RMF as the single governance backbone that feeds compliance documentation for multiple regulations.
+
+10. **Engage with the NIST AI RMF community.** NIST actively solicits feedback and publishes updated resources. Monitor NIST's AI RMF website for new profiles, crosswalk documents, and playbook updates. Participate in sector-specific profile development where relevant.
+
+---
+
+## Frequently Asked Questions
+
+**Is the NIST AI RMF legally binding?**
+No — the NIST AI RMF is a voluntary framework. However, it has quasi-regulatory force through multiple channels: Executive Order 14110 directs federal agencies to adopt it, OMB M-24-10 requires agency compliance, and the Colorado AI Act treats alignment as evidence of reasonable care. Its influence on the US AI regulatory landscape is significant and growing.
+
+**What are the four core functions of the NIST AI RMF?**
+Govern (organizational AI risk governance), Map (context and risk identification), Measure (risk assessment and monitoring), and Manage (risk treatment and response). Govern is cross-cutting and informs the other three functions.
+
+**How does the NIST AI RMF relate to the EU AI Act?**
+NIST has published crosswalk documents mapping AI RMF subcategories to EU AI Act requirements. Organizations subject to both frameworks can use the AI RMF as a unifying governance layer. The AI RMF's risk management approach is broadly compatible with the EU AI Act's risk-based classification, though the EU AI Act adds prescriptive legal requirements (conformity assessments, CE marking, registration) that go beyond the AI RMF.
+
+**Does the NIST AI RMF cover generative AI?**
+Yes. The Generative AI Profile (NIST AI 600-1), published July 2024, extends the AI RMF to address 12 generative AI-specific risk categories including confabulation, data privacy, information integrity, and CBRN information risks.
+
+**How much does NIST AI RMF implementation cost?**
+The framework itself is free. Implementation costs vary based on organizational size and AI system portfolio. Unlike ISO 42001, there is no certification fee — the NIST AI RMF is self-assessed. Organizations typically invest in governance process development, technical tooling for bias testing and monitoring, and training for AI development and deployment teams.
+
+**Can NIST AI RMF compliance protect against enforcement actions?**
+Under the Colorado AI Act, demonstrating alignment with recognized AI risk management frameworks (including NIST AI RMF) serves as evidence of reasonable care. While this is not an absolute defense, it provides meaningful protection. Other state laws and regulators are likely to adopt similar provisions as the US AI regulatory landscape matures.

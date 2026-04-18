@@ -223,6 +223,30 @@ const REG_EXTRAS: Record<string, {
     ],
     sources: ["Texas Business & Commerce Code Chapter 503", "TX AG v. Meta Platforms (2022)"],
   },
+  "nist-ai-rmf": {
+    timeline: [
+      { date: "Jan 2023", label: "AI RMF 1.0 published", reached: true },
+      { date: "Oct 2023", label: "EO 14110 issued", reached: true },
+      { date: "Mar 2024", label: "OMB M-24-10", reached: true },
+      { date: "Jul 2024", label: "GenAI Profile", reached: true },
+      { date: "Jun 2026", label: "Colorado safe harbor", reached: false },
+    ],
+    penalties: [
+      { tier: "Framework", amount: "Voluntary", scope: "no direct penalties" },
+      { tier: "Colorado safe harbor", amount: "$20,000", scope: "per violation without alignment" },
+    ],
+    providers: [
+      { name: "Credo AI", type: "Software", hq: "San Francisco", slug: "credo-ai" },
+      { name: "Holistic AI", type: "Governance", hq: "London / New York", slug: "holistic-ai" },
+      { name: "BABL AI", type: "Audit", hq: "New York", slug: "babl-ai" },
+    ],
+    articles: [
+      { kind: "Comparison", title: "NIST AI RMF vs ISO 42001: which framework fits?" },
+      { kind: "Explainer", title: "The four core functions, walked step-by-step" },
+      { kind: "Brief", title: "Colorado safe harbor and what NIST alignment means in practice" },
+    ],
+    sources: ["NIST AI 100-1 (AI RMF 1.0)", "NIST AI 600-1 (Generative AI Profile)", "NIST AI RMF Playbook", "Executive Order 14110"],
+  },
 };
 
 export default async function RegulationPage({ params }: Props) {
