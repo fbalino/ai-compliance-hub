@@ -3,13 +3,16 @@ import Link from "next/link";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import { HeroSearch } from "@/components/home/HeroSearch";
 import { NewsletterForm } from "@/components/NewsletterForm";
+import { db } from "@/db";
+import { providers, regulations } from "@/db/schema";
+import { count } from "drizzle-orm";
 
 export const revalidate = 21600;
 
 export const metadata: Metadata = {
   title: "Regulome — Find what you need to comply with",
   description:
-    "Search the register of 912 AI regulations — or describe your situation in plain English and let us route you to the right regulations and providers.",
+    "Search the register of AI regulations — or describe your situation in plain English and let us route you to the right regulations and providers.",
 };
 
 function RegCard({
@@ -173,7 +176,16 @@ function Icon({ name, size = 28 }: { name: string; size?: number }) {
   );
 }
 
-export default function HomePage() {
+const BLOG_COUNT = 11;
+
+export default async function HomePage() {
+  const [[providerResult], [regResult]] = await Promise.all([
+    db.select({ value: count() }).from(providers),
+    db.select({ value: count() }).from(regulations),
+  ]);
+  const providerCount = providerResult?.value ?? 0;
+  const regCount = regResult?.value ?? 8;
+
   const breadcrumbs = breadcrumbListSchema([{ name: "Home", url: "/" }]);
 
   return (
@@ -194,7 +206,7 @@ export default function HomePage() {
             className="lede soft v4-rise v4-d1"
             style={{ maxWidth: 640, margin: "20px auto 0" }}
           >
-            Search the register of 912 regulations — or describe your situation in plain English and let us route you.
+            Search the register of {regCount} regulations — or describe your situation in plain English and let us route you.
           </p>
 
           <div
@@ -211,9 +223,9 @@ export default function HomePage() {
             <span className="xs faint">Or start with:</span>
             <Link href="/regulations/eu-ai-act" className="chip" style={{ cursor: "pointer" }}>🇪🇺 EU AI Act</Link>
             <Link href="/regulations/colorado-ai-act" className="chip" style={{ cursor: "pointer" }}>🇺🇸 Colorado AI</Link>
-            <Link href="/regulations" className="chip" style={{ cursor: "pointer" }}>NIS2</Link>
-            <Link href="/regulations" className="chip" style={{ cursor: "pointer" }}>DORA</Link>
-            <Link href="/regulations" className="chip" style={{ cursor: "pointer" }}>Browse all 912 ▾</Link>
+            <Link href="/regulations/nyc-local-law-144" className="chip" style={{ cursor: "pointer" }}>NYC LL 144</Link>
+            <Link href="/regulations/california-ab-2013" className="chip" style={{ cursor: "pointer" }}>CA AB 2013</Link>
+            <Link href="/regulations" className="chip" style={{ cursor: "pointer" }}>Browse all {regCount} ▾</Link>
           </div>
         </div>
       </section>
@@ -221,7 +233,7 @@ export default function HomePage() {
       {/* ── YOUR MATCHES — two-column layout ── */}
       <section className="container" style={{ paddingTop: 40, paddingBottom: 40 }}>
         <div className="eyebrow" style={{ marginBottom: 16 }}>
-          Your matches · 14 regulations · 23 providers · 6 guides
+          Your matches · {regCount} regulations · {providerCount} providers · {BLOG_COUNT} guides
         </div>
 
         <div
@@ -232,7 +244,7 @@ export default function HomePage() {
             {/* Regulations that apply */}
             <div className="section-head">
               <div><h2 className="h2">Regulations that apply</h2></div>
-              <Link href="/regulations" className="action">See all 14 →</Link>
+              <Link href="/regulations" className="action">See all {regCount} →</Link>
             </div>
             <div className="grid" style={{ gridTemplateColumns: "1fr 1fr", gap: 16 }}>
               <RegCard
@@ -294,19 +306,21 @@ export default function HomePage() {
             <div className="col" style={{ gap: 12 }}>
               {[
                 {
-                  kind: "Explainer",
-                  title: "Hiring AI compliance 2026 — the starter kit",
-                  desc: "Every law that touches automated employment tools, one walkthrough.",
-                  time: "11 min",
+                  kind: "Guide",
+                  title: "Colorado AI Act 60-Day Compliance Checklist",
+                  desc: "Step-by-step checklist to get compliant before the June 30, 2026 deadline.",
+                  time: "10 min",
+                  slug: "colorado-ai-act-60-day-checklist",
                 },
                 {
-                  kind: "Q&A",
-                  title: "\"The NYC-144 bias audit, walked step-by-step\"",
-                  desc: "Interview with Harbor Compliance on what a real audit looks like.",
-                  time: "8 min",
+                  kind: "Guide",
+                  title: "How to Commission a Bias Audit: Step-by-Step",
+                  desc: "How to find an auditor, what the process looks like, and how to post results.",
+                  time: "14 min",
+                  slug: "bias-audit-guide",
                 },
               ].map((a) => (
-                <Link key={a.title} href="/blog" className="card" style={{ padding: 18, display: "block", cursor: "pointer" }}>
+                <Link key={a.title} href={`/blog/${a.slug}`} className="card" style={{ padding: 18, display: "block", cursor: "pointer" }}>
                   <div className="between items-center">
                     <div style={{ flex: 1 }}>
                       <div className="eyebrow" style={{ marginBottom: 4, color: "var(--accent)" }}>▸ {a.kind}</div>
@@ -324,33 +338,33 @@ export default function HomePage() {
           <aside>
             <div className="section-head" style={{ alignItems: "flex-start", paddingBottom: 12 }}>
               <div><h2 className="h3">Providers who can help</h2></div>
-              <Link href="/directory" className="action">All 23 →</Link>
+              <Link href="/directory" className="action">All {providerCount} →</Link>
             </div>
 
             <div className="col" style={{ gap: 16 }}>
               <ProviderCard
-                name="Harbor Compliance"
-                type="Advisory"
-                hq="Boston"
+                name="BABL AI"
+                type="Audit"
+                hq="New York, NY"
                 featured
-                blurb="Multi-jurisdiction rollouts — US + EU hiring AI compliance is our bread and butter."
-                regs={["EU AI Act", "NYC-144", "Colorado AI", "+38"]}
+                blurb="Independent bias audits compliant with NYC LL 144 and emerging US laws."
+                regs={["NYC LL 144", "Colorado AI", "EEOC"]}
                 slug="babl-ai"
               />
               <ProviderCard
-                name="Marque Legal"
-                type="Legal"
-                hq="Paris"
-                blurb="EU-side legal counsel on high-risk AI and cross-border deployments."
-                regs={["EU AI Act", "GDPR", "DSA"]}
+                name="Credo AI"
+                type="Software"
+                hq="San Francisco, CA"
+                blurb="AI governance platform for responsible AI development and deployment."
+                regs={["EU AI Act", "NIST AI RMF", "ISO 42001"]}
                 slug="credo-ai"
               />
               <ProviderCard
-                name="Aegis AI"
-                type="Software"
-                hq="Toronto"
-                blurb="Bias-audit platform purpose-built for NYC-144 and Colorado AI."
-                regs={["NYC-144", "Colorado AI", "AIDA"]}
+                name="ORCAA"
+                type="Audit"
+                hq="New York, NY"
+                blurb="Algorithm accountability audit firm founded by prominent AI ethics researchers."
+                regs={["NYC LL 144", "Fair Housing", "Colorado AI"]}
                 slug="orcaa"
               />
             </div>
@@ -384,21 +398,21 @@ export default function HomePage() {
               {
                 icon: "book",
                 title: "By regulation",
-                desc: "The complete catalog, 912 entries strong. Searchable, filterable, by code or title.",
+                desc: `The complete catalog — ${regCount} entries. Searchable, filterable, by code or title.`,
                 action: "Open catalog",
                 href: "/regulations",
               },
               {
                 icon: "globe",
                 title: "By jurisdiction",
-                desc: "63 jurisdictions tracked — from EU-level regulation to US state AI laws.",
-                action: "Browse regions",
+                desc: "EU-level regulation to US state AI laws — browse by region.",
+                action: "Browse regulations",
                 href: "/regulations",
               },
               {
                 icon: "building",
                 title: "By provider",
-                desc: "314 verified firms — software, advisory, legal, audit.",
+                desc: `${providerCount} firms — software, advisory, legal, audit.`,
                 action: "Open directory",
                 href: "/directory",
               },
@@ -442,7 +456,7 @@ export default function HomePage() {
         </div>
 
         <div className="grid" style={{ gridTemplateColumns: "2fr 1fr 1fr", gap: 32 }}>
-          <Link href="/blog" style={{ textDecoration: "none", display: "block", cursor: "pointer" }}>
+          <Link href="/blog/eu-ai-act-gpai-obligations" style={{ textDecoration: "none", display: "block", cursor: "pointer" }}>
             <article>
               <div
                 style={{
@@ -465,24 +479,24 @@ export default function HomePage() {
               </div>
               <div className="eyebrow" style={{ marginBottom: 8, color: "var(--accent)" }}>{"\u25b8"} Lead story</div>
               <h3 className="h1" style={{ fontSize: 36, marginBottom: 12 }}>
-                The GPAI Code of Practice: what foundation-model providers must do now.
+                EU AI Act GPAI Rules: What Foundation Model Developers Must Do
               </h3>
               <p className="lede soft">
-                Four months to align. A clause-by-clause read-through of the Code published this week.
+                The general-purpose AI model provisions are now in effect. Here&apos;s what developers and deployers need to know.
               </p>
-              <div className="mono xs faint" style={{ marginTop: 12 }}>By R. Almeida · 6 min · Apr 14</div>
+              <div className="mono xs faint" style={{ marginTop: 12 }}>11 min · Apr 5</div>
             </article>
           </Link>
 
           <div className="col" style={{ gap: 20 }}>
             {[
-              { kind: "Brief", title: "Colorado AI: the readiness window opens", time: "3 min" },
-              { kind: "Q&A", title: "\"We've run 31 GPAI audits — here's what trips teams up\"", time: "11 min" },
-              { kind: "Analysis", title: "UK AI Safety Bill Draft 3 — scope narrows", time: "7 min" },
+              { kind: "Guide", title: "How to Prepare for the Colorado AI Act Before June 2026", time: "8 min", slug: "how-to-prepare-for-colorado-ai-act-june-2026" },
+              { kind: "Guide", title: "NIST AI RMF Explained: A Compliance Team's Field Guide", time: "9 min", slug: "nist-ai-rmf-explainer-for-compliance-teams" },
+              { kind: "Update", title: "NYC LL 144 Enforcement: First Fines Issued", time: "6 min", slug: "nyc-ll-144-enforcement-update" },
             ].map((a) => (
               <Link
                 key={a.title}
-                href="/blog"
+                href={`/blog/${a.slug}`}
                 style={{ textDecoration: "none", display: "block", borderTop: "1px solid var(--line)", paddingTop: 16, cursor: "pointer" }}
               >
                 <div className="eyebrow" style={{ marginBottom: 4, color: "var(--accent)" }}>{"\u25b8"} {a.kind}</div>
@@ -558,10 +572,10 @@ export default function HomePage() {
             <div>
               <div className="grid" style={{ gridTemplateColumns: "1fr 1fr", gap: 16 }}>
                 {[
-                  { n: "912", l: "regulations indexed" },
-                  { n: "63", l: "jurisdictions" },
-                  { n: "314", l: "verified providers" },
-                  { n: "9.2k", l: "newsletter subs" },
+                  { n: String(regCount), l: "regulations indexed" },
+                  { n: String(BLOG_COUNT), l: "compliance guides" },
+                  { n: String(providerCount), l: "listed providers" },
+                  { n: "Free", l: "to list your firm" },
                 ].map((stat) => (
                   <div
                     key={stat.l}

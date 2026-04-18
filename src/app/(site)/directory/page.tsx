@@ -5,6 +5,7 @@ import { providers, providerCategories, providerServices } from "@/db/schema";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import { DirectorySearchClient, type ProviderSearchItem } from "@/components/directory/DirectorySearchClient";
+import { CategoryIcon } from "@/lib/category-icons";
 
 export const revalidate = 3600;
 
@@ -118,8 +119,9 @@ export default async function DirectoryPage() {
             <div className="h5" style={{ marginBottom: 8 }}>Specialization</div>
             <div className="col" style={{ gap: 4 }}>
               {categoryOptions.map((cat) => (
-                <Link key={cat.slug} href={`/directory/categories/${cat.slug}`} className="small" style={{ padding: "6px 0", color: "var(--ink-2)", textDecoration: "none" }}>
-                  {cat.icon} {cat.label}
+                <Link key={cat.slug} href={`/directory/categories/${cat.slug}`} className="small flex items-center" style={{ gap: 8, padding: "6px 0", color: "var(--ink-2)", textDecoration: "none" }}>
+                  <CategoryIcon name={cat.icon} className="h-4 w-4" />
+                  {cat.label}
                 </Link>
               ))}
             </div>

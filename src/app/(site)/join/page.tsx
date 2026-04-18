@@ -155,7 +155,7 @@ export default function JoinPage() {
               <div className="card card-feature">
                 <div className="feature-flag" style={{ marginBottom: 8 }}>&star; Featured</div>
                 <div style={{ fontFamily: "var(--serif)", fontSize: 36, fontWeight: 500, color: "var(--accent)" }}>
-                  &euro;490<span style={{ fontSize: 16, color: "var(--ink-soft)" }}>/mo</span>
+                  $490<span style={{ fontSize: 16, color: "var(--ink-soft)" }}>/mo</span>
                 </div>
                 <ul className="col" style={{ gap: 8, marginTop: 12, paddingLeft: 18, fontSize: 14 }}>
                   {FEATURED_FEATURES.map((f) => (
