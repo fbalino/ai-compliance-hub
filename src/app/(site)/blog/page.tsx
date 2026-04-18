@@ -147,17 +147,17 @@ export default function BlogPage() {
     <>
       <script {...jsonLdScriptProps(breadcrumbs)} />
 
-      <div className="rg-page-head">
-        <div className="rg-container" style={{ maxWidth: 1000 }}>
+      <div className="page-banner">
+        <div className="container" style={{ maxWidth: 1000, padding: 0 }}>
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Blog" }]} />
           <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: 16 }}>
             <div>
-              <h1>AI Compliance Blog</h1>
-              <p className="rg-page-desc">
+              <h1 className="h1">AI Compliance Blog</h1>
+              <p className="lede" style={{ marginTop: 8 }}>
                 Enforcement updates, compliance how-to guides, and analysis of new AI laws. Updated weekly.
               </p>
             </div>
-            <Link href="/newsletter" className="rg-btn rg-btn-outline" style={{ flexShrink: 0 }}>
+            <Link href="/newsletter" className="btn btn-ghost" style={{ flexShrink: 0 }}>
               <svg style={{ width: 16, height: 16, marginRight: 6 }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
@@ -165,86 +165,82 @@ export default function BlogPage() {
             </Link>
           </div>
 
-          <div style={{ marginTop: 20, display: "flex", flexWrap: "wrap", gap: 6 }}>
-            <span className="rg-pill-status" style={{ background: "var(--rg-primary)", color: "#fff" }}>All</span>
+          <div className="tag-strip" style={{ marginTop: 20 }}>
+            <span className="chip chip-accent">All</span>
             {CATEGORIES.map((cat) => (
-              <span key={cat} className="rg-tag" style={{ cursor: "pointer" }}>{cat}</span>
+              <span key={cat} className="chip" style={{ cursor: "pointer" }}>{cat}</span>
             ))}
           </div>
         </div>
       </div>
 
-      <div className="rg-page-body">
-        <div className="rg-container" style={{ maxWidth: 1000 }}>
+      <div className="container" style={{ maxWidth: 1000, padding: "var(--s-8) var(--s-7)" }}>
 
-          {/* Featured post */}
-          <Link href={`/blog/${featured.slug}`} className="rg-scard-link">
-            <div className="rg-scard" style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
-              <div style={{ width: 200, flexShrink: 0, borderRadius: 10, overflow: "hidden", background: "linear-gradient(135deg, var(--rg-primary-deep), var(--rg-primary))", aspectRatio: "16/9" }}>
-                <Image
-                  src={`/images/blog/${featured.slug}.jpg`}
-                  alt={featured.title}
-                  width={400}
-                  height={225}
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                  priority
-                />
+        {/* Featured post */}
+        <Link href={`/blog/${featured.slug}`} style={{ textDecoration: "none" }}>
+          <div className="card" style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
+            <div style={{ width: 200, flexShrink: 0, borderRadius: 10, overflow: "hidden", background: "linear-gradient(135deg, var(--accent), var(--gold))", aspectRatio: "16/9" }}>
+              <Image
+                src={`/images/blog/${featured.slug}.jpg`}
+                alt={featured.title}
+                width={400}
+                height={225}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                priority
+              />
+            </div>
+            <div style={{ flex: 1, minWidth: 240 }}>
+              <div className="tag-strip" style={{ marginBottom: 8 }}>
+                <span className="chip chip-accent">{featured.category}</span>
+                <span className="xs" style={{ color: "var(--ink-2)" }}>{featured.readTime}</span>
               </div>
-              <div style={{ flex: 1, minWidth: 240 }}>
-                <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 8, marginBottom: 8 }}>
-                  <span className="rg-pill-status" style={{ background: "var(--rg-primary-faint)", color: "var(--rg-primary-deep)" }}>{featured.category}</span>
-                  <span style={{ fontSize: 12, color: "var(--rg-ink-dim)" }}>{featured.readTime}</span>
-                </div>
-                <h2 style={{ marginBottom: 8 }}>{featured.title}</h2>
-                <p style={{ marginBottom: 12 }}>{featured.excerpt}</p>
-                <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 10 }}>
-                  <time dateTime={featured.date} style={{ fontSize: 12, color: "var(--rg-ink-dim)" }}>{formatDate(featured.date)}</time>
-                  <div style={{ display: "flex", gap: 5 }}>
-                    {featured.tags.map((tag) => (
-                      <span key={tag} className="rg-tag">{tag}</span>
-                    ))}
-                  </div>
-                </div>
+              <h2 className="h3" style={{ marginBottom: 8 }}>{featured.title}</h2>
+              <p className="small" style={{ marginBottom: 12, color: "var(--ink-2)" }}>{featured.excerpt}</p>
+              <div className="tag-strip">
+                <time dateTime={featured.date} className="xs" style={{ color: "var(--ink-2)" }}>{formatDate(featured.date)}</time>
+                {featured.tags.map((tag) => (
+                  <span key={tag} className="chip" style={{ fontSize: 11 }}>{tag}</span>
+                ))}
               </div>
             </div>
-          </Link>
+          </div>
+        </Link>
 
-          {/* Post grid */}
-          <div className="rg-scard-grid-3" style={{ marginTop: 32 }}>
-            {rest.map((post) => (
-              <Link key={post.slug} href={`/blog/${post.slug}`} className="rg-scard-link">
-                <div className="rg-scard" style={{ height: "100%" }}>
-                  <div style={{ marginBottom: 14, height: 120, borderRadius: 8, overflow: "hidden", background: "linear-gradient(135deg, var(--rg-bg), var(--rg-border))" }}>
-                    <Image
-                      src={`/images/blog/${post.slug}.jpg`}
-                      alt={post.title}
-                      width={400}
-                      height={225}
-                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                    />
-                  </div>
-                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
-                    <span className="rg-tag">{post.category}</span>
-                    <span style={{ fontSize: 12, color: "var(--rg-ink-dim)" }}>{post.readTime}</span>
-                  </div>
-                  <h3 style={{ lineHeight: 1.35, marginBottom: 8 }}>{post.title}</h3>
-                  <p style={{ display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden", marginBottom: 10 }}>
-                    {post.excerpt}
-                  </p>
-                  <time dateTime={post.date} style={{ fontSize: 12, color: "var(--rg-ink-dim)" }}>{formatDate(post.date)}</time>
+        {/* Post grid */}
+        <div className="grid" style={{ marginTop: 32, gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 16 }}>
+          {rest.map((post) => (
+            <Link key={post.slug} href={`/blog/${post.slug}`} style={{ textDecoration: "none" }}>
+              <div className="card" style={{ height: "100%" }}>
+                <div style={{ marginBottom: 14, height: 120, borderRadius: 8, overflow: "hidden", background: "linear-gradient(135deg, var(--paper-2), var(--line))" }}>
+                  <Image
+                    src={`/images/blog/${post.slug}.jpg`}
+                    alt={post.title}
+                    width={400}
+                    height={225}
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  />
                 </div>
-              </Link>
-            ))}
-          </div>
+                <div className="tag-strip" style={{ marginBottom: 8 }}>
+                  <span className="chip" style={{ fontSize: 11 }}>{post.category}</span>
+                  <span className="xs" style={{ color: "var(--ink-2)" }}>{post.readTime}</span>
+                </div>
+                <h3 className="h4" style={{ lineHeight: 1.35, marginBottom: 8 }}>{post.title}</h3>
+                <p className="small" style={{ display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden", marginBottom: 10, color: "var(--ink-2)" }}>
+                  {post.excerpt}
+                </p>
+                <time dateTime={post.date} className="xs" style={{ color: "var(--ink-2)" }}>{formatDate(post.date)}</time>
+              </div>
+            </Link>
+          ))}
+        </div>
 
-          {/* Newsletter CTA */}
-          <div className="rg-cta-dark" style={{ marginTop: 48, textAlign: "center" }}>
-            <h2>Never miss a regulation update</h2>
-            <p style={{ maxWidth: 420, margin: "8px auto 0" }}>
-              Weekly digest of new AI laws, enforcement actions, and compliance deadlines. Free. No spam.
-            </p>
-            <NewsletterForm source="blog" className="mt-5 max-w-sm mx-auto" />
-          </div>
+        {/* Newsletter CTA */}
+        <div className="card" style={{ marginTop: 48, textAlign: "center", padding: "var(--s-6)", background: "var(--ink)", color: "var(--paper)" }}>
+          <h2 className="h3" style={{ color: "var(--paper)" }}>Never miss a regulation update</h2>
+          <p className="small" style={{ maxWidth: 420, margin: "8px auto 0", color: "rgba(247,244,236,0.7)" }}>
+            Weekly digest of new AI laws, enforcement actions, and compliance deadlines. Free. No spam.
+          </p>
+          <NewsletterForm source="blog" className="mt-5 max-w-sm mx-auto" />
         </div>
       </div>
     </>

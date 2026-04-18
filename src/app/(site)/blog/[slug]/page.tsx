@@ -1396,8 +1396,8 @@ export default async function BlogPostPage({ params }: Props) {
     <>
       <script {...jsonLdScriptProps(breadcrumbs)} />
 
-      <div className="rg-page-head">
-        <div className="rg-container" style={{ maxWidth: 780 }}>
+      <div className="page-banner">
+        <div className="container" style={{ maxWidth: 780, padding: 0 }}>
           <Breadcrumbs
             items={[
               { label: "Home", href: "/" },
@@ -1406,24 +1406,23 @@ export default async function BlogPostPage({ params }: Props) {
             ]}
           />
           <div style={{ marginTop: 16 }}>
-            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 10, marginBottom: 12 }}>
-              <span className="rg-tag">{post.category}</span>
-              <span style={{ fontSize: 12, color: "var(--rg-ink-dim)" }}>{post.readTime}</span>
-              <time dateTime={post.date} style={{ fontSize: 12, color: "var(--rg-ink-dim)" }}>
+            <div className="tag-strip" style={{ marginBottom: 12 }}>
+              <span className="chip">{post.category}</span>
+              <span className="xs" style={{ color: "var(--ink-2)" }}>{post.readTime}</span>
+              <time dateTime={post.date} className="xs" style={{ color: "var(--ink-2)" }}>
                 {formatDate(post.date)}
               </time>
             </div>
-            <h1>{post.title}</h1>
-            <p className="rg-page-desc">{post.excerpt}</p>
+            <h1 className="h1">{post.title}</h1>
+            <p className="lede" style={{ marginTop: 8 }}>{post.excerpt}</p>
           </div>
         </div>
       </div>
 
-      <div className="rg-page-body">
-        <div className="rg-container" style={{ maxWidth: 780 }}>
+      <div className="container" style={{ maxWidth: 780, padding: "var(--s-8) var(--s-7)" }}>
 
           {/* Cover image */}
-          <div style={{ borderRadius: 12, overflow: "hidden", background: "linear-gradient(135deg, var(--rg-primary-deep), var(--rg-primary))", aspectRatio: "16/9", marginBottom: 40 }}>
+          <div style={{ borderRadius: 12, overflow: "hidden", background: "linear-gradient(135deg, var(--accent), var(--gold))", aspectRatio: "16/9", marginBottom: 40 }}>
             <Image
               src={`/images/blog/${slug}.jpg`}
               alt={post.title}
@@ -1442,11 +1441,11 @@ export default async function BlogPostPage({ params }: Props) {
 
           {/* Related regulations */}
           {post.relatedRegulations && post.relatedRegulations.length > 0 && (
-            <div className="rg-cta-banner" style={{ marginTop: 40, flexDirection: "column", alignItems: "stretch" }}>
-              <strong style={{ fontSize: 16 }}>Related Regulations</strong>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 12 }}>
+            <div className="card card-tint" style={{ marginTop: 40 }}>
+              <strong className="small" style={{ fontWeight: 600 }}>Related Regulations</strong>
+              <div className="tag-strip" style={{ marginTop: 12 }}>
                 {post.relatedRegulations.map((reg) => (
-                  <Link key={reg.slug} href={`/regulations/${reg.slug}`} className="rg-btn rg-btn-outline" style={{ fontSize: 13 }}>
+                  <Link key={reg.slug} href={`/regulations/${reg.slug}`} className="btn btn-ghost" style={{ fontSize: 13 }}>
                     {reg.name} &rarr;
                   </Link>
                 ))}
@@ -1455,34 +1454,33 @@ export default async function BlogPostPage({ params }: Props) {
           )}
 
           {/* Tags */}
-          <div style={{ marginTop: 24, display: "flex", flexWrap: "wrap", gap: 6 }}>
+          <div className="tag-strip" style={{ marginTop: 24 }}>
             {post.tags.map((tag) => (
-              <span key={tag} className="rg-tag">{tag}</span>
+              <span key={tag} className="chip">{tag}</span>
             ))}
           </div>
 
           {/* CTA */}
-          <div className="rg-scard" style={{ marginTop: 40, textAlign: "center" }}>
-            <p style={{ fontWeight: 600, marginBottom: 4 }}>
+          <div className="card" style={{ marginTop: 40, textAlign: "center" }}>
+            <p className="small" style={{ fontWeight: 600, marginBottom: 4 }}>
               Not sure which AI laws apply to your business?
             </p>
-            <p style={{ fontSize: 14, color: "var(--rg-ink-dim)", marginBottom: 16 }}>
+            <p className="small" style={{ color: "var(--ink-2)", marginBottom: 16 }}>
               Use our free compliance checker &mdash; answer 4 questions, get instant results.
             </p>
-            <Link href="/checker" className="rg-btn rg-btn-primary">Check My Compliance</Link>
+            <Link href="/checker" className="btn btn-primary">Check My Compliance</Link>
           </div>
 
           {/* Back to blog */}
           <div style={{ marginTop: 24 }}>
-            <Link href="/blog" style={{ fontSize: 14, fontWeight: 500, color: "var(--rg-ink-dim)" }}>
+            <Link href="/blog" className="small" style={{ fontWeight: 500, color: "var(--ink-2)" }}>
               &larr; Back to blog
             </Link>
           </div>
 
-          <p style={{ marginTop: 32, fontSize: 12, color: "var(--rg-ink-dim)", lineHeight: 1.6 }}>
+          <p className="xs" style={{ marginTop: 32, color: "var(--ink-2)", lineHeight: 1.6 }}>
             Not legal advice. This article is for informational purposes only. Always consult a qualified attorney for compliance decisions.
           </p>
-        </div>
       </div>
     </>
   );

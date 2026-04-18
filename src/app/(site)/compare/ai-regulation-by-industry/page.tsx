@@ -81,81 +81,79 @@ export default function AIRegulationByIndustryPage() {
     <>
       <script {...jsonLdScriptProps([breadcrumbs, schema])} />
 
-      <div className="rg-page-head">
-        <div className="rg-container" style={{ maxWidth: 1100 }}>
+      <div className="page-banner">
+        <div className="container" style={{ maxWidth: 1100, padding: 0 }}>
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Comparisons", href: "/compare" }, { label: "AI Regulation by Industry" }]} />
-          <h1>AI Regulation by Industry</h1>
-          <p className="rg-page-desc" style={{ maxWidth: 680 }}>
+          <h1 className="h1">AI Regulation by Industry</h1>
+          <p className="lede" style={{ maxWidth: 680, marginTop: 8 }}>
             Which AI laws apply to your industry &mdash; and what they actually require. Healthcare, HR/recruiting, fintech, and insurance across the four major AI compliance frameworks.
           </p>
-          <div style={{ marginTop: 16, display: "flex", flexWrap: "wrap", gap: 6 }}>
+          <div className="tag-strip" style={{ marginTop: 16 }}>
             {REGULATIONS.map((reg) => (
-              <span key={reg.key} className="rg-pill-status" style={{ background: reg.badge, color: reg.text }}>{reg.label}</span>
+              <span key={reg.key} className="chip" style={{ background: reg.badge, color: reg.text }}>{reg.label}</span>
             ))}
           </div>
         </div>
       </div>
 
-      <div className="rg-page-body">
-        <div className="rg-container" style={{ maxWidth: 1100 }}>
+      <div className="container" style={{ maxWidth: 1100, padding: "var(--s-8) var(--s-7)" }}>
 
-          {/* Regulation legend */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 10, marginBottom: 32 }}>
-            {REGULATIONS.map((reg) => (
-              <div key={reg.key} style={{ borderRadius: 10, border: `1px solid ${reg.border}`, background: reg.bg, padding: 12 }}>
-                <p style={{ fontWeight: 600, fontSize: 14, color: reg.text }}>{reg.label}</p>
-                <p style={{ fontSize: 12, marginTop: 2, color: reg.text, opacity: 0.75 }}>{reg.short}</p>
+        {/* Regulation legend */}
+        <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 10, marginBottom: 32 }}>
+          {REGULATIONS.map((reg) => (
+            <div key={reg.key} style={{ borderRadius: 10, border: `1px solid ${reg.border}`, background: reg.bg, padding: 12 }}>
+              <p className="small" style={{ fontWeight: 600, color: reg.text }}>{reg.label}</p>
+              <p className="xs" style={{ marginTop: 2, color: reg.text, opacity: 0.75 }}>{reg.short}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Industry matrix */}
+        <div className="col" style={{ gap: 24 }}>
+          {MATRIX.map((row) => (
+            <div key={row.industry} className="card" style={{ padding: 0, overflow: "hidden" }}>
+              <div style={{ background: "var(--paper-2)", borderBottom: "1px solid var(--line)", padding: "12px 20px", display: "flex", alignItems: "center", gap: 8 }}>
+                <span style={{ display: "flex", width: 32, height: 32, alignItems: "center", justifyContent: "center", borderRadius: 8, background: "var(--line)", color: "var(--ink-2)" }}>
+                  <row.icon className="h-4 w-4" aria-hidden="true" />
+                </span>
+                <h2 className="h4">{row.industry}</h2>
               </div>
-            ))}
-          </div>
-
-          {/* Industry matrix */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-            {MATRIX.map((row) => (
-              <div key={row.industry} className="rg-scard" style={{ padding: 0, overflow: "hidden" }}>
-                <div style={{ background: "var(--rg-bg)", borderBottom: "1px solid var(--rg-border)", padding: "12px 20px", display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ display: "flex", width: 32, height: 32, alignItems: "center", justifyContent: "center", borderRadius: 8, background: "var(--rg-border)", color: "var(--rg-ink-dim)" }}>
-                    <row.icon className="h-4 w-4" aria-hidden="true" />
-                  </span>
-                  <h2 style={{ fontSize: 18, fontWeight: 700 }}>{row.industry}</h2>
-                </div>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))" }}>
-                  {REGULATIONS.map((reg) => {
-                    const cell = row[reg.key as keyof IndustryRow] as Cell;
-                    return (
-                      <div key={reg.key} style={{ padding: 16, borderBottom: "1px solid var(--rg-border-soft)" }}>
-                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
-                          <span style={{ fontSize: 12, fontWeight: 600, color: reg.text }}>{reg.label}</span>
-                          <span className="rg-pill-status" style={cell.applies ? { background: "rgba(220,38,38,0.1)", color: "#b91c1c" } : { background: "var(--rg-bg)", color: "var(--rg-ink-dim)" }}>
-                            {cell.applies ? "Applies" : "Not covered"}
-                          </span>
-                        </div>
-                        <p style={{ fontSize: 12, color: "var(--rg-ink-dim)", lineHeight: 1.6 }}>{cell.note}</p>
+              <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))" }}>
+                {REGULATIONS.map((reg) => {
+                  const cell = row[reg.key as keyof IndustryRow] as Cell;
+                  return (
+                    <div key={reg.key} style={{ padding: 16, borderBottom: "1px solid var(--line)" }}>
+                      <div className="between" style={{ marginBottom: 8 }}>
+                        <span className="xs" style={{ fontWeight: 600, color: reg.text }}>{reg.label}</span>
+                        <span className="chip" style={cell.applies ? { background: "rgba(220,38,38,0.1)", color: "#b91c1c" } : { background: "var(--paper-2)", color: "var(--ink-2)" }}>
+                          {cell.applies ? "Applies" : "Not covered"}
+                        </span>
                       </div>
-                    );
-                  })}
-                </div>
+                      <p className="xs" style={{ color: "var(--ink-2)", lineHeight: 1.6 }}>{cell.note}</p>
+                    </div>
+                  );
+                })}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
+        </div>
 
-          {/* Important notes */}
-          <div className="rg-scard" style={{ marginTop: 32, borderColor: "rgba(217,119,6,0.3)", background: "rgba(217,119,6,0.06)" }}>
-            <h2 style={{ fontWeight: 600, color: "#78350f", marginBottom: 8 }}>Important Notes</h2>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 6, fontSize: 14, color: "#92400e" }}>
-              <li>&bull; This matrix shows the primary AI-specific regulations. Federal laws (ECOA, FCRA, HIPAA, ADA) and general anti-discrimination laws apply independently and may impose additional requirements.</li>
-              <li>&bull; &ldquo;Not covered&rdquo; means the specific law does not apply &mdash; it does not mean there are no applicable regulations in that sector.</li>
-              <li>&bull; Virginia HB 2094 (effective July 2026) follows the Colorado AI Act model and will add similar coverage for Virginia consumers across these industries.</li>
-              <li>&bull; This matrix reflects the law as of April 2026. Always verify with qualified legal counsel for your specific situation.</li>
-            </ul>
-          </div>
+        {/* Important notes */}
+        <div className="card" style={{ marginTop: 32, borderColor: "rgba(217,119,6,0.3)", background: "rgba(217,119,6,0.06)" }}>
+          <h2 className="h5" style={{ color: "#78350f", marginBottom: 8 }}>Important Notes</h2>
+          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 6, fontSize: 14, color: "#92400e" }}>
+            <li>&bull; This matrix shows the primary AI-specific regulations. Federal laws (ECOA, FCRA, HIPAA, ADA) and general anti-discrimination laws apply independently and may impose additional requirements.</li>
+            <li>&bull; &ldquo;Not covered&rdquo; means the specific law does not apply &mdash; it does not mean there are no applicable regulations in that sector.</li>
+            <li>&bull; Virginia HB 2094 (effective July 2026) follows the Colorado AI Act model and will add similar coverage for Virginia consumers across these industries.</li>
+            <li>&bull; This matrix reflects the law as of April 2026. Always verify with qualified legal counsel for your specific situation.</li>
+          </ul>
+        </div>
 
-          {/* CTAs */}
-          <div style={{ marginTop: 32, display: "flex", flexWrap: "wrap", gap: 10 }}>
-            <Link href="/checker" className="rg-btn rg-btn-primary">Check My Compliance</Link>
-            <Link href="/directory" className="rg-btn rg-btn-outline">Find Industry Experts</Link>
-            <Link href="/compare/us-state-ai-laws" className="rg-btn rg-btn-outline">Compare US State AI Laws &rarr;</Link>
-          </div>
+        {/* CTAs */}
+        <div className="tag-strip" style={{ marginTop: 32 }}>
+          <Link href="/checker" className="btn btn-primary">Check My Compliance</Link>
+          <Link href="/directory" className="btn btn-ghost">Find Industry Experts</Link>
+          <Link href="/compare/us-state-ai-laws" className="btn btn-ghost">Compare US State AI Laws &rarr;</Link>
         </div>
       </div>
     </>
