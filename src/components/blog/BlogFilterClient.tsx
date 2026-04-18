@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -30,6 +30,14 @@ function formatDate(iso: string) {
 
 export function BlogFilterClient({ categories, posts }: Props) {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const param = new URLSearchParams(window.location.search).get("category");
+    if (!param) return;
+    const match = categories.find((c) => c.toLowerCase() === param.toLowerCase());
+    if (match) setActiveCategory(match);
+  }, [categories]);
 
   const filtered = useMemo(() => {
     if (!activeCategory) return posts;

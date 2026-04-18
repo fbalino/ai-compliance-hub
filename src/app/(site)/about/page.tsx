@@ -55,7 +55,7 @@ export default function AboutPage() {
         </p>
 
         {/* How we track */}
-        <div className="eyebrow" style={{ marginTop: 48, marginBottom: 16 }}>&sect; How we track</div>
+        <div id="methodology" className="eyebrow" style={{ marginTop: 48, marginBottom: 16, scrollMarginTop: 80 }}>&sect; How we track (methodology)</div>
         <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: 16 }}>
           {PROCESS_STEPS.map((step) => (
             <div key={step.num} className="card">
@@ -73,13 +73,13 @@ export default function AboutPage() {
         </p>
 
         {/* Corrections */}
-        <div className="eyebrow" style={{ marginTop: 48, marginBottom: 16 }}>&sect; Corrections</div>
+        <div id="corrections" className="eyebrow" style={{ marginTop: 48, marginBottom: 16, scrollMarginTop: 80 }}>&sect; Corrections</div>
         <p className="lede">
           Every entry has a <span className="link" style={{ cursor: "pointer" }}>report correction</span> link. Corrections are logged publicly with dates and editor initials. We&apos;d rather be corrected than wrong.
         </p>
 
-        {/* Team */}
-        <div className="eyebrow" style={{ marginTop: 48, marginBottom: 16 }}>&sect; Team</div>
+        {/* Team & Contact */}
+        <div id="contact" className="eyebrow" style={{ marginTop: 48, marginBottom: 16, scrollMarginTop: 80 }}>&sect; Team &amp; Contact</div>
         <div className="flex" style={{ gap: 12 }}>
           {TEAM_INITIALS.map((n) => (
             <div key={n} className="avatar" style={{ width: 56, height: 56, fontSize: 18 }}>{n}</div>

@@ -2,30 +2,30 @@ import Link from "next/link";
 
 const CATALOG_LINKS = [
   { label: "All regulations", href: "/regulations" },
-  { label: "By jurisdiction", href: "/regulations" },
-  { label: "By topic", href: "/regulations" },
+  { label: "By jurisdiction", href: "/jurisdictions" },
+  { label: "By topic", href: "/regulations#topics" },
   { label: "Compare", href: "/compare/us-state-ai-laws" },
 ];
 
 const DIRECTORY_LINKS = [
   { label: "All providers", href: "/directory" },
-  { label: "Featured", href: "/directory" },
-  { label: "Post an RFP", href: "/directory" },
+  { label: "Categories", href: "/directory/categories" },
+  { label: "Post an RFP", href: "/join" },
   { label: "List your firm", href: "/join" },
 ];
 
 const LEDGER_LINKS = [
   { label: "Latest", href: "/blog" },
-  { label: "Explainers", href: "/blog" },
-  { label: "Q&As", href: "/blog" },
+  { label: "Explainers", href: "/blog?category=Compliance+Guides" },
+  { label: "Q&As", href: "/blog?category=Regulation+Analysis" },
   { label: "Subscribe", href: "/newsletter" },
 ];
 
 const COMPANY_LINKS = [
   { label: "About", href: "/about" },
-  { label: "Methodology", href: "/about" },
-  { label: "Corrections", href: "/about" },
-  { label: "Contact", href: "/about" },
+  { label: "Methodology", href: "/about#methodology" },
+  { label: "Corrections", href: "/about#corrections" },
+  { label: "Contact", href: "/about#contact" },
 ];
 
 function FooterColumn({ title, links }: { title: string; links: { label: string; href: string }[] }) {
