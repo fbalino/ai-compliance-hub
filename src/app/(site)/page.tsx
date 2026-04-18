@@ -11,7 +11,7 @@ import { getAllRegulationSlugs } from "@/lib/regulations";
 export const revalidate = 21600;
 
 export const metadata: Metadata = {
-  title: "Regulome — Find what you need to comply with",
+  title: "Find what you need to comply with",
   description:
     "Search the register of AI regulations — or describe your situation in plain English and let us route you to the right regulations and providers.",
 };
