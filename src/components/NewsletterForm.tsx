@@ -45,7 +45,7 @@ export function NewsletterForm({ source, variant = "default", className }: Newsl
         style={{
           fontSize: 13.5,
           fontWeight: 600,
-          color: "var(--rg-green)",
+          color: "var(--sage)",
           padding: "10px 0",
         }}
       >
@@ -57,27 +57,34 @@ export function NewsletterForm({ source, variant = "default", className }: Newsl
   if (isHero) {
     return (
       <form onSubmit={handleSubmit} className={className}>
-        <div className="flex flex-col sm:flex-row gap-3">
+        <div className="flex" style={{ gap: 10, flexWrap: "wrap" }}>
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
             placeholder="you@company.com"
-            className="flex-1 rounded-xl border border-white/25 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-white/40"
+            className="input"
+            style={{
+              flex: "1 1 200px",
+              background: "rgba(247,244,236,0.1)",
+              border: "1px solid rgba(247,244,236,0.25)",
+              color: "var(--paper)",
+              borderRadius: 999,
+            }}
             aria-label="Your email address"
             disabled={state === "submitting"}
           />
           <button
             type="submit"
             disabled={state === "submitting"}
-            className="rg-btn rg-btn-on-dark rg-btn-lg"
+            className="btn btn-accent"
           >
             {state === "submitting" ? "Subscribing\u2026" : "Subscribe Free"}
           </button>
         </div>
         {state === "error" && (
-          <p className="mt-2 text-xs" style={{ color: "#fca5a5" }}>
+          <p className="xs" style={{ marginTop: 8, color: "var(--stone)" }}>
             Something went wrong. Please try again.
           </p>
         )}
@@ -87,24 +94,24 @@ export function NewsletterForm({ source, variant = "default", className }: Newsl
 
   return (
     <form onSubmit={handleSubmit} className={className}>
-      <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+      <div className="flex" style={{ gap: 8, flexWrap: "wrap" }}>
         <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
           placeholder="you@company.com"
-          className="rg-input"
+          className="input"
           style={{ flex: "1 1 200px" }}
           aria-label="Your email address"
           disabled={state === "submitting"}
         />
-        <button type="submit" disabled={state === "submitting"} className="rg-btn rg-btn-primary">
-          {state === "submitting" ? "Subscribing\u2026" : "Subscribe"} <span className="rg-arrow">→</span>
+        <button type="submit" disabled={state === "submitting"} className="btn btn-primary">
+          {state === "submitting" ? "Subscribing\u2026" : "Subscribe"} →
         </button>
       </div>
       {state === "error" && (
-        <p style={{ marginTop: 8, fontSize: 12, color: "var(--rg-red)" }}>
+        <p className="xs" style={{ marginTop: 8, color: "var(--stone)" }}>
           Something went wrong. Please try again.
         </p>
       )}

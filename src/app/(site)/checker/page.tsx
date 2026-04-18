@@ -22,23 +22,21 @@ export default function CheckerPage() {
     <>
       <script {...jsonLdScriptProps(breadcrumbs)} />
 
-      <div className="rg-page-head">
-        <div style={{ maxWidth: 780, margin: "0 auto", padding: "0 40px" }}>
+      <div className="page-banner">
+        <div className="container-narrow">
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Compliance Checker" }]} />
           <div style={{ marginTop: 14 }}>
-            <span className="rg-pill-status rg-pill-clear" style={{ marginBottom: 12 }}>Free &middot; No account required &middot; Instant results</span>
-            <h1>Which AI laws apply to your business?</h1>
-            <p className="rg-page-desc">
-              Answer 4 short questions about your organization and AI use. We&apos;ll map them to the regulations that matter &mdash; and tell you exactly what you need to do.
+            <span className="chip chip-sage" style={{ marginBottom: 12 }}>Free · No account required · Instant results</span>
+            <h1 className="h1">Which AI laws apply to your business?</h1>
+            <p className="lede" style={{ marginTop: 8 }}>
+              Answer 4 short questions about your organization and AI use. We&apos;ll map them to the regulations that matter — and tell you exactly what you need to do.
             </p>
           </div>
         </div>
       </div>
 
-      <div className="rg-page-body">
-        <div style={{ maxWidth: 780, margin: "0 auto", padding: "0 40px" }}>
-          <CheckerClient />
-        </div>
+      <div className="container-narrow" style={{ padding: "var(--s-8) var(--s-7)" }}>
+        <CheckerClient />
       </div>
     </>
   );

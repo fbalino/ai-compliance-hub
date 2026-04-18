@@ -37,22 +37,22 @@ export default async function GlossaryIndexPage() {
     <>
       <script {...jsonLdScriptProps(breadcrumbs)} />
 
-      <div className="rg-page-head">
-        <div className="rg-container" style={{ maxWidth: 1000 }}>
+      <div className="page-banner">
+        <div className="container" style={{ maxWidth: 1000, padding: 0 }}>
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Glossary" }]} />
-          <h1>AI Compliance Glossary</h1>
-          <p className="rg-page-desc">
+          <h1 className="h1">AI Compliance Glossary</h1>
+          <p className="lede" style={{ marginTop: 8 }}>
             Plain-language definitions of key AI compliance and regulatory terms, mapped to the laws that use them.
           </p>
 
-          <div style={{ marginTop: 24, display: "flex", flexWrap: "wrap", gap: 4 }} aria-label="Jump to letter">
+          <div className="flex" style={{ marginTop: 24, flexWrap: "wrap", gap: 4 }} aria-label="Jump to letter">
             {letters.map((letter) => (
               <a
                 key={letter}
                 href={`#letter-${letter}`}
                 style={{
                   display: "flex", width: 32, height: 32, alignItems: "center", justifyContent: "center",
-                  borderRadius: 6, fontSize: 14, fontWeight: 600, color: "var(--rg-primary-deep)",
+                  borderRadius: 6, fontSize: 14, fontWeight: 600, color: "var(--accent)",
                 }}
               >
                 {letter}
@@ -62,47 +62,45 @@ export default async function GlossaryIndexPage() {
         </div>
       </div>
 
-      <div className="rg-page-body">
-        <div className="rg-container" style={{ maxWidth: 1000 }}>
-          {letters.map((letter) => (
-            <section key={letter} id={`letter-${letter}`} style={{ marginBottom: 40 }}>
-              <div className="rg-kicker" style={{ borderBottom: "1px solid var(--rg-border)", paddingBottom: 8, marginBottom: 16 }}>
-                {letter}
-              </div>
-              <div className="rg-scard-grid">
-                {groups[letter].map((entry) => (
-                  <Link key={entry.slug} href={`/glossary/${entry.slug}`} className="rg-scard-link">
-                    <div className="rg-scard" style={{ height: "100%" }}>
-                      <h3>{entry.frontmatter.term}</h3>
-                      <p style={{
-                        marginTop: 4, fontSize: 14, color: "var(--rg-ink-dim)", lineHeight: 1.5,
-                        display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden",
-                      }}>
-                        {entry.frontmatter.definition}
-                      </p>
-                      {entry.frontmatter.relatedRegulations && entry.frontmatter.relatedRegulations.length > 0 && (
-                        <div style={{ marginTop: 8, display: "flex", flexWrap: "wrap", gap: 4 }}>
-                          {entry.frontmatter.relatedRegulations.slice(0, 2).map((reg) => (
-                            <span key={reg.slug} className="rg-tag">{reg.name}</span>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </section>
-          ))}
-
-          <div className="rg-cta-banner">
-            <div style={{ flex: 1 }}>
-              <strong>See how these terms apply to your business</strong>
-              <span style={{ display: "block", marginTop: 6 }}>
-                Use our free compliance checker to find out which AI regulations affect your company and what you need to do.
-              </span>
+      <div className="container" style={{ maxWidth: 1000, padding: "var(--s-8) var(--s-7)" }}>
+        {letters.map((letter) => (
+          <section key={letter} id={`letter-${letter}`} style={{ marginBottom: 40 }}>
+            <div className="eyebrow" style={{ borderBottom: "1px solid var(--line)", paddingBottom: 8, marginBottom: 16 }}>
+              {letter}
             </div>
-            <Link href="/checker" className="rg-btn rg-btn-primary">Free Compliance Check</Link>
+            <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 16 }}>
+              {groups[letter].map((entry) => (
+                <Link key={entry.slug} href={`/glossary/${entry.slug}`} style={{ textDecoration: "none" }}>
+                  <article className="card" style={{ height: "100%" }}>
+                    <div className="h4">{entry.frontmatter.term}</div>
+                    <p className="small" style={{
+                      marginTop: 4, lineHeight: 1.5, color: "var(--ink-2)",
+                      display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden",
+                    }}>
+                      {entry.frontmatter.definition}
+                    </p>
+                    {entry.frontmatter.relatedRegulations && entry.frontmatter.relatedRegulations.length > 0 && (
+                      <div className="tag-strip" style={{ marginTop: 8 }}>
+                        {entry.frontmatter.relatedRegulations.slice(0, 2).map((reg) => (
+                          <span key={reg.slug} className="chip" style={{ fontSize: 11 }}>{reg.name}</span>
+                        ))}
+                      </div>
+                    )}
+                  </article>
+                </Link>
+              ))}
+            </div>
+          </section>
+        ))}
+
+        <div className="card" style={{ padding: "var(--s-6)", background: "var(--ink)", color: "var(--paper)", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
+          <div>
+            <div className="h4" style={{ color: "var(--paper)" }}>See how these terms apply to your business</div>
+            <span className="small" style={{ display: "block", marginTop: 4, color: "rgba(247,244,236,0.7)" }}>
+              Use our free compliance checker to find out which AI regulations affect your company.
+            </span>
           </div>
+          <Link href="/checker" className="btn btn-accent">Free Compliance Check</Link>
         </div>
       </div>
     </>

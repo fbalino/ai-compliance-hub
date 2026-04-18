@@ -2,8 +2,6 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { Card } from "@/components/ui/Card";
-import { Badge } from "@/components/ui/Badge";
 
 export interface ProviderSearchItem {
   slug: string;
@@ -56,130 +54,98 @@ export function DirectorySearchClient({ providers, categories }: Props) {
   }, [query, activeCategory, providers, isFiltering]);
 
   return (
-    <div className="space-y-6">
-      {/* Search bar + category filter chips */}
-      <div className="space-y-3">
-        {/* Search input */}
-        <div className="relative">
-          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-            <svg
-              className="h-4 w-4 text-neutral-400"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 104.5 4.5a7.5 7.5 0 0012.15 12.15z"
-              />
-            </svg>
-          </div>
-          <input
-            type="search"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search providers by name, specialization, or regulation..."
-            className="block w-full rounded-lg border border-neutral-300 bg-white py-2.5 pl-9 pr-4 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
-          />
-          {query && (
-            <button
-              onClick={() => setQuery("")}
-              className="absolute inset-y-0 right-0 flex items-center pr-3 text-neutral-400 hover:text-neutral-600"
-              aria-label="Clear search"
-            >
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          )}
-        </div>
-
-        {/* Category filter chips */}
-        <div className="flex flex-wrap gap-2">
+    <div className="col" style={{ gap: 20 }}>
+      {/* Search bar */}
+      <div className="search" style={{ maxWidth: 580 }}>
+        <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+          <circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" />
+        </svg>
+        <input
+          type="search"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search providers by name, specialization, or regulation…"
+        />
+        {query && (
           <button
-            onClick={() => setActiveCategory(null)}
-            className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
-              activeCategory === null
-                ? "border-brand-600 bg-brand-700 text-white"
-                : "border-neutral-300 bg-white text-neutral-600 hover:border-brand-300 hover:text-brand-700"
-            }`}
+            onClick={() => setQuery("")}
+            aria-label="Clear search"
+            style={{ background: "none", border: "none", cursor: "pointer", padding: 4, color: "var(--ink-soft)" }}
           >
-            All
+            <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+              <path d="m6 6 12 12" /><path d="m18 6-12 12" />
+            </svg>
           </button>
-          {categories.map((cat) => (
-            <button
-              key={cat.slug}
-              onClick={() =>
-                setActiveCategory(activeCategory === cat.slug ? null : cat.slug)
-              }
-              className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
-                activeCategory === cat.slug
-                  ? "border-brand-600 bg-brand-700 text-white"
-                  : "border-neutral-300 bg-white text-neutral-600 hover:border-brand-300 hover:text-brand-700"
-              }`}
-            >
-              <span aria-hidden="true">{cat.icon}</span>
-              {cat.label}
-            </button>
-          ))}
-        </div>
+        )}
+      </div>
+
+      {/* Category filter chips */}
+      <div className="tag-strip">
+        <button
+          onClick={() => setActiveCategory(null)}
+          className={activeCategory === null ? "chip chip-ink" : "chip"}
+          style={{ cursor: "pointer" }}
+        >
+          All
+        </button>
+        {categories.map((cat) => (
+          <button
+            key={cat.slug}
+            onClick={() => setActiveCategory(activeCategory === cat.slug ? null : cat.slug)}
+            className={activeCategory === cat.slug ? "chip chip-ink" : "chip"}
+            style={{ cursor: "pointer" }}
+          >
+            <span aria-hidden="true">{cat.icon}</span>
+            {cat.label}
+          </button>
+        ))}
       </div>
 
       {/* Results */}
       {isFiltering && (
         <div>
-          <p className="mb-4 text-sm text-neutral-500">
+          <p className="small" style={{ marginBottom: 16 }}>
             {filtered.length === 0
               ? "No providers match your search."
               : `${filtered.length} provider${filtered.length !== 1 ? "s" : ""} found`}
           </p>
 
           {filtered.length > 0 && (
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 16 }}>
               {filtered.map((provider) => (
                 <Link
                   key={provider.slug}
                   href={`/directory/providers/${provider.slug}`}
-                  className="group block"
+                  style={{ textDecoration: "none" }}
                 >
-                  <Card hover className="h-full group-hover:border-brand-300 transition-all">
-                    <div className="flex items-start justify-between gap-2 mb-2">
-                      <h3 className="font-semibold text-neutral-900 group-hover:text-brand-800 transition-colors">
-                        {provider.name}
-                      </h3>
-                      {/* TODO: Verified badge hidden — no verification process defined yet */}
+                  <article className="card" style={{ height: "100%" }}>
+                    <div className="flex items-center" style={{ gap: 12, marginBottom: 12 }}>
+                      <div className="avatar avatar-sq" style={{ width: 44, height: 44, fontSize: 17, background: "var(--accent-soft)", color: "var(--accent)", display: "grid", placeItems: "center", borderRadius: 6, flexShrink: 0, fontFamily: "var(--serif)", fontWeight: 600 }}>
+                        {provider.name[0]}
+                      </div>
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div className="h4">{provider.name}</div>
+                        <div className="xs">{provider.categoryIcon} {provider.categoryLabel}</div>
+                      </div>
                     </div>
-                    <p className="text-xs font-medium text-brand-700 mb-2">
-                      {provider.categoryIcon} {provider.categoryLabel}
-                    </p>
-                    <p className="text-sm text-neutral-600 leading-relaxed mb-3">
+                    <p className="small" style={{ color: "var(--ink-2)", lineHeight: 1.5, marginBottom: 12 }}>
                       {provider.tagline}
                     </p>
                     {provider.specializations.length > 0 && (
-                      <div className="flex flex-wrap gap-1.5 mb-3">
+                      <div className="tag-strip" style={{ marginBottom: 8 }}>
                         {provider.specializations.slice(0, 3).map((spec) => (
-                          <span
-                            key={spec}
-                            className="inline-flex items-center rounded-full bg-neutral-100 px-2 py-0.5 text-xs font-medium text-neutral-600"
-                          >
-                            {spec}
-                          </span>
+                          <span key={spec} className="chip" style={{ fontSize: 11 }}>{spec}</span>
                         ))}
                       </div>
                     )}
                     {provider.jurisdictions.length > 0 && (
-                      <div className="flex flex-wrap gap-1.5">
-                        {provider.jurisdictions.map((j) => (
-                          <Badge key={j} variant="default">
-                            {j}
-                          </Badge>
-                        ))}
+                      <div className="mono xs" style={{ letterSpacing: "0.04em" }}>
+                        <span className="soft">Covers: </span>
+                        {provider.jurisdictions.slice(0, 3).join(" · ")}
+                        {provider.jurisdictions.length > 3 && <span className="soft"> +{provider.jurisdictions.length - 3}</span>}
                       </div>
                     )}
-                  </Card>
+                  </article>
                 </Link>
               ))}
             </div>

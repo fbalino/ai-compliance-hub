@@ -17,8 +17,6 @@ import { RequestQuoteForm } from "@/components/RequestQuoteForm";
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
 
-// ── Types ─────────────────────────────────────────────────────────────────────
-
 interface ReviewData {
   id: string;
   authorName: string;
@@ -47,8 +45,6 @@ interface ProviderData {
   reviews: ReviewData[];
   averageRating?: number;
 }
-
-// ── Data fetching ─────────────────────────────────────────────────────────────
 
 async function getProvider(slug: string): Promise<ProviderData | null> {
   const [provider] = await db
@@ -105,8 +101,6 @@ export async function generateStaticParams() {
   return rows.map((r) => ({ slug: r.slug }));
 }
 
-// ── Page ──────────────────────────────────────────────────────────────────────
-
 interface Props {
   params: Promise<{ slug: string }>;
 }
@@ -152,8 +146,8 @@ export default async function ProviderPage({ params }: Props) {
     <>
       <script {...jsonLdScriptProps(schemas)} />
 
-      <div className="rg-page-head">
-        <div className="rg-container" style={{ maxWidth: 1000 }}>
+      <div className="page-banner">
+        <div className="container" style={{ maxWidth: 1000, padding: 0 }}>
           <Breadcrumbs
             items={[
               { label: "Home", href: "/" },
@@ -162,46 +156,49 @@ export default async function ProviderPage({ params }: Props) {
             ]}
           />
 
-          <div style={{ marginTop: 16, display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
-            <div style={{
-              width: 64, height: 64, borderRadius: 14, border: "1px solid var(--rg-border)",
-              background: "var(--rg-surface)", display: "flex", alignItems: "center", justifyContent: "center",
+          <div className="flex" style={{ marginTop: 16, gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
+            <div className="avatar avatar-sq" style={{
+              width: 64, height: 64, borderRadius: 14, border: "1px solid var(--line)",
+              background: "var(--paper)", display: "flex", alignItems: "center", justifyContent: "center",
               flexShrink: 0, overflow: "hidden",
             }}>
               {provider.logoUrl ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img src={provider.logoUrl} alt={`${provider.name} logo`} style={{ width: "100%", height: "100%", objectFit: "contain", padding: 8 }} />
               ) : (
-                <span style={{ fontSize: 24, fontWeight: 700, color: "var(--rg-ink-dim)" }}>{provider.name.charAt(0)}</span>
+                <span className="serif" style={{ fontSize: 24, fontWeight: 700, color: "var(--ink-soft)" }}>{provider.name.charAt(0)}</span>
               )}
             </div>
 
             <div style={{ flex: 1, minWidth: 0 }}>
-              <h1>{provider.name}</h1>
+              <div className="flex items-center" style={{ gap: 10 }}>
+                <h1 className="h1" style={{ margin: 0 }}>{provider.name}</h1>
+                {provider.isVerified && <span className="chip chip-sage">✓ Verified</span>}
+              </div>
               {provider.headquarters && (
-                <p style={{ marginTop: 2, fontSize: 13, color: "var(--rg-ink-dim)" }}>
+                <p className="xs" style={{ marginTop: 4 }}>
                   {provider.headquarters}
-                  {provider.foundedYear && ` \u00b7 Founded ${provider.foundedYear}`}
-                  {provider.employeeCountRange && ` \u00b7 ${provider.employeeCountRange} employees`}
+                  {provider.foundedYear && ` · Founded ${provider.foundedYear}`}
+                  {provider.employeeCountRange && ` · ${provider.employeeCountRange} employees`}
                 </p>
               )}
               {provider.averageRating && provider.reviews.length > 0 && (
-                <div style={{ marginTop: 6, display: "flex", alignItems: "center", gap: 6 }}>
+                <div className="flex items-center" style={{ gap: 6, marginTop: 6 }}>
                   <StarRating rating={provider.averageRating} />
-                  <span style={{ fontSize: 13, color: "var(--rg-ink-dim)" }}>
+                  <span className="xs">
                     {provider.averageRating.toFixed(1)} ({provider.reviews.length} review{provider.reviews.length !== 1 ? "s" : ""})
                   </span>
                 </div>
               )}
             </div>
 
-            <div style={{ display: "flex", gap: 8, flexShrink: 0 }}>
+            <div className="flex" style={{ gap: 8, flexShrink: 0 }}>
               {provider.websiteUrl && (
-                <a href={provider.websiteUrl} target="_blank" rel="noopener noreferrer" className="rg-btn rg-btn-outline">
-                  Visit Website &#8599;
+                <a href={provider.websiteUrl} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
+                  Visit Website ↗
                 </a>
               )}
-              <Link href={`/directory/providers/${slug}/request-quote`} className="rg-btn rg-btn-primary">
+              <Link href={`/directory/providers/${slug}/request-quote`} className="btn btn-primary">
                 Request a Quote
               </Link>
             </div>
@@ -209,104 +206,91 @@ export default async function ProviderPage({ params }: Props) {
         </div>
       </div>
 
-      <div className="rg-page-body">
-        <div className="rg-container" style={{ maxWidth: 1000 }}>
-          <div className="rg-2col">
-            <div className="rg-2col-main">
-              <section>
-                <h2 style={{ fontSize: 18, fontWeight: 600, marginBottom: 12 }}>About</h2>
-                <p style={{ color: "var(--rg-ink-dim)", lineHeight: 1.7 }}>{provider.description}</p>
-              </section>
+      <section className="container" style={{ maxWidth: 1000, padding: "var(--s-10) var(--s-7)", display: "grid", gridTemplateColumns: "1.55fr 380px", gap: 56 }}>
+        <article>
+          <div className="eyebrow" style={{ marginBottom: 8 }}>§ About</div>
+          <p className="lede" style={{ color: "var(--ink)" }}>{provider.description}</p>
 
-              {provider.serviceTypes.length > 0 && (
-                <section style={{ marginTop: 32 }}>
-                  <h2 style={{ fontSize: 18, fontWeight: 600, marginBottom: 12 }}>Services</h2>
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-                    {provider.serviceTypes.map((svc) => (
-                      <span key={svc} className="rg-tag">{svc}</span>
-                    ))}
-                  </div>
-                </section>
-              )}
+          {provider.serviceTypes.length > 0 && (
+            <section style={{ marginTop: 32 }}>
+              <div className="eyebrow" style={{ marginBottom: 12 }}>§ Services</div>
+              <div className="tag-strip">
+                {provider.serviceTypes.map((svc) => (
+                  <span key={svc} className="chip">{svc}</span>
+                ))}
+              </div>
+            </section>
+          )}
 
-              {provider.regulations.length > 0 && (
-                <section style={{ marginTop: 32 }}>
-                  <h2 style={{ fontSize: 18, fontWeight: 600, marginBottom: 12 }}>Regulations Covered</h2>
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-                    {provider.regulations.map((regSlug) => (
-                      <Link
-                        key={regSlug}
-                        href={`/regulations/${regSlug}`}
-                        className="rg-tag"
-                        style={{ color: "var(--rg-primary-deep)", background: "var(--rg-primary-faint)", borderColor: "var(--rg-primary-faint)" }}
-                      >
-                        {formatRegulationSlug(regSlug)}
-                      </Link>
-                    ))}
-                  </div>
-                </section>
-              )}
+          {provider.regulations.length > 0 && (
+            <section style={{ marginTop: 32 }}>
+              <div className="eyebrow" style={{ marginBottom: 12 }}>§ Regulations covered · {provider.regulations.length}</div>
+              <div className="tag-strip">
+                {provider.regulations.map((regSlug) => (
+                  <Link key={regSlug} href={`/regulations/${regSlug}`} className="chip" style={{ cursor: "pointer" }}>
+                    {formatRegulationSlug(regSlug)}
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
 
-              {provider.industries.length > 0 && (
-                <section style={{ marginTop: 32 }}>
-                  <h2 style={{ fontSize: 18, fontWeight: 600, marginBottom: 12 }}>Industries Served</h2>
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-                    {provider.industries.map((ind) => (
-                      <span key={ind} className="rg-tag">{ind}</span>
-                    ))}
-                  </div>
-                </section>
-              )}
+          {provider.industries.length > 0 && (
+            <section style={{ marginTop: 32 }}>
+              <div className="eyebrow" style={{ marginBottom: 12 }}>§ Industries served</div>
+              <div className="tag-strip">
+                {provider.industries.map((ind) => (
+                  <span key={ind} className="chip">{ind}</span>
+                ))}
+              </div>
+            </section>
+          )}
 
-              {provider.reviews.length > 0 && (
-                <section style={{ marginTop: 32 }}>
-                  <h2 style={{ fontSize: 18, fontWeight: 600, marginBottom: 16 }}>Reviews</h2>
-                  <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                    {provider.reviews.map((review) => (
-                      <ReviewCard key={review.id} review={review} />
-                    ))}
-                  </div>
-                </section>
-              )}
+          {provider.reviews.length > 0 && (
+            <section style={{ marginTop: 32 }}>
+              <div className="eyebrow" style={{ marginBottom: 16 }}>§ Reviews</div>
+              <div className="col" style={{ gap: 12 }}>
+                {provider.reviews.map((review) => (
+                  <ReviewCard key={review.id} review={review} />
+                ))}
+              </div>
+            </section>
+          )}
+        </article>
+
+        <aside style={{ position: "sticky", top: 60, alignSelf: "start" }}>
+          <div className="card" style={{ marginBottom: 16 }}>
+            <div className="eyebrow" style={{ marginBottom: 12 }}>Quick info</div>
+            <div className="col" style={{ gap: 10 }}>
+              {provider.foundedYear && <InfoRow label="Founded" value={String(provider.foundedYear)} />}
+              {provider.headquarters && <InfoRow label="Location" value={provider.headquarters} />}
+              {provider.employeeCountRange && <InfoRow label="Team Size" value={`${provider.employeeCountRange} employees`} />}
             </div>
-
-            <aside className="rg-2col-side">
-              <div className="rg-scard">
-                <h4>Quick Info</h4>
-                <dl style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-                  {provider.foundedYear && <InfoRow label="Founded" value={String(provider.foundedYear)} />}
-                  {provider.headquarters && <InfoRow label="Location" value={provider.headquarters} />}
-                  {provider.employeeCountRange && <InfoRow label="Team Size" value={`${provider.employeeCountRange} employees`} />}
-                </dl>
-              </div>
-
-              <div className="rg-scard" style={{ borderColor: "var(--rg-primary-faint)", background: "var(--rg-primary-faint)" }}>
-                <h4 style={{ color: "var(--rg-ink)" }}>Request a Quote</h4>
-                <p style={{ fontSize: 14, color: "var(--rg-ink-dim)", marginBottom: 16 }}>
-                  Get a proposal from {provider.name}.
-                </p>
-                <RequestQuoteForm
-                  providerSlug={provider.slug}
-                  providerServices={provider.serviceTypes}
-                />
-              </div>
-            </aside>
           </div>
-        </div>
-      </div>
+
+          <div className="card card-feature" style={{ padding: 20 }}>
+            <div className="eyebrow" style={{ marginBottom: 12 }}>Request a quote</div>
+            <p className="small" style={{ marginBottom: 16 }}>
+              Get a proposal from {provider.name}.
+            </p>
+            <RequestQuoteForm
+              providerSlug={provider.slug}
+              providerServices={provider.serviceTypes}
+            />
+          </div>
+        </aside>
+      </section>
     </>
   );
 }
 
-// ── Sub-components ────────────────────────────────────────────────────────────
-
 function StarRating({ rating }: { rating: number }) {
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 2 }} aria-hidden="true">
+    <div className="flex items-center" style={{ gap: 2 }} aria-hidden="true">
       {[1, 2, 3, 4, 5].map((star) => (
         <svg
           key={star}
-          style={{ width: 16, height: 16, color: star <= Math.round(rating) ? "#f59e0b" : "var(--rg-border)" }}
+          style={{ width: 16, height: 16, color: star <= Math.round(rating) ? "var(--gold)" : "var(--line)" }}
           fill="currentColor"
           viewBox="0 0 20 20"
         >
@@ -319,16 +303,16 @@ function StarRating({ rating }: { rating: number }) {
 
 function ReviewCard({ review }: { review: ReviewData }) {
   return (
-    <div className="rg-scard">
-      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12, marginBottom: 8 }}>
+    <div className="card">
+      <div className="between" style={{ marginBottom: 8 }}>
         <div>
-          <span style={{ fontWeight: 500, fontSize: 14 }}>{review.authorName}</span>
-          <p style={{ fontSize: 14, fontWeight: 500, marginTop: 2 }}>{review.title}</p>
+          <span className="h5">{review.authorName}</span>
+          <p className="h4" style={{ marginTop: 2 }}>{review.title}</p>
         </div>
         <StarRating rating={review.rating} />
       </div>
-      <p style={{ fontSize: 14, color: "var(--rg-ink-dim)", lineHeight: 1.6 }}>{review.body}</p>
-      <p style={{ marginTop: 8, fontSize: 12, color: "var(--rg-ink-dim)" }}>
+      <p className="small" style={{ color: "var(--ink-2)", lineHeight: 1.6 }}>{review.body}</p>
+      <p className="xs" style={{ marginTop: 8 }}>
         {new Date(review.createdAt).toLocaleDateString("en-US", { year: "numeric", month: "long" })}
       </p>
     </div>
@@ -337,14 +321,12 @@ function ReviewCard({ review }: { review: ReviewData }) {
 
 function InfoRow({ label, value }: { label: string; value: string }) {
   return (
-    <div style={{ display: "flex", justifyContent: "space-between", gap: 8, fontSize: 14 }}>
-      <dt style={{ color: "var(--rg-ink-dim)" }}>{label}</dt>
+    <div className="between small">
+      <dt className="soft">{label}</dt>
       <dd style={{ fontWeight: 500, textAlign: "right" }}>{value}</dd>
     </div>
   );
 }
-
-// ── Helpers ───────────────────────────────────────────────────────────────────
 
 function formatRegulationSlug(slug: string): string {
   const map: Record<string, string> = {

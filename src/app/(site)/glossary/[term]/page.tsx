@@ -64,8 +64,8 @@ export default async function GlossaryTermPage({ params }: Props) {
     <>
       <script {...jsonLdScriptProps(schemas)} />
 
-      <div className="rg-page-head">
-        <div className="rg-container" style={{ maxWidth: 1000 }}>
+      <div className="page-banner">
+        <div className="container" style={{ maxWidth: 1000, padding: 0 }}>
           <Breadcrumbs
             items={[
               { label: "Home", href: "/" },
@@ -73,10 +73,10 @@ export default async function GlossaryTermPage({ params }: Props) {
               { label: frontmatter.term },
             ]}
           />
-          <h1>{frontmatter.term}</h1>
-          <p className="rg-page-desc">{frontmatter.definition}</p>
+          <h1 className="h1">{frontmatter.term}</h1>
+          <p className="lede" style={{ marginTop: 8 }}>{frontmatter.definition}</p>
           {frontmatter.aliases && frontmatter.aliases.length > 0 && (
-            <p style={{ marginTop: 8, fontSize: 13, color: "var(--rg-ink-dim)" }}>
+            <p className="xs" style={{ marginTop: 8 }}>
               Also known as:{" "}
               {frontmatter.aliases.map((a, i) => (
                 <span key={a}>
@@ -89,58 +89,50 @@ export default async function GlossaryTermPage({ params }: Props) {
         </div>
       </div>
 
-      <div className="rg-page-body">
-        <div className="rg-container" style={{ maxWidth: 1000 }}>
-          <div className="rg-2col">
-            <div className="rg-2col-main">
-              {Content && (
-                <div className="prose-compliance">
-                  <Content />
-                </div>
-              )}
+      <section className="container" style={{ maxWidth: 1000, padding: "var(--s-10) var(--s-7)", display: "grid", gridTemplateColumns: "1.55fr 380px", gap: 56 }}>
+        <article>
+          {Content && (
+            <div className="prose-compliance">
+              <Content />
             </div>
+          )}
+        </article>
 
-            <aside className="rg-2col-side">
-              {frontmatter.relatedRegulations && frontmatter.relatedRegulations.length > 0 && (
-                <div className="rg-scard">
-                  <h4>Related Regulations</h4>
-                  <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 8 }}>
-                    {frontmatter.relatedRegulations.map((reg) => (
-                      <li key={reg.slug}>
-                        <Link href={`/regulations/${reg.slug}`} style={{ fontSize: 14, fontWeight: 500, color: "var(--rg-ink)" }}>
-                          {reg.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {frontmatter.relatedTerms && frontmatter.relatedTerms.length > 0 && (
-                <div className="rg-scard">
-                  <h4>Related Terms</h4>
-                  <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 8 }}>
-                    {frontmatter.relatedTerms.map((t) => (
-                      <li key={t.slug}>
-                        <Link href={`/glossary/${t.slug}`} style={{ fontSize: 14, fontWeight: 500, color: "var(--rg-ink)" }}>
-                          {t.term}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              <div className="rg-scard">
-                <p style={{ marginBottom: 12 }}>See how this applies to your business.</p>
-                <Link href="/checker" className="rg-btn rg-btn-primary" style={{ width: "100%", textAlign: "center" }}>
-                  Free Compliance Check
-                </Link>
+        <aside style={{ position: "sticky", top: 60, alignSelf: "start" }}>
+          {frontmatter.relatedRegulations && frontmatter.relatedRegulations.length > 0 && (
+            <div className="card" style={{ marginBottom: 16 }}>
+              <div className="eyebrow" style={{ marginBottom: 12 }}>Related regulations</div>
+              <div className="col" style={{ gap: 8 }}>
+                {frontmatter.relatedRegulations.map((reg) => (
+                  <Link key={reg.slug} href={`/regulations/${reg.slug}`} className="small" style={{ fontWeight: 500, color: "var(--ink)" }}>
+                    {reg.name}
+                  </Link>
+                ))}
               </div>
-            </aside>
+            </div>
+          )}
+
+          {frontmatter.relatedTerms && frontmatter.relatedTerms.length > 0 && (
+            <div className="card" style={{ marginBottom: 16 }}>
+              <div className="eyebrow" style={{ marginBottom: 12 }}>Related terms</div>
+              <div className="col" style={{ gap: 8 }}>
+                {frontmatter.relatedTerms.map((t) => (
+                  <Link key={t.slug} href={`/glossary/${t.slug}`} className="small" style={{ fontWeight: 500, color: "var(--ink)" }}>
+                    {t.term}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div className="card" style={{ padding: 16, background: "var(--paper-2)" }}>
+            <p className="small" style={{ marginBottom: 12 }}>See how this applies to your business.</p>
+            <Link href="/checker" className="btn btn-accent btn-sm w-full">
+              Free Compliance Check
+            </Link>
           </div>
-        </div>
-      </div>
+        </aside>
+      </section>
     </>
   );
 }

@@ -49,33 +49,31 @@ export default function ComparePage() {
     <>
       <script {...jsonLdScriptProps(breadcrumbs)} />
 
-      <div className="rg-page-head">
-        <div className="rg-container" style={{ maxWidth: 1000 }}>
+      <div className="page-banner">
+        <div className="container" style={{ maxWidth: 1000, padding: 0 }}>
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Comparisons" }]} />
-          <h1>AI Regulation Comparisons</h1>
-          <p className="rg-page-desc">
-            Understand how different AI compliance frameworks overlap, differ, and interact &mdash; so you can plan a unified compliance strategy.
+          <h1 className="h1">AI Regulation Comparisons</h1>
+          <p className="lede" style={{ marginTop: 8 }}>
+            Understand how different AI compliance frameworks overlap, differ, and interact — so you can plan a unified compliance strategy.
           </p>
         </div>
       </div>
 
-      <div className="rg-page-body">
-        <div className="rg-container" style={{ maxWidth: 1000 }}>
-          <div className="rg-scard-grid">
-            {COMPARISONS.map((comp) => (
-              <Link key={comp.href} href={comp.href} className="rg-scard-link">
-                <div className="rg-scard" style={{ height: "100%" }}>
-                  <h3>{comp.title}</h3>
-                  <p style={{ marginBottom: 14 }}>{comp.description}</p>
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
-                    {comp.tags.map((tag) => (
-                      <span key={tag} className="rg-tag">{tag}</span>
-                    ))}
-                  </div>
+      <div className="container" style={{ maxWidth: 1000, padding: "var(--s-8) var(--s-7)" }}>
+        <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(400px, 1fr))", gap: 16 }}>
+          {COMPARISONS.map((comp) => (
+            <Link key={comp.href} href={comp.href} style={{ textDecoration: "none" }}>
+              <article className="card" style={{ height: "100%" }}>
+                <div className="h3" style={{ marginBottom: 8 }}>{comp.title}</div>
+                <p className="small" style={{ lineHeight: 1.5, marginBottom: 14, color: "var(--ink-2)" }}>{comp.description}</p>
+                <div className="tag-strip">
+                  {comp.tags.map((tag) => (
+                    <span key={tag} className="chip" style={{ fontSize: 11 }}>{tag}</span>
+                  ))}
                 </div>
-              </Link>
-            ))}
-          </div>
+              </article>
+            </Link>
+          ))}
         </div>
       </div>
     </>

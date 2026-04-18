@@ -83,89 +83,78 @@ export default async function DirectoryPage() {
     <>
       <script {...jsonLdScriptProps(breadcrumbs)} />
 
-      <div className="rg-page-head">
-        <div className="rg-container">
+      <div className="page-banner">
+        <div className="container" style={{ padding: 0 }}>
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Provider Directory" }]} />
-          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: 16 }}>
+          <div className="flex between" style={{ flexWrap: "wrap", gap: 16 }}>
             <div>
-              <h1>AI Compliance Provider Directory</h1>
-              <p className="rg-page-desc">
+              <h1 className="h1">{totalCount} vetted providers</h1>
+              <p className="lede" style={{ maxWidth: 540, marginTop: 8 }}>
                 Verified auditors, consultants, lawyers, and software platforms specializing in AI regulatory compliance.
               </p>
             </div>
             <div style={{ textAlign: "right", flexShrink: 0 }}>
-              <div style={{ fontSize: 28, fontWeight: 700, color: "var(--rg-ink)", letterSpacing: "-0.6px" }}>{totalCount}+</div>
-              <div style={{ fontSize: 13, color: "var(--rg-ink-dim)", fontWeight: 500 }}>providers listed</div>
+              <div className="serif" style={{ fontSize: 32, color: "var(--ink)" }}>{totalCount}+</div>
+              <div className="xs">providers listed</div>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="rg-page-body">
-        <div className="rg-container">
+      <div className="container" style={{ padding: "var(--s-8) var(--s-7)" }}>
 
-          <div className="rg-page-section">
-            <div className="rg-kicker">Search Providers</div>
-            <DirectorySearchClient providers={searchItems} categories={categoryOptions} />
-          </div>
+        <div style={{ marginBottom: 40 }}>
+          <div className="eyebrow" style={{ marginBottom: 12 }}>Search Providers</div>
+          <DirectorySearchClient providers={searchItems} categories={categoryOptions} />
+        </div>
 
-          <div className="rg-page-section">
-            <div className="rg-kicker">Browse by Specialization</div>
-            <div className="rg-scard-grid-3">
-              {categoryOptions.map((cat) => {
-                const count = countByCategory[cat.slug] ?? 0;
-                return (
-                  <Link key={cat.slug} href={`/directory/categories/${cat.slug}`} className="rg-scard-link">
-                    <div className="rg-scard" style={{ height: "100%" }}>
-                      <div style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
-                        <span style={{
-                          display: "grid", placeItems: "center", width: 40, height: 40, borderRadius: 10, flexShrink: 0,
-                          background: "var(--rg-primary-faint)", color: "var(--rg-primary-deep)",
-                        }}>
-                          <CategoryIcon name={cat.icon} className="h-5 w-5" />
-                        </span>
-                        <div style={{ flex: 1, minWidth: 0 }}>
-                          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
-                            <h3 style={{ marginBottom: 0 }}>{cat.label}</h3>
-                            <span style={{ fontSize: 12, fontFamily: "var(--font-mono)", fontWeight: 500, color: "var(--rg-ink-dim)", flexShrink: 0 }}>
-                              {count}
-                            </span>
-                          </div>
-                        </div>
+        <div style={{ marginBottom: 40 }}>
+          <div className="eyebrow" style={{ marginBottom: 12 }}>Browse by Specialization</div>
+          <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: 12 }}>
+            {categoryOptions.map((cat) => {
+              const count = countByCategory[cat.slug] ?? 0;
+              return (
+                <Link key={cat.slug} href={`/directory/categories/${cat.slug}`} style={{ textDecoration: "none" }}>
+                  <div className="card" style={{ height: "100%", padding: 16, cursor: "pointer" }}>
+                    <div className="flex items-center" style={{ gap: 12 }}>
+                      <span style={{
+                        display: "grid", placeItems: "center", width: 40, height: 40, borderRadius: 6, flexShrink: 0,
+                        background: "var(--accent-soft)", color: "var(--accent)",
+                      }}>
+                        <CategoryIcon name={cat.icon} className="h-5 w-5" />
+                      </span>
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div className="h5">{cat.label}</div>
+                        <div className="mono xs" style={{ color: "var(--accent)", marginTop: 2 }}>{count}</div>
                       </div>
                     </div>
-                  </Link>
-                );
-              })}
-            </div>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
+        </div>
 
-          <div className="rg-cta-banner">
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 24, alignItems: "center", justifyContent: "space-between" }}>
-              <div>
-                <h2>Are you a compliance provider?</h2>
-                <p>
-                  List your firm in our directory and reach businesses actively looking for AI compliance help.
-                  Featured listings include verified badges, lead routing, and analytics dashboards.
-                </p>
-                <ul style={{ marginTop: 12, listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: 6 }}>
-                  <li style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: "var(--rg-primary-deep)" }}>
-                    <span style={{ color: "var(--rg-primary)" }}>&check;</span> Starting at $99/month &mdash; featured placement
-                  </li>
-                  <li style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: "var(--rg-primary-deep)" }}>
-                    <span style={{ color: "var(--rg-primary)" }}>&check;</span> Lead routing from compliance checker results
-                  </li>
-                  <li style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: "var(--rg-primary-deep)" }}>
-                    <span style={{ color: "var(--rg-primary)" }}>&check;</span> Verified badge after vetting
-                  </li>
-                </ul>
+        <div className="card" style={{ padding: "var(--s-7)", background: "var(--ink)", color: "var(--paper)" }}>
+          <div className="flex between" style={{ flexWrap: "wrap", gap: 24 }}>
+            <div style={{ maxWidth: 560 }}>
+              <div className="h3" style={{ color: "var(--paper)" }}>Are you a compliance provider?</div>
+              <p className="small" style={{ color: "rgba(247,244,236,0.7)", marginTop: 8 }}>
+                List your firm in our directory and reach businesses actively looking for AI compliance help.
+                Featured listings include verified badges, lead routing, and analytics dashboards.
+              </p>
+              <div className="col" style={{ gap: 6, marginTop: 12 }}>
+                {["Starting at $99/month — featured placement", "Lead routing from compliance checker results", "Verified badge after vetting"].map((item) => (
+                  <span key={item} className="flex items-center xs" style={{ gap: 8, color: "rgba(247,244,236,0.7)" }}>
+                    <span style={{ color: "var(--gold)" }}>✓</span> {item}
+                  </span>
+                ))}
               </div>
-              <a href="mailto:providers@aicompliancehub.com" className="rg-btn rg-btn-primary" style={{ flexShrink: 0 }}>
-                Get Listed <span className="rg-arrow">&rarr;</span>
-              </a>
             </div>
+            <Link href="/newsletter" className="btn btn-accent" style={{ flexShrink: 0 }}>
+              Get Listed →
+            </Link>
           </div>
-
         </div>
       </div>
     </>

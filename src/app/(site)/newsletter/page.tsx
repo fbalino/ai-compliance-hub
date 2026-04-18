@@ -31,54 +31,54 @@ export default function NewsletterPage() {
     <>
       <script {...jsonLdScriptProps(breadcrumbs)} />
 
-      <div className="rg-page-head">
-        <div className="rg-container">
+      <div className="page-banner">
+        <div className="container">
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Newsletter" }]} />
         </div>
       </div>
 
-      <div className="rg-cta-dark" style={{ borderRadius: 0, padding: "64px 40px" }}>
+      <div style={{ background: "var(--ink)", color: "var(--paper)", padding: "64px 40px", textAlign: "center" }}>
         <div style={{ maxWidth: 560, margin: "0 auto" }}>
-          <div style={{ width: 52, height: 52, borderRadius: 12, background: "rgba(255,255,255,0.1)", display: "grid", placeItems: "center", margin: "0 auto 16px" }}>
-            <svg style={{ width: 26, height: 26, color: "#fff" }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          <div style={{ width: 52, height: 52, borderRadius: 12, background: "rgba(247,244,236,0.1)", display: "grid", placeItems: "center", margin: "0 auto 16px" }}>
+            <svg style={{ width: 26, height: 26, color: "var(--paper)" }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+              <rect x="3" y="6" width="18" height="13" rx="1.5" /><path d="m3 8 9 6 9-6" />
             </svg>
           </div>
-          <h2 style={{ fontSize: "clamp(28px, 4vw, 38px)" }}>Stay ahead of AI regulation</h2>
-          <p style={{ maxWidth: 520 }}>
-            The AI compliance landscape changes weekly. Our free newsletter distills what matters &mdash; enforcement actions, new laws, compliance deadlines &mdash; so you don&apos;t have to track it all yourself.
+          <h2 className="h1" style={{ color: "var(--paper)" }}>Stay ahead of AI regulation</h2>
+          <p className="lede" style={{ color: "rgba(247,244,236,0.7)", maxWidth: 520, margin: "12px auto 0" }}>
+            The AI compliance landscape changes weekly. Our free newsletter distills what matters — enforcement actions, new laws, compliance deadlines — so you don&apos;t have to track it all yourself.
           </p>
-          <div style={{ display: "flex", justifyContent: "center", gap: 20, marginTop: 20, fontSize: 13, color: "var(--rg-dark-muted)" }}>
-            <span>&check; Free forever</span>
-            <span>&check; Weekly, every Monday</span>
-            <span>&check; Unsubscribe anytime</span>
+          <div className="flex" style={{ justifyContent: "center", gap: 20, marginTop: 20, fontSize: 13, color: "rgba(247,244,236,0.5)" }}>
+            <span>✓ Free forever</span>
+            <span>✓ Weekly, every Monday</span>
+            <span>✓ Unsubscribe anytime</span>
           </div>
-          <NewsletterForm source="newsletter_page" variant="hero" className="mt-8 max-w-md mx-auto" />
-          <p style={{ marginTop: 12, fontSize: 12, color: "var(--rg-dark-muted)", opacity: 0.7 }}>
+          <div style={{ marginTop: 32, maxWidth: 400, marginLeft: "auto", marginRight: "auto" }}>
+            <NewsletterForm source="newsletter_page" variant="hero" />
+          </div>
+          <p className="xs" style={{ marginTop: 12, color: "rgba(247,244,236,0.4)" }}>
             Join compliance and legal professionals at companies navigating AI regulation.
           </p>
         </div>
       </div>
 
-      <div className="rg-page-body">
-        <div className="rg-container" style={{ maxWidth: 1000 }}>
-          <div className="rg-kicker" style={{ textAlign: "center", display: "block" }}>What you&apos;ll get every week</div>
-          <div className="rg-scard-grid" style={{ marginTop: 24 }}>
-            {WHAT_TO_EXPECT.map((item) => (
-              <div key={item.title} className="rg-scard" style={{ display: "flex", alignItems: "flex-start", gap: 14 }}>
-                <span style={{
-                  display: "grid", placeItems: "center", width: 40, height: 40, borderRadius: 10, flexShrink: 0,
-                  background: "var(--rg-primary-faint)", color: "var(--rg-primary-deep)",
-                }}>
-                  <item.icon className="h-5 w-5" aria-hidden="true" />
-                </span>
-                <div>
-                  <h3 style={{ marginBottom: 4 }}>{item.title}</h3>
-                  <p>{item.description}</p>
-                </div>
+      <div className="container" style={{ maxWidth: 1000, padding: "var(--s-10) var(--s-7)" }}>
+        <div className="eyebrow" style={{ textAlign: "center", marginBottom: 24 }}>What you&apos;ll get every week</div>
+        <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(400px, 1fr))", gap: 16 }}>
+          {WHAT_TO_EXPECT.map((item) => (
+            <div key={item.title} className="card" style={{ display: "flex", alignItems: "flex-start", gap: 14 }}>
+              <span style={{
+                display: "grid", placeItems: "center", width: 40, height: 40, borderRadius: 6, flexShrink: 0,
+                background: "var(--accent-soft)", color: "var(--accent)",
+              }}>
+                <item.icon style={{ width: 20, height: 20 }} aria-hidden="true" />
+              </span>
+              <div>
+                <div className="h4" style={{ marginBottom: 4 }}>{item.title}</div>
+                <p className="small" style={{ lineHeight: 1.5, color: "var(--ink-2)" }}>{item.description}</p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </>

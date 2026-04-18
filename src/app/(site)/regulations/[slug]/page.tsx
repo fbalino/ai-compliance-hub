@@ -49,11 +49,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-function statusPill(status: string) {
-  if (status === "enforced") return "rg-pill-status rg-pill-applies";
-  if (status === "enacted") return "rg-pill-status rg-pill-action";
-  if (status === "draft") return "rg-pill-status rg-pill-watch";
-  return "rg-pill-status rg-pill-watch";
+function StatusDot({ status }: { status: string }) {
+  return (
+    <span className="chip" style={{ fontSize: 11, padding: "2px 8px" }}>
+      <span className={`dot dot-${status === "enforced" ? "active" : status === "enacted" ? "pending" : "proposed"}`} />
+      {status.charAt(0).toUpperCase() + status.slice(1)}
+    </span>
+  );
 }
 
 export default async function RegulationPage({ params }: Props) {
@@ -86,8 +88,8 @@ export default async function RegulationPage({ params }: Props) {
     <>
       <script {...jsonLdScriptProps(schemas)} />
 
-      <div className="rg-page-head">
-        <div className="rg-container">
+      <div className="page-banner">
+        <div className="container" style={{ padding: 0 }}>
           <Breadcrumbs
             items={[
               { label: "Home", href: "/" },
@@ -95,131 +97,126 @@ export default async function RegulationPage({ params }: Props) {
               { label: frontmatter.name },
             ]}
           />
-          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-start", gap: 16 }}>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div className="rg-meta-row">
-                <span className="rg-tag">{frontmatter.jurisdiction}</span>
-                <span className={statusPill(frontmatter.status)}>
-                  {frontmatter.status.charAt(0).toUpperCase() + frontmatter.status.slice(1)}
-                </span>
-                {frontmatter.shortName && (
-                  <span style={{ fontSize: 11, fontFamily: "var(--font-mono)", color: "var(--rg-ink-dim)" }}>
-                    {frontmatter.shortName}
-                  </span>
-                )}
+          <div className="flex items-center" style={{ gap: 12, marginBottom: 8, flexWrap: "wrap" }}>
+            {frontmatter.shortName && (
+              <span className="chip chip-code">{frontmatter.shortName}</span>
+            )}
+            <StatusDot status={frontmatter.status} />
+            <span className="chip">{frontmatter.jurisdiction}</span>
+          </div>
+          <h1 className="display" style={{ fontSize: "clamp(40px, 5vw, 72px)" }}>{frontmatter.name}.</h1>
+          <p className="lede" style={{ maxWidth: 680, marginTop: 8 }}>{frontmatter.description}</p>
+          {frontmatter.updatedAt && (
+            <p className="xs" style={{ marginTop: 12 }}>
+              Last updated:{" "}
+              <time dateTime={frontmatter.updatedAt}>
+                {new Date(frontmatter.updatedAt).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </time>
+            </p>
+          )}
+        </div>
+      </div>
+
+      <section className="container" style={{ padding: "var(--s-10) var(--s-7)", display: "grid", gridTemplateColumns: "1.55fr 380px", gap: 56 }}>
+        <article>
+          {/* Fact grid */}
+          <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))", gap: 12, marginBottom: 32 }}>
+            {frontmatter.effectiveDate && (
+              <div className="card">
+                <div className="eyebrow" style={{ marginBottom: 4 }}>Effective</div>
+                <div className="h4">{frontmatter.effectiveDate}</div>
               </div>
-              <h1>{frontmatter.name}</h1>
-              <p className="rg-page-desc">{frontmatter.description}</p>
-              {frontmatter.updatedAt && (
-                <p style={{ marginTop: 8, fontSize: 12, color: "var(--rg-ink-dim)" }}>
-                  Last updated:{" "}
-                  <time dateTime={frontmatter.updatedAt}>
-                    {new Date(frontmatter.updatedAt).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </time>
-                </p>
-              )}
+            )}
+            {frontmatter.enforcementDate && (
+              <div className="card">
+                <div className="eyebrow" style={{ marginBottom: 4 }}>Enforcement</div>
+                <div className="h4">{frontmatter.enforcementDate}</div>
+              </div>
+            )}
+            {frontmatter.maxPenalty && (
+              <div className="card">
+                <div className="eyebrow" style={{ marginBottom: 4 }}>Max Penalty</div>
+                <div className="h3 serif" style={{ color: "var(--accent)" }}>{frontmatter.maxPenalty}</div>
+              </div>
+            )}
+            {frontmatter.jurisdiction && (
+              <div className="card">
+                <div className="eyebrow" style={{ marginBottom: 4 }}>Jurisdiction</div>
+                <div className="h4">{frontmatter.jurisdiction}</div>
+              </div>
+            )}
+          </div>
+
+          {/* MDX content */}
+          <div className="prose-compliance">
+            <Content />
+          </div>
+
+          {/* Newsletter */}
+          <div className="card card-tint" style={{ marginTop: 40, padding: "var(--s-6)" }}>
+            <div className="h4" style={{ marginBottom: 4 }}>Stay ahead of AI compliance changes</div>
+            <p className="small" style={{ marginBottom: 12 }}>Get weekly regulation updates, enforcement news, and compliance deadlines — free.</p>
+            <NewsletterForm source="regulation_page" className="max-w-sm" />
+          </div>
+
+          {/* Provider CTA */}
+          <div className="card card-tint" style={{ marginTop: 16, padding: "var(--s-6)" }}>
+            <div className="h3" style={{ marginBottom: 4 }}>Need help complying with {frontmatter.name}?</div>
+            <p className="small" style={{ marginBottom: 16 }}>Browse verified consultants, auditors, and software platforms that specialize in this regulation.</p>
+            <div className="flex" style={{ gap: 8 }}>
+              <Link href={`/directory?regulation=${slug}`} className="btn btn-accent">Find Providers</Link>
+              <Link href="/checker" className="btn btn-ghost">Check My Compliance</Link>
             </div>
-            <Link href="/checker" className="rg-btn rg-btn-primary" style={{ flexShrink: 0 }}>
-              Check My Compliance <span className="rg-arrow">&rarr;</span>
+          </div>
+        </article>
+
+        {/* Sidebar */}
+        <aside style={{ position: "sticky", top: 60, alignSelf: "start" }}>
+          {frontmatter.toc && frontmatter.toc.length > 0 && (
+            <div className="card" style={{ marginBottom: 16 }}>
+              <div className="eyebrow" style={{ marginBottom: 12 }}>On this page</div>
+              <nav aria-label="Table of contents">
+                <div className="col" style={{ gap: 8 }}>
+                  {frontmatter.toc.map((item) => (
+                    <a key={item.id} href={`#${item.id}`} className="small" style={{ color: "var(--ink-2)", textDecoration: "none" }}>
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+              </nav>
+            </div>
+          )}
+
+          {frontmatter.relatedRegulations && frontmatter.relatedRegulations.length > 0 && (
+            <div className="card" style={{ marginBottom: 16 }}>
+              <div className="eyebrow" style={{ marginBottom: 12 }}>Related regulations</div>
+              <div className="tag-strip">
+                {frontmatter.relatedRegulations.map((rel) => (
+                  <Link key={rel.slug} href={`/regulations/${rel.slug}`} className="chip" style={{ cursor: "pointer" }}>
+                    {rel.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div className="card" style={{ padding: 16, background: "var(--paper-2)" }}>
+            <div className="eyebrow" style={{ marginBottom: 8 }}>Can&rsquo;t find a fit?</div>
+            <p className="small" style={{ marginBottom: 12 }}>Post an RFP — get 3–5 quotes in 48h.</p>
+            <Link href="/directory" className="btn btn-accent btn-sm w-full">Browse Providers →</Link>
+          </div>
+
+          <div style={{ paddingTop: 16 }}>
+            <Link href="/compare" className="flex items-center" style={{ gap: 6, fontSize: 13, fontWeight: 600, fontFamily: "var(--mono)", letterSpacing: "0.04em", color: "var(--accent)" }}>
+              Compare regulations →
             </Link>
           </div>
-        </div>
-      </div>
-
-      <div className="rg-page-body">
-        <div className="rg-container">
-          <div className="rg-2col">
-            <article className="rg-2col-main">
-              <div className="rg-fact-grid">
-                {frontmatter.effectiveDate && (
-                  <dl className="rg-fact">
-                    <dt>Effective Date</dt>
-                    <dd>{frontmatter.effectiveDate}</dd>
-                  </dl>
-                )}
-                {frontmatter.enforcementDate && (
-                  <dl className="rg-fact">
-                    <dt>Enforcement</dt>
-                    <dd>{frontmatter.enforcementDate}</dd>
-                  </dl>
-                )}
-                {frontmatter.maxPenalty && (
-                  <dl className="rg-fact">
-                    <dt>Max Penalty</dt>
-                    <dd>{frontmatter.maxPenalty}</dd>
-                  </dl>
-                )}
-                {frontmatter.jurisdiction && (
-                  <dl className="rg-fact">
-                    <dt>Jurisdiction</dt>
-                    <dd>{frontmatter.jurisdiction}</dd>
-                  </dl>
-                )}
-              </div>
-
-              <div className="prose-compliance">
-                <Content />
-              </div>
-
-              <div className="rg-inline-nl" style={{ marginTop: 40 }}>
-                <h3>Stay ahead of AI compliance changes</h3>
-                <p>Get weekly regulation updates, enforcement news, and compliance deadlines &mdash; free.</p>
-                <NewsletterForm source="regulation_page" className="max-w-sm" />
-              </div>
-
-              <div className="rg-cta-banner" style={{ marginTop: 20 }}>
-                <h2>Need help complying with {frontmatter.name}?</h2>
-                <p>Browse verified consultants, auditors, and software platforms that specialize in this regulation.</p>
-                <div className="rg-cta-actions">
-                  <Link href={`/directory?regulation=${slug}`} className="rg-btn rg-btn-primary">Find Providers</Link>
-                  <Link href="/checker" className="rg-btn rg-btn-outline">Check My Compliance</Link>
-                </div>
-              </div>
-            </article>
-
-            <aside className="rg-2col-side">
-              {frontmatter.toc && frontmatter.toc.length > 0 && (
-                <div className="rg-scard">
-                  <h4>On This Page</h4>
-                  <nav aria-label="Table of contents">
-                    <ul>
-                      {frontmatter.toc.map((item) => (
-                        <li key={item.id}>
-                          <a href={`#${item.id}`}>{item.label}</a>
-                        </li>
-                      ))}
-                    </ul>
-                  </nav>
-                </div>
-              )}
-
-              {frontmatter.relatedRegulations &&
-                frontmatter.relatedRegulations.length > 0 && (
-                  <div className="rg-scard">
-                    <h4>Related Regulations</h4>
-                    <ul>
-                      {frontmatter.relatedRegulations.map((rel) => (
-                        <li key={rel.slug}>
-                          <Link href={`/regulations/${rel.slug}`}>{rel.name}</Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-              <div style={{ paddingTop: 8 }}>
-                <Link href="/compare" style={{ fontSize: 13, fontWeight: 600, color: "var(--rg-primary)", textDecoration: "none" }}>
-                  Compare regulations &rarr;
-                </Link>
-              </div>
-            </aside>
-          </div>
-        </div>
-      </div>
+        </aside>
+      </section>
     </>
   );
 }
