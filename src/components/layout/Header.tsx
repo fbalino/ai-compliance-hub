@@ -41,14 +41,15 @@ export function Header() {
 
       <div className="spacer" />
 
-      <div
+      <Link
+        href="/search"
         className="search"
-        style={{ minWidth: 240, padding: "6px 12px" }}
+        style={{ minWidth: 240, padding: "6px 12px", textDecoration: "none" }}
       >
         <Search size={14} aria-hidden="true" />
-        <input placeholder="Search regulations…" readOnly />
-        <span className="mono xs faint">⌘K</span>
-      </div>
+        <span style={{ flex: 1, color: "var(--ink-soft)", fontSize: 14 }}>Search regulations\u2026</span>
+        <span className="mono xs faint">\u2318K</span>
+      </Link>
 
       <Link href="/join" className="btn btn-sm btn-ghost">
         For providers
