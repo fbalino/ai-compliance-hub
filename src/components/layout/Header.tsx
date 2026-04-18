@@ -56,7 +56,7 @@ export function Header() {
           For providers
         </Link>
         <Link href="/checker" className="btn btn-sm">
-          Sign in
+          Free Checker
         </Link>
       </div>
 
@@ -124,7 +124,7 @@ export function Header() {
               For providers
             </Link>
             <Link href="/checker" className="btn btn-sm" onClick={() => setMobileOpen(false)} style={{ flex: 1, justifyContent: "center" }}>
-              Sign in
+              Free Checker
             </Link>
           </div>
         </div>
