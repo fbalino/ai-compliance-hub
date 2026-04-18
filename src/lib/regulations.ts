@@ -55,6 +55,8 @@ const REGULATION_MODULES: Record<string, () => Promise<MdxModule>> = {
     import("content/regulations/texas-cubi.mdx") as Promise<MdxModule>,
   "nist-ai-rmf": () =>
     import("content/regulations/nist-ai-rmf.mdx") as Promise<MdxModule>,
+  "iso-42001": () =>
+    import("content/regulations/iso-42001.mdx") as Promise<MdxModule>,
 };
 
 export async function getAllRegulationSlugs(): Promise<string[]> {

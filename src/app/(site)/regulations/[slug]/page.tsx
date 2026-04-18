@@ -247,6 +247,30 @@ const REG_EXTRAS: Record<string, {
     ],
     sources: ["NIST AI 100-1 (AI RMF 1.0)", "NIST AI 600-1 (Generative AI Profile)", "NIST AI RMF Playbook", "Executive Order 14110"],
   },
+  "iso-42001": {
+    timeline: [
+      { date: "Dec 2023", label: "Standard published", reached: true },
+      { date: "Q1 2024", label: "First audits available", reached: true },
+      { date: "Jun 2024", label: "First certificates issued", reached: true },
+      { date: "Aug 2025", label: "EU AI Act GPAI applies", reached: false },
+      { date: "Aug 2026", label: "EU AI Act main obligations", reached: false },
+    ],
+    penalties: [
+      { tier: "Standard", amount: "Voluntary", scope: "no direct penalties" },
+      { tier: "Non-conformance", amount: "Certificate loss", scope: "withdrawal after failed surveillance" },
+    ],
+    providers: [
+      { name: "Credo AI", type: "Software", hq: "San Francisco", slug: "credo-ai" },
+      { name: "Holistic AI", type: "Governance", hq: "London / New York", slug: "holistic-ai" },
+      { name: "BABL AI", type: "Audit", hq: "New York", slug: "babl-ai" },
+    ],
+    articles: [
+      { kind: "Comparison", title: "NIST AI RMF vs ISO 42001: which framework fits?" },
+      { kind: "Explainer", title: "ISO 42001 certification: what to expect from the audit" },
+      { kind: "Brief", title: "How ISO 42001 aligns with the EU AI Act" },
+    ],
+    sources: ["ISO/IEC 42001:2023 (ISO)", "ISO/IEC 23894:2023 (AI risk management)", "ISO/IEC 42006 (certification body requirements)", "EU AI Act harmonization roadmap"],
+  },
 };
 
 export default async function RegulationPage({ params }: Props) {
