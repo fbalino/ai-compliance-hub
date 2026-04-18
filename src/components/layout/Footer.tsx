@@ -5,6 +5,7 @@ const CATALOG_LINKS = [
   { label: "By jurisdiction", href: "/jurisdictions" },
   { label: "By topic", href: "/regulations#topics" },
   { label: "Compare", href: "/compare/us-state-ai-laws" },
+  { label: "Glossary", href: "/glossary" },
 ];
 
 const DIRECTORY_LINKS = [
