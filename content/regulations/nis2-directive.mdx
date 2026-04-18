@@ -1,0 +1,300 @@
+export const frontmatter = {
+  name: "NIS2 Directive",
+  shortName: "EU 2022/2555",
+  description:
+    "The EU's updated cybersecurity directive requiring essential and important sector organizations — including those deploying AI — to implement robust security risk management, incident reporting, and supply chain controls.",
+  jurisdiction: "European Union",
+  status: "enforced",
+  effectiveDate: "January 16, 2023",
+  enforcementDate: "October 17, 2024",
+  maxPenalty: "€10 million or 2% of global turnover (essential); €7 million or 1.4% (important)",
+  publishedAt: "2022-12-27",
+  updatedAt: "2026-04-18",
+  toc: [
+    { id: "overview", label: "Overview" },
+    { id: "scope", label: "Who It Applies To" },
+    { id: "sectors", label: "Covered Sectors" },
+    { id: "key-requirements", label: "Key Requirements" },
+    { id: "ai-intersection", label: "AI & NIS2 Intersection" },
+    { id: "compliance-timeline", label: "Compliance Timeline" },
+    { id: "penalties", label: "Penalties & Enforcement" },
+    { id: "compliance-steps", label: "Compliance Steps" },
+    { id: "faqs", label: "Frequently Asked Questions" },
+  ],
+  relatedRegulations: [
+    { slug: "eu-ai-act", name: "EU AI Act" },
+    { slug: "dora", name: "DORA" },
+    { slug: "california-ab-2013", name: "California AB 2013" },
+  ],
+  faqs: [
+    {
+      question: "Does NIS2 apply to companies outside the EU?",
+      answer:
+        "Yes. NIS2 applies to organizations established outside the EU if they provide services within the EU in a covered sector. Such organizations must designate a representative in an EU member state.",
+    },
+    {
+      question: "What is the difference between NIS1 and NIS2?",
+      answer:
+        "NIS2 significantly expands NIS1's scope by adding new sectors (manufacturing, food, chemicals, research, waste management, postal services), introducing stricter security requirements, tightening incident reporting deadlines, adding supply chain security obligations, and imposing personal liability on management for compliance failures.",
+    },
+    {
+      question: "How does NIS2 interact with the EU AI Act?",
+      answer:
+        "The EU AI Act's cybersecurity requirements for high-risk AI systems (Article 15) explicitly reference NIS2. Organizations deploying high-risk AI in NIS2-covered sectors must satisfy both frameworks simultaneously. NIS2 also covers ICT supply chains, meaning AI vendors providing services to essential/important entities may face NIS2 scrutiny.",
+    },
+    {
+      question: "What are the incident reporting timelines under NIS2?",
+      answer:
+        "Significant incidents must be reported in three stages: an early warning within 24 hours, a full incident notification within 72 hours, and a final report within one month. This is considerably stricter than the original NIS Directive.",
+    },
+    {
+      question: "Can management be held personally liable under NIS2?",
+      answer:
+        "Yes. NIS2 introduces personal liability for management bodies (directors, senior executives) of essential entities. Management must approve cybersecurity risk-management measures, oversee their implementation, and can be held personally liable for non-compliance. This is a major expansion from NIS1.",
+    },
+    {
+      question: "What sectors are classified as 'essential' under NIS2?",
+      answer:
+        "Essential sectors include: energy (electricity, oil, gas, district heating, hydrogen), transport (air, rail, water, road), banking, financial market infrastructure, health, drinking water, wastewater, digital infrastructure (internet exchange points, DNS, TLD registries, cloud providers, data centres, CDNs, trust service providers, electronic communications), ICT service management (managed service providers, managed security service providers), public administration, and space.",
+    },
+  ],
+};
+
+## Overview
+
+The **NIS2 Directive** (EU Directive 2022/2555 on measures for a high common level of cybersecurity across the Union) is the EU's updated framework for cybersecurity risk management and incident reporting. It replaces the original NIS Directive (2016/1148) and represents a substantial expansion in both scope and stringency.
+
+Published on December 27, 2022, NIS2 entered into force on January 16, 2023, with EU member states required to transpose it into national law by **October 17, 2024**. The directive now covers organizations in over 18 sectors — from energy and transport to manufacturing, food production, and research institutions.
+
+For AI compliance teams, NIS2 is directly relevant: organizations deploying AI systems in any covered sector must ensure those systems and their supply chains meet NIS2's cybersecurity standards. The EU AI Act explicitly cross-references NIS2 in its cybersecurity requirements for high-risk AI, creating an overlapping compliance landscape that teams must navigate together.
+
+---
+
+## Who It Applies To
+
+NIS2 distinguishes between two tiers of regulated organizations based on sector and size:
+
+### Essential Entities
+
+Large organizations (≥250 employees or >€50M annual turnover and >€43M balance sheet) in high-criticality sectors. Subject to **proactive supervision** by national authorities — regulators can conduct audits, targeted security scans, and on-site inspections without waiting for an incident.
+
+### Important Entities
+
+Medium-sized organizations (50–249 employees or €10M–€50M turnover) in high-criticality sectors, **and** all sizes in other critical sectors. Subject to **reactive supervision** — authorities investigate after receiving evidence of non-compliance or an incident.
+
+### Geographic Reach
+
+NIS2 applies to entities **established in the EU** and to entities **established outside the EU** but offering services inside the EU in covered sectors. Non-EU entities must designate an EU representative.
+
+### Exclusions
+
+Micro and small enterprises (fewer than 50 employees and under €10M turnover) are generally excluded unless they are the sole provider of an essential service in a member state, or their disruption would have a significant cross-border impact.
+
+---
+
+## Covered Sectors
+
+NIS2 covers organizations in two categories:
+
+### Highly Critical Sectors (Annex I)
+
+1. Energy — electricity, oil, gas, district heating/cooling, hydrogen
+2. Transport — air, rail, water, road
+3. Banking — credit institutions
+4. Financial market infrastructure — trading venues, CCPs
+5. Health — hospitals, healthcare providers, EU reference laboratories, pharmaceutical manufacturers, medical device manufacturers
+6. Drinking water
+7. Wastewater
+8. Digital infrastructure — internet exchange points, DNS service providers, TLD registries, cloud computing service providers, data centre services, content delivery networks, trust service providers, providers of public electronic communications networks
+9. ICT service management (B2B) — managed service providers (MSPs), managed security service providers (MSSPs)
+10. Public administration — central government entities, regional entities with significant cross-border impact
+11. Space — ground-based infrastructure supporting space services
+
+### Other Critical Sectors (Annex II)
+
+12. Postal and courier services
+13. Waste management
+14. Manufacture, production, and distribution of chemicals
+15. Production, processing, and distribution of food
+16. Manufacturing — medical devices, computers and electronics, machinery, motor vehicles, other transport equipment
+17. Digital providers — online marketplaces, online search engines, social networking platforms
+18. Research — research organisations (optional for member states)
+
+---
+
+## Key Requirements
+
+NIS2 mandates ten baseline cybersecurity risk-management measures for all covered entities. These are minimum requirements; member states may impose stricter standards.
+
+### 1. Policies on Risk Analysis and Information Security
+
+Organizations must have documented policies for analyzing cybersecurity risks, assessing their information assets, and maintaining an information security program proportionate to their risk profile.
+
+### 2. Incident Handling
+
+Covered entities must implement procedures for detecting, analyzing, containing, and recovering from security incidents. They must maintain incident response capabilities and establish clear escalation paths.
+
+### 3. Business Continuity and Crisis Management
+
+Organizations must have business continuity plans, including backup management, disaster recovery, and crisis management procedures, to ensure they can maintain or rapidly restore essential services after a significant incident.
+
+### 4. Supply Chain Security
+
+One of NIS2's most significant additions: covered entities must assess and address cybersecurity risks in their **supply chains**, including relationships with direct suppliers and service providers. This means evaluating the security practices of software vendors, cloud providers, AI platform providers, and other technology suppliers.
+
+### 5. Security in Network and Information Systems Acquisition, Development, and Maintenance
+
+Organizations must integrate security into procurement, development, and maintenance of network and information systems — including vulnerability disclosure policies and processes for handling and publishing vulnerabilities.
+
+### 6. Policies and Procedures to Assess Cybersecurity Risk-Management Measure Effectiveness
+
+Covered entities must have policies and procedures to assess the effectiveness of their cybersecurity measures, including regular testing and evaluation.
+
+### 7. Basic Cyber Hygiene Practices and Cybersecurity Training
+
+Organizations must implement basic cyber hygiene (patching policies, password management, multi-factor authentication) and provide regular cybersecurity awareness training to employees.
+
+### 8. Cryptography and Encryption Policies
+
+Where appropriate, organizations must use encryption and cryptographic controls. NIS2 requires policies on the use of cryptography and, where relevant, encryption.
+
+### 9. Human Resources Security, Access Control, and Asset Management
+
+Covered entities must manage human resources security (background checks, access revocation procedures), enforce access control policies, and maintain an asset management inventory.
+
+### 10. Multi-Factor Authentication and Secured Communications
+
+Organizations must use multi-factor authentication (MFA) or continuous authentication solutions, and use secured voice, video, and text communications and secured emergency communications where appropriate.
+
+### Management Accountability
+
+Management bodies must **approve** the cybersecurity risk-management measures, **oversee** their implementation, and can be held **personally liable** for systematic non-compliance. Management must also receive regular cybersecurity training.
+
+---
+
+## AI & NIS2 Intersection
+
+NIS2 was not designed specifically as an AI regulation, but it has significant implications for any organization deploying AI systems in covered sectors.
+
+### AI Systems as ICT Assets
+
+Under NIS2, AI systems used in essential or important entities are **ICT assets** that must be covered by the organization's cybersecurity risk-management program. This includes:
+
+- AI models used in operational technology (energy management systems, traffic control, industrial control systems)
+- AI-powered security tools (anomaly detection, threat intelligence, fraud detection)
+- AI systems processing sensitive data (health AI, financial AI, government AI)
+- Generative AI tools used by employees in covered organizations
+
+### AI Vendors as Supply Chain Risk
+
+NIS2's supply chain security requirements (Article 21(2)(d)) are particularly significant for AI deployments. Organizations must assess the cybersecurity practices of their AI platform providers, model vendors, and AI-as-a-service suppliers. This means:
+
+- Evaluating cybersecurity practices of AI vendors before procurement
+- Including security requirements in AI vendor contracts
+- Monitoring AI third-party providers for security incidents that could affect your systems
+- Maintaining the ability to switch AI providers if a supplier's security posture deteriorates
+
+### EU AI Act Cross-Reference
+
+The EU AI Act's Article 15 on accuracy, robustness, and cybersecurity for high-risk AI systems explicitly references NIS2, stating that high-risk AI systems must meet NIS2 standards where applicable. Organizations deploying high-risk AI in NIS2-covered sectors face **dual compliance obligations**:
+
+| Requirement | EU AI Act | NIS2 |
+|-------------|-----------|------|
+| Cybersecurity of AI systems | Article 15 | Article 21 |
+| Incident reporting | Article 73 (serious incidents) | Articles 23-24 (significant incidents) |
+| Supply chain / third parties | Article 25 (obligations for distributors) | Article 21(2)(d) (supply chain security) |
+| Documentation | Articles 11, 18 (technical docs, logs) | Article 21 (policies and procedures) |
+
+### Managed Service Providers Using AI
+
+MSPs and MSSPs — themselves regulated as "essential entities" under NIS2's Annex I — face heightened scrutiny when they provide AI-powered managed services. Their AI tools for threat detection, automated response, and security monitoring must meet the same NIS2 standards as any other ICT system.
+
+---
+
+## Compliance Timeline
+
+| Date | Milestone |
+|------|-----------|
+| **December 27, 2022** | NIS2 Directive published in Official Journal of the EU |
+| **January 16, 2023** | NIS2 enters into force (20 days after publication) |
+| **October 17, 2024** | Deadline for EU member states to transpose NIS2 into national law |
+| **October 17, 2024** | **Organizations must comply with transposed national NIS2 laws** |
+| **April 17, 2025** | Deadline for member states to establish a list of essential and important entities |
+| **Ongoing** | Member states may phase in certain sector-specific requirements |
+
+Note: Transposition progress varies by member state. Organizations should verify which national implementing law applies to their jurisdiction(s) and monitor for jurisdiction-specific requirements that may exceed NIS2's baseline.
+
+---
+
+## Penalties & Enforcement
+
+NIS2 sets maximum penalty levels, with member states having discretion to set higher fines in national law.
+
+| Entity Type | Maximum Fine |
+|-------------|-------------|
+| Essential entities | **€10 million or 2% of global annual turnover** (whichever is higher) |
+| Important entities | **€7 million or 1.4% of global annual turnover** (whichever is higher) |
+
+### Additional Enforcement Powers
+
+National competent authorities have significant supervisory and enforcement powers:
+
+- **On-site inspections** and off-site supervision for essential entities
+- **Security audits** by independent bodies
+- **Targeted security scans** based on risk assessments
+- Requests for evidence of implementation
+- **Binding instructions** to remediate deficiencies
+- **Temporary prohibition** on management from exercising management functions (essential entities only)
+- Public disclosure of non-compliance
+
+### Management Liability
+
+For essential entities, national authorities can impose **temporary bans** on individuals in management positions from exercising managerial responsibilities if the entity fails to systematically comply with NIS2 requirements. This is a significant personal liability risk for CISOs, CIOs, and board members.
+
+---
+
+## Compliance Steps
+
+Use this roadmap to build your NIS2 compliance program:
+
+1. **Determine applicability.** Identify whether your organization is an essential or important entity based on sector (Annexes I and II) and size thresholds. Check the national implementing law in each EU member state where you operate.
+
+2. **Conduct a gap analysis.** Compare your current cybersecurity posture against NIS2's ten mandatory measures. Identify gaps in risk management policies, incident response, supply chain security, and access controls.
+
+3. **Build a cybersecurity risk management program.** Document policies for risk analysis, information asset classification, and ongoing risk assessment. Align with recognized frameworks (ISO 27001, NIST CSF, CIS Controls) where applicable.
+
+4. **Establish incident detection and reporting procedures.** Implement monitoring and detection capabilities to identify significant incidents. Build a 24-hour early warning process and a 72-hour full notification workflow. Identify your national CSIRT (Computer Security Incident Response Team) and competent authority.
+
+5. **Assess your AI and technology supply chain.** Map all AI vendors, cloud providers, and ICT service providers. Conduct security assessments of critical suppliers. Update procurement contracts to include NIS2-aligned security requirements and audit rights.
+
+6. **Implement technical baseline measures.** Deploy multi-factor authentication, encrypted communications, vulnerability management programs, and patch management. Conduct regular employee cybersecurity training.
+
+7. **Establish business continuity capabilities.** Implement backup and disaster recovery procedures. Test recovery capabilities for your most critical systems — including AI systems used in essential services.
+
+8. **Train and engage management.** Ensure the management body approves your cybersecurity risk-management measures. Provide cybersecurity training to senior leadership and establish a reporting line from the CISO to the board.
+
+9. **Register with competent authorities.** In many member states, essential and important entities must register with or notify their national NIS2 competent authority. Check requirements in each jurisdiction where you operate.
+
+10. **Establish a continuous monitoring and review cycle.** NIS2 requires ongoing assessment of measure effectiveness. Schedule regular reviews, penetration tests, and tabletop exercises.
+
+---
+
+## Frequently Asked Questions
+
+**Does NIS2 apply to companies outside the EU?**
+Yes. Organizations established outside the EU must comply if they provide services within the EU in covered sectors, and must designate an EU representative.
+
+**What is the difference between essential and important entities?**
+Essential entities face proactive (ex ante) supervision — regulators can audit them at any time. Important entities face reactive (ex post) supervision — regulators act only when triggered by evidence of non-compliance or an incident. Both face the same mandatory security measures; important entities face slightly lower maximum fines.
+
+**How does NIS2 interact with GDPR?**
+NIS2 and GDPR overlap on incident reporting. A cybersecurity incident affecting personal data may trigger both NIS2's 24-hour early warning and GDPR's 72-hour personal data breach notification. Organizations should coordinate their response procedures to meet both simultaneously.
+
+**Do managed service providers have specific NIS2 obligations?**
+Yes. MSPs and MSSPs are explicitly classified as essential entities under Annex I of NIS2, regardless of their size, given the critical role they play in the cybersecurity of their clients. They face the full set of NIS2 obligations including mandatory incident reporting.
+
+**What counts as a "significant incident" requiring reporting?**
+An incident is significant if it causes or can cause severe operational disruption, financial loss, or affect other natural or legal persons by causing considerable material or non-material damage. Indicators include the number of affected users, duration of disruption, geographic spread, and the extent of disruption to essential services.
+
+**Is NIS2 compliance the same across all EU member states?**
+No. NIS2 is a directive, meaning member states must transpose it into national law — and they have some discretion in how they do so. National laws may set higher fines, extend the scope to smaller organizations, or add sector-specific requirements. Always review the national implementing legislation in each member state where you operate.

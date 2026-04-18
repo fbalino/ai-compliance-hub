@@ -1,0 +1,334 @@
+export const frontmatter = {
+  name: "DORA — Digital Operational Resilience Act",
+  shortName: "EU 2022/2554",
+  description:
+    "The EU's Digital Operational Resilience Act requires financial entities to manage ICT risks — including AI systems and AI vendors — with robust operational resilience, third-party oversight, and incident reporting obligations.",
+  jurisdiction: "European Union",
+  status: "enforced",
+  effectiveDate: "January 16, 2023",
+  enforcementDate: "January 17, 2025",
+  maxPenalty: "Up to 2% of total annual worldwide turnover; criminal sanctions vary by member state",
+  publishedAt: "2022-12-27",
+  updatedAt: "2026-04-18",
+  toc: [
+    { id: "overview", label: "Overview" },
+    { id: "who-it-applies-to", label: "Who It Applies To" },
+    { id: "five-pillars", label: "Five Pillars of DORA" },
+    { id: "ai-intersection", label: "AI & DORA Intersection" },
+    { id: "third-party-risk", label: "Third-Party ICT Risk Management" },
+    { id: "compliance-timeline", label: "Compliance Timeline" },
+    { id: "penalties", label: "Penalties & Enforcement" },
+    { id: "compliance-steps", label: "Compliance Steps" },
+    { id: "faqs", label: "Frequently Asked Questions" },
+  ],
+  relatedRegulations: [
+    { slug: "eu-ai-act", name: "EU AI Act" },
+    { slug: "nis2-directive", name: "NIS2 Directive" },
+    { slug: "colorado-ai-act", name: "Colorado AI Act" },
+  ],
+  faqs: [
+    {
+      question: "When did DORA take effect?",
+      answer:
+        "DORA (EU Regulation 2022/2554) entered into force on January 16, 2023, and became fully applicable on January 17, 2025, giving financial entities two years to implement their compliance programs.",
+    },
+    {
+      question: "Does DORA apply to AI vendors providing services to financial institutions?",
+      answer:
+        "Yes, if they qualify as 'critical ICT third-party service providers' (CTPPs). The European Supervisory Authorities (ESAs) designate CTPPs and subject them to direct regulatory oversight. Even non-critical AI vendors face contractual and monitoring requirements under DORA's third-party ICT risk management framework.",
+    },
+    {
+      question: "How does DORA differ from NIS2 for financial institutions?",
+      answer:
+        "NIS2 is a broad cybersecurity baseline directive covering all essential/important sectors. DORA is a sector-specific regulation with deeper and more prescriptive requirements for the financial sector, including mandatory resilience testing, detailed ICT third-party risk management, and direct oversight of critical third-party providers. Financial institutions subject to both must meet DORA's more specific standards, which generally satisfy NIS2 as well.",
+    },
+    {
+      question: "What is a 'critical ICT third-party service provider' under DORA?",
+      answer:
+        "A CTPP is an ICT service provider (including cloud providers, AI platform vendors, and data analytics firms) designated as critical by the Joint Committee of the European Supervisory Authorities based on the systemic importance of the services they provide to the financial sector. CTPPs are subject to direct supervisory oversight by an EU 'lead overseer' (EBA, ESMA, or EIOPA).",
+    },
+    {
+      question: "What ICT-related incidents must be reported under DORA?",
+      answer:
+        "Financial entities must report major ICT-related incidents to their competent national authority within prescribed timeframes: an initial notification as soon as possible (and no later than 4 hours after classification as major), an intermediate report within 72 hours, and a final report within one month. 'Major' incidents are defined by impact thresholds in regulatory technical standards.",
+    },
+    {
+      question: "Does DORA apply to insurers and investment firms, or just banks?",
+      answer:
+        "DORA applies to a broad range of financial entities including credit institutions, payment institutions, account information service providers, electronic money institutions, investment firms, crypto-asset service providers, central securities depositories, central counterparties, trading venues, trade repositories, AIFMs, UCITS management companies, insurance and reinsurance undertakings, insurance intermediaries, and credit rating agencies.",
+    },
+  ],
+};
+
+## Overview
+
+The **Digital Operational Resilience Act** (DORA, EU Regulation 2022/2554) is the EU's landmark framework for ICT (Information and Communication Technology) risk management in the financial sector. Published on December 27, 2022, it became applicable on **January 17, 2025**, after a two-year implementation window.
+
+DORA consolidates and harmonizes ICT risk requirements that were previously scattered across multiple EU financial regulations (EBA guidelines, EIOPA guidelines, ECB expectations). It establishes a single, comprehensive framework covering five pillars: ICT risk management, ICT-related incident management and reporting, digital operational resilience testing, ICT third-party risk management, and information sharing.
+
+For AI compliance professionals in financial services, DORA is essential context: AI systems are ICT assets under DORA, AI vendors are ICT third-party service providers, and organizations deploying AI in financial services must embed DORA requirements into their AI governance programs.
+
+---
+
+## Who It Applies To
+
+DORA applies to a wide range of **financial entities** operating in the EU:
+
+### In-Scope Financial Entities
+
+- Credit institutions (banks)
+- Payment institutions
+- Account information service providers
+- Electronic money institutions
+- Investment firms
+- Crypto-asset service providers (CASPs) and issuers of asset-referenced tokens
+- Central securities depositories
+- Central counterparties (CCPs)
+- Trading venues
+- Trade repositories
+- Alternative investment fund managers (AIFMs)
+- Management companies (UCITS)
+- Data reporting service providers
+- Insurance and reinsurance undertakings
+- Insurance intermediaries and ancillary insurance intermediaries
+- Occupational pension funds (IORPs) with over 15 members (at member state discretion)
+- Credit rating agencies
+- Statutory auditors and audit firms
+- Administrators of critical benchmarks
+- Crowdfunding service providers
+- Securitisation repositories
+
+### ICT Third-Party Service Providers
+
+DORA also applies to **ICT third-party service providers** (including cloud providers, software vendors, AI platform providers, data analytics firms, and managed service providers) who provide services to the above financial entities, particularly those designated as **critical third-party providers (CTPPs)** by the European Supervisory Authorities.
+
+### Proportionality
+
+DORA applies a proportionality principle — small and non-interconnected investment firms, small institutions for occupational retirement provision, and certain other small entities benefit from a simplified ICT risk management framework with lighter requirements.
+
+---
+
+## Five Pillars of DORA
+
+### Pillar 1 — ICT Risk Management
+
+Financial entities must maintain a comprehensive **ICT risk management framework** that:
+
+- Identifies and classifies all ICT systems, assets, and data (including AI systems) by criticality
+- Continuously monitors ICT risks and implements protection and prevention measures
+- Establishes detection capabilities to identify anomalous activities
+- Defines recovery objectives (RTO/RPO) for ICT systems supporting critical functions
+- Documents lessons learned after incidents and tests
+
+The framework must be approved by the management body, which bears ultimate responsibility and accountability for ICT risk management.
+
+**Key distinction from general cybersecurity frameworks:** DORA requires financial entities to identify all assets supporting critical or important functions and establish explicit dependency maps between ICT assets (including AI systems) and the business functions they support.
+
+### Pillar 2 — ICT-Related Incident Management and Reporting
+
+Financial entities must:
+
+- Establish a **classification scheme** for ICT-related incidents and cyber threats, distinguishing between major and non-major incidents based on regulatory criteria
+- Maintain processes to monitor, log, and categorize all ICT incidents
+- Report **major ICT-related incidents** to competent authorities:
+  - Initial notification: as soon as possible, no later than 4 hours after classification as major (and no later than 24 hours after becoming aware)
+  - Intermediate report: within 72 hours
+  - Final report: within one month of submitting the initial notification
+- Report **significant cyber threats** to competent authorities (voluntarily) and notify affected clients where their financial interests may be impacted
+
+### Pillar 3 — Digital Operational Resilience Testing
+
+Financial entities must implement a **TLPT-based testing program** (Threat-Led Penetration Testing):
+
+**Basic testing** (all in-scope entities):
+- Vulnerability assessments and scans
+- Network security assessments
+- Physical security reviews
+- Scenario-based tests and compatibility tests
+- Software solution reviews
+- Source code reviews where applicable
+
+**Advanced testing — TLPT** (significant financial institutions):
+Significant credit institutions, trading venues, CCPs, and others designated by competent authorities must conduct TLPT (Threat-Led Penetration Testing based on the TIBER-EU framework) at least every **3 years**. TLPT tests production systems using live threat intelligence and red team techniques.
+
+### Pillar 4 — ICT Third-Party Risk Management
+
+This is perhaps DORA's most significant pillar for AI compliance. Financial entities must:
+
+- Maintain a **register of all ICT third-party service providers**, including AI platform vendors, cloud providers, and managed service providers
+- Adopt a **risk-based strategy** for managing ICT third-party dependencies
+- Conduct **pre-contract due diligence** assessing providers' security posture and resilience capabilities
+- Include mandatory **contractual provisions** in all agreements with ICT third-party providers covering: service level definitions, security requirements, audit rights, incident notification obligations, data location/portability, and exit rights
+- Monitor ICT third-party providers' performance and compliance on an ongoing basis
+- Maintain **exit strategies** for all critical ICT services to avoid vendor lock-in
+
+### Pillar 5 — Information Sharing
+
+Financial entities are **encouraged** (not mandated) to share cyber threat intelligence and information with other financial entities and sector participants. DORA creates a legal basis for sharing threat intelligence, removing previous legal uncertainty about antitrust or data protection constraints on such sharing.
+
+---
+
+## AI & DORA Intersection
+
+DORA was enacted before the widespread adoption of generative AI in financial services, but its framework directly applies to AI systems. Understanding this intersection is critical for any financial institution deploying AI.
+
+### AI Systems as ICT Assets
+
+Every AI system used in a financial institution's operations is an **ICT asset** under DORA. This means:
+
+- AI systems must be included in the institution's **ICT asset inventory**
+- AI systems supporting critical or important functions must be explicitly mapped in the institution's ICT risk management framework
+- AI systems must be covered by business continuity and recovery planning
+- AI-related incidents (model failures, adversarial attacks, data poisoning, AI-driven fraud) must be assessed under DORA's incident classification framework
+
+**Which AI systems are "critical"?** Any AI system whose failure, degradation, or compromise would materially impair the financial entity's ability to meet its regulatory obligations, serve customers, or manage key risks. Examples include algorithmic trading systems, credit scoring models, fraud detection systems, AML/KYC tools, and robo-advisors.
+
+### AI Vendors as ICT Third-Party Providers
+
+AI vendors providing services to financial institutions — including foundation model providers, AI platform companies, and AI-as-a-service vendors — are **ICT third-party service providers** under DORA. This creates significant obligations:
+
+**For financial institutions:**
+- Must include DORA-required contractual clauses in AI vendor agreements
+- Must conduct due diligence on AI vendors' operational resilience and security practices
+- Must monitor AI vendor performance against agreed SLAs
+- Must have exit strategies enabling substitution of AI services without operational disruption
+
+**For AI vendors designated as critical (CTPPs):**
+- Subject to direct oversight by an EU "lead overseer" (EBA, ESMA, or EIOPA)
+- Must submit information to the lead overseer on request
+- Lead overseer can conduct inspections, issue recommendations, and require remediation plans
+- Systemic AI providers serving large portions of EU financial institutions are most likely to be designated as CTPPs
+
+### Intersection with EU AI Act
+
+Financial institutions deploying AI face overlapping obligations under DORA and the EU AI Act:
+
+| Dimension | EU AI Act | DORA |
+|-----------|-----------|------|
+| Scope of AI coverage | High-risk AI systems in regulated sectors (including financial services) | All ICT assets (including AI) supporting critical/important functions |
+| Risk management | AI-specific risk management system | ICT risk management framework covering all ICT including AI |
+| Incident reporting | Report serious incidents via market surveillance authorities | Report major ICT-related incidents to financial supervisors |
+| Third-party AI vendors | Obligations on distributors and importers | ICT third-party risk management, CTPP designation |
+| Testing | Conformity assessment for high-risk AI | Digital operational resilience testing including TLPT |
+
+Financial institutions deploying high-risk AI should treat DORA and the EU AI Act as **complementary frameworks** — DORA's ICT risk management program can serve as the infrastructure for AI Act compliance documentation, while EU AI Act risk management requirements can be embedded within DORA's broader ICT risk framework.
+
+---
+
+## ICT Third-Party Risk Management
+
+DORA's third-party framework deserves deeper attention given the rapid growth of AI vendor relationships in financial services.
+
+### Mandatory Contract Provisions
+
+All written agreements with ICT service providers (including AI vendors) must include:
+
+1. **Service description** — clear description of all ICT services to be provided, including whether subcontracting is permitted and to which geographies
+2. **Data locations** — locations where data will be processed and stored, and notification requirements if provider proposes to change data locations
+3. **Availability, authenticity, integrity, and confidentiality** provisions for data access and protection
+4. **Service levels** — clear quantified performance targets with remedies for breach
+5. **Incident notification** — provider must notify the financial entity without undue delay of any incident affecting ICT services
+6. **Cooperation** with financial entity's competent authority upon request
+7. **Audit rights** — financial entity (and, where relevant, its competent authority) has the right to inspect and audit the provider
+8. **Termination rights** — explicit rights to exit the arrangement in specified circumstances including regulatory non-compliance, security failures, or provider insolvency
+9. **Exit assistance** — provider must support migration of data and services to successor provider upon termination
+
+### The CTPP Oversight Regime
+
+The European Supervisory Authorities (EBA, ESMA, EIOPA) designate CTPPs based on:
+
+- Systemic impact of potential failure (number of financial entities relying on the provider)
+- Substitutability (how easily the service could be replaced)
+- Criticality and importance of the ICT services provided
+
+Once designated, CTPPs face a structured oversight regime including:
+- Annual self-assessments and information submissions to the lead overseer
+- General investigations and on-site inspections
+- Binding recommendations from the lead overseer
+- The lead overseer can recommend that financial entities suspend or terminate arrangements with non-compliant CTPPs
+
+---
+
+## Compliance Timeline
+
+| Date | Milestone |
+|------|-----------|
+| **December 27, 2022** | DORA published in Official Journal of the EU |
+| **January 16, 2023** | DORA enters into force |
+| **January 17, 2025** | **DORA becomes fully applicable** — all in-scope entities must comply |
+| **January 17, 2025** | DORA regulatory technical standards (RTS) and implementing technical standards (ITS) apply |
+| **2025 (ongoing)** | ESAs begin designating critical ICT third-party providers (CTPPs) |
+| **2025–2026** | First CTPP oversight cycles begin; financial institutions subject to TLPT begin scheduling assessments |
+
+---
+
+## Penalties & Enforcement
+
+DORA enforcement is handled by national competent authorities (NCAs) — the financial regulators in each EU member state (e.g., BaFin in Germany, FCA-equivalent in France, CBI in Ireland).
+
+### Financial Entities
+
+NCAs have authority to impose:
+
+- **Fines up to 2% of total annual worldwide turnover** for financial entities that fail to comply with DORA's requirements
+- For individuals, periodic penalty payments and public disclosure of violations
+- Administrative measures including: withdrawal of authorization, prohibition on directors, public warnings
+
+Specific fine levels are set by national implementing measures, which vary by member state.
+
+### Critical ICT Third-Party Providers (CTPPs)
+
+CTPPs that fail to comply with lead overseer recommendations face:
+
+- **Periodic penalty payments of up to 1% of average daily worldwide turnover**, payable for up to 6 months until compliance is achieved
+- Publication of non-compliance findings
+
+Note: The lead overseer cannot directly fine CTPPs — but financial entities may be required to suspend or terminate their arrangements with persistently non-compliant CTPPs, which creates strong commercial pressure.
+
+---
+
+## Compliance Steps
+
+Use this roadmap to build your DORA compliance program:
+
+1. **Determine in-scope status.** Confirm whether your organization is a financial entity covered by DORA (see the entity types above). If you are an AI or technology vendor serving EU financial institutions, assess whether you may be designated as a CTPP.
+
+2. **Establish ICT governance.** Ensure your management body has formal oversight responsibility for ICT risk. Designate a senior manager responsible for DORA compliance and the ICT risk management function.
+
+3. **Build your ICT asset inventory.** Map all ICT systems, including AI platforms, algorithms, data analytics tools, and supporting infrastructure. Identify which assets support critical or important functions.
+
+4. **Implement your ICT risk management framework.** Develop comprehensive policies and procedures covering identification, protection, detection, response, and recovery. Ensure AI systems are explicitly addressed in scope.
+
+5. **Establish an incident classification and reporting process.** Define what constitutes a "major ICT-related incident" using ESA criteria. Build workflows to meet the 4-hour initial notification and 72-hour intermediate report deadlines. Train your security and operations teams.
+
+6. **Conduct resilience testing.** Implement a testing program appropriate to your size and systemic importance. Ensure your AI systems are included in scope. Significant institutions should begin scheduling TLPT assessments.
+
+7. **Audit your ICT third-party relationships.** Review all contracts with AI vendors, cloud providers, and managed service providers against DORA's mandatory contractual provisions. Identify gaps and negotiate amendments. For existing contracts, DORA-required provisions must be incorporated at next renewal.
+
+8. **Build a third-party risk management program.** Implement due diligence procedures for new AI vendors, ongoing monitoring of existing vendors, and exit strategies for critical services.
+
+9. **Register and report.** Maintain the required register of ICT third-party arrangements. Establish your reporting lines with your national competent authority.
+
+10. **Align with EU AI Act requirements.** For financial institutions deploying high-risk AI systems, ensure your DORA ICT risk management framework and AI Act compliance documentation are coordinated. Avoid creating duplicative parallel programs — design one integrated ICT and AI risk program.
+
+---
+
+## Frequently Asked Questions
+
+**When did DORA take effect?**
+DORA entered into force on January 16, 2023, and became fully applicable — meaning all in-scope financial entities must comply — on January 17, 2025.
+
+**Does DORA replace NIS2 for financial institutions?**
+No — both apply. NIS2's Article 4 provides that sector-specific acts take precedence, and DORA's more detailed financial-sector requirements generally satisfy NIS2's baseline obligations. Financial supervisors enforce DORA; NIS2 national authorities primarily defer to DORA for financial sector entities.
+
+**Do AI vendors need to comply with DORA directly?**
+AI vendors that provide ICT services to EU financial institutions have contractual obligations flowing from their clients' DORA requirements. Vendors designated as critical ICT third-party providers (CTPPs) face direct regulatory oversight. Non-designated vendors do not face direct DORA obligations but will face contractual requirements from their financial institution customers.
+
+**What is the difference between DORA and Basel III / SR 11-7 model risk guidance?**
+DORA is an ICT operational resilience framework covering all technology systems including AI. It addresses availability, continuity, and security. Model risk guidance (SR 11-7 in the US, EBA model risk guidelines in Europe) addresses the specific risks of statistical models — conceptual soundness, validation, and governance. Both apply to AI systems in financial services and address complementary risk dimensions.
+
+**How are "critical functions" defined under DORA?**
+DORA defines critical or important functions as services, activities, or processes whose disruption would materially impair financial performance, the soundness or continuity of services and activities, or compliance with regulatory obligations. Organizations must make their own assessments; the EBA has published guidance on what typically qualifies.
+
+**What should financial institutions do about AI vendor lock-in under DORA?**
+DORA's exit strategy requirements directly address this. Financial institutions must maintain exit plans for all ICT services supporting critical functions, ensure data portability, and test their ability to migrate to alternative providers. For AI specifically, this means maintaining access to your underlying data, ensuring model portability where possible, and documenting alternative providers that could be onboarded within your recovery time objectives.
