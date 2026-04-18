@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { eq } from "drizzle-orm";
+import { ArrowUpRight } from "lucide-react";
 import { db } from "@/db";
 import {
   providers,
@@ -96,6 +97,11 @@ async function getProvider(slug: string): Promise<ProviderData | null> {
   };
 }
 
+async function getRelatedProviders(currentSlug: string): Promise<{ slug: string; name: string }[]> {
+  const rows = await db.select({ slug: providers.slug, name: providers.name }).from(providers).limit(4);
+  return rows.filter((r) => r.slug !== currentSlug).slice(0, 3);
+}
+
 export async function generateStaticParams() {
   const rows = await db.select({ slug: providers.slug }).from(providers);
   return rows.map((r) => ({ slug: r.slug }));
@@ -123,8 +129,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ProviderPage({ params }: Props) {
   const { slug } = await params;
-  const provider = await getProvider(slug);
+  const [provider, relatedProviders] = await Promise.all([
+    getProvider(slug),
+    getRelatedProviders(slug),
+  ]);
   if (!provider) notFound();
+
+  const isFeatured = provider.tier === "premium" || provider.tier === "enterprise";
 
   const schemas = [
     breadcrumbListSchema([
@@ -147,7 +158,7 @@ export default async function ProviderPage({ params }: Props) {
       <script {...jsonLdScriptProps(schemas)} />
 
       <div className="page-banner">
-        <div className="container" style={{ maxWidth: 1000, padding: 0 }}>
+        <div className="container" style={{ maxWidth: 1100, padding: 0 }}>
           <Breadcrumbs
             items={[
               { label: "Home", href: "/" },
@@ -158,7 +169,7 @@ export default async function ProviderPage({ params }: Props) {
 
           <div className="flex" style={{ marginTop: 16, gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
             <div className="avatar avatar-sq" style={{
-              width: 64, height: 64, borderRadius: 14, border: "1px solid var(--line)",
+              width: 88, height: 88, borderRadius: 14, border: "1px solid var(--line)",
               background: "var(--paper)", display: "flex", alignItems: "center", justifyContent: "center",
               flexShrink: 0, overflow: "hidden",
             }}>
@@ -166,22 +177,21 @@ export default async function ProviderPage({ params }: Props) {
                 // eslint-disable-next-line @next/next/no-img-element
                 <img src={provider.logoUrl} alt={`${provider.name} logo`} style={{ width: "100%", height: "100%", objectFit: "contain", padding: 8 }} />
               ) : (
-                <span className="serif" style={{ fontSize: 24, fontWeight: 700, color: "var(--ink-soft)" }}>{provider.name.charAt(0)}</span>
+                <span className="serif" style={{ fontSize: 32, fontWeight: 700, color: "var(--ink-soft)" }}>{provider.name.charAt(0)}</span>
               )}
             </div>
 
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div className="flex items-center" style={{ gap: 10 }}>
+              <div className="flex items-center" style={{ gap: 10, marginBottom: 4 }}>
                 <h1 className="h1" style={{ margin: 0 }}>{provider.name}</h1>
-                {provider.isVerified && <span className="chip chip-sage">✓ Verified</span>}
+                {isFeatured && <span className="feature-flag">{"\u2605"} Featured</span>}
+                {provider.isVerified && <span className="chip chip-sage">{"\u2713"} Verified</span>}
               </div>
-              {provider.headquarters && (
-                <p className="xs" style={{ marginTop: 4 }}>
-                  {provider.headquarters}
-                  {provider.foundedYear && ` · Founded ${provider.foundedYear}`}
-                  {provider.employeeCountRange && ` · ${provider.employeeCountRange} employees`}
-                </p>
-              )}
+              <p className="lede" style={{ margin: 0, color: "var(--ink-2)" }}>
+                {provider.serviceTypes.join(" \u00b7 ")}
+                {provider.headquarters && ` \u00b7 ${provider.headquarters}`}
+                {provider.foundedYear && ` \u00b7 founded ${provider.foundedYear}`}
+              </p>
               {provider.averageRating && provider.reviews.length > 0 && (
                 <div className="flex items-center" style={{ gap: 6, marginTop: 6 }}>
                   <StarRating rating={provider.averageRating} />
@@ -195,36 +205,27 @@ export default async function ProviderPage({ params }: Props) {
             <div className="flex" style={{ gap: 8, flexShrink: 0 }}>
               {provider.websiteUrl && (
                 <a href={provider.websiteUrl} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
-                  Visit Website ↗
+                  Website {"\u2197"}
                 </a>
               )}
               <Link href={`/directory/providers/${slug}/request-quote`} className="btn btn-primary">
-                Request a Quote
+                {"\u2709"} Contact
               </Link>
             </div>
           </div>
         </div>
       </div>
 
-      <section className="container" style={{ maxWidth: 1000, padding: "var(--s-10) var(--s-7)", display: "grid", gridTemplateColumns: "1.55fr 380px", gap: 56 }}>
+      <section className="container" style={{ maxWidth: 1100, padding: "var(--s-10) var(--s-7)", display: "grid", gridTemplateColumns: "1.55fr 380px", gap: 56 }}>
         <article>
-          <div className="eyebrow" style={{ marginBottom: 8 }}>§ About</div>
+          {/* About */}
+          <div className="eyebrow" style={{ marginBottom: 8 }}>&sect; About</div>
           <p className="lede" style={{ color: "var(--ink)" }}>{provider.description}</p>
 
-          {provider.serviceTypes.length > 0 && (
-            <section style={{ marginTop: 32 }}>
-              <div className="eyebrow" style={{ marginBottom: 12 }}>§ Services</div>
-              <div className="tag-strip">
-                {provider.serviceTypes.map((svc) => (
-                  <span key={svc} className="chip">{svc}</span>
-                ))}
-              </div>
-            </section>
-          )}
-
+          {/* Regulations covered */}
           {provider.regulations.length > 0 && (
             <section style={{ marginTop: 32 }}>
-              <div className="eyebrow" style={{ marginBottom: 12 }}>§ Regulations covered · {provider.regulations.length}</div>
+              <div className="eyebrow" style={{ marginBottom: 12 }}>&sect; Regulations covered &middot; {provider.regulations.length}</div>
               <div className="tag-strip">
                 {provider.regulations.map((regSlug) => (
                   <Link key={regSlug} href={`/regulations/${regSlug}`} className="chip" style={{ cursor: "pointer" }}>
@@ -235,9 +236,24 @@ export default async function ProviderPage({ params }: Props) {
             </section>
           )}
 
+          {/* Services */}
+          {provider.serviceTypes.length > 0 && (
+            <section style={{ marginTop: 32 }}>
+              <div className="eyebrow" style={{ marginBottom: 12 }}>&sect; Services</div>
+              <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))", gap: 12 }}>
+                {provider.serviceTypes.map((svc) => (
+                  <div key={svc} className="card">
+                    <div className="h4">{svc}</div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Industries served */}
           {provider.industries.length > 0 && (
             <section style={{ marginTop: 32 }}>
-              <div className="eyebrow" style={{ marginBottom: 12 }}>§ Industries served</div>
+              <div className="eyebrow" style={{ marginBottom: 12 }}>&sect; Industries served</div>
               <div className="tag-strip">
                 {provider.industries.map((ind) => (
                   <span key={ind} className="chip">{ind}</span>
@@ -246,9 +262,10 @@ export default async function ProviderPage({ params }: Props) {
             </section>
           )}
 
+          {/* Reviews */}
           {provider.reviews.length > 0 && (
             <section style={{ marginTop: 32 }}>
-              <div className="eyebrow" style={{ marginBottom: 16 }}>§ Reviews</div>
+              <div className="eyebrow" style={{ marginBottom: 16 }}>&sect; Reviews</div>
               <div className="col" style={{ gap: 12 }}>
                 {provider.reviews.map((review) => (
                   <ReviewCard key={review.id} review={review} />
@@ -256,28 +273,58 @@ export default async function ProviderPage({ params }: Props) {
               </div>
             </section>
           )}
+
+          {/* Also in The Ledger */}
+          <section style={{ marginTop: 32 }}>
+            <div className="eyebrow" style={{ marginBottom: 12 }}>&sect; Also in The Ledger</div>
+            <div className="col" style={{ gap: 8 }}>
+              <Link href="/blog" style={{ textDecoration: "none" }}>
+                <div className="card" style={{ padding: 14 }}>
+                  <div className="eyebrow" style={{ marginBottom: 4, color: "var(--accent)" }}>{"\u25b8"} Q&A</div>
+                  <div className="h4">&ldquo;How {provider.name} approaches compliance readiness&rdquo;</div>
+                </div>
+              </Link>
+            </div>
+          </section>
         </article>
 
+        {/* Sidebar */}
         <aside style={{ position: "sticky", top: 60, alignSelf: "start" }}>
-          <div className="card" style={{ marginBottom: 16 }}>
-            <div className="eyebrow" style={{ marginBottom: 12 }}>Quick info</div>
-            <div className="col" style={{ gap: 10 }}>
-              {provider.foundedYear && <InfoRow label="Founded" value={String(provider.foundedYear)} />}
-              {provider.headquarters && <InfoRow label="Location" value={provider.headquarters} />}
-              {provider.employeeCountRange && <InfoRow label="Team Size" value={`${provider.employeeCountRange} employees`} />}
-            </div>
-          </div>
-
-          <div className="card card-feature" style={{ padding: 20 }}>
-            <div className="eyebrow" style={{ marginBottom: 12 }}>Request a quote</div>
-            <p className="small" style={{ marginBottom: 16 }}>
-              Get a proposal from {provider.name}.
-            </p>
+          {/* Contact form */}
+          <div className="card card-feature" style={{ padding: 20, marginBottom: 16 }}>
+            <div className="eyebrow" style={{ marginBottom: 12 }}>Send a message</div>
             <RequestQuoteForm
               providerSlug={provider.slug}
               providerServices={provider.serviceTypes}
             />
           </div>
+
+          {/* At a glance */}
+          <div className="card" style={{ marginBottom: 16 }}>
+            <div className="eyebrow" style={{ marginBottom: 12 }}>At a glance</div>
+            <dl className="kv">
+              {provider.foundedYear && <><dt>Founded</dt><dd>{provider.foundedYear}</dd></>}
+              {provider.employeeCountRange && <><dt>Team</dt><dd>{provider.employeeCountRange}</dd></>}
+              {provider.headquarters && <><dt>HQ</dt><dd>{provider.headquarters}</dd></>}
+              {provider.serviceTypes.length > 0 && <><dt>Type</dt><dd>{provider.serviceTypes.join(", ")}</dd></>}
+              {provider.websiteUrl && <><dt>Website</dt><dd><a href={provider.websiteUrl} target="_blank" rel="noopener noreferrer" className="link">{new URL(provider.websiteUrl).hostname} {"\u2197"}</a></dd></>}
+            </dl>
+          </div>
+
+          {/* Compare with */}
+          {relatedProviders.length > 0 && (
+            <div className="card" style={{ marginBottom: 16 }}>
+              <div className="eyebrow" style={{ marginBottom: 12 }}>Compare with</div>
+              <div className="col" style={{ gap: 8 }}>
+                {relatedProviders.map((rp) => (
+                  <Link key={rp.slug} href={`/directory/providers/${rp.slug}`} className="flex between small" style={{ textDecoration: "none", color: "var(--ink)" }}>
+                    <span>{rp.name}</span>
+                    <ArrowUpRight className="h-3.5 w-3.5" style={{ color: "var(--ink-soft)" }} aria-hidden="true" />
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
         </aside>
       </section>
     </>
@@ -315,15 +362,6 @@ function ReviewCard({ review }: { review: ReviewData }) {
       <p className="xs" style={{ marginTop: 8 }}>
         {new Date(review.createdAt).toLocaleDateString("en-US", { year: "numeric", month: "long" })}
       </p>
-    </div>
-  );
-}
-
-function InfoRow({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="between small">
-      <dt className="soft">{label}</dt>
-      <dd style={{ fontWeight: 500, textAlign: "right" }}>{value}</dd>
     </div>
   );
 }

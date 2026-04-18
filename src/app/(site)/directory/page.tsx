@@ -4,7 +4,6 @@ import { db } from "@/db";
 import { providers, providerCategories, providerServices } from "@/db/schema";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
-import { CategoryIcon } from "@/lib/category-icons";
 import { DirectorySearchClient, type ProviderSearchItem } from "@/components/directory/DirectorySearchClient";
 
 export const revalidate = 3600;
@@ -19,6 +18,9 @@ export const metadata: Metadata = {
     canonical: `${SITE_URL}/directory`,
   },
 };
+
+const SERVICE_TYPES = ["Software", "Advisory", "Legal counsel", "Audit"];
+const REGIONS = ["EU", "UK", "US", "APAC", "LATAM"];
 
 async function getDirectoryData() {
   const [allProviders, allCategories, allServices] = await Promise.all([
@@ -61,18 +63,11 @@ async function getDirectoryData() {
     icon: c.icon,
   }));
 
-  const countByCategory: Record<string, number> = {};
-  for (const p of allProviders) {
-    if (p.category) {
-      countByCategory[p.category] = (countByCategory[p.category] ?? 0) + 1;
-    }
-  }
-
-  return { searchItems, categoryOptions, countByCategory, totalCount: allProviders.length };
+  return { searchItems, categoryOptions, totalCount: allProviders.length };
 }
 
 export default async function DirectoryPage() {
-  const { searchItems, categoryOptions, countByCategory, totalCount } = await getDirectoryData();
+  const { searchItems, categoryOptions, totalCount } = await getDirectoryData();
 
   const breadcrumbs = breadcrumbListSchema([
     { name: "Home", url: "/" },
@@ -86,74 +81,72 @@ export default async function DirectoryPage() {
       <div className="page-banner">
         <div className="container" style={{ padding: 0 }}>
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Provider Directory" }]} />
-          <div className="flex between" style={{ flexWrap: "wrap", gap: 16 }}>
-            <div>
-              <h1 className="h1">{totalCount} vetted providers</h1>
-              <p className="lede" style={{ maxWidth: 540, marginTop: 8 }}>
-                Verified auditors, consultants, lawyers, and software platforms specializing in AI regulatory compliance.
-              </p>
-            </div>
-            <div style={{ textAlign: "right", flexShrink: 0 }}>
-              <div className="serif" style={{ fontSize: 32, color: "var(--ink)" }}>{totalCount}+</div>
-              <div className="xs">providers listed</div>
-            </div>
-          </div>
+          <h1 className="h1">{totalCount} vetted providers.</h1>
+          <p className="lede" style={{ maxWidth: 540, marginTop: 8 }}>
+            Verified auditors, consultants, lawyers, and software platforms specializing in AI regulatory compliance.
+          </p>
         </div>
       </div>
 
-      <div className="container" style={{ padding: "var(--s-8) var(--s-7)" }}>
+      <div className="container" style={{ padding: "var(--s-8) var(--s-7)", display: "grid", gridTemplateColumns: "240px 1fr", gap: 40 }}>
 
-        <div style={{ marginBottom: 40 }}>
-          <div className="eyebrow" style={{ marginBottom: 12 }}>Search Providers</div>
-          <DirectorySearchClient providers={searchItems} categories={categoryOptions} />
-        </div>
+        {/* Left sidebar filters */}
+        <aside>
+          <div className="eyebrow" style={{ marginBottom: 12 }}>Filters</div>
 
-        <div style={{ marginBottom: 40 }}>
-          <div className="eyebrow" style={{ marginBottom: 12 }}>Browse by Specialization</div>
-          <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: 12 }}>
-            {categoryOptions.map((cat) => {
-              const count = countByCategory[cat.slug] ?? 0;
-              return (
-                <Link key={cat.slug} href={`/directory/categories/${cat.slug}`} style={{ textDecoration: "none" }}>
-                  <div className="card" style={{ height: "100%", padding: 16, cursor: "pointer" }}>
-                    <div className="flex items-center" style={{ gap: 12 }}>
-                      <span style={{
-                        display: "grid", placeItems: "center", width: 40, height: 40, borderRadius: 6, flexShrink: 0,
-                        background: "var(--accent-soft)", color: "var(--accent)",
-                      }}>
-                        <CategoryIcon name={cat.icon} className="h-5 w-5" />
-                      </span>
-                      <div style={{ flex: 1, minWidth: 0 }}>
-                        <div className="h5">{cat.label}</div>
-                        <div className="mono xs" style={{ color: "var(--accent)", marginTop: 2 }}>{count}</div>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              );
-            })}
+          <div style={{ marginBottom: 24 }}>
+            <div className="h5" style={{ marginBottom: 8 }}>Service</div>
+            {SERVICE_TYPES.map((svc) => (
+              <label key={svc} className="flex items-center small" style={{ gap: 8, padding: "6px 0" }}>
+                <input type="checkbox" />
+                <span>{svc}</span>
+              </label>
+            ))}
           </div>
-        </div>
 
-        <div className="card" style={{ padding: "var(--s-7)", background: "var(--ink)", color: "var(--paper)" }}>
-          <div className="flex between" style={{ flexWrap: "wrap", gap: 24 }}>
-            <div style={{ maxWidth: 560 }}>
-              <div className="h3" style={{ color: "var(--paper)" }}>Are you a compliance provider?</div>
-              <p className="small" style={{ color: "rgba(247,244,236,0.7)", marginTop: 8 }}>
-                List your firm in our directory and reach businesses actively looking for AI compliance help.
-                Featured listings include verified badges, lead routing, and analytics dashboards.
-              </p>
-              <div className="col" style={{ gap: 6, marginTop: 12 }}>
-                {["Starting at $99/month — featured placement", "Lead routing from compliance checker results", "Verified badge after vetting"].map((item) => (
-                  <span key={item} className="flex items-center xs" style={{ gap: 8, color: "rgba(247,244,236,0.7)" }}>
-                    <span style={{ color: "var(--gold)" }}>✓</span> {item}
-                  </span>
-                ))}
-              </div>
+          <div style={{ marginBottom: 24 }}>
+            <div className="h5" style={{ marginBottom: 8 }}>Region</div>
+            {REGIONS.map((region) => (
+              <label key={region} className="flex items-center small" style={{ gap: 8, padding: "6px 0" }}>
+                <input type="checkbox" />
+                <span>{region}</span>
+              </label>
+            ))}
+          </div>
+
+          <div style={{ marginBottom: 24 }}>
+            <div className="h5" style={{ marginBottom: 8 }}>Specialization</div>
+            <div className="col" style={{ gap: 4 }}>
+              {categoryOptions.map((cat) => (
+                <Link key={cat.slug} href={`/directory/categories/${cat.slug}`} className="small" style={{ padding: "6px 0", color: "var(--ink-2)", textDecoration: "none" }}>
+                  {cat.icon} {cat.label}
+                </Link>
+              ))}
             </div>
-            <Link href="/newsletter" className="btn btn-accent" style={{ flexShrink: 0 }}>
-              Get Listed →
-            </Link>
+          </div>
+        </aside>
+
+        {/* Main content */}
+        <div>
+          <div className="between" style={{ marginBottom: 20 }}>
+            <div className="eyebrow">Sorted: Featured &middot; then coverage</div>
+          </div>
+
+          <DirectorySearchClient providers={searchItems} categories={categoryOptions} />
+
+          {/* Provider CTA */}
+          <div className="card" style={{ marginTop: 40, padding: "var(--s-7)", background: "var(--ink)", color: "var(--paper)" }}>
+            <div className="flex between" style={{ flexWrap: "wrap", gap: 24 }}>
+              <div style={{ maxWidth: 560 }}>
+                <div className="h3" style={{ color: "var(--paper)" }}>Are you a compliance provider?</div>
+                <p className="small" style={{ color: "rgba(247,244,236,0.7)", marginTop: 8 }}>
+                  List your firm in our directory. Free for verified providers. Featured listings include priority placement, lead routing, and analytics.
+                </p>
+              </div>
+              <Link href="/join" className="btn btn-accent" style={{ flexShrink: 0 }}>
+                Get Listed &rarr;
+              </Link>
+            </div>
           </div>
         </div>
       </div>

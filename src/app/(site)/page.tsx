@@ -21,6 +21,7 @@ function RegCard({
   providers,
   topics,
   summary,
+  slug,
 }: {
   code: string;
   title: string;
@@ -30,38 +31,41 @@ function RegCard({
   providers: number;
   topics: string[];
   summary: string;
+  slug: string;
 }) {
   return (
-    <article className="card">
-      <div className="between" style={{ marginBottom: 12 }}>
-        <span className="chip chip-code">{code}</span>
-        <span className="chip" style={{ fontSize: 11, padding: "2px 8px" }}>
-          <span className={`dot dot-${status}`} />
-          {status}
-        </span>
-      </div>
-      <div className="h3" style={{ fontSize: 22, marginBottom: 4 }}>{title}</div>
-      <div className="small" style={{ marginBottom: 12 }}>
-        {juris} · effective <span className="mono">{effective}</span>
-      </div>
-      <div className="small" style={{ marginBottom: 12, color: "var(--ink-2)", lineHeight: 1.5 }}>
-        {summary}
-      </div>
-      <div className="tag-strip" style={{ marginBottom: 16 }}>
-        {topics.map((t) => (
-          <span key={t} className="chip">{t}</span>
-        ))}
-      </div>
-      <div className="hr" style={{ marginBottom: 16 }} />
-      <div className="between">
-        <span className="small">
-          <b style={{ color: "var(--ink)" }}>{providers}</b> providers
-        </span>
-        <span style={{ display: "flex", alignItems: "center", gap: 8, fontFamily: "var(--mono)", fontSize: 12 }}>
-          Open →
-        </span>
-      </div>
-    </article>
+    <Link href={`/regulations/${slug}`} style={{ textDecoration: "none", display: "block" }}>
+      <article className="card" style={{ height: "100%" }}>
+        <div className="between" style={{ marginBottom: 12 }}>
+          <span className="chip chip-code">{code}</span>
+          <span className="chip" style={{ fontSize: 11, padding: "2px 8px" }}>
+            <span className={`dot dot-${status}`} />
+            {status}
+          </span>
+        </div>
+        <div className="h3" style={{ fontSize: 22, marginBottom: 4 }}>{title}</div>
+        <div className="small" style={{ marginBottom: 12 }}>
+          {juris} · effective <span className="mono">{effective}</span>
+        </div>
+        <div className="small" style={{ marginBottom: 12, color: "var(--ink-2)", lineHeight: 1.5 }}>
+          {summary}
+        </div>
+        <div className="tag-strip" style={{ marginBottom: 16 }}>
+          {topics.map((t) => (
+            <span key={t} className="chip">{t}</span>
+          ))}
+        </div>
+        <div className="hr" style={{ marginBottom: 16 }} />
+        <div className="between">
+          <span className="small">
+            <b style={{ color: "var(--ink)" }}>{providers}</b> providers
+          </span>
+          <span style={{ display: "flex", alignItems: "center", gap: 8, fontFamily: "var(--mono)", fontSize: 12 }}>
+            Open →
+          </span>
+        </div>
+      </article>
+    </Link>
   );
 }
 
@@ -72,6 +76,7 @@ function ProviderCard({
   blurb,
   regs,
   featured,
+  slug,
 }: {
   name: string;
   type: string;
@@ -79,37 +84,40 @@ function ProviderCard({
   blurb: string;
   regs: string[];
   featured?: boolean;
+  slug: string;
 }) {
   return (
-    <article className={`card ${featured ? "card-feature" : ""}`}>
-      <div className="flex items-center" style={{ gap: 12, marginBottom: 12 }}>
-        <div
-          className="avatar avatar-sq"
-          style={{ width: 44, height: 44, fontSize: 17 }}
-        >
-          {name[0]}
+    <Link href={`/directory/providers/${slug}`} style={{ textDecoration: "none", display: "block" }}>
+      <article className={`card ${featured ? "card-feature" : ""}`} style={{ height: "100%" }}>
+        <div className="flex items-center" style={{ gap: 12, marginBottom: 12 }}>
+          <div
+            className="avatar avatar-sq"
+            style={{ width: 44, height: 44, fontSize: 17 }}
+          >
+            {name[0]}
+          </div>
+          <div style={{ flex: 1 }}>
+            <div className="h4">{name}</div>
+            <div className="xs">{type} · {hq}</div>
+          </div>
+          {featured && (
+            <span className="feature-flag">★ Featured</span>
+          )}
         </div>
-        <div style={{ flex: 1 }}>
-          <div className="h4">{name}</div>
-          <div className="xs">{type} · {hq}</div>
+        <div className="small" style={{ color: "var(--ink-2)", lineHeight: 1.5, marginBottom: 12 }}>
+          {blurb}
         </div>
-        {featured && (
-          <span className="feature-flag">★ Featured</span>
-        )}
-      </div>
-      <div className="small" style={{ color: "var(--ink-2)", lineHeight: 1.5, marginBottom: 12 }}>
-        {blurb}
-      </div>
-      <div className="mono xs" style={{ marginBottom: 16, letterSpacing: "0.04em" }}>
-        <span className="soft">Covers: </span>
-        {regs.slice(0, 3).join(" · ")}
-        {regs.length > 3 && <span className="soft"> +{regs.length - 3}</span>}
-      </div>
-      <div className="flex" style={{ gap: 8 }}>
-        <button className="btn btn-sm btn-primary" style={{ flex: 1 }}>Contact</button>
-        <button className="btn btn-sm btn-ghost">Profile</button>
-      </div>
-    </article>
+        <div className="mono xs" style={{ marginBottom: 16, letterSpacing: "0.04em" }}>
+          <span className="soft">Covers: </span>
+          {regs.slice(0, 3).join(" · ")}
+          {regs.length > 3 && <span className="soft"> +{regs.length - 3}</span>}
+        </div>
+        <div className="flex" style={{ gap: 8 }}>
+          <span className="btn btn-sm btn-primary" style={{ flex: 1, textAlign: "center" }}>Contact</span>
+          <span className="btn btn-sm btn-ghost">Profile</span>
+        </div>
+      </article>
+    </Link>
   );
 }
 
@@ -236,6 +244,7 @@ export default function HomePage() {
                 providers={12}
                 topics={["Hiring AI", "High-risk"]}
                 summary="Annex III classifies hiring AI as high-risk. Conformity assessment, bias monitoring, post-market monitoring required."
+                slug="eu-ai-act"
               />
               <RegCard
                 code="US-NYC-144"
@@ -246,6 +255,7 @@ export default function HomePage() {
                 providers={9}
                 topics={["Hiring AI", "Bias audit"]}
                 summary="Annual independent bias audit + candidate notice for automated employment decision tools used in NYC."
+                slug="nyc-local-law-144"
               />
               <RegCard
                 code="US-CO-205"
@@ -256,6 +266,7 @@ export default function HomePage() {
                 providers={7}
                 topics={["Algorithmic hiring"]}
                 summary="Developers & deployers of 'high-risk' AI owe reasonable care to prevent algorithmic discrimination."
+                slug="colorado-ai-act"
               />
               <RegCard
                 code="US-IL-AIVIA"
@@ -266,6 +277,7 @@ export default function HomePage() {
                 providers={4}
                 topics={["Hiring AI", "Consent"]}
                 summary="Consent + deletion requirements for AI-analysed video job interviews in Illinois."
+                slug="illinois-ai-video-interview-act"
               />
             </div>
 
@@ -323,6 +335,7 @@ export default function HomePage() {
                 featured
                 blurb="Multi-jurisdiction rollouts — US + EU hiring AI compliance is our bread and butter."
                 regs={["EU AI Act", "NYC-144", "Colorado AI", "+38"]}
+                slug="babl-ai"
               />
               <ProviderCard
                 name="Marque Legal"
@@ -330,6 +343,7 @@ export default function HomePage() {
                 hq="Paris"
                 blurb="EU-side legal counsel on high-risk AI and cross-border deployments."
                 regs={["EU AI Act", "GDPR", "DSA"]}
+                slug="credo-ai"
               />
               <ProviderCard
                 name="Aegis AI"
@@ -337,6 +351,7 @@ export default function HomePage() {
                 hq="Toronto"
                 blurb="Bias-audit platform purpose-built for NYC-144 and Colorado AI."
                 regs={["NYC-144", "Colorado AI", "AIDA"]}
+                slug="orcaa"
               />
             </div>
 
@@ -347,7 +362,7 @@ export default function HomePage() {
               <p className="small" style={{ marginBottom: 16 }}>
                 Describe your need once. Get 3–5 quotes in 48 hours from relevant providers.
               </p>
-              <button className="btn btn-accent w-full">Post an RFP →</button>
+              <Link href="/join" className="btn btn-accent w-full" style={{ textAlign: "center" }}>Post an RFP →</Link>
             </div>
           </aside>
         </div>
@@ -427,35 +442,37 @@ export default function HomePage() {
         </div>
 
         <div className="grid" style={{ gridTemplateColumns: "2fr 1fr 1fr", gap: 32 }}>
-          <article style={{ cursor: "pointer" }}>
-            <div
-              style={{
-                height: 300,
-                marginBottom: 16,
-                background: "linear-gradient(135deg, rgba(14,19,48,0.04), rgba(14,19,48,0.02)), repeating-linear-gradient(45deg, transparent 0 10px, rgba(14,19,48,0.05) 10px 11px)",
-                border: "1px solid var(--line)",
-                borderRadius: 6,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontFamily: "var(--mono)",
-                fontSize: 11,
-                color: "var(--ink-faint)",
-                letterSpacing: "0.04em",
-                textTransform: "uppercase",
-              }}
-            >
-              lead illustration
-            </div>
-            <div className="eyebrow" style={{ marginBottom: 8, color: "var(--accent)" }}>▸ Lead story</div>
-            <h3 className="h1" style={{ fontSize: 36, marginBottom: 12 }}>
-              The GPAI Code of Practice: what foundation-model providers must do now.
-            </h3>
-            <p className="lede soft">
-              Four months to align. A clause-by-clause read-through of the Code published this week.
-            </p>
-            <div className="mono xs faint" style={{ marginTop: 12 }}>By R. Almeida · 6 min · Apr 14</div>
-          </article>
+          <Link href="/blog" style={{ textDecoration: "none", display: "block", cursor: "pointer" }}>
+            <article>
+              <div
+                style={{
+                  height: 300,
+                  marginBottom: 16,
+                  background: "linear-gradient(135deg, rgba(14,19,48,0.04), rgba(14,19,48,0.02)), repeating-linear-gradient(45deg, transparent 0 10px, rgba(14,19,48,0.05) 10px 11px)",
+                  border: "1px solid var(--line)",
+                  borderRadius: 6,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontFamily: "var(--mono)",
+                  fontSize: 11,
+                  color: "var(--ink-faint)",
+                  letterSpacing: "0.04em",
+                  textTransform: "uppercase",
+                }}
+              >
+                lead illustration
+              </div>
+              <div className="eyebrow" style={{ marginBottom: 8, color: "var(--accent)" }}>{"\u25b8"} Lead story</div>
+              <h3 className="h1" style={{ fontSize: 36, marginBottom: 12 }}>
+                The GPAI Code of Practice: what foundation-model providers must do now.
+              </h3>
+              <p className="lede soft">
+                Four months to align. A clause-by-clause read-through of the Code published this week.
+              </p>
+              <div className="mono xs faint" style={{ marginTop: 12 }}>By R. Almeida · 6 min · Apr 14</div>
+            </article>
+          </Link>
 
           <div className="col" style={{ gap: 20 }}>
             {[
@@ -463,14 +480,15 @@ export default function HomePage() {
               { kind: "Q&A", title: "\"We've run 31 GPAI audits — here's what trips teams up\"", time: "11 min" },
               { kind: "Analysis", title: "UK AI Safety Bill Draft 3 — scope narrows", time: "7 min" },
             ].map((a) => (
-              <article
+              <Link
                 key={a.title}
-                style={{ borderTop: "1px solid var(--line)", paddingTop: 16, cursor: "pointer" }}
+                href="/blog"
+                style={{ textDecoration: "none", display: "block", borderTop: "1px solid var(--line)", paddingTop: 16, cursor: "pointer" }}
               >
-                <div className="eyebrow" style={{ marginBottom: 4, color: "var(--accent)" }}>▸ {a.kind}</div>
+                <div className="eyebrow" style={{ marginBottom: 4, color: "var(--accent)" }}>{"\u25b8"} {a.kind}</div>
                 <h4 className="h3" style={{ fontSize: 20, marginBottom: 4 }}>{a.title}</h4>
                 <div className="mono xs faint">{a.time} read</div>
-              </article>
+              </Link>
             ))}
           </div>
 
@@ -523,7 +541,8 @@ export default function HomePage() {
               </p>
               <div className="flex" style={{ gap: 12, marginTop: 24 }}>
                 <Link href="/join" className="btn btn-accent btn-lg">List your firm</Link>
-                <button
+                <Link
+                  href="/join"
                   className="btn btn-lg"
                   style={{
                     background: "transparent",
@@ -532,7 +551,7 @@ export default function HomePage() {
                   }}
                 >
                   Claim existing
-                </button>
+                </Link>
               </div>
             </div>
 
