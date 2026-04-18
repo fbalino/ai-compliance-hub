@@ -547,8 +547,8 @@ dl.kv dd { margin: 0; color: var(--ink); }
   margin-bottom: 0.25rem;
 }
 .prose-compliance p { margin-bottom: 1.25rem; }
-.prose-compliance ul,
-.prose-compliance ol { padding-left: 1.5rem; margin-bottom: 1.25rem; }
+.prose-compliance ul { padding-left: 1.5rem; margin-bottom: 1.25rem; list-style-type: disc; }
+.prose-compliance ol { padding-left: 1.5rem; margin-bottom: 1.25rem; list-style-type: decimal; }
 .prose-compliance li { margin-bottom: 0.375rem; }
 .prose-compliance a {
   color: var(--accent);
