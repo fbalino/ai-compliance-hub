@@ -216,7 +216,7 @@ export default async function ProviderPage({ params }: Props) {
         </div>
       </div>
 
-      <section className="container" style={{ maxWidth: 1100, padding: "var(--s-10) var(--s-7)", display: "grid", gridTemplateColumns: "1.55fr 380px", gap: 56 }}>
+      <section className="container grid-article-sidebar" style={{ maxWidth: 1100, gap: 56 }}>
         <article>
           {/* About */}
           <div className="eyebrow" style={{ marginBottom: 8 }}>&sect; About</div>

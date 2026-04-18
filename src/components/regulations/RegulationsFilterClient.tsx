@@ -124,7 +124,7 @@ export function RegulationsFilterClient({ regulations }: Props) {
   const currentSortLabel = SORT_OPTIONS.find((o) => o.value === sort)?.label ?? "Newest first";
 
   return (
-    <section className="container" style={{ padding: "var(--s-8) var(--s-7)", display: "grid", gridTemplateColumns: "240px 1fr", gap: 40 }}>
+    <section className="container sidebar-layout">
       {/* Sidebar filters */}
       <aside>
         <div className="eyebrow" style={{ marginBottom: 12 }}>Filters</div>
@@ -221,60 +221,63 @@ export function RegulationsFilterClient({ regulations }: Props) {
         ) : (
           <>
             {main.length > 0 && (
-              <table className="data">
-                <thead>
-                  <tr>
-                    <th>Code</th>
-                    <th>Title</th>
-                    <th>Jurisdiction</th>
-                    <th>Effective</th>
-                    <th>Status</th>
-                    {main.some((r) => r.providers != null) && <th>Providers</th>}
-                  </tr>
-                </thead>
-                <tbody>
-                  {main.map((reg) => (
-                    <tr key={reg.code}>
-                      <td style={{ width: 110 }}>
-                        {reg.slug ? (
-                          <Link href={`/regulations/${reg.slug}`}>
-                            <span className="chip chip-code">{reg.code}</span>
-                          </Link>
-                        ) : (
-                          <span className="chip chip-code">{reg.code}</span>
-                        )}
-                      </td>
-                      <td>
-                        {reg.slug ? (
-                          <Link href={`/regulations/${reg.slug}`} className="h4" style={{ fontSize: 15 }}>
-                            {reg.name}
-                          </Link>
-                        ) : (
-                          <span className="h4" style={{ fontSize: 15 }}>{reg.name}</span>
-                        )}
-                        <div className="tag-strip" style={{ marginTop: 6 }}>
-                          {reg.topics.map((t) => (
-                            <span key={t} className="chip" style={{ fontSize: 11 }}>{t}</span>
-                          ))}
-                        </div>
-                      </td>
-                      <td className="small">{reg.jurisdiction}</td>
-                      <td className="mono xs">{reg.effectiveDate}</td>
-                      <td><StatusDot status={reg.status} /></td>
-                      {reg.providers != null && (
-                        <td>
-                          <span className="mono" style={{ fontSize: 13, color: "var(--ink)" }}>{reg.providers}</span>
-                        </td>
-                      )}
+              <div className="table-scroll">
+                <table className="data">
+                  <thead>
+                    <tr>
+                      <th>Code</th>
+                      <th>Title</th>
+                      <th>Jurisdiction</th>
+                      <th>Effective</th>
+                      <th>Status</th>
+                      {main.some((r) => r.providers != null) && <th>Providers</th>}
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {main.map((reg) => (
+                      <tr key={reg.code}>
+                        <td style={{ width: 110 }}>
+                          {reg.slug ? (
+                            <Link href={`/regulations/${reg.slug}`}>
+                              <span className="chip chip-code">{reg.code}</span>
+                            </Link>
+                          ) : (
+                            <span className="chip chip-code">{reg.code}</span>
+                          )}
+                        </td>
+                        <td>
+                          {reg.slug ? (
+                            <Link href={`/regulations/${reg.slug}`} className="h4" style={{ fontSize: 15 }}>
+                              {reg.name}
+                            </Link>
+                          ) : (
+                            <span className="h4" style={{ fontSize: 15 }}>{reg.name}</span>
+                          )}
+                          <div className="tag-strip" style={{ marginTop: 6 }}>
+                            {reg.topics.map((t) => (
+                              <span key={t} className="chip" style={{ fontSize: 11 }}>{t}</span>
+                            ))}
+                          </div>
+                        </td>
+                        <td className="small">{reg.jurisdiction}</td>
+                        <td className="mono xs">{reg.effectiveDate}</td>
+                        <td><StatusDot status={reg.status} /></td>
+                        {reg.providers != null && (
+                          <td>
+                            <span className="mono" style={{ fontSize: 13, color: "var(--ink)" }}>{reg.providers}</span>
+                          </td>
+                        )}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             )}
 
             {upcoming.length > 0 && (
               <div style={{ marginTop: 40 }}>
                 <div className="eyebrow" style={{ marginBottom: 12 }}>Upcoming &amp; In Development</div>
+                <div className="table-scroll">
                 <table className="data">
                   <tbody>
                     {upcoming.map((reg) => {
@@ -306,6 +309,7 @@ export function RegulationsFilterClient({ regulations }: Props) {
                     })}
                   </tbody>
                 </table>
+                </div>
               </div>
             )}
           </>

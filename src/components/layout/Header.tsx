@@ -43,7 +43,7 @@ export function Header() {
 
       <Link
         href="/search"
-        className="search"
+        className="search topbar-search"
         style={{ minWidth: 240, padding: "6px 12px", textDecoration: "none" }}
       >
         <Search size={14} aria-hidden="true" />
@@ -51,12 +51,14 @@ export function Header() {
         <span className="mono xs faint">\u2318K</span>
       </Link>
 
-      <Link href="/join" className="btn btn-sm btn-ghost">
-        For providers
-      </Link>
-      <Link href="/checker" className="btn btn-sm">
-        Sign in
-      </Link>
+      <div className="topbar-cta">
+        <Link href="/join" className="btn btn-sm btn-ghost">
+          For providers
+        </Link>
+        <Link href="/checker" className="btn btn-sm">
+          Sign in
+        </Link>
+      </div>
 
       <button
         type="button"
@@ -70,7 +72,6 @@ export function Header() {
           padding: 8,
           color: "var(--ink-soft)",
           cursor: "pointer",
-          display: "none",
         }}
         className="mobile-menu-btn"
       >
@@ -110,6 +111,22 @@ export function Header() {
               {link.label}
             </Link>
           ))}
+          <div style={{ height: 1, background: "var(--line)", margin: "8px 0" }} />
+          <Link
+            href="/search"
+            onClick={() => setMobileOpen(false)}
+            style={{ padding: "10px 12px", borderRadius: 6, fontSize: 14, fontWeight: 500, color: "var(--ink-soft)" }}
+          >
+            Search regulations
+          </Link>
+          <div style={{ display: "flex", gap: 8, padding: "8px 0" }}>
+            <Link href="/join" className="btn btn-sm btn-ghost" onClick={() => setMobileOpen(false)} style={{ flex: 1, justifyContent: "center" }}>
+              For providers
+            </Link>
+            <Link href="/checker" className="btn btn-sm" onClick={() => setMobileOpen(false)} style={{ flex: 1, justifyContent: "center" }}>
+              Sign in
+            </Link>
+          </div>
         </div>
       )}
     </header>

@@ -202,7 +202,7 @@ function StepAbout({
         <FieldError msg={errors.website} />
       </div>
 
-      <div className="grid" style={{ gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+      <div className="grid grid-2col" style={{ gap: 12 }}>
         <div className="col" style={{ gap: 4 }}>
           <input
             className="input"
@@ -236,7 +236,7 @@ function StepAbout({
 
       <div className="eyebrow" style={{ marginTop: 8, marginBottom: 4 }}>§ Contact</div>
 
-      <div className="grid" style={{ gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+      <div className="grid grid-2col" style={{ gap: 12 }}>
         <div className="col" style={{ gap: 4 }}>
           <input
             className="input"
@@ -497,7 +497,7 @@ function StepPlan({
       <div className="eyebrow" style={{ marginBottom: 4 }}>§ Choose your plan</div>
       <FieldError msg={errors.plan} />
 
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+      <div className="grid grid-2col" style={{ gap: 16 }}>
         {/* Basic */}
         <div
           className="card"
@@ -694,7 +694,7 @@ export function JoinForm() {
   }
 
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "1fr 380px", gap: 56, alignItems: "start" }}>
+    <div className="grid-article-sidebar" style={{ gap: 56 }}>
       <div>
         <StepIndicator currentStep={step} />
 

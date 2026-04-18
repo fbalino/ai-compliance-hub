@@ -89,7 +89,7 @@ export default async function GlossaryTermPage({ params }: Props) {
         </div>
       </div>
 
-      <section className="container" style={{ maxWidth: 1000, padding: "var(--s-10) var(--s-7)", display: "grid", gridTemplateColumns: "1.55fr 380px", gap: 56 }}>
+      <section className="container grid-article-sidebar" style={{ maxWidth: 1000, gap: 56 }}>
         <article>
           {Content && (
             <div className="prose-compliance">

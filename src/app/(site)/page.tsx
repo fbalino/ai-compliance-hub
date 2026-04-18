@@ -237,8 +237,8 @@ export default async function HomePage() {
         </div>
 
         <div
-          className="grid"
-          style={{ gridTemplateColumns: "1.6fr 1fr", gap: 40, alignItems: "start" }}
+          className="grid grid-main-aside"
+          style={{ gap: 40 }}
         >
           <div>
             {/* Regulations that apply */}
@@ -246,7 +246,7 @@ export default async function HomePage() {
               <div><h2 className="h2">Regulations that apply</h2></div>
               <Link href="/regulations" className="action">See all {regCount} →</Link>
             </div>
-            <div className="grid" style={{ gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+            <div className="grid grid-2col" style={{ gap: 16 }}>
               <RegCard
                 code="EU-AIA-24"
                 title="EU AI Act"
@@ -393,7 +393,7 @@ export default async function HomePage() {
         <div className="container" style={{ paddingTop: 56, paddingBottom: 56 }}>
           <div className="eyebrow" style={{ marginBottom: 12 }}>Or browse the index</div>
           <h2 className="h1" style={{ marginBottom: 32 }}>Three ways in.</h2>
-          <div className="grid" style={{ gridTemplateColumns: "1fr 1fr 1fr", gap: 24 }}>
+          <div className="grid grid-3col" style={{ gap: 24 }}>
             {[
               {
                 icon: "book",
@@ -455,7 +455,7 @@ export default async function HomePage() {
           </Link>
         </div>
 
-        <div className="grid" style={{ gridTemplateColumns: "2fr 1fr 1fr", gap: 32 }}>
+        <div className="grid grid-ledger" style={{ gap: 32 }}>
           <Link href="/blog/eu-ai-act-gpai-obligations" style={{ textDecoration: "none", display: "block", cursor: "pointer" }}>
             <article>
               <div
@@ -537,8 +537,8 @@ export default async function HomePage() {
       <section style={{ background: "var(--ink)", color: "var(--paper)" }}>
         <div className="container" style={{ paddingTop: 56, paddingBottom: 56 }}>
           <div
-            className="grid"
-            style={{ gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }}
+            className="grid grid-providers-cta"
+            style={{ gap: 64 }}
           >
             <div>
               <div className="eyebrow" style={{ marginBottom: 12, color: "rgba(251,251,253,0.6)" }}>
@@ -570,7 +570,7 @@ export default async function HomePage() {
             </div>
 
             <div>
-              <div className="grid" style={{ gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+              <div className="grid grid-2col" style={{ gap: 16 }}>
                 {[
                   { n: String(regCount), l: "regulations indexed" },
                   { n: String(BLOG_COUNT), l: "compliance guides" },

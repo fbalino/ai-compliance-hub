@@ -230,7 +230,7 @@ export default async function RegulationPage({ params }: Props) {
         </div>
       </div>
 
-      <section className="container" style={{ padding: "var(--s-10) var(--s-7)", display: "grid", gridTemplateColumns: "1.55fr 380px", gap: 56 }}>
+      <section className="container grid-article-sidebar" style={{ gap: 56 }}>
         <article>
           {/* Fact grid */}
           <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))", gap: 12, marginBottom: 32 }}>
@@ -302,7 +302,7 @@ export default async function RegulationPage({ params }: Props) {
           {extras.penalties && extras.penalties.length > 1 && (
             <div style={{ marginTop: 32 }}>
               <div className="eyebrow" style={{ marginBottom: 12 }}>&sect; Penalties</div>
-              <div className="grid" style={{ gridTemplateColumns: `repeat(${extras.penalties.length}, 1fr)`, gap: 12 }}>
+              <div className="grid" style={{ gridTemplateColumns: `repeat(auto-fill, minmax(180px, 1fr))`, gap: 12 }}>
                 {extras.penalties.map((p) => (
                   <div key={p.tier} className="card">
                     <div className="eyebrow" style={{ marginBottom: 4 }}>{p.tier}</div>

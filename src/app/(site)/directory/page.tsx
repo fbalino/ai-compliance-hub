@@ -89,7 +89,7 @@ export default async function DirectoryPage() {
         </div>
       </div>
 
-      <div className="container" style={{ padding: "var(--s-8) var(--s-7)", display: "grid", gridTemplateColumns: "240px 1fr", gap: 40 }}>
+      <div className="container sidebar-layout">
 
         {/* Left sidebar filters */}
         <aside>
