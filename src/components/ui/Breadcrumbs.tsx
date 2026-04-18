@@ -14,42 +14,31 @@ export function Breadcrumbs({ items, className = "" }: BreadcrumbsProps) {
   return (
     <nav
       aria-label="Breadcrumb"
-      className={["flex items-center gap-1.5 text-sm text-neutral-500", className]
-        .filter(Boolean)
-        .join(" ")}
+      className={className}
+      style={{
+        fontFamily: "var(--mono)",
+        fontSize: 11,
+        letterSpacing: "0.1em",
+        textTransform: "uppercase",
+        color: "var(--ink-soft)",
+        marginBottom: 8,
+      }}
     >
       {items.map((item, index) => {
         const isLast = index === items.length - 1;
         return (
-          <span key={index} className="flex items-center gap-1.5">
+          <span key={index} style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
             {index > 0 && (
-              <svg
-                className="h-3.5 w-3.5 text-neutral-400 shrink-0"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
+              <span style={{ color: "var(--ink-faint)", fontSize: 11 }} aria-hidden="true">
+                ·
+              </span>
             )}
             {isLast || !item.href ? (
-              <span
-                className={isLast ? "font-medium text-neutral-800" : ""}
-                aria-current={isLast ? "page" : undefined}
-              >
+              <span aria-current={isLast ? "page" : undefined}>
                 {item.label}
               </span>
             ) : (
-              <Link
-                href={item.href}
-                className="hover:text-brand-700 transition-colors"
-              >
+              <Link href={item.href} style={{ color: "var(--ink-soft)", textDecoration: "none" }}>
                 {item.label}
               </Link>
             )}

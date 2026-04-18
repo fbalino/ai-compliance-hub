@@ -3,7 +3,6 @@ import Link from "next/link";
 import { db } from "@/db";
 import { providers, providerCategories, providerServices } from "@/db/schema";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
-import { Card } from "@/components/ui/Card";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import { CategoryIcon } from "@/lib/category-icons";
 import { DirectorySearchClient, type ProviderSearchItem } from "@/components/directory/DirectorySearchClient";
@@ -28,7 +27,6 @@ async function getDirectoryData() {
     db.select().from(providerServices),
   ]);
 
-  // Build a map from providerId → service types
   const servicesByProvider: Record<string, string[]> = {};
   for (const svc of allServices) {
     if (!servicesByProvider[svc.providerId]) {
@@ -37,7 +35,6 @@ async function getDirectoryData() {
     servicesByProvider[svc.providerId].push(svc.serviceType);
   }
 
-  // Build category lookup
   const categoryMap: Record<string, { label: string; icon: string }> = {};
   for (const cat of allCategories) {
     categoryMap[cat.slug] = { label: cat.label, icon: cat.icon };
@@ -51,7 +48,7 @@ async function getDirectoryData() {
       category: p.category ?? "",
       categoryLabel: cat?.label ?? p.category ?? "",
       categoryIcon: cat?.icon ?? "",
-      tagline: p.tagline ?? (p.description ? p.description.slice(0, 140) + "…" : ""),
+      tagline: p.tagline ?? (p.description ? p.description.slice(0, 140) + "\u2026" : ""),
       isVerified: p.isVerified ?? false,
       jurisdictions: (p.jurisdictions as string[] | null) ?? [],
       specializations: servicesByProvider[p.id] ?? [],
@@ -64,7 +61,6 @@ async function getDirectoryData() {
     icon: c.icon,
   }));
 
-  // Compute counts per category for the category cards
   const countByCategory: Record<string, number> = {};
   for (const p of allProviders) {
     if (p.category) {
@@ -87,125 +83,90 @@ export default async function DirectoryPage() {
     <>
       <script {...jsonLdScriptProps(breadcrumbs)} />
 
-      {/* Header */}
-      <div className="border-b border-neutral-200 bg-white">
-        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-          <Breadcrumbs
-            items={[{ label: "Home", href: "/" }, { label: "Provider Directory" }]}
-          />
-          <div className="mt-4 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+      <div className="rg-page-head">
+        <div className="rg-container">
+          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Provider Directory" }]} />
+          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: 16 }}>
             <div>
-              <h1 className="text-3xl font-extrabold tracking-tight text-neutral-900">
-                AI Compliance Provider Directory
-              </h1>
-              <p className="mt-2 text-lg text-neutral-600 max-w-2xl">
+              <h1>AI Compliance Provider Directory</h1>
+              <p className="rg-page-desc">
                 Verified auditors, consultants, lawyers, and software platforms specializing in AI regulatory compliance.
               </p>
             </div>
-            <div className="shrink-0 flex flex-col sm:items-end gap-1.5">
-              <span className="text-2xl font-bold text-neutral-900">{totalCount}+</span>
-              <span className="text-sm text-neutral-500">providers listed</span>
+            <div style={{ textAlign: "right", flexShrink: 0 }}>
+              <div style={{ fontSize: 28, fontWeight: 700, color: "var(--rg-ink)", letterSpacing: "-0.6px" }}>{totalCount}+</div>
+              <div style={{ fontSize: 13, color: "var(--rg-ink-dim)", fontWeight: 500 }}>providers listed</div>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 space-y-12">
+      <div className="rg-page-body">
+        <div className="rg-container">
 
-        {/* Search + filter bar */}
-        <section>
-          <h2 className="text-lg font-bold text-neutral-900 mb-4">
-            Search Providers
-          </h2>
-          <DirectorySearchClient
-            providers={searchItems}
-            categories={categoryOptions}
-          />
-        </section>
+          <div className="rg-page-section">
+            <div className="rg-kicker">Search Providers</div>
+            <DirectorySearchClient providers={searchItems} categories={categoryOptions} />
+          </div>
 
-        {/* Browse by category */}
-        <section>
-          <h2 className="text-lg font-bold text-neutral-900 mb-5">
-            Browse by Specialization
-          </h2>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {categoryOptions.map((cat) => {
-              const count = countByCategory[cat.slug] ?? 0;
-              // Find category details from the full category list
-              return (
-                <Link
-                  key={cat.slug}
-                  href={`/directory/categories/${cat.slug}`}
-                  className="group block"
-                >
-                  <Card hover className="h-full group-hover:border-brand-300 transition-all">
-                    <div className="flex items-start gap-3">
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-100 text-brand-700">
-                        <CategoryIcon name={cat.icon} className="h-5 w-5" />
-                      </span>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center justify-between gap-2">
-                          <h3 className="font-semibold text-neutral-900 group-hover:text-brand-800 transition-colors">
-                            {cat.label}
-                          </h3>
-                          <span className="shrink-0 text-xs font-medium text-neutral-500">
-                            {count} provider{count !== 1 ? "s" : ""}
-                          </span>
+          <div className="rg-page-section">
+            <div className="rg-kicker">Browse by Specialization</div>
+            <div className="rg-scard-grid-3">
+              {categoryOptions.map((cat) => {
+                const count = countByCategory[cat.slug] ?? 0;
+                return (
+                  <Link key={cat.slug} href={`/directory/categories/${cat.slug}`} className="rg-scard-link">
+                    <div className="rg-scard" style={{ height: "100%" }}>
+                      <div style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
+                        <span style={{
+                          display: "grid", placeItems: "center", width: 40, height: 40, borderRadius: 10, flexShrink: 0,
+                          background: "var(--rg-primary-faint)", color: "var(--rg-primary-deep)",
+                        }}>
+                          <CategoryIcon name={cat.icon} className="h-5 w-5" />
+                        </span>
+                        <div style={{ flex: 1, minWidth: 0 }}>
+                          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
+                            <h3 style={{ marginBottom: 0 }}>{cat.label}</h3>
+                            <span style={{ fontSize: 12, fontFamily: "var(--font-mono)", fontWeight: 500, color: "var(--rg-ink-dim)", flexShrink: 0 }}>
+                              {count}
+                            </span>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </Card>
-                </Link>
-              );
-            })}
-          </div>
-        </section>
-
-        {/* CTA — list your business */}
-        <section className="rounded-xl border border-brand-200 bg-brand-50 p-6 sm:p-8">
-          <div className="flex flex-col sm:flex-row gap-6 items-start sm:items-center justify-between">
-            <div>
-              <h2 className="text-lg font-bold text-brand-900">
-                Are you a compliance provider?
-              </h2>
-              <p className="mt-1.5 text-sm text-brand-700 max-w-xl">
-                List your firm in our directory and reach businesses actively looking for AI compliance help.
-                Featured listings include verified badges, lead routing, and analytics dashboards.
-              </p>
-              <ul className="mt-3 space-y-1 text-sm text-brand-700">
-                <li className="flex items-center gap-2">
-                  <svg className="h-4 w-4 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                  Starting at $99/month — featured placement in relevant categories
-                </li>
-                <li className="flex items-center gap-2">
-                  <svg className="h-4 w-4 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                  Lead routing from compliance checker results
-                </li>
-                <li className="flex items-center gap-2">
-                  <svg className="h-4 w-4 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                  Verified badge after vetting
-                </li>
-              </ul>
+                  </Link>
+                );
+              })}
             </div>
-            <div className="shrink-0">
-              <a
-                href="mailto:providers@aicompliancehub.com"
-                className="inline-flex items-center gap-2 rounded-lg bg-brand-700 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-800 transition-colors shadow-sm"
-              >
-                Get Listed
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
+          </div>
+
+          <div className="rg-cta-banner">
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 24, alignItems: "center", justifyContent: "space-between" }}>
+              <div>
+                <h2>Are you a compliance provider?</h2>
+                <p>
+                  List your firm in our directory and reach businesses actively looking for AI compliance help.
+                  Featured listings include verified badges, lead routing, and analytics dashboards.
+                </p>
+                <ul style={{ marginTop: 12, listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: 6 }}>
+                  <li style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: "var(--rg-primary-deep)" }}>
+                    <span style={{ color: "var(--rg-primary)" }}>&check;</span> Starting at $99/month &mdash; featured placement
+                  </li>
+                  <li style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: "var(--rg-primary-deep)" }}>
+                    <span style={{ color: "var(--rg-primary)" }}>&check;</span> Lead routing from compliance checker results
+                  </li>
+                  <li style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: "var(--rg-primary-deep)" }}>
+                    <span style={{ color: "var(--rg-primary)" }}>&check;</span> Verified badge after vetting
+                  </li>
+                </ul>
+              </div>
+              <a href="mailto:providers@aicompliancehub.com" className="rg-btn rg-btn-primary" style={{ flexShrink: 0 }}>
+                Get Listed <span className="rg-arrow">&rarr;</span>
               </a>
             </div>
           </div>
-        </section>
+
+        </div>
       </div>
     </>
   );

@@ -4,6 +4,7 @@ const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
 
 const BLOG_SLUGS = [
+  "colorado-ai-act-60-day-checklist",
   "how-to-prepare-for-colorado-ai-act-june-2026",
   "virginia-hb-2094-what-businesses-need-to-know",
   "request-for-quote-ai-bias-audit-what-to-expect",

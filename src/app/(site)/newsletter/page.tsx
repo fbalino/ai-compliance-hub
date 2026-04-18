@@ -11,32 +11,14 @@ export const metadata: Metadata = {
   title: "AI Compliance Newsletter — Weekly Regulation Updates",
   description:
     "Subscribe to our free weekly newsletter covering new AI laws, enforcement actions, compliance deadlines, and expert guides. Stay ahead of AI regulation.",
-  alternates: {
-    canonical: `${SITE_URL}/newsletter`,
-  },
+  alternates: { canonical: `${SITE_URL}/newsletter` },
 };
 
 const WHAT_TO_EXPECT: { icon: LucideIcon; title: string; description: string }[] = [
-  {
-    icon: ClipboardList,
-    title: "Regulation Roundup",
-    description: "New laws, proposed rules, and regulatory guidance from the US and EU — summarized in plain English.",
-  },
-  {
-    icon: Scale,
-    title: "Enforcement Watch",
-    description: "Fines, investigations, and enforcement actions as they happen. Know what regulators are actually going after.",
-  },
-  {
-    icon: Calendar,
-    title: "Deadline Calendar",
-    description: "Upcoming compliance deadlines you can't miss — 90-day, 30-day, and 7-day alerts.",
-  },
-  {
-    icon: Wrench,
-    title: "Compliance How-To",
-    description: "Practical guides, templates, and step-by-step instructions from our compliance team.",
-  },
+  { icon: ClipboardList, title: "Regulation Roundup", description: "New laws, proposed rules, and regulatory guidance from the US and EU \u2014 summarized in plain English." },
+  { icon: Scale, title: "Enforcement Watch", description: "Fines, investigations, and enforcement actions as they happen. Know what regulators are actually going after." },
+  { icon: Calendar, title: "Deadline Calendar", description: "Upcoming compliance deadlines you can\u2019t miss \u2014 90-day, 30-day, and 7-day alerts." },
+  { icon: Wrench, title: "Compliance How-To", description: "Practical guides, templates, and step-by-step instructions from our compliance team." },
 ];
 
 export default function NewsletterPage() {
@@ -49,82 +31,54 @@ export default function NewsletterPage() {
     <>
       <script {...jsonLdScriptProps(breadcrumbs)} />
 
-      {/* Header */}
-      <div className="border-b border-neutral-200 bg-white">
-        <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8">
-          <Breadcrumbs
-            items={[{ label: "Home", href: "/" }, { label: "Newsletter" }]}
-          />
+      <div className="rg-page-head">
+        <div className="rg-container">
+          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Newsletter" }]} />
         </div>
       </div>
 
-      {/* Hero */}
-      <div className="bg-brand-900 px-4 py-16 sm:py-20">
-        <div className="mx-auto max-w-2xl text-center">
-          <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-brand-700">
-            <svg className="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+      <div className="rg-cta-dark" style={{ borderRadius: 0, padding: "64px 40px" }}>
+        <div style={{ maxWidth: 560, margin: "0 auto" }}>
+          <div style={{ width: 52, height: 52, borderRadius: 12, background: "rgba(255,255,255,0.1)", display: "grid", placeItems: "center", margin: "0 auto 16px" }}>
+            <svg style={{ width: 26, height: 26, color: "#fff" }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
           </div>
-          <h1 className="text-3xl font-extrabold text-white sm:text-4xl">
-            Stay ahead of AI regulation
-          </h1>
-          <p className="mt-4 text-brand-200 leading-relaxed">
-            The AI compliance landscape changes weekly. Our free newsletter distills what matters — enforcement actions, new laws, compliance deadlines — so you don&apos;t have to track it all yourself.
+          <h2 style={{ fontSize: "clamp(28px, 4vw, 38px)" }}>Stay ahead of AI regulation</h2>
+          <p style={{ maxWidth: 520 }}>
+            The AI compliance landscape changes weekly. Our free newsletter distills what matters &mdash; enforcement actions, new laws, compliance deadlines &mdash; so you don&apos;t have to track it all yourself.
           </p>
-          <div className="mt-6 flex items-center justify-center gap-4 text-sm text-brand-300">
-            <span className="flex items-center gap-1.5">
-              <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
-              </svg>
-              Free forever
-            </span>
-            <span className="flex items-center gap-1.5">
-              <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
-              </svg>
-              Weekly, every Monday
-            </span>
-            <span className="flex items-center gap-1.5">
-              <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
-              </svg>
-              Unsubscribe anytime
-            </span>
+          <div style={{ display: "flex", justifyContent: "center", gap: 20, marginTop: 20, fontSize: 13, color: "var(--rg-dark-muted)" }}>
+            <span>&check; Free forever</span>
+            <span>&check; Weekly, every Monday</span>
+            <span>&check; Unsubscribe anytime</span>
           </div>
-
-          {/* Subscribe form */}
-          <NewsletterForm
-            source="newsletter_page"
-            variant="hero"
-            className="mt-8 max-w-md mx-auto"
-          />
-          <p className="mt-3 text-xs text-brand-400">
+          <NewsletterForm source="newsletter_page" variant="hero" className="mt-8 max-w-md mx-auto" />
+          <p style={{ marginTop: 12, fontSize: 12, color: "var(--rg-dark-muted)", opacity: 0.7 }}>
             Join compliance and legal professionals at companies navigating AI regulation.
           </p>
         </div>
       </div>
 
-      {/* What to expect */}
-      <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6 lg:px-8">
-        <h2 className="text-xl font-bold text-neutral-900 text-center mb-8">
-          What you&apos;ll get every week
-        </h2>
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-          {WHAT_TO_EXPECT.map((item) => (
-            <div
-              key={item.title}
-              className="flex items-start gap-4 rounded-xl border border-neutral-200 bg-white p-5"
-            >
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-100 text-brand-700">
-                <item.icon className="h-5 w-5" aria-hidden="true" />
-              </span>
-              <div>
-                <h3 className="font-semibold text-neutral-900">{item.title}</h3>
-                <p className="mt-1 text-sm text-neutral-600 leading-relaxed">{item.description}</p>
+      <div className="rg-page-body">
+        <div className="rg-container" style={{ maxWidth: 1000 }}>
+          <div className="rg-kicker" style={{ textAlign: "center", display: "block" }}>What you&apos;ll get every week</div>
+          <div className="rg-scard-grid" style={{ marginTop: 24 }}>
+            {WHAT_TO_EXPECT.map((item) => (
+              <div key={item.title} className="rg-scard" style={{ display: "flex", alignItems: "flex-start", gap: 14 }}>
+                <span style={{
+                  display: "grid", placeItems: "center", width: 40, height: 40, borderRadius: 10, flexShrink: 0,
+                  background: "var(--rg-primary-faint)", color: "var(--rg-primary-deep)",
+                }}>
+                  <item.icon className="h-5 w-5" aria-hidden="true" />
+                </span>
+                <div>
+                  <h3 style={{ marginBottom: 4 }}>{item.title}</h3>
+                  <p>{item.description}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </>

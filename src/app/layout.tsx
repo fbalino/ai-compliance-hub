@@ -1,34 +1,43 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
 import { Suspense } from "react";
 import { PostHogProvider } from "@/components/PostHogProvider";
 import { PostHogPageView } from "@/components/PostHogPageView";
 import { organizationSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
+  display: "swap",
+  axes: ["opsz"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "regulome.io — Regulatory Intelligence for AI Compliance",
-    template: "%s | regulome.io",
+    default: "Regulome — The Global Register of AI Regulations",
+    template: "%s | Regulome",
   },
   description:
-    "Map your AI products to applicable laws worldwide. Track regulations, use our free compliance checker, and find verified providers. EU AI Act, US state laws, and more.",
+    "Search the register of 912 AI regulations — or describe your situation and let us route you. Find vetted providers. EU AI Act, US state laws, and more.",
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://regulome.io"
   ),
   openGraph: {
     type: "website",
-    siteName: "regulome.io",
+    siteName: "Regulome",
     locale: "en_US",
   },
   twitter: {
@@ -55,7 +64,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${fraunces.variable} ${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <head>
         <script {...jsonLdScriptProps(organizationSchema())} />

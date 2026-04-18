@@ -3,13 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Search, Menu, X } from "lucide-react";
 
 const NAV_LINKS = [
   { label: "Regulations", href: "/regulations" },
   { label: "Providers", href: "/directory" },
-  { label: "Checker", href: "/checker" },
-  { label: "Newsletter", href: "/newsletter" },
+  { label: "The Ledger", href: "/blog" },
+  { label: "About", href: "/about" },
 ];
 
 export function Header() {
@@ -21,92 +21,96 @@ export function Header() {
   }
 
   return (
-    <nav className="rg-nav" aria-label="Main navigation">
-      <div className="rg-container rg-nav-inner">
-        <Link href="/" className="rg-brand">
-          <span className="rg-brand-mark" aria-hidden="true" />
-          <span className="rg-brand-name">
-            regulome<span className="rg-brand-dot">.</span>
-          </span>
-        </Link>
+    <header className="topbar" aria-label="Main navigation">
+      <Link href="/" className="brand-mark">
+        <span className="glyph" aria-hidden="true">§</span>
+        Regulome
+      </Link>
 
-        <ul className="rg-nav-links">
-          {NAV_LINKS.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                aria-current={isActive(link.href) ? "page" : undefined}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-
-        <div className="rg-nav-right">
+      <nav>
+        {NAV_LINKS.map((link) => (
           <Link
-            href="/newsletter"
-            className="rg-btn rg-btn-ghost"
-            style={{ display: "none" }}
+            key={link.href}
+            href={link.href}
+            className={isActive(link.href) ? "active" : undefined}
           >
-            Sign in
+            {link.label}
           </Link>
-          <Link href="/checker" className="rg-btn rg-btn-primary">
-            Run a free check <span className="rg-arrow" aria-hidden="true">→</span>
-          </Link>
+        ))}
+      </nav>
 
-          <button
-            type="button"
-            className="md:hidden"
-            aria-expanded={mobileOpen}
-            aria-label="Toggle navigation menu"
-            onClick={() => setMobileOpen((o) => !o)}
-            style={{
-              background: "transparent",
-              border: "1px solid var(--rg-border)",
-              borderRadius: 8,
-              padding: 8,
-              color: "var(--rg-ink-muted)",
-              cursor: "pointer",
-              marginLeft: 4,
-            }}
-          >
-            {mobileOpen ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
-          </button>
-        </div>
+      <div className="spacer" />
+
+      <div
+        className="search"
+        style={{ minWidth: 240, padding: "6px 12px" }}
+      >
+        <Search size={14} aria-hidden="true" />
+        <input placeholder="Search regulations…" readOnly />
+        <span className="mono xs faint">⌘K</span>
       </div>
+
+      <Link href="/join" className="btn btn-sm btn-ghost">
+        For providers
+      </Link>
+      <Link href="/checker" className="btn btn-sm">
+        Sign in
+      </Link>
+
+      <button
+        type="button"
+        aria-expanded={mobileOpen}
+        aria-label="Toggle navigation menu"
+        onClick={() => setMobileOpen((o) => !o)}
+        style={{
+          background: "transparent",
+          border: "1px solid var(--line)",
+          borderRadius: 6,
+          padding: 8,
+          color: "var(--ink-soft)",
+          cursor: "pointer",
+          display: "none",
+        }}
+        className="mobile-menu-btn"
+      >
+        {mobileOpen ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
+      </button>
 
       {mobileOpen && (
         <div
           style={{
-            borderTop: "1px solid var(--rg-border)",
-            background: "var(--rg-card)",
-            padding: "14px 0",
+            position: "absolute",
+            top: "100%",
+            left: 0,
+            right: 0,
+            borderTop: "1px solid var(--line)",
+            background: "var(--paper)",
+            padding: "14px 20px",
+            display: "flex",
+            flexDirection: "column",
+            gap: 4,
+            zIndex: 50,
           }}
         >
-          <div className="rg-container" style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-                aria-current={isActive(link.href) ? "page" : undefined}
-                style={{
-                  padding: "10px 12px",
-                  borderRadius: 8,
-                  fontSize: 14,
-                  fontWeight: 500,
-                  color: isActive(link.href) ? "var(--rg-primary-deep)" : "var(--rg-ink-muted)",
-                  background: isActive(link.href) ? "var(--rg-primary-faint)" : "transparent",
-                  textDecoration: "none",
-                }}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setMobileOpen(false)}
+              style={{
+                padding: "10px 12px",
+                borderRadius: 6,
+                fontSize: 14,
+                fontWeight: 500,
+                color: isActive(link.href) ? "var(--accent)" : "var(--ink-soft)",
+                background: isActive(link.href) ? "var(--accent-soft)" : "transparent",
+              }}
+            >
+              {link.label}
+            </Link>
+          ))}
         </div>
       )}
-    </nav>
+    </header>
   );
 }

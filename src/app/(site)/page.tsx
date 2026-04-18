@@ -1,202 +1,168 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
+import { HeroSearch } from "@/components/home/HeroSearch";
 import { NewsletterForm } from "@/components/NewsletterForm";
 
-// ISR: homepage revalidates every 6 hours
 export const revalidate = 21600;
 
 export const metadata: Metadata = {
-  title: "regulome.io — The directory of AI regulations",
+  title: "Regulome — Find what you need to comply with",
   description:
-    "Browse every AI law that applies to your business — current, upcoming, and in draft — and connect with vetted compliance providers.",
+    "Search the register of 912 AI regulations — or describe your situation in plain English and let us route you to the right regulations and providers.",
 };
 
-// ── Preview card rows ──────────────────────────────────
-const PREVIEW_ROWS: {
-  jur: string;
+function RegCard({
+  code,
+  title,
+  juris,
+  status,
+  effective,
+  providers,
+  topics,
+  summary,
+}: {
+  code: string;
+  title: string;
+  juris: string;
+  status: string;
+  effective: string;
+  providers: number;
+  topics: string[];
+  summary: string;
+}) {
+  return (
+    <article className="card">
+      <div className="between" style={{ marginBottom: 12 }}>
+        <span className="chip chip-code">{code}</span>
+        <span className="chip" style={{ fontSize: 11, padding: "2px 8px" }}>
+          <span className={`dot dot-${status}`} />
+          {status}
+        </span>
+      </div>
+      <div className="h3" style={{ fontSize: 22, marginBottom: 4 }}>{title}</div>
+      <div className="small" style={{ marginBottom: 12 }}>
+        {juris} · effective <span className="mono">{effective}</span>
+      </div>
+      <div className="small" style={{ marginBottom: 12, color: "var(--ink-2)", lineHeight: 1.5 }}>
+        {summary}
+      </div>
+      <div className="tag-strip" style={{ marginBottom: 16 }}>
+        {topics.map((t) => (
+          <span key={t} className="chip">{t}</span>
+        ))}
+      </div>
+      <div className="hr" style={{ marginBottom: 16 }} />
+      <div className="between">
+        <span className="small">
+          <b style={{ color: "var(--ink)" }}>{providers}</b> providers
+        </span>
+        <span style={{ display: "flex", alignItems: "center", gap: 8, fontFamily: "var(--mono)", fontSize: 12 }}>
+          Open →
+        </span>
+      </div>
+    </article>
+  );
+}
+
+function ProviderCard({
+  name,
+  type,
+  hq,
+  blurb,
+  regs,
+  featured,
+}: {
   name: string;
-  sub: string;
-  status: "applies" | "action" | "clear" | "watch";
-  label: string;
-}[] = [
-  { jur: "EU", name: "EU AI Act", sub: "transparency · Article 52", status: "applies", label: "Applies" },
-  { jur: "CO", name: "Colorado AI Act", sub: "effective 30 Jun 2026", status: "action", label: "Action needed" },
-  { jur: "NY", name: "NYC Local Law 144", sub: "automated hiring tools", status: "applies", label: "Applies" },
-  { jur: "CA", name: "California SB 1047", sub: "frontier-model safety — vetoed", status: "clear", label: "Does not apply" },
-  { jur: "UK", name: "UK AI Bill", sub: "principles framework · in draft", status: "watch", label: "Watch" },
-];
+  type: string;
+  hq: string;
+  blurb: string;
+  regs: string[];
+  featured?: boolean;
+}) {
+  return (
+    <article className={`card ${featured ? "card-feature" : ""}`}>
+      <div className="flex items-center" style={{ gap: 12, marginBottom: 12 }}>
+        <div
+          className="avatar avatar-sq"
+          style={{ width: 44, height: 44, fontSize: 17 }}
+        >
+          {name[0]}
+        </div>
+        <div style={{ flex: 1 }}>
+          <div className="h4">{name}</div>
+          <div className="xs">{type} · {hq}</div>
+        </div>
+        {featured && (
+          <span className="feature-flag">★ Featured</span>
+        )}
+      </div>
+      <div className="small" style={{ color: "var(--ink-2)", lineHeight: 1.5, marginBottom: 12 }}>
+        {blurb}
+      </div>
+      <div className="mono xs" style={{ marginBottom: 16, letterSpacing: "0.04em" }}>
+        <span className="soft">Covers: </span>
+        {regs.slice(0, 3).join(" · ")}
+        {regs.length > 3 && <span className="soft"> +{regs.length - 3}</span>}
+      </div>
+      <div className="flex" style={{ gap: 8 }}>
+        <button className="btn btn-sm btn-primary" style={{ flex: 1 }}>Contact</button>
+        <button className="btn btn-sm btn-ghost">Profile</button>
+      </div>
+    </article>
+  );
+}
 
-// ── Featured regulations ──────────────────────────────
-type Status = "applies" | "action" | "clear" | "watch";
-type Tint = "blue" | "green" | "amber" | "slate" | "teal" | "rose" | "plum";
+function Icon({ name, size = 28 }: { name: string; size?: number }) {
+  const paths: Record<string, React.ReactNode> = {
+    book: (
+      <>
+        <path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z" />
+        <path d="M5 17a3 3 0 0 1 3-3h11" />
+      </>
+    ),
+    globe: (
+      <>
+        <circle cx="12" cy="12" r="9" />
+        <path d="M3 12h18" />
+        <path d="M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" />
+      </>
+    ),
+    building: (
+      <>
+        <path d="M4 21V7l8-4 8 4v14" />
+        <path d="M9 21v-6h6v6" />
+      </>
+    ),
+    arrow: (
+      <>
+        <path d="M5 12h14" />
+        <path d="m13 6 6 6-6 6" />
+      </>
+    ),
+    mail: (
+      <>
+        <rect x="3" y="6" width="18" height="13" rx="1.5" />
+        <path d="m3 8 9 6 9-6" />
+      </>
+    ),
+  };
 
-const REGS: {
-  slug: string;
-  sigil: string;
-  name: string;
-  meta: string;
-  status: Status;
-  statusLabel: string;
-  who: string;
-  footLeft: React.ReactNode;
-  feature?: boolean;
-  tint: Tint;
-}[] = [
-  {
-    slug: "eu-ai-act",
-    sigil: "EU",
-    name: "EU AI Act",
-    meta: "EU-001 · Reg. 2024/1689",
-    status: "applies",
-    statusLabel: "In force",
-    who: "any company offering AI products or services in the EU, or whose AI output is used in the EU — regardless of where the company is based.",
-    footLeft: <>27 member states · <strong>GPAI effective Aug 2026</strong></>,
-    feature: true,
-    tint: "blue",
-  },
-  {
-    slug: "colorado-ai-act",
-    sigil: "CO",
-    name: "Colorado AI Act",
-    meta: "US-CO-014 · SB 24-205",
-    status: "action",
-    statusLabel: "In 75 days",
-    who: "companies deploying high-risk AI affecting Colorado consumers in employment, lending, insurance, housing, education, or healthcare.",
-    footLeft: <>Effective <strong>30 Jun 2026</strong></>,
-    tint: "green",
-  },
-  {
-    slug: "nyc-local-law-144",
-    sigil: "NY",
-    name: "NYC Local Law 144",
-    meta: "US-NY-007 · LL 144",
-    status: "applies",
-    statusLabel: "Enforcing",
-    who: "employers using automated tools to screen, rank, or decide on candidates for jobs or promotions in New York City.",
-    footLeft: <>Enforcing since <strong>Jul 2023</strong></>,
-    tint: "amber",
-  },
-  {
-    slug: "virginia-hb-2094",
-    sigil: "VA",
-    name: "Virginia HB 2094",
-    meta: "US-VA-011 · HB 2094",
-    status: "action",
-    statusLabel: "Incoming",
-    who: "businesses using high-risk automated decision systems affecting Virginia residents — impact assessments and opt-out rights required.",
-    footLeft: <>Effective <strong>1 Jul 2026</strong></>,
-    tint: "slate",
-  },
-  {
-    slug: "utah-ai-policy-act",
-    sigil: "UT",
-    name: "Utah AI Policy Act",
-    meta: "US-UT-009 · SB 149",
-    status: "applies",
-    statusLabel: "Enforcing",
-    who: "businesses using generative AI in interactions with Utah consumers — especially in regulated occupations like healthcare, law, and finance.",
-    footLeft: <>Amendments <strong>Q3 2026</strong></>,
-    tint: "teal",
-  },
-  {
-    slug: "california-ab-2013",
-    sigil: "CA",
-    name: "California AB 2013",
-    meta: "US-CA-019 · AB 2013",
-    status: "action",
-    statusLabel: "In 260 days",
-    who: "developers of generative AI models released or substantially modified for use in California on or after Jan 1, 2022.",
-    footLeft: <>Effective <strong>Jan 2027</strong></>,
-    tint: "rose",
-  },
-  {
-    slug: "uk-ai-bill",
-    sigil: "UK",
-    name: "UK AI Regulation Bill",
-    meta: "UK-023 · AI Bill",
-    status: "watch",
-    statusLabel: "In draft",
-    who: "any company offering AI products in the UK — obligations flow through existing regulators (ICO, FCA, MHRA, CMA) by sector.",
-    footLeft: <>Consultation <strong>open</strong></>,
-    tint: "plum",
-  },
-];
-
-// ── Featured providers ────────────────────────────────
-const PROVIDERS = [
-  {
-    id: "PRV-001",
-    slug: "babl-ai",
-    type: "Bias auditor · US",
-    logo: "Ba",
-    name: "BABL AI",
-    loc: "Iowa City · Remote",
-    body: "NYC Local Law 144 bias audits and AI impact assessments for HR tech, financial services, and public-sector deployments.",
-    tags: ["NYC LL 144", "CO AI Act", "NIST AI RMF"],
-  },
-  {
-    id: "PRV-008",
-    slug: "credo-ai",
-    type: "Platform · US + EU",
-    logo: "Cr",
-    name: "Credo AI",
-    loc: "San Francisco · Berlin",
-    body: "Governance platform for AI policy enforcement, risk assessment, and compliance reporting across mid-market and enterprise AI teams.",
-    tags: ["EU AI Act", "GDPR", "ISO 42001"],
-  },
-  {
-    id: "PRV-014",
-    slug: "luminos-law",
-    type: "Law firm · US",
-    logo: "Ll",
-    name: "Luminos.Law",
-    loc: "New York · Washington DC",
-    body: "Full-service AI law firm covering Colorado AI Act, NYC LL 144, and federal enforcement. Pragmatic memos for product and policy teams.",
-    tags: ["Multi-jurisdictional", "CO AI Act", "SOC 2"],
-  },
-  {
-    id: "PRV-019",
-    slug: "orcaa",
-    type: "Auditor · US",
-    logo: "Or",
-    name: "ORCAA",
-    loc: "New York",
-    body: "Independent algorithmic bias and governance audits under NYC LL 144 and high-risk-system reviews for Colorado deployers.",
-    tags: ["NYC LL 144", "CO AI Act", "NIST AI RMF"],
-  },
-  {
-    id: "PRV-025",
-    slug: "holistic-ai",
-    type: "Platform · UK",
-    logo: "Ha",
-    name: "Holistic AI",
-    loc: "London · New York",
-    body: "AI risk management suite with automated testing for bias, robustness, privacy, and explainability — trusted by Fortune 500 deployers.",
-    tags: ["EU AI Act", "NYC LL 144", "ISO 42001"],
-  },
-  {
-    id: "PRV-031",
-    slug: "trustible",
-    type: "Fractional CCO",
-    logo: "Tr",
-    name: "Trustible",
-    loc: "Virginia · Remote",
-    body: "Embedded AI governance for Series A–C AI companies. Build programs, draft policies, handle the regulator call so founders don't have to.",
-    tags: ["Multi-jurisdictional", "VA HB 2094", "NIST AI RMF"],
-  },
-];
-
-function StatusPill({ status, label }: { status: Status; label: string }) {
-  const cls =
-    status === "applies"
-      ? "rg-pill-applies"
-      : status === "action"
-      ? "rg-pill-action"
-      : status === "clear"
-      ? "rg-pill-clear"
-      : "rg-pill-watch";
-  return <span className={`rg-pill-status ${cls}`}>{label}</span>;
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.6}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      style={{ flexShrink: 0 }}
+    >
+      {paths[name] || <circle cx="12" cy="12" r="2" />}
+    </svg>
+  );
 }
 
 export default function HomePage() {
@@ -206,450 +172,406 @@ export default function HomePage() {
     <>
       <script {...jsonLdScriptProps(breadcrumbs)} />
 
-      {/* ── HERO ── */}
+      {/* ── HERO — search-first with keyword / describe toggle ── */}
+      <section className="hero-bg" style={{ borderBottom: "1px solid var(--line)" }}>
+        <div className="container" style={{ paddingTop: 56, paddingBottom: 56, textAlign: "center" }}>
+          <h1
+            className="display v4-rise"
+            style={{ maxWidth: 960, margin: "0 auto" }}
+          >
+            Find what you need to{" "}
+            <em className="serif" style={{ color: "var(--accent)" }}>comply with</em>.
+          </h1>
+          <p
+            className="lede soft v4-rise v4-d1"
+            style={{ maxWidth: 640, margin: "20px auto 0" }}
+          >
+            Search the register of 912 regulations — or describe your situation in plain English and let us route you.
+          </p>
+
+          <div
+            className="v4-rise v4-d2"
+            style={{ maxWidth: 760, margin: "32px auto 0" }}
+          >
+            <HeroSearch />
+          </div>
+
+          <div
+            className="flex v4-rise v4-d3"
+            style={{ gap: 12, marginTop: 32, justifyContent: "center", alignItems: "center", flexWrap: "wrap" }}
+          >
+            <span className="xs faint">Or start with:</span>
+            <Link href="/regulations/eu-ai-act" className="chip" style={{ cursor: "pointer" }}>🇪🇺 EU AI Act</Link>
+            <Link href="/regulations/colorado-ai-act" className="chip" style={{ cursor: "pointer" }}>🇺🇸 Colorado AI</Link>
+            <Link href="/regulations" className="chip" style={{ cursor: "pointer" }}>NIS2</Link>
+            <Link href="/regulations" className="chip" style={{ cursor: "pointer" }}>DORA</Link>
+            <Link href="/regulations" className="chip" style={{ cursor: "pointer" }}>Browse all 912 ▾</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── YOUR MATCHES — two-column layout ── */}
+      <section className="container" style={{ paddingTop: 40, paddingBottom: 40 }}>
+        <div className="eyebrow" style={{ marginBottom: 16 }}>
+          Your matches · 14 regulations · 23 providers · 6 guides
+        </div>
+
+        <div
+          className="grid"
+          style={{ gridTemplateColumns: "1.6fr 1fr", gap: 40, alignItems: "start" }}
+        >
+          <div>
+            {/* Regulations that apply */}
+            <div className="section-head">
+              <div><h2 className="h2">Regulations that apply</h2></div>
+              <Link href="/regulations" className="action">See all 14 →</Link>
+            </div>
+            <div className="grid" style={{ gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+              <RegCard
+                code="EU-AIA-24"
+                title="EU AI Act"
+                juris="European Union"
+                effective="02 Aug 2026"
+                status="active"
+                providers={12}
+                topics={["Hiring AI", "High-risk"]}
+                summary="Annex III classifies hiring AI as high-risk. Conformity assessment, bias monitoring, post-market monitoring required."
+              />
+              <RegCard
+                code="US-NYC-144"
+                title="NYC Local Law 144"
+                juris="US · New York"
+                effective="05 Jul 2023"
+                status="active"
+                providers={9}
+                topics={["Hiring AI", "Bias audit"]}
+                summary="Annual independent bias audit + candidate notice for automated employment decision tools used in NYC."
+              />
+              <RegCard
+                code="US-CO-205"
+                title="Colorado AI Act"
+                juris="US · Colorado"
+                effective="01 Feb 2026"
+                status="pending"
+                providers={7}
+                topics={["Algorithmic hiring"]}
+                summary="Developers & deployers of 'high-risk' AI owe reasonable care to prevent algorithmic discrimination."
+              />
+              <RegCard
+                code="US-IL-AIVIA"
+                title="Illinois AI Video Interview Act"
+                juris="US · Illinois"
+                effective="01 Jan 2020"
+                status="active"
+                providers={4}
+                topics={["Hiring AI", "Consent"]}
+                summary="Consent + deletion requirements for AI-analysed video job interviews in Illinois."
+              />
+            </div>
+
+            {/* Relevant guides from The Ledger */}
+            <div className="section-head" style={{ marginTop: 40 }}>
+              <div>
+                <h2 className="h2">
+                  Relevant guides from{" "}
+                  <em className="serif" style={{ color: "var(--accent)" }}>The Ledger</em>
+                </h2>
+              </div>
+              <Link href="/blog" className="action">More →</Link>
+            </div>
+            <div className="col" style={{ gap: 12 }}>
+              {[
+                {
+                  kind: "Explainer",
+                  title: "Hiring AI compliance 2026 — the starter kit",
+                  desc: "Every law that touches automated employment tools, one walkthrough.",
+                  time: "11 min",
+                },
+                {
+                  kind: "Q&A",
+                  title: "\"The NYC-144 bias audit, walked step-by-step\"",
+                  desc: "Interview with Harbor Compliance on what a real audit looks like.",
+                  time: "8 min",
+                },
+              ].map((a) => (
+                <Link key={a.title} href="/blog" className="card" style={{ padding: 18, display: "block", cursor: "pointer" }}>
+                  <div className="between items-center">
+                    <div style={{ flex: 1 }}>
+                      <div className="eyebrow" style={{ marginBottom: 4, color: "var(--accent)" }}>▸ {a.kind}</div>
+                      <h4 className="h4" style={{ marginBottom: 4 }}>{a.title}</h4>
+                      <div className="small">{a.desc}</div>
+                    </div>
+                    <div className="mono xs faint" style={{ marginLeft: 20 }}>{a.time}</div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Right column: Providers who can help */}
+          <aside>
+            <div className="section-head" style={{ alignItems: "flex-start", paddingBottom: 12 }}>
+              <div><h2 className="h3">Providers who can help</h2></div>
+              <Link href="/directory" className="action">All 23 →</Link>
+            </div>
+
+            <div className="col" style={{ gap: 16 }}>
+              <ProviderCard
+                name="Harbor Compliance"
+                type="Advisory"
+                hq="Boston"
+                featured
+                blurb="Multi-jurisdiction rollouts — US + EU hiring AI compliance is our bread and butter."
+                regs={["EU AI Act", "NYC-144", "Colorado AI", "+38"]}
+              />
+              <ProviderCard
+                name="Marque Legal"
+                type="Legal"
+                hq="Paris"
+                blurb="EU-side legal counsel on high-risk AI and cross-border deployments."
+                regs={["EU AI Act", "GDPR", "DSA"]}
+              />
+              <ProviderCard
+                name="Aegis AI"
+                type="Software"
+                hq="Toronto"
+                blurb="Bias-audit platform purpose-built for NYC-144 and Colorado AI."
+                regs={["NYC-144", "Colorado AI", "AIDA"]}
+              />
+            </div>
+
+            {/* RFP callout */}
+            <div className="card card-feature" style={{ marginTop: 20, padding: 20 }}>
+              <div className="eyebrow" style={{ marginBottom: 8 }}>Can&apos;t find the right fit?</div>
+              <h4 className="h3">Post an RFP.</h4>
+              <p className="small" style={{ marginBottom: 16 }}>
+                Describe your need once. Get 3–5 quotes in 48 hours from relevant providers.
+              </p>
+              <button className="btn btn-accent w-full">Post an RFP →</button>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      {/* ── THREE WAYS IN ── */}
       <section
         style={{
-          padding: "72px 0 88px",
-          position: "relative",
-          overflow: "hidden",
-          borderBottom: "1px solid var(--rg-border)",
-          background:
-            "radial-gradient(ellipse 900px 600px at 85% 20%, rgba(37,99,235,0.06) 0%, transparent 60%), radial-gradient(ellipse 700px 500px at 10% 90%, rgba(14,165,233,0.05) 0%, transparent 60%), var(--rg-page)",
+          background: "var(--paper-2)",
+          borderTop: "1px solid var(--line)",
+          borderBottom: "1px solid var(--line)",
         }}
       >
-        <div
-          aria-hidden
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage:
-              "linear-gradient(var(--rg-border-soft) 1px, transparent 1px), linear-gradient(90deg, var(--rg-border-soft) 1px, transparent 1px)",
-            backgroundSize: "44px 44px",
-            opacity: 0.4,
-            maskImage:
-              "radial-gradient(ellipse at 70% 40%, rgba(0,0,0,0.7) 0%, transparent 70%)",
-            WebkitMaskImage:
-              "radial-gradient(ellipse at 70% 40%, rgba(0,0,0,0.7) 0%, transparent 70%)",
-            pointerEvents: "none",
-          }}
-        />
-        <div className="rg-container">
+        <div className="container" style={{ paddingTop: 56, paddingBottom: 56 }}>
+          <div className="eyebrow" style={{ marginBottom: 12 }}>Or browse the index</div>
+          <h2 className="h1" style={{ marginBottom: 32 }}>Three ways in.</h2>
+          <div className="grid" style={{ gridTemplateColumns: "1fr 1fr 1fr", gap: 24 }}>
+            {[
+              {
+                icon: "book",
+                title: "By regulation",
+                desc: "The complete catalog, 912 entries strong. Searchable, filterable, by code or title.",
+                action: "Open catalog",
+                href: "/regulations",
+              },
+              {
+                icon: "globe",
+                title: "By jurisdiction",
+                desc: "63 jurisdictions tracked — from EU-level regulation to US state AI laws.",
+                action: "Browse regions",
+                href: "/regulations",
+              },
+              {
+                icon: "building",
+                title: "By provider",
+                desc: "314 verified firms — software, advisory, legal, audit.",
+                action: "Open directory",
+                href: "/directory",
+              },
+            ].map((item) => (
+              <Link
+                key={item.title}
+                href={item.href}
+                className="card"
+                style={{ padding: 28, cursor: "pointer", display: "block" }}
+              >
+                <div style={{ color: "var(--accent)", marginBottom: 12 }}>
+                  <Icon name={item.icon} />
+                </div>
+                <h3 className="h3" style={{ marginBottom: 8 }}>{item.title}</h3>
+                <p className="small" style={{ marginBottom: 16 }}>{item.desc}</p>
+                <div
+                  className="mono xs"
+                  style={{ display: "flex", alignItems: "center", gap: 8, color: "var(--ink)" }}
+                >
+                  {item.action} <Icon name="arrow" size={14} />
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── THE LEDGER — editorial strip ── */}
+      <section className="container" style={{ paddingTop: 56, paddingBottom: 56 }}>
+        <div className="section-head">
+          <div>
+            <div className="eyebrow" style={{ marginBottom: 4 }}>From the newsroom</div>
+            <h2 className="h1">
+              <em className="serif" style={{ color: "var(--accent)" }}>The Ledger.</em>
+            </h2>
+            <p className="lede soft">A daily feed + deep explainers. Free to read, paid digest optional.</p>
+          </div>
+          <Link href="/blog" className="action" style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            Read the Ledger <Icon name="arrow" size={14} />
+          </Link>
+        </div>
+
+        <div className="grid" style={{ gridTemplateColumns: "2fr 1fr 1fr", gap: 32 }}>
+          <article style={{ cursor: "pointer" }}>
+            <div
+              style={{
+                height: 300,
+                marginBottom: 16,
+                background: "linear-gradient(135deg, rgba(14,19,48,0.04), rgba(14,19,48,0.02)), repeating-linear-gradient(45deg, transparent 0 10px, rgba(14,19,48,0.05) 10px 11px)",
+                border: "1px solid var(--line)",
+                borderRadius: 6,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontFamily: "var(--mono)",
+                fontSize: 11,
+                color: "var(--ink-faint)",
+                letterSpacing: "0.04em",
+                textTransform: "uppercase",
+              }}
+            >
+              lead illustration
+            </div>
+            <div className="eyebrow" style={{ marginBottom: 8, color: "var(--accent)" }}>▸ Lead story</div>
+            <h3 className="h1" style={{ fontSize: 36, marginBottom: 12 }}>
+              The GPAI Code of Practice: what foundation-model providers must do now.
+            </h3>
+            <p className="lede soft">
+              Four months to align. A clause-by-clause read-through of the Code published this week.
+            </p>
+            <div className="mono xs faint" style={{ marginTop: 12 }}>By R. Almeida · 6 min · Apr 14</div>
+          </article>
+
+          <div className="col" style={{ gap: 20 }}>
+            {[
+              { kind: "Brief", title: "Colorado AI: the readiness window opens", time: "3 min" },
+              { kind: "Q&A", title: "\"We've run 31 GPAI audits — here's what trips teams up\"", time: "11 min" },
+              { kind: "Analysis", title: "UK AI Safety Bill Draft 3 — scope narrows", time: "7 min" },
+            ].map((a) => (
+              <article
+                key={a.title}
+                style={{ borderTop: "1px solid var(--line)", paddingTop: 16, cursor: "pointer" }}
+              >
+                <div className="eyebrow" style={{ marginBottom: 4, color: "var(--accent)" }}>▸ {a.kind}</div>
+                <h4 className="h3" style={{ fontSize: 20, marginBottom: 4 }}>{a.title}</h4>
+                <div className="mono xs faint">{a.time} read</div>
+              </article>
+            ))}
+          </div>
+
+          <aside>
+            <div
+              className="card"
+              style={{
+                padding: 24,
+                background: "var(--ink)",
+                color: "var(--paper)",
+                borderColor: "var(--ink)",
+              }}
+            >
+              <div className="eyebrow" style={{ marginBottom: 12, color: "rgba(251,251,253,0.6)" }}>
+                Newsletter
+              </div>
+              <h3 className="h2 serif" style={{ color: "var(--paper)", marginBottom: 8 }}>
+                Weekly digest.
+              </h3>
+              <p className="small" style={{ marginBottom: 16, color: "rgba(251,251,253,0.75)" }}>
+                Every regulation that shifted, annotated. 5-minute read. 9,200 subscribers.
+              </p>
+              <div className="col" style={{ gap: 8 }}>
+                <NewsletterForm source="homepage" />
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      {/* ── FOR PROVIDERS — dark CTA ── */}
+      <section style={{ background: "var(--ink)", color: "var(--paper)" }}>
+        <div className="container" style={{ paddingTop: 56, paddingBottom: 56 }}>
           <div
-            className="hero-grid"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1.02fr 0.98fr",
-              gap: 72,
-              alignItems: "center",
-              position: "relative",
-              zIndex: 2,
-            }}
+            className="grid"
+            style={{ gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }}
           >
             <div>
-              <div className="rg-eyebrow rg-rise" style={{ marginBottom: 26 }}>
-                <span className="rg-eyebrow-pill">New</span>
-                14 regulations · 38 vetted providers
+              <div className="eyebrow" style={{ marginBottom: 12, color: "rgba(251,251,253,0.6)" }}>
+                For providers
               </div>
-              <h1 className="rg-display rg-rise rg-d1" style={{ marginBottom: 24 }}>
-                The directory of <span className="rg-blue">AI regulations</span> and the experts who know them.
-              </h1>
-              <p className="rg-lead rg-rise rg-d2" style={{ maxWidth: 520, marginBottom: 32 }}>
-                Browse every AI law that applies to your business — current, upcoming, and in draft — and connect with{" "}
-                <strong style={{ color: "var(--rg-ink)", fontWeight: 600 }}>vetted compliance providers</strong> in a few clicks.
-              </p>
-              <div
-                className="rg-rise rg-d3"
-                style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}
+              <h2 className="h1" style={{ color: "var(--paper)", marginBottom: 16 }}>
+                Meet buyers at the moment they&apos;re searching.
+              </h2>
+              <p
+                className="lede"
+                style={{ color: "rgba(251,251,253,0.7)" }}
               >
-                <Link href="/regulations" className="rg-btn rg-btn-primary rg-btn-lg">
-                  Browse regulations <span className="rg-arrow">→</span>
-                </Link>
-                <Link href="/directory" className="rg-btn rg-btn-outline rg-btn-lg">
-                  Find a provider
-                </Link>
+                Free to list. Pay only to be Featured. 3,000+ monthly searches · 9,200 subscribers · every listing verified.
+              </p>
+              <div className="flex" style={{ gap: 12, marginTop: 24 }}>
+                <Link href="/join" className="btn btn-accent btn-lg">List your firm</Link>
+                <button
+                  className="btn btn-lg"
+                  style={{
+                    background: "transparent",
+                    color: "var(--paper)",
+                    borderColor: "rgba(251,251,253,0.3)",
+                  }}
+                >
+                  Claim existing
+                </button>
               </div>
             </div>
 
-            {/* Preview card */}
-            <div className="rg-drift rg-d4" style={{ position: "relative" }}>
-              <div
-                style={{
-                  background: "var(--rg-card)",
-                  border: "1px solid var(--rg-border)",
-                  borderRadius: 14,
-                  padding: "22px 22px 18px",
-                  boxShadow:
-                    "0 1px 0 rgba(12,22,40,0.02), 0 2px 4px rgba(12,22,40,0.04), 0 12px 32px -8px rgba(12,22,40,0.08), 0 40px 80px -20px rgba(12,22,40,0.12)",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "flex-start",
-                    paddingBottom: 16,
-                    borderBottom: "1px solid var(--rg-hair)",
-                    marginBottom: 8,
-                  }}
-                >
-                  <div>
-                    <div
-                      style={{
-                        fontSize: 17,
-                        fontWeight: 700,
-                        color: "var(--rg-ink)",
-                        letterSpacing: "-0.4px",
-                        lineHeight: 1.25,
-                        marginBottom: 4,
-                      }}
-                    >
-                      Mid-market SaaS — US &amp; EU
-                    </div>
-                    <div style={{ fontSize: 12.5, color: "var(--rg-ink-dim)", fontWeight: 500 }}>
-                      ~180 employees · classification &amp; retrieval AI
-                    </div>
-                  </div>
-                  <span
-                    style={{
-                      fontFamily: "var(--font-mono)",
-                      fontSize: 10.5,
-                      fontWeight: 500,
-                      letterSpacing: 0.2,
-                      color: "var(--rg-ink-dim)",
-                      padding: "4px 8px",
-                      background: "var(--rg-card-soft)",
-                      border: "1px solid var(--rg-border)",
-                      borderRadius: 6,
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    preview
-                  </span>
-                </div>
-
-                {PREVIEW_ROWS.map((row, i) => (
+            <div>
+              <div className="grid" style={{ gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+                {[
+                  { n: "912", l: "regulations indexed" },
+                  { n: "63", l: "jurisdictions" },
+                  { n: "314", l: "verified providers" },
+                  { n: "9.2k", l: "newsletter subs" },
+                ].map((stat) => (
                   <div
-                    key={row.name}
+                    key={stat.l}
                     style={{
-                      display: "grid",
-                      gridTemplateColumns: "40px 1fr auto",
-                      gap: 14,
-                      padding: "14px 0",
-                      borderBottom: i === PREVIEW_ROWS.length - 1 ? "none" : "1px solid var(--rg-hair)",
-                      paddingBottom: i === PREVIEW_ROWS.length - 1 ? 16 : 14,
-                      alignItems: "center",
+                      padding: 24,
+                      border: "1px solid rgba(251,251,253,0.15)",
+                      borderRadius: 6,
                     }}
                   >
-                    <span
+                    <div
+                      className="serif"
+                      style={{ fontSize: 48, fontWeight: 500, color: "var(--paper)", lineHeight: 1 }}
+                    >
+                      {stat.n}
+                    </div>
+                    <div
+                      className="mono xs"
                       style={{
-                        fontFamily: "var(--font-mono)",
-                        fontSize: 11,
-                        fontWeight: 600,
-                        color: "var(--rg-ink-dim)",
-                        letterSpacing: 0.2,
+                        marginTop: 8,
+                        color: "rgba(251,251,253,0.6)",
+                        letterSpacing: "0.08em",
                         textTransform: "uppercase",
                       }}
                     >
-                      {row.jur}
-                    </span>
-                    <div
-                      style={{
-                        fontSize: 14.5,
-                        fontWeight: 600,
-                        color: "var(--rg-ink)",
-                        letterSpacing: "-0.2px",
-                        lineHeight: 1.3,
-                      }}
-                    >
-                      {row.name}
-                      <small
-                        style={{
-                          display: "block",
-                          fontSize: 12.5,
-                          fontWeight: 400,
-                          color: "var(--rg-ink-dim)",
-                          letterSpacing: "-0.05px",
-                          marginTop: 2,
-                        }}
-                      >
-                        {row.sub}
-                      </small>
-                    </div>
-                    <StatusPill status={row.status} label={row.label} />
-                  </div>
-                ))}
-
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    paddingTop: 14,
-                    marginTop: 6,
-                    borderTop: "1px solid var(--rg-hair)",
-                    fontSize: 12.5,
-                    color: "var(--rg-ink-dim)",
-                    fontWeight: 500,
-                  }}
-                >
-                  <span>12 matched providers</span>
-                  <Link
-                    href="/directory"
-                    style={{
-                      color: "var(--rg-primary)",
-                      textDecoration: "none",
-                      fontWeight: 600,
-                    }}
-                  >
-                    Browse all →
-                  </Link>
-                </div>
-              </div>
-
-              {/* Floating number badges */}
-              <div
-                className="preview-badges"
-                style={{
-                  position: "absolute",
-                  bottom: -24,
-                  left: 40,
-                  right: 40,
-                  display: "flex",
-                  justifyContent: "space-around",
-                  gap: 10,
-                  padding: "14px 20px",
-                  background: "var(--rg-card)",
-                  border: "1px solid var(--rg-border)",
-                  borderRadius: 10,
-                  boxShadow: "0 8px 20px -6px rgba(12,22,40,0.12)",
-                }}
-              >
-                {[
-                  { n: "14", l: "Regulations" },
-                  { n: "14", l: "Jurisdictions" },
-                  { n: "38", l: "Providers" },
-                  { n: "48h", l: "Refresh" },
-                ].map((b) => (
-                  <div key={b.l} style={{ textAlign: "center" }}>
-                    <div
-                      style={{
-                        fontWeight: 700,
-                        fontSize: 18,
-                        letterSpacing: "-0.5px",
-                        color: "var(--rg-ink)",
-                        lineHeight: 1,
-                      }}
-                    >
-                      {b.n}
-                    </div>
-                    <div
-                      style={{
-                        fontSize: 11,
-                        fontWeight: 500,
-                        color: "var(--rg-ink-dim)",
-                        marginTop: 4,
-                      }}
-                    >
-                      {b.l}
+                      {stat.l}
                     </div>
                   </div>
                 ))}
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── REGULATIONS GRID ── */}
-      <section className="rg-section" id="regs" style={{ paddingTop: 120 }}>
-        <div className="rg-container">
-          <header className="rg-section-head">
-            <div>
-              <div className="rg-kicker">Regulations</div>
-              <h2 className="rg-h1">
-                Every AI law that matters,<br />
-                <span className="rg-blue">in one place.</span>
-              </h2>
-            </div>
-            <p className="rg-section-lead">
-              Filter by jurisdiction, deadline, or risk tier. Every summary is written in plain English and{" "}
-              <strong>reviewed by a lawyer licensed in that jurisdiction.</strong>
-            </p>
-          </header>
-
-          <div className="rg-reg-grid">
-            {REGS.map((r) => (
-              <Link
-                key={r.slug}
-                href={`/regulations/${r.slug}`}
-                className={`rg-reg ${r.feature ? "rg-reg-feature" : ""} rg-t-${r.tint}`}
-              >
-                <div className="rg-plate">
-                  <div className="rg-plate-corners">
-                    <span className="tl" /><span className="tr" /><span className="bl" /><span className="br" />
-                  </div>
-                  <span className="rg-plate-glyph">{r.sigil}</span>
-                </div>
-                <div className="rg-reg-body">
-                  <div className="rg-reg-meta">
-                    <span>{r.meta}</span>
-                    <StatusPill status={r.status} label={r.statusLabel} />
-                  </div>
-                  <h3>{r.name}</h3>
-                  <p className="rg-reg-who">
-                    <strong>Who it covers:</strong> {r.who}
-                  </p>
-                  <div className="rg-reg-foot">
-                    <span>{r.footLeft}</span>
-                    <span className="rg-reg-open">
-                      Open <span aria-hidden>→</span>
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-
-          <div className="rg-section-end">
-            <Link href="/regulations" className="rg-btn rg-btn-outline rg-btn-lg">
-              See all 14 regulations <span className="rg-arrow">→</span>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ── PROVIDERS GRID ── */}
-      <section className="rg-section" id="providers" style={{ paddingTop: 40 }}>
-        <div className="rg-container">
-          <header className="rg-section-head">
-            <div>
-              <div className="rg-kicker">Providers</div>
-              <h2 className="rg-h1">
-                The people who actually<br />
-                <span className="rg-blue">do the work.</span>
-              </h2>
-            </div>
-            <p className="rg-section-lead">
-              Law firms, auditors, and fractional compliance officers — searchable by regulation.{" "}
-              <strong>Every listing is vetted, none are paid placements.</strong>
-            </p>
-          </header>
-
-          <div className="rg-prov-grid">
-            {PROVIDERS.map((p) => (
-              <Link key={p.slug} href={`/directory/providers/${p.slug}`} className="rg-prov">
-                <div className="rg-prov-label">
-                  <span>{p.id}</span>
-                  <span className="rg-prov-type">{p.type}</span>
-                </div>
-                <div className="rg-prov-head">
-                  <div className="rg-prov-logo">{p.logo}</div>
-                  <div>
-                    <h3>{p.name}</h3>
-                    <div className="rg-prov-loc">{p.loc}</div>
-                  </div>
-                </div>
-                <p>{p.body}</p>
-                <div className="rg-prov-tags">
-                  {p.tags.map((t, i) => (
-                    <span key={t} className={`rg-tag${i === 0 ? " rg-tag-primary" : ""}`}>
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </Link>
-            ))}
-          </div>
-
-          <div className="rg-section-end">
-            <Link href="/directory" className="rg-btn rg-btn-outline rg-btn-lg">
-              Browse all 38 providers <span className="rg-arrow">→</span>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ── FOR PROVIDERS (dark callout) ── */}
-      <section className="rg-join">
-        <div className="rg-container">
-          <div className="rg-join-card">
-            <div>
-              <div className="rg-join-label">For compliance providers</div>
-              <h2>Get in front of buyers who are already searching.</h2>
-              <p>
-                Regulome routes <strong>14,000+ founders, general counsel, and heads of policy</strong>{" "}
-                every month toward the regulations they need help with — listed by what you actually do,
-                not who paid the most.
-              </p>
-              <div className="rg-join-ctas">
-                <Link href="/directory" className="rg-btn rg-btn-on-dark rg-btn-lg">
-                  Apply to be listed <span className="rg-arrow">→</span>
-                </Link>
-                <Link href="/directory" className="rg-btn rg-btn-dark-ghost rg-btn-lg">
-                  See what we require
-                </Link>
-              </div>
-            </div>
-            <div className="rg-join-plan">
-              <div className="rg-join-plan-head">
-                <span className="rg-jp-title">Verified listing</span>
-                <span className="rg-jp-tier">Standard</span>
-              </div>
-              <div className="rg-join-plan-body">
-                <div className="rg-jp-row"><span>Status</span><strong>Vetted · active</strong></div>
-                <div className="rg-jp-row"><span>Regulations you can tag</span><strong>Up to 6</strong></div>
-                <div className="rg-jp-row"><span>Monthly readers</span><strong>14k+ qualified</strong></div>
-                <div className="rg-jp-row"><span>Warm introductions</span><strong>Unlimited</strong></div>
-                <div className="rg-jp-row"><span>Annual fee</span><strong>$2,400<em>/ yr</em></strong></div>
-                <div className="rg-jp-row"><span>Trial</span><strong>30 days free</strong></div>
-              </div>
-              <div className="rg-jp-foot">
-                <strong>No-lead guarantee:</strong> if the trial doesn&apos;t produce a single qualified introduction,
-                we remove the listing and cancel the invoice.
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── NEWSLETTER ── */}
-      <section className="rg-sub-wrap" id="newsletter">
-        <div className="rg-container">
-          <div className="rg-sub-grid">
-            <div>
-              <div className="rg-kicker">Weekly newsletter</div>
-              <h2>
-                One short email on <span className="rg-blue">what changed.</span>
-              </h2>
-              <p>
-                Every Thursday: <strong>what regulators published this week, who it affects, and what to do about it.</strong>{" "}
-                No marketing, no digest filler, one-click unsubscribe.
-              </p>
-              <div className="rg-sub-meta">
-                <div><strong><em>14,203</em></strong>Subscribers</div>
-                <div><strong><em>61%</em></strong>Open rate</div>
-                <div><strong><em>78</em></strong>Issues sent</div>
-              </div>
-            </div>
-            <div className="rg-sub-form">
-              <div className="rg-fl">
-                <label>Your work email</label>
-                <span className="rg-req">required</span>
-              </div>
-              <NewsletterForm source="homepage" />
-              <p
-                style={{
-                  marginTop: 14,
-                  paddingTop: 14,
-                  borderTop: "1px solid var(--rg-hair)",
-                  fontSize: 12,
-                  color: "var(--rg-ink-dim)",
-                  lineHeight: 1.45,
-                  letterSpacing: "-0.05px",
-                }}
-              >
-                We&apos;ll never share your address, and every email has a one-click unsubscribe.
-              </p>
             </div>
           </div>
         </div>
