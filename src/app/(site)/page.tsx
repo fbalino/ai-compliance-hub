@@ -213,7 +213,7 @@ export default async function HomePage() {
             className="v4-rise v4-d2"
             style={{ maxWidth: 760, margin: "32px auto 0" }}
           >
-            <HeroSearch />
+            <HeroSearch regCount={regCount} providerCount={providerCount} />
           </div>
 
           <div
@@ -241,9 +241,9 @@ export default async function HomePage() {
           style={{ gap: 40 }}
         >
           <div>
-            {/* Regulations that apply */}
+            {/* Featured regulations */}
             <div className="section-head">
-              <div><h2 className="h2">Regulations that apply</h2></div>
+              <div><h2 className="h2">Featured regulations</h2></div>
               <Link href="/regulations" className="action">See all {regCount} →</Link>
             </div>
             <div className="grid grid-2col" style={{ gap: 16 }}>
@@ -334,10 +334,10 @@ export default async function HomePage() {
             </div>
           </div>
 
-          {/* Right column: Providers who can help */}
+          {/* Right column: Top providers */}
           <aside>
             <div className="section-head" style={{ alignItems: "flex-start", paddingBottom: 12 }}>
-              <div><h2 className="h3">Providers who can help</h2></div>
+              <div><h2 className="h3">Top providers</h2></div>
               <Link href="/directory" className="action">All {providerCount} →</Link>
             </div>
 

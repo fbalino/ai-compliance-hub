@@ -1,11 +1,41 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { Search, Sparkles } from "lucide-react";
 
-export function HeroSearch() {
+export function HeroSearch({
+  regCount,
+  providerCount,
+}: {
+  regCount: number;
+  providerCount: number;
+}) {
+  const router = useRouter();
   const [mode, setMode] = useState<"keyword" | "describe">("keyword");
+  const [query, setQuery] = useState("");
+  const [description, setDescription] = useState("");
   const describe = mode === "describe";
+  const keywordRef = useRef<HTMLInputElement>(null);
+  const describeRef = useRef<HTMLInputElement>(null);
+
+  function handleSearch() {
+    const q = query.trim();
+    if (!q) {
+      keywordRef.current?.focus();
+      return;
+    }
+    router.push(`/search?q=${encodeURIComponent(q)}`);
+  }
+
+  function handleRoute() {
+    const d = description.trim();
+    if (!d) {
+      describeRef.current?.focus();
+      return;
+    }
+    router.push(`/checker?q=${encodeURIComponent(d)}`);
+  }
 
   return (
     <div>
@@ -50,12 +80,16 @@ export function HeroSearch() {
           >
             <Search size={20} />
             <input
+              ref={keywordRef}
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleSearch()}
               placeholder='Search regulations, providers, topics… e.g. "EU AI Act" or "biometrics"'
             />
-            <button className="btn btn-accent">Search</button>
+            <button className="btn btn-accent" onClick={handleSearch}>Search</button>
           </div>
           <div className="xs faint" style={{ marginTop: 12, textAlign: "center" }}>
-            912 regulations · 314 providers · 340 articles — searchable by title, code, jurisdiction, or topic.
+            {regCount} regulations · {providerCount} providers — searchable by title, code, jurisdiction, or topic.
           </div>
         </div>
       )}
@@ -75,6 +109,10 @@ export function HeroSearch() {
           >
             <Sparkles size={20} />
             <input
+              ref={describeRef}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleRoute()}
               style={{
                 flex: 1,
                 border: 0,
@@ -85,30 +123,11 @@ export function HeroSearch() {
                 color: "var(--ink)",
               }}
               placeholder="e.g. A US bank deploying a hiring model in the EU…"
-              defaultValue="A US bank deploying a hiring model in the EU"
             />
-            <button className="btn btn-accent">Route me →</button>
+            <button className="btn btn-accent" onClick={handleRoute}>Route me →</button>
           </div>
-          <div
-            className="flex"
-            style={{
-              gap: 8,
-              marginTop: 16,
-              alignItems: "center",
-              flexWrap: "wrap",
-              justifyContent: "center",
-            }}
-          >
-            <span className="xs faint">Detected:</span>
-            <span className="chip chip-ink">Sector · Financial</span>
-            <span className="chip chip-ink">Use-case · Hiring AI</span>
-            <span className="chip chip-ink">Geography · US + EU</span>
-            <a
-              className="xs"
-              style={{ color: "var(--accent)", borderBottom: "1px solid var(--accent-soft)", cursor: "pointer" }}
-            >
-              adjust →
-            </a>
+          <div className="xs faint" style={{ marginTop: 12, textAlign: "center" }}>
+            Describe your situation and we&apos;ll match you with the right regulations and providers.
           </div>
         </div>
       )}
