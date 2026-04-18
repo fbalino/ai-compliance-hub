@@ -584,7 +584,7 @@ Deployers must submit an annual report to the Colorado AG summarizing:
   },
   "eu-ai-act-gpai-obligations": {
     slug: "eu-ai-act-gpai-obligations",
-    title: "EU AI Act GPAI Rules: What Foundation Model Developers Must Do by August 2025",
+    title: "EU AI Act GPAI Rules: What Foundation Model Developers Must Do Now",
     excerpt:
       "The general-purpose AI (GPAI) model provisions of the EU AI Act are now in effect. Here's what developers and deployers of foundation models need to know.",
     category: "Regulation Analysis",

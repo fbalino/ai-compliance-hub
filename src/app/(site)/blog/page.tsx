@@ -93,7 +93,7 @@ const POSTS = [
   },
   {
     slug: "eu-ai-act-gpai-obligations",
-    title: "EU AI Act GPAI Rules: What Foundation Model Developers Must Do by August 2025",
+    title: "EU AI Act GPAI Rules: What Foundation Model Developers Must Do Now",
     excerpt: "The general-purpose AI (GPAI) model provisions of the EU AI Act are now in effect. Here\u2019s what developers and deployers of foundation models need to know.",
     category: "Regulation Analysis",
     date: "2026-04-05",
