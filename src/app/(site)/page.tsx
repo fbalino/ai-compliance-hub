@@ -4,8 +4,9 @@ import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import { HeroSearch } from "@/components/home/HeroSearch";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { db } from "@/db";
-import { providers, regulations } from "@/db/schema";
+import { providers } from "@/db/schema";
 import { count } from "drizzle-orm";
+import { getAllRegulationSlugs } from "@/lib/regulations";
 
 export const revalidate = 21600;
 
@@ -179,12 +180,12 @@ function Icon({ name, size = 28 }: { name: string; size?: number }) {
 const BLOG_COUNT = 11;
 
 export default async function HomePage() {
-  const [[providerResult], [regResult]] = await Promise.all([
+  const [[providerResult], regSlugs] = await Promise.all([
     db.select({ value: count() }).from(providers),
-    db.select({ value: count() }).from(regulations),
+    getAllRegulationSlugs(),
   ]);
   const providerCount = providerResult?.value ?? 0;
-  const regCount = regResult?.value ?? 8;
+  const regCount = regSlugs.length;
 
   const breadcrumbs = breadcrumbListSchema([{ name: "Home", url: "/" }]);
 
