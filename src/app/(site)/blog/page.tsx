@@ -27,6 +27,15 @@ const CATEGORIES = [
 
 const POSTS = [
   {
+    slug: "hiring-ai-compliance-2026-starter-kit",
+    title: "Hiring AI Compliance in 2026: The Complete Starter Kit",
+    excerpt: "Which roles to hire first, what skills actually matter, realistic salary ranges, and interview questions that separate genuine AI compliance expertise from resume inflation.",
+    category: "Compliance Guides",
+    date: "2026-04-18",
+    readTime: "14 min read",
+    tags: ["Hiring", "AI Compliance Team", "2026"],
+  },
+  {
     slug: "colorado-ai-act-60-day-checklist",
     title: "Colorado AI Act 60-Day Compliance Checklist (SB 24-205)",
     excerpt: "75 days until enforcement. Use this step-by-step checklist to get your business compliant with the Colorado AI Act before the June 30, 2026 deadline.",

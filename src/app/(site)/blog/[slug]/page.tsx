@@ -20,6 +20,262 @@ interface BlogPost {
 }
 
 const POSTS: Record<string, BlogPost> = {
+  "hiring-ai-compliance-2026-starter-kit": {
+    slug: "hiring-ai-compliance-2026-starter-kit",
+    title: "Hiring AI Compliance in 2026: The Complete Starter Kit",
+    excerpt:
+      "Which roles to hire first, what skills actually matter, realistic salary ranges, and interview questions that separate genuine AI compliance expertise from resume inflation.",
+    category: "Compliance Guides",
+    date: "2026-04-18",
+    readTime: "14 min read",
+    tags: ["Hiring", "AI Compliance Team", "2026", "HR Leads", "Compliance Officers"],
+    relatedRegulations: [
+      { slug: "colorado-ai-act", name: "Colorado AI Act" },
+      { slug: "eu-ai-act", name: "EU AI Act" },
+      { slug: "nyc-local-law-144", name: "NYC Local Law 144" },
+    ],
+    body: `
+The Colorado AI Act takes effect June 30, 2026. Virginia's law follows the next day. The EU AI Act's high-risk provisions hit in August 2026. For the first time, AI compliance is a legal requirement — not a voluntary best practice — and regulators have teeth.
+
+The result: compliance officers, CHROs, and general counsels are urgently trying to staff AI compliance functions they've never built before. This guide is for them.
+
+It covers which roles to hire first, what skills actually matter (versus what looks good on a resume), realistic salary ranges, and the interview questions that reveal whether a candidate has done this work or just read about it.
+
+---
+
+## Why 2026 Is the Inflection Point
+
+Three things converged in 2026 to make AI compliance staffing urgent:
+
+**Enforcement has begun.** NYC Local Law 144 enforcement launched in 2025 — the first fines have been issued. Colorado and Virginia AG offices have signaled active enforcement posture for their laws taking effect mid-year. The EU AI Office is hiring enforcement staff now.
+
+**The laws require documented programs, not policies.** Unlike GDPR, where you could hire a privacy officer and write policies, US AI laws require documented impact assessments, bias audits, monitoring programs, consumer notification systems, and vendor due diligence. These require operational people, not just legal review.
+
+**AI adoption is accelerating, not slowing.** The average enterprise now uses dozens of AI tools. Each new one potentially adds regulatory exposure. Without dedicated staff, legal and compliance teams cannot keep pace.
+
+---
+
+## The AI Compliance Team: Which Roles You Actually Need
+
+### The Four Core Roles
+
+Not every organization needs all four. Match roles to your AI exposure.
+
+---
+
+### 1. AI Compliance Manager (Hire This First)
+
+**What they do:** Own the day-to-day AI compliance program. Run impact assessments. Manage the AI inventory. Coordinate vendor due diligence. Maintain documentation. Be the internal subject matter expert for AI regulatory requirements.
+
+**Who needs this role:** Any organization subject to the Colorado AI Act, Virginia HB 2094, or EU AI Act with more than five high-risk AI systems. Mid-size companies (200–2,000 employees) typically need one person in this role.
+
+**Must-have skills:**
+- Working knowledge of at least one applicable AI law (Colorado, EU AI Act, or NYC LL 144)
+- Experience conducting risk assessments or compliance reviews — not just policy drafting
+- Ability to translate technical AI concepts for legal and business stakeholders
+- Project management discipline — impact assessments are multi-month cross-functional projects
+- Comfort reading and interpreting regulatory text, not just summaries
+
+**Nice-to-have skills:**
+- CIPP/US, AIGP, or similar privacy/AI certification
+- Background in privacy, employment law, or regulated industries (healthcare, financial services)
+- Experience with NIST AI RMF or ISO 42001
+
+**What to watch for:** Candidates who can name regulations but have never actually run an impact assessment. Ask them to walk you through one they've done. If they've only written about the process, they haven't done it.
+
+**Salary range (US, 2026):**
+- Manager level (3–7 years experience): $110,000–$155,000
+- Senior Manager (7+ years, leading a small team): $145,000–$195,000
+- Geographic variation: SF/NY commands 20–30% premium; Colorado/Virginia near national average
+
+---
+
+### 2. AI Legal Counsel (or Outside Counsel Relationship)
+
+**What they do:** Advise on AI regulatory requirements, review vendor contracts, interpret new laws as they pass, and provide legal sign-off on impact assessments and consumer disclosures.
+
+**Who needs this role:** Organizations with significant AI exposure (high-risk systems across multiple jurisdictions, international operations, or EU AI Act obligations) should have AI legal expertise either in-house or through a designated outside counsel relationship.
+
+**The in-house vs. outside counsel question:** Most companies at mid-size cannot yet justify a full-time in-house AI attorney. The practical answer is to identify outside counsel with genuine AI regulatory experience now — before you need them urgently. Many firms are adding AI practice groups; quality varies widely.
+
+**What to look for in outside counsel:**
+- Have they actually advised on Colorado AI Act impact assessments, or just written about it?
+- Do they have EU AI Act experience with EU-based clients?
+- Can they provide template documentation (impact assessment frameworks, vendor contract riders)?
+- Are they tracking state AI legislation actively across your jurisdictions?
+
+**In-house AI attorney salary range:**
+- Senior Associate/Counsel level: $180,000–$240,000
+- Principal Counsel: $230,000–$320,000
+
+---
+
+### 3. AI Risk Analyst
+
+**What they do:** Run the quantitative side of AI compliance — bias testing, statistical disparate impact analysis, model performance monitoring, and data quality review. This role is the bridge between compliance policy and technical reality.
+
+**Who needs this role:** Organizations running their own bias audits (rather than commissioning third parties), those with large-scale AI deployments requiring ongoing monitoring, and companies building AI products subject to the EU AI Act.
+
+**Must-have skills:**
+- Statistical analysis and data science fundamentals (can interpret disparate impact ratios, run 4/5ths rule analyses)
+- Experience working with ML model outputs and bias evaluation techniques
+- Ability to write for compliance audiences, not just technical ones
+- Data handling and documentation discipline
+
+**Nice-to-have skills:**
+- Python or R proficiency
+- Experience with NIST AI RMF MEASURE function
+- Background in algorithmic fairness research or HR analytics
+
+**Salary range:**
+- Analyst (2–5 years): $85,000–$120,000
+- Senior Analyst (5+ years): $115,000–$160,000
+
+---
+
+### 4. Chief AI Ethics Officer / VP AI Governance (Enterprise Only)
+
+**What they do:** Own AI governance at the leadership level. Set policy. Engage regulators. Report to the board. Lead cross-functional AI governance committees. This role is primarily strategic and externally-facing.
+
+**Who needs this role:** Large enterprises (5,000+ employees) with significant AI deployment across business lines, or companies building AI products that require regulatory engagement at the executive level. Most mid-size companies do not need this role yet — they need a strong AI Compliance Manager.
+
+**What to watch for:** This title is being inflated significantly. A Chief AI Ethics Officer who has never managed a compliance program and has only published thought leadership is not a compliance hire — they're a communications hire. Be clear on what you need.
+
+**Salary range:**
+- VP/Director level: $200,000–$300,000 + equity
+- C-suite CAEO: $280,000–$450,000 + equity (large enterprise)
+
+---
+
+## Skills That Actually Matter in 2026
+
+The AI compliance talent market is flooded with candidates whose experience is theoretical. Here's how to separate real experience from resume inflation.
+
+### Tier 1: Operational Compliance Experience
+
+The highest-value skill in 2026 is having actually run a documented compliance process for an AI system — not written about it, not advised on it, but owned it from start to finish. This includes:
+
+- Conducting an impact assessment for a specific AI system and getting it approved by legal
+- Managing a bias audit engagement with a third-party auditor (not just procuring one)
+- Building an AI inventory for an organization and maintaining it over time
+- Writing consumer notification language and getting it through legal review
+- Handling a regulatory inquiry or audit response related to AI
+
+**How to surface this:** Ask for specific examples. What was the AI system? What regulation? Who reviewed it? What was hard about it?
+
+### Tier 2: Regulatory Depth
+
+Genuine familiarity with at least one major AI regulation at the implementation level — not just the headline requirements. This means:
+
+- Understanding the nuance of what constitutes a "substantial factor" in the Colorado AI Act
+- Knowing the difference between GPAI model obligations and high-risk system obligations in the EU AI Act
+- Understanding what NYC DCWP actually expects to see in a bias audit summary
+
+**How to surface this:** Ask a specific regulatory interpretation question relevant to your situation. "We use an AI tool to score resumes, but a human reviews all candidates above the 50th percentile regardless of score. Does that qualify as high-risk under Colorado?" If they can reason through it, they know the law.
+
+### Tier 3: Technical Literacy
+
+A compliance person doesn't need to train models — but they need enough technical literacy to have productive conversations with engineering teams, read vendor documentation critically, and understand what an impact assessment is actually measuring. Red flags: candidates who are intimidated by technical documentation, who can't explain what a training data set is, or who treat all AI as a black box.
+
+---
+
+## Interview Questions That Reveal Real Experience
+
+Use these to distinguish candidates who've done AI compliance from those who've studied it.
+
+**For AI Compliance Manager candidates:**
+
+1. "Walk me through an impact assessment you've personally conducted for a high-risk AI system. What was the system, what regulation applied, and what was the hardest part of the assessment?"
+
+2. "We use a third-party hiring AI tool from a major vendor. The vendor says they're compliant with NYC LL 144. Why isn't that enough, and what would you do about it?"
+
+3. "We have 14 AI tools across the organization. How would you decide which ones need a full impact assessment vs. a lighter review?"
+
+4. "Describe how you'd set up our consumer notification process for a lending decision made by a high-risk AI system in Colorado."
+
+**For AI Legal Counsel candidates:**
+
+1. "A client deploys a resume-screening AI for roles in both Colorado and Virginia. The same impact assessment form — can they use it for both states, or are there substantive differences that require separate documents?"
+
+2. "What's your view on the 'substantial factor' standard in Colorado SB 24-205 as applied to AI tools that produce a score but where a human makes the final call?"
+
+3. "How would you advise a client who has found a significant disparate impact in a bias audit but wants to continue using the tool while they remediate?"
+
+**For AI Risk Analyst candidates:**
+
+1. "Walk me through how you'd calculate an impact ratio for a hiring AI tool where you don't have direct demographic data on applicants."
+
+2. "We ran a bias audit and found that our hiring AI selects women at 76% the rate it selects men. What does that mean under the 4/5ths rule, and what would you recommend?"
+
+3. "How would you set up an ongoing monitoring process for a deployed high-risk AI system to detect model drift or emerging disparate impact?"
+
+---
+
+## Where to Find Qualified Candidates
+
+### The Honest Answer
+
+There are not many people with 5+ years of AI compliance experience, because AI compliance as a legal requirement is less than 3 years old. You're competing for a small pool of people who:
+- Moved into AI compliance from privacy (CIPP/US certified privacy professionals who retrained)
+- Work in HR tech, financial services, or healthcare where AI compliance has been lived reality longer
+- Come from AI research/fairness research backgrounds and moved into applied compliance
+- Were employment or credit law attorneys who pivoted to advising on AI tools
+
+### Where to Look
+
+**LinkedIn**: The most efficient channel for this talent. Search for "AI compliance manager," "algorithmic impact assessment," "NYC Local Law 144," or "NIST AI RMF" in job history. Many candidates with genuine experience use specific regulatory terms as signals.
+
+**Privacy professional networks**: IAPP (International Association of Privacy Professionals) members who have added AI to their practice are your highest-conversion pipeline. The AIGP (AI Governance Professional) certification is new but meaningful — it requires demonstrated knowledge of AI regulatory frameworks.
+
+**AI ethics/fairness communities**: Researchers and practitioners from communities like Partnership on AI, ACM FAccT (Fairness, Accountability, Transparency), and algorithmic justice organizations have deep technical knowledge. They may need onboarding on legal compliance specifics, but the underlying expertise is real.
+
+**Regulated industry transfers**: Healthcare (HIPAA + FDA AI guidance), financial services (OCC/CFPB model risk management guidance, Fair Credit Reporting Act), and HR tech have been doing adjacent compliance work for years. These professionals transfer well.
+
+**Our directory**: [Browse AI compliance consultants and firms](/directory/categories/governance-consulting) — many work on both advisory engagements and help clients build in-house programs, and are a good source of referrals.
+
+---
+
+## Building the Program Before You've Finished Hiring
+
+If you have a compliance deadline approaching and haven't hired yet — which describes most organizations in Q2 2026 — you have two options:
+
+**Option 1: Engage a specialist firm.** AI governance consulting firms can run impact assessments, conduct vendor due diligence, and stand up the first version of your compliance program while you hire. This costs more than in-house staff over time, but it can execute within your deadline. [Find firms in our directory →](/directory/categories/governance-consulting)
+
+**Option 2: Augment your existing legal or compliance team.** If you have a strong CIPP/US privacy person or a compliance analyst with regulatory chops, they can be upskilled quickly on AI compliance specifics. Pair them with outside AI legal counsel and a bias audit firm for the technical components.
+
+---
+
+## The 90-Day Build Plan
+
+If you're starting from zero in April 2026 with a Colorado/Virginia deadline:
+
+**Days 1–30: Get the basics in place**
+- Engage outside AI legal counsel immediately — don't wait to hire in-house
+- Engage a governance consulting firm to start your AI inventory and impact assessments in parallel
+- Post the AI Compliance Manager role — accept that the first person hired may need 2–4 weeks to start
+
+**Days 30–60: Execute the program**
+- Complete AI inventory with outside support
+- Run impact assessments for highest-risk systems first
+- Draft consumer notification language for review
+- Commission bias audit if NYC LL 144 or Colorado applies to your hiring AI
+
+**Days 60–90: Close gaps and document**
+- Complete remaining impact assessments
+- Finalize consumer notification and opt-out mechanisms
+- Build AI policy document
+- Document your good-faith compliance program — this is your protection if the AG calls
+
+---
+
+## Resources
+
+- [Free compliance checker — which AI laws apply to your business?](/checker)
+- [Building an AI Governance Program: Practical Guide for Mid-Size Companies](/blog/ai-governance-program-guide)
+- [NIST AI RMF Explained: A Compliance Team's Field Guide](/blog/nist-ai-rmf-explainer-for-compliance-teams)
+- [Find AI governance consultants and bias auditors in our directory](/directory)
+    `,
+  },
   "colorado-ai-act-60-day-checklist": {
     slug: "colorado-ai-act-60-day-checklist",
     title: "Colorado AI Act 60-Day Compliance Checklist (SB 24-205)",
@@ -1243,12 +1499,13 @@ function renderMarkdown(text: string): string {
   const lines = text.trim().split("\n");
   const html: string[] = [];
   let inList = false;
+  let listType: "ul" | "ol" = "ul";
   let inTable = false;
   let tableHeader = false;
 
   function closeList() {
     if (inList) {
-      html.push("</ul>");
+      html.push(`</${listType}>`);
       inList = false;
     }
   }
@@ -1332,9 +1589,11 @@ function renderMarkdown(text: string): string {
 
     // Checkbox list items
     if (trimmed.startsWith("☐ ") || trimmed.startsWith("☑ ")) {
+      if (inList && listType !== "ul") closeList();
       if (!inList) {
         html.push('<ul class="my-4 space-y-2">');
         inList = true;
+        listType = "ul";
       }
       const checked = trimmed.startsWith("☑");
       const iconSvg = checked
@@ -1348,9 +1607,11 @@ function renderMarkdown(text: string): string {
 
     // Bullet list items
     if (trimmed.startsWith("- ")) {
+      if (inList && listType !== "ul") closeList();
       if (!inList) {
         html.push('<ul class="my-4 space-y-2 list-disc list-inside">');
         inList = true;
+        listType = "ul";
       }
       html.push(`<li class="text-neutral-700">${processInline(trimmed.slice(2))}</li>`);
       continue;
@@ -1358,18 +1619,20 @@ function renderMarkdown(text: string): string {
 
     // Numbered list
     if (/^\d+\.\s/.test(trimmed)) {
+      if (inList && listType !== "ol") closeList();
       if (!inList) {
         html.push('<ol class="my-4 space-y-2 list-decimal list-inside">');
         inList = true;
+        listType = "ol";
       }
       html.push(`<li class="text-neutral-700">${processInline(trimmed.replace(/^\d+\.\s/, ""))}</li>`);
       continue;
     }
 
-    closeList();
-
     // Empty line
     if (!trimmed) continue;
+
+    closeList();
 
     // Paragraph
     html.push(`<p class="text-neutral-700 leading-relaxed my-3">${processInline(trimmed)}</p>`);
