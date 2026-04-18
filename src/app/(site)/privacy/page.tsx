@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://regulome.io";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "AI Compliance Hub privacy policy — how we collect, use, and protect your data.",
+  description: "Regulome privacy policy — how we collect, use, and protect your data.",
   alternates: { canonical: `${SITE_URL}/privacy` },
 };
 
@@ -63,7 +63,7 @@ export default function PrivacyPage() {
           <h2>7. Your Rights</h2>
           <p>
             Depending on your location, you may have rights to access, correct, delete, or export your personal data. To exercise these rights, contact us at{" "}
-            <a href="mailto:privacy@aicompliancehub.com">privacy@aicompliancehub.com</a>.
+            <a href="mailto:privacy@regulome.io">privacy@regulome.io</a>.
           </p>
           <h2>8. Not Legal Advice</h2>
           <p>
@@ -72,7 +72,7 @@ export default function PrivacyPage() {
           <h2>9. Contact</h2>
           <p>
             For privacy-related questions, contact us at{" "}
-            <a href="mailto:privacy@aicompliancehub.com">privacy@aicompliancehub.com</a>.
+            <a href="mailto:privacy@regulome.io">privacy@regulome.io</a>.
           </p>
         </div>
       </div>
