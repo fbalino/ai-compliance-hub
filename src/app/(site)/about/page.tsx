@@ -86,7 +86,7 @@ export default function AboutPage() {
           ))}
         </div>
         <p className="small" style={{ marginTop: 16, color: "var(--ink-2)" }}>
-          hello@regulome.world &middot; Lisbon-based &middot; funded by Point Nine &amp; angels
+          hello@regulome.io &middot; Lisbon-based &middot; funded by Point Nine &amp; angels
         </p>
 
         {/* CTAs */}
