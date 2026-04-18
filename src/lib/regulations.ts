@@ -43,10 +43,32 @@ const REGULATION_MODULES: Record<string, () => Promise<MdxModule>> = {
     import("content/regulations/texas-hb-1709.mdx") as Promise<MdxModule>,
   "virginia-hb-2094": () =>
     import("content/regulations/virginia-hb-2094.mdx") as Promise<MdxModule>,
+  "nis2-directive": () =>
+    import("content/regulations/nis2-directive.mdx") as Promise<MdxModule>,
+  "dora": () =>
+    import("content/regulations/dora.mdx") as Promise<MdxModule>,
 };
 
 export async function getAllRegulationSlugs(): Promise<string[]> {
   return Object.keys(REGULATION_MODULES);
+}
+
+export async function getAllRegulations(): Promise<RegulationData[]> {
+  const entries = Object.entries(REGULATION_MODULES);
+  const results: RegulationData[] = [];
+  for (const [slug, loader] of entries) {
+    try {
+      const mod = await loader();
+      results.push({
+        slug,
+        frontmatter: mod.frontmatter as RegulationFrontmatter,
+        Content: mod.default,
+      });
+    } catch {
+      // skip broken modules
+    }
+  }
+  return results;
 }
 
 export async function getRegulationBySlug(

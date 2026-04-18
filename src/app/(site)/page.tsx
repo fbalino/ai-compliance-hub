@@ -406,8 +406,8 @@ export default async function HomePage() {
                 icon: "globe",
                 title: "By jurisdiction",
                 desc: "EU-level regulation to US state AI laws — browse by region.",
-                action: "Browse regulations",
-                href: "/regulations",
+                action: "Browse jurisdictions",
+                href: "/jurisdictions",
               },
               {
                 icon: "building",
