@@ -11,6 +11,7 @@ import {
   providerServices,
   providerRegulations,
   providerIndustries,
+  regulations,
 } from "./schema";
 import { eq } from "drizzle-orm";
 
@@ -628,6 +629,110 @@ const PROVIDERS: ProviderSeed[] = [
   },
 ];
 
+// ── Regulation seed data ──────────────────────────────────────────────────────
+
+const REGULATIONS = [
+  {
+    slug: "eu-ai-act",
+    name: "EU AI Act",
+    jurisdiction: "European Union",
+    status: "enforced",
+    effectiveDate: "2024-08-01",
+    enforcementDate: "2026-08-01",
+    maxPenalty: "€35 million or 7% of global turnover",
+    summary:
+      "The EU's comprehensive risk-based framework governing AI systems, with strict requirements for high-risk applications and prohibitions on unacceptable-risk AI.",
+  },
+  {
+    slug: "nyc-local-law-144",
+    name: "NYC Local Law 144",
+    jurisdiction: "US · New York City",
+    status: "enforced",
+    effectiveDate: "2023-07-05",
+    enforcementDate: "2023-07-05",
+    maxPenalty: "$1,500 per violation per day",
+    summary:
+      "Requires employers using automated employment decision tools (AEDTs) for hiring or promotion decisions affecting NYC employees to conduct annual independent bias audits and publicly disclose results.",
+  },
+  {
+    slug: "colorado-ai-act",
+    name: "Colorado AI Act (SB 24-205)",
+    jurisdiction: "US · Colorado",
+    status: "enacted",
+    effectiveDate: "2026-06-30",
+    enforcementDate: "2026-06-30",
+    maxPenalty: "$20,000 per violation",
+    summary:
+      "Requires deployers of high-risk AI systems to use reasonable care to protect consumers from known risks of algorithmic discrimination.",
+  },
+  {
+    slug: "california-ab-2013",
+    name: "California AB 2013",
+    jurisdiction: "US · California",
+    status: "enacted",
+    effectiveDate: "2026-01-01",
+    enforcementDate: "2026-01-01",
+    maxPenalty: "Civil action for injunctive relief + actual damages",
+    summary:
+      "Requires developers of covered generative AI systems to publish training data transparency reports on their websites.",
+  },
+  {
+    slug: "illinois-ai-video-interview-act",
+    name: "Illinois AI Video Interview Act",
+    jurisdiction: "US · Illinois",
+    status: "enforced",
+    effectiveDate: "2020-01-01",
+    enforcementDate: "2020-01-01",
+    maxPenalty: "Injunctive relief + actual damages",
+    summary:
+      "Requires consent and disclosure when AI is used to analyze video interviews for hiring decisions involving Illinois applicants.",
+  },
+  {
+    slug: "texas-hb-1709",
+    name: "Texas Responsible AI Governance Act (HB 1709)",
+    jurisdiction: "US · Texas",
+    status: "draft",
+    effectiveDate: null,
+    enforcementDate: null,
+    maxPenalty: "DTPA civil penalties (up to $10,000 per violation)",
+    summary:
+      "Proposed Texas law establishing governance requirements for deployers of high-risk AI systems affecting consequential decisions.",
+  },
+  {
+    slug: "virginia-hb-2094",
+    name: "Virginia HB 2094",
+    jurisdiction: "US · Virginia",
+    status: "enacted",
+    effectiveDate: "2026-07-01",
+    enforcementDate: null,
+    maxPenalty: "$7,500 per violation",
+    summary:
+      "Requires impact assessments, consumer notifications, and opt-out rights for automated decision systems affecting Virginia residents.",
+  },
+  {
+    slug: "dora",
+    name: "DORA — Digital Operational Resilience Act",
+    jurisdiction: "European Union",
+    status: "enforced",
+    effectiveDate: "2023-01-16",
+    enforcementDate: "2025-01-17",
+    maxPenalty: "Up to 2% of total annual worldwide turnover",
+    summary:
+      "EU regulation establishing uniform requirements for digital operational resilience of financial entities, including ICT risk management and third-party oversight.",
+  },
+  {
+    slug: "nis2-directive",
+    name: "NIS2 Directive",
+    jurisdiction: "European Union",
+    status: "enforced",
+    effectiveDate: "2023-01-16",
+    enforcementDate: "2024-10-17",
+    maxPenalty: "€10 million or 2% of global turnover (essential); €7 million or 1.4% (important)",
+    summary:
+      "EU directive strengthening cybersecurity obligations for essential and important entities across critical sectors, including risk management and incident reporting.",
+  },
+];
+
 // ── Main seed function ─────────────────────────────────────────────────────────
 
 async function seed() {
@@ -652,7 +757,37 @@ async function seed() {
     console.log(`  + ${cat.label}`);
   }
 
-  // 2. Upsert providers and their relations
+  // 2. Upsert regulations
+  console.log("\nSeeding regulations...");
+  for (const reg of REGULATIONS) {
+    await db
+      .insert(regulations)
+      .values({
+        slug: reg.slug,
+        name: reg.name,
+        jurisdiction: reg.jurisdiction,
+        status: reg.status,
+        effectiveDate: reg.effectiveDate,
+        enforcementDate: reg.enforcementDate,
+        maxPenalty: reg.maxPenalty,
+        summary: reg.summary,
+      })
+      .onConflictDoUpdate({
+        target: regulations.slug,
+        set: {
+          name: reg.name,
+          jurisdiction: reg.jurisdiction,
+          status: reg.status,
+          effectiveDate: reg.effectiveDate,
+          enforcementDate: reg.enforcementDate,
+          maxPenalty: reg.maxPenalty,
+          summary: reg.summary,
+        },
+      });
+    console.log(`  + ${reg.name}`);
+  }
+
+  // 3. Upsert providers and their relations
   console.log("\nSeeding providers...");
   for (const p of PROVIDERS) {
     // Upsert provider

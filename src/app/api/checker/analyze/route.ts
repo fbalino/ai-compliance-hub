@@ -61,7 +61,7 @@ Regulation reference:
 ${REGULATION_SUMMARIES}`;
 
     const message = await client.messages.create({
-      model: "claude-sonnet-4-6",
+      model: "claude-haiku-4-5-20251001",
       max_tokens: 2000,
       system:
         "You are an expert AI compliance attorney. Analyze a company profile and return exactly which AI regulations apply. Respond with valid JSON only — no markdown, no code blocks, no commentary. Just the raw JSON array.",
