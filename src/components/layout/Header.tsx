@@ -52,7 +52,7 @@ export function Header() {
       </Link>
 
       <div className="topbar-cta">
-        <Link href="/join" className="btn btn-sm btn-ghost">
+        <Link href="/providers" className="btn btn-sm btn-ghost">
           For providers
         </Link>
         <Link href="/checker" className="btn btn-sm">
@@ -120,7 +120,7 @@ export function Header() {
             Search regulations
           </Link>
           <div style={{ display: "flex", gap: 8, padding: "8px 0" }}>
-            <Link href="/join" className="btn btn-sm btn-ghost" onClick={() => setMobileOpen(false)} style={{ flex: 1, justifyContent: "center" }}>
+            <Link href="/providers" className="btn btn-sm btn-ghost" onClick={() => setMobileOpen(false)} style={{ flex: 1, justifyContent: "center" }}>
               For providers
             </Link>
             <Link href="/checker" className="btn btn-sm" onClick={() => setMobileOpen(false)} style={{ flex: 1, justifyContent: "center" }}>

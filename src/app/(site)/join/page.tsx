@@ -23,7 +23,8 @@ export const metadata: Metadata = {
 export default function JoinPage() {
   const breadcrumbs = breadcrumbListSchema([
     { name: "Home", url: "/" },
-    { name: "For Providers", url: "/join" },
+    { name: "For Providers", url: "/providers" },
+    { name: "Sign Up", url: "/join" },
   ]);
 
   const schema = {
@@ -38,7 +39,7 @@ export default function JoinPage() {
       <script {...jsonLdScriptProps([breadcrumbs, schema])} />
 
       <section className="container" style={{ maxWidth: 1100, padding: "var(--s-8) var(--s-7)" }}>
-        <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "For Providers" }]} />
+        <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "For Providers", href: "/providers" }, { label: "Sign Up" }]} />
 
         <div className="eyebrow" style={{ marginTop: 16, marginBottom: 12 }}>For providers</div>
         <h1 className="display" style={{ fontSize: 64 }}>List your practice in the register.</h1>
