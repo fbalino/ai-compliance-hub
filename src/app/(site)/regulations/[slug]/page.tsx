@@ -271,6 +271,32 @@ const REG_EXTRAS: Record<string, {
     ],
     sources: ["ISO/IEC 42001:2023 (ISO)", "ISO/IEC 23894:2023 (AI risk management)", "ISO/IEC 42006 (certification body requirements)", "EU AI Act harmonization roadmap"],
   },
+  "ccpa-admt": {
+    timeline: [
+      { date: "Jun 2018", label: "CCPA signed", reached: true },
+      { date: "Nov 2020", label: "CPRA passed", reached: true },
+      { date: "Jul 2025", label: "ADMT rules adopted", reached: true },
+      { date: "Sep 2025", label: "OAL approved", reached: true },
+      { date: "Jan 2026", label: "General rules effective", reached: true },
+      { date: "Apr 2027", label: "ADMT obligations", reached: false },
+    ],
+    penalties: [
+      { tier: "Unintentional", amount: "$2,500", scope: "per violation" },
+      { tier: "Intentional", amount: "$7,500", scope: "per violation" },
+      { tier: "Involving minors", amount: "$7,500", scope: "per violation" },
+    ],
+    providers: [
+      { name: "Credo AI", type: "Software", hq: "San Francisco", slug: "credo-ai" },
+      { name: "OneTrust", type: "Software", hq: "Atlanta", slug: "onetrust-ai" },
+      { name: "Holistic AI", type: "Governance", hq: "London / New York", slug: "holistic-ai" },
+    ],
+    articles: [
+      { kind: "Explainer", title: "CCPA ADMT: what the final rules mean for AI teams" },
+      { kind: "Comparison", title: "CCPA ADMT vs NYC LL 144: two models for automated decision regulation" },
+      { kind: "Brief", title: "The human-in-the-loop test under California's ADMT rules" },
+    ],
+    sources: ["CCPA (Cal. Civ. Code §1798.100 et seq.)", "CPRA ballot initiative (2020)", "CPPA ADMT Final Regulations (2025)", "CPPA Board Meeting Materials — ADMT Rulemaking"],
+  },
 };
 
 export default async function RegulationPage({ params }: Props) {

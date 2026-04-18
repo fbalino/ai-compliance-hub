@@ -1,0 +1,333 @@
+export const frontmatter = {
+  name: "CCPA Automated Decision-Making Technology Regulations",
+  shortName: "CCPA ADMT",
+  description:
+    "California's CCPA ADMT regulations give consumers the right to opt out of automated decision-making technology used for significant decisions affecting employment, housing, finance, education, and healthcare — with mandatory pre-use notices, risk assessments, and appeal rights taking effect April 1, 2027.",
+  jurisdiction: "California, United States",
+  status: "enacted",
+  effectiveDate: "September 22, 2025 (finalized); April 1, 2027 (ADMT obligations)",
+  enforcementDate: "April 1, 2027",
+  maxPenalty: "$7,500 per violation (intentional or involving minors)",
+  publishedAt: "2025-09-22",
+  updatedAt: "2026-04-18",
+  toc: [
+    { id: "overview", label: "Overview" },
+    { id: "who-it-applies-to", label: "Who It Applies To" },
+    { id: "what-qualifies-as-admt", label: "What Qualifies as ADMT" },
+    { id: "key-provisions", label: "Key Provisions" },
+    { id: "ai-intersection", label: "AI & CCPA ADMT Intersection" },
+    { id: "risk-assessments", label: "Risk Assessments" },
+    { id: "compliance-timeline", label: "Compliance Timeline" },
+    { id: "implementation-steps", label: "Implementation Steps" },
+    { id: "faqs", label: "Frequently Asked Questions" },
+  ],
+  relatedRegulations: [
+    { slug: "colorado-ai-act", name: "Colorado AI Act" },
+    { slug: "california-ab-2013", name: "California AB 2013" },
+    { slug: "nyc-local-law-144", name: "NYC Local Law 144" },
+    { slug: "eu-ai-act", name: "EU AI Act" },
+    { slug: "nist-ai-rmf", name: "NIST AI RMF" },
+  ],
+  faqs: [
+    {
+      question: "What is ADMT under the CCPA regulations?",
+      answer:
+        "Automated Decision-Making Technology (ADMT) is defined as any technology that processes personal information and uses computation to replace or substantially replace human decision-making. The definition intentionally excludes purely assistive tools, web hosting, spam filtering, spell-checking, calculators, databases, spreadsheets, and similar technologies that do not execute or substantially facilitate decisions.",
+    },
+    {
+      question: "When do the CCPA ADMT regulations take effect?",
+      answer:
+        "The CPPA Board adopted the final ADMT rules on July 24, 2025, and they were approved by the Office of Administrative Law on September 22, 2025. General CCPA regulation updates took effect on January 1, 2026. The ADMT-specific obligations — including pre-use notice, opt-out rights, access rights, and appeal mechanisms — take effect on April 1, 2027.",
+    },
+    {
+      question: "What are 'significant decisions' under the ADMT regulations?",
+      answer:
+        "Significant decisions are those that result in the provision or denial of financial or lending services, housing, educational opportunities, employment, independent contracting opportunities, or healthcare services. Advertising decisions were included in earlier drafts but were removed from the final regulations.",
+    },
+    {
+      question: "Can consumers opt out of all ADMT processing?",
+      answer:
+        "Consumers have the right to opt out of ADMT used for significant decisions, subject to limited exceptions. Businesses must provide a clear opt-out mechanism and honor consumer requests. When a consumer opts out, the business must either stop using ADMT for that consumer's significant decision or provide an alternative process that does not rely on ADMT.",
+    },
+    {
+      question: "What penalties apply for ADMT non-compliance?",
+      answer:
+        "Penalties under the CCPA framework are $2,500 per unintentional violation or $7,500 per intentional violation or violation involving a minor. Each affected consumer and each day of non-compliance can be treated as a separate violation, so aggregate penalties can escalate quickly. Both the California Attorney General and the CPPA can bring enforcement actions.",
+    },
+    {
+      question: "Do the ADMT regulations apply to AI systems?",
+      answer:
+        "Yes. AI systems that process personal information to make or substantially facilitate significant decisions fall squarely within the ADMT definition. This includes machine learning models used for automated hiring screening, credit underwriting, insurance pricing, healthcare triage, and housing application processing. The regulations are technology-neutral but functionally capture most enterprise AI decision-making systems.",
+    },
+  ],
+};
+
+## Overview
+
+The **CCPA Automated Decision-Making Technology (ADMT) Regulations** are a set of rules adopted by the California Privacy Protection Agency (CPPA) under the California Consumer Privacy Act (CCPA), as amended by the California Privacy Rights Act (CPRA). Finalized on **September 22, 2025**, these regulations establish consumer rights around the use of automated technology for decisions that materially affect their lives.
+
+The ADMT regulations represent California's most significant foray into AI governance — not through a standalone AI law, but by extending the state's existing privacy framework to cover automated decision-making. Because the CCPA applies to any business that meets its thresholds and processes California consumers' personal information, the ADMT rules have **nationwide practical impact**: any company serving California residents that uses automated systems for significant decisions must comply.
+
+The regulations require businesses to provide **pre-use notices**, offer **opt-out rights**, allow consumers to **access information about ADMT logic and outputs**, and provide **appeal mechanisms** — all backed by the CCPA's existing enforcement infrastructure and penalty structure.
+
+---
+
+## Who It Applies To
+
+The ADMT regulations apply to any business subject to the CCPA that uses automated decision-making technology for **significant decisions** concerning California consumers. The CCPA's jurisdictional thresholds are:
+
+### Covered Businesses
+
+- **Revenue threshold** — annual gross revenue exceeding $25 million
+- **Data volume threshold** — buys, sells, or shares the personal information of 100,000 or more consumers, households, or devices annually
+- **Revenue from data** — derives 50% or more of annual revenue from selling or sharing consumers' personal information
+
+### Service Providers and Contractors
+
+Service providers and contractors that process personal information on behalf of covered businesses are also subject to ADMT requirements when they operate ADMT systems that produce outputs used for significant decisions.
+
+### Significant Decision Domains
+
+A **significant decision** is one that results in the provision or denial of:
+
+- **Financial or lending services** — credit decisions, loan approvals, account management
+- **Housing** — rental applications, mortgage underwriting, tenant screening
+- **Education** — admissions decisions, student evaluations, financial aid determinations
+- **Employment** — hiring, promotions, terminations, performance evaluations, independent contractor opportunities
+- **Healthcare** — treatment recommendations, insurance coverage, clinical triage
+
+Advertising decisions were included in earlier drafts of the regulations but were **removed** from the final version.
+
+---
+
+## What Qualifies as ADMT
+
+The CPPA defined ADMT narrowly and intentionally to capture technology that genuinely replaces human judgment:
+
+### Included
+
+Technology that:
+
+1. **Processes personal information**, and
+2. **Uses computation to replace or substantially replace human decision-making**
+
+This includes machine learning models, rule-based systems, scoring algorithms, and any computational process that produces a decision or a recommendation that a human relies on without meaningful independent evaluation.
+
+### Excluded
+
+The regulations explicitly exclude technologies that do not execute, replace, or substantially facilitate human decision-making:
+
+- Web hosting, domain registration, and networking
+- Caching and website-loading technologies
+- Data storage systems
+- Firewalls, anti-virus, and anti-malware software
+- Spam and robocall filtering
+- Spell-checking and grammar tools
+- Calculators, databases, and spreadsheets
+
+### The "Substantially Replace" Standard
+
+The key threshold is whether the technology **substantially replaces** human decision-making. A system that merely presents data for a human to independently evaluate does not qualify. A system whose output is routinely adopted without meaningful human review — even if a human technically "approves" the decision — likely does qualify. This makes the **human-in-the-loop** question central to ADMT compliance.
+
+---
+
+## Key Provisions
+
+### Pre-Use Notice
+
+Before using ADMT for a significant decision, businesses must provide consumers with a **pre-use notice** that includes:
+
+- The fact that ADMT will be used
+- The type of significant decision the ADMT will be used for
+- A description of the consumer's right to opt out
+- A description of the consumer's right to access information about the ADMT
+- Instructions for exercising these rights
+
+The notice must be provided at or before the point of data collection, and must be clear, conspicuous, and accessible.
+
+### Opt-Out Rights
+
+California consumers have the right to **opt out** of a business's use of ADMT for significant decisions. When a consumer exercises this right:
+
+- The business must stop using ADMT for that consumer's significant decision, or
+- The business must provide an alternative decision-making process that does not rely on ADMT
+- The business cannot discriminate against the consumer for exercising the opt-out right
+
+Limited exceptions apply, including where ADMT use is required by law or where opting out would make the service fundamentally impossible to provide.
+
+### Access Rights
+
+Consumers can request information about a business's use of ADMT, including:
+
+- The **logic** of the ADMT system — how it works at a functional level
+- How ADMT **outputs are used** in the decision-making process
+- What **personal information** the ADMT processes
+- The **role of human involvement** in the decision
+
+Businesses must respond to access requests within the CCPA's existing 45-day response window.
+
+### Appeal Rights
+
+Consumers have the right to **appeal** the results of significant decisions made using ADMT. The appeal process must include:
+
+- A mechanism for consumers to submit appeals
+- Human review of the appealed decision
+- A response to the consumer with the outcome and reasoning
+
+### Non-Discrimination
+
+Businesses cannot retaliate against consumers who exercise their ADMT rights. This extends the CCPA's existing non-discrimination protections to cover opt-out, access, and appeal requests related to ADMT.
+
+---
+
+## AI & CCPA ADMT Intersection
+
+The CCPA ADMT regulations are not an "AI law" in name, but they are one of the most consequential pieces of AI governance in the United States. Understanding their intersection with AI systems is critical for compliance teams.
+
+### Why This Matters for AI
+
+Most enterprise AI systems that process personal information and produce decisions about individuals fall squarely within the ADMT definition. The regulations effectively create a **right to opt out of AI-driven decisions** in California for the first time — covering:
+
+- **ML-powered hiring platforms** that screen resumes, score candidates, or recommend hiring decisions
+- **AI credit underwriting models** that assess creditworthiness or set lending terms
+- **Algorithmic tenant screening** systems that evaluate rental applications
+- **AI healthcare triage** tools that prioritize patients or recommend treatment paths
+- **Automated insurance pricing** models that use personal data to set premiums or coverage
+
+### The Human-in-the-Loop Question
+
+The ADMT definition hinges on whether technology "substantially replaces" human decision-making. For AI systems, this creates a critical compliance question: **is there meaningful human oversight, or is the AI output rubber-stamped?**
+
+Organizations deploying AI for significant decisions must evaluate:
+
+- Does a trained human independently review each AI output before the decision is communicated?
+- Can the human meaningfully override the AI recommendation?
+- Is the human review documented and auditable?
+- Is there evidence that humans actually exercise independent judgment, or do they follow AI recommendations at near-100% rates?
+
+If human review is perfunctory — if humans routinely accept AI outputs without independent evaluation — the system likely qualifies as ADMT regardless of whether a human technically "approves" the decision.
+
+### Intersection with Other AI Regulations
+
+| Regulation | Overlap with CCPA ADMT |
+|---|---|
+| **Colorado AI Act** | Both require impact assessments for high-risk AI decisions; Colorado adds developer obligations |
+| **NYC Local Law 144** | Both cover automated employment decisions; NYC focuses specifically on bias audits |
+| **EU AI Act** | EU AI Act classifies AI by risk level; CCPA ADMT focuses on consumer rights around ADMT use |
+| **California AB 2013** | AB 2013 requires AI training data transparency; ADMT covers AI decision outputs |
+| **NIST AI RMF** | Voluntary framework; NIST AI RMF alignment can demonstrate reasonable risk management for ADMT compliance |
+
+### Profiling Under ADMT
+
+The ADMT regulations interact with broader profiling activities. When businesses engage in **large-scale profiling** — systematic automated processing of personal information to evaluate, analyze, or predict aspects of individuals' behavior, preferences, or characteristics — they must:
+
+- Conduct risk assessments even if the profiling does not rise to the level of a "significant decision"
+- Evaluate whether the profiling produces outputs that feed into significant decisions made by ADMT
+- Consider cumulative privacy impacts across profiling and ADMT activities
+
+### Impact on AI Development Practices
+
+The ADMT regulations push AI development practices in several directions:
+
+1. **Explainability by default** — access rights require businesses to describe ADMT logic, forcing teams to invest in interpretability
+2. **Human oversight architecture** — organizations must design decision workflows where human review is meaningful, not ceremonial
+3. **Opt-out infrastructure** — AI systems must be designed to accommodate consumer opt-outs without degrading service for those who exercise the right
+4. **Audit trails** — appeal rights require documented decision paths that can be reviewed and explained
+
+---
+
+## Risk Assessments
+
+The ADMT regulations are part of a broader CCPA regulatory package that includes mandatory **risk assessments** for processing activities that pose significant risk to consumer privacy.
+
+### When Risk Assessments Are Required
+
+Businesses must conduct and maintain risk assessments before initiating processing activities that present significant risk, including:
+
+- **Using ADMT for significant decisions** — every deployment of ADMT for a significant decision requires a risk assessment
+- **Selling or sharing personal information** for cross-context behavioral advertising
+- **Processing sensitive personal information** — including Social Security numbers, financial account information, precise geolocation, biometric data, health information, and information about sex life or sexual orientation
+
+### Risk Assessment Requirements
+
+Each risk assessment must evaluate:
+
+- The **categories of personal information** processed
+- The **purposes** for which the information is processed
+- The **benefits** of the processing to the business, the consumer, other stakeholders, and the public
+- The **risks** to consumers' privacy, including potential for discrimination, financial harm, physical harm, reputational harm, and intrusion
+- The **safeguards** the business has implemented to address identified risks
+- Whether the benefits of processing outweigh the risks, after considering the safeguards
+
+### Retention and Submission
+
+Risk assessments must be:
+
+- Maintained for the duration of the processing activity and for **at least five years** after the processing ends
+- Updated when the processing activity materially changes
+- Made available to the CPPA upon request
+
+---
+
+## Compliance Timeline
+
+| Date | Milestone |
+|------|-----------|
+| **June 2018** | CCPA signed into law |
+| **January 1, 2020** | CCPA original effective date |
+| **November 2020** | CPRA ballot initiative passed |
+| **January 1, 2023** | CPRA amendments effective |
+| **July 1, 2023** | CPPA enforcement authority begins |
+| **November 2024** | CPPA Board initiates ADMT rulemaking |
+| **July 24, 2025** | CPPA Board adopts final ADMT regulations |
+| **September 22, 2025** | OAL approves regulations; filed with Secretary of State |
+| **January 1, 2026** | General CCPA regulation updates effective (risk assessments, cybersecurity audits) |
+| **April 1, 2027** | ADMT-specific obligations effective (pre-use notice, opt-out, access, appeal) |
+
+---
+
+## Implementation Steps
+
+Use this roadmap to prepare for CCPA ADMT compliance:
+
+1. **Inventory your automated decision-making systems.** Identify every system that processes personal information and makes or substantially facilitates decisions about consumers. Map each system to the significant decision domains (finance, housing, education, employment, healthcare). Flag systems where human review is perfunctory or where AI outputs are routinely adopted without independent evaluation.
+
+2. **Classify ADMT exposure.** For each identified system, determine whether it meets the ADMT definition. Apply the "substantially replaces" standard: does the technology produce decisions that humans routinely accept? Document your classification rationale.
+
+3. **Conduct risk assessments.** For every system classified as ADMT used for significant decisions, complete a risk assessment evaluating benefits, risks, safeguards, and the overall balance. Use the NIST AI RMF's Map and Measure functions as a practical framework for structuring the assessment.
+
+4. **Design pre-use notice workflows.** Build notice mechanisms that inform consumers before ADMT is used for their significant decision. The notice must describe what ADMT is being used for, the consumer's opt-out right, the consumer's access right, and how to exercise those rights.
+
+5. **Build opt-out infrastructure.** Implement mechanisms for consumers to opt out of ADMT processing. Design fallback decision-making processes that do not rely on ADMT. Ensure that opting out does not result in service degradation or discrimination.
+
+6. **Implement access request handling.** Prepare responses for consumers who request information about ADMT logic, data inputs, human involvement, and output usage. Balance transparency with trade-secret protections — the regulations require functional descriptions, not source code.
+
+7. **Establish appeal processes.** Create a documented appeal mechanism that includes human review of the original ADMT-driven decision, communication of the appeal outcome and reasoning, and tracking and documentation of appeal results.
+
+8. **Strengthen human oversight.** Where human review exists, ensure it is meaningful and documented. Train reviewers on their independent evaluation responsibilities. Monitor override rates — if human overrides are near zero, the system may still qualify as ADMT.
+
+9. **Update privacy policies and disclosures.** Reflect ADMT practices, consumer rights, and opt-out mechanisms in your privacy policy. Add ADMT-specific disclosures where required.
+
+10. **Establish ongoing monitoring.** Schedule regular reassessments of ADMT systems — at least annually and whenever processing activities materially change. Monitor CPPA enforcement actions and guidance for evolving compliance expectations.
+
+---
+
+## Frequently Asked Questions
+
+**What is ADMT under the CCPA regulations?**
+Automated Decision-Making Technology (ADMT) is any technology that processes personal information and uses computation to replace or substantially replace human decision-making. The definition is intentionally narrow — it excludes purely assistive tools, spam filters, spell-checkers, calculators, databases, and similar technologies that do not execute or substantially facilitate decisions.
+
+**When do the CCPA ADMT obligations take effect?**
+The CPPA Board adopted the final rules on July 24, 2025, and the OAL approved them on September 22, 2025. General CCPA regulation updates (risk assessments, cybersecurity audits) took effect January 1, 2026. ADMT-specific obligations — pre-use notice, opt-out, access, and appeal — take effect April 1, 2027.
+
+**Do the ADMT regulations cover AI-powered advertising?**
+No. Advertising decisions were included in earlier drafts but were removed from the final regulations. The ADMT obligations only apply to "significant decisions" affecting finance, housing, education, employment, and healthcare. However, AI-driven advertising that processes personal information may still trigger risk assessment requirements under the broader CCPA regulatory package.
+
+**How does the CCPA ADMT compare to NYC Local Law 144?**
+NYC Local Law 144 is narrower — it applies only to automated employment decision tools used in hiring and promotion in New York City, and requires third-party bias audits. The CCPA ADMT regulations are broader: they cover five significant decision domains (not just employment), apply statewide (not just one city), and focus on consumer rights (opt-out, access, appeal) rather than bias auditing.
+
+**What is the penalty for non-compliance with ADMT requirements?**
+The CCPA penalty framework applies: $2,500 per unintentional violation or $7,500 per intentional violation or violation involving a minor. Each affected consumer and each day of non-compliance can be treated as a separate violation. Both the California Attorney General and the CPPA can bring enforcement actions.
+
+**Does a human-in-the-loop exempt a system from ADMT classification?**
+Not necessarily. The key question is whether the human review is **meaningful** — does the human independently evaluate the AI output, or do they routinely accept it? If human review is perfunctory and override rates are near zero, the system likely still qualifies as ADMT. Organizations must demonstrate that human oversight is substantive, not ceremonial.
