@@ -62,7 +62,7 @@ export default function ColoradoVsEuPage() {
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Comparisons", href: "/compare" }, { label: "Colorado AI Act vs. EU AI Act" }]} />
           <h1 className="h1">Colorado AI Act vs. EU AI Act</h1>
           <p className="lede" style={{ maxWidth: 680, marginTop: 8 }}>
-            The world&apos;s most comprehensive AI regulation framework versus the first major US state AI law. Both take effect in August 2026 &mdash; here&apos;s how they compare.
+            The world&apos;s most comprehensive AI regulation framework versus the first major US state AI law. Colorado takes effect June 30, 2026; EU AI Act high-risk provisions follow on August 2, 2026 &mdash; here&apos;s how they compare.
           </p>
           <div className="tag-strip" style={{ marginTop: 16 }}>
             <Link href="/regulations/colorado-ai-act" className="btn btn-ghost" style={{ fontSize: 13 }}>Colorado AI Act Guide &rarr;</Link>
@@ -148,7 +148,7 @@ export default function ColoradoVsEuPage() {
                 ["Extraterritorial reach:", "Both apply to any organization whose AI affects residents in their jurisdiction, regardless of headquarters location"],
                 ["Developer/provider obligations:", "Both place upstream documentation and disclosure obligations on the organizations that build AI systems"],
                 ["Human oversight:", "Both require that humans can meaningfully review and override AI decisions in high-risk contexts"],
-                ["Simultaneous enforcement:", "Both take effect for most high-risk AI systems in summer 2026, creating aligned compliance deadlines"],
+                ["Near-simultaneous enforcement:", "Colorado takes effect June 30, 2026; EU AI Act high-risk provisions follow August 2, 2026 \u2014 33 days apart, creating tightly aligned compliance deadlines"],
               ].map(([label, desc]) => (
                 <li key={label} style={{ display: "flex", gap: 8 }}>
                   <Check className="h-4 w-4" style={{ color: "var(--sage)", flexShrink: 0, marginTop: 2 }} aria-hidden="true" />
