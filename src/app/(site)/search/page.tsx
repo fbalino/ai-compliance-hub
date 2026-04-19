@@ -5,8 +5,9 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import { SearchBarClient } from "./SearchBarClient";
 import { db } from "@/db";
-import { regulations, providers } from "@/db/schema";
-import { ilike, or, sql, count } from "drizzle-orm";
+import { providers } from "@/db/schema";
+import { ilike, or, count } from "drizzle-orm";
+import { getAllRegulations } from "@/lib/regulations";
 
 export const revalidate = false;
 
@@ -43,22 +44,10 @@ export default async function SearchPage({
 
   const hasQuery = query.trim().length > 0;
   const likePattern = `%${query}%`;
+  const queryLower = query.toLowerCase();
 
-  const [matchedRegs, matchedProviders, [regCountResult], [providerCountResult]] = await Promise.all([
-    hasQuery
-      ? db
-          .select()
-          .from(regulations)
-          .where(
-            or(
-              ilike(regulations.name, likePattern),
-              ilike(regulations.slug, likePattern),
-              ilike(regulations.jurisdiction, likePattern),
-              ilike(regulations.summary, likePattern)
-            )
-          )
-          .limit(20)
-      : db.select().from(regulations).limit(20),
+  const [allRegs, matchedProviders, [providerCountResult]] = await Promise.all([
+    getAllRegulations(),
     hasQuery
       ? db
           .select()
@@ -73,11 +62,29 @@ export default async function SearchPage({
           )
           .limit(20)
       : db.select().from(providers).limit(20),
-    db.select({ value: count() }).from(regulations),
     db.select({ value: count() }).from(providers),
   ]);
 
-  const regTotal = regCountResult?.value ?? 0;
+  const allRegItems = allRegs
+    .filter((r) => r.frontmatter.status !== "rescinded")
+    .map((r) => ({
+      slug: r.slug,
+      name: r.frontmatter.name,
+      jurisdiction: r.frontmatter.jurisdiction,
+      status: r.frontmatter.status,
+      summary: r.frontmatter.description,
+    }));
+
+  const matchedRegs = hasQuery
+    ? allRegItems.filter((r) =>
+        r.name.toLowerCase().includes(queryLower) ||
+        r.slug.toLowerCase().includes(queryLower) ||
+        r.jurisdiction.toLowerCase().includes(queryLower) ||
+        (r.summary?.toLowerCase().includes(queryLower) ?? false)
+      ).slice(0, 20)
+    : allRegItems.slice(0, 20);
+
+  const regTotal = allRegItems.length;
   const providerTotal = providerCountResult?.value ?? 0;
   const totalResults = matchedRegs.length + matchedProviders.length;
 
@@ -149,7 +156,7 @@ export default async function SearchPage({
                 <p className="small">No regulations matched your search.</p>
               )}
               {matchedRegs.map((reg) => (
-                <Link key={reg.id} href={`/regulations/${reg.slug}`} style={{ textDecoration: "none" }}>
+                <Link key={reg.slug} href={`/regulations/${reg.slug}`} style={{ textDecoration: "none" }}>
                   <div className="card" style={{ padding: 16, cursor: "pointer" }}>
                     <div className="flex between items-start">
                       <div>

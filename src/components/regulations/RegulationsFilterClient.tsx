@@ -29,18 +29,9 @@ const STATUS_OPTIONS = [
 ] as const;
 
 function deriveJurisdictionGroup(jurisdiction: string): string {
-  if (jurisdiction === "European Union" || jurisdiction.startsWith("EU")) return "European Union";
+  if (jurisdiction === "European Union") return "European Union";
   if (jurisdiction === "International") return "International";
-  if (
-    jurisdiction.includes("United States") ||
-    jurisdiction.startsWith("US") ||
-    jurisdiction.includes("California") ||
-    jurisdiction.includes("Illinois") ||
-    jurisdiction.includes("Texas") ||
-    jurisdiction.includes("Colorado") ||
-    jurisdiction.includes("Virginia") ||
-    jurisdiction.includes("New York")
-  ) return "United States";
+  if (jurisdiction.startsWith("US")) return "United States";
   return jurisdiction;
 }
 

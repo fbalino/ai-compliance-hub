@@ -50,27 +50,32 @@ function statusLabel(status: string): string {
 export default async function JurisdictionsPage() {
   const allRegs = await getAllRegulations();
 
+  type RegEntry = { slug: string; name: string; shortName?: string; status: string; effectiveDate?: string };
+  function toEntry(r: (typeof allRegs)[number]): RegEntry {
+    return {
+      slug: r.slug,
+      name: r.frontmatter.name,
+      shortName: r.frontmatter.shortName,
+      status: r.frontmatter.status,
+      effectiveDate: r.frontmatter.effectiveDate,
+    };
+  }
+
   const euRegs = allRegs.filter(
     (r) => r.frontmatter.jurisdiction === "European Union"
   );
   const usRegs = allRegs.filter((r) =>
     r.frontmatter.jurisdiction.startsWith("US")
   );
+  const intlRegs = allRegs.filter(
+    (r) => r.frontmatter.jurisdiction === "International"
+  );
 
-  const usStates = new Map<
-    string,
-    { slug: string; name: string; shortName?: string; status: string; effectiveDate?: string }[]
-  >();
+  const usSubgroups = new Map<string, RegEntry[]>();
   for (const r of usRegs) {
-    const state = r.frontmatter.jurisdiction.replace("US · ", "");
-    if (!usStates.has(state)) usStates.set(state, []);
-    usStates.get(state)!.push({
-      slug: r.slug,
-      name: r.frontmatter.name,
-      shortName: r.frontmatter.shortName,
-      status: r.frontmatter.status,
-      effectiveDate: r.frontmatter.effectiveDate,
-    });
+    const sub = r.frontmatter.jurisdiction.replace("US · ", "");
+    if (!usSubgroups.has(sub)) usSubgroups.set(sub, []);
+    usSubgroups.get(sub)!.push(toEntry(r));
   }
 
   const groups: JurisdictionGroup[] = [
@@ -80,28 +85,31 @@ export default async function JurisdictionsPage() {
       description:
         "EU-wide regulations and directives governing AI systems, digital resilience, and cybersecurity.",
       jurisdictions: [
-        {
-          name: "European Union",
-          regulations: euRegs.map((r) => ({
-            slug: r.slug,
-            name: r.frontmatter.name,
-            shortName: r.frontmatter.shortName,
-            status: r.frontmatter.status,
-            effectiveDate: r.frontmatter.effectiveDate,
-          })),
-        },
+        { name: "European Union", regulations: euRegs.map(toEntry) },
       ],
     },
     {
       region: "United States",
       flag: "\u{1F1FA}\u{1F1F8}",
       description:
-        "State-level AI laws covering hiring, consumer protection, transparency, and algorithmic accountability.",
-      jurisdictions: Array.from(usStates.entries())
+        "Federal frameworks and state-level AI laws covering hiring, consumer protection, transparency, and algorithmic accountability.",
+      jurisdictions: Array.from(usSubgroups.entries())
         .sort(([a], [b]) => a.localeCompare(b))
-        .map(([state, regs]) => ({ name: state, regulations: regs })),
+        .map(([sub, regs]) => ({ name: sub, regulations: regs })),
     },
   ];
+
+  if (intlRegs.length > 0) {
+    groups.push({
+      region: "International",
+      flag: "\u{1F30D}",
+      description:
+        "International standards and voluntary frameworks for AI governance and risk management.",
+      jurisdictions: [
+        { name: "International", regulations: intlRegs.map(toEntry) },
+      ],
+    });
+  }
 
   const breadcrumbs = breadcrumbListSchema([
     { name: "Home", url: "/" },

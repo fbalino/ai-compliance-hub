@@ -764,6 +764,39 @@ const REGULATIONS = [
     summary:
       "Texas law regulating the capture, use, storage, and destruction of biometric identifiers including retina scans, voiceprints, and face geometry records, enforced by the Texas Attorney General.",
   },
+  {
+    slug: "ccpa-admt",
+    name: "CCPA Automated Decision-Making Technology Regulations",
+    jurisdiction: "US · California",
+    status: "enacted",
+    effectiveDate: "2025-09-22",
+    enforcementDate: "2027-04-01",
+    maxPenalty: "$7,500 per violation (intentional or involving minors)",
+    summary:
+      "California's CCPA ADMT regulations give consumers the right to opt out of automated decision-making technology used for significant decisions — with mandatory pre-use notices, risk assessments, and appeal rights.",
+  },
+  {
+    slug: "nist-ai-rmf",
+    name: "NIST AI Risk Management Framework",
+    jurisdiction: "US · Federal",
+    status: "enforced",
+    effectiveDate: "2023-01-26",
+    enforcementDate: null,
+    maxPenalty: "N/A — voluntary framework",
+    summary:
+      "NIST AI RMF 1.0 provides a voluntary, flexible approach for organizations to manage AI risks — widely referenced by US and international AI regulations as the baseline governance standard.",
+  },
+  {
+    slug: "iso-42001",
+    name: "ISO/IEC 42001",
+    jurisdiction: "International",
+    status: "enforced",
+    effectiveDate: "2023-12-18",
+    enforcementDate: null,
+    maxPenalty: "N/A — voluntary standard; loss of certification for non-conformance",
+    summary:
+      "The world's first international standard for AI management systems, providing a certifiable framework for establishing, implementing, and improving AI governance programs.",
+  },
 ];
 
 // ── Main seed function ─────────────────────────────────────────────────────────
