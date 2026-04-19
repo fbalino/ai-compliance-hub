@@ -30,11 +30,7 @@ function subscribeToTheme(callback: () => void) {
 function applyTheme(theme: Theme) {
   const root = document.documentElement;
   root.setAttribute("data-transitioning", "");
-  if (theme === "night") {
-    root.setAttribute("data-theme", "night");
-  } else {
-    root.removeAttribute("data-theme");
-  }
+  root.setAttribute("data-theme", theme);
   window.setTimeout(() => root.removeAttribute("data-transitioning"), 350);
 }
 
