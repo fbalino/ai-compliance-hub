@@ -6,7 +6,7 @@ import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import { SearchBarClient } from "./SearchBarClient";
 import { db } from "@/db";
 import { providers } from "@/db/schema";
-import { ilike, or, count } from "drizzle-orm";
+import { ilike, or, and, count } from "drizzle-orm";
 import { getAllRegulations } from "@/lib/regulations";
 
 export const revalidate = false;
@@ -43,8 +43,7 @@ export default async function SearchPage({
   const activeTab = params.tab ?? "all";
 
   const hasQuery = query.trim().length > 0;
-  const likePattern = `%${query}%`;
-  const queryLower = query.toLowerCase();
+  const queryWords = query.toLowerCase().split(/\s+/).filter(Boolean);
 
   const [allRegs, matchedProviders, [providerCountResult]] = await Promise.all([
     getAllRegulations(),
@@ -53,11 +52,16 @@ export default async function SearchPage({
           .select()
           .from(providers)
           .where(
-            or(
-              ilike(providers.name, likePattern),
-              ilike(providers.slug, likePattern),
-              ilike(providers.description, likePattern),
-              ilike(providers.tagline, likePattern)
+            and(
+              ...queryWords.map((word) => {
+                const pat = `%${word}%`;
+                return or(
+                  ilike(providers.name, pat),
+                  ilike(providers.slug, pat),
+                  ilike(providers.description, pat),
+                  ilike(providers.tagline, pat)
+                );
+              })
             )
           )
           .limit(20)
@@ -76,12 +80,15 @@ export default async function SearchPage({
     }));
 
   const matchedRegs = hasQuery
-    ? allRegItems.filter((r) =>
-        r.name.toLowerCase().includes(queryLower) ||
-        r.slug.toLowerCase().includes(queryLower) ||
-        r.jurisdiction.toLowerCase().includes(queryLower) ||
-        (r.summary?.toLowerCase().includes(queryLower) ?? false)
-      ).slice(0, 20)
+    ? allRegItems.filter((r) => {
+        const hay = [
+          r.name,
+          r.slug,
+          r.jurisdiction,
+          r.summary ?? "",
+        ].join(" ").toLowerCase();
+        return queryWords.every((w) => hay.includes(w));
+      }).slice(0, 20)
     : allRegItems.slice(0, 20);
 
   const regTotal = allRegItems.length;
