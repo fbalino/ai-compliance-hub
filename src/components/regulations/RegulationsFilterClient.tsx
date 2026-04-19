@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export interface RegulationItem {
   slug: string | null;
-  code: string;
+  code?: string;
   name: string;
   shortName?: string;
   jurisdiction: string;
@@ -13,7 +13,7 @@ export interface RegulationItem {
   effectiveDate: string;
   maxPenalty?: string;
   summary: string;
-  topics: string[];
+  topics?: string[];
   providers?: number;
   isUpcoming?: boolean;
 }
@@ -28,10 +28,21 @@ const STATUS_OPTIONS = [
   { value: "proposed", label: "Proposed" },
 ] as const;
 
-const JURISDICTION_OPTIONS = [
-  "European Union",
-  "United States",
-] as const;
+function deriveJurisdictionGroup(jurisdiction: string): string {
+  if (jurisdiction === "European Union" || jurisdiction.startsWith("EU")) return "European Union";
+  if (jurisdiction === "International") return "International";
+  if (
+    jurisdiction.includes("United States") ||
+    jurisdiction.startsWith("US") ||
+    jurisdiction.includes("California") ||
+    jurisdiction.includes("Illinois") ||
+    jurisdiction.includes("Texas") ||
+    jurisdiction.includes("Colorado") ||
+    jurisdiction.includes("Virginia") ||
+    jurisdiction.includes("New York")
+  ) return "United States";
+  return jurisdiction;
+}
 
 const SORT_OPTIONS = [
   { value: "newest", label: "Newest first" },
@@ -54,6 +65,14 @@ export function RegulationsFilterClient({ regulations }: Props) {
   const [sort, setSort] = useState("newest");
   const [showSortMenu, setShowSortMenu] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const jurisdictionOptions = useMemo(() => {
+    const groups = new Set<string>();
+    for (const r of regulations) {
+      groups.add(deriveJurisdictionGroup(r.jurisdiction));
+    }
+    return Array.from(groups).sort();
+  }, [regulations]);
 
   const toggleStatus = (s: string) => {
     setStatuses((prev) => {
@@ -90,13 +109,8 @@ export function RegulationsFilterClient({ regulations }: Props) {
     let result = regulations.filter((r) => {
       if (statuses.size > 0 && !statuses.has(r.status)) return false;
       if (jurisdictions.size > 0) {
-        const matchesJuris = jurisdictions.has("European Union")
-          ? r.jurisdiction.includes("European Union")
-          : false;
-        const matchesUS = jurisdictions.has("United States")
-          ? r.jurisdiction.includes("US")
-          : false;
-        if (!matchesJuris && !matchesUS) return false;
+        const group = deriveJurisdictionGroup(r.jurisdiction);
+        if (!jurisdictions.has(group)) return false;
       }
       return true;
     });
@@ -154,7 +168,7 @@ export function RegulationsFilterClient({ regulations }: Props) {
 
         <div style={{ marginBottom: 20 }}>
           <div className="h5" style={{ marginBottom: 8 }}>Jurisdiction</div>
-          {JURISDICTION_OPTIONS.map((j) => (
+          {jurisdictionOptions.map((j) => (
             <label key={j} className="flex items-center small" style={{ gap: 8, padding: "6px 0", cursor: "pointer" }}>
               <input
                 type="checkbox"
@@ -243,14 +257,14 @@ export function RegulationsFilterClient({ regulations }: Props) {
                   </thead>
                   <tbody>
                     {main.map((reg) => (
-                      <tr key={reg.code}>
+                      <tr key={reg.slug ?? reg.name}>
                         <td style={{ width: 110 }}>
                           {reg.slug ? (
                             <Link href={`/regulations/${reg.slug}`}>
-                              <span className="chip chip-code">{reg.code}</span>
+                              <span className="chip chip-code">{reg.code ?? reg.shortName ?? "—"}</span>
                             </Link>
                           ) : (
-                            <span className="chip chip-code">{reg.code}</span>
+                            <span className="chip chip-code">{reg.code ?? reg.shortName ?? "—"}</span>
                           )}
                         </td>
                         <td>
@@ -261,11 +275,13 @@ export function RegulationsFilterClient({ regulations }: Props) {
                           ) : (
                             <span className="h4" style={{ fontSize: 15 }}>{reg.name}</span>
                           )}
-                          <div className="tag-strip" style={{ marginTop: 6 }}>
-                            {reg.topics.map((t) => (
-                              <span key={t} className="chip" style={{ fontSize: 11 }}>{t}</span>
-                            ))}
-                          </div>
+                          {reg.topics && reg.topics.length > 0 && (
+                            <div className="tag-strip" style={{ marginTop: 6 }}>
+                              {reg.topics.map((t) => (
+                                <span key={t} className="chip" style={{ fontSize: 11 }}>{t}</span>
+                              ))}
+                            </div>
+                          )}
                         </td>
                         <td className="small">{reg.jurisdiction}</td>
                         <td className="mono xs">{reg.effectiveDate}</td>
@@ -292,15 +308,17 @@ export function RegulationsFilterClient({ regulations }: Props) {
                       const inner = (
                         <tr key={reg.name} style={{ opacity: reg.slug ? 1 : 0.7 }}>
                           <td style={{ width: 110 }}>
-                            <span className="chip chip-code">{reg.code}</span>
+                            <span className="chip chip-code">{reg.code ?? reg.shortName ?? "—"}</span>
                           </td>
                           <td>
                             <div className="h4" style={{ fontSize: 15 }}>{reg.name}</div>
-                            <div className="tag-strip" style={{ marginTop: 6 }}>
-                              {reg.topics.map((t) => (
-                                <span key={t} className="chip" style={{ fontSize: 11 }}>{t}</span>
-                              ))}
-                            </div>
+                            {reg.topics && reg.topics.length > 0 && (
+                              <div className="tag-strip" style={{ marginTop: 6 }}>
+                                {reg.topics.map((t) => (
+                                  <span key={t} className="chip" style={{ fontSize: 11 }}>{t}</span>
+                                ))}
+                              </div>
+                            )}
                           </td>
                           <td className="small">{reg.jurisdiction}</td>
                           <td className="mono xs">{reg.effectiveDate}</td>
