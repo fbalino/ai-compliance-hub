@@ -777,6 +777,9 @@ dl.kv dd { margin: 0; color: var(--ink); }
 .grid-main-aside     { grid-template-columns: 1.6fr 1fr; align-items: start; }
 .grid-ledger         { grid-template-columns: 2fr 1fr 1fr; }
 .grid-providers-cta  { grid-template-columns: 1fr 1fr; align-items: center; }
+.grid-benefits       { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.grid-tiers          { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+.grid-stats-bar      { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
 
 /* ── Sidebar Layout ── */
 .sidebar-layout {
@@ -839,6 +842,9 @@ dl.kv dd { margin: 0; color: var(--ink); }
   .grid-main-aside,
   .grid-ledger,
   .grid-providers-cta { grid-template-columns: 1fr; }
+  .grid-benefits,
+  .grid-tiers { grid-template-columns: 1fr; }
+  .grid-stats-bar { grid-template-columns: repeat(2, 1fr); }
 
   /* Sidebar layouts stack — hide aside by default */
   .sidebar-layout {

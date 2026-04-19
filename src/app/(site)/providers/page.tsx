@@ -163,7 +163,7 @@ export default async function ProvidersPage() {
             3,000+ monthly searches from compliance teams actively looking for help.
           </p>
 
-          <div className="flex v4-rise v4-d2" style={{ gap: 12, marginTop: 32, justifyContent: "center" }}>
+          <div className="flex v4-rise v4-d2" style={{ gap: 12, marginTop: 32, justifyContent: "center", flexWrap: "wrap" }}>
             <Link href="/join" className="btn btn-accent btn-lg">
               List your firm
             </Link>
@@ -178,7 +178,7 @@ export default async function ProvidersPage() {
       <section className="container" style={{ paddingTop: 56, paddingBottom: 56 }}>
         <div className="eyebrow" style={{ marginBottom: 12 }}>Why list on Regulome</div>
         <h2 className="h1" style={{ marginBottom: 32 }}>Four reasons providers choose us.</h2>
-        <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: 20 }}>
+        <div className="grid grid-benefits" style={{ gap: 20 }}>
           {BENEFITS.map((b) => (
             <div key={b.title} className="card" style={{ padding: 28 }}>
               <div style={{ color: "var(--accent)", marginBottom: 14 }}>
@@ -262,7 +262,7 @@ export default async function ProvidersPage() {
         <div className="eyebrow" style={{ marginBottom: 12 }}>Tiers</div>
         <h2 className="h1" style={{ marginBottom: 32 }}>Free to list. Pay to stand out.</h2>
 
-        <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: 24 }}>
+        <div className="grid grid-tiers" style={{ gap: 24 }}>
           {/* Free tier */}
           <div className="card" style={{ padding: 32 }}>
             <div className="eyebrow" style={{ marginBottom: 8 }}>Free</div>
@@ -312,8 +312,8 @@ export default async function ProvidersPage() {
       <section style={{ background: "var(--paper-inverse)", color: "var(--ink-inverse)" }}>
         <div className="container" style={{ paddingTop: 48, paddingBottom: 48 }}>
           <div
-            className="grid"
-            style={{ gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 24, textAlign: "center" }}
+            className="grid grid-stats-bar"
+            style={{ gap: 24, textAlign: "center" }}
           >
             {[
               { n: String(regCount), l: "regulations indexed" },
@@ -340,13 +340,13 @@ export default async function ProvidersPage() {
       {/* FINAL CTA */}
       <section className="container" style={{ paddingTop: 64, paddingBottom: 64, textAlign: "center" }}>
         <div className="eyebrow" style={{ marginBottom: 12 }}>Ready?</div>
-        <h2 className="display" style={{ fontSize: 48, maxWidth: 700, margin: "0 auto" }}>
+        <h2 className="display" style={{ fontSize: "clamp(32px, 5vw, 48px)", maxWidth: 700, margin: "0 auto" }}>
           List your practice in the register.
         </h2>
         <p className="lede soft" style={{ maxWidth: 540, margin: "16px auto 0" }}>
           Free for any verified provider. Takes two minutes. Upgrade to Featured anytime.
         </p>
-        <div className="flex" style={{ gap: 12, marginTop: 32, justifyContent: "center" }}>
+        <div className="flex" style={{ gap: 12, marginTop: 32, justifyContent: "center", flexWrap: "wrap" }}>
           <Link href="/join" className="btn btn-accent btn-lg">
             Get started &rarr;
           </Link>
