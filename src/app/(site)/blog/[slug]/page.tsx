@@ -1529,9 +1529,9 @@ function renderMarkdown(text: string): string {
     // Bold
     s = s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
     // Links [text](url)
-    s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-brand-700 hover:text-brand-900 underline">$1</a>');
+    s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-accent hover:text-accent-ink underline">$1</a>');
     // Code
-    s = s.replace(/`([^`]+)`/g, '<code class="bg-neutral-100 rounded px-1 text-sm font-mono">$1</code>');
+    s = s.replace(/`([^`]+)`/g, '<code class="bg-paper-2 rounded px-1 text-sm font-mono text-ink">$1</code>');
     return s;
   }
 
@@ -1542,7 +1542,7 @@ function renderMarkdown(text: string): string {
     if (trimmed === "---") {
       closeList();
       closeTable();
-      html.push('<hr class="my-6 border-neutral-200" />');
+      html.push('<hr class="my-6 border-line" />');
       continue;
     }
 
@@ -1550,13 +1550,13 @@ function renderMarkdown(text: string): string {
     if (trimmed.startsWith("## ")) {
       closeList();
       closeTable();
-      html.push(`<h2 class="text-xl font-bold text-neutral-900 mt-8 mb-3">${processInline(trimmed.slice(3))}</h2>`);
+      html.push(`<h2 class="text-xl font-bold text-ink mt-8 mb-3">${processInline(trimmed.slice(3))}</h2>`);
       continue;
     }
     if (trimmed.startsWith("### ")) {
       closeList();
       closeTable();
-      html.push(`<h3 class="text-lg font-semibold text-neutral-900 mt-6 mb-2">${processInline(trimmed.slice(4))}</h3>`);
+      html.push(`<h3 class="text-lg font-semibold text-ink mt-6 mb-2">${processInline(trimmed.slice(4))}</h3>`);
       continue;
     }
 
@@ -1571,13 +1571,13 @@ function renderMarkdown(text: string): string {
       if (!inTable) {
         inTable = true;
         tableHeader = true;
-        html.push('<div class="overflow-x-auto my-6"><table class="w-full text-sm border-collapse">');
+        html.push('<div class="overflow-x-auto my-6"><table class="w-full text-sm border-collapse text-ink-2">');
         html.push("<thead>");
       }
       if (tableHeader) {
         html.push(
           "<tr>" +
-            cells.map((c) => `<th class="border border-neutral-200 bg-neutral-50 px-3 py-2 text-left font-semibold text-neutral-900">${processInline(c)}</th>`).join("") +
+            cells.map((c) => `<th class="border border-line bg-paper-2 px-3 py-2 text-left font-semibold text-ink">${processInline(c)}</th>`).join("") +
             "</tr>"
         );
         html.push("</thead><tbody>");
@@ -1585,7 +1585,7 @@ function renderMarkdown(text: string): string {
       } else {
         html.push(
           "<tr>" +
-            cells.map((c) => `<td class="border border-neutral-200 px-3 py-2 text-neutral-700">${processInline(c)}</td>`).join("") +
+            cells.map((c) => `<td class="border border-line px-3 py-2 text-ink-2">${processInline(c)}</td>`).join("") +
             "</tr>"
         );
       }
@@ -1605,9 +1605,9 @@ function renderMarkdown(text: string): string {
       const checked = trimmed.startsWith("☑");
       const iconSvg = checked
         ? `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mt-0.5 shrink-0 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`
-        : `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mt-0.5 shrink-0 text-neutral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>`;
+        : `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mt-0.5 shrink-0 text-ink-faint" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>`;
       html.push(
-        `<li class="flex items-start gap-2 text-neutral-700">${iconSvg}<span>${processInline(trimmed.slice(2))}</span></li>`
+        `<li class="flex items-start gap-2 text-ink-2">${iconSvg}<span>${processInline(trimmed.slice(2))}</span></li>`
       );
       continue;
     }
@@ -1620,7 +1620,7 @@ function renderMarkdown(text: string): string {
         inList = true;
         listType = "ul";
       }
-      html.push(`<li class="text-neutral-700">${processInline(trimmed.slice(2))}</li>`);
+      html.push(`<li class="text-ink-2">${processInline(trimmed.slice(2))}</li>`);
       continue;
     }
 
@@ -1632,7 +1632,7 @@ function renderMarkdown(text: string): string {
         inList = true;
         listType = "ol";
       }
-      html.push(`<li class="text-neutral-700">${processInline(trimmed.replace(/^\d+\.\s/, ""))}</li>`);
+      html.push(`<li class="text-ink-2">${processInline(trimmed.replace(/^\d+\.\s/, ""))}</li>`);
       continue;
     }
 
@@ -1642,7 +1642,7 @@ function renderMarkdown(text: string): string {
     closeList();
 
     // Paragraph
-    html.push(`<p class="text-neutral-700 leading-relaxed my-3">${processInline(trimmed)}</p>`);
+    html.push(`<p class="text-ink-2 leading-relaxed my-3">${processInline(trimmed)}</p>`);
   }
 
   closeList();

@@ -8,7 +8,7 @@
    Type:    Fraunces (display) · Inter (UI) · JetBrains Mono (code)
    ────────────────────────────────────────────────────────────── */
 
-@theme inline {
+@theme {
   --color-paper: #fbfbfd;
   --color-paper-2: #eef0f7;
   --color-paper-3: #e1e5f0;

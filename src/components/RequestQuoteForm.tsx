@@ -106,7 +106,7 @@ export function RequestQuoteForm({ providerSlug, providerServices }: RequestQuot
     <form onSubmit={handleSubmit} noValidate className="space-y-3">
       {/* Name */}
       <div>
-        <label htmlFor="rfq-name" className="block text-xs font-medium text-neutral-700 mb-1">
+        <label htmlFor="rfq-name" className="block text-xs font-medium text-ink-2 mb-1">
           Name <span className="text-red-500">*</span>
         </label>
         <input
@@ -115,9 +115,9 @@ export function RequestQuoteForm({ providerSlug, providerServices }: RequestQuot
           type="text"
           autoComplete="name"
           className={[
-            "w-full rounded-md border px-3 py-2 text-sm text-neutral-900 placeholder-neutral-400",
-            "focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent",
-            errors.name ? "border-red-400 bg-red-50" : "border-neutral-300 bg-white",
+            "w-full rounded-md border px-3 py-2 text-sm text-ink placeholder-ink-faint",
+            "focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent",
+            errors.name ? "border-red-400 bg-red-50" : "border-line bg-paper",
           ].join(" ")}
           placeholder="Jane Smith"
         />
@@ -126,7 +126,7 @@ export function RequestQuoteForm({ providerSlug, providerServices }: RequestQuot
 
       {/* Email */}
       <div>
-        <label htmlFor="rfq-email" className="block text-xs font-medium text-neutral-700 mb-1">
+        <label htmlFor="rfq-email" className="block text-xs font-medium text-ink-2 mb-1">
           Work Email <span className="text-red-500">*</span>
         </label>
         <input
@@ -135,9 +135,9 @@ export function RequestQuoteForm({ providerSlug, providerServices }: RequestQuot
           type="email"
           autoComplete="email"
           className={[
-            "w-full rounded-md border px-3 py-2 text-sm text-neutral-900 placeholder-neutral-400",
-            "focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent",
-            errors.email ? "border-red-400 bg-red-50" : "border-neutral-300 bg-white",
+            "w-full rounded-md border px-3 py-2 text-sm text-ink placeholder-ink-faint",
+            "focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent",
+            errors.email ? "border-red-400 bg-red-50" : "border-line bg-paper",
           ].join(" ")}
           placeholder="jane@company.com"
         />
@@ -146,7 +146,7 @@ export function RequestQuoteForm({ providerSlug, providerServices }: RequestQuot
 
       {/* Company */}
       <div>
-        <label htmlFor="rfq-company" className="block text-xs font-medium text-neutral-700 mb-1">
+        <label htmlFor="rfq-company" className="block text-xs font-medium text-ink-2 mb-1">
           Company <span className="text-red-500">*</span>
         </label>
         <input
@@ -155,9 +155,9 @@ export function RequestQuoteForm({ providerSlug, providerServices }: RequestQuot
           type="text"
           autoComplete="organization"
           className={[
-            "w-full rounded-md border px-3 py-2 text-sm text-neutral-900 placeholder-neutral-400",
-            "focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent",
-            errors.company ? "border-red-400 bg-red-50" : "border-neutral-300 bg-white",
+            "w-full rounded-md border px-3 py-2 text-sm text-ink placeholder-ink-faint",
+            "focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent",
+            errors.company ? "border-red-400 bg-red-50" : "border-line bg-paper",
           ].join(" ")}
           placeholder="Acme Corp"
         />
@@ -167,13 +167,13 @@ export function RequestQuoteForm({ providerSlug, providerServices }: RequestQuot
       {/* Service */}
       {providerServices.length > 0 && (
         <div>
-          <label htmlFor="rfq-service" className="block text-xs font-medium text-neutral-700 mb-1">
+          <label htmlFor="rfq-service" className="block text-xs font-medium text-ink-2 mb-1">
             Service needed
           </label>
           <select
             id="rfq-service"
             name="serviceType"
-            className="w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-900 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+            className="w-full rounded-md border border-line bg-paper px-3 py-2 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
           >
             <option value="">Select a service…</option>
             {providerServices.map((svc) => (
@@ -187,14 +187,14 @@ export function RequestQuoteForm({ providerSlug, providerServices }: RequestQuot
 
       {/* Message */}
       <div>
-        <label htmlFor="rfq-message" className="block text-xs font-medium text-neutral-700 mb-1">
+        <label htmlFor="rfq-message" className="block text-xs font-medium text-ink-2 mb-1">
           Message
         </label>
         <textarea
           id="rfq-message"
           name="message"
           rows={3}
-          className="w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent resize-none"
+          className="w-full rounded-md border border-line bg-paper px-3 py-2 text-sm text-ink placeholder-ink-faint focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent resize-none"
           placeholder="Describe your compliance project…"
         />
       </div>

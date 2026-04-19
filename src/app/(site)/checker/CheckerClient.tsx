@@ -499,7 +499,7 @@ export function CheckerClient() {
                 )}
               </span>
               <div>
-                <span className={`font-medium ${selected ? "text-brand-900" : "text-neutral-800"}`}>
+                <span className={`font-medium ${selected ? "text-accent-ink" : "text-ink"}`}>
                   {opt.label}
                 </span>
                 {opt.hint && (
@@ -684,7 +684,7 @@ function Results({
                 </div>
                 <Link
                   href={`/regulations/${reg.slug}`}
-                  className="shrink-0 text-xs font-medium text-brand-700 hover:text-brand-900 transition-colors whitespace-nowrap"
+                  className="shrink-0 text-xs font-medium text-accent hover:text-accent-ink transition-colors whitespace-nowrap"
                 >
                   Read guide →
                 </Link>
@@ -748,7 +748,7 @@ function Results({
             type="button"
             onClick={handlePurchase}
             disabled={purchasing}
-            className="inline-flex items-center justify-center gap-2 rounded-lg bg-paper px-5 py-2.5 text-sm font-bold text-brand-900 hover:bg-brand-50 disabled:opacity-60 disabled:cursor-not-allowed transition-colors shadow-sm whitespace-nowrap"
+            className="inline-flex items-center justify-center gap-2 rounded-lg bg-paper px-5 py-2.5 text-sm font-bold text-accent-ink hover:bg-accent-soft disabled:opacity-60 disabled:cursor-not-allowed transition-colors shadow-sm whitespace-nowrap"
           >
             {purchasing ? (
               <>
