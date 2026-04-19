@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
+  (process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com").trim();
 
 const BLOG_SLUGS = [
   "colorado-ai-act-60-day-checklist",

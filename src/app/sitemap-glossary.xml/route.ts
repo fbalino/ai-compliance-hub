@@ -1,7 +1,7 @@
 import { getAllGlossarySlugs } from "@/lib/glossary";
 
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
+  (process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com").trim();
 
 // ISR: revalidate at build (glossary is relatively static)
 export const revalidate = false;
