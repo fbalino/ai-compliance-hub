@@ -327,7 +327,9 @@ export default async function HomePage({
         }
         provMap.get(row.id)!.regs.push(row.regulationSlug);
       }
-      matchedProviders = Array.from(provMap.values());
+      matchedProviders = Array.from(provMap.values())
+        .sort((a, b) => b.regs.length - a.regs.length)
+        .slice(0, 6);
     } else {
       matchedRegs = [];
       matchedProviders = [];

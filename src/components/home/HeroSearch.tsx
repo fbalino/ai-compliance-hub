@@ -36,7 +36,7 @@ export function HeroSearch({
       describeRef.current?.focus();
       return;
     }
-    router.push(`/?route=${encodeURIComponent(d)}#matches`);
+    router.push(`/checker?q=${encodeURIComponent(d)}`);
   }
 
   return (
