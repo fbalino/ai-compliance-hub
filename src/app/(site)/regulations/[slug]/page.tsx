@@ -62,7 +62,7 @@ function StatusDot({ status }: { status: string }) {
 interface TimelineMilestone { date: string; label: string; reached: boolean }
 interface PenaltyTier { tier: string; amount: string; scope: string }
 interface MatchedProvider { name: string; type: string; hq: string; slug: string }
-interface LedgerArticle { kind: string; title: string }
+interface LedgerArticle { kind: string; title: string; slug?: string }
 
 const REG_EXTRAS: Record<string, {
   timeline?: TimelineMilestone[];
@@ -90,9 +90,9 @@ const REG_EXTRAS: Record<string, {
       { name: "ORCAA", type: "Audit", hq: "New York", slug: "orcaa" },
     ],
     articles: [
-      { kind: "Explainer", title: "The GPAI Code of Practice finally drops" },
-      { kind: "Analysis", title: "The high-risk list, annotated" },
-      { kind: "Comparison", title: "AI Act vs UK Safety Bill: overlap mapped" },
+      { kind: "Explainer", title: "The GPAI Code of Practice finally drops", slug: "eu-ai-act-gpai-code-of-practice" },
+      { kind: "Analysis", title: "The high-risk list, annotated", slug: "eu-ai-act-high-risk-list-annotated" },
+      { kind: "Comparison", title: "AI Act vs UK Safety Bill: overlap mapped", slug: "eu-ai-act-vs-uk-ai-safety-bill" },
     ],
     sources: ["Consolidated text (EUR-Lex)", "Annex III \u2014 high-risk list", "GPAI Code of Practice"],
   },
@@ -110,8 +110,8 @@ const REG_EXTRAS: Record<string, {
       { name: "Fairly AI", type: "Software", hq: "Toronto", slug: "fairly-ai" },
     ],
     articles: [
-      { kind: "Brief", title: "Colorado AI: the readiness window opens" },
-      { kind: "Explainer", title: "Impact assessment under SB 24-205, step by step" },
+      { kind: "Brief", title: "Colorado AI: the readiness window opens", slug: "colorado-ai-readiness-window" },
+      { kind: "Explainer", title: "Impact assessment under SB 24-205, step by step", slug: "colorado-ai-act-impact-assessment" },
     ],
     sources: ["SB 24-205 full text (Colorado Legislature)", "Attorney General guidance"],
   },
@@ -128,7 +128,7 @@ const REG_EXTRAS: Record<string, {
       { name: "ORCAA", type: "Audit", hq: "New York", slug: "orcaa" },
     ],
     articles: [
-      { kind: "Q&A", title: "The NYC-144 bias audit, walked step-by-step" },
+      { kind: "Q&A", title: "The NYC-144 bias audit, walked step-by-step", slug: "nyc-ll-144-bias-audit-walkthrough" },
     ],
     sources: ["Local Law 144 (NYC Council)", "DCWP Final Rules"],
   },
@@ -144,7 +144,7 @@ const REG_EXTRAS: Record<string, {
       { name: "Credo AI", type: "Software", hq: "San Francisco", slug: "credo-ai" },
     ],
     articles: [
-      { kind: "Brief", title: "California AB 2013: training data disclosure requirements" },
+      { kind: "Brief", title: "California AB 2013: training data disclosure requirements", slug: "california-ab-2013-training-data" },
     ],
     sources: ["AB 2013 full text (California Legislature)"],
   },
@@ -160,7 +160,7 @@ const REG_EXTRAS: Record<string, {
       { name: "BABL AI", type: "Audit", hq: "New York", slug: "babl-ai" },
     ],
     articles: [
-      { kind: "Explainer", title: "AIVIRA obligations for employers: the practical guide" },
+      { kind: "Explainer", title: "AIVIRA obligations for employers: the practical guide", slug: "illinois-aivira-employer-guide" },
     ],
     sources: ["HB 2557 (Illinois Legislature)"],
   },
@@ -179,8 +179,8 @@ const REG_EXTRAS: Record<string, {
       { name: "OneTrust", type: "Software", hq: "Atlanta", slug: "onetrust-ai" },
     ],
     articles: [
-      { kind: "Analysis", title: "BIPA class actions in 2025" },
-      { kind: "Explainer", title: "The biometric patchwork, mapped" },
+      { kind: "Analysis", title: "BIPA class actions in 2025", slug: "illinois-bipa-class-actions-2025" },
+      { kind: "Explainer", title: "The biometric patchwork, mapped", slug: "biometric-privacy-law-patchwork" },
     ],
     sources: ["740 ILCS 14 (Illinois Legislature)", "Cothron v. White Castle (2023)"],
   },
@@ -198,8 +198,8 @@ const REG_EXTRAS: Record<string, {
       { name: "Fieldfisher", type: "Legal", hq: "London / Brussels", slug: "fieldfisher-ai" },
     ],
     articles: [
-      { kind: "Comparison", title: "GDPR vs EU AI Act: where the rules overlap" },
-      { kind: "Analysis", title: "Clearview AI fines across Europe" },
+      { kind: "Comparison", title: "GDPR vs EU AI Act: where the rules overlap", slug: "gdpr-vs-eu-ai-act" },
+      { kind: "Analysis", title: "Clearview AI fines across Europe", slug: "clearview-ai-gdpr-fines" },
     ],
     sources: ["Regulation (EU) 2016/679 (EUR-Lex)", "EDPB Guidelines on Automated Decision-Making"],
   },
@@ -218,8 +218,8 @@ const REG_EXTRAS: Record<string, {
       { name: "OneTrust", type: "Software", hq: "Atlanta", slug: "onetrust-ai" },
     ],
     articles: [
-      { kind: "Analysis", title: "Texas AG vs Meta: the $1.4B biometric settlement" },
-      { kind: "Comparison", title: "BIPA vs CUBI: two biometric laws, two enforcement models" },
+      { kind: "Analysis", title: "Texas AG vs Meta: the $1.4B biometric settlement", slug: "texas-ag-meta-biometric-settlement" },
+      { kind: "Comparison", title: "BIPA vs CUBI: two biometric laws, two enforcement models", slug: "bipa-vs-cubi-comparison" },
     ],
     sources: ["Texas Business & Commerce Code Chapter 503", "TX AG v. Meta Platforms (2022)"],
   },
@@ -241,9 +241,9 @@ const REG_EXTRAS: Record<string, {
       { name: "BABL AI", type: "Audit", hq: "New York", slug: "babl-ai" },
     ],
     articles: [
-      { kind: "Comparison", title: "NIST AI RMF vs ISO 42001: which framework fits?" },
-      { kind: "Explainer", title: "The four core functions, walked step-by-step" },
-      { kind: "Brief", title: "Colorado safe harbor and what NIST alignment means in practice" },
+      { kind: "Comparison", title: "NIST AI RMF vs ISO 42001: which framework fits?", slug: "nist-ai-rmf-vs-iso-42001" },
+      { kind: "Explainer", title: "The four core functions, walked step-by-step", slug: "nist-ai-rmf-four-functions-explained" },
+      { kind: "Brief", title: "Colorado safe harbor and what NIST alignment means in practice", slug: "nist-ai-rmf-colorado-safe-harbor" },
     ],
     sources: ["NIST AI 100-1 (AI RMF 1.0)", "NIST AI 600-1 (Generative AI Profile)", "NIST AI RMF Playbook", "Executive Order 14110"],
   },
@@ -265,9 +265,9 @@ const REG_EXTRAS: Record<string, {
       { name: "BABL AI", type: "Audit", hq: "New York", slug: "babl-ai" },
     ],
     articles: [
-      { kind: "Comparison", title: "NIST AI RMF vs ISO 42001: which framework fits?" },
-      { kind: "Explainer", title: "ISO 42001 certification: what to expect from the audit" },
-      { kind: "Brief", title: "How ISO 42001 aligns with the EU AI Act" },
+      { kind: "Comparison", title: "NIST AI RMF vs ISO 42001: which framework fits?", slug: "nist-ai-rmf-vs-iso-42001" },
+      { kind: "Explainer", title: "ISO 42001 certification: what to expect from the audit", slug: "iso-42001-certification-guide" },
+      { kind: "Brief", title: "How ISO 42001 aligns with the EU AI Act", slug: "iso-42001-eu-ai-act-alignment" },
     ],
     sources: ["ISO/IEC 42001:2023 (ISO)", "ISO/IEC 23894:2023 (AI risk management)", "ISO/IEC 42006 (certification body requirements)", "EU AI Act harmonization roadmap"],
   },
@@ -291,9 +291,9 @@ const REG_EXTRAS: Record<string, {
       { name: "Holistic AI", type: "Governance", hq: "London / New York", slug: "holistic-ai" },
     ],
     articles: [
-      { kind: "Explainer", title: "CCPA ADMT: what the final rules mean for AI teams" },
-      { kind: "Comparison", title: "CCPA ADMT vs NYC LL 144: two models for automated decision regulation" },
-      { kind: "Brief", title: "The human-in-the-loop test under California's ADMT rules" },
+      { kind: "Explainer", title: "CCPA ADMT: what the final rules mean for AI teams", slug: "ccpa-admt-ai-teams" },
+      { kind: "Comparison", title: "CCPA ADMT vs NYC LL 144: two models for automated decision regulation", slug: "ccpa-admt-vs-nyc-ll-144" },
+      { kind: "Brief", title: "The human-in-the-loop test under California's ADMT rules", slug: "ccpa-admt-human-in-the-loop" },
     ],
     sources: ["CCPA (Cal. Civ. Code §1798.100 et seq.)", "CPRA ballot initiative (2020)", "CPPA ADMT Final Regulations (2025)", "CPPA Board Meeting Materials — ADMT Rulemaking"],
   },
@@ -471,7 +471,7 @@ export default async function RegulationPage({ params }: Props) {
               <div className="eyebrow" style={{ marginBottom: 12 }}>&sect; Also in The Ledger</div>
               <div className="col" style={{ gap: 8 }}>
                 {extras.articles.map((a) => (
-                  <Link key={a.title} href="/blog" style={{ textDecoration: "none" }}>
+                  <Link key={a.title} href={a.slug ? `/blog/${a.slug}` : "/blog"} style={{ textDecoration: "none" }}>
                     <div className="card" style={{ padding: 14 }}>
                       <div className="eyebrow" style={{ marginBottom: 4, color: "var(--accent)" }}>{"\u25b8"} {a.kind}</div>
                       <div className="h4">{a.title}</div>
