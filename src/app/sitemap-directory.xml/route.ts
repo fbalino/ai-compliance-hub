@@ -16,6 +16,7 @@ export async function GET() {
 
   const paths = [
     "/directory",
+    "/directory/categories",
     ...categoryRows.map((c) => `/directory/categories/${c.slug}`),
     ...providerRows.map((p) => `/directory/providers/${p.slug}`),
   ];
@@ -26,7 +27,7 @@ export async function GET() {
   <url>
     <loc>${SITE_URL}${path}</loc>
     <changefreq>weekly</changefreq>
-    <priority>${path === "/directory" ? "0.8" : path.includes("/categories/") ? "0.7" : "0.6"}</priority>
+    <priority>${path === "/directory" ? "0.8" : path === "/directory/categories" ? "0.7" : path.includes("/categories/") ? "0.7" : "0.6"}</priority>
   </url>`
     )
     .join("");
