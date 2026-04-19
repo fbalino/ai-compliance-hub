@@ -570,7 +570,7 @@ export default async function RegulationPage({ params }: Props) {
           <div className="card" style={{ padding: 16, background: "var(--paper-2)" }}>
             <div className="eyebrow" style={{ marginBottom: 8 }}>Can&rsquo;t find a fit?</div>
             <p className="small" style={{ marginBottom: 12 }}>Post an RFP &mdash; get 3&ndash;5 quotes in 48h.</p>
-            <Link href="/join" className="btn btn-accent btn-sm w-full" style={{ textAlign: "center" }}>Post RFP &rarr;</Link>
+            <Link href="/rfp" className="btn btn-accent btn-sm w-full" style={{ textAlign: "center" }}>Post RFP &rarr;</Link>
           </div>
 
           <div style={{ paddingTop: 16 }}>

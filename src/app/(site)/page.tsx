@@ -617,7 +617,7 @@ export default async function HomePage({
               <p className="small" style={{ marginBottom: 16 }}>
                 Describe your need once. Get 3–5 quotes in 48 hours from relevant providers.
               </p>
-              <Link href="/join" className="btn btn-accent w-full" style={{ textAlign: "center" }}>Post an RFP →</Link>
+              <Link href="/rfp" className="btn btn-accent w-full" style={{ textAlign: "center" }}>Post an RFP →</Link>
             </div>
           </aside>
         </div>
