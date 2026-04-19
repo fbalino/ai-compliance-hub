@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export interface RegulationItem {
@@ -51,7 +52,8 @@ function StatusDot({ status }: { status: string }) {
 }
 
 export function RegulationsFilterClient({ regulations }: Props) {
-  const [statuses, setStatuses] = useState<Set<string>>(new Set(["active", "pending", "proposed"]));
+  const router = useRouter();
+  const [statuses, setStatuses] = useState<Set<string>>(new Set());
   const [jurisdictions, setJurisdictions] = useState<Set<string>>(new Set());
   const [sort, setSort] = useState("newest");
   const [showSortMenu, setShowSortMenu] = useState(false);
@@ -84,7 +86,7 @@ export function RegulationsFilterClient({ regulations }: Props) {
   };
 
   const clearAll = () => {
-    setStatuses(new Set(["active", "pending", "proposed"]));
+    setStatuses(new Set());
     setJurisdictions(new Set());
   };
 
@@ -248,24 +250,16 @@ export function RegulationsFilterClient({ regulations }: Props) {
                   </thead>
                   <tbody>
                     {main.map((reg) => (
-                      <tr key={reg.slug ?? reg.name}>
+                      <tr
+                        key={reg.slug ?? reg.name}
+                        style={reg.slug ? { cursor: "pointer" } : undefined}
+                        onClick={reg.slug ? () => router.push(`/regulations/${reg.slug}`) : undefined}
+                      >
                         <td style={{ width: 110 }}>
-                          {reg.slug ? (
-                            <Link href={`/regulations/${reg.slug}`}>
-                              <span className="chip chip-code">{reg.code ?? reg.shortName ?? "—"}</span>
-                            </Link>
-                          ) : (
-                            <span className="chip chip-code">{reg.code ?? reg.shortName ?? "—"}</span>
-                          )}
+                          <span className="chip chip-code">{reg.code ?? reg.shortName ?? "—"}</span>
                         </td>
                         <td>
-                          {reg.slug ? (
-                            <Link href={`/regulations/${reg.slug}`} className="h4" style={{ fontSize: 15 }}>
-                              {reg.name}
-                            </Link>
-                          ) : (
-                            <span className="h4" style={{ fontSize: 15 }}>{reg.name}</span>
-                          )}
+                          <span className="h4" style={{ fontSize: 15 }}>{reg.name}</span>
                           {reg.topics && reg.topics.length > 0 && (
                             <div className="tag-strip" style={{ marginTop: 6 }}>
                               {reg.topics.map((t) => (
@@ -295,35 +289,30 @@ export function RegulationsFilterClient({ regulations }: Props) {
                 <div className="table-scroll">
                 <table className="data">
                   <tbody>
-                    {upcoming.map((reg) => {
-                      const inner = (
-                        <tr key={reg.name} style={{ opacity: reg.slug ? 1 : 0.7 }}>
-                          <td style={{ width: 110 }}>
-                            <span className="chip chip-code">{reg.code ?? reg.shortName ?? "—"}</span>
-                          </td>
-                          <td>
-                            <div className="h4" style={{ fontSize: 15 }}>{reg.name}</div>
-                            {reg.topics && reg.topics.length > 0 && (
-                              <div className="tag-strip" style={{ marginTop: 6 }}>
-                                {reg.topics.map((t) => (
-                                  <span key={t} className="chip" style={{ fontSize: 11 }}>{t}</span>
-                                ))}
-                              </div>
-                            )}
-                          </td>
-                          <td className="small">{reg.jurisdiction}</td>
-                          <td className="mono xs">{reg.effectiveDate}</td>
-                          <td><StatusDot status={reg.status} /></td>
-                        </tr>
-                      );
-                      return reg.slug ? (
-                        <Link key={reg.name} href={`/regulations/${reg.slug}`} style={{ display: "contents" }}>
-                          {inner}
-                        </Link>
-                      ) : (
-                        inner
-                      );
-                    })}
+                    {upcoming.map((reg) => (
+                      <tr
+                        key={reg.name}
+                        style={{ opacity: reg.slug ? 1 : 0.7, cursor: reg.slug ? "pointer" : undefined }}
+                        onClick={reg.slug ? () => router.push(`/regulations/${reg.slug}`) : undefined}
+                      >
+                        <td style={{ width: 110 }}>
+                          <span className="chip chip-code">{reg.code ?? reg.shortName ?? "—"}</span>
+                        </td>
+                        <td>
+                          <div className="h4" style={{ fontSize: 15 }}>{reg.name}</div>
+                          {reg.topics && reg.topics.length > 0 && (
+                            <div className="tag-strip" style={{ marginTop: 6 }}>
+                              {reg.topics.map((t) => (
+                                <span key={t} className="chip" style={{ fontSize: 11 }}>{t}</span>
+                              ))}
+                            </div>
+                          )}
+                        </td>
+                        <td className="small">{reg.jurisdiction}</td>
+                        <td className="mono xs">{reg.effectiveDate}</td>
+                        <td><StatusDot status={reg.status} /></td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
                 </div>
