@@ -238,7 +238,7 @@ export default async function ProvidersPage() {
                 <div className="h3" style={{ margin: 0 }}>Your Firm Name</div>
                 <div className="xs" style={{ color: "var(--ink-2)" }}>Advisory &middot; Audit &middot; New York, NY</div>
               </div>
-              <span className="feature-flag">&star; Featured</span>
+              <span className="feature-flag">★ Featured</span>
             </div>
             <p className="small" style={{ color: "var(--ink-2)", lineHeight: 1.6, marginBottom: 14 }}>
               Your tagline and description appear here. Buyers see your expertise at a glance alongside the regulation they&apos;re researching.
@@ -290,7 +290,7 @@ export default async function ProvidersPage() {
           <div className="card card-feature" style={{ padding: 32, border: "2px solid var(--accent)" }}>
             <div className="flex between items-center" style={{ marginBottom: 8 }}>
               <div className="eyebrow">Featured</div>
-              <span className="feature-flag">&star; Popular</span>
+              <span className="feature-flag">★ Popular</span>
             </div>
             <div className="serif" style={{ fontSize: 48, fontWeight: 500, lineHeight: 1, marginBottom: 4 }}>Custom</div>
             <div className="xs soft" style={{ marginBottom: 24 }}>pricing based on coverage scope</div>
