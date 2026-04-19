@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Search, Menu, X } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const NAV_LINKS = [
   { label: "Regulations", href: "/regulations" },
@@ -59,6 +60,8 @@ export function Header() {
           Free Checker
         </Link>
       </div>
+
+      <ThemeToggle />
 
       <button
         type="button"

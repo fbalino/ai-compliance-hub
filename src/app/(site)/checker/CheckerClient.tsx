@@ -415,7 +415,7 @@ export function CheckerClient() {
   if (loading) {
     return (
       <div className="mx-auto max-w-2xl text-center py-16">
-        <div className="inline-flex items-center gap-3 text-neutral-600">
+        <div className="inline-flex items-center gap-3 text-ink-soft">
           <svg
             className="h-5 w-5 animate-spin"
             fill="none"
@@ -446,7 +446,7 @@ export function CheckerClient() {
     <div className="mx-auto max-w-2xl">
       {/* Progress */}
       <div className="mb-8">
-        <div className="flex items-center justify-between text-sm text-neutral-500 mb-2">
+        <div className="flex items-center justify-between text-sm text-ink-faint mb-2">
           <span>Question {step + 1} of {QUESTIONS.length}</span>
           <span>{Math.round(((step + 1) / QUESTIONS.length) * 100)}% complete</span>
         </div>
@@ -464,9 +464,9 @@ export function CheckerClient() {
 
       {/* Question */}
       <div className="mb-6">
-        <h2 className="text-xl font-bold text-neutral-900">{question.text}</h2>
+        <h2 className="text-xl font-bold text-ink">{question.text}</h2>
         {question.subtext && (
-          <p className="mt-1.5 text-sm text-neutral-500">{question.subtext}</p>
+          <p className="mt-1.5 text-sm text-ink-faint">{question.subtext}</p>
         )}
       </div>
 
@@ -482,14 +482,14 @@ export function CheckerClient() {
               className={`w-full flex items-start gap-3 rounded-xl border-2 p-4 text-left transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-700 focus-visible:outline-offset-2 ${
                 selected
                   ? "border-brand-600 bg-brand-50 shadow-sm"
-                  : "border-neutral-200 bg-white hover:border-brand-300 hover:bg-neutral-50"
+                  : "border-line bg-paper hover:border-brand-300 hover:bg-paper-2"
               }`}
             >
               <span
                 className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-${question.multi ? "md" : "full"} border-2 transition-colors ${
                   selected
                     ? "border-brand-600 bg-brand-600"
-                    : "border-neutral-300"
+                    : "border-line-2"
                 }`}
               >
                 {selected && (
@@ -503,7 +503,7 @@ export function CheckerClient() {
                   {opt.label}
                 </span>
                 {opt.hint && (
-                  <span className={`block text-sm ${selected ? "text-brand-700" : "text-neutral-500"}`}>
+                  <span className={`block text-sm ${selected ? "text-brand-700" : "text-ink-faint"}`}>
                     {opt.hint}
                   </span>
                 )}
@@ -519,7 +519,7 @@ export function CheckerClient() {
           type="button"
           onClick={back}
           disabled={step === 0}
-          className="px-4 py-2 text-sm font-medium text-neutral-600 hover:text-neutral-900 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+          className="px-4 py-2 text-sm font-medium text-ink-soft hover:text-ink disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
         >
           ← Back
         </button>
@@ -622,14 +622,14 @@ function Results({
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
         </div>
-        <h2 className="text-2xl font-bold text-neutral-900">Low Regulatory Exposure</h2>
-        <p className="mt-3 text-neutral-600 leading-relaxed max-w-md mx-auto">
+        <h2 className="text-2xl font-bold text-ink">Low Regulatory Exposure</h2>
+        <p className="mt-3 text-ink-soft leading-relaxed max-w-md mx-auto">
           Based on your answers, no specific AI regulations currently appear to apply to your organization. This may change as you adopt AI or as new laws are enacted.
         </p>
         <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
           <Link
             href="/regulations"
-            className="inline-flex items-center justify-center rounded-lg border border-neutral-300 bg-white px-5 py-2.5 text-sm font-medium text-neutral-700 hover:bg-neutral-50 transition-colors"
+            className="inline-flex items-center justify-center rounded-lg border border-line-2 bg-paper px-5 py-2.5 text-sm font-medium text-ink-2 hover:bg-paper-2 transition-colors"
           >
             Browse All Regulations
           </Link>
@@ -641,7 +641,7 @@ function Results({
             Start Over
           </button>
         </div>
-        <p className="mt-6 text-xs text-neutral-500">
+        <p className="mt-6 text-xs text-ink-faint">
           Not legal advice. This tool is for informational purposes only. Consult a qualified attorney for compliance decisions.
         </p>
       </div>
@@ -656,8 +656,8 @@ function Results({
             {results.length} regulation{results.length > 1 ? "s" : ""} likely apply
           </span>
         </div>
-        <h2 className="text-2xl font-bold text-neutral-900">Your Compliance Results</h2>
-        <p className="mt-1.5 text-neutral-600">
+        <h2 className="text-2xl font-bold text-ink">Your Compliance Results</h2>
+        <p className="mt-1.5 text-ink-soft">
           Based on your answers, here are the AI regulations your organization needs to address.
         </p>
       </div>
@@ -677,10 +677,10 @@ function Results({
                       <span className={`h-1.5 w-1.5 rounded-full ${cfg.dot}`} />
                       {cfg.label}
                     </span>
-                    <span className="text-xs text-neutral-500">{reg.jurisdiction}</span>
+                    <span className="text-xs text-ink-faint">{reg.jurisdiction}</span>
                   </div>
-                  <h3 className="font-bold text-neutral-900">{reg.name}</h3>
-                  <p className="text-xs text-neutral-500">{reg.effectiveDate}</p>
+                  <h3 className="font-bold text-ink">{reg.name}</h3>
+                  <p className="text-xs text-ink-faint">{reg.effectiveDate}</p>
                 </div>
                 <Link
                   href={`/regulations/${reg.slug}`}
@@ -690,17 +690,17 @@ function Results({
                 </Link>
               </div>
 
-              <p className="text-sm text-neutral-700 leading-relaxed mb-4">
+              <p className="text-sm text-ink-2 leading-relaxed mb-4">
                 {reg.reason}
               </p>
 
               <div>
-                <p className="text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-2">
+                <p className="text-xs font-semibold uppercase tracking-wider text-ink-faint mb-2">
                   Required Actions
                 </p>
                 <ul className="space-y-1.5">
                   {reg.actions.map((action, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-neutral-700">
+                    <li key={i} className="flex items-start gap-2 text-sm text-ink-2">
                       <span className="mt-1 h-1.5 w-1.5 rounded-full bg-neutral-400 shrink-0" />
                       {action}
                     </li>
@@ -713,9 +713,9 @@ function Results({
       </div>
 
       {/* Newsletter signup */}
-      <div className="mt-6 rounded-xl border border-neutral-200 bg-neutral-50 p-5">
-        <h3 className="font-semibold text-neutral-900">Get weekly compliance updates</h3>
-        <p className="mt-1 text-sm text-neutral-600">
+      <div className="mt-6 rounded-xl border border-line bg-paper-2 p-5">
+        <h3 className="font-semibold text-ink">Get weekly compliance updates</h3>
+        <p className="mt-1 text-sm text-ink-soft">
           New regulations, enforcement actions, and deadlines — delivered every Monday, free.
         </p>
         <NewsletterForm source="checker_results" className="mt-3" />
@@ -748,7 +748,7 @@ function Results({
             type="button"
             onClick={handlePurchase}
             disabled={purchasing}
-            className="inline-flex items-center justify-center gap-2 rounded-lg bg-white px-5 py-2.5 text-sm font-bold text-brand-900 hover:bg-brand-50 disabled:opacity-60 disabled:cursor-not-allowed transition-colors shadow-sm whitespace-nowrap"
+            className="inline-flex items-center justify-center gap-2 rounded-lg bg-paper px-5 py-2.5 text-sm font-bold text-brand-900 hover:bg-brand-50 disabled:opacity-60 disabled:cursor-not-allowed transition-colors shadow-sm whitespace-nowrap"
           >
             {purchasing ? (
               <>
@@ -772,9 +772,9 @@ function Results({
       </div>
 
       {/* Next steps */}
-      <div className="mt-5 rounded-xl bg-white border border-neutral-200 p-5">
-        <h3 className="font-bold text-neutral-900 mb-1">Need help with compliance?</h3>
-        <p className="text-sm text-neutral-600 mb-4">
+      <div className="mt-5 rounded-xl bg-paper border border-line p-5">
+        <h3 className="font-bold text-ink mb-1">Need help with compliance?</h3>
+        <p className="text-sm text-ink-soft mb-4">
           Browse verified auditors, consultants, and software platforms that specialize in these regulations.
         </p>
         <div className="flex flex-wrap gap-3">
@@ -787,21 +787,21 @@ function Results({
           <button
             type="button"
             onClick={onReset}
-            className="inline-flex items-center rounded-lg border border-neutral-300 bg-white px-4 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-50 transition-colors"
+            className="inline-flex items-center rounded-lg border border-line-2 bg-paper px-4 py-2 text-sm font-medium text-ink-2 hover:bg-paper-2 transition-colors"
           >
             Start Over
           </button>
           <button
             type="button"
             onClick={onBack}
-            className="inline-flex items-center rounded-lg px-4 py-2 text-sm font-medium text-neutral-600 hover:text-neutral-900 transition-colors"
+            className="inline-flex items-center rounded-lg px-4 py-2 text-sm font-medium text-ink-soft hover:text-ink transition-colors"
           >
             ← Edit Answers
           </button>
         </div>
       </div>
 
-      <p className="mt-5 text-xs text-neutral-500 leading-relaxed">
+      <p className="mt-5 text-xs text-ink-faint leading-relaxed">
         <strong>Not legal advice.</strong> This tool is for informational purposes only and does not constitute legal, compliance, or professional advice. Regulations change frequently. Always consult a qualified attorney or compliance professional before making compliance decisions.
       </p>
     </div>
