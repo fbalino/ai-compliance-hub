@@ -292,8 +292,8 @@ export default async function ProvidersPage() {
               <div className="eyebrow">Featured</div>
               <span className="feature-flag">★ Popular</span>
             </div>
-            <div className="serif" style={{ fontSize: 48, fontWeight: 500, lineHeight: 1, marginBottom: 4 }}>Custom</div>
-            <div className="xs soft" style={{ marginBottom: 24 }}>pricing based on coverage scope</div>
+            <div className="serif" style={{ fontSize: 48, fontWeight: 500, lineHeight: 1, marginBottom: 4 }}>$490<span className="small" style={{ fontFamily: "var(--font-sans)", fontWeight: 400 }}>/mo</span></div>
+            <div className="xs soft" style={{ marginBottom: 24 }}>maximum &middot; scales with coverage scope</div>
             <div className="col" style={{ gap: 12 }}>
               {FEATURED_EXTRAS.map((f) => (
                 <div key={f} className="flex" style={{ gap: 10, alignItems: "flex-start" }}>
