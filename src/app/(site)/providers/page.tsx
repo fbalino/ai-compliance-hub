@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import { db } from "@/db";
 import { providers } from "@/db/schema";
@@ -148,9 +147,7 @@ export default async function ProvidersPage() {
       {/* HERO */}
       <section className="hero-bg" style={{ borderBottom: "1px solid var(--line)" }}>
         <div className="container" style={{ paddingTop: 56, paddingBottom: 56, textAlign: "center" }}>
-          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "For Providers" }]} />
-
-          <div className="eyebrow" style={{ marginTop: 24, marginBottom: 12 }}>For providers</div>
+          <div className="eyebrow" style={{ marginBottom: 12 }}>For providers</div>
           <h1
             className="display v4-rise"
             style={{ maxWidth: 800, margin: "0 auto" }}
