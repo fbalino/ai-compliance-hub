@@ -63,13 +63,14 @@ interface TimelineMilestone { date: string; label: string; reached: boolean }
 interface PenaltyTier { tier: string; amount: string; scope: string }
 interface MatchedProvider { name: string; type: string; hq: string; slug: string }
 interface LedgerArticle { kind: string; title: string; slug?: string }
+interface SourceDocument { label: string; url: string }
 
 const REG_EXTRAS: Record<string, {
   timeline?: TimelineMilestone[];
   penalties?: PenaltyTier[];
   providers?: MatchedProvider[];
   articles?: LedgerArticle[];
-  sources?: string[];
+  sources?: SourceDocument[];
 }> = {
   "eu-ai-act": {
     timeline: [
@@ -94,7 +95,11 @@ const REG_EXTRAS: Record<string, {
       { kind: "Analysis", title: "The high-risk list, annotated", slug: "eu-ai-act-high-risk-list-annotated" },
       { kind: "Comparison", title: "AI Act vs UK Safety Bill: overlap mapped", slug: "eu-ai-act-vs-uk-ai-safety-bill" },
     ],
-    sources: ["Consolidated text (EUR-Lex)", "Annex III \u2014 high-risk list", "GPAI Code of Practice"],
+    sources: [
+      { label: "Consolidated text (EUR-Lex)", url: "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689" },
+      { label: "Annex III \u2014 high-risk list", url: "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689#anx_III" },
+      { label: "GPAI Code of Practice", url: "https://digital-strategy.ec.europa.eu/en/library/general-purpose-ai-code-practice" },
+    ],
   },
   "colorado-ai-act": {
     timeline: [
@@ -113,7 +118,10 @@ const REG_EXTRAS: Record<string, {
       { kind: "Brief", title: "Colorado AI: the readiness window opens", slug: "colorado-ai-readiness-window" },
       { kind: "Explainer", title: "Impact assessment under SB 24-205, step by step", slug: "colorado-ai-act-impact-assessment" },
     ],
-    sources: ["SB 24-205 full text (Colorado Legislature)", "Attorney General guidance"],
+    sources: [
+      { label: "SB 24-205 full text (Colorado Legislature)", url: "https://leg.colorado.gov/bills/sb24-205" },
+      { label: "Attorney General guidance", url: "https://coag.gov/resources/colorado-artificial-intelligence-act/" },
+    ],
   },
   "nyc-local-law-144": {
     timeline: [
@@ -130,7 +138,10 @@ const REG_EXTRAS: Record<string, {
     articles: [
       { kind: "Q&A", title: "The NYC-144 bias audit, walked step-by-step", slug: "nyc-ll-144-bias-audit-walkthrough" },
     ],
-    sources: ["Local Law 144 (NYC Council)", "DCWP Final Rules"],
+    sources: [
+      { label: "Local Law 144 (NYC Council)", url: "https://www.nyc.gov/site/dca/about/automated-employment-decision-tools.page" },
+      { label: "DCWP Final Rules", url: "https://rules.cityofnewyork.us/rule/automated-employment-decision-tools-background/" },
+    ],
   },
   "california-ab-2013": {
     timeline: [
@@ -146,7 +157,9 @@ const REG_EXTRAS: Record<string, {
     articles: [
       { kind: "Brief", title: "California AB 2013: training data disclosure requirements", slug: "california-ab-2013-training-data" },
     ],
-    sources: ["AB 2013 full text (California Legislature)"],
+    sources: [
+      { label: "AB 2013 full text (California Legislature)", url: "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240AB2013" },
+    ],
   },
   "illinois-ai-video-interview-act": {
     timeline: [
@@ -162,7 +175,9 @@ const REG_EXTRAS: Record<string, {
     articles: [
       { kind: "Explainer", title: "AIVIRA obligations for employers: the practical guide", slug: "illinois-aivira-employer-guide" },
     ],
-    sources: ["HB 2557 (Illinois Legislature)"],
+    sources: [
+      { label: "HB 2557 (Illinois Legislature)", url: "https://www.ilga.gov/legislation/publicacts/101/PDF/101-0260.pdf" },
+    ],
   },
   "illinois-bipa": {
     timeline: [
@@ -182,7 +197,10 @@ const REG_EXTRAS: Record<string, {
       { kind: "Analysis", title: "BIPA class actions in 2025", slug: "illinois-bipa-class-actions-2025" },
       { kind: "Explainer", title: "The biometric patchwork, mapped", slug: "biometric-privacy-law-patchwork" },
     ],
-    sources: ["740 ILCS 14 (Illinois Legislature)", "Cothron v. White Castle (2023)"],
+    sources: [
+      { label: "740 ILCS 14 (Illinois Legislature)", url: "https://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=3004" },
+      { label: "Cothron v. White Castle (2023)", url: "https://courts.illinois.gov/Opinions/SupremeCourt/2023/129200.pdf" },
+    ],
   },
   "gdpr": {
     timeline: [
@@ -201,7 +219,10 @@ const REG_EXTRAS: Record<string, {
       { kind: "Comparison", title: "GDPR vs EU AI Act: where the rules overlap", slug: "gdpr-vs-eu-ai-act" },
       { kind: "Analysis", title: "Clearview AI fines across Europe", slug: "clearview-ai-gdpr-fines" },
     ],
-    sources: ["Regulation (EU) 2016/679 (EUR-Lex)", "EDPB Guidelines on Automated Decision-Making"],
+    sources: [
+      { label: "Regulation (EU) 2016/679 (EUR-Lex)", url: "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32016R0679" },
+      { label: "EDPB Guidelines on Automated Decision-Making", url: "https://www.edpb.europa.eu/our-work-tools/our-documents/guidelines/guidelines-automated-individual-decision-making-and-profiling_en" },
+    ],
   },
   "texas-cubi": {
     timeline: [
@@ -221,7 +242,10 @@ const REG_EXTRAS: Record<string, {
       { kind: "Analysis", title: "Texas AG vs Meta: the $1.4B biometric settlement", slug: "texas-ag-meta-biometric-settlement" },
       { kind: "Comparison", title: "BIPA vs CUBI: two biometric laws, two enforcement models", slug: "bipa-vs-cubi-comparison" },
     ],
-    sources: ["Texas Business & Commerce Code Chapter 503", "TX AG v. Meta Platforms (2022)"],
+    sources: [
+      { label: "Texas Business & Commerce Code Chapter 503", url: "https://statutes.capitol.texas.gov/Docs/BC/htm/BC.503.htm" },
+      { label: "TX AG v. Meta Platforms (2022)", url: "https://www.texasattorneygeneral.gov/news/releases/attorney-general-ken-paxton-sues-meta-its-illegal-capture-and-use-biometric-data-tens-millions" },
+    ],
   },
   "nist-ai-rmf": {
     timeline: [
@@ -245,7 +269,12 @@ const REG_EXTRAS: Record<string, {
       { kind: "Explainer", title: "The four core functions, walked step-by-step", slug: "nist-ai-rmf-four-functions-explained" },
       { kind: "Brief", title: "Colorado safe harbor and what NIST alignment means in practice", slug: "nist-ai-rmf-colorado-safe-harbor" },
     ],
-    sources: ["NIST AI 100-1 (AI RMF 1.0)", "NIST AI 600-1 (Generative AI Profile)", "NIST AI RMF Playbook", "Executive Order 14110"],
+    sources: [
+      { label: "NIST AI 100-1 (AI RMF 1.0)", url: "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf" },
+      { label: "NIST AI 600-1 (Generative AI Profile)", url: "https://airc.nist.gov/Docs/1" },
+      { label: "NIST AI RMF Playbook", url: "https://airc.nist.gov/AI_RMF_Playbook" },
+      { label: "Executive Order 14110", url: "https://www.federalregister.gov/documents/2023/11/01/2023-24283/safe-secure-and-trustworthy-development-and-use-of-artificial-intelligence" },
+    ],
   },
   "iso-42001": {
     timeline: [
@@ -269,7 +298,12 @@ const REG_EXTRAS: Record<string, {
       { kind: "Explainer", title: "ISO 42001 certification: what to expect from the audit", slug: "iso-42001-certification-guide" },
       { kind: "Brief", title: "How ISO 42001 aligns with the EU AI Act", slug: "iso-42001-eu-ai-act-alignment" },
     ],
-    sources: ["ISO/IEC 42001:2023 (ISO)", "ISO/IEC 23894:2023 (AI risk management)", "ISO/IEC 42006 (certification body requirements)", "EU AI Act harmonization roadmap"],
+    sources: [
+      { label: "ISO/IEC 42001:2023 (ISO)", url: "https://www.iso.org/standard/81230.html" },
+      { label: "ISO/IEC 23894:2023 (AI risk management)", url: "https://www.iso.org/standard/77304.html" },
+      { label: "ISO/IEC 42006 (certification body requirements)", url: "https://www.iso.org/standard/44546.html" },
+      { label: "EU AI Act harmonization roadmap", url: "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" },
+    ],
   },
   "ccpa-admt": {
     timeline: [
@@ -295,7 +329,12 @@ const REG_EXTRAS: Record<string, {
       { kind: "Comparison", title: "CCPA ADMT vs NYC LL 144: two models for automated decision regulation", slug: "ccpa-admt-vs-nyc-ll-144" },
       { kind: "Brief", title: "The human-in-the-loop test under California's ADMT rules", slug: "ccpa-admt-human-in-the-loop" },
     ],
-    sources: ["CCPA (Cal. Civ. Code §1798.100 et seq.)", "CPRA ballot initiative (2020)", "CPPA ADMT Final Regulations (2025)", "CPPA Board Meeting Materials — ADMT Rulemaking"],
+    sources: [
+      { label: "CCPA (Cal. Civ. Code §1798.100 et seq.)", url: "https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?division=3.&part=4.&lawCode=CIV&title=1.81.5" },
+      { label: "CPRA ballot initiative (2020)", url: "https://vig.cdn.sos.ca.gov/2020/general/pdf/topl-prop24.pdf" },
+      { label: "CPPA ADMT Final Regulations (2025)", url: "https://cppa.ca.gov/regulations/admt.html" },
+      { label: "CPPA Board Meeting Materials \u2014 ADMT Rulemaking", url: "https://cppa.ca.gov/meetings/materials/" },
+    ],
   },
 };
 
@@ -453,13 +492,15 @@ export default async function RegulationPage({ params }: Props) {
               <div className="eyebrow" style={{ marginBottom: 12 }}>&sect; Source documents</div>
               <div className="col" style={{ gap: 8 }}>
                 {extras.sources.map((src) => (
-                  <div key={src} className="card flex between items-center" style={{ padding: 14 }}>
-                    <span className="flex items-center" style={{ gap: 12 }}>
-                      <FileText className="h-4 w-4" style={{ color: "var(--ink-soft)" }} aria-hidden="true" />
-                      <span className="small">{src}</span>
-                    </span>
-                    <ArrowUpRight className="h-3.5 w-3.5" style={{ color: "var(--ink-soft)" }} aria-hidden="true" />
-                  </div>
+                  <a key={src.label} href={src.url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+                    <div className="card flex between items-center" style={{ padding: 14 }}>
+                      <span className="flex items-center" style={{ gap: 12 }}>
+                        <FileText className="h-4 w-4" style={{ color: "var(--ink-soft)" }} aria-hidden="true" />
+                        <span className="small">{src.label}</span>
+                      </span>
+                      <ArrowUpRight className="h-3.5 w-3.5" style={{ color: "var(--ink-soft)" }} aria-hidden="true" />
+                    </div>
+                  </a>
                 ))}
               </div>
             </div>
