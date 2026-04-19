@@ -512,18 +512,18 @@ export default async function HomePage() {
               className="card"
               style={{
                 padding: 24,
-                background: "var(--ink)",
-                color: "var(--paper)",
-                borderColor: "var(--ink)",
+                background: "var(--paper-inverse)",
+                color: "var(--ink-inverse)",
+                borderColor: "var(--paper-inverse)",
               }}
             >
-              <div className="eyebrow" style={{ marginBottom: 12, color: "rgba(251,251,253,0.6)" }}>
+              <div className="eyebrow" style={{ marginBottom: 12, color: "var(--ink-inverse-soft)" }}>
                 Newsletter
               </div>
-              <h3 className="h2 serif" style={{ color: "var(--paper)", marginBottom: 8 }}>
+              <h3 className="h2 serif" style={{ color: "var(--ink-inverse)", marginBottom: 8 }}>
                 Weekly digest.
               </h3>
-              <p className="small" style={{ marginBottom: 16, color: "rgba(251,251,253,0.75)" }}>
+              <p className="small" style={{ marginBottom: 16, color: "var(--ink-inverse-soft)" }}>
                 Every regulation that shifted, annotated. 5-minute read. 9,200 subscribers.
               </p>
               <div className="col" style={{ gap: 8 }}>
@@ -535,22 +535,22 @@ export default async function HomePage() {
       </section>
 
       {/* ── FOR PROVIDERS — dark CTA ── */}
-      <section style={{ background: "var(--ink)", color: "var(--paper)" }}>
+      <section style={{ background: "var(--paper-inverse)", color: "var(--ink-inverse)" }}>
         <div className="container" style={{ paddingTop: 56, paddingBottom: 56 }}>
           <div
             className="grid grid-providers-cta"
             style={{ gap: 64 }}
           >
             <div>
-              <div className="eyebrow" style={{ marginBottom: 12, color: "rgba(251,251,253,0.6)" }}>
+              <div className="eyebrow" style={{ marginBottom: 12, color: "var(--ink-inverse-soft)" }}>
                 For providers
               </div>
-              <h2 className="h1" style={{ color: "var(--paper)", marginBottom: 16 }}>
+              <h2 className="h1" style={{ color: "var(--ink-inverse)", marginBottom: 16 }}>
                 Meet buyers at the moment they&apos;re searching.
               </h2>
               <p
                 className="lede"
-                style={{ color: "rgba(251,251,253,0.7)" }}
+                style={{ color: "var(--ink-inverse-soft)" }}
               >
                 Free to list. Pay only to be Featured. 3,000+ monthly searches · 9,200 subscribers · every listing verified.
               </p>
@@ -561,8 +561,8 @@ export default async function HomePage() {
                   className="btn btn-lg"
                   style={{
                     background: "transparent",
-                    color: "var(--paper)",
-                    borderColor: "rgba(251,251,253,0.3)",
+                    color: "var(--ink-inverse)",
+                    borderColor: "var(--line-inverse)",
                   }}
                 >
                   Claim existing
@@ -582,13 +582,13 @@ export default async function HomePage() {
                     key={stat.l}
                     style={{
                       padding: 24,
-                      border: "1px solid rgba(251,251,253,0.15)",
+                      border: "1px solid var(--line-inverse)",
                       borderRadius: 6,
                     }}
                   >
                     <div
                       className="serif"
-                      style={{ fontSize: 48, fontWeight: 500, color: "var(--paper)", lineHeight: 1 }}
+                      style={{ fontSize: 48, fontWeight: 500, color: "var(--ink-inverse)", lineHeight: 1 }}
                     >
                       {stat.n}
                     </div>
@@ -596,7 +596,7 @@ export default async function HomePage() {
                       className="mono xs"
                       style={{
                         marginTop: 8,
-                        color: "rgba(251,251,253,0.6)",
+                        color: "var(--ink-inverse-soft)",
                         letterSpacing: "0.08em",
                         textTransform: "uppercase",
                       }}

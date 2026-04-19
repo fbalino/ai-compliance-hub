@@ -177,9 +177,9 @@ export default function BlogPage() {
       <div className="container" style={{ maxWidth: 1000, padding: "0 var(--s-7) var(--s-8)" }}>
         <BlogFilterClient categories={CATEGORIES} posts={postsWithImages} />
         {/* Newsletter CTA */}
-        <div className="card" style={{ marginTop: 48, textAlign: "center", padding: "var(--s-6)", background: "var(--ink)", color: "var(--paper)" }}>
-          <h2 className="h3" style={{ color: "var(--paper)" }}>Never miss a regulation update</h2>
-          <p className="small" style={{ maxWidth: 420, margin: "8px auto 0", color: "rgba(247,244,236,0.7)" }}>
+        <div className="card" style={{ marginTop: 48, textAlign: "center", padding: "var(--s-6)", background: "var(--paper-inverse)", color: "var(--ink-inverse)" }}>
+          <h2 className="h3" style={{ color: "var(--ink-inverse)" }}>Never miss a regulation update</h2>
+          <p className="small" style={{ maxWidth: 420, margin: "8px auto 0", color: "var(--ink-inverse-soft)" }}>
             Weekly digest of new AI laws, enforcement actions, and compliance deadlines. Free. No spam.
           </p>
           <NewsletterForm source="blog" className="mt-5 max-w-sm mx-auto" />

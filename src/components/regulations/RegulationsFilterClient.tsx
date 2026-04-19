@@ -179,7 +179,7 @@ export function RegulationsFilterClient({ regulations }: Props) {
               <button
                 key={s}
                 className="chip chip-ink"
-                style={{ cursor: "pointer", border: "none", background: "var(--ink)", color: "var(--paper)" }}
+                style={{ cursor: "pointer", border: "none", background: "var(--paper-inverse)", color: "var(--ink-inverse)" }}
                 onClick={() => removeStatusPill(s)}
               >
                 {s.charAt(0).toUpperCase() + s.slice(1)} ✕

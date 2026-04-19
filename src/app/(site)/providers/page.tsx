@@ -312,7 +312,7 @@ export default async function ProvidersPage() {
       </section>
 
       {/* STATS BAR */}
-      <section style={{ background: "var(--ink)", color: "var(--paper)" }}>
+      <section style={{ background: "var(--paper-inverse)", color: "var(--ink-inverse)" }}>
         <div className="container" style={{ paddingTop: 48, paddingBottom: 48 }}>
           <div
             className="grid"
@@ -325,12 +325,12 @@ export default async function ProvidersPage() {
               { n: "9,200", l: "newsletter subscribers" },
             ].map((stat) => (
               <div key={stat.l}>
-                <div className="serif" style={{ fontSize: 40, fontWeight: 500, color: "var(--paper)", lineHeight: 1 }}>
+                <div className="serif" style={{ fontSize: 40, fontWeight: 500, color: "var(--ink-inverse)", lineHeight: 1 }}>
                   {stat.n}
                 </div>
                 <div
                   className="mono xs"
-                  style={{ marginTop: 8, color: "rgba(251,251,253,0.6)", letterSpacing: "0.08em", textTransform: "uppercase" }}
+                  style={{ marginTop: 8, color: "var(--ink-inverse-soft)", letterSpacing: "0.08em", textTransform: "uppercase" }}
                 >
                   {stat.l}
                 </div>

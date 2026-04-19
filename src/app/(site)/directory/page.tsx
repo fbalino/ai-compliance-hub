@@ -138,11 +138,11 @@ export default async function DirectoryPage() {
           <DirectorySearchClient providers={searchItems} categories={categoryOptions} />
 
           {/* Provider CTA */}
-          <div className="card" style={{ marginTop: 40, padding: "var(--s-7)", background: "var(--ink)", color: "var(--paper)" }}>
+          <div className="card" style={{ marginTop: 40, padding: "var(--s-7)", background: "var(--paper-inverse)", color: "var(--ink-inverse)" }}>
             <div className="flex between" style={{ flexWrap: "wrap", gap: 24 }}>
               <div style={{ maxWidth: 560 }}>
-                <div className="h3" style={{ color: "var(--paper)" }}>Are you a compliance provider?</div>
-                <p className="small" style={{ color: "rgba(247,244,236,0.7)", marginTop: 8 }}>
+                <div className="h3" style={{ color: "var(--ink-inverse)" }}>Are you a compliance provider?</div>
+                <p className="small" style={{ color: "var(--ink-inverse-soft)", marginTop: 8 }}>
                   List your firm in our directory. Free for verified providers. Featured listings include priority placement, lead routing, and analytics.
                 </p>
               </div>

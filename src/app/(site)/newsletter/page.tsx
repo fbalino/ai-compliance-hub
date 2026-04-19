@@ -37,18 +37,18 @@ export default function NewsletterPage() {
         </div>
       </div>
 
-      <div style={{ background: "var(--ink)", color: "var(--paper)", padding: "64px 40px", textAlign: "center" }}>
+      <div style={{ background: "var(--paper-inverse)", color: "var(--ink-inverse)", padding: "64px 40px", textAlign: "center" }}>
         <div style={{ maxWidth: 560, margin: "0 auto" }}>
-          <div style={{ width: 52, height: 52, borderRadius: 12, background: "rgba(247,244,236,0.1)", display: "grid", placeItems: "center", margin: "0 auto 16px" }}>
-            <svg style={{ width: 26, height: 26, color: "var(--paper)" }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+          <div style={{ width: 52, height: 52, borderRadius: 12, background: "var(--line-inverse)", display: "grid", placeItems: "center", margin: "0 auto 16px" }}>
+            <svg style={{ width: 26, height: 26, color: "var(--ink-inverse)" }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
               <rect x="3" y="6" width="18" height="13" rx="1.5" /><path d="m3 8 9 6 9-6" />
             </svg>
           </div>
-          <h2 className="h1" style={{ color: "var(--paper)" }}>Stay ahead of AI regulation</h2>
-          <p className="lede" style={{ color: "rgba(247,244,236,0.7)", maxWidth: 520, margin: "12px auto 0" }}>
+          <h2 className="h1" style={{ color: "var(--ink-inverse)" }}>Stay ahead of AI regulation</h2>
+          <p className="lede" style={{ color: "var(--ink-inverse-soft)", maxWidth: 520, margin: "12px auto 0" }}>
             The AI compliance landscape changes weekly. Our free newsletter distills what matters — enforcement actions, new laws, compliance deadlines — so you don&apos;t have to track it all yourself.
           </p>
-          <div className="flex" style={{ justifyContent: "center", gap: 20, marginTop: 20, fontSize: 13, color: "rgba(247,244,236,0.5)" }}>
+          <div className="flex" style={{ justifyContent: "center", gap: 20, marginTop: 20, fontSize: 13, color: "var(--ink-inverse-soft)" }}>
             <span>✓ Free forever</span>
             <span>✓ Weekly, every Monday</span>
             <span>✓ Unsubscribe anytime</span>
@@ -56,7 +56,7 @@ export default function NewsletterPage() {
           <div style={{ marginTop: 32, maxWidth: 400, marginLeft: "auto", marginRight: "auto" }}>
             <NewsletterForm source="newsletter_page" variant="hero" />
           </div>
-          <p className="xs" style={{ marginTop: 12, color: "rgba(247,244,236,0.4)" }}>
+          <p className="xs" style={{ marginTop: 12, color: "var(--ink-inverse-soft)" }}>
             Join compliance and legal professionals at companies navigating AI regulation.
           </p>
         </div>

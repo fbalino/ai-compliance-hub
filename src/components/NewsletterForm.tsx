@@ -67,9 +67,9 @@ export function NewsletterForm({ source, variant = "default", className }: Newsl
             className="input"
             style={{
               flex: "1 1 200px",
-              background: "rgba(247,244,236,0.1)",
-              border: "1px solid rgba(247,244,236,0.25)",
-              color: "var(--paper)",
+              background: "var(--line-inverse)",
+              border: "1px solid var(--ink-inverse-soft)",
+              color: "var(--ink-inverse)",
               borderRadius: 999,
             }}
             aria-label="Your email address"

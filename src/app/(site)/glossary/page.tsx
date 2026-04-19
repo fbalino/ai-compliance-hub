@@ -93,10 +93,10 @@ export default async function GlossaryIndexPage() {
           </section>
         ))}
 
-        <div className="card" style={{ padding: "var(--s-6)", background: "var(--ink)", color: "var(--paper)", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
+        <div className="card" style={{ padding: "var(--s-6)", background: "var(--paper-inverse)", color: "var(--ink-inverse)", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
           <div>
-            <div className="h4" style={{ color: "var(--paper)" }}>See how these terms apply to your business</div>
-            <span className="small" style={{ display: "block", marginTop: 4, color: "rgba(247,244,236,0.7)" }}>
+            <div className="h4" style={{ color: "var(--ink-inverse)" }}>See how these terms apply to your business</div>
+            <span className="small" style={{ display: "block", marginTop: 4, color: "var(--ink-inverse-soft)" }}>
               Use our free compliance checker to find out which AI regulations affect your company.
             </span>
           </div>

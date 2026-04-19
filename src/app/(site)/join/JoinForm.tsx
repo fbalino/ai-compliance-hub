@@ -144,10 +144,10 @@ function StepIndicator({ currentStep }: { currentStep: number }) {
                 borderRadius: 6,
                 fontSize: 13,
                 fontWeight: 600,
-                background: isActive ? "var(--ink)" : isDone ? "var(--ink-soft, #94a3b8)" : "transparent",
-                color: isActive || isDone ? "var(--paper)" : "var(--ink-soft)",
+                background: isActive ? "var(--paper-inverse)" : isDone ? "var(--ink-soft)" : "transparent",
+                color: isActive || isDone ? "var(--ink-inverse)" : "var(--ink-soft)",
                 border: "1px solid",
-                borderColor: isActive ? "var(--ink)" : isDone ? "var(--ink-soft, #94a3b8)" : "var(--border, #e2e8f0)",
+                borderColor: isActive ? "var(--paper-inverse)" : isDone ? "var(--ink-soft)" : "var(--border, #e2e8f0)",
                 transition: "all 0.15s ease",
               }}
             >
@@ -311,7 +311,7 @@ function StepRegulations({
               <button
                 key={r}
                 className="chip"
-                style={{ background: "var(--ink)", color: "var(--paper)", display: "flex", alignItems: "center", gap: 4 }}
+                style={{ background: "var(--paper-inverse)", color: "var(--ink-inverse)", display: "flex", alignItems: "center", gap: 4 }}
                 onClick={() => remove(r)}
                 type="button"
                 aria-label={`Remove ${r}`}

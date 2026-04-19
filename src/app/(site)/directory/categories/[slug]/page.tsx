@@ -190,10 +190,10 @@ export default async function CategoryPage({ params }: Props) {
           )}
         </section>
 
-        <div className="card" style={{ marginTop: 40, padding: "var(--s-6)", background: "var(--ink)", color: "var(--paper)", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
+        <div className="card" style={{ marginTop: 40, padding: "var(--s-6)", background: "var(--paper-inverse)", color: "var(--ink-inverse)", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
           <div>
-            <div className="h4" style={{ color: "var(--paper)" }}>Are you a {cat.label.toLowerCase().replace(/s$/, "")}?</div>
-            <span className="small" style={{ color: "rgba(247,244,236,0.7)", display: "block", marginTop: 4 }}>
+            <div className="h4" style={{ color: "var(--ink-inverse)" }}>Are you a {cat.label.toLowerCase().replace(/s$/, "")}?</div>
+            <span className="small" style={{ color: "var(--ink-inverse-soft)", display: "block", marginTop: 4 }}>
               Get listed in this directory and reach businesses looking for your expertise.
             </span>
           </div>

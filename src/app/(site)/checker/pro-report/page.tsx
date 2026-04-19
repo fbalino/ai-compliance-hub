@@ -167,9 +167,9 @@ export default function ProReportPage() {
         </section>
 
         {/* CTA */}
-        <div className="card" style={{ marginTop: 48, textAlign: "center", padding: "var(--s-6)", background: "var(--ink)", color: "var(--paper)" }}>
-          <h2 className="h3" style={{ color: "var(--paper)" }}>Get Your Pro Compliance Report</h2>
-          <p className="small" style={{ maxWidth: 460, margin: "8px auto 0", color: "rgba(247,244,236,0.7)" }}>
+        <div className="card" style={{ marginTop: 48, textAlign: "center", padding: "var(--s-6)", background: "var(--paper-inverse)", color: "var(--ink-inverse)" }}>
+          <h2 className="h3" style={{ color: "var(--ink-inverse)" }}>Get Your Pro Compliance Report</h2>
+          <p className="small" style={{ maxWidth: 460, margin: "8px auto 0", color: "var(--ink-inverse-soft)" }}>
             First, complete the free compliance checker to tell us about your business. Then upgrade for the full report.
           </p>
           <div style={{ marginTop: 24 }}>
