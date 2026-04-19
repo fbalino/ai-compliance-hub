@@ -80,7 +80,7 @@ export function NewsletterForm({ source, variant = "default", className }: Newsl
             disabled={state === "submitting"}
             className="btn btn-accent"
           >
-            {state === "submitting" ? "Subscribing\u2026" : "Subscribe Free"}
+            {state === "submitting" ? "Subscribing…" : "Subscribe Free"}
           </button>
         </div>
         {state === "error" && (
@@ -107,7 +107,7 @@ export function NewsletterForm({ source, variant = "default", className }: Newsl
           disabled={state === "submitting"}
         />
         <button type="submit" disabled={state === "submitting"} className="btn btn-primary">
-          {state === "submitting" ? "Subscribing\u2026" : "Subscribe"} →
+          {state === "submitting" ? "Subscribing…" : "Subscribe"} →
         </button>
       </div>
       {state === "error" && (

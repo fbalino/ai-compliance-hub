@@ -48,8 +48,8 @@ export function Header() {
         style={{ minWidth: 240, padding: "6px 12px", textDecoration: "none" }}
       >
         <Search size={14} aria-hidden="true" />
-        <span style={{ flex: 1, color: "var(--ink-soft)", fontSize: 14 }}>Search regulations\u2026</span>
-        <span className="mono xs faint">\u2318K</span>
+        <span style={{ flex: 1, color: "var(--ink-soft)", fontSize: 14 }}>Search regulations…</span>
+        <span className="mono xs faint">⌘K</span>
       </Link>
 
       <div className="topbar-cta">
