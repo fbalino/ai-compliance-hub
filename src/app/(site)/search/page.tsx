@@ -27,10 +27,10 @@ export const metadata: Metadata = {
 };
 
 const SAMPLE_ARTICLES = [
-  { title: "The biometric patchwork, mapped", slug: "biometric-patchwork-mapped" },
-  { title: "After Clearview: state-level responses", slug: "after-clearview-state-responses" },
-  { title: "BIPA class actions in 2025", slug: "bipa-class-actions-2025" },
-  { title: "Real-time biometrics in the AI Act", slug: "real-time-biometrics-ai-act" },
+  { title: "Hiring AI Compliance in 2026: The Complete Starter Kit", slug: "hiring-ai-compliance-2026-starter-kit" },
+  { title: "Colorado AI Act 60-Day Compliance Checklist", slug: "colorado-ai-act-60-day-checklist" },
+  { title: "EU AI Act GPAI Rules: What Foundation Model Developers Must Do Now", slug: "eu-ai-act-gpai-obligations" },
+  { title: "NYC LL 144 Enforcement: First Fines Issued", slug: "nyc-ll-144-enforcement-update" },
 ];
 
 export default async function SearchPage({
