@@ -27,10 +27,10 @@ export const metadata: Metadata = {
 };
 
 const SAMPLE_ARTICLES = [
-  { title: "The Biometric Privacy Law Patchwork, Mapped", slug: "biometric-privacy-law-patchwork" },
-  { title: "Clearview AI GDPR Fines Across Europe", slug: "clearview-ai-gdpr-fines" },
-  { title: "BIPA Class Actions in 2025: What Employers Need to Know", slug: "illinois-bipa-class-actions-2025" },
-  { title: "Texas AG vs. Meta: The $1.4B Biometric Settlement", slug: "texas-ag-meta-biometric-settlement" },
+  { title: "The biometric patchwork, mapped", slug: "biometric-privacy-law-patchwork" },
+  { title: "Clearview AI GDPR fines across Europe", slug: "clearview-ai-gdpr-fines" },
+  { title: "BIPA class actions in 2025", slug: "illinois-bipa-class-actions-2025" },
+  { title: "The EU AI Act high-risk list, annotated", slug: "eu-ai-act-high-risk-list-annotated" },
 ];
 
 export default async function SearchPage({
