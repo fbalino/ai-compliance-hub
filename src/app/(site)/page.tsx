@@ -4,9 +4,9 @@ import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import { HeroSearch } from "@/components/home/HeroSearch";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { db } from "@/db";
-import { providers } from "@/db/schema";
-import { count } from "drizzle-orm";
-import { getAllRegulationSlugs } from "@/lib/regulations";
+import { providers, providerRegulations } from "@/db/schema";
+import { count, eq, inArray } from "drizzle-orm";
+import { getAllRegulationSlugs, getAllRegulations } from "@/lib/regulations";
 
 export const revalidate = 21600;
 
@@ -179,13 +179,160 @@ function Icon({ name, size = 28 }: { name: string; size?: number }) {
 
 const BLOG_COUNT = 11;
 
-export default async function HomePage() {
+const STOP_WORDS = new Set([
+  "a","an","the","and","or","but","in","on","at","to","for","of","with",
+  "by","from","as","is","was","are","were","be","been","being","have",
+  "has","had","do","does","did","will","would","could","should","may",
+  "might","can","shall","not","no","so","if","then","than","too","very",
+  "just","about","all","also","am","any","because","before","between",
+  "both","during","each","how","into","its","me","more","most","my",
+  "off","only","other","our","out","over","own","same","she","he","that",
+  "their","them","these","they","this","those","through","under","up",
+  "we","what","when","where","which","while","who","whom","why","you","your",
+]);
+
+function extractKeywords(text: string): string[] {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, " ")
+    .split(/\s+/)
+    .filter((w) => w.length > 1 && !STOP_WORDS.has(w));
+}
+
+function scoreRegulation(
+  keywords: string[],
+  reg: { name: string; description: string; jurisdiction: string },
+): number {
+  let score = 0;
+  const name = reg.name.toLowerCase();
+  const desc = reg.description.toLowerCase();
+  const juris = reg.jurisdiction.toLowerCase();
+  for (const kw of keywords) {
+    if (name.includes(kw)) score += 3;
+    if (juris.includes(kw)) score += 2;
+    if (desc.includes(kw)) score += 1;
+  }
+  return score;
+}
+
+function displayStatus(status: string): string {
+  if (status === "enforced") return "active";
+  if (status === "enacted") return "pending";
+  return status;
+}
+
+export default async function HomePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ route?: string }>;
+}) {
+  const params = await searchParams;
+  const routeQuery = params.route ?? "";
+  const isRouted = routeQuery.trim().length > 0;
+
   const [[providerResult], regSlugs] = await Promise.all([
     db.select({ value: count() }).from(providers),
     getAllRegulationSlugs(),
   ]);
   const providerCount = providerResult?.value ?? 0;
   const regCount = regSlugs.length;
+
+  let matchedRegs: Array<{
+    slug: string; code: string; title: string; juris: string;
+    status: string; effective: string; summary: string; providers: number;
+  }> = [];
+  let matchedProviders: Array<{
+    slug: string; name: string; type: string; hq: string;
+    blurb: string; regs: string[]; featured: boolean;
+  }> = [];
+
+  if (isRouted) {
+    const allRegs = await getAllRegulations();
+    const keywords = extractKeywords(routeQuery);
+
+    const scored = allRegs
+      .map((r) => ({
+        slug: r.slug,
+        code: r.frontmatter.shortName ?? r.slug,
+        title: r.frontmatter.name,
+        juris: r.frontmatter.jurisdiction,
+        status: displayStatus(r.frontmatter.status),
+        effective: r.frontmatter.effectiveDate ?? "",
+        summary: r.frontmatter.description,
+        score: scoreRegulation(keywords, {
+          name: r.frontmatter.name,
+          description: r.frontmatter.description,
+          jurisdiction: r.frontmatter.jurisdiction,
+        }),
+      }))
+      .filter((r) => r.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 6);
+
+    const matchedSlugs = scored.map((r) => r.slug);
+
+    if (matchedSlugs.length > 0) {
+      const [provCountRows, provRows] = await Promise.all([
+        db
+          .select({
+            regulationSlug: providerRegulations.regulationSlug,
+            cnt: count(),
+          })
+          .from(providerRegulations)
+          .where(inArray(providerRegulations.regulationSlug, matchedSlugs))
+          .groupBy(providerRegulations.regulationSlug),
+        db
+          .select({
+            id: providers.id,
+            slug: providers.slug,
+            name: providers.name,
+            category: providers.category,
+            tagline: providers.tagline,
+            headquarters: providers.headquarters,
+            tier: providers.tier,
+            regulationSlug: providerRegulations.regulationSlug,
+          })
+          .from(providers)
+          .innerJoin(
+            providerRegulations,
+            eq(providers.id, providerRegulations.providerId),
+          )
+          .where(inArray(providerRegulations.regulationSlug, matchedSlugs)),
+      ]);
+
+      const provCountMap = Object.fromEntries(
+        provCountRows.map((r) => [r.regulationSlug, r.cnt]),
+      );
+
+      matchedRegs = scored.map((r) => ({
+        ...r,
+        providers: provCountMap[r.slug] ?? 0,
+      }));
+
+      const provMap = new Map<
+        string,
+        { slug: string; name: string; type: string; hq: string; blurb: string; regs: string[]; featured: boolean }
+      >();
+      for (const row of provRows) {
+        if (!provMap.has(row.id)) {
+          provMap.set(row.id, {
+            slug: row.slug,
+            name: row.name,
+            type: row.category ?? "Provider",
+            hq: row.headquarters ?? "",
+            blurb: row.tagline ?? "",
+            regs: [],
+            featured: row.tier === "featured",
+          });
+        }
+        provMap.get(row.id)!.regs.push(row.regulationSlug);
+      }
+      matchedProviders = Array.from(provMap.values());
+    } else {
+      matchedRegs = [];
+      matchedProviders = [];
+    }
+  }
 
   const breadcrumbs = breadcrumbListSchema([{ name: "Home", url: "/" }]);
 
@@ -214,7 +361,7 @@ export default async function HomePage() {
             className="v4-rise v4-d2"
             style={{ maxWidth: 760, margin: "32px auto 0" }}
           >
-            <HeroSearch regCount={regCount} providerCount={providerCount} />
+            <HeroSearch regCount={regCount} providerCount={providerCount} defaultDescription={routeQuery || undefined} />
           </div>
 
           <div
@@ -232,67 +379,108 @@ export default async function HomePage() {
       </section>
 
       {/* ── YOUR MATCHES — two-column layout ── */}
-      <section className="container" style={{ paddingTop: 40, paddingBottom: 40 }}>
+      <section id="matches" className="container" style={{ paddingTop: 40, paddingBottom: 40 }}>
         <div className="eyebrow" style={{ marginBottom: 16 }}>
-          Your matches · {regCount} regulations · {providerCount} providers · {BLOG_COUNT} guides
+          {isRouted
+            ? `Matched results · ${matchedRegs.length} regulations · ${matchedProviders.length} providers`
+            : `Your matches · ${regCount} regulations · ${providerCount} providers · ${BLOG_COUNT} guides`}
         </div>
 
-        <div
-          className="grid grid-main-aside"
-          style={{ gap: 40 }}
-        >
+        {isRouted && (
+          <div style={{ marginBottom: 20, display: "flex", alignItems: "center", gap: 12 }}>
+            <Link href="/" className="btn btn-sm btn-ghost">← Show all</Link>
+            <span className="small soft">
+              Showing results for: &ldquo;{routeQuery}&rdquo;
+            </span>
+          </div>
+        )}
+
+        <div className="grid grid-main-aside" style={{ gap: 40 }}>
           <div>
-            {/* Featured regulations */}
-            <div className="section-head">
-              <div><h2 className="h2">Featured regulations</h2></div>
-              <Link href="/regulations" className="action">See all {regCount} →</Link>
-            </div>
-            <div className="grid grid-2col" style={{ gap: 16 }}>
-              <RegCard
-                code="EU-AIA-24"
-                title="EU AI Act"
-                juris="European Union"
-                effective="02 Aug 2026"
-                status="active"
-                providers={12}
-                topics={["Hiring AI", "High-risk"]}
-                summary="Annex III classifies hiring AI as high-risk. Conformity assessment, bias monitoring, post-market monitoring required."
-                slug="eu-ai-act"
-              />
-              <RegCard
-                code="US-NYC-144"
-                title="NYC Local Law 144"
-                juris="US · New York"
-                effective="05 Jul 2023"
-                status="active"
-                providers={9}
-                topics={["Hiring AI", "Bias audit"]}
-                summary="Annual independent bias audit + candidate notice for automated employment decision tools used in NYC."
-                slug="nyc-local-law-144"
-              />
-              <RegCard
-                code="US-CO-205"
-                title="Colorado AI Act"
-                juris="US · Colorado"
-                effective="30 Jun 2026"
-                status="pending"
-                providers={7}
-                topics={["Algorithmic hiring"]}
-                summary="Developers & deployers of 'high-risk' AI owe reasonable care to prevent algorithmic discrimination."
-                slug="colorado-ai-act"
-              />
-              <RegCard
-                code="US-IL-AIVIA"
-                title="Illinois AI Video Interview Act"
-                juris="US · Illinois"
-                effective="01 Jan 2020"
-                status="active"
-                providers={4}
-                topics={["Hiring AI", "Consent"]}
-                summary="Consent + deletion requirements for AI-analysed video job interviews in Illinois."
-                slug="illinois-ai-video-interview-act"
-              />
-            </div>
+            {isRouted ? (
+              <>
+                <div className="section-head">
+                  <div><h2 className="h2">Matched regulations</h2></div>
+                  <Link href="/regulations" className="action">See all {regCount} →</Link>
+                </div>
+                <div className="grid grid-2col" style={{ gap: 16 }}>
+                  {matchedRegs.length === 0 ? (
+                    <div style={{ gridColumn: "1 / -1", padding: 24, textAlign: "center" }}>
+                      <p className="small soft">No regulations matched your description.</p>
+                      <Link href="/regulations" className="action" style={{ marginTop: 8, display: "inline-block" }}>Browse all {regCount} regulations →</Link>
+                    </div>
+                  ) : (
+                    matchedRegs.map((r) => (
+                      <RegCard
+                        key={r.slug}
+                        code={r.code}
+                        title={r.title}
+                        juris={r.juris}
+                        status={r.status}
+                        effective={r.effective}
+                        providers={r.providers}
+                        topics={[]}
+                        summary={r.summary}
+                        slug={r.slug}
+                      />
+                    ))
+                  )}
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="section-head">
+                  <div><h2 className="h2">Featured regulations</h2></div>
+                  <Link href="/regulations" className="action">See all {regCount} →</Link>
+                </div>
+                <div className="grid grid-2col" style={{ gap: 16 }}>
+                  <RegCard
+                    code="EU-AIA-24"
+                    title="EU AI Act"
+                    juris="European Union"
+                    effective="02 Aug 2026"
+                    status="active"
+                    providers={12}
+                    topics={["Hiring AI", "High-risk"]}
+                    summary="Annex III classifies hiring AI as high-risk. Conformity assessment, bias monitoring, post-market monitoring required."
+                    slug="eu-ai-act"
+                  />
+                  <RegCard
+                    code="US-NYC-144"
+                    title="NYC Local Law 144"
+                    juris="US · New York"
+                    effective="05 Jul 2023"
+                    status="active"
+                    providers={9}
+                    topics={["Hiring AI", "Bias audit"]}
+                    summary="Annual independent bias audit + candidate notice for automated employment decision tools used in NYC."
+                    slug="nyc-local-law-144"
+                  />
+                  <RegCard
+                    code="US-CO-205"
+                    title="Colorado AI Act"
+                    juris="US · Colorado"
+                    effective="30 Jun 2026"
+                    status="pending"
+                    providers={7}
+                    topics={["Algorithmic hiring"]}
+                    summary="Developers & deployers of 'high-risk' AI owe reasonable care to prevent algorithmic discrimination."
+                    slug="colorado-ai-act"
+                  />
+                  <RegCard
+                    code="US-IL-AIVIA"
+                    title="Illinois AI Video Interview Act"
+                    juris="US · Illinois"
+                    effective="01 Jan 2020"
+                    status="active"
+                    providers={4}
+                    topics={["Hiring AI", "Consent"]}
+                    summary="Consent + deletion requirements for AI-analysed video job interviews in Illinois."
+                    slug="illinois-ai-video-interview-act"
+                  />
+                </div>
+              </>
+            )}
 
             {/* Relevant guides from The Ledger */}
             <div className="section-head" style={{ marginTop: 40 }}>
@@ -335,40 +523,71 @@ export default async function HomePage() {
             </div>
           </div>
 
-          {/* Right column: Top providers */}
+          {/* Right column: Top providers / matched providers */}
           <aside>
-            <div className="section-head" style={{ alignItems: "flex-start", paddingBottom: 12 }}>
-              <div><h2 className="h3">Top providers</h2></div>
-              <Link href="/directory" className="action">All {providerCount} →</Link>
-            </div>
-
-            <div className="col" style={{ gap: 16 }}>
-              <ProviderCard
-                name="BABL AI"
-                type="Audit"
-                hq="New York, NY"
-                featured
-                blurb="Independent bias audits compliant with NYC LL 144 and emerging US laws."
-                regs={["NYC LL 144", "Colorado AI", "EEOC"]}
-                slug="babl-ai"
-              />
-              <ProviderCard
-                name="Credo AI"
-                type="Software"
-                hq="San Francisco, CA"
-                blurb="AI governance platform for responsible AI development and deployment."
-                regs={["EU AI Act", "NIST AI RMF", "ISO 42001"]}
-                slug="credo-ai"
-              />
-              <ProviderCard
-                name="ORCAA"
-                type="Audit"
-                hq="New York, NY"
-                blurb="Algorithm accountability audit firm founded by prominent AI ethics researchers."
-                regs={["NYC LL 144", "Fair Housing", "Colorado AI"]}
-                slug="orcaa"
-              />
-            </div>
+            {isRouted ? (
+              <>
+                <div className="section-head" style={{ alignItems: "flex-start", paddingBottom: 12 }}>
+                  <div><h2 className="h3">Providers who can help</h2></div>
+                  <Link href="/directory" className="action">All {providerCount} →</Link>
+                </div>
+                <div className="col" style={{ gap: 16 }}>
+                  {matchedProviders.length === 0 ? (
+                    <div style={{ padding: 24, textAlign: "center" }}>
+                      <p className="small soft">No providers matched. Try broadening your description.</p>
+                      <Link href="/directory" className="action" style={{ marginTop: 8, display: "inline-block" }}>Browse all providers →</Link>
+                    </div>
+                  ) : (
+                    matchedProviders.map((p) => (
+                      <ProviderCard
+                        key={p.slug}
+                        name={p.name}
+                        type={p.type}
+                        hq={p.hq}
+                        blurb={p.blurb}
+                        regs={p.regs}
+                        featured={p.featured}
+                        slug={p.slug}
+                      />
+                    ))
+                  )}
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="section-head" style={{ alignItems: "flex-start", paddingBottom: 12 }}>
+                  <div><h2 className="h3">Top providers</h2></div>
+                  <Link href="/directory" className="action">All {providerCount} →</Link>
+                </div>
+                <div className="col" style={{ gap: 16 }}>
+                  <ProviderCard
+                    name="BABL AI"
+                    type="Audit"
+                    hq="New York, NY"
+                    featured
+                    blurb="Independent bias audits compliant with NYC LL 144 and emerging US laws."
+                    regs={["NYC LL 144", "Colorado AI", "EEOC"]}
+                    slug="babl-ai"
+                  />
+                  <ProviderCard
+                    name="Credo AI"
+                    type="Software"
+                    hq="San Francisco, CA"
+                    blurb="AI governance platform for responsible AI development and deployment."
+                    regs={["EU AI Act", "NIST AI RMF", "ISO 42001"]}
+                    slug="credo-ai"
+                  />
+                  <ProviderCard
+                    name="ORCAA"
+                    type="Audit"
+                    hq="New York, NY"
+                    blurb="Algorithm accountability audit firm founded by prominent AI ethics researchers."
+                    regs={["NYC LL 144", "Fair Housing", "Colorado AI"]}
+                    slug="orcaa"
+                  />
+                </div>
+              </>
+            )}
 
             {/* RFP callout */}
             <div className="card card-feature" style={{ marginTop: 20, padding: 20 }}>

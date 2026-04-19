@@ -7,14 +7,16 @@ import { Search, Sparkles } from "lucide-react";
 export function HeroSearch({
   regCount,
   providerCount,
+  defaultDescription,
 }: {
   regCount: number;
   providerCount: number;
+  defaultDescription?: string;
 }) {
   const router = useRouter();
-  const [mode, setMode] = useState<"keyword" | "describe">("keyword");
+  const [mode, setMode] = useState<"keyword" | "describe">(defaultDescription ? "describe" : "keyword");
   const [query, setQuery] = useState("");
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState(defaultDescription ?? "");
   const describe = mode === "describe";
   const keywordRef = useRef<HTMLInputElement>(null);
   const describeRef = useRef<HTMLInputElement>(null);
@@ -34,7 +36,7 @@ export function HeroSearch({
       describeRef.current?.focus();
       return;
     }
-    router.push(`/checker?q=${encodeURIComponent(d)}`);
+    router.push(`/?route=${encodeURIComponent(d)}#matches`);
   }
 
   return (
