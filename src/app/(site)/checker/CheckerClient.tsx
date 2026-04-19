@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import posthog from "posthog-js";
@@ -25,6 +25,18 @@ interface RegResult {
   reason: string;
   urgency: "high" | "medium" | "low";
   actions: string[];
+}
+
+interface ProviderMatch {
+  id: string;
+  slug: string;
+  name: string;
+  tagline: string | null;
+  category: string | null;
+  jurisdictions: string[] | null;
+  isVerified: boolean | null;
+  tier: string | null;
+  websiteUrl: string | null;
 }
 
 // --- Questions ---
@@ -304,13 +316,73 @@ function computeResults(answers: Record<string, string | string[]>): RegResult[]
 
 // --- Component ---
 
-export function CheckerClient() {
+export function CheckerClient({ description }: { description?: string }) {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string | string[]>>({});
   const [showResults, setShowResults] = useState(false);
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<RegResult[]>([]);
+  const [matchedProviders, setMatchedProviders] = useState<ProviderMatch[]>([]);
+  const [describeError, setDescribeError] = useState<string | null>(null);
   const [sessionId] = useState(() => crypto.randomUUID());
+  const [isDescribeMode] = useState(() => !!description);
+
+  useEffect(() => {
+    if (!description) return;
+    let cancelled = false;
+
+    async function analyzeDescription() {
+      setLoading(true);
+      try {
+        const res = await fetch("/api/checker/describe", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ description }),
+        });
+        if (cancelled) return;
+        if (res.ok) {
+          const data = (await res.json()) as {
+            regulations: RegResult[];
+            providers: ProviderMatch[];
+            source: string;
+          };
+          setResults(data.regulations);
+          setMatchedProviders(data.providers ?? []);
+          posthog.capture("checker_completed", {
+            result_count: data.regulations.length,
+            regulations: data.regulations.map((r) => r.slug),
+            provider_count: data.providers?.length ?? 0,
+            source: "describe",
+          });
+          fetch("/api/checker/save", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              sessionId,
+              answers: { description },
+              results: data.regulations,
+              reportTier: "free",
+            }),
+          }).catch(() => {});
+          setShowResults(true);
+        } else {
+          setDescribeError(
+            "We couldn't analyze your description. Try the guided assessment below.",
+          );
+        }
+      } catch {
+        if (!cancelled) {
+          setDescribeError(
+            "Network error. Try the guided assessment below.",
+          );
+        }
+      }
+      if (!cancelled) setLoading(false);
+    }
+
+    void analyzeDescription();
+    return () => { cancelled = true; };
+  }, [description, sessionId]);
 
   const question = QUESTIONS[step];
   const currentAnswer = answers[question?.id];
@@ -409,7 +481,17 @@ export function CheckerClient() {
   }
 
   if (showResults) {
-    return <Results results={results} answers={answers} onReset={reset} onBack={back} />;
+    return (
+      <Results
+        results={results}
+        answers={answers}
+        providers={matchedProviders}
+        isDescribeMode={isDescribeMode}
+        description={description}
+        onReset={reset}
+        onBack={back}
+      />
+    );
   }
 
   if (loading) {
@@ -436,7 +518,11 @@ export function CheckerClient() {
               d="M4 12a8 8 0 018-8v8H4z"
             />
           </svg>
-          <span className="text-base font-medium">Analyzing your compliance profile…</span>
+          <span className="text-base font-medium">
+            {isDescribeMode
+              ? "Analyzing your situation…"
+              : "Analyzing your compliance profile…"}
+          </span>
         </div>
       </div>
     );
@@ -444,6 +530,13 @@ export function CheckerClient() {
 
   return (
     <div className="mx-auto max-w-2xl">
+      {describeError && (
+        <div className="mb-6">
+          <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">
+            {describeError}
+          </div>
+        </div>
+      )}
       {/* Progress */}
       <div className="mb-8">
         <div className="flex items-center justify-between text-sm text-ink-faint mb-2">
@@ -565,11 +658,17 @@ const urgencyConfig = {
 function Results({
   results,
   answers,
+  providers: matchedProviders = [],
+  isDescribeMode = false,
+  description,
   onReset,
   onBack,
 }: {
   results: RegResult[];
   answers: Record<string, string | string[]>;
+  providers?: ProviderMatch[];
+  isDescribeMode?: boolean;
+  description?: string;
   onReset: () => void;
   onBack: () => void;
 }) {
@@ -771,26 +870,77 @@ function Results({
         </p>
       </div>
 
-      {/* Next steps */}
-      <div className="mt-5 rounded-xl bg-paper border border-line p-5">
-        <h3 className="font-bold text-ink mb-1">Need help with compliance?</h3>
-        <p className="text-sm text-ink-soft mb-4">
-          Browse verified auditors, consultants, and software platforms that specialize in these regulations.
-        </p>
-        <div className="flex flex-wrap gap-3">
+      {/* Matched providers */}
+      {matchedProviders.length > 0 && (
+        <div className="mt-5 rounded-xl bg-paper border border-line p-5">
+          <h3 className="font-bold text-ink mb-1">Providers who can help</h3>
+          <p className="text-sm text-ink-soft mb-4">
+            These providers specialize in the regulations that apply to you.
+          </p>
+          <div className="space-y-2.5">
+            {matchedProviders.map((prov) => (
+              <Link
+                key={prov.id}
+                href={`/directory/providers/${prov.slug}`}
+                className="flex items-center gap-3 rounded-lg border border-line p-3 hover:bg-paper-2 transition-colors"
+                style={{ textDecoration: "none" }}
+              >
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-700 font-bold text-sm">
+                  {prov.name[0]}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2">
+                    <span className="font-medium text-ink text-sm truncate">{prov.name}</span>
+                    {prov.isVerified && (
+                      <span className="inline-flex items-center rounded-full bg-green-100 px-1.5 py-0.5 text-[10px] font-medium text-green-700">
+                        Verified
+                      </span>
+                    )}
+                  </div>
+                  {prov.tagline && (
+                    <span className="block text-xs text-ink-faint truncate">{prov.tagline}</span>
+                  )}
+                </div>
+              </Link>
+            ))}
+          </div>
           <Link
             href="/directory"
-            className="inline-flex items-center gap-1.5 rounded-lg bg-brand-700 px-4 py-2 text-sm font-medium text-white hover:bg-brand-800 transition-colors"
+            className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-accent hover:text-accent-ink transition-colors"
           >
-            Find Providers
+            Browse all providers →
           </Link>
-          <button
-            type="button"
-            onClick={onReset}
-            className="inline-flex items-center rounded-lg border border-line-2 bg-paper px-4 py-2 text-sm font-medium text-ink-2 hover:bg-paper-2 transition-colors"
-          >
-            Start Over
-          </button>
+        </div>
+      )}
+
+      {/* Next steps */}
+      {matchedProviders.length === 0 && (
+        <div className="mt-5 rounded-xl bg-paper border border-line p-5">
+          <h3 className="font-bold text-ink mb-1">Need help with compliance?</h3>
+          <p className="text-sm text-ink-soft mb-4">
+            Browse verified auditors, consultants, and software platforms that specialize in these regulations.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="/directory"
+              className="inline-flex items-center gap-1.5 rounded-lg bg-brand-700 px-4 py-2 text-sm font-medium text-white hover:bg-brand-800 transition-colors"
+            >
+              Find Providers
+            </Link>
+          </div>
+        </div>
+      )}
+
+      {/* Actions */}
+      <div className="mt-4 flex flex-wrap gap-3">
+        <button
+          type="button"
+          onClick={onReset}
+          className="inline-flex items-center rounded-lg border border-line-2 bg-paper px-4 py-2 text-sm font-medium text-ink-2 hover:bg-paper-2 transition-colors"
+        >
+          Start Over
+        </button>
+        {!isDescribeMode && (
           <button
             type="button"
             onClick={onBack}
@@ -798,7 +948,15 @@ function Results({
           >
             ← Edit Answers
           </button>
-        </div>
+        )}
+        {isDescribeMode && (
+          <Link
+            href="/checker"
+            className="inline-flex items-center rounded-lg px-4 py-2 text-sm font-medium text-ink-soft hover:text-ink transition-colors"
+          >
+            Try guided assessment →
+          </Link>
+        )}
       </div>
 
       <p className="mt-5 text-xs text-ink-faint leading-relaxed">

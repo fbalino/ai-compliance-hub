@@ -12,7 +12,14 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE_URL}/checker` },
 };
 
-export default function CheckerPage() {
+export default async function CheckerPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string }>;
+}) {
+  const params = await searchParams;
+  const description = params.q?.trim() || undefined;
+
   const breadcrumbs = breadcrumbListSchema([
     { name: "Home", url: "/" },
     { name: "Compliance Checker", url: "/checker" },
@@ -27,16 +34,22 @@ export default function CheckerPage() {
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Compliance Checker" }]} />
           <div style={{ marginTop: 14 }}>
             <span className="chip chip-sage" style={{ marginBottom: 12 }}>Free · No account required · Instant results</span>
-            <h1 className="h1">Which AI laws apply to your business?</h1>
+            <h1 className="h1">
+              {description
+                ? "Analyzing your situation…"
+                : "Which AI laws apply to your business?"}
+            </h1>
             <p className="lede" style={{ marginTop: 8 }}>
-              Answer 4 short questions about your organization and AI use. We&apos;ll map them to the regulations that matter — and tell you exactly what you need to do.
+              {description
+                ? `"${description.length > 120 ? description.slice(0, 120) + "…" : description}"`
+                : "Answer 4 short questions about your organization and AI use. We'll map them to the regulations that matter — and tell you exactly what you need to do."}
             </p>
           </div>
         </div>
       </div>
 
       <div className="container-narrow" style={{ padding: "var(--s-8) var(--s-7)" }}>
-        <CheckerClient />
+        <CheckerClient description={description} />
       </div>
     </>
   );
