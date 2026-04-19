@@ -1052,6 +1052,12 @@ dl.kv dd { margin: 0; color: var(--ink); }
   background-size: 48px 48px;
   opacity: .55;
   mix-blend-mode: multiply;
+  pointer-events: none;
+}
+.ledger-lead-figure .plate:has(svg)::after { display: none; }
+.ledger-lead-figure .plate svg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
 }
 [data-theme="night"] .ledger-lead-figure .plate::after { mix-blend-mode: screen; opacity: .2; }
 .ledger-lead-figure .plate .mark {
@@ -1660,6 +1666,17 @@ dl.kv dd { margin: 0; color: var(--ink); }
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 10px;
+}
+.gazette-grid .thumb-wrap {
+  aspect-ratio: 16/9;
+  margin: -28px -28px 20px;
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+  background: var(--paper-2);
+}
+.gazette-grid .thumb-wrap svg { width: 100%; height: 100%; display: block; }
+@media (max-width: 720px) {
+  .gazette-grid .thumb-wrap { margin: -24px -20px 16px; }
 }
 .gazette-grid h3 {
   font-family: var(--serif);

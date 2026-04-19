@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
+import { BlogCover } from "@/components/blog/BlogCover";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
 
@@ -18,7 +18,7 @@ interface BlogPost {
   relatedRegulations?: Array<{ slug: string; name: string }>;
 }
 
-const POSTS: Record<string, BlogPost> = {
+export const POSTS: Record<string, BlogPost> = {
   "hiring-ai-compliance-2026-starter-kit": {
     slug: "hiring-ai-compliance-2026-starter-kit",
     title: "Hiring AI Compliance in 2026: The Complete Starter Kit",
@@ -4061,18 +4061,11 @@ export default async function BlogPostPage({ params }: Props) {
       {/* Lead figure */}
       <figure className="ledger-lead-figure">
         <div className="plate">
-          <Image
-            src={`/images/blog/${slug}.jpg`}
-            alt={post.title}
-            width={1400}
-            height={613}
-            style={{ width: "100%", height: "100%", objectFit: "cover", position: "absolute", inset: 0 }}
-            priority
-          />
+          <BlogCover slug={slug} category={post.category} title={post.title} variant="lead" />
         </div>
         <figcaption>
           <span>{post.category}</span>
-          <span>Illustration · AI Compliance Hub</span>
+          <span>Plate · AI Compliance Hub</span>
         </figcaption>
       </figure>
 

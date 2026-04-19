@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { existsSync } from "fs";
-import { join } from "path";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { BlogFilterClient } from "@/components/blog/BlogFilterClient";
@@ -349,11 +347,6 @@ export default function BlogPage() {
     { name: "The Ledger", url: "/blog" },
   ]);
 
-  const postsWithImages = POSTS.map((post) => ({
-    ...post,
-    hasImage: existsSync(join(process.cwd(), "public", "images", "blog", `${post.slug}.jpg`)),
-  }));
-
   const today = new Date();
   const volume = `Vol. I`;
   const number = `\u2116 ${POSTS.length}`;
@@ -378,7 +371,7 @@ export default function BlogPage() {
         </div>
       </header>
 
-      <BlogFilterClient categories={CATEGORIES} posts={postsWithImages} />
+      <BlogFilterClient categories={CATEGORIES} posts={POSTS} />
 
       {/* Subscribe band */}
       <section className="ledger-subscribe-band">

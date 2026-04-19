@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import { BlogCover } from "./BlogCover";
 
 interface BlogPost {
   slug: string;
@@ -12,7 +12,6 @@ interface BlogPost {
   date: string;
   readTime: string;
   tags: string[];
-  hasImage?: boolean;
 }
 
 interface Props {
@@ -92,18 +91,12 @@ export function BlogFilterClient({ categories, posts }: Props) {
               <Link href={`/blog/${featured.slug}`} style={{ textDecoration: "none", color: "inherit" }}>
                 <article className="gazette-lead">
                   <div className="plate-wrap">
-                    {featured.hasImage ? (
-                      <Image
-                        src={`/images/blog/${featured.slug}.jpg`}
-                        alt={featured.title}
-                        width={900}
-                        height={675}
-                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                        priority
-                      />
-                    ) : (
-                      <span className="glyph" aria-hidden="true">§</span>
-                    )}
+                    <BlogCover
+                      slug={featured.slug}
+                      category={featured.category}
+                      title={featured.title}
+                      variant="lead"
+                    />
                   </div>
                   <div>
                     <span className="k">▸ Lead · {featured.category}</span>
@@ -128,6 +121,9 @@ export function BlogFilterClient({ categories, posts }: Props) {
                     style={{ textDecoration: "none", color: "inherit", display: "contents" }}
                   >
                     <article>
+                      <div className="thumb-wrap" aria-hidden="true">
+                        <BlogCover slug={post.slug} category={post.category} title={post.title} variant="card" />
+                      </div>
                       <span className="k">▸ {post.category}</span>
                       <h3>{post.title}</h3>
                       <p>{post.excerpt}</p>
