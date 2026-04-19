@@ -3,18 +3,18 @@
 import { useSyncExternalStore, useCallback } from "react";
 import { Sun, Moon } from "lucide-react";
 
-type Theme = "light" | "dark";
+type Theme = "paper" | "night";
 
 function getThemeSnapshot(): Theme {
   const stored = localStorage.getItem("theme") as Theme | null;
-  if (stored) return stored;
+  if (stored === "night" || stored === "paper") return stored;
   return window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light";
+    ? "night"
+    : "paper";
 }
 
 function getServerSnapshot(): Theme {
-  return "light";
+  return "paper";
 }
 
 function subscribeToTheme(callback: () => void) {
@@ -29,20 +29,20 @@ function subscribeToTheme(callback: () => void) {
 
 function applyTheme(theme: Theme) {
   const root = document.documentElement;
-  root.classList.add("theme-transition");
-  if (theme === "dark") {
-    root.classList.add("dark");
+  root.setAttribute("data-transitioning", "");
+  if (theme === "night") {
+    root.setAttribute("data-theme", "night");
   } else {
-    root.classList.remove("dark");
+    root.removeAttribute("data-theme");
   }
-  window.setTimeout(() => root.classList.remove("theme-transition"), 350);
+  window.setTimeout(() => root.removeAttribute("data-transitioning"), 350);
 }
 
 export function ThemeToggle() {
   const theme = useSyncExternalStore(subscribeToTheme, getThemeSnapshot, getServerSnapshot);
 
   const toggle = useCallback(() => {
-    const next: Theme = theme === "light" ? "dark" : "light";
+    const next: Theme = theme === "paper" ? "night" : "paper";
     localStorage.setItem("theme", next);
     applyTheme(next);
     window.dispatchEvent(new StorageEvent("storage", { key: "theme" }));
@@ -51,7 +51,7 @@ export function ThemeToggle() {
   return (
     <button
       type="button"
-      aria-label={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
+      aria-label={theme === "paper" ? "Switch to night mode" : "Switch to paper mode"}
       onClick={toggle}
       style={{
         background: "transparent",
@@ -68,7 +68,7 @@ export function ThemeToggle() {
         transition: "border-color 0.15s, color 0.15s",
       }}
     >
-      {theme === "light" ? (
+      {theme === "paper" ? (
         <Moon size={16} aria-hidden="true" />
       ) : (
         <Sun size={16} aria-hidden="true" />
