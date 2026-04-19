@@ -27,10 +27,10 @@ export const metadata: Metadata = {
 };
 
 const SAMPLE_ARTICLES = [
-  { title: "Hiring AI Compliance in 2026: The Complete Starter Kit", slug: "hiring-ai-compliance-2026-starter-kit" },
-  { title: "Colorado AI Act 60-Day Compliance Checklist", slug: "colorado-ai-act-60-day-checklist" },
-  { title: "EU AI Act GPAI Rules: What Foundation Model Developers Must Do Now", slug: "eu-ai-act-gpai-obligations" },
-  { title: "NYC LL 144 Enforcement: First Fines Issued", slug: "nyc-ll-144-enforcement-update" },
+  { title: "The Biometric Privacy Law Patchwork, Mapped", slug: "biometric-privacy-law-patchwork" },
+  { title: "Clearview AI GDPR Fines Across Europe", slug: "clearview-ai-gdpr-fines" },
+  { title: "BIPA Class Actions in 2025: What Employers Need to Know", slug: "illinois-bipa-class-actions-2025" },
+  { title: "Texas AG vs. Meta: The $1.4B Biometric Settlement", slug: "texas-ag-meta-biometric-settlement" },
 ];
 
 export default async function SearchPage({
