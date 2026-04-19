@@ -7,6 +7,7 @@ import { db } from "@/db";
 import { providers, providerRegulations } from "@/db/schema";
 import { count, eq, inArray } from "drizzle-orm";
 import { getAllRegulationSlugs, getAllRegulations } from "@/lib/regulations";
+import Anthropic from "@anthropic-ai/sdk";
 
 export const revalidate = 21600;
 
@@ -179,40 +180,51 @@ function Icon({ name, size = 28 }: { name: string; size?: number }) {
 
 const BLOG_COUNT = 11;
 
-const STOP_WORDS = new Set([
-  "a","an","the","and","or","but","in","on","at","to","for","of","with",
-  "by","from","as","is","was","are","were","be","been","being","have",
-  "has","had","do","does","did","will","would","could","should","may",
-  "might","can","shall","not","no","so","if","then","than","too","very",
-  "just","about","all","also","am","any","because","before","between",
-  "both","during","each","how","into","its","me","more","most","my",
-  "off","only","other","our","out","over","own","same","she","he","that",
-  "their","them","these","they","this","those","through","under","up",
-  "we","what","when","where","which","while","who","whom","why","you","your",
-]);
+async function matchRegulationsWithClaude(
+  description: string,
+  availableSlugs: string[],
+  regCatalog: Array<{ slug: string; name: string; jurisdiction: string; description: string }>,
+): Promise<string[]> {
+  const apiKey = process.env.ANTHROPIC_API_KEY;
+  if (!apiKey) return [];
 
-function extractKeywords(text: string): string[] {
-  return text
-    .toLowerCase()
-    .replace(/[^a-z0-9\s]/g, " ")
-    .split(/\s+/)
-    .filter((w) => w.length > 1 && !STOP_WORDS.has(w));
-}
+  const catalog = regCatalog
+    .map((r) => `- ${r.slug}: ${r.name} [${r.jurisdiction}] — ${r.description}`)
+    .join("\n");
 
-function scoreRegulation(
-  keywords: string[],
-  reg: { name: string; description: string; jurisdiction: string },
-): number {
-  let score = 0;
-  const name = reg.name.toLowerCase();
-  const desc = reg.description.toLowerCase();
-  const juris = reg.jurisdiction.toLowerCase();
-  for (const kw of keywords) {
-    if (name.includes(kw)) score += 3;
-    if (juris.includes(kw)) score += 2;
-    if (desc.includes(kw)) score += 1;
+  try {
+    const client = new Anthropic({ apiKey });
+    const message = await client.messages.create({
+      model: "claude-haiku-4-5-20251001",
+      max_tokens: 500,
+      system: `You match business descriptions to applicable AI regulations. STRICT RULES:
+1. JURISDICTION FIRST: Only return regulations from jurisdictions where the described entity operates. A German company = EU regulations only, unless they explicitly mention US operations.
+2. US state laws (Illinois, Colorado, NYC, Virginia, Texas, California) apply ONLY if the entity mentions that specific state or "US" broadly.
+3. Be conservative: if unsure about a jurisdiction, exclude the regulation.
+4. Return ONLY slugs from the provided catalog. Return at most 4.
+Respond with a JSON array of slug strings only. No explanation.`,
+      messages: [
+        {
+          role: "user",
+          content: `Business description: "${description}"
+
+Available regulations:
+${catalog}
+
+Return JSON array of applicable regulation slugs (max 4):`,
+        },
+      ],
+    });
+
+    const content = message.content[0];
+    if (content.type !== "text") return [];
+    const text = content.text.trim().replace(/^```(?:json)?\n?/, "").replace(/\n?```$/, "").trim();
+    const slugs = JSON.parse(text) as string[];
+    if (!Array.isArray(slugs)) return [];
+    return slugs.filter((s) => availableSlugs.includes(s)).slice(0, 6);
+  } catch {
+    return [];
   }
-  return score;
 }
 
 function displayStatus(status: string): string {
@@ -248,28 +260,35 @@ export default async function HomePage({
 
   if (isRouted) {
     const allRegs = await getAllRegulations();
-    const keywords = extractKeywords(routeQuery);
+    const regCatalog = allRegs.map((r) => ({
+      slug: r.slug,
+      name: r.frontmatter.name,
+      jurisdiction: r.frontmatter.jurisdiction,
+      description: r.frontmatter.description,
+    }));
 
-    const scored = allRegs
-      .map((r) => ({
-        slug: r.slug,
-        code: r.frontmatter.shortName ?? r.slug,
-        title: r.frontmatter.name,
-        juris: r.frontmatter.jurisdiction,
-        status: displayStatus(r.frontmatter.status),
-        effective: r.frontmatter.effectiveDate ?? "",
-        summary: r.frontmatter.description,
-        score: scoreRegulation(keywords, {
-          name: r.frontmatter.name,
-          description: r.frontmatter.description,
-          jurisdiction: r.frontmatter.jurisdiction,
-        }),
-      }))
-      .filter((r) => r.score > 0)
-      .sort((a, b) => b.score - a.score)
-      .slice(0, 6);
+    const matchedSlugs = await matchRegulationsWithClaude(
+      routeQuery,
+      regSlugs,
+      regCatalog,
+    );
 
-    const matchedSlugs = scored.map((r) => r.slug);
+    const regMap = new Map(allRegs.map((r) => [r.slug, r]));
+    const scored = matchedSlugs
+      .map((slug) => {
+        const r = regMap.get(slug);
+        if (!r) return null;
+        return {
+          slug,
+          code: r.frontmatter.shortName ?? slug,
+          title: r.frontmatter.name,
+          juris: r.frontmatter.jurisdiction,
+          status: displayStatus(r.frontmatter.status),
+          effective: r.frontmatter.effectiveDate ?? "",
+          summary: r.frontmatter.description,
+        };
+      })
+      .filter((r): r is NonNullable<typeof r> => r !== null);
 
     if (matchedSlugs.length > 0) {
       const [provCountRows, provRows] = await Promise.all([
