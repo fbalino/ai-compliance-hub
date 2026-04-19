@@ -359,7 +359,7 @@ export default function BlogPage() {
       <header className="ledger-masthead">
         <div className="rule-top">
           <span><b>{volume}</b> · {number}</span>
-          <span>AI Compliance Hub · {dateline}</span>
+          <span>Regulome · {dateline}</span>
           <span>Free to read · <b>No tracking</b></span>
         </div>
         <h1 className="title">The <em>Ledger</em>.</h1>
@@ -367,7 +367,7 @@ export default function BlogPage() {
         <div className="meta-rule">
           <span>Enforcement · Analysis · Guides</span>
           <span>{POSTS.length} articles · updated weekly</span>
-          <span>aicompliancehub.com/blog</span>
+          <span>regulome.com/blog</span>
         </div>
       </header>
 

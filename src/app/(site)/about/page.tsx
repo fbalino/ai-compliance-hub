@@ -8,7 +8,7 @@ export const revalidate = false;
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
 
 export const metadata: Metadata = {
-  title: "About & Methodology — AI Compliance Hub",
+  title: "About & Methodology — Regulome",
   description:
     "How we track AI regulations worldwide: daily monitoring of 40+ official sources, editorial analysis, and curated provider matching. Open, transparent, correctable.",
   alternates: { canonical: `${SITE_URL}/about` },

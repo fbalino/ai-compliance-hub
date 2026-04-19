@@ -4040,7 +4040,7 @@ export default async function BlogPostPage({ params }: Props) {
           <Link href="/blog">All issues →</Link>
         </div>
         <p className="sub" style={{ margin: 0, marginTop: 4 }}>
-          AI Compliance Hub &middot; <Link href="/blog" style={{ borderBottom: "1px solid var(--line)" }}>newsroom</Link>
+          Regulome &middot; <Link href="/blog" style={{ borderBottom: "1px solid var(--line)" }}>newsroom</Link>
         </p>
       </header>
 
@@ -4050,7 +4050,7 @@ export default async function BlogPostPage({ params }: Props) {
         <h1>{post.title}</h1>
         <p className="dek">{post.excerpt}</p>
         <div className="byline">
-          <span>Regulome &middot; <b>AI Compliance Hub editors</b></span>
+          <span>Regulome &middot; <b>Regulome editors</b></span>
           <span className="dot-sep" />
           <time dateTime={post.date}>{formatDate(post.date)}</time>
           <span className="dot-sep" />
@@ -4065,7 +4065,7 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
         <figcaption>
           <span>{post.category}</span>
-          <span>Plate · AI Compliance Hub</span>
+          <span>Plate · Regulome</span>
         </figcaption>
       </figure>
 
@@ -4159,7 +4159,7 @@ export default async function BlogPostPage({ params }: Props) {
           <div className="ledger-author-card">
             <div className="bust" aria-hidden="true">R</div>
             <div>
-              <div className="name">AI Compliance Hub editors</div>
+              <div className="name">Regulome editors</div>
               <div className="bio">
                 The editorial desk covers AI and cyber regulation across the US, EU, and UK. Tips? <a style={{ color: "var(--accent)", borderBottom: "1px solid var(--accent-soft)" }} href="mailto:editors@aicompliancehub.com">editors@aicompliancehub.com</a>
               </div>

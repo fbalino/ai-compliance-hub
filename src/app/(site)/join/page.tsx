@@ -8,9 +8,9 @@ export const revalidate = false;
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
 
 export const metadata: Metadata = {
-  title: "List Your Practice — Provider Sign-Up | AI Compliance Hub",
+  title: "List Your Practice — Provider Sign-Up | Regulome",
   description:
-    "Join the AI Compliance Hub directory. Free listing for verified providers. Upgrade to Featured for top placement on regulation pages, homepage visibility, and priority RFPs.",
+    "Join the Regulome directory. Free listing for verified providers. Upgrade to Featured for top placement on regulation pages, homepage visibility, and priority RFPs.",
   alternates: { canonical: `${SITE_URL}/join` },
   openGraph: {
     title: "List Your Practice in the Register",
@@ -30,7 +30,7 @@ export default function JoinPage() {
   const schema = {
     "@context": "https://schema.org", "@type": "WebPage",
     name: "List Your Practice — Provider Sign-Up",
-    description: "Join the AI Compliance Hub provider directory.",
+    description: "Join the Regulome provider directory.",
     url: `${SITE_URL}/join`,
   };
 

@@ -8,7 +8,7 @@ export const revalidate = false;
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
 
 export const metadata: Metadata = {
-  title: "Post an RFP — Request for Proposal | AI Compliance Hub",
+  title: "Post an RFP — Request for Proposal | Regulome",
   description:
     "Submit a Request for Proposal and get matched with top AI compliance providers. Describe your needs, timeline, and budget — we'll connect you with the right experts.",
   alternates: { canonical: `${SITE_URL}/rfp` },

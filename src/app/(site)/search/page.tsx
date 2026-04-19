@@ -14,12 +14,12 @@ export const revalidate = false;
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
 
 export const metadata: Metadata = {
-  title: "Search Regulations, Providers & Articles — AI Compliance Hub",
+  title: "Search Regulations, Providers & Articles — Regulome",
   description:
     "Search across AI regulations, compliance providers, and editorial articles. Find biometric laws, GDPR guidance, AI Act obligations, and expert providers in one place.",
   alternates: { canonical: `${SITE_URL}/search` },
   openGraph: {
-    title: "Search — AI Compliance Hub",
+    title: "Search — Regulome",
     description: "Unified search across regulations, providers, and articles.",
     type: "website",
     url: `${SITE_URL}/search`,

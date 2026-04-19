@@ -5,7 +5,7 @@ import { db } from "@/db";
 import { providers, providerRegulations, providerServices } from "@/db/schema";
 
 const FROM_EMAIL =
-  process.env.RESEND_FROM_EMAIL ?? "AI Compliance Hub <hello@aicompliancehub.com>";
+  process.env.RESEND_FROM_EMAIL ?? "Regulome <hello@aicompliancehub.com>";
 const NOTIFY_EMAIL = "hello@aicompliancehub.com";
 
 function slugify(name: string): string {
@@ -54,7 +54,7 @@ function buildAdminEmail(data: {
       <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:12px;overflow:hidden;">
         <tr>
           <td style="background:#0f172a;padding:28px 40px;">
-            <p style="margin:0;font-size:13px;font-weight:700;letter-spacing:0.08em;color:#94a3b8;text-transform:uppercase;">AI Compliance Hub</p>
+            <p style="margin:0;font-size:13px;font-weight:700;letter-spacing:0.08em;color:#94a3b8;text-transform:uppercase;">Regulome</p>
             <h1 style="margin:8px 0 0;font-size:22px;font-weight:800;color:#ffffff;">New Provider Registration</h1>
           </td>
         </tr>
@@ -78,7 +78,7 @@ function buildAdminEmail(data: {
         </tr>
         <tr>
           <td style="padding:16px 40px;background:#f8fafc;border-top:1px solid #e2e8f0;text-align:center;">
-            <p style="margin:0;font-size:12px;color:#94a3b8;">AI Compliance Hub — Provider Registration</p>
+            <p style="margin:0;font-size:12px;color:#94a3b8;">Regulome — Provider Registration</p>
           </td>
         </tr>
       </table>
