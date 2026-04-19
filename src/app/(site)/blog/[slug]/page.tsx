@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
@@ -3812,6 +3811,37 @@ function formatDate(iso: string) {
   });
 }
 
+function slugify(s: string): string {
+  return s
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-")
+    .slice(0, 80);
+}
+
+// Extract H2 headings from raw markdown to build a TOC.
+function extractHeadings(text: string): Array<{ id: string; title: string }> {
+  const out: Array<{ id: string; title: string }> = [];
+  const seen = new Set<string>();
+  for (const raw of text.split("\n")) {
+    const t = raw.trim();
+    if (!t.startsWith("## ")) continue;
+    const title = t
+      .slice(3)
+      .replace(/\*\*(.+?)\*\*/g, "$1")
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+      .replace(/`([^`]+)`/g, "$1")
+      .trim();
+    let id = slugify(title);
+    let i = 2;
+    while (seen.has(id)) id = `${slugify(title)}-${i++}`;
+    seen.add(id);
+    out.push({ id, title });
+  }
+  return out;
+}
+
 // Naive markdown-to-HTML: handles headings, bold, lists, links, tables, hr, code
 function renderMarkdown(text: string): string {
   const lines = text.trim().split("\n");
@@ -3820,6 +3850,7 @@ function renderMarkdown(text: string): string {
   let listType: "ul" | "ol" = "ul";
   let inTable = false;
   let tableHeader = false;
+  const seenIds = new Set<string>();
 
   function closeList() {
     if (inList) {
@@ -3861,13 +3892,25 @@ function renderMarkdown(text: string): string {
     if (trimmed.startsWith("## ")) {
       closeList();
       closeTable();
-      html.push(`<h2 class="text-xl font-bold text-ink mt-8 mb-3">${processInline(trimmed.slice(3))}</h2>`);
+      const raw = trimmed.slice(3);
+      const plain = raw.replace(/\*\*(.+?)\*\*/g, "$1").replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/`([^`]+)`/g, "$1").trim();
+      let id = slugify(plain);
+      let i = 2;
+      while (seenIds.has(id)) id = `${slugify(plain)}-${i++}`;
+      seenIds.add(id);
+      html.push(`<h2 id="${id}">${processInline(raw)}</h2>`);
       continue;
     }
     if (trimmed.startsWith("### ")) {
       closeList();
       closeTable();
-      html.push(`<h3 class="text-lg font-semibold text-ink mt-6 mb-2">${processInline(trimmed.slice(4))}</h3>`);
+      const raw = trimmed.slice(4);
+      const plain = raw.replace(/\*\*(.+?)\*\*/g, "$1").replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/`([^`]+)`/g, "$1").trim();
+      let id = slugify(plain);
+      let i = 2;
+      while (seenIds.has(id)) id = `${slugify(plain)}-${i++}`;
+      seenIds.add(id);
+      html.push(`<h3 id="${id}">${processInline(raw)}</h3>`);
       continue;
     }
 
@@ -3962,6 +4005,15 @@ function renderMarkdown(text: string): string {
   return html.join("\n");
 }
 
+function formatIssueLine(iso: string) {
+  return new Date(iso).toLocaleDateString("en-GB", {
+    weekday: "long",
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  });
+}
+
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
   const post = POSTS[slug];
@@ -3969,65 +4021,134 @@ export default async function BlogPostPage({ params }: Props) {
 
   const breadcrumbs = breadcrumbListSchema([
     { name: "Home", url: "/" },
-    { name: "Blog", url: "/blog" },
+    { name: "The Ledger", url: "/blog" },
     { name: post.title, url: `/blog/${slug}` },
   ]);
 
+  const headings = extractHeadings(post.body);
+  const issueNo = Object.keys(POSTS).indexOf(slug) + 1;
+
   return (
-    <>
+    <div className="ledger-wrap">
       <script {...jsonLdScriptProps(breadcrumbs)} />
 
-      <div className="page-banner">
-        <div className="container" style={{ maxWidth: 780, padding: 0 }}>
-          <Breadcrumbs
-            items={[
-              { label: "Home", href: "/" },
-              { label: "Blog", href: "/blog" },
-              { label: post.category },
-            ]}
-          />
-          <div style={{ marginTop: 16 }}>
-            <div className="tag-strip" style={{ marginBottom: 12 }}>
-              <span className="chip">{post.category}</span>
-              <span className="xs" style={{ color: "var(--ink-2)" }}>{post.readTime}</span>
-              <time dateTime={post.date} className="xs" style={{ color: "var(--ink-2)" }}>
-                {formatDate(post.date)}
-              </time>
-            </div>
-            <h1 className="h1">{post.title}</h1>
-            <p className="lede" style={{ marginTop: 8 }}>{post.excerpt}</p>
-          </div>
+      {/* Compact masthead */}
+      <header className="ledger-masthead">
+        <div className="rule-top">
+          <span><b>The Ledger</b> · {formatIssueLine(post.date)}</span>
+          <span>Issue &#8470; {issueNo}</span>
+          <Link href="/blog">All issues →</Link>
         </div>
-      </div>
+        <p className="sub" style={{ margin: 0, marginTop: 4 }}>
+          AI Compliance Hub &middot; <Link href="/blog" style={{ borderBottom: "1px solid var(--line)" }}>newsroom</Link>
+        </p>
+      </header>
 
-      <div className="container" style={{ maxWidth: 780, padding: "var(--s-8) var(--s-7)" }}>
+      {/* Hero */}
+      <section className="ledger-hero">
+        <div className="kicker">{post.category} · {post.readTime}</div>
+        <h1>{post.title}</h1>
+        <p className="dek">{post.excerpt}</p>
+        <div className="byline">
+          <span>Regulome &middot; <b>AI Compliance Hub editors</b></span>
+          <span className="dot-sep" />
+          <time dateTime={post.date}>{formatDate(post.date)}</time>
+          <span className="dot-sep" />
+          <span>{post.readTime}</span>
+        </div>
+      </section>
 
-          {/* Cover image */}
-          <div style={{ borderRadius: 12, overflow: "hidden", background: "linear-gradient(135deg, var(--accent), var(--gold))", aspectRatio: "16/9", marginBottom: 40 }}>
-            <Image
-              src={`/images/blog/${slug}.jpg`}
-              alt={post.title}
-              width={1200}
-              height={675}
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              priority
-            />
-          </div>
+      {/* Lead figure */}
+      <figure className="ledger-lead-figure">
+        <div className="plate">
+          <Image
+            src={`/images/blog/${slug}.jpg`}
+            alt={post.title}
+            width={1400}
+            height={613}
+            style={{ width: "100%", height: "100%", objectFit: "cover", position: "absolute", inset: 0 }}
+            priority
+          />
+        </div>
+        <figcaption>
+          <span>{post.category}</span>
+          <span>Illustration · AI Compliance Hub</span>
+        </figcaption>
+      </figure>
 
-          {/* Article body */}
+      <div className="ledger-article-body">
+        {/* Left rail: TOC */}
+        <aside className="rail-left">
+          {headings.length > 0 && (
+            <nav className="ledger-toc" aria-label="Article contents">
+              <h6>In this piece</h6>
+              <ol>
+                {headings.map((h) => (
+                  <li key={h.id}>
+                    <a href={`#${h.id}`}>{h.title}</a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          )}
+        </aside>
+
+        {/* Prose */}
+        <article>
           <div
-            className="prose-compliance"
-            dangerouslySetInnerHTML={{ __html: renderMarkdown(post.body) }}
+            className="prose-ledger"
+            dangerouslySetInnerHTML={{ __html: renderMarkdown(post.body) + `<span class="ledger-end-mark" aria-hidden="true"></span>` }}
           />
 
-          {/* Related regulations */}
+          {/* Related regulations — reg-callout style */}
           {post.relatedRegulations && post.relatedRegulations.length > 0 && (
-            <div className="card card-tint" style={{ marginTop: 40 }}>
-              <strong className="small" style={{ fontWeight: 600 }}>Related Regulations</strong>
-              <div className="tag-strip" style={{ marginTop: 12 }}>
+            <div style={{ maxWidth: 680, marginTop: 48 }}>
+              <div style={{ fontFamily: "var(--mono)", fontSize: 11, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--ink)", paddingBottom: 8, borderBottom: "1px solid var(--ink)", fontWeight: 500, marginBottom: 14 }}>
+                Tagged regulations
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                 {post.relatedRegulations.map((reg) => (
-                  <Link key={reg.slug} href={`/regulations/${reg.slug}`} className="btn btn-ghost" style={{ fontSize: 13 }}>
-                    {reg.name} &rarr;
+                  <Link
+                    key={reg.slug}
+                    href={`/regulations/${reg.slug}`}
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "auto 1fr auto",
+                      gap: 16,
+                      alignItems: "center",
+                      background: "var(--paper-2)",
+                      border: "1px solid var(--line)",
+                      borderLeft: "3px solid var(--accent)",
+                      padding: "14px 18px",
+                      fontFamily: "var(--sans)",
+                      fontSize: 14,
+                      color: "var(--ink)",
+                      textDecoration: "none",
+                      borderRadius: "var(--radius)",
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontFamily: "var(--mono)",
+                        fontSize: 11,
+                        background: "var(--accent)",
+                        color: "#fff",
+                        padding: "4px 10px",
+                        borderRadius: "var(--radius-sm)",
+                        letterSpacing: "0.06em",
+                      }}
+                    >
+                      REG
+                    </span>
+                    <div>
+                      <div style={{ color: "var(--ink)", fontWeight: 500 }}>{reg.name}</div>
+                      <div style={{ fontSize: 12, color: "var(--ink-soft)", marginTop: 2 }}>
+                        Open in register
+                      </div>
+                    </div>
+                    <span style={{ fontFamily: "var(--mono)", fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--ink)" }}>
+                      →
+                    </span>
                   </Link>
                 ))}
               </div>
@@ -4035,34 +4156,82 @@ export default async function BlogPostPage({ params }: Props) {
           )}
 
           {/* Tags */}
-          <div className="tag-strip" style={{ marginTop: 24 }}>
+          <div className="tag-strip" style={{ marginTop: 32, maxWidth: 680 }}>
             {post.tags.map((tag) => (
               <span key={tag} className="chip">{tag}</span>
             ))}
           </div>
 
-          {/* CTA */}
-          <div className="card" style={{ marginTop: 40, textAlign: "center" }}>
-            <p className="small" style={{ fontWeight: 600, marginBottom: 4 }}>
-              Not sure which AI laws apply to your business?
-            </p>
-            <p className="small" style={{ color: "var(--ink-2)", marginBottom: 16 }}>
-              Use our free compliance checker &mdash; answer 4 questions, get instant results.
-            </p>
-            <Link href="/checker" className="btn btn-primary">Check My Compliance</Link>
+          {/* Author card */}
+          <div className="ledger-author-card">
+            <div className="bust" aria-hidden="true">R</div>
+            <div>
+              <div className="name">AI Compliance Hub editors</div>
+              <div className="bio">
+                The editorial desk covers AI and cyber regulation across the US, EU, and UK. Tips? <a style={{ color: "var(--accent)", borderBottom: "1px solid var(--accent-soft)" }} href="mailto:editors@aicompliancehub.com">editors@aicompliancehub.com</a>
+              </div>
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              <Link href="/newsletter" className="btn btn-sm btn-primary">Subscribe</Link>
+              <Link href="/blog" className="btn btn-sm btn-ghost">All articles</Link>
+            </div>
           </div>
 
-          {/* Back to blog */}
-          <div style={{ marginTop: 24 }}>
-            <Link href="/blog" className="small" style={{ fontWeight: 500, color: "var(--ink-2)" }}>
-              &larr; Back to blog
+          {/* Compliance checker CTA (editorially reframed) */}
+          <div className="ledger-corrections" style={{ marginTop: 40 }}>
+            <div className="h">Not legal advice</div>
+            <p style={{ margin: 0 }}>
+              This article is for informational purposes only and does not constitute legal advice. Always consult qualified counsel before making compliance decisions.{" "}
+              <Link href="/checker" style={{ color: "var(--accent)", borderBottom: "1px solid var(--accent-soft)" }}>
+                Try the free compliance checker →
+              </Link>
+            </p>
+          </div>
+
+          <div style={{ marginTop: 40, maxWidth: 680 }}>
+            <Link href="/blog" style={{ fontFamily: "var(--mono)", fontSize: 12, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--ink-soft)" }}>
+              ← Back to The Ledger
             </Link>
           </div>
+        </article>
 
-          <p className="xs" style={{ marginTop: 32, color: "var(--ink-2)", lineHeight: 1.6 }}>
-            Not legal advice. This article is for informational purposes only. Always consult a qualified attorney for compliance decisions.
-          </p>
+        {/* Right rail: share */}
+        <aside className="rail-right ledger-rail-right">
+          <div className="rail-head">Share &amp; save</div>
+          <div className="share">
+            <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`${SITE_URL}/blog/${slug}`)}`} target="_blank" rel="noopener noreferrer">
+              <b>Share on LinkedIn</b>
+              <span aria-hidden="true">→</span>
+            </a>
+            <a href={`mailto:?subject=${encodeURIComponent(post.title)}&body=${encodeURIComponent(`${post.excerpt}\n\n${SITE_URL}/blog/${slug}`)}`}>
+              <b>Send via email</b>
+              <span aria-hidden="true">→</span>
+            </a>
+            <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(`${SITE_URL}/blog/${slug}`)}&text=${encodeURIComponent(post.title)}`} target="_blank" rel="noopener noreferrer">
+              <b>Share on X</b>
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+          <div className="rail-head" style={{ marginTop: 32 }}>Filed under</div>
+          <div className="tag-strip" style={{ marginTop: 12 }}>
+            <Link href={`/blog?category=${encodeURIComponent(post.category)}`} className="chip chip-code" style={{ textDecoration: "none" }}>
+              {post.category}
+            </Link>
+          </div>
+        </aside>
       </div>
-    </>
+
+      {/* Subscribe band */}
+      <section className="ledger-subscribe-band">
+        <div>
+          <h3>Keep the <em>Ledger</em> coming.</h3>
+          <p>A weekly edition of new regulations, enforcement actions, and compliance deadlines — delivered every Friday. Free forever. No tracking pixels.</p>
+        </div>
+        <div>
+          <Link href="/newsletter" className="btn btn-primary btn-lg">Subscribe free →</Link>
+          <p className="meta">Read by 4,000+ compliance teams · Cancel any time</p>
+        </div>
+      </section>
+    </div>
   );
 }

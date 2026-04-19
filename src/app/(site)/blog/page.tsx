@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { existsSync } from "fs";
 import { join } from "path";
-import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { BlogFilterClient } from "@/components/blog/BlogFilterClient";
@@ -336,10 +334,19 @@ const POSTS = [
   },
 ];
 
+function formatIssueDate(d: Date) {
+  return d.toLocaleDateString("en-GB", {
+    weekday: "long",
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  });
+}
+
 export default function BlogPage() {
   const breadcrumbs = breadcrumbListSchema([
     { name: "Home", url: "/" },
-    { name: "Blog", url: "/blog" },
+    { name: "The Ledger", url: "/blog" },
   ]);
 
   const postsWithImages = POSTS.map((post) => ({
@@ -347,42 +354,43 @@ export default function BlogPage() {
     hasImage: existsSync(join(process.cwd(), "public", "images", "blog", `${post.slug}.jpg`)),
   }));
 
+  const today = new Date();
+  const volume = `Vol. I`;
+  const number = `\u2116 ${POSTS.length}`;
+  const dateline = formatIssueDate(today);
+
   return (
-    <>
+    <div className="ledger-wrap">
       <script {...jsonLdScriptProps(breadcrumbs)} />
 
-      <div className="page-banner">
-        <div className="container" style={{ maxWidth: 1000, padding: 0 }}>
-          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Blog" }]} />
-          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: 16 }}>
-            <div>
-              <h1 className="h1">AI Compliance Blog</h1>
-              <p className="lede" style={{ marginTop: 8 }}>
-                Enforcement updates, compliance how-to guides, and analysis of new AI laws. Updated weekly.
-              </p>
-            </div>
-            <Link href="/newsletter" className="btn btn-ghost" style={{ flexShrink: 0 }}>
-              <svg style={{ width: 16, height: 16, marginRight: 6 }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-              Subscribe for updates
-            </Link>
-          </div>
-
+      <header className="ledger-masthead">
+        <div className="rule-top">
+          <span><b>{volume}</b> · {number}</span>
+          <span>AI Compliance Hub · {dateline}</span>
+          <span>Free to read · <b>No tracking</b></span>
         </div>
-      </div>
-
-      <div className="container" style={{ maxWidth: 1000, padding: "0 var(--s-7) var(--s-8)" }}>
-        <BlogFilterClient categories={CATEGORIES} posts={postsWithImages} />
-        {/* Newsletter CTA */}
-        <div className="card" style={{ marginTop: 48, textAlign: "center", padding: "var(--s-6)", background: "var(--paper-inverse)", color: "var(--ink-inverse)" }}>
-          <h2 className="h3" style={{ color: "var(--ink-inverse)" }}>Never miss a regulation update</h2>
-          <p className="small" style={{ maxWidth: 420, margin: "8px auto 0", color: "var(--ink-inverse-soft)" }}>
-            Weekly digest of new AI laws, enforcement actions, and compliance deadlines. Free. No spam.
-          </p>
-          <NewsletterForm source="blog" className="mt-5 max-w-sm mx-auto" />
+        <h1 className="title">The <em>Ledger</em>.</h1>
+        <p className="sub">A record of AI &amp; compliance regulation, annotated weekly.</p>
+        <div className="meta-rule">
+          <span>Enforcement · Analysis · Guides</span>
+          <span>{POSTS.length} articles · updated weekly</span>
+          <span>aicompliancehub.com/blog</span>
         </div>
-      </div>
-    </>
+      </header>
+
+      <BlogFilterClient categories={CATEGORIES} posts={postsWithImages} />
+
+      {/* Subscribe band */}
+      <section className="ledger-subscribe-band">
+        <div>
+          <h3>A <em>weekly</em> edition,<br/>in your inbox.</h3>
+          <p>Every Friday — the week&rsquo;s new regulations, enforcement actions, and compliance deadlines. Free forever. No tracking pixels.</p>
+        </div>
+        <div>
+          <NewsletterForm source="blog" className="max-w-sm" />
+          <p className="meta">Cancel any time · No spam · Read by 4,000+ compliance teams</p>
+        </div>
+      </section>
+    </div>
   );
 }
