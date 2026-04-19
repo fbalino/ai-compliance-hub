@@ -184,6 +184,29 @@ export const leads = pgTable(
 );
 
 // ─────────────────────────────────────────────
+// RFPs (Request for Proposal)
+// ─────────────────────────────────────────────
+export const rfps = pgTable("rfps", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  userId: uuid("user_id").references(() => users.id),
+  contactName: text("contact_name").notNull(),
+  contactEmail: text("contact_email").notNull(),
+  companyName: text("company_name").notNull(),
+  companySize: text("company_size"),
+  industry: text("industry"),
+  description: text("description").notNull(),
+  regulationSlugs: text("regulation_slugs").array(),
+  serviceTypes: text("service_types").array(),
+  jurisdictions: text("jurisdictions").array(),
+  timeline: text("timeline"),
+  budget: text("budget"),
+  status: text("status").default("open"),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+}, (t) => [
+  index("idx_rfps_status").on(t.status),
+]);
+
+// ─────────────────────────────────────────────
 // Newsletter subscribers
 // ─────────────────────────────────────────────
 export const subscribers = pgTable("subscribers", {
@@ -231,3 +254,5 @@ export type CheckerResponse = typeof checkerResponses.$inferSelect;
 export type Lead = typeof leads.$inferSelect;
 export type Subscriber = typeof subscribers.$inferSelect;
 export type Regulation = typeof regulations.$inferSelect;
+export type Rfp = typeof rfps.$inferSelect;
+export type NewRfp = typeof rfps.$inferInsert;
