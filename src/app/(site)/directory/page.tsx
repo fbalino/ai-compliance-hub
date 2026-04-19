@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { db } from "@/db";
 import { providers, providerCategories, providerServices } from "@/db/schema";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import { DirectorySearchClient, type ProviderSearchItem } from "@/components/directory/DirectorySearchClient";
-import { SidebarToggle } from "@/components/directory/SidebarToggle";
-import { CategoryIcon } from "@/lib/category-icons";
 
 export const revalidate = 3600;
 
@@ -20,9 +17,6 @@ export const metadata: Metadata = {
     canonical: `${SITE_URL}/directory`,
   },
 };
-
-const SERVICE_TYPES = ["Software", "Advisory", "Legal counsel", "Audit"];
-const REGIONS = ["EU", "UK", "US", "APAC", "LATAM"];
 
 async function getDirectoryData() {
   const [allProviders, allCategories, allServices] = await Promise.all([
@@ -91,67 +85,7 @@ export default async function DirectoryPage() {
       </div>
 
       <div className="container sidebar-layout">
-
-        {/* Left sidebar filters */}
-        <SidebarToggle>
-          <div className="eyebrow" style={{ marginBottom: 12 }}>Filters</div>
-
-          <div style={{ marginBottom: 24 }}>
-            <div className="h5" style={{ marginBottom: 8 }}>Service</div>
-            {SERVICE_TYPES.map((svc) => (
-              <label key={svc} className="flex items-center small" style={{ gap: 8, padding: "6px 0" }}>
-                <input type="checkbox" />
-                <span>{svc}</span>
-              </label>
-            ))}
-          </div>
-
-          <div style={{ marginBottom: 24 }}>
-            <div className="h5" style={{ marginBottom: 8 }}>Region</div>
-            {REGIONS.map((region) => (
-              <label key={region} className="flex items-center small" style={{ gap: 8, padding: "6px 0" }}>
-                <input type="checkbox" />
-                <span>{region}</span>
-              </label>
-            ))}
-          </div>
-
-          <div style={{ marginBottom: 24 }}>
-            <div className="h5" style={{ marginBottom: 8 }}>Specialization</div>
-            <div className="col" style={{ gap: 4 }}>
-              {categoryOptions.map((cat) => (
-                <Link key={cat.slug} href={`/directory/categories/${cat.slug}`} className="small flex items-center" style={{ gap: 8, padding: "6px 0", color: "var(--ink-2)", textDecoration: "none" }}>
-                  <CategoryIcon name={cat.icon} className="h-4 w-4" />
-                  {cat.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </SidebarToggle>
-
-        {/* Main content */}
-        <div>
-          <div className="between" style={{ marginBottom: 20 }}>
-            <div className="eyebrow">Sorted: Featured &middot; then coverage</div>
-          </div>
-
-          <DirectorySearchClient providers={searchItems} categories={categoryOptions} />
-
-          {/* Provider CTA */}
-          <div className="card" style={{ marginTop: 40, padding: "var(--s-7)", background: "var(--paper-inverse)", color: "var(--ink-inverse)" }}>
-            <div className="flex between" style={{ flexWrap: "wrap", gap: 24 }}>
-              <div style={{ maxWidth: 560 }}>
-                <div className="h3" style={{ color: "var(--ink-inverse)" }}>Are you a compliance provider?</div>
-                <p className="small" style={{ color: "var(--ink-inverse-soft)", marginTop: 8 }}>
-                  List your firm in our directory. Free for verified providers. Featured listings include priority placement, lead routing, and analytics.
-                </p>
-              </div>
-              <Link href="/join" className="btn btn-accent" style={{ flexShrink: 0 }}>
-                Get Listed &rarr;
-              </Link>
-            </div>
-          </div>
-        </div>
+        <DirectorySearchClient providers={searchItems} categories={categoryOptions} />
       </div>
     </>
   );
