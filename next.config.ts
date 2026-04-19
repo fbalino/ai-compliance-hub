@@ -4,6 +4,20 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+  async redirects() {
+    return [
+      {
+        source: "/regulations/texas-hb-1709",
+        destination: "/regulations/texas-algorithmic-accountability-act",
+        permanent: true,
+      },
+      {
+        source: "/regulations/virginia-hb-2094",
+        destination: "/regulations/virginia-human-civil-rights-act",
+        permanent: true,
+      },
+    ];
+  },
   turbopack: {
     root: process.cwd(),
   },

@@ -74,7 +74,7 @@ const REGS = [
     summary: "Annual bias audits required for AI used in hiring or promotion decisions affecting NYC employees.",
   },
   {
-    slug: "virginia-hb-2094",
+    slug: "virginia-human-civil-rights-act",
     name: "Virginia HB 2094",
     jurisdiction: "US · Virginia",
     status: "enacted",

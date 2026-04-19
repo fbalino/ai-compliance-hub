@@ -688,7 +688,7 @@ const REGULATIONS = [
       "Requires consent and disclosure when AI is used to analyze video interviews for hiring decisions involving Illinois applicants.",
   },
   {
-    slug: "texas-hb-1709",
+    slug: "texas-algorithmic-accountability-act",
     name: "Texas Responsible AI Governance Act (HB 1709)",
     jurisdiction: "US · Texas",
     status: "draft",
@@ -699,7 +699,7 @@ const REGULATIONS = [
       "Proposed Texas law establishing governance requirements for deployers of high-risk AI systems affecting consequential decisions.",
   },
   {
-    slug: "virginia-hb-2094",
+    slug: "virginia-human-civil-rights-act",
     name: "Virginia HB 2094",
     jurisdiction: "US · Virginia",
     status: "enacted",

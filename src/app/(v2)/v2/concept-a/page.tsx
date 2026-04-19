@@ -35,7 +35,7 @@ const REGS = [
   { slug: "eu-ai-act", name: "EU AI Act", sigil: "EU", jurisdiction: "European Union", status: "Enforced", effective: "Aug 2026" },
   { slug: "colorado-ai-act", name: "Colorado AI Act", sigil: "CO", jurisdiction: "Colorado · US", status: "Enacted", effective: "Jun 30, 2026" },
   { slug: "nyc-local-law-144", name: "NYC Local Law 144", sigil: "NY", jurisdiction: "New York City", status: "Enforced", effective: "Jul 2023" },
-  { slug: "virginia-hb-2094", name: "Virginia HB 2094", sigil: "VA", jurisdiction: "Virginia · US", status: "Enacted", effective: "Jul 1, 2026" },
+  { slug: "virginia-human-civil-rights-act", name: "Virginia HB 2094", sigil: "VA", jurisdiction: "Virginia · US", status: "Enacted", effective: "Jul 1, 2026" },
   { slug: "california-ab-2013", name: "California AB 2013", sigil: "CA", jurisdiction: "California · US", status: "Enacted", effective: "Jan 1, 2026" },
 ];
 

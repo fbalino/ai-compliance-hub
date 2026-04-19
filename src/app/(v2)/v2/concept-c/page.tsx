@@ -44,7 +44,7 @@ const REGS = [
   { slug: "eu-ai-act", locus: "EU-AIA.2024.1689", name: "EU AI Act", jur: "European Union", phylum: "Comprehensive · Risk-tiered", status: "enforced", effective: "Aug 2026", chromaticity: cobalt, weight: 98 },
   { slug: "colorado-ai-act", locus: "CO-SB24.205", name: "Colorado AI Act", jur: "Colorado · US", phylum: "High-risk deployer", status: "enacted", effective: "Jun 30, 2026", chromaticity: oxblood, weight: 62 },
   { slug: "nyc-local-law-144", locus: "NYC-LL.144.2021", name: "NYC Local Law 144", jur: "New York City", phylum: "Employment · bias audit", status: "enforced", effective: "Jul 2023", chromaticity: moss, weight: 34 },
-  { slug: "virginia-hb-2094", locus: "VA-HB.2094", name: "Virginia HB 2094", jur: "Virginia · US", phylum: "Consumer protection", status: "enacted", effective: "Jul 1, 2026", chromaticity: ochre, weight: 48 },
+  { slug: "virginia-human-civil-rights-act", locus: "VA-HB.2094", name: "Virginia HB 2094", jur: "Virginia · US", phylum: "Consumer protection", status: "enacted", effective: "Jul 1, 2026", chromaticity: ochre, weight: 48 },
 ];
 
 const LOCI = [
