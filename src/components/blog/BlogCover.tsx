@@ -1,12 +1,6 @@
 import type { CSSProperties } from "react";
 
-/**
- * BlogCover — procedural, editorial cover plate for AI Compliance Hub.
- *
- * Each post renders an abstract "engineering plate" scene chosen by category and
- * seeded by slug. Colors route through design tokens so the plate reflows in
- * dark mode automatically.
- */
+import { BRAND_NAME } from "@/lib/brand";
 
 type Props = {
   slug: string;
@@ -149,7 +143,7 @@ export function BlogCover({ slug, category, title, variant = "lead", className, 
           {code} · {year}
         </text>
         <text x={W - 46} y={H - 46} textAnchor="end">
-          AI COMPLIANCE HUB
+          {BRAND_NAME.toUpperCase()}
         </text>
       </g>
 

@@ -1,10 +1,11 @@
 import { ImageResponse } from "next/og";
 import { notFound } from "next/navigation";
+import { BRAND_NAME, BRAND_DOMAIN } from "@/lib/brand";
 
 export const runtime = "nodejs";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "AI Compliance Hub";
+export const alt = BRAND_NAME;
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -100,9 +101,9 @@ export default async function OGImage({ params }: Props) {
         >
           <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
             <div style={{ width: 28, height: 28, background: accent }} />
-            <div>AI Compliance Hub</div>
+            <div>{BRAND_NAME}</div>
           </div>
-          <div>aicompliancehub.com</div>
+          <div>{BRAND_DOMAIN}</div>
         </div>
       </div>
     ),
