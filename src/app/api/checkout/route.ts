@@ -1,14 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
+import { SITE_URL } from "@/lib/brand";
 
 function getStripe(): Stripe {
   const key = process.env.STRIPE_SECRET_KEY;
   if (!key) throw new Error("STRIPE_SECRET_KEY not set");
   return new Stripe(key);
 }
-
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
 
 // Stripe metadata values are capped at 500 chars
 function safeMetadataValue(value: string, maxLength = 500): string {

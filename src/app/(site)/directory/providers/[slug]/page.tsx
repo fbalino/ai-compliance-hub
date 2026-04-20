@@ -14,9 +14,8 @@ import {
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { providerSchema, breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import { RequestQuoteForm } from "@/components/RequestQuoteForm";
+import { SITE_URL } from "@/lib/brand";
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
 
 interface ReviewData {
   id: string;

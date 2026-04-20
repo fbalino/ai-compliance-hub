@@ -3,8 +3,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import { BlogCover } from "@/components/blog/BlogCover";
+import { SITE_URL, BRAND_EMAIL_EDITORS } from "@/lib/brand";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
 
 interface BlogPost {
   slug: string;
@@ -4161,7 +4161,7 @@ export default async function BlogPostPage({ params }: Props) {
             <div>
               <div className="name">Regulome editors</div>
               <div className="bio">
-                The editorial desk covers AI and cyber regulation across the US, EU, and UK. Tips? <a style={{ color: "var(--accent)", borderBottom: "1px solid var(--accent-soft)" }} href="mailto:editors@aicompliancehub.com">editors@aicompliancehub.com</a>
+                The editorial desk covers AI and cyber regulation across the US, EU, and UK. Tips? <a style={{ color: "var(--accent)", borderBottom: "1px solid var(--accent-soft)" }} href={`mailto:${BRAND_EMAIL_EDITORS}`}>{BRAND_EMAIL_EDITORS}</a>
               </div>
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>

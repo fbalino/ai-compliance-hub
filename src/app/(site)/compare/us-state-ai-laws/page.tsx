@@ -4,10 +4,10 @@ import { Mountain, Landmark, Wheat, TreePine } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
+import { SITE_URL } from "@/lib/brand";
 
 export const revalidate = false;
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
 
 export const metadata: Metadata = {
   title: "US State AI Laws Compared: Colorado, NYC, Illinois & California (2026)",

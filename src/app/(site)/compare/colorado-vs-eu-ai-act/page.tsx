@@ -3,10 +3,10 @@ import Link from "next/link";
 import { Mountain, Globe, Check } from "lucide-react";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
+import { SITE_URL } from "@/lib/brand";
 
 export const revalidate = false;
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
 
 export const metadata: Metadata = {
   title: "Colorado AI Act vs. EU AI Act: Complete Comparison (2026)",

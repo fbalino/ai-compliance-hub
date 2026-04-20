@@ -10,11 +10,10 @@ import {
 } from "@/lib/jsonld";
 import { getRegulationBySlug, getAllRegulationSlugs } from "@/lib/regulations";
 import { NewsletterForm } from "@/components/NewsletterForm";
+import { SITE_URL } from "@/lib/brand";
 
 export const revalidate = 86400;
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
 
 interface Props {
   params: Promise<{ slug: string }>;

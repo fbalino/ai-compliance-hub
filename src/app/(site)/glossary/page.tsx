@@ -3,10 +3,10 @@ import Link from "next/link";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import { getAllGlossaryEntries } from "@/lib/glossary";
+import { SITE_URL } from "@/lib/brand";
 
 export const revalidate = false;
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
 
 export const metadata: Metadata = {
   title: "AI Compliance Glossary — Key Terms Defined",

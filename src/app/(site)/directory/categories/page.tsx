@@ -6,10 +6,10 @@ import { providerCategories, providers } from "@/db/schema";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import { CategoryIcon } from "@/lib/category-icons";
+import { SITE_URL } from "@/lib/brand";
 
 export const revalidate = 3600;
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
 
 export const metadata: Metadata = {
   title: "Provider Categories — AI Compliance Directory",

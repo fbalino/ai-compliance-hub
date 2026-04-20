@@ -4,8 +4,8 @@ import { ClipboardList, Target, Map, ListChecks, FileText, RefreshCw, Check } fr
 import type { LucideIcon } from "lucide-react";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
+import { SITE_URL } from "@/lib/brand";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
 
 export const metadata: Metadata = {
   title: "Pro Compliance Report — Detailed AI Regulation Gap Analysis ($49)",

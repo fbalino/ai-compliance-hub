@@ -7,10 +7,10 @@ import { providerCategories, providers, providerServices } from "@/db/schema";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import { CategoryIcon } from "@/lib/category-icons";
+import { SITE_URL } from "@/lib/brand";
 
 export const revalidate = 3600;
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
 
 async function getCategory(slug: string) {
   const [cat] = await db

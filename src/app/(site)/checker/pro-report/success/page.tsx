@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Stripe from "stripe";
+import { BRAND_EMAIL_HELLO } from "@/lib/brand";
 
 export const metadata: Metadata = {
   title: "Payment Confirmed — AI Compliance Pro Report",
@@ -93,7 +94,7 @@ export default async function ProReportSuccessPage({
 
         <p className="xs" style={{ marginTop: 32, color: "var(--ink-2)" }}>
           Questions? Contact us at{" "}
-          <a href="mailto:hello@aicompliancehub.com" style={{ textDecoration: "underline" }}>hello@aicompliancehub.com</a>
+          <a href={`mailto:${BRAND_EMAIL_HELLO}`} style={{ textDecoration: "underline" }}>{BRAND_EMAIL_HELLO}</a>
         </p>
       </div>
     </section>

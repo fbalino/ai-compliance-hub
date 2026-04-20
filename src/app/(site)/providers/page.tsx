@@ -5,10 +5,10 @@ import { db } from "@/db";
 import { providers } from "@/db/schema";
 import { count } from "drizzle-orm";
 import { getAllRegulationSlugs } from "@/lib/regulations";
+import { SITE_URL } from "@/lib/brand";
 
 export const revalidate = 21600;
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
 
 export const metadata: Metadata = {
   title: "For Providers — Grow Your Compliance Practice | Regulome",

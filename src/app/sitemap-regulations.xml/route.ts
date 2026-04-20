@@ -1,7 +1,5 @@
 import { getAllRegulationSlugs } from "@/lib/regulations";
-
-const SITE_URL =
-  (process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com").trim();
+import { SITE_URL } from "@/lib/brand";
 
 // ISR: revalidate every 24 hours
 export const revalidate = 86400;

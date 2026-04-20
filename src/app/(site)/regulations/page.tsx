@@ -3,10 +3,10 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import { RegulationsFilterClient, type RegulationItem } from "@/components/regulations/RegulationsFilterClient";
 import { getAllRegulations, type RegulationFrontmatter } from "@/lib/regulations";
+import { SITE_URL } from "@/lib/brand";
 
 export const revalidate = 86400;
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
 
 export const metadata: Metadata = {
   title: "AI Regulations Tracker — All AI Compliance Laws (2025)",

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
+import { SITE_URL } from "@/lib/brand";
 
 export const revalidate = false;
 
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
   title: "AI Regulation Comparisons — Side-by-Side Analysis",
   description:
     "Side-by-side comparisons of major AI regulations — EU AI Act vs Colorado AI Act, US state AI laws, and more. Understand how different frameworks overlap and differ.",
-  alternates: { canonical: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com"}/compare` },
+  alternates: { canonical: `${SITE_URL}/compare` },
 };
 
 const COMPARISONS = [

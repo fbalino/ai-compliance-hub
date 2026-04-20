@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { BlogFilterClient } from "@/components/blog/BlogFilterClient";
+import { SITE_URL } from "@/lib/brand";
 
 export const revalidate = 3600;
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
 
 export const metadata: Metadata = {
   title: "AI Compliance Blog — Regulation Updates & Compliance Guides",

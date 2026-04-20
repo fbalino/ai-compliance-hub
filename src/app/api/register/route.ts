@@ -3,10 +3,11 @@ import { eq } from "drizzle-orm";
 import { Resend } from "resend";
 import { db } from "@/db";
 import { providers, providerRegulations, providerServices } from "@/db/schema";
+import { BRAND_NAME, BRAND_EMAIL_HELLO } from "@/lib/brand";
 
 const FROM_EMAIL =
-  process.env.RESEND_FROM_EMAIL ?? "Regulome <hello@aicompliancehub.com>";
-const NOTIFY_EMAIL = "hello@aicompliancehub.com";
+  process.env.RESEND_FROM_EMAIL ?? `${BRAND_NAME} <${BRAND_EMAIL_HELLO}>`;
+const NOTIFY_EMAIL = BRAND_EMAIL_HELLO;
 
 function slugify(name: string): string {
   return name

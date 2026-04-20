@@ -4,10 +4,10 @@ import { providers, providerCategories, providerServices } from "@/db/schema";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import { DirectorySearchClient, type ProviderSearchItem } from "@/components/directory/DirectorySearchClient";
+import { SITE_URL } from "@/lib/brand";
 
 export const revalidate = 3600;
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://aicompliancehub.com";
 
 export const metadata: Metadata = {
   title: "AI Compliance Provider Directory — Find Auditors, Lawyers & Software",
