@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="en" data-theme="paper">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>§ 404 · Regulome — Not on the Register</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+  rel="stylesheet">
+<style>
+/* ──────────────────────────────────────────────────────────────
+   Subset of regulome.io design tokens — mockup only.
+   The production page reads the full token set from globals.css.
+   ────────────────────────────────────────────────────────────── */
+:root {
+  --paper:#fbfbfd; --paper-2:#eef0f7; --paper-3:#e1e5f0;
+  --ink:#0e1330; --ink-2:#242a4a; --ink-soft:#5a6180; --ink-faint:#8990ae;
+  --line:#d9dcea; --line-2:#b9bed5;
+  --accent:#3d4ee3; --accent-soft:#d7dcfb; --accent-ink:#1f2ab4;
+  --gold:#e89a2b; --gold-soft:#fce3b8;
+  --stone:#a4475a;
+  --serif:'Fraunces','Times New Roman',serif;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  --mono:'JetBrains Mono','SF Mono',Menlo,monospace;
+  --shadow-sm:0 2px 6px rgba(14,19,48,.06);
+  --shadow:0 4px 14px rgba(14,19,48,.08), 0 2px 4px rgba(14,19,48,.04);
+  --ease:cubic-bezier(.2,.8,.2,1);
+  color-scheme:light;
+}
+[data-theme="night"]{
+  --paper:#15161c; --paper-2:#1c1e25; --paper-3:#252731;
+  --ink:#f4eee1; --ink-2:#d8d3c7; --ink-soft:#9a9488; --ink-faint:#6b6658;
+  --line:rgba(244,238,225,.08); --line-2:rgba(244,238,225,.16);
+  --accent:#6c7bff; --accent-soft:rgba(108,123,255,.18); --accent-ink:#8f9cff;
+  --gold:#f0b050; --gold-soft:rgba(240,176,80,.18);
+  --stone:#d06a7e;
+  --shadow-sm:0 2px 6px rgba(0,0,0,.4);
+  --shadow:0 4px 14px rgba(0,0,0,.5), 0 2px 4px rgba(0,0,0,.3);
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:var(--sans); font-size:15px; line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+a{color:inherit;text-decoration:none}
+
+/* ── Topbar (mockup chrome) ── */
+.topbar{
+  background:var(--paper); border-bottom:1px solid var(--line);
+  padding:16px 32px; display:flex; align-items:center; gap:28px;
+  position:sticky; top:0; z-index:20;
+}
+.brand-mark{
+  display:inline-flex; align-items:center; gap:10px;
+  font-family:var(--serif); font-size:24px; font-weight:600;
+  letter-spacing:-.02em; color:var(--ink);
+}
+.brand-mark .glyph{
+  width:30px;height:30px; border-radius:6px;
+  display:inline-flex; align-items:center; justify-content:center;
+  background:var(--accent); color:#fff;
+  font-family:var(--serif); font-weight:700; font-size:18px; letter-spacing:-.04em;
+}
+.topbar nav{display:flex;gap:24px}
+.topbar nav a{
+  font-size:14px; font-weight:500; color:var(--ink-soft);
+  padding:4px 0; border-bottom:2px solid transparent; transition:color .15s;
+}
+.topbar nav a:hover{color:var(--ink)}
+.topbar .spacer{flex:1}
+.theme-toggle{
+  background:transparent; border:1px solid var(--line); border-radius:999px;
+  padding:6px 14px; font-size:12px; color:var(--ink-soft); cursor:pointer;
+  font-family:var(--mono); letter-spacing:.1em; text-transform:uppercase;
+}
+.theme-toggle:hover{color:var(--ink); border-color:var(--ink)}
+
+/* ── Page frame ── */
+.notfound-wrap{
+  position:relative;
+  min-height:calc(100vh - 67px);
+  background:
+    radial-gradient(ellipse at 80% -20%, rgba(61,78,227,.10), transparent 55%),
+    radial-gradient(ellipse at 0% 100%, rgba(232,154,43,.08), transparent 50%),
+    linear-gradient(180deg, var(--paper-2), var(--paper));
+  overflow:hidden;
+}
+[data-theme="night"] .notfound-wrap{
+  background:
+    radial-gradient(ellipse at 80% -20%, rgba(108,123,255,.14), transparent 55%),
+    radial-gradient(ellipse at 0% 100%, rgba(240,176,80,.06), transparent 50%),
+    linear-gradient(180deg, #1c1e25, #15161c);
+}
+
+/* Decorative § watermark behind everything */
+.watermark{
+  position:absolute;
+  top:-40px; right:-60px;
+  font-family:var(--serif);
+  font-variation-settings:"opsz" 144;
+  font-weight:500;
+  font-size:clamp(360px, 52vw, 720px);
+  line-height:.85;
+  letter-spacing:-.05em;
+  color:var(--ink);
+  opacity:.04;
+  pointer-events:none;
+  user-select:none;
+}
+[data-theme="night"] .watermark{ opacity:.06; color:var(--accent); }
+
+/* Editorial gazette rule strip at top of content */
+.gazette-rule{
+  border-top:1px solid var(--ink);
+  border-bottom:1px solid var(--ink);
+  padding:8px 0;
+  margin:0 auto 56px;
+  max-width:1100px;
+  display:flex; justify-content:space-between; align-items:center;
+  gap:16px;
+  font-family:var(--mono);
+  font-size:11px; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--ink-soft);
+  flex-wrap:wrap;
+}
+.gazette-rule b{ color:var(--ink); font-weight:500 }
+
+/* Content container */
+.notfound-inner{
+  position:relative; z-index:1;
+  max-width:1100px; margin:0 auto;
+  padding:64px 32px 96px;
+}
+
+/* Hero block */
+.hero-block{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap:24px;
+  max-width:780px;
+  margin:0 auto;
+  text-align:left;
+}
+.eyebrow{
+  font-family:var(--mono);
+  font-size:11px; font-weight:500;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:var(--accent);
+  display:inline-flex; align-items:center; gap:10px;
+}
+.eyebrow .pip{ width:6px;height:6px;background:var(--accent);border-radius:50% }
+.headline{
+  font-family:var(--serif);
+  font-variation-settings:"opsz" 96;
+  font-weight:500;
+  font-size:clamp(40px, 6vw, 84px);
+  line-height:1.02;
+  letter-spacing:-.025em;
+  margin:0;
+  color:var(--ink);
+  text-wrap:balance;
+}
+.headline em{
+  font-style:italic; color:var(--accent); font-weight:500;
+}
+.lede{
+  font-family:var(--serif);
+  font-size:21px; line-height:1.5;
+  color:var(--ink-2);
+  max-width:60ch;
+  margin:0;
+  text-wrap:pretty;
+}
+.lede .bare-url{
+  font-family:var(--mono);
+  font-size:.8em;
+  background:var(--paper-2);
+  border:1px solid var(--line);
+  padding:2px 8px;
+  border-radius:4px;
+  color:var(--ink);
+  word-break:break-all;
+}
+
+/* Search */
+.searchbar{
+  margin-top:8px;
+  display:flex; align-items:center; gap:10px;
+  padding:14px 22px;
+  background:var(--paper);
+  border:1px solid var(--ink);
+  border-radius:999px;
+  max-width:560px;
+  transition:box-shadow .15s, border-color .15s;
+}
+.searchbar:focus-within{
+  border-color:var(--accent);
+  box-shadow:0 0 0 4px var(--accent-soft);
+}
+.searchbar svg{ color:var(--ink-soft); flex-shrink:0 }
+.searchbar input{
+  flex:1; border:0; outline:0; background:transparent;
+  font-family:var(--sans); font-size:16px; color:var(--ink);
+}
+.searchbar input::placeholder{ color:var(--ink-faint) }
+.searchbar .kbd{
+  font-family:var(--mono);
+  font-size:11px; color:var(--ink-faint);
+  border:1px solid var(--line); border-radius:4px;
+  padding:2px 6px;
+}
+
+/* Suggested destinations */
+.suggested{
+  margin-top:64px;
+  max-width:1040px;
+  margin-left:auto; margin-right:auto;
+}
+.suggested-head{
+  border-top:2px solid var(--ink);
+  border-bottom:1px solid var(--ink);
+  padding:12px 0;
+  margin-bottom:24px;
+  display:flex; justify-content:space-between; align-items:baseline;
+  gap:16px;
+  font-family:var(--mono);
+  font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--ink);
+}
+.suggested-head b{ font-weight:500 }
+.suggested-head .meta{ color:var(--ink-soft); font-weight:400 }
+.suggested-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:0;
+  border-bottom:1px solid var(--line);
+}
+.suggested-card{
+  padding:24px 24px 22px;
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  background:transparent;
+  transition:background .12s, border-color .12s;
+  display:flex; flex-direction:column; gap:8px;
+  min-height:160px;
+  cursor:pointer;
+  position:relative;
+}
+.suggested-card:nth-child(3n){ border-right:0 }
+.suggested-card:nth-last-child(-n+3){ border-bottom:0 }
+.suggested-card:hover{
+  background:var(--paper);
+}
+.suggested-card:hover .card-arrow{ transform:translate(2px,-2px); color:var(--accent) }
+.suggested-card .k{
+  font-family:var(--mono);
+  font-size:10px; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--accent);
+}
+.suggested-card h3{
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:22px; line-height:1.2;
+  letter-spacing:-.01em;
+  margin:0;
+  color:var(--ink);
+}
+.suggested-card p{
+  font-size:14px; line-height:1.5;
+  color:var(--ink-2);
+  margin:0;
+}
+.suggested-card .card-arrow{
+  position:absolute; top:20px; right:22px;
+  font-family:var(--serif);
+  font-size:18px;
+  color:var(--ink-faint);
+  transition:transform .15s var(--ease), color .15s;
+}
+
+/* Footer note */
+.report-strip{
+  margin-top:48px;
+  border-top:1px solid var(--line);
+  padding-top:22px;
+  display:flex; justify-content:space-between; align-items:center;
+  gap:16px; flex-wrap:wrap;
+  font-family:var(--mono);
+  font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-soft);
+  max-width:1040px; margin-left:auto; margin-right:auto;
+}
+.report-strip a{
+  color:var(--ink); border-bottom:1px solid var(--line);
+  padding-bottom:1px; transition:border-color .15s, color .15s;
+}
+.report-strip a:hover{ color:var(--accent); border-bottom-color:var(--accent) }
+
+/* ── Animations ── */
+@keyframes rise{
+  from{opacity:0; transform:translateY(14px)}
+  to  {opacity:1; transform:translateY(0)}
+}
+.rise{ animation:rise .85s var(--ease) both }
+.d1{animation-delay:.06s} .d2{animation-delay:.14s}
+.d3{animation-delay:.22s} .d4{animation-delay:.32s} .d5{animation-delay:.42s}
+@media (prefers-reduced-motion:reduce){
+  .rise{animation:none !important; opacity:1 !important; transform:none !important}
+}
+
+/* ── Footer (mockup) ── */
+.foot{
+  background:#080c24; color:#fbfbfd;
+  padding:48px 32px 24px;
+}
+[data-theme="night"] .foot{ background:#0e0f14 }
+.foot .cols{
+  display:grid; grid-template-columns:2fr 1fr 1fr 1fr 1fr; gap:40px;
+  max-width:1280px; margin:0 auto;
+}
+.foot .col-head{ font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:rgba(251,251,253,.5); margin:0 0 14px; font-weight:500 }
+.foot ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+.foot li{font-size:14px}
+.foot a{color:rgba(251,251,253,.7)}
+.foot a:hover{color:#fbfbfd}
+.foot .bottom{
+  border-top:1px solid rgba(251,251,253,.15);
+  margin:40px auto 0; padding-top:20px;
+  font-size:12px; color:rgba(251,251,253,.5);
+  display:flex; justify-content:space-between;
+  max-width:1280px;
+}
+
+/* ── Responsive ── */
+@media (max-width:1100px){
+  .suggested-grid{ grid-template-columns:1fr 1fr }
+  .suggested-card:nth-child(3n){ border-right:1px solid var(--line) }
+  .suggested-card:nth-child(2n){ border-right:0 }
+  .suggested-card:nth-last-child(-n+2){ border-bottom:0 }
+  .foot .cols{ grid-template-columns:repeat(2,1fr); gap:32px }
+}
+@media (max-width:720px){
+  .topbar{ padding:12px 20px; gap:12px }
+  .topbar nav{ display:none }
+  .notfound-inner{ padding:40px 20px 64px }
+  .gazette-rule{ font-size:10px; gap:8px; padding:6px 0; margin-bottom:36px }
+  .headline{ font-size:38px }
+  .lede{ font-size:17px }
+  .searchbar{ padding:12px 18px }
+  .suggested{ margin-top:48px }
+  .suggested-grid{ grid-template-columns:1fr }
+  .suggested-card{ border-right:0 !important; min-height:0 }
+  .suggested-card:last-child{ border-bottom:0 }
+  .watermark{ font-size:280px; right:-40px; top:-20px }
+  .foot{ padding:36px 20px 20px }
+  .foot .cols{ grid-template-columns:1fr; gap:24px }
+  .foot .bottom{ flex-direction:column; gap:8px; padding-top:16px; margin-top:24px }
+}
+
+/* ── Skip link (a11y) ── */
+.skip-to-content{
+  position:absolute; top:-100%; left:1rem; z-index:9999;
+  padding:.5rem 1rem; background:var(--accent); color:#fff;
+  font-size:.875rem; font-weight:600;
+  border-radius:0 0 6px 6px;
+  transition:top .1s;
+}
+.skip-to-content:focus{ top:0 }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-to-content">Skip to main content</a>
+
+<header class="topbar" aria-label="Main navigation">
+  <a href="/" class="brand-mark"><span class="glyph" aria-hidden="true">§</span>Regulome</a>
+  <nav>
+    <a href="/regulations">Regulations</a>
+    <a href="/directory">Providers</a>
+    <a href="/blog">The Ledger</a>
+    <a href="/about">About</a>
+  </nav>
+  <div class="spacer"></div>
+  <button class="theme-toggle" id="themeBtn" type="button">Toggle theme</button>
+</header>
+
+<main id="main" class="notfound-wrap">
+  <div class="watermark" aria-hidden="true">§</div>
+
+  <div class="notfound-inner">
+    <div class="gazette-rule rise d1" role="presentation">
+      <span><b>The Regulome</b> · Volume IV</span>
+      <span>Status: <b>Citation not found</b></span>
+      <span>Code: <b>404</b></span>
+    </div>
+
+    <section class="hero-block" aria-labelledby="nf-headline">
+      <div class="eyebrow rise d2"><span class="pip" aria-hidden="true"></span>§ 404 · Not on the register</div>
+
+      <h1 id="nf-headline" class="headline rise d2">
+        This citation isn't <em>on the register</em>.
+      </h1>
+
+      <p class="lede rise d3">
+        The page you requested may have been moved, retired, or never filed.
+        If you got here from a link on another site, the reference is stale —
+        try the search below or one of the destinations on this page.
+      </p>
+
+      <form class="searchbar rise d4" action="/search" method="GET" role="search" aria-label="Search the register">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="search" name="q" placeholder="Search 912 regulations, providers, and explainers…" aria-label="Search the register" />
+        <span class="kbd" aria-hidden="true">↵</span>
+      </form>
+    </section>
+
+    <section class="suggested rise d5" aria-labelledby="sug-head">
+      <div class="suggested-head" id="sug-head">
+        <b>See also — common destinations</b>
+        <span class="meta">Updated daily</span>
+      </div>
+      <div class="suggested-grid">
+        <a class="suggested-card" href="/regulations">
+          <span class="k">§ Catalog</span>
+          <h3>Browse all regulations</h3>
+          <p>912 AI &amp; cyber regulations across 40+ jurisdictions, with status and effective dates.</p>
+          <span class="card-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="suggested-card" href="/directory">
+          <span class="k">§ Directory</span>
+          <h3>Find a compliance provider</h3>
+          <p>Vetted firms by jurisdiction, framework, and sector — including audit, legal, and tooling.</p>
+          <span class="card-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="suggested-card" href="/checker">
+          <span class="k">§ Checker</span>
+          <h3>Free compliance checker</h3>
+          <p>Describe your situation in a sentence and we route you to the regulations that apply.</p>
+          <span class="card-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="suggested-card" href="/blog">
+          <span class="k">§ The Ledger</span>
+          <h3>Explainers &amp; analysis</h3>
+          <p>Editorial coverage of new rules, guidance, and enforcement actions — written for operators.</p>
+          <span class="card-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="suggested-card" href="/jurisdictions">
+          <span class="k">§ Atlas</span>
+          <h3>Browse by jurisdiction</h3>
+          <p>EU, US states, UK, Singapore, Brazil, and more — with the laws in force in each.</p>
+          <span class="card-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="suggested-card" href="/">
+          <span class="k">§ Home</span>
+          <h3>Back to the homepage</h3>
+          <p>Start from the front door — describe what you're trying to do and we'll route you.</p>
+          <span class="card-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <div class="report-strip">
+        <span>Think this page should exist?</span>
+        <a href="mailto:corrections@regulome.io?subject=Broken%20link%20on%20regulome.io">Report a broken link →</a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="foot" aria-label="Site footer">
+  <div class="cols">
+    <div>
+      <a href="/" class="brand-mark" style="color:#fbfbfd"><span class="glyph" aria-hidden="true">§</span>Regulome</a>
+      <div style="margin-top:12px;color:rgba(251,251,253,.7);max-width:320px;font-size:13px">The global register of AI &amp; cyber regulations — and the providers who can help.</div>
+    </div>
+    <div><h5 class="col-head">Catalog</h5><ul><li><a href="/regulations">All regulations</a></li><li><a href="/jurisdictions">By jurisdiction</a></li><li><a href="/glossary">Glossary</a></li></ul></div>
+    <div><h5 class="col-head">Directory</h5><ul><li><a href="/directory">All providers</a></li><li><a href="/rfp">Post an RFP</a></li><li><a href="/join">List your firm</a></li></ul></div>
+    <div><h5 class="col-head">The Ledger</h5><ul><li><a href="/blog">Latest</a></li><li><a href="/newsletter">Subscribe</a></li></ul></div>
+    <div><h5 class="col-head">Company</h5><ul><li><a href="/about">About</a></li><li><a href="/about#corrections">Corrections</a></li></ul></div>
+  </div>
+  <div class="bottom">
+    <span>© 2026 Regulome · based in Lisbon</span>
+    <span style="display:flex;gap:16px"><a href="/privacy">Privacy</a><a href="/terms">Terms</a></span>
+  </div>
+</footer>
+
+<script>
+  // Mockup-only theme toggle (production page uses the real ThemeToggle component)
+  const btn = document.getElementById('themeBtn');
+  btn.addEventListener('click', () => {
+    const cur = document.documentElement.getAttribute('data-theme') === 'night' ? 'paper' : 'night';
+    document.documentElement.setAttribute('data-theme', cur);
+  });
+</script>
+</body>
+</html>
+<!--
+  =============================================================
+  410 (Gone) variant — copy swap reference
+  =============================================================
+  Eyebrow:   § 410 · Retired from the register
+  Headline:  This citation has been <em>retired</em>.
+  Lede:      The page existed previously but was retired on
+             {{date}} because {{reason: e.g. "the regulation was
+             repealed", "the provider was delisted", "the analysis
+             was superseded by a newer piece"}}. The replacement
+             may be linked below.
+  Card:      Add a "§ Replacement" card pointing at the successor
+             URL when one exists; otherwise keep the standard 6.
+  Status:    Code: 410 · Gone
+  =============================================================
+-->
