@@ -112,7 +112,7 @@ const PROVIDERS: ProviderSeed[] = [
     isVerified: true,
     jurisdictions: ["US", "EU", "UK"],
     serviceTypes: ["Bias Audits", "Risk Assessment", "Compliance Software", "EU AI Act Advisory"],
-    regulationSlugs: ["eu-ai-act", "nyc-ll-144", "nist-ai-rmf", "colorado-ai-act"],
+    regulationSlugs: ["eu-ai-act", "nyc-local-law-144", "nist-ai-rmf", "colorado-ai-act"],
     industries: ["Financial Services", "Healthcare", "HR Technology", "Retail"],
   },
   {
@@ -130,7 +130,7 @@ const PROVIDERS: ProviderSeed[] = [
     isVerified: true,
     jurisdictions: ["US"],
     serviceTypes: ["Bias Audits", "NYC LL 144 Compliance", "Algorithmic Audits"],
-    regulationSlugs: ["nyc-ll-144", "colorado-ai-act", "eeoc-guidelines"],
+    regulationSlugs: ["nyc-local-law-144", "colorado-ai-act", "eeoc-guidelines"],
     industries: ["HR Technology", "Financial Services", "Healthcare", "Enterprise"],
   },
   {
@@ -148,7 +148,7 @@ const PROVIDERS: ProviderSeed[] = [
     isVerified: true,
     jurisdictions: ["US"],
     serviceTypes: ["Algorithmic Audits", "Bias Analysis", "Fair Housing", "NYC LL 144"],
-    regulationSlugs: ["nyc-ll-144", "fair-housing-act", "ecoa", "colorado-ai-act"],
+    regulationSlugs: ["nyc-local-law-144", "fair-housing-act", "ecoa", "colorado-ai-act"],
     industries: ["Financial Services", "HR Technology", "Criminal Justice", "Insurance"],
   },
   {
@@ -230,7 +230,7 @@ const PROVIDERS: ProviderSeed[] = [
     isVerified: false,
     jurisdictions: ["US"],
     serviceTypes: ["NYC LL 144 Audits", "Bias Detection", "Hiring AI Compliance"],
-    regulationSlugs: ["nyc-ll-144"],
+    regulationSlugs: ["nyc-local-law-144"],
     industries: ["HR Technology", "Staffing", "Enterprise"],
   },
   {
@@ -277,7 +277,7 @@ const PROVIDERS: ProviderSeed[] = [
     isVerified: false,
     jurisdictions: ["US"],
     serviceTypes: ["US AI Regulatory", "Government Contracting", "Policy Advocacy", "State AI Laws"],
-    regulationSlugs: ["colorado-ai-act", "nyc-ll-144", "california-ab-2013", "federal-ai-guidance"],
+    regulationSlugs: ["colorado-ai-act", "nyc-local-law-144", "california-ab-2013", "federal-ai-guidance"],
     industries: ["Government Contracting", "Technology", "Healthcare", "Financial Services"],
   },
   {
@@ -293,7 +293,7 @@ const PROVIDERS: ProviderSeed[] = [
     isVerified: false,
     jurisdictions: ["US"],
     serviceTypes: ["Risk Assessment", "Contract Review", "FTC Defense", "State AI Law Compliance"],
-    regulationSlugs: ["ftc-guidelines", "colorado-ai-act", "nyc-ll-144", "california-ai-laws"],
+    regulationSlugs: ["ftc-guidelines", "colorado-ai-act", "nyc-local-law-144", "california-ab-2013"],
     industries: ["Technology", "Retail", "Financial Services", "Healthcare"],
   },
   {
@@ -362,7 +362,7 @@ const PROVIDERS: ProviderSeed[] = [
     isVerified: true,
     jurisdictions: ["US", "EU"],
     serviceTypes: ["Bias Monitoring", "Model Observability", "Fairness Testing", "Explainability"],
-    regulationSlugs: ["nyc-ll-144", "colorado-ai-act", "eu-ai-act", "nist-ai-rmf"],
+    regulationSlugs: ["nyc-local-law-144", "colorado-ai-act", "eu-ai-act", "nist-ai-rmf"],
     industries: ["Financial Services", "Healthcare", "HR Technology", "Insurance"],
   },
   {
@@ -470,7 +470,7 @@ const PROVIDERS: ProviderSeed[] = [
     isVerified: true,
     jurisdictions: ["US", "EU", "UK", "Global"],
     serviceTypes: ["AI Regulatory Counsel", "Policy Strategy", "Contract Advice", "Enforcement Defense"],
-    regulationSlugs: ["eu-ai-act", "colorado-ai-act", "california-ai-laws", "federal-ai-guidance"],
+    regulationSlugs: ["eu-ai-act", "colorado-ai-act", "california-ab-2013", "federal-ai-guidance"],
     industries: ["Technology", "Healthcare", "Financial Services", "Media"],
   },
   {
@@ -486,7 +486,7 @@ const PROVIDERS: ProviderSeed[] = [
     isVerified: false,
     jurisdictions: ["US"],
     serviceTypes: ["AI Privacy Law", "Employment AI Law", "Product Liability", "Regulatory Compliance"],
-    regulationSlugs: ["eu-ai-act", "colorado-ai-act", "nyc-ll-144", "california-ai-laws", "gdpr"],
+    regulationSlugs: ["eu-ai-act", "colorado-ai-act", "nyc-local-law-144", "california-ab-2013", "gdpr"],
     industries: ["Technology", "Healthcare", "Financial Services", "Retail"],
   },
   {
@@ -502,7 +502,7 @@ const PROVIDERS: ProviderSeed[] = [
     isVerified: false,
     jurisdictions: ["US", "EU", "UK", "Global"],
     serviceTypes: ["AI Regulatory Compliance", "Data Governance", "Financial Services AI Law", "Enforcement Defense"],
-    regulationSlugs: ["eu-ai-act", "colorado-ai-act", "sr-11-7", "gdpr", "california-ai-laws"],
+    regulationSlugs: ["eu-ai-act", "colorado-ai-act", "sr-11-7", "gdpr", "california-ab-2013"],
     industries: ["Financial Services", "Healthcare", "Technology", "Insurance"],
   },
 

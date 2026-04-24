@@ -17,6 +17,21 @@ const nextConfig: NextConfig = {
         destination: "/regulations/virginia-human-civil-rights-act",
         permanent: true,
       },
+      {
+        source: "/regulations/nyc-ll-144",
+        destination: "/regulations/nyc-local-law-144",
+        permanent: true,
+      },
+      {
+        source: "/regulations/california-ai-laws",
+        destination: "/regulations/california-ab-2013",
+        permanent: true,
+      },
+      {
+        source: "/directory/providers/:slug/request-quote",
+        destination: "/directory/providers/:slug#contact",
+        permanent: true,
+      },
     ];
   },
   turbopack: {

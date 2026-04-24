@@ -14,6 +14,7 @@ import {
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { providerSchema, breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import { RequestQuoteForm } from "@/components/RequestQuoteForm";
+import { getAllRegulationSlugs } from "@/lib/regulations";
 import { SITE_URL } from "@/lib/brand";
 
 
@@ -128,11 +129,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ProviderPage({ params }: Props) {
   const { slug } = await params;
-  const [provider, relatedProviders] = await Promise.all([
+  const [provider, relatedProviders, validRegSlugs] = await Promise.all([
     getProvider(slug),
     getRelatedProviders(slug),
+    getAllRegulationSlugs(),
   ]);
   if (!provider) notFound();
+
+  const regSlugSet = new Set(validRegSlugs);
 
   const isFeatured = provider.tier === "premium" || provider.tier === "enterprise";
 
@@ -207,9 +211,9 @@ export default async function ProviderPage({ params }: Props) {
                   Website {"\u2197"}
                 </a>
               )}
-              <Link href={`/directory/providers/${slug}/request-quote`} className="btn btn-primary">
+              <a href="#contact" className="btn btn-primary">
                 {"\u2709"} Contact
-              </Link>
+              </a>
             </div>
           </div>
         </div>
@@ -226,11 +230,17 @@ export default async function ProviderPage({ params }: Props) {
             <section style={{ marginTop: 32 }}>
               <div className="eyebrow" style={{ marginBottom: 12 }}>&sect; Regulations covered &middot; {provider.regulations.length}</div>
               <div className="tag-strip">
-                {provider.regulations.map((regSlug) => (
-                  <Link key={regSlug} href={`/regulations/${regSlug}`} className="chip" style={{ cursor: "pointer" }}>
-                    {formatRegulationSlug(regSlug)}
-                  </Link>
-                ))}
+                {provider.regulations.map((regSlug) =>
+                  regSlugSet.has(regSlug) ? (
+                    <Link key={regSlug} href={`/regulations/${regSlug}`} className="chip" style={{ cursor: "pointer" }}>
+                      {formatRegulationSlug(regSlug)}
+                    </Link>
+                  ) : (
+                    <span key={regSlug} className="chip">
+                      {formatRegulationSlug(regSlug)}
+                    </span>
+                  )
+                )}
               </div>
             </section>
           )}
@@ -290,7 +300,7 @@ export default async function ProviderPage({ params }: Props) {
         {/* Sidebar */}
         <aside style={{ position: "sticky", top: 60, alignSelf: "start" }}>
           {/* Contact form */}
-          <div className="card card-feature" style={{ padding: 20, marginBottom: 16 }}>
+          <div id="contact" className="card card-feature" style={{ padding: 20, marginBottom: 16 }}>
             <div className="eyebrow" style={{ marginBottom: 12 }}>Send a message</div>
             <RequestQuoteForm
               providerSlug={provider.slug}
@@ -368,7 +378,7 @@ function ReviewCard({ review }: { review: ReviewData }) {
 function formatRegulationSlug(slug: string): string {
   const map: Record<string, string> = {
     "eu-ai-act": "EU AI Act",
-    "nyc-ll-144": "NYC LL 144",
+    "nyc-local-law-144": "NYC LL 144",
     "nist-ai-rmf": "NIST AI RMF",
     "colorado-ai-act": "Colorado AI Act",
     "eeoc-guidelines": "EEOC Guidelines",
