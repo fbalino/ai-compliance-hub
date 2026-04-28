@@ -535,10 +535,9 @@ export default async function RegulationPage({ params }: Props) {
           {/* Matched providers */}
           {extras.providers && extras.providers.length > 0 && (
             <>
-              <div className="card card-feature" style={{ padding: 20, marginBottom: 16 }}>
-                <div className="between" style={{ marginBottom: 12 }}>
+              <div className="card" style={{ padding: 20, marginBottom: 16 }}>
+                <div style={{ marginBottom: 12 }}>
                   <div className="eyebrow">{extras.providers.length} provider{extras.providers.length !== 1 ? "s" : ""}</div>
-                  <span className="feature-flag">Featured</span>
                 </div>
                 <Link href={`/directory/providers/${extras.providers[0].slug}`} style={{ textDecoration: "none" }}>
                   <div className="flex items-center" style={{ gap: 12, marginBottom: 12 }}>

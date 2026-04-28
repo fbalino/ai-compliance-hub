@@ -54,7 +54,7 @@ export function Header() {
 
       <div className="topbar-cta">
         <Link href="/providers" className="btn btn-sm btn-ghost">
-          For providers
+          For Providers
         </Link>
         <Link href="/checker" className="btn btn-sm">
           Free Checker
@@ -124,7 +124,7 @@ export function Header() {
           </Link>
           <div style={{ display: "flex", gap: 8, padding: "8px 0" }}>
             <Link href="/providers" className="btn btn-sm btn-ghost" onClick={() => setMobileOpen(false)} style={{ flex: 1, justifyContent: "center" }}>
-              For providers
+              For Providers
             </Link>
             <Link href="/checker" className="btn btn-sm" onClick={() => setMobileOpen(false)} style={{ flex: 1, justifyContent: "center" }}>
               Free Checker

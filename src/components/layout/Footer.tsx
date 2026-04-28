@@ -74,7 +74,7 @@ export function Footer() {
       </div>
 
       <div className="bottom">
-        <span>© {new Date().getFullYear()} Regulome · based in Lisbon</span>
+        <span>© {new Date().getFullYear()} Regulome · based in New York City</span>
         <span style={{ display: "flex", gap: 16 }}>
           <Link href="/privacy">Privacy</Link>
           <Link href="/terms">Terms</Link>

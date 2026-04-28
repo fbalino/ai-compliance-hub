@@ -106,9 +106,6 @@ function ProviderCard({
             <div className="h4">{name}</div>
             <div className="xs">{type} · {hq}</div>
           </div>
-          {featured && (
-            <span className="feature-flag">Featured</span>
-          )}
         </div>
         <div className="small" style={{ color: "var(--ink-2)", lineHeight: 1.5, marginBottom: 12 }}>
           {blurb}

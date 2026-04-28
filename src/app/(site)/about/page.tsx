@@ -26,7 +26,6 @@ const PROCESS_STEPS = [
   { num: "03", label: "Match", desc: "We map each regulation to vetted providers who cover it \u2014 curated + self-tagged." },
 ];
 
-const TEAM_INITIALS = ["Ed", "Ana", "Rui", "Sal", "Lin", "Mo", "+5"];
 
 export default function AboutPage() {
   const breadcrumbs = breadcrumbListSchema([
@@ -78,15 +77,10 @@ export default function AboutPage() {
           Every entry has a <span className="link" style={{ cursor: "pointer" }}>report correction</span> link. Corrections are logged publicly with dates and editor initials. We&apos;d rather be corrected than wrong.
         </p>
 
-        {/* Team & Contact */}
-        <div id="contact" className="eyebrow" style={{ marginTop: 48, marginBottom: 16, scrollMarginTop: 80 }}>&sect; Team &amp; Contact</div>
-        <div className="flex" style={{ gap: 12 }}>
-          {TEAM_INITIALS.map((n) => (
-            <div key={n} className="avatar" style={{ width: 56, height: 56, fontSize: 18 }}>{n}</div>
-          ))}
-        </div>
+        {/* Contact */}
+        <div id="contact" className="eyebrow" style={{ marginTop: 48, marginBottom: 16, scrollMarginTop: 80 }}>&sect; Contact</div>
         <p className="small" style={{ marginTop: 16, color: "var(--ink-2)" }}>
-          hello@regulome.io &middot; Lisbon-based &middot; funded by Point Nine &amp; angels
+          hello@regulome.io &middot; New York City
         </p>
 
         {/* CTAs */}
