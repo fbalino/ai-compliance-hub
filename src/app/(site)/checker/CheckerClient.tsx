@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import posthog from "posthog-js";
 import { NewsletterForm } from "@/components/NewsletterForm";
 
@@ -634,24 +633,24 @@ export function CheckerClient({ description }: { description?: string }) {
 const urgencyConfig = {
   high: {
     label: "Applies Now",
-    color: "text-red-700",
-    bg: "bg-red-50",
-    border: "border-red-200",
-    dot: "bg-red-500",
+    color: "text-stone",
+    bg: "bg-stone/10",
+    border: "border-stone/25",
+    dot: "bg-stone",
   },
   medium: {
     label: "Coming Soon",
-    color: "text-amber-700",
-    bg: "bg-amber-50",
-    border: "border-amber-200",
-    dot: "bg-amber-500",
+    color: "text-amber",
+    bg: "bg-amber/10",
+    border: "border-amber/25",
+    dot: "bg-amber",
   },
   low: {
     label: "Review Recommended",
-    color: "text-blue-700",
-    bg: "bg-blue-50",
-    border: "border-blue-200",
-    dot: "bg-blue-500",
+    color: "text-accent",
+    bg: "bg-accent/10",
+    border: "border-accent/25",
+    dot: "bg-accent",
   },
 };
 
@@ -672,52 +671,11 @@ function Results({
   onReset: () => void;
   onBack: () => void;
 }) {
-  const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [purchasing, setPurchasing] = useState(false);
-  const [purchaseError, setPurchaseError] = useState<string | null>(null);
-
-  async function handlePurchase() {
-    if (!email.trim()) {
-      setPurchaseError("Please enter your email address.");
-      return;
-    }
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      setPurchaseError("Please enter a valid email address.");
-      return;
-    }
-    setPurchaseError(null);
-    posthog.capture("pro_report_purchase_clicked", {
-      email_provided: !!email,
-      result_count: results.length,
-      regulations: results.map((r) => r.slug),
-    });
-    setPurchasing(true);
-    try {
-      const res = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ answers, email }),
-      });
-      const data = (await res.json()) as { url?: string; error?: string };
-      if (!res.ok || !data.url) {
-        setPurchaseError(data.error ?? "Something went wrong. Please try again.");
-        setPurchasing(false);
-        return;
-      }
-      router.push(data.url);
-    } catch {
-      setPurchaseError("Network error. Please try again.");
-      setPurchasing(false);
-    }
-  }
-
   if (results.length === 0) {
     return (
       <div className="mx-auto max-w-2xl text-center py-8">
-        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
-          <svg className="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-sage/15">
+          <svg className="h-8 w-8 text-sage" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
         </div>
@@ -751,7 +709,7 @@ function Results({
     <div className="mx-auto max-w-2xl">
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-2">
-          <span className="inline-flex items-center rounded-full bg-red-100 px-3 py-1 text-sm font-medium text-red-700">
+          <span className="inline-flex items-center rounded-full bg-stone/15 px-3 py-1 text-sm font-medium text-stone">
             {results.length} regulation{results.length > 1 ? "s" : ""} likely apply
           </span>
         </div>
@@ -800,7 +758,7 @@ function Results({
                 <ul className="space-y-1.5">
                   {reg.actions.map((action, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm text-ink-2">
-                      <span className="mt-1 h-1.5 w-1.5 rounded-full bg-neutral-400 shrink-0" />
+                      <span className="mt-1 h-1.5 w-1.5 rounded-full bg-ink-faint shrink-0" />
                       {action}
                     </li>
                   ))}
@@ -820,56 +778,6 @@ function Results({
         <NewsletterForm source="checker_results" className="mt-3" />
       </div>
 
-      {/* Pro Report CTA */}
-      <div className="mt-6 rounded-2xl bg-brand-900 px-6 py-7">
-        <div className="flex items-start justify-between gap-4 mb-4">
-          <div>
-            <span className="inline-flex items-center rounded-full bg-amber-400/20 px-2.5 py-0.5 text-xs font-medium text-amber-300 mb-2">
-              Pro Report
-            </span>
-            <h3 className="text-lg font-bold text-white">Get the Full Pro Report — $49</h3>
-            <p className="mt-1 text-sm text-brand-300 leading-relaxed max-w-sm">
-              Detailed gap analysis, NIST AI RMF mapping, prioritized action plan with deadlines, and a downloadable PDF you can share with your team.
-            </p>
-          </div>
-        </div>
-        <div className="flex flex-col sm:flex-row gap-2.5">
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && handlePurchase()}
-            placeholder="you@company.com"
-            className="flex-1 rounded-lg border border-brand-700 bg-brand-800 px-4 py-2.5 text-sm text-white placeholder:text-brand-400 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400"
-            disabled={purchasing}
-          />
-          <button
-            type="button"
-            onClick={handlePurchase}
-            disabled={purchasing}
-            className="inline-flex items-center justify-center gap-2 rounded-lg bg-paper px-5 py-2.5 text-sm font-bold text-accent-ink hover:bg-accent-soft disabled:opacity-60 disabled:cursor-not-allowed transition-colors shadow-sm whitespace-nowrap"
-          >
-            {purchasing ? (
-              <>
-                <svg className="h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24" aria-hidden="true">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
-                </svg>
-                Redirecting…
-              </>
-            ) : (
-              "Purchase Report ($49)"
-            )}
-          </button>
-        </div>
-        {purchaseError && (
-          <p className="mt-2 text-sm text-red-300">{purchaseError}</p>
-        )}
-        <p className="mt-3 text-xs text-brand-400">
-          Secure payment via Stripe. PDF delivered by email.
-        </p>
-      </div>
-
       {/* Matched providers */}
       {matchedProviders.length > 0 && (
         <div className="mt-5 rounded-xl bg-paper border border-line p-5">
@@ -885,14 +793,14 @@ function Results({
                 className="flex items-center gap-3 rounded-lg border border-line p-3 hover:bg-paper-2 transition-colors"
                 style={{ textDecoration: "none" }}
               >
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-700 font-bold text-sm">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-accent/10 text-accent font-bold text-sm">
                   {prov.name[0]}
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
                     <span className="font-medium text-ink text-sm truncate">{prov.name}</span>
                     {prov.isVerified && (
-                      <span className="inline-flex items-center rounded-full bg-green-100 px-1.5 py-0.5 text-[10px] font-medium text-green-700">
+                      <span className="inline-flex items-center rounded-full bg-sage/15 px-1.5 py-0.5 text-[10px] font-medium text-sage">
                         Verified
                       </span>
                     )}
