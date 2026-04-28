@@ -3,6 +3,7 @@ import Link from "next/link";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import { HeroSearch } from "@/components/home/HeroSearch";
 import { NewsletterForm } from "@/components/NewsletterForm";
+import { BlogCover } from "@/components/blog/BlogCover";
 import { db } from "@/db";
 import { providers, providerRegulations } from "@/db/schema";
 import { count, eq, inArray } from "drizzle-orm";
@@ -106,7 +107,7 @@ function ProviderCard({
             <div className="xs">{type} · {hq}</div>
           </div>
           {featured && (
-            <span className="feature-flag">★ Featured</span>
+            <span className="feature-flag">Featured</span>
           )}
         </div>
         <div className="small" style={{ color: "var(--ink-2)", lineHeight: 1.5, marginBottom: 12 }}>
@@ -703,20 +704,17 @@ export default async function HomePage({
                 style={{
                   height: 300,
                   marginBottom: 16,
-                  background: "linear-gradient(135deg, rgba(14,19,48,0.04), rgba(14,19,48,0.02)), repeating-linear-gradient(45deg, transparent 0 10px, rgba(14,19,48,0.05) 10px 11px)",
                   border: "1px solid var(--line)",
                   borderRadius: 6,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontFamily: "var(--mono)",
-                  fontSize: 11,
-                  color: "var(--ink-faint)",
-                  letterSpacing: "0.04em",
-                  textTransform: "uppercase",
+                  overflow: "hidden",
                 }}
               >
-                lead illustration
+                <BlogCover
+                  slug="eu-ai-act-gpai-obligations"
+                  category="Regulation Analysis"
+                  title="EU AI Act GPAI Rules: What Foundation Model Developers Must Do"
+                  variant="lead"
+                />
               </div>
               <div className="eyebrow" style={{ marginBottom: 8, color: "var(--accent)" }}>{"\u25b8"} Lead story</div>
               <h3 className="h1" style={{ fontSize: 36, marginBottom: 12 }}>

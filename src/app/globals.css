@@ -495,8 +495,8 @@ a { color: inherit; text-decoration: none; }
   padding: 48px 32px 24px;
   margin-top: 80px;
 }
-.footer a { color: rgba(251,251,253,0.7); }
-.footer a:hover { color: var(--paper); }
+.footer a { color: rgba(251,251,253,0.7); transition: color .15s; }
+.footer a:hover { color: #ffffff; }
 .footer .cols { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 40px; max-width: 1280px; margin: 0 auto; }
 .footer .col-head { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(251,251,253,0.5); margin: 0 0 16px; font-weight: 500; }
 .footer .col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
@@ -562,21 +562,57 @@ table.data td {
 table.data tbody tr { transition: background .12s; }
 table.data tbody tr:hover { background: var(--paper-2); cursor: pointer; }
 
-/* ── Featured Flag ── */
+/* ── Featured Flag — premium gold pill ── */
 .feature-flag {
-  display: inline-flex; align-items: center; gap: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-family: var(--mono);
   font-size: 10px;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--gold);
-  font-weight: 500;
+  font-weight: 600;
+  color: #5a3a06;
+  background: linear-gradient(135deg, #fde9b8 0%, #f6cd6d 45%, #e89a2b 100%);
+  border: 1px solid rgba(176, 110, 18, 0.55);
+  border-radius: 999px;
+  padding: 4px 10px 4px 8px;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.6) inset,
+    0 0 0 1px rgba(255, 255, 255, 0.25) inset,
+    0 1px 2px rgba(146, 90, 10, 0.18);
+  white-space: nowrap;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
 }
 .feature-flag::before {
   content: '';
-  width: 6px; height: 6px;
-  background: var(--gold);
-  border-radius: 50%;
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  background-color: #7a4a08;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2l2.95 6.18 6.78.62-5.13 4.55 1.55 6.65L12 16.9 5.85 20l1.55-6.65L2.27 8.8l6.78-.62L12 2z'/></svg>") center/contain no-repeat;
+          mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2l2.95 6.18 6.78.62-5.13 4.55 1.55 6.65L12 16.9 5.85 20l1.55-6.65L2.27 8.8l6.78-.62L12 2z'/></svg>") center/contain no-repeat;
+  flex-shrink: 0;
+}
+[data-theme="night"] .feature-flag {
+  color: #2a1a02;
+  background: linear-gradient(135deg, #ffe8a8 0%, #f3c25c 50%, #d8881e 100%);
+  border-color: rgba(120, 70, 8, 0.8);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.45) inset,
+    0 0 0 1px rgba(255, 255, 255, 0.18) inset,
+    0 1px 3px rgba(0, 0, 0, 0.4);
+}
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) .feature-flag {
+    color: #2a1a02;
+    background: linear-gradient(135deg, #ffe8a8 0%, #f3c25c 50%, #d8881e 100%);
+    border-color: rgba(120, 70, 8, 0.8);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.45) inset,
+      0 0 0 1px rgba(255, 255, 255, 0.18) inset,
+      0 1px 3px rgba(0, 0, 0, 0.4);
+  }
 }
 
 /* ── Key/Value ── */
@@ -778,7 +814,7 @@ dl.kv dd { margin: 0; color: var(--ink); }
 .grid-ledger         { grid-template-columns: 2fr 1fr 1fr; }
 .grid-providers-cta  { grid-template-columns: 1fr 1fr; align-items: center; }
 .grid-benefits       { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
-.grid-tiers          { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+.grid-tiers          { grid-template-columns: repeat(auto-fit, minmax(280px, 360px)); justify-content: center; max-width: 820px; margin-left: auto; margin-right: auto; }
 .grid-stats-bar      { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
 
 /* ── Sidebar Layout ── */

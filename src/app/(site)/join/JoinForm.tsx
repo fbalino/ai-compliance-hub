@@ -541,7 +541,7 @@ function StepPlan({
           tabIndex={0}
           onKeyDown={(e) => e.key === "Enter" && onChange({ plan: "featured" })}
         >
-          <div className="feature-flag" style={{ marginBottom: 8 }}>★ Featured</div>
+          <div className="feature-flag" style={{ marginBottom: 8 }}>Featured</div>
           <div style={{ fontFamily: "var(--serif)", fontSize: 36, fontWeight: 500, color: "var(--accent)" }}>
             $490<span style={{ fontSize: 16, color: "var(--ink-soft)" }}>/mo</span>
           </div>
@@ -748,7 +748,7 @@ export function JoinForm() {
           </ul>
         </div>
         <div className="card card-feature">
-          <div className="feature-flag" style={{ marginBottom: 8 }}>★ Featured</div>
+          <div className="feature-flag" style={{ marginBottom: 8 }}>Featured</div>
           <div style={{ fontFamily: "var(--serif)", fontSize: 36, fontWeight: 500, color: "var(--accent)" }}>
             $490<span style={{ fontSize: 16, color: "var(--ink-soft)" }}>/mo</span>
           </div>

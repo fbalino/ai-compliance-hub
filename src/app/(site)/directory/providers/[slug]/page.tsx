@@ -187,7 +187,7 @@ export default async function ProviderPage({ params }: Props) {
             <div style={{ flex: 1, minWidth: 0 }}>
               <div className="flex items-center" style={{ gap: 10, marginBottom: 4 }}>
                 <h1 className="h1" style={{ margin: 0 }}>{provider.name}</h1>
-                {isFeatured && <span className="feature-flag">{"\u2605"} Featured</span>}
+                {isFeatured && <span className="feature-flag">Featured</span>}
                 {provider.isVerified && <span className="chip chip-sage">{"\u2713"} Verified</span>}
               </div>
               <p className="lede" style={{ margin: 0, color: "var(--ink-2)" }}>

@@ -69,7 +69,7 @@ export default function AboutPage() {
         <div className="eyebrow" style={{ marginTop: 48, marginBottom: 16 }}>&sect; Provider matching</div>
         <p className="lede" style={{ color: "var(--ink)" }}>
           Providers self-tag the regulations they cover. Our editors verify each listing (case studies, team, certifications) before it goes live.{" "}
-          <span className="feature-flag">★ Featured</span> providers pay to appear in the top slot on matched regulation pages &mdash; always clearly labeled. Matching is never sold below the line.
+          <span className="feature-flag">Featured</span> providers pay to appear in the top slot on matched regulation pages &mdash; always clearly labeled. Matching is never sold below the line.
         </p>
 
         {/* Corrections */}
