@@ -881,7 +881,7 @@ function Results({
             {matchedProviders.map((prov) => (
               <Link
                 key={prov.id}
-                href={`/directory/providers/${prov.slug}`}
+                href={`/providers/${prov.slug}`}
                 className="flex items-center gap-3 rounded-lg border border-line p-3 hover:bg-paper-2 transition-colors"
                 style={{ textDecoration: "none" }}
               >
@@ -905,7 +905,7 @@ function Results({
             ))}
           </div>
           <Link
-            href="/directory"
+            href="/providers"
             className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-accent hover:text-accent-ink transition-colors"
           >
             Browse all providers →
@@ -922,7 +922,7 @@ function Results({
           </p>
           <div className="flex flex-wrap gap-3">
             <Link
-              href="/directory"
+              href="/providers"
               className="inline-flex items-center gap-1.5 rounded-lg bg-brand-700 px-4 py-2 text-sm font-medium text-white hover:bg-brand-800 transition-colors"
             >
               Find Providers

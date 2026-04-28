@@ -234,7 +234,7 @@ export function DirectorySearchClient({ providers, categories }: Props) {
                 {filtered.map((provider) => (
                   <Link
                     key={provider.slug}
-                    href={`/directory/providers/${provider.slug}`}
+                    href={`/providers/${provider.slug}`}
                     style={{ textDecoration: "none" }}
                   >
                     <article className="card" style={{ height: "100%" }}>

@@ -371,7 +371,7 @@ export default function V2Page() {
                 Find compliance experts
               </h2>
             </div>
-            <a href="/directory" style={{ fontSize: 14, fontWeight: 600, color: t.accent, textDecoration: "none", display: "flex", alignItems: "center", gap: 4 }}>
+            <a href="/providers" style={{ fontSize: 14, fontWeight: 600, color: t.accent, textDecoration: "none", display: "flex", alignItems: "center", gap: 4 }}>
               Browse all <ArrowRight size={14} />
             </a>
           </div>
@@ -380,7 +380,7 @@ export default function V2Page() {
             {CATEGORIES.map((cat) => (
               <a
                 key={cat.slug}
-                href={`/directory/categories/${cat.slug}`}
+                href={`/providers/categories/${cat.slug}`}
                 style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "24px 16px", border: `1.5px solid ${t.border}`, borderRadius: 12, textDecoration: "none", textAlign: "center", transition: "border-color 0.15s, box-shadow 0.15s" }}
               >
                 <div style={{ width: 44, height: 44, background: t.accentLight, borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 12 }}>

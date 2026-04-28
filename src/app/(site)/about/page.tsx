@@ -87,7 +87,7 @@ export default function AboutPage() {
         <div className="tag-strip" style={{ marginTop: 40 }}>
           <Link href="/join" className="btn btn-primary">List Your Practice</Link>
           <Link href="/regulations" className="btn btn-ghost">Browse Regulations</Link>
-          <Link href="/directory" className="btn btn-ghost">Provider Directory</Link>
+          <Link href="/providers" className="btn btn-ghost">Provider Directory</Link>
         </div>
       </section>
     </>

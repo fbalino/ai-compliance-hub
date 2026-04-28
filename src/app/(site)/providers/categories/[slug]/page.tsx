@@ -79,7 +79,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${cat.label} — AI Compliance Provider Directory`,
     description: cat.description,
     alternates: {
-      canonical: `${SITE_URL}/directory/categories/${slug}`,
+      canonical: `${SITE_URL}/providers/categories/${slug}`,
     },
   };
 }
@@ -96,8 +96,8 @@ export default async function CategoryPage({ params }: Props) {
 
   const breadcrumbs = breadcrumbListSchema([
     { name: "Home", url: "/" },
-    { name: "Provider Directory", url: "/directory" },
-    { name: cat.label, url: `/directory/categories/${slug}` },
+    { name: "Provider Directory", url: "/providers" },
+    { name: cat.label, url: `/providers/categories/${slug}` },
   ]);
 
   return (
@@ -109,7 +109,7 @@ export default async function CategoryPage({ params }: Props) {
           <Breadcrumbs
             items={[
               { label: "Home", href: "/" },
-              { label: "Provider Directory", href: "/directory" },
+              { label: "Provider Directory", href: "/providers" },
               { label: cat.label },
             ]}
           />
@@ -151,7 +151,7 @@ export default async function CategoryPage({ params }: Props) {
           {categoryProviders.length > 0 ? (
             <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 16 }}>
               {categoryProviders.map((provider) => (
-                <Link key={provider.slug} href={`/directory/providers/${provider.slug}`} style={{ textDecoration: "none" }}>
+                <Link key={provider.slug} href={`/providers/${provider.slug}`} style={{ textDecoration: "none" }}>
                   <article className="card" style={{ height: "100%" }}>
                     <div className="flex items-center" style={{ gap: 10, marginBottom: 8 }}>
                       <div className="avatar avatar-sq" style={{ width: 36, height: 36, fontSize: 14, background: "var(--accent-soft)", color: "var(--accent)", display: "grid", placeItems: "center", borderRadius: 6, flexShrink: 0, fontFamily: "var(--serif)", fontWeight: 600 }}>
@@ -183,7 +183,7 @@ export default async function CategoryPage({ params }: Props) {
           ) : (
             <div className="card" style={{ textAlign: "center", padding: "40px 24px" }}>
               <p className="small">Providers in this category are being added shortly.</p>
-              <Link href="/directory" className="btn btn-ghost" style={{ marginTop: 12 }}>
+              <Link href="/providers" className="btn btn-ghost" style={{ marginTop: 12 }}>
                 Browse all categories →
               </Link>
             </div>
@@ -197,7 +197,7 @@ export default async function CategoryPage({ params }: Props) {
               Get listed in this directory and reach businesses looking for your expertise.
             </span>
           </div>
-          <Link href="/newsletter" className="btn btn-accent">
+          <Link href="/join" className="btn btn-accent">
             Apply to List
           </Link>
         </div>

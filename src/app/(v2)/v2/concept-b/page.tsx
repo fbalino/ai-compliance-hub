@@ -290,7 +290,7 @@ export default function ConceptB() {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}>
               {[
                 { h: "/registry", l: ["EU AI Act", "Colorado AI", "NYC LL 144", "All laws"] },
-                { h: "/directory", l: ["Auditors", "Legal", "Governance", "Software"] },
+                { h: "/providers", l: ["Auditors", "Legal", "Governance", "Software"] },
                 { h: "/bin", l: ["assay", "compare", "diff", "digest"] },
                 { h: "/meta", l: ["Privacy", "Terms", "Status", "Contact"] },
               ].map((col) => (

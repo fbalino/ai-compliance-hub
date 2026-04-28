@@ -13,10 +13,10 @@ export async function GET() {
   ]);
 
   const paths = [
-    "/directory",
-    "/directory/categories",
-    ...categoryRows.map((c) => `/directory/categories/${c.slug}`),
-    ...providerRows.map((p) => `/directory/providers/${p.slug}`),
+    "/providers",
+    "/providers/categories",
+    ...categoryRows.map((c) => `/providers/categories/${c.slug}`),
+    ...providerRows.map((p) => `/providers/${p.slug}`),
   ];
 
   const urls = paths
@@ -25,7 +25,7 @@ export async function GET() {
   <url>
     <loc>${SITE_URL}${path}</loc>
     <changefreq>weekly</changefreq>
-    <priority>${path === "/directory" ? "0.8" : path === "/directory/categories" ? "0.7" : path.includes("/categories/") ? "0.7" : "0.6"}</priority>
+    <priority>${path === "/providers" ? "0.8" : path === "/providers/categories" ? "0.7" : path.includes("/categories/") ? "0.7" : "0.6"}</priority>
   </url>`
     )
     .join("");

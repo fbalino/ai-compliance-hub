@@ -28,8 +28,28 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/directory",
+        destination: "/providers",
+        permanent: true,
+      },
+      {
+        source: "/directory/categories",
+        destination: "/providers/categories",
+        permanent: true,
+      },
+      {
+        source: "/directory/categories/:slug",
+        destination: "/providers/categories/:slug",
+        permanent: true,
+      },
+      {
+        source: "/directory/providers/:slug",
+        destination: "/providers/:slug",
+        permanent: true,
+      },
+      {
         source: "/directory/providers/:slug/request-quote",
-        destination: "/directory/providers/:slug#contact",
+        destination: "/providers/:slug#contact",
         permanent: true,
       },
     ];

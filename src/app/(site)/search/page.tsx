@@ -204,7 +204,7 @@ export default async function SearchPage({
                 <p className="small">No providers matched your search.</p>
               )}
               {matchedProviders.map((prov) => (
-                <Link key={prov.id} href={`/directory/providers/${prov.slug}`} style={{ textDecoration: "none" }}>
+                <Link key={prov.id} href={`/providers/${prov.slug}`} style={{ textDecoration: "none" }}>
                   <div className="card flex items-center" style={{ padding: 14, gap: 12, cursor: "pointer" }}>
                     <div className="avatar avatar-sq" style={{ width: 40, height: 40, fontSize: 15 }}>{prov.name[0]}</div>
                     <div className="flex-1">

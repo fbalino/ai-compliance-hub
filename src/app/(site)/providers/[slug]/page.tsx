@@ -123,7 +123,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title,
     description,
     openGraph: { title, description, type: "profile" },
-    alternates: { canonical: `${SITE_URL}/directory/providers/${slug}` },
+    alternates: { canonical: `${SITE_URL}/providers/${slug}` },
   };
 }
 
@@ -143,13 +143,13 @@ export default async function ProviderPage({ params }: Props) {
   const schemas = [
     breadcrumbListSchema([
       { name: "Home", url: "/" },
-      { name: "Provider Directory", url: "/directory" },
-      { name: provider.name, url: `/directory/providers/${slug}` },
+      { name: "Provider Directory", url: "/providers" },
+      { name: provider.name, url: `/providers/${slug}` },
     ]),
     providerSchema({
       name: provider.name,
       description: provider.description,
-      url: provider.websiteUrl ?? `${SITE_URL}/directory/providers/${slug}`,
+      url: provider.websiteUrl ?? `${SITE_URL}/providers/${slug}`,
       serviceTypes: provider.serviceTypes,
       ratingValue: provider.averageRating,
       reviewCount: provider.reviews.length,
@@ -165,7 +165,7 @@ export default async function ProviderPage({ params }: Props) {
           <Breadcrumbs
             items={[
               { label: "Home", href: "/" },
-              { label: "Provider Directory", href: "/directory" },
+              { label: "Provider Directory", href: "/providers" },
               { label: provider.name },
             ]}
           />
@@ -326,7 +326,7 @@ export default async function ProviderPage({ params }: Props) {
               <div className="eyebrow" style={{ marginBottom: 12 }}>Compare with</div>
               <div className="col" style={{ gap: 8 }}>
                 {relatedProviders.map((rp) => (
-                  <Link key={rp.slug} href={`/directory/providers/${rp.slug}`} className="flex between small" style={{ textDecoration: "none", color: "var(--ink)" }}>
+                  <Link key={rp.slug} href={`/providers/${rp.slug}`} className="flex between small" style={{ textDecoration: "none", color: "var(--ink)" }}>
                     <span>{rp.name}</span>
                     <ArrowUpRight className="h-3.5 w-3.5" style={{ color: "var(--ink-soft)" }} aria-hidden="true" />
                   </Link>

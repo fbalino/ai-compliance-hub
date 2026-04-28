@@ -9,8 +9,8 @@ const CATALOG_LINKS = [
 ];
 
 const DIRECTORY_LINKS = [
-  { label: "All providers", href: "/directory" },
-  { label: "Categories", href: "/directory/categories" },
+  { label: "All providers", href: "/providers" },
+  { label: "Categories", href: "/providers/categories" },
   { label: "Post an RFP", href: "/rfp" },
   { label: "List your firm", href: "/join" },
 ];

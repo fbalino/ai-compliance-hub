@@ -207,7 +207,7 @@ export default function NistVsIsoPage() {
         {/* CTAs */}
         <div className="tag-strip" style={{ marginTop: 40 }}>
           <Link href="/checker" className="btn btn-primary">Check My Compliance</Link>
-          <Link href="/directory/categories/governance-consulting" className="btn btn-ghost">Find Framework Consultants</Link>
+          <Link href="/providers/categories/governance-consulting" className="btn btn-ghost">Find Framework Consultants</Link>
           <Link href="/compare/colorado-vs-eu-ai-act" className="btn btn-ghost">Colorado vs. EU AI Act &rarr;</Link>
         </div>
       </div>

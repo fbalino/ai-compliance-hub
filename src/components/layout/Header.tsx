@@ -8,7 +8,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 
 const NAV_LINKS = [
   { label: "Regulations", href: "/regulations" },
-  { label: "Providers", href: "/directory" },
+  { label: "Providers", href: "/providers" },
   { label: "The Ledger", href: "/blog" },
   { label: "About", href: "/about" },
 ];
@@ -53,7 +53,7 @@ export function Header() {
       </Link>
 
       <div className="topbar-cta">
-        <Link href="/providers" className="btn btn-sm btn-ghost">
+        <Link href="/for-providers" className="btn btn-sm btn-ghost">
           For Providers
         </Link>
         <Link href="/checker" className="btn btn-sm">
@@ -123,7 +123,7 @@ export function Header() {
             Search regulations
           </Link>
           <div style={{ display: "flex", gap: 8, padding: "8px 0" }}>
-            <Link href="/providers" className="btn btn-sm btn-ghost" onClick={() => setMobileOpen(false)} style={{ flex: 1, justifyContent: "center" }}>
+            <Link href="/for-providers" className="btn btn-sm btn-ghost" onClick={() => setMobileOpen(false)} style={{ flex: 1, justifyContent: "center" }}>
               For Providers
             </Link>
             <Link href="/checker" className="btn btn-sm" onClick={() => setMobileOpen(false)} style={{ flex: 1, justifyContent: "center" }}>

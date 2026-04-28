@@ -539,7 +539,7 @@ export default async function RegulationPage({ params }: Props) {
                 <div style={{ marginBottom: 12 }}>
                   <div className="eyebrow">{extras.providers.length} provider{extras.providers.length !== 1 ? "s" : ""}</div>
                 </div>
-                <Link href={`/directory/providers/${extras.providers[0].slug}`} style={{ textDecoration: "none" }}>
+                <Link href={`/providers/${extras.providers[0].slug}`} style={{ textDecoration: "none" }}>
                   <div className="flex items-center" style={{ gap: 12, marginBottom: 12 }}>
                     <div className="avatar avatar-sq" style={{ width: 48, height: 48, fontSize: 18 }}>{extras.providers[0].name[0]}</div>
                     <div>
@@ -549,10 +549,10 @@ export default async function RegulationPage({ params }: Props) {
                   </div>
                 </Link>
                 <div className="col" style={{ gap: 8 }}>
-                  <Link href={`/directory/providers/${extras.providers[0].slug}`} className="btn btn-accent w-full" style={{ textAlign: "center" }}>
+                  <Link href={`/providers/${extras.providers[0].slug}`} className="btn btn-accent w-full" style={{ textAlign: "center" }}>
                     Contact {extras.providers[0].name} &rarr;
                   </Link>
-                  <Link href={`/directory/providers/${extras.providers[0].slug}`} className="btn btn-ghost w-full" style={{ textAlign: "center" }}>
+                  <Link href={`/providers/${extras.providers[0].slug}`} className="btn btn-ghost w-full" style={{ textAlign: "center" }}>
                     View profile
                   </Link>
                 </div>
@@ -560,7 +560,7 @@ export default async function RegulationPage({ params }: Props) {
               <div className="card" style={{ marginBottom: 16 }}>
                 <div className="eyebrow" style={{ marginBottom: 12 }}>All {extras.providers.length} providers</div>
                 {extras.providers.map((prov) => (
-                  <Link key={prov.slug} href={`/directory/providers/${prov.slug}`} style={{ textDecoration: "none" }}>
+                  <Link key={prov.slug} href={`/providers/${prov.slug}`} style={{ textDecoration: "none" }}>
                     <div className="flex items-center" style={{ gap: 12, padding: "8px 0", borderBottom: "1px solid var(--line)" }}>
                       <div className="avatar avatar-sq" style={{ width: 32, height: 32, fontSize: 13 }}>{prov.name[0]}</div>
                       <span className="small" style={{ flex: 1 }}>{prov.name}</span>
@@ -568,7 +568,7 @@ export default async function RegulationPage({ params }: Props) {
                     </div>
                   </Link>
                 ))}
-                <Link href="/directory" className="btn btn-ghost btn-sm w-full" style={{ marginTop: 12, textAlign: "center" }}>
+                <Link href="/providers" className="btn btn-ghost btn-sm w-full" style={{ marginTop: 12, textAlign: "center" }}>
                   Browse all providers
                 </Link>
               </div>

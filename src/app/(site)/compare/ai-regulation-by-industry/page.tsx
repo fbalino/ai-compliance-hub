@@ -152,7 +152,7 @@ export default function AIRegulationByIndustryPage() {
         {/* CTAs */}
         <div className="tag-strip" style={{ marginTop: 32 }}>
           <Link href="/checker" className="btn btn-primary">Check My Compliance</Link>
-          <Link href="/directory" className="btn btn-ghost">Find Industry Experts</Link>
+          <Link href="/providers" className="btn btn-ghost">Find Industry Experts</Link>
           <Link href="/compare/us-state-ai-laws" className="btn btn-ghost">Compare US State AI Laws &rarr;</Link>
         </div>
       </div>

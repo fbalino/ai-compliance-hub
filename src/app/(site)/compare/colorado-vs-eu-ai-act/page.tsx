@@ -204,7 +204,7 @@ export default function ColoradoVsEuPage() {
         {/* CTA */}
         <div className="tag-strip" style={{ marginTop: 40 }}>
           <Link href="/checker" className="btn btn-primary">Check My Compliance</Link>
-          <Link href="/directory?regulation=eu-ai-act" className="btn btn-ghost">Find EU AI Act Experts</Link>
+          <Link href="/providers?regulation=eu-ai-act" className="btn btn-ghost">Find EU AI Act Experts</Link>
           <Link href="/compare/us-state-ai-laws" className="btn btn-ghost">Compare US State AI Laws &rarr;</Link>
         </div>
       </div>

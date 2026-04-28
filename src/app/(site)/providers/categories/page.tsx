@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   description:
     "Browse AI compliance provider categories: bias auditors, governance consultants, legal counsel, compliance software, and training providers.",
   alternates: {
-    canonical: `${SITE_URL}/directory/categories`,
+    canonical: `${SITE_URL}/providers/categories`,
   },
 };
 
@@ -50,8 +50,8 @@ export default async function CategoriesIndexPage() {
 
   const breadcrumbs = breadcrumbListSchema([
     { name: "Home", url: "/" },
-    { name: "Provider Directory", url: "/directory" },
-    { name: "Categories", url: "/directory/categories" },
+    { name: "Provider Directory", url: "/providers" },
+    { name: "Categories", url: "/providers/categories" },
   ]);
 
   return (
@@ -63,7 +63,7 @@ export default async function CategoriesIndexPage() {
           <Breadcrumbs
             items={[
               { label: "Home", href: "/" },
-              { label: "Provider Directory", href: "/directory" },
+              { label: "Provider Directory", href: "/providers" },
               { label: "Categories" },
             ]}
           />
@@ -85,7 +85,7 @@ export default async function CategoriesIndexPage() {
           {categories.map((cat) => (
             <Link
               key={cat.slug}
-              href={`/directory/categories/${cat.slug}`}
+              href={`/providers/categories/${cat.slug}`}
               style={{ textDecoration: "none" }}
             >
               <article className="card" style={{ height: "100%" }}>

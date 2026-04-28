@@ -31,7 +31,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/regulations`, lastModified: LAST_MODIFIED, changeFrequency: "daily", priority: 0.9 },
     { url: `${SITE_URL}/checker`, lastModified: LAST_MODIFIED, changeFrequency: "monthly", priority: 0.9 },
     { url: `${SITE_URL}/checker/pro-report`, lastModified: LAST_MODIFIED, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${SITE_URL}/directory`, lastModified: LAST_MODIFIED, changeFrequency: "daily", priority: 0.8 },
+    { url: `${SITE_URL}/providers`, lastModified: LAST_MODIFIED, changeFrequency: "daily", priority: 0.8 },
     { url: `${SITE_URL}/glossary`, lastModified: LAST_MODIFIED, changeFrequency: "weekly", priority: 0.8 },
     { url: `${SITE_URL}/blog`, lastModified: LAST_MODIFIED, changeFrequency: "weekly", priority: 0.7 },
     { url: `${SITE_URL}/compare`, lastModified: LAST_MODIFIED, changeFrequency: "weekly", priority: 0.7 },

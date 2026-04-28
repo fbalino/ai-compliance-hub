@@ -89,7 +89,7 @@ export default async function ProReportSuccessPage({
 
         <div style={{ marginTop: 32, display: "flex", flexWrap: "wrap", gap: 10, justifyContent: "center" }}>
           <Link href="/regulations" className="btn btn-ghost">Browse Regulations</Link>
-          <Link href="/directory" className="btn btn-primary">Find Compliance Providers</Link>
+          <Link href="/providers" className="btn btn-primary">Find Compliance Providers</Link>
         </div>
 
         <p className="xs" style={{ marginTop: 32, color: "var(--ink-2)" }}>

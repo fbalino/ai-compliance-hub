@@ -230,7 +230,7 @@ There are not many people with 5+ years of AI compliance experience, because AI 
 
 **Regulated industry transfers**: Healthcare (HIPAA + FDA AI guidance), financial services (OCC/CFPB model risk management guidance, Fair Credit Reporting Act), and HR tech have been doing adjacent compliance work for years. These professionals transfer well.
 
-**Our directory**: [Browse AI compliance consultants and firms](/directory/categories/governance-consulting) — many work on both advisory engagements and help clients build in-house programs, and are a good source of referrals.
+**Our directory**: [Browse AI compliance consultants and firms](/providers/categories/governance-consulting) — many work on both advisory engagements and help clients build in-house programs, and are a good source of referrals.
 
 ---
 
@@ -238,7 +238,7 @@ There are not many people with 5+ years of AI compliance experience, because AI 
 
 If you have a compliance deadline approaching and haven't hired yet — which describes most organizations in Q2 2026 — you have two options:
 
-**Option 1: Engage a specialist firm.** AI governance consulting firms can run impact assessments, conduct vendor due diligence, and stand up the first version of your compliance program while you hire. This costs more than in-house staff over time, but it can execute within your deadline. [Find firms in our directory →](/directory/categories/governance-consulting)
+**Option 1: Engage a specialist firm.** AI governance consulting firms can run impact assessments, conduct vendor due diligence, and stand up the first version of your compliance program while you hire. This costs more than in-house staff over time, but it can execute within your deadline. [Find firms in our directory →](/providers/categories/governance-consulting)
 
 **Option 2: Augment your existing legal or compliance team.** If you have a strong CIPP/US privacy person or a compliance analyst with regulatory chops, they can be upskilled quickly on AI compliance specifics. Pair them with outside AI legal counsel and a bias audit firm for the technical components.
 
@@ -272,7 +272,7 @@ If you're starting from zero in April 2026 with a Colorado/Virginia deadline:
 - [Free compliance checker — which AI laws apply to your business?](/checker)
 - [Building an AI Governance Program: Practical Guide for Mid-Size Companies](/blog/ai-governance-program-guide)
 - [NIST AI RMF Explained: A Compliance Team's Field Guide](/blog/nist-ai-rmf-explainer-for-compliance-teams)
-- [Find AI governance consultants and bias auditors in our directory](/directory)
+- [Find AI governance consultants and bias auditors in our directory](/providers)
     `,
   },
   "colorado-ai-act-60-day-checklist": {
@@ -482,7 +482,7 @@ Possibly, but the exemption is narrow. Review it carefully with counsel. Do not 
 
 **Need an AI governance consultant or bias auditor?** Browse our directory of verified providers, filterable by jurisdiction and service type.
 
-[Browse the Directory →](/directory)
+[Browse the Directory →](/providers)
     `,
   },
   "colorado-ai-act-2026-deadline": {
@@ -577,7 +577,7 @@ Deployers must submit an annual report to the Colorado AG summarizing:
 
 - [Full text of Colorado SB 24-205](https://leg.colorado.gov/bills/sb24-205)
 - [Colorado AI Act compliance guide](/regulations/colorado-ai-act)
-- [Find an AI governance consultant](/directory/categories/governance-consulting)
+- [Find an AI governance consultant](/providers/categories/governance-consulting)
 - [Free compliance checker — does this law apply to you?](/checker)
     `,
   },
@@ -661,7 +661,7 @@ If you deploy someone else's GPAI model in a product:
 ## Resources
 
 - [Full EU AI Act compliance guide](/regulations/eu-ai-act)
-- [Find EU AI Act legal counsel](/directory/categories/legal)
+- [Find EU AI Act legal counsel](/providers/categories/legal)
 - [Free compliance checker](/checker)
     `,
   },
@@ -721,7 +721,7 @@ The law requires audit results to be "publicly available" — not buried in a PD
 ## Resources
 
 - [Full NYC LL 144 compliance guide](/regulations/nyc-local-law-144)
-- [Find a bias audit firm](/directory/categories/bias-audit)
+- [Find a bias audit firm](/providers/categories/bias-audit)
 - [Check if LL 144 applies to you](/checker)
     `,
   },
@@ -763,7 +763,7 @@ What to look for in an auditor:
 - Ability to produce the required audit summary format
 - Statistical methodology experience (disparate impact analysis)
 
-[Browse bias auditors in our directory →](/directory/categories/bias-audit)
+[Browse bias auditors in our directory →](/providers/categories/bias-audit)
 
 ## Step 3: Provide the Auditor with Required Data
 
@@ -821,7 +821,7 @@ Set a calendar reminder 60 days before your audit anniversary to:
 ## Resources
 
 - [NYC LL 144 full compliance guide](/regulations/nyc-local-law-144)
-- [Find bias auditors in our directory](/directory/categories/bias-audit)
+- [Find bias auditors in our directory](/providers/categories/bias-audit)
 - [Check compliance checker — does LL 144 apply to you?](/checker)
     `,
   },
@@ -889,7 +889,7 @@ The practical implication: **build your AI compliance program around the Colorad
 
 - [Colorado AI Act compliance guide](/regulations/colorado-ai-act)
 - [Free compliance checker — does Colorado AI Act apply to you now?](/checker)
-- [Find AI governance consultants](/directory/categories/governance-consulting)
+- [Find AI governance consultants](/providers/categories/governance-consulting)
     `,
   },
   "how-to-prepare-for-colorado-ai-act-june-2026": {
@@ -979,7 +979,7 @@ The Colorado AG's office enforces the law. Penalties can reach **$20,000 per vio
 
 - [Full Colorado AI Act compliance guide](/regulations/colorado-ai-act)
 - [Free compliance checker — does this law apply to you?](/checker)
-- [Find AI governance consultants in our directory](/directory/categories/governance-consulting)
+- [Find AI governance consultants in our directory](/providers/categories/governance-consulting)
 - [Compare Colorado AI Act vs. EU AI Act](/compare/colorado-vs-eu-ai-act)
     `,
   },
@@ -1067,7 +1067,7 @@ Virginia joining Colorado signals that US state-level AI legislation is now a du
 
 - [Free compliance checker — does Virginia HB 2094 apply to you?](/checker)
 - [Compare US state AI laws side-by-side](/compare/us-state-ai-laws)
-- [Find AI governance consultants](/directory/categories/governance-consulting)
+- [Find AI governance consultants](/providers/categories/governance-consulting)
 - [Colorado AI Act compliance guide](/regulations/colorado-ai-act)
     `,
   },
@@ -1192,7 +1192,7 @@ If the audit finds disparate impact: you have options — you are not automatica
 
 Browse verified bias audit firms in our directory, filterable by jurisdiction and AI system type.
 
-- [Find bias auditors in our directory →](/directory/categories/bias-audit)
+- [Find bias auditors in our directory →](/providers/categories/bias-audit)
 - [NYC LL 144 compliance guide](/regulations/nyc-local-law-144)
 - [Colorado AI Act compliance guide](/regulations/colorado-ai-act)
     `,
@@ -1324,7 +1324,7 @@ Don't try to implement everything at once. A credible, documented partial progra
 - [Building an AI Governance Program — practical guide for mid-size companies](/blog/ai-governance-program-guide)
 - [Colorado AI Act compliance guide](/regulations/colorado-ai-act)
 - [EU AI Act compliance guide](/regulations/eu-ai-act)
-- [Find AI governance consultants in our directory](/directory/categories/governance-consulting)
+- [Find AI governance consultants in our directory](/providers/categories/governance-consulting)
     `,
   },
   "ai-governance-program-guide": {
@@ -1451,8 +1451,8 @@ A basic program for a mid-size company should cost:
 
 ## Resources
 
-- [Find AI governance consultants](/directory/categories/governance-consulting)
-- [Find compliance software platforms](/directory/categories/compliance-software)
+- [Find AI governance consultants](/providers/categories/governance-consulting)
+- [Find compliance software platforms](/providers/categories/compliance-software)
 - [EU AI Act compliance guide](/regulations/eu-ai-act)
 - [Colorado AI Act compliance guide](/regulations/colorado-ai-act)
     `,

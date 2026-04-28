@@ -21,7 +21,7 @@ const SUGGESTED = [
     kicker: "§ Directory",
     title: "Find a compliance provider",
     body: "Vetted firms by jurisdiction, framework, and sector — audit, legal, and tooling.",
-    href: "/directory",
+    href: "/providers",
   },
   {
     kicker: "§ Checker",

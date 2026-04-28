@@ -93,7 +93,7 @@ function ProviderCard({
   slug: string;
 }) {
   return (
-    <Link href={`/directory/providers/${slug}`} style={{ textDecoration: "none", display: "block" }}>
+    <Link href={`/providers/${slug}`} style={{ textDecoration: "none", display: "block" }}>
       <article className={`card ${featured ? "card-feature" : ""}`} style={{ height: "100%" }}>
         <div className="flex items-center" style={{ gap: 12, marginBottom: 12 }}>
           <div
@@ -548,13 +548,13 @@ export default async function HomePage({
               <>
                 <div className="section-head" style={{ alignItems: "flex-start", paddingBottom: 12 }}>
                   <div><h2 className="h3">Providers who can help</h2></div>
-                  <Link href="/directory" className="action">All {providerCount} →</Link>
+                  <Link href="/providers" className="action">All {providerCount} →</Link>
                 </div>
                 <div className="col" style={{ gap: 16 }}>
                   {matchedProviders.length === 0 ? (
                     <div style={{ padding: 24, textAlign: "center" }}>
                       <p className="small soft">No providers matched. Try broadening your description.</p>
-                      <Link href="/directory" className="action" style={{ marginTop: 8, display: "inline-block" }}>Browse all providers →</Link>
+                      <Link href="/providers" className="action" style={{ marginTop: 8, display: "inline-block" }}>Browse all providers →</Link>
                     </div>
                   ) : (
                     matchedProviders.map((p) => (
@@ -576,7 +576,7 @@ export default async function HomePage({
               <>
                 <div className="section-head" style={{ alignItems: "flex-start", paddingBottom: 12 }}>
                   <div><h2 className="h3">Top providers</h2></div>
-                  <Link href="/directory" className="action">All {providerCount} →</Link>
+                  <Link href="/providers" className="action">All {providerCount} →</Link>
                 </div>
                 <div className="col" style={{ gap: 16 }}>
                   <ProviderCard
@@ -653,7 +653,7 @@ export default async function HomePage({
                 title: "By provider",
                 desc: `${providerCount} firms — software, advisory, legal, audit.`,
                 action: "Open directory",
-                href: "/directory",
+                href: "/providers",
               },
             ].map((item) => (
               <Link
