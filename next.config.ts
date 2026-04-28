@@ -28,6 +28,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/regulations/nis2",
+        destination: "/regulations/nis2-directive",
+        permanent: true,
+      },
+      {
         source: "/directory",
         destination: "/providers",
         permanent: true,
