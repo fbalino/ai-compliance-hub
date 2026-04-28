@@ -41,7 +41,7 @@ export default function JoinPage() {
       <section className="container" style={{ maxWidth: 1100, padding: "var(--s-8) var(--s-7)" }}>
         <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "For Providers", href: "/providers" }, { label: "Sign Up" }]} />
 
-        <div className="eyebrow" style={{ marginTop: 16, marginBottom: 12 }}>For providers</div>
+        <div className="eyebrow" style={{ marginTop: 16, marginBottom: 12 }}>For Providers</div>
         <h1 className="display" style={{ fontSize: 64 }}>List your practice in the register.</h1>
         <p className="lede" style={{ maxWidth: 700, marginTop: 16, color: "var(--ink-2)" }}>
           Free for any verified provider. Upgrade to Featured to appear on matched regulation pages, the homepage, and in Ledger spotlights.

@@ -778,7 +778,7 @@ export default async function HomePage({
           >
             <div>
               <div className="eyebrow" style={{ marginBottom: 12, color: "var(--ink-inverse-soft)" }}>
-                For providers
+                For Providers
               </div>
               <h2 className="h1" style={{ color: "var(--ink-inverse)", marginBottom: 16 }}>
                 Meet buyers at the moment they&apos;re searching.

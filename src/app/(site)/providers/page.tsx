@@ -147,7 +147,7 @@ export default async function ProvidersPage() {
       {/* HERO */}
       <section className="hero-bg" style={{ borderBottom: "1px solid var(--line)" }}>
         <div className="container" style={{ paddingTop: 56, paddingBottom: 56, textAlign: "center" }}>
-          <div className="eyebrow" style={{ marginBottom: 12 }}>For providers</div>
+          <div className="eyebrow" style={{ marginBottom: 12 }}>For Providers</div>
           <h1
             className="display v4-rise"
             style={{ maxWidth: 800, margin: "0 auto" }}
