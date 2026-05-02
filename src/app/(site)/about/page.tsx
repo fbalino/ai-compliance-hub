@@ -8,7 +8,7 @@ export const revalidate = false;
 
 
 export const metadata: Metadata = {
-  title: "About & Methodology — Regulome",
+  title: "About & Methodology",
   description:
     "How we track AI regulations worldwide: daily monitoring of 40+ official sources, editorial analysis, and curated provider matching. Open, transparent, correctable.",
   alternates: { canonical: `${SITE_URL}/about` },

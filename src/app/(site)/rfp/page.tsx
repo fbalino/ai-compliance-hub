@@ -8,7 +8,7 @@ export const revalidate = false;
 
 
 export const metadata: Metadata = {
-  title: "Post an RFP — Request for Proposal | Regulome",
+  title: "Post an RFP — Request for Proposal",
   description:
     "Submit a Request for Proposal and get matched with top AI compliance providers. Describe your needs, timeline, and budget — we'll connect you with the right experts.",
   alternates: { canonical: `${SITE_URL}/rfp` },

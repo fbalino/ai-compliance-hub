@@ -14,7 +14,7 @@ export const revalidate = false;
 
 
 export const metadata: Metadata = {
-  title: "Search Regulations, Providers & Articles — Regulome",
+  title: "Search Regulations, Providers & Articles",
   description:
     "Search across AI regulations, compliance providers, and editorial articles. Find biometric laws, GDPR guidance, AI Act obligations, and expert providers in one place.",
   alternates: { canonical: `${SITE_URL}/search` },

@@ -8,7 +8,7 @@ export const revalidate = false;
 
 
 export const metadata: Metadata = {
-  title: "List Your Practice — Provider Sign-Up | Regulome",
+  title: "List Your Practice — Provider Sign-Up",
   description:
     "Join the Regulome directory. Free listing for verified providers. Upgrade to Featured for top placement on regulation pages, homepage visibility, and priority RFPs.",
   alternates: { canonical: `${SITE_URL}/join` },
