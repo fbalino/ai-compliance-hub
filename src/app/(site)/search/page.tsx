@@ -64,8 +64,7 @@ export default async function SearchPage({
               })
             )
           )
-          .limit(50)
-      : db.select().from(providers).limit(50),
+      : db.select().from(providers),
     db.select({ value: count() }).from(providers),
   ]);
 
