@@ -14,24 +14,160 @@ export const frontmatter = {
     { slug: "impact-assessment", term: "Impact Assessment" },
   ],
   publishedAt: "2026-04-13",
-  updatedAt: "2026-04-13",
+  updatedAt: "2026-05-14",
 };
 
 ## Detailed Definition
 
 **Algorithmic discrimination** occurs when an AI or automated decision-making system produces outcomes that systematically disadvantage individuals based on protected characteristics, even if those characteristics are not explicitly used as inputs.
 
-### How It Happens
+The term covers two distinct legal concepts that often appear together in AI regulation:
 
-Algorithmic discrimination can emerge from:
+- **Disparate treatment** — the system intentionally uses a protected characteristic as an input factor, producing different outcomes for different groups
+- **Disparate impact** — the system uses neutral inputs but produces outcomes that disproportionately harm a protected class, without sufficient justification
 
-- **Biased training data** — historical data that reflects past discrimination gets encoded into the model
-- **Proxy variables** — features that correlate with protected characteristics (e.g., zip code as a proxy for race)
-- **Feedback loops** — systems trained on their own outputs can amplify initial biases over time
-- **Measurement bias** — labels or outcomes in training data that reflect human bias
+Most AI-related algorithmic discrimination cases involve disparate impact rather than disparate treatment, because modern AI systems rarely use race, sex, or age as explicit inputs. The discrimination emerges indirectly through correlated variables.
 
-### Legal Significance
+---
 
-Under the **Colorado AI Act**, deployers must use "reasonable care" to protect consumers from known risks of algorithmic discrimination. The law specifically requires impact assessments to identify and mitigate such risks.
+## How Algorithmic Discrimination Happens
 
-Under **NYC Local Law 144**, employers using AI tools for hiring must conduct annual independent bias audits — a direct mechanism for detecting and disclosing algorithmic discrimination.
+### Biased Training Data
+
+If a model is trained on historical decision data that reflects past discrimination, it learns to replicate those patterns. A hiring model trained on a decade of résumé-screening decisions from an organization that historically undervalued women will learn to score women lower — not because it knows their gender, but because the features associated with female applicants (career gaps, different institutional affiliations, different word choices in résumés) were associated with rejection in the training data.
+
+### Proxy Variables
+
+Protected characteristics are rarely available as direct model inputs. But many available inputs correlate strongly with protected characteristics:
+
+| Proxy Variable | Correlated Protected Characteristic |
+|---|---|
+| ZIP code or neighborhood | Race/ethnicity |
+| College attended | Race, socioeconomic status |
+| Name or email address | Race/ethnicity, national origin |
+| Credit score | Race, income |
+| Social media activity | Religion, political views |
+| Device type | Income, socioeconomic status |
+
+When a model weights these variables heavily, it can produce racially or economically discriminatory outputs even without any explicit reference to protected class.
+
+### Feedback Loops
+
+AI systems that are retrained on their own outputs can amplify initial biases over time. A content recommendation algorithm that slightly underserves certain communities at launch may see lower engagement from those communities (because the content is less relevant), leading future models to serve them even less relevant content — a self-reinforcing cycle.
+
+### Measurement Bias
+
+The labels used to train models often reflect human judgments that were themselves biased. Criminal recidivism risk scores trained on re-arrest data inherit the biases of the police departments that made the underlying arrests. Loan default models trained on historical approval/denial data inherit the biases of the loan officers who made those decisions.
+
+---
+
+## Legal Significance by Jurisdiction
+
+### Colorado AI Act (SB 24-205) — Effective June 30, 2026
+
+The Colorado AI Act is the most explicit US state law addressing algorithmic discrimination. It defines the term directly:
+
+> "Algorithmic discrimination" means any condition in which the use of an artificial intelligence system results in an unlawful differential treatment or differential impact that disfavors an individual or group of individuals on the basis of their actual or perceived age, color, disability, ethnicity, genetic information, limited English proficiency, national origin, pregnancy, race, religion, reproductive health, sex, veteran status, or other classification protected under the laws of this state or federal law.
+
+Under the Act, **deployers** of high-risk AI systems must:
+- Use reasonable care to protect consumers from known risks of algorithmic discrimination
+- Complete impact assessments that specifically document algorithmic discrimination risks and mitigation measures
+- Implement a risk management policy addressing algorithmic discrimination
+- Provide consumers with notice when a high-risk AI system was used in a consequential decision affecting them
+
+Penalties reach $20,000 per violation per consumer, enforced by the Colorado Attorney General.
+
+### NYC Local Law 144 — In Effect Since July 2023
+
+NYC Local Law 144 addresses algorithmic discrimination in employment by requiring employers using **automated employment decision tools (AEDTs)** in New York City to:
+
+- Commission annual **independent bias audits** testing for disparate impact across sex, race/ethnicity, and intersectional categories
+- Publish audit results publicly on their website
+- Notify candidates that an AEDT is being used in the hiring process
+
+The law does not prohibit algorithmic discrimination outright — it requires transparency and testing. Employers that audit and disclose their results are in compliance even if disparate impact exists, provided they have disclosed it and taken reasonable steps to address it.
+
+### EU AI Act — High-Risk Provisions from August 2026
+
+The EU AI Act addresses algorithmic discrimination primarily through its high-risk AI system requirements. Systems in employment, credit, education, healthcare, law enforcement, and similar categories must:
+
+- Use training data that is "relevant, sufficiently representative, and to the best extent possible, free of errors and complete" with attention to demographic characteristics
+- Be designed and developed to minimize discriminatory outcomes "to the greatest extent possible"
+- Undergo conformity assessments that include evaluation of training data quality and representativeness
+- Be monitored post-deployment for discriminatory drift
+
+The AI Act also bans certain uses of AI that present unacceptable discrimination risks, including real-time remote biometric categorization in public spaces and social scoring by public authorities.
+
+### Federal Law (United States)
+
+No comprehensive federal AI anti-discrimination law exists as of May 2026. However, algorithmic discrimination is already regulated under existing civil rights frameworks:
+
+- **Fair Housing Act** — applies to AI used in tenant screening, mortgage underwriting, and housing advertising
+- **Equal Credit Opportunity Act / Fair Housing Act** — apply to AI in credit and lending decisions
+- **Title VII (employment discrimination)** — applies to AI in hiring and promotion; the EEOC has issued guidance applying the 4/5ths rule to automated employment tools
+- **Americans with Disabilities Act** — applies to AI that screens out or disadvantages applicants with disabilities
+
+---
+
+## How to Detect Algorithmic Discrimination
+
+### Disparate Impact Testing
+
+The standard quantitative test measures **selection rate ratios** across demographic groups. Under EEOC guidelines (the "4/5ths rule"), a selection rate for a protected group below 80% of the rate for the most favored group indicates adverse impact.
+
+> Impact Ratio = Selection Rate (protected group) ÷ Selection Rate (most favored group)
+
+An impact ratio below 0.80 triggers scrutiny under most legal frameworks.
+
+### Intersectional Analysis
+
+Impact ratios for single protected characteristics can mask discrimination that appears at the intersection of multiple characteristics. A model may show no adverse impact for women overall and no adverse impact for Black individuals overall, but show significant adverse impact for Black women specifically. Intersectional analysis is required under NYC Local Law 144 and is best practice under Colorado and EU frameworks.
+
+### Proxy Analysis
+
+Detecting proxy discrimination requires access to model inputs and their correlation with protected characteristics. This is typically part of a full AI bias audit, not a standard impact ratio calculation. Auditors test whether model inputs that are weighted heavily correlate with demographic variables at a rate that would explain the observed disparate impact.
+
+---
+
+## How to Prevent Algorithmic Discrimination
+
+### At the Data Stage
+
+- Audit training data for historical bias and demographic representation gaps
+- Remove or transform features that function as proxies for protected characteristics
+- Use stratified sampling to ensure demographic balance in training data
+- Test model performance separately for each demographic subgroup — a model that performs well overall but poorly for a specific group is embedding a form of discrimination
+
+### At the Model Stage
+
+- Apply fairness constraints during training (e.g., equalized odds, demographic parity, or calibration objectives)
+- Test multiple model architectures for comparative fairness performance
+- Document model cards with demographic performance breakdowns
+
+### At the Deployment Stage
+
+- Implement human oversight: a human reviewer should be able to override AI outputs before final decisions affecting individuals
+- Monitor post-deployment demographic outcome distributions; flag significant shifts for investigation
+- Establish a complaint mechanism: individuals affected by AI decisions should have a channel to raise discrimination concerns
+
+### At the Governance Stage
+
+- Conduct pre-deployment impact assessments documenting known discrimination risks and mitigation measures
+- Commission periodic third-party bias audits from independent auditors
+- Maintain records sufficient to reconstruct model inputs, training data, and decision history for regulatory review
+
+---
+
+## Common Misconceptions
+
+**"We don't use race as an input, so our model can't be discriminatory."**
+False. Proxy variables are the primary mechanism for algorithmic discrimination in modern AI systems. Not using race explicitly provides no protection if other inputs correlate strongly with race.
+
+**"Our model is accurate overall, so it's fair."**
+Accuracy and fairness are different metrics. A model can achieve high overall accuracy while producing substantially less accurate predictions for minority subgroups — which translates directly into discriminatory outcomes.
+
+**"We only need to worry about employment and credit."**
+Colorado's framework and the EU AI Act cover a broad range of consequential decisions: education, healthcare, housing, insurance, and legal services, in addition to employment and credit.
+
+**"A bias audit means we're compliant."**
+A bias audit is evidence of diligence, not a guarantee of compliance. An audit that finds adverse impact creates an obligation to act. Completing the audit and taking no remediation steps is worse than not auditing at all — it documents knowledge of the problem without response.

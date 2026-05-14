@@ -11,6 +11,14 @@ export const metadata: Metadata = {
 
 const TOOLS = [
   {
+    slug: "colorado-ai-act-checklist",
+    title: "Colorado AI Act Compliance Checklist",
+    description:
+      "43-item printable checklist covering all deployer and developer obligations under Colorado SB 24-205. Deadline: June 30, 2026.",
+    tags: ["Colorado AI Act", "June 2026", "Free Download"],
+    updated: "May 2026",
+  },
+  {
     slug: "iso-42001-checklist",
     title: "ISO 42001 Certification Checklist",
     description:
