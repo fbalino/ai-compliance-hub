@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Script from "next/script";
 import { SITE_URL } from "@/lib/brand";
 import { regulationArticleSchema, jsonLdScriptProps } from "@/lib/jsonld";
+import PrintButton from "@/components/PrintButton";
 
 export const metadata: Metadata = {
   title: "AI Bias Audit: Complete Guide, Methodology & Free Checklist 2026",
@@ -574,12 +574,7 @@ export default function AIBiasAuditPage() {
             </p>
 
             <div className="print:hidden mb-6 flex gap-3">
-              <button
-                onClick={() => window.print()}
-                className="px-5 py-2.5 bg-gray-900 text-white rounded text-sm font-medium hover:bg-gray-700 transition-colors"
-              >
-                Print / Save as PDF
-              </button>
+              <PrintButton />
               <Link
                 href="/rfp"
                 className="px-5 py-2.5 border border-gray-300 text-gray-700 rounded text-sm font-medium hover:border-gray-400 transition-colors"

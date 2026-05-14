@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SITE_URL } from "@/lib/brand";
+import PrintButton from "@/components/PrintButton";
 
 export const metadata: Metadata = {
   title: "ISO 42001 Checklist — Free Printable PDF | Regulome.io",
@@ -140,12 +141,7 @@ export default function ISO42001ChecklistPage() {
 
         {/* Print button — hidden in print */}
         <div className="print:hidden mb-10 flex gap-3">
-          <button
-            onClick={() => window.print()}
-            className="px-5 py-2.5 bg-gray-900 text-white rounded text-sm font-medium hover:bg-gray-700 transition-colors"
-          >
-            Print / Save as PDF
-          </button>
+          <PrintButton />
           <Link
             href="/blog/iso-42001-checklist"
             className="px-5 py-2.5 border border-gray-300 text-gray-700 rounded text-sm font-medium hover:border-gray-400 transition-colors"
