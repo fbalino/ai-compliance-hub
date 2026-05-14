@@ -388,7 +388,7 @@ The law includes scaled obligations for small businesses, but the thresholds are
 - How the organization will monitor for disparate impact in production
 - Any mitigation controls in place to reduce discrimination risk
 
-☐ Have your impact assessment reviewed by legal counsel before the June 30 deadline
+☐ Have your impact assessment reviewed by legal counsel before the January 1, 2027 deadline
 
 ☐ Set a calendar reminder to update impact assessments annually and within 90 days of any material system change
 
@@ -952,7 +952,7 @@ Document your findings in a simple spreadsheet: tool name, vendor, domain (emplo
 
 ## Step 3: Complete Impact Assessments
 
-For every high-risk AI system, you must complete a written **impact assessment** before the June 30 deadline. The assessment must document:
+For every high-risk AI system, you must complete a written **impact assessment** before the January 1, 2027 deadline. The assessment must document:
 
 - The intended purpose of the AI system
 - Known and reasonably foreseeable risks of algorithmic discrimination
@@ -3981,7 +3981,7 @@ Working through this ISO 42001 checklist manually across distributed teams creat
 
 Two deadlines have turned AI compliance from a future concern into an immediate operational priority.
 
-**Colorado SB 24-205 takes effect June 30, 2026.** Colorado's AI Act is the first comprehensive state-level AI law in the United States. It imposes obligations on developers and deployers of **high-risk AI systems**\u2014defined as systems that make or substantially assist consequential decisions in employment, credit, education, housing, insurance, and healthcare. Companies that miss the June 30 deadline face enforcement by the Colorado Attorney General.
+**Colorado SB 24-205 (as amended by SB 26-189) takes effect January 1, 2027.** Colorado's AI Act is the first comprehensive state-level AI law in the United States. It imposes obligations on developers and deployers of **high-risk AI systems**\u2014defined as systems that make or substantially assist consequential decisions in employment, credit, education, housing, insurance, and healthcare. Companies that miss the January 1, 2027 deadline face enforcement by the Colorado Attorney General.
 
 **The EU AI Act is phasing in through 2026 and 2027.** Prohibited AI practices were banned as of February 2025. High-risk AI system requirements under Article 6 and Annex III apply from August 2026. Companies selling into or operating in the EU market must have compliance programs in place before those dates.
 
@@ -4129,7 +4129,7 @@ AI compliance is not a project with a completion date. It is an ongoing operatio
 
 | Regulation | Who It Covers | Effective Date |
 |---|---|---|
-| Colorado SB 24-205 | Developers and deployers of high-risk AI affecting Colorado residents | June 30, 2026 |
+| Colorado SB 24-205 | Developers and deployers of high-risk AI affecting Colorado residents | January 1, 2027 (SB 26-189) |
 | EU AI Act (High-Risk) | AI systems placed on EU market or affecting EU persons | August 2, 2026 |
 | NYC Local Law 144 | Employers using automated employment decision tools in NYC | Already in effect |
 | ISO 42001 | Any organization seeking AI management certification | Voluntary; certification body driven |
@@ -4138,7 +4138,7 @@ AI compliance is not a project with a completion date. It is an ongoing operatio
 
 ## Build Your AI Compliance Program with Regulome.io
 
-Running this AI compliance checklist manually\u2014across multiple AI systems, multiple regulations, and multiple business owners\u2014creates coordination failures and documentation gaps that surface at the worst possible moment: during a regulatory inquiry or audit. **Regulome.io** provides a structured compliance workspace that maps each item on this checklist to the specific regulations that apply to your business, tracks completion status with evidence attachments, and surfaces the upcoming Colorado and EU AI Act deadlines against your current readiness. Start your AI compliance inventory at Regulome.io before the June 30, 2026 Colorado deadline makes the decision for you.
+Running this AI compliance checklist manually\u2014across multiple AI systems, multiple regulations, and multiple business owners\u2014creates coordination failures and documentation gaps that surface at the worst possible moment: during a regulatory inquiry or audit. **Regulome.io** provides a structured compliance workspace that maps each item on this checklist to the specific regulations that apply to your business, tracks completion status with evidence attachments, and surfaces the upcoming Colorado and EU AI Act deadlines against your current readiness. Start your AI compliance inventory at Regulome.io before the January 1, 2027 Colorado deadline makes the decision for you.
 `,
     relatedRegulations: [
       { slug: "colorado-ai-act", name: "Colorado AI Act" },
@@ -4186,7 +4186,7 @@ The law has been in effect since July 2023 and is enforced by the NYC Department
 
 ### Colorado AI Act (SB 24-205)
 
-**Colorado SB 24-205**, effective June 30, 2026, requires developers and deployers of high-risk AI systems to take reasonable care to protect Colorado residents from algorithmic discrimination. The statute defines algorithmic discrimination as differential treatment or differential impact that results in unlawful discrimination based on protected characteristics.
+**Colorado SB 24-205** (as amended by SB 26-189, effective January 1, 2027), requires developers and deployers of high-risk AI systems to take reasonable care to protect Colorado residents from algorithmic discrimination. The statute defines algorithmic discrimination as differential treatment or differential impact that results in unlawful discrimination based on protected characteristics.
 
 While Colorado does not mandate a specific bias audit process or third-party auditor, it requires:
 - Impact assessments that include evaluation of discrimination risk
@@ -4352,7 +4352,7 @@ These ranges reflect market rates as of May 2026. Costs are likely to compress a
 
 ## Track Your Bias Audit Obligations with Regulome.io
 
-Managing AI bias audit schedules, documentation, and compliance timelines across multiple AI systems and multiple regulatory frameworks is an operational challenge that scales poorly with spreadsheets. **Regulome.io** maps each of your AI systems to the bias audit requirements that apply\u2014NYC Local Law 144, Colorado AI Act, EU AI Act\u2014tracks audit completion dates and re-audit deadlines, and maintains your compliance documentation in a single auditable record. If your organization is approaching the Colorado June 30, 2026 deadline or has covered AEDTs in New York City, start your AI bias audit readiness assessment at Regulome.io today.
+Managing AI bias audit schedules, documentation, and compliance timelines across multiple AI systems and multiple regulatory frameworks is an operational challenge that scales poorly with spreadsheets. **Regulome.io** maps each of your AI systems to the bias audit requirements that apply\u2014NYC Local Law 144, Colorado AI Act, EU AI Act\u2014tracks audit completion dates and re-audit deadlines, and maintains your compliance documentation in a single auditable record. If your organization is approaching the Colorado January 1, 2027 deadline or has covered AEDTs in New York City, start your AI bias audit readiness assessment at Regulome.io today.
 `,
     relatedRegulations: [
       { slug: "nyc-local-law-144", name: "NYC Local Law 144" },

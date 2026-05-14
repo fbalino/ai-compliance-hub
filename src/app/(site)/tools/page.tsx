@@ -14,7 +14,7 @@ const TOOLS = [
     slug: "colorado-ai-act-checklist",
     title: "Colorado AI Act Compliance Checklist",
     description:
-      "43-item printable checklist covering all deployer and developer obligations under Colorado SB 24-205. Deadline: June 30, 2026.",
+      "43-item printable checklist covering all deployer and developer obligations under Colorado SB 24-205. Deadline: January 1, 2027 (amended by SB 26-189).",
     tags: ["Colorado AI Act", "June 2026", "Free Download"],
     updated: "May 2026",
   },

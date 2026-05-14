@@ -6,7 +6,7 @@ import PrintButton from "@/components/PrintButton";
 export const metadata: Metadata = {
   title: "Colorado AI Act Compliance Checklist — Free Printable | Regulome.io",
   description:
-    "Free printable Colorado AI Act (SB 24-205) compliance checklist. June 30, 2026 deadline. Covers all deployer and developer obligations for high-risk AI systems.",
+    "Free printable Colorado AI Act (SB 24-205) compliance checklist. January 1, 2027 deadline (amended by SB 26-189). Covers all deployer and developer obligations for high-risk AI systems.",
   alternates: { canonical: `${SITE_URL}/tools/colorado-ai-act-checklist` },
 };
 
@@ -35,7 +35,7 @@ const SECTIONS = [
   },
   {
     title: "Step 3: Complete Impact Assessments",
-    deadline: "Before June 30 for existing systems",
+    deadline: "Before January 1, 2027 for existing systems",
     items: [
       "Initiated impact assessments for all high-risk AI systems currently deployed",
       "Documented the AI system's intended purpose and deployment context",
@@ -50,7 +50,7 @@ const SECTIONS = [
   },
   {
     title: "Step 4: Implement Risk Management Program",
-    deadline: "Before June 30",
+    deadline: "Before January 1, 2027",
     items: [
       "Adopted written AI risk management policy approved by leadership",
       "Designated responsible individual or function with AI governance authority",
@@ -63,7 +63,7 @@ const SECTIONS = [
   },
   {
     title: "Step 5: Consumer Notice and Disclosure",
-    deadline: "Before June 30",
+    deadline: "Before January 1, 2027",
     items: [
       "Implemented notice to Colorado consumers when a high-risk AI system was used in a consequential decision",
       "Notice includes description of the AI system and its role in the decision",
@@ -74,7 +74,7 @@ const SECTIONS = [
   },
   {
     title: "Step 6: Developer Obligations (if applicable)",
-    deadline: "Before June 30",
+    deadline: "Before January 1, 2027",
     items: [
       "Published disclosure of known limitations and risks of the AI system",
       "Provided deployers with information needed to complete their impact assessments",
@@ -118,21 +118,21 @@ export default function ColoradoAIActChecklistPage() {
         <div className="mb-8">
           <div className="inline-flex items-center gap-2 mb-3">
             <span className="text-xs font-mono uppercase tracking-widest text-gray-400">Free Download · Regulome.io</span>
-            <span className="text-xs px-2 py-0.5 bg-red-100 text-red-700 rounded font-medium">Deadline: June 30, 2026</span>
+            <span className="text-xs px-2 py-0.5 bg-red-100 text-red-700 rounded font-medium">Deadline: January 1, 2027</span>
           </div>
           <h1 className="text-3xl font-bold text-gray-900 mb-3">
             Colorado AI Act Compliance Checklist
           </h1>
           <p className="text-gray-600 text-lg max-w-2xl">
             {totalItems} items across 7 steps covering all deployer and developer obligations under
-            Colorado SB 24-205. Use this before the June 30, 2026 enforcement date.
+            Colorado SB 24-205. Use this before the January 1, 2027 enforcement date.
           </p>
         </div>
 
         {/* Warning bar */}
         <div className="mb-8 p-4 bg-amber-50 border border-amber-200 rounded-lg">
           <p className="text-sm text-amber-900">
-            <strong>June 30, 2026:</strong> Colorado SB 24-205 takes effect. The Colorado Attorney General
+            <strong>January 1, 2027:</strong> Colorado SB 24-205 takes effect. The Colorado Attorney General
             must issue a 60-day cure notice before formal enforcement — but documented compliance efforts
             are required before the deadline, not after. Penalties reach <strong>$20,000 per violation
             per consumer</strong>.
@@ -177,7 +177,7 @@ export default function ColoradoAIActChecklistPage() {
           <h3 className="font-semibold text-gray-900 mb-2">Track Colorado AI Act readiness across your AI portfolio</h3>
           <p className="text-sm text-gray-600 mb-4">
             Regulome.io maps these requirements to each of your AI systems, tracks completion with
-            evidence attachments, and alerts you to the June 30 deadline against your current status.
+            evidence attachments, and alerts you to the January 1, 2027 deadline against your current status.
           </p>
           <Link
             href="/"
@@ -188,7 +188,7 @@ export default function ColoradoAIActChecklistPage() {
         </div>
 
         <div className="hidden print:block mt-8 pt-4 border-t border-gray-200 text-xs text-gray-400 text-center">
-          regulome.io/tools/colorado-ai-act-checklist · Colorado SB 24-205 · Enforcement: June 30, 2026
+          regulome.io/tools/colorado-ai-act-checklist · Colorado SB 24-205 (amended by SB 26-189) · Enforcement: January 1, 2027
         </div>
       </div>
     </div>

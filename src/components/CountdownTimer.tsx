@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-const DEADLINE = new Date("2026-06-30T00:00:00-06:00"); // Mountain Time
+const DEADLINE = new Date("2027-01-01T00:00:00-07:00"); // Mountain Time
 
 function getTimeLeft() {
   const now = new Date();
@@ -28,7 +28,7 @@ export function CountdownTimer() {
       <div className="card card-tint" style={{ padding: "24px 32px", textAlign: "center", borderLeft: "4px solid var(--accent)", marginBottom: 32 }}>
         <div className="eyebrow" style={{ marginBottom: 4 }}>Colorado AI Act</div>
         <div className="h3" style={{ color: "var(--accent)" }}>Enforcement has begun</div>
-        <p className="small" style={{ marginTop: 8, color: "var(--ink-2)" }}>June 30, 2026 — Colorado SB 24-205 is now in effect.</p>
+        <p className="small" style={{ marginTop: 8, color: "var(--ink-2)" }}>January 1, 2027 — Colorado AI Act (as amended by SB 26-189) is now in effect.</p>
       </div>
     );
   }
@@ -44,7 +44,7 @@ export function CountdownTimer() {
       }}
     >
       <div className="eyebrow" style={{ marginBottom: 12, color: "var(--accent)" }}>
-        ⚠ Enforcement deadline — June 30, 2026
+        ⚠ Enforcement deadline — January 1, 2027
       </div>
       <div
         style={{
@@ -88,7 +88,7 @@ export function CountdownTimer() {
         ))}
       </div>
       <p className="small" style={{ marginTop: 16, color: "var(--ink-2)" }}>
-        Colorado AI Act (SB 24-205) enforcement begins June 30, 2026 — is your business ready?
+        Colorado AI Act (as amended by SB 26-189) enforcement begins January 1, 2027 — is your business ready?
       </p>
     </div>
   );

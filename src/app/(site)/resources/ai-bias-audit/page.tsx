@@ -86,7 +86,7 @@ const FAQ_ITEMS = [
   {
     question: "Is AI bias testing legally required?",
     answer:
-      "Yes, in several jurisdictions. NYC Local Law 144 requires annual independent bias audits for automated employment decision tools used in New York City hiring and promotion decisions, with results publicly posted. The Colorado AI Act (effective June 30, 2026) requires deployers of high-risk AI systems to conduct algorithmic discrimination risk assessments. The EU AI Act mandates conformity assessments including bias testing for high-risk AI systems in employment, credit, education, healthcare, and law enforcement. Federal EEOC guidance also applies existing anti-discrimination law to AI hiring tools regardless of jurisdiction.",
+      "Yes, in several jurisdictions. NYC Local Law 144 requires annual independent bias audits for automated employment decision tools used in New York City hiring and promotion decisions, with results publicly posted. The Colorado AI Act (effective January 1, 2027, amended by SB 26-189) requires deployers of high-risk AI systems to conduct algorithmic discrimination risk assessments. The EU AI Act mandates conformity assessments including bias testing for high-risk AI systems in employment, credit, education, healthcare, and law enforcement. Federal EEOC guidance also applies existing anti-discrimination law to AI hiring tools regardless of jurisdiction.",
   },
   {
     question: "How much does an AI bias audit cost?",
@@ -240,7 +240,7 @@ export default function AIBiasAuditPage() {
                 </h3>
                 <p className="text-sm text-gray-700 leading-relaxed mb-3">
                   Taking effect{" "}
-                  <strong>June 30, 2026</strong>,{" "}
+                  <strong>January 1, 2027</strong>,{" "}
                   <a
                     href="https://leg.colorado.gov/bills/sb24-205"
                     target="_blank"
@@ -324,7 +324,7 @@ export default function AIBiasAuditPage() {
                 {
                   trigger: "High-risk AI in Colorado",
                   detail:
-                    "Any AI system making or substantially assisting consequential decisions affecting Colorado consumers — including employment, credit, housing, and healthcare — requires an impact assessment before June 30, 2026.",
+                    "Any AI system making or substantially assisting consequential decisions affecting Colorado consumers — including employment, credit, housing, and healthcare — requires an impact assessment before January 1, 2027.",
                 },
                 {
                   trigger: "Lending or credit scoring AI",
