@@ -699,7 +699,7 @@ const REGULATIONS = [
       "Proposed Texas law establishing governance requirements for deployers of high-risk AI systems affecting consequential decisions.",
   },
   {
-    slug: "virginia-human-civil-rights-act",
+    slug: "virginia-hb-2094",
     name: "Virginia HB 2094",
     jurisdiction: "US · Virginia",
     status: "enacted",

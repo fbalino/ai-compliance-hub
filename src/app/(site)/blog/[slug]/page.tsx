@@ -279,7 +279,7 @@ If you're starting from zero in April 2026 with a Colorado/Virginia deadline:
     slug: "colorado-ai-act-60-day-checklist",
     title: "Colorado AI Act 60-Day Compliance Checklist (SB 24-205)",
     excerpt:
-      "75 days until enforcement. Use this step-by-step checklist to get your business compliant with the Colorado AI Act before the June 30, 2026 deadline.",
+      "Use this step-by-step checklist to get your business compliant with the Colorado AI Act before the June 30, 2026 deadline.",
     category: "Compliance Guides",
     date: "2026-04-16",
     readTime: "10 min read",
@@ -290,9 +290,9 @@ If you're starting from zero in April 2026 with a Colorado/Virginia deadline:
       { slug: "nyc-local-law-144", name: "NYC Local Law 144" },
     ],
     body: `
-The Colorado AI Act (SB 24-205) takes effect **June 30, 2026** — 75 days from now. If your business deploys AI systems that make consequential decisions about Colorado consumers, you have a legal obligation. Penalties reach **$20,000 per violation per consumer**.
+The Colorado AI Act (SB 24-205) takes effect **June 30, 2026**. If your business deploys AI systems that make consequential decisions about Colorado consumers, you have a legal obligation. Penalties reach **$20,000 per violation per consumer**.
 
-This colorado ai act compliance checklist breaks the work into five phases you can execute over the next 75 days. Work through each section in order. Check off each item as you complete it.
+This colorado ai act compliance checklist breaks the work into five phases you can execute before the deadline. Work through each section in order. Check off each item as you complete it.
 
 ---
 
@@ -994,7 +994,7 @@ The Colorado AG's office enforces the law. Penalties can reach **$20,000 per vio
     tags: ["Virginia HB 2094", "State Laws", "July 2026"],
     relatedRegulations: [
       { slug: "colorado-ai-act", name: "Colorado AI Act" },
-      { slug: "virginia-human-civil-rights-act", name: "Virginia HB 2094" },
+      { slug: "virginia-hb-2094", name: "Virginia HB 2094" },
     ],
     body: `
 Virginia has joined Colorado as the second US state to pass comprehensive AI legislation. The Virginia High-Risk Artificial Intelligence Developer and Deployer Act (HB 2094) takes effect **July 1, 2026** — one day after the Colorado AI Act. If you operate in both states, you're facing a simultaneous compliance deadline.

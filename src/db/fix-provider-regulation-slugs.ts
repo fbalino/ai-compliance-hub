@@ -34,12 +34,12 @@ const PROVIDER_SLUG_FIXES: Array<[string, string, string]> = [
   // Fairly AI: replace sr-11-7
   ["fairly-ai", "sr-11-7", "ccpa-admt"],
   // AI Policy Lab: replace non-existent slugs
-  ["ai-policy-lab", "uk-ai-regulations", "virginia-human-civil-rights-act"],
+  ["ai-policy-lab", "uk-ai-regulations", "virginia-hb-2094"],
   ["ai-policy-lab", "singapore-ai-governance", "ccpa-admt"],
   // Fieldfisher: replace eu-product-liability-directive
   ["fieldfisher-ai", "eu-product-liability-directive", "nis2-directive"],
   // Wiley Rein: replace federal-ai-guidance
-  ["wiley-ai-law", "federal-ai-guidance", "virginia-human-civil-rights-act"],
+  ["wiley-ai-law", "federal-ai-guidance", "virginia-hb-2094"],
   // Venable: replace non-existent slugs
   ["venable-ai", "ftc-guidelines", "ccpa-admt"],
   ["venable-ai", "california-ai-laws", "california-ab-2013"],

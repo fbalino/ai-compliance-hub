@@ -41,8 +41,8 @@ const REGULATION_MODULES: Record<string, () => Promise<MdxModule>> = {
     import("content/regulations/illinois-ai-video-interview-act.mdx") as Promise<MdxModule>,
   "texas-algorithmic-accountability-act": () =>
     import("content/regulations/texas-algorithmic-accountability-act.mdx") as Promise<MdxModule>,
-  "virginia-human-civil-rights-act": () =>
-    import("content/regulations/virginia-human-civil-rights-act.mdx") as Promise<MdxModule>,
+  "virginia-hb-2094": () =>
+    import("content/regulations/virginia-hb-2094.mdx") as Promise<MdxModule>,
   "nis2-directive": () =>
     import("content/regulations/nis2-directive.mdx") as Promise<MdxModule>,
   "dora": () =>

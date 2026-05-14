@@ -285,7 +285,7 @@ function computeResults(answers: Record<string, string | string[]>): RegResult[]
   // Virginia HB 2094
   if (ops.includes("us_va") && uses.some((u) => ["hiring", "credit", "healthcare"].includes(u))) {
     results.push({
-      slug: "virginia-human-civil-rights-act",
+      slug: "virginia-hb-2094",
       name: "Virginia HB 2094",
       jurisdiction: "US · Virginia",
       status: "enacted",

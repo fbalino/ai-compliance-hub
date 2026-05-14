@@ -13,8 +13,8 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/regulations/virginia-hb-2094",
-        destination: "/regulations/virginia-human-civil-rights-act",
+        source: "/regulations/virginia-human-civil-rights-act",
+        destination: "/regulations/virginia-hb-2094",
         permanent: true,
       },
       {

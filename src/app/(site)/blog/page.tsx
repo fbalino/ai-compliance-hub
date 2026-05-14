@@ -36,7 +36,7 @@ const POSTS = [
   {
     slug: "colorado-ai-act-60-day-checklist",
     title: "Colorado AI Act 60-Day Compliance Checklist (SB 24-205)",
-    excerpt: "75 days until enforcement. Use this step-by-step checklist to get your business compliant with the Colorado AI Act before the June 30, 2026 deadline.",
+    excerpt: "Use this step-by-step checklist to get your business compliant with the Colorado AI Act before the June 30, 2026 deadline.",
     category: "Compliance Guides",
     date: "2026-04-16",
     readTime: "10 min read",
