@@ -6,7 +6,7 @@ EU AI Act: Applies to AI systems used or placed on market in EU. High-risk AI (h
 
 NYC Local Law 144 (LL 144): Applies to employers using AI/automated employment decision tools (AEDT) for hiring or promotion decisions affecting NYC-based employees or applicants. Requires annual third-party bias audit, public posting of audit results, and candidate notification. In effect since July 5, 2023.
 
-Colorado AI Act (SB 24-205): Applies to developers and deployers of high-risk AI systems making consequential decisions affecting Colorado consumers in employment, credit/lending, education, healthcare, housing, or insurance. Requires impact assessments, risk management, and consumer notifications. Effective June 30, 2026.
+Colorado AI Act (SB 24-205, as amended by SB 26-189): Applies to developers and deployers of high-risk AI systems making consequential decisions affecting Colorado consumers in employment, credit/lending, education, healthcare, housing, or insurance. Requires impact assessments, risk management, and consumer notifications. Effective January 1, 2027 (amended from June 30, 2026 by SB 26-189). Enforcement currently stayed.
 
 California AB 2013: Applies to developers of generative AI systems that meet compute thresholds (~$50M training cost or 10^23 FLOPs) and operate in California. Requires publishing training data transparency reports on their website. Effective January 1, 2026.
 

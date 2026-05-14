@@ -1,21 +1,18 @@
 export const frontmatter = {
-  name: "Virginia HB 2094",
+  name: "Virginia HB 2094 (Vetoed)",
   shortName: "VA HB 2094",
   description:
-    "Virginia's legislation governing automated decision systems used in consequential decisions affecting Virginia residents.",
+    "Virginia's proposed legislation governing automated decision systems in consequential decisions. Vetoed by Governor Youngkin on March 24, 2025. This bill never became law.",
   jurisdiction: "US · Virginia",
-  status: "enacted",
-  effectiveDate: "July 1, 2026",
-  maxPenalty: "$7,500 per violation",
+  status: "vetoed",
+  maxPenalty: "N/A — bill was vetoed",
   publishedAt: "2026-04-13",
-  updatedAt: "2026-04-13",
+  updatedAt: "2026-05-14",
   toc: [
     { id: "overview", label: "Overview" },
-    { id: "scope", label: "Scope" },
-    { id: "key-requirements", label: "Key Requirements" },
-    { id: "penalties", label: "Penalties & Enforcement" },
-    { id: "compliance-timeline", label: "Compliance Timeline" },
-    { id: "how-to-prepare", label: "How to Prepare" },
+    { id: "veto", label: "Governor's Veto" },
+    { id: "what-the-bill-proposed", label: "What the Bill Proposed" },
+    { id: "current-status", label: "Current Status" },
     { id: "faqs", label: "Frequently Asked Questions" },
   ],
   relatedRegulations: [
@@ -25,172 +22,92 @@ export const frontmatter = {
   ],
   faqs: [
     {
-      question: "When does Virginia HB 2094 take effect?",
+      question: "Was Virginia HB 2094 signed into law?",
       answer:
-        "Virginia HB 2094 takes effect on July 1, 2026.",
+        "No. Governor Glenn Youngkin vetoed HB 2094 on March 24, 2025. The bill never became law and has no effective date.",
     },
     {
-      question: "Does Virginia HB 2094 apply to companies outside Virginia?",
+      question: "Why was Virginia HB 2094 vetoed?",
       answer:
-        "Yes. Any organization deploying automated decision systems that make consequential decisions affecting Virginia residents must comply, regardless of where the business is headquartered.",
+        "Governor Youngkin cited concerns about the bill's potential to stifle AI innovation in Virginia, its broad scope, and the risk of imposing compliance burdens on businesses before federal AI policy was established. He expressed preference for a federal approach to AI regulation.",
     },
     {
-      question: "What is a consequential decision under Virginia HB 2094?",
+      question: "Is there any AI regulation in Virginia?",
       answer:
-        "A consequential decision is one that has a significant effect on an individual's access to employment, credit, education, healthcare, housing, or insurance. Automated decision systems that are a substantial factor in such decisions are covered under the law.",
+        "Virginia does not currently have a comprehensive AI-specific law. Existing consumer protection, employment discrimination, and data privacy laws (including the Virginia Consumer Data Protection Act) may apply to AI systems in certain contexts. Monitor future legislative sessions for new proposals.",
     },
     {
-      question: "What are the penalties for non-compliance?",
+      question: "Should I still prepare for Virginia AI regulation?",
       answer:
-        "Virginia's Attorney General may impose civil penalties of up to $7,500 per violation. Businesses that discover a violation and cure it within a specified period may avoid or reduce penalties.",
+        "While HB 2094 was vetoed, Virginia may introduce new AI legislation in future sessions. If you comply with the Colorado AI Act or the EU AI Act, you are likely well-positioned for any future Virginia requirements given the similar frameworks these bills follow.",
     },
   ],
 };
 
 ## Overview
 
-**Virginia HB 2094** is Virginia's legislation governing the use of automated decision systems (ADS) in high-stakes decisions affecting Virginia residents. The law imposes transparency, impact assessment, and opt-out obligations on organizations that deploy AI in consequential contexts such as employment, credit, healthcare, and housing.
+**Virginia HB 2094** was a proposed Virginia law governing the use of automated decision systems (ADS) in high-stakes decisions affecting Virginia residents. The bill would have imposed transparency, impact assessment, and opt-out obligations on organizations deploying AI in consequential contexts such as employment, credit, healthcare, and housing.
 
-The law reflects a growing trend in US state AI regulation — following Colorado's SB 24-205 and mirroring many principles of the EU AI Act — with a focus on protecting consumers from the risks of opaque algorithmic decision-making.
-
-Virginia HB 2094 takes effect **July 1, 2026**.
+**HB 2094 was vetoed by Governor Glenn Youngkin on March 24, 2025. The bill never became law.**
 
 ---
 
-## Scope
+## Governor's Veto
 
-Virginia HB 2094 applies to any entity that:
+Governor Youngkin vetoed HB 2094 on **March 24, 2025**, citing the following concerns:
 
-- **Deploys** an automated decision system that makes or is a substantial factor in making a consequential decision affecting a Virginia resident, **or**
-- **Develops** an automated decision system and makes it available to others for deployment in Virginia
+- The bill's broad scope could stifle AI innovation in Virginia
+- Compliance burdens on businesses before federal AI policy was established
+- Preference for a federal approach to AI regulation rather than a patchwork of state laws
+- Concerns about the bill's impact on Virginia's competitiveness in the technology sector
 
-### What Is a Consequential Decision?
-
-A consequential decision is one with a significant effect on an individual in any of the following areas:
-
-- **Employment** — hiring, promotion, compensation, or termination
-- **Credit & Finance** — loan approvals, credit scoring, insurance underwriting
-- **Education** — admissions, financial aid, or academic advancement
-- **Healthcare** — diagnosis, treatment recommendations, or coverage decisions
-- **Housing** — rental, mortgage, or real estate eligibility
-- **Insurance** — eligibility or pricing decisions
-
-### What Is an Automated Decision System?
-
-An ADS is any computational tool, software, algorithm, or AI-based model that processes personal data to generate a decision, recommendation, or classification that affects an individual. The law covers both fully automated decisions and AI systems that substantially influence a human decision-maker.
-
-### Out-of-State Organizations
-
-There is **no residency or headquarters requirement**. If your AI system makes consequential decisions affecting Virginia residents — whether they are employees, consumers, applicants, or patients — you are in scope.
+The veto was not overridden by the General Assembly. Virginia does not currently have a comprehensive AI-specific regulation.
 
 ---
 
-## Key Requirements
+## What the Bill Proposed
 
-### 1. Impact Assessment
+HB 2094 was modeled on Colorado's SB 24-205 and proposed requirements including:
 
-Before deploying an automated decision system that makes consequential decisions, covered organizations must conduct an **impact assessment** that:
+- **Impact assessments** before deploying automated decision systems in consequential decisions
+- **Consumer notification** when ADS made or influenced consequential decisions
+- **Opt-out rights** for Virginia residents subject to automated decision-making
+- **Developer documentation** obligations for organizations building ADS
+- **AG enforcement** with civil penalties up to $7,500 per violation
+- Application to employment, credit, education, healthcare, housing, and insurance decisions
 
-- Identifies the purpose and intended use of the ADS
-- Documents known risks of inaccuracy, bias, or discriminatory outcomes
-- Describes the data used and any known limitations
-- Evaluates the potential impact on Virginia consumers
-- Documents the steps taken to mitigate identified risks
-
-Impact assessments must be updated annually or whenever significant changes are made to the ADS.
-
-### 2. Consumer Notification
-
-When an ADS makes or substantially influences a consequential decision affecting a Virginia resident, the organization must:
-
-- Notify the consumer that an automated decision system was used
-- Explain the type of decision made and the data used as inputs
-- Provide contact information for the deploying organization
-
-### 3. Opt-Out Rights
-
-Virginia residents have the right to **opt out** of solely automated decision-making in certain consequential contexts. Organizations must:
-
-- Provide a clear and accessible mechanism for consumers to request that a human review the decision
-- Process opt-out requests in a timely manner
-- Not penalize consumers who exercise their opt-out rights
-
-### 4. Transparency Documentation (Developers)
-
-Organizations that **develop** covered automated decision systems must provide deployers with documentation covering:
-
-- The intended use cases and known high-risk applications
-- Known limitations, failure modes, and risks of discrimination
-- A summary of training data and performance metrics
-- Guidance on appropriate deployment contexts
+The bill's framework closely followed the Colorado AI Act, with the addition of explicit opt-out rights mirroring aspects of the EU AI Act.
 
 ---
 
-## Penalties & Enforcement
+## Current Status
 
-The Virginia Attorney General has enforcement authority over HB 2094. There is **no private right of action** — only the AG may bring enforcement proceedings.
+- **Status:** Vetoed (March 24, 2025)
+- **Effective date:** None — the bill never became law
+- **Enforcement:** None
 
-- **Civil penalties**: Up to **$7,500 per violation**
-- **Cure period**: A reasonable cure period is provided before penalties attach for first-time violations where the organization acts in good faith
-- **Injunctive relief**: Courts may order organizations to cease non-compliant practices
-
-### Penalty Calculation
-
-Penalties are assessed **per violation** — meaning each affected Virginia consumer, each non-compliant deployment, or each failure to provide a required notice could constitute a separate violation. For organizations with large consumer-facing deployments, aggregate exposure can be substantial.
-
----
-
-## Compliance Timeline
-
-| Date | Milestone |
-|------|-----------|
-| **2026** | HB 2094 enacted by Virginia General Assembly |
-| **July 1, 2026** | **Law takes effect — compliance required** |
-| **Ongoing** | Annual impact assessment renewal required |
-
----
-
-## How to Prepare
-
-Follow this checklist to be ready by July 1, 2026:
-
-1. **Inventory your AI systems.** Identify all automated decision systems used in employment, credit, healthcare, education, housing, or insurance decisions affecting Virginia residents.
-
-2. **Determine scope.** For each system, assess whether it makes or substantially influences consequential decisions. If yes, it is covered under HB 2094.
-
-3. **Conduct impact assessments.** Document the purpose, data inputs, known risks, and mitigation steps for each covered ADS. Store these records and plan for annual renewals.
-
-4. **Build consumer notification workflows.** Add disclosures to decision points where AI is used, informing affected consumers that an ADS was involved and providing required contact information.
-
-5. **Implement opt-out mechanisms.** Create a clear, accessible process for Virginia consumers to request human review of ADS-driven decisions.
-
-6. **Review vendor contracts.** If you use third-party AI tools (e.g., hiring software, credit scoring engines), ensure your vendor provides the developer-level documentation required by the law.
-
-7. **Update privacy notices and terms.** Your privacy policy and terms of service should reflect your use of automated decision systems and consumer rights under HB 2094.
-
-8. **Train your compliance team.** Ensure staff responsible for AI governance understand HB 2094's requirements and the processes for consumer requests and incident reporting.
+Virginia businesses deploying AI should continue monitoring:
+- Future Virginia legislative sessions for new AI proposals
+- The Colorado AI Act (effective January 1, 2027) if they serve Colorado consumers
+- The EU AI Act if they serve EU residents
+- Existing Virginia consumer protection and data privacy laws that may apply to AI
 
 ---
 
 ## Frequently Asked Questions
 
-**When does Virginia HB 2094 take effect?**
-July 1, 2026.
+**Was HB 2094 signed into law?**
+No. Governor Youngkin vetoed the bill on March 24, 2025. It never became law and has no compliance obligations.
 
-**Does HB 2094 apply to our out-of-state company?**
-Yes, if you deploy automated decision systems that affect Virginia residents in a covered consequential decision context, you must comply regardless of where you are headquartered.
+**Does Virginia have any AI regulation?**
+Virginia does not currently have a comprehensive AI-specific law. Existing consumer protection, employment discrimination, and data privacy laws (including the VCDPA) may apply to AI systems in certain contexts.
 
-**We use a third-party AI tool for hiring. Are we responsible?**
-Yes — as the deployer, you bear compliance responsibility even if you didn't build the AI. You should obtain required documentation from your vendor and ensure the tool is covered by your impact assessment.
-
-**What is the difference between HB 2094 and the Colorado AI Act?**
-Both laws impose impact assessments and consumer rights requirements on high-risk AI deployments, and both cover similar consequential decision categories. Virginia HB 2094 includes an explicit opt-out right that mirrors aspects of the EU AI Act, while Colorado's law places more emphasis on the reasonable care standard and incident reporting to the AG.
-
-**Is there a minimum company size threshold?**
-No. Virginia HB 2094 does not include a revenue or employee-count exemption. Any organization deploying covered ADS affecting Virginia residents must comply.
+**Should I still worry about Virginia AI compliance?**
+If you serve Virginia consumers or have Virginia employees, monitor future legislative sessions. Building compliance programs around the Colorado AI Act or NIST AI RMF will position you well for any future Virginia AI legislation.
 
 ---
 
 ## Official Sources
 
 - [HB 2094 full text (Virginia Legislative Information System)](https://lis.virginia.gov/bill/20251/HB2094)
+- [Governor's veto statement](https://lis.virginia.gov/bill/20251/HB2094)

@@ -220,12 +220,12 @@ function computeResults(answers: Record<string, string | string[]>): RegResult[]
   if (ops.includes("us_co") && uses.some((u) => ["hiring", "credit", "healthcare"].includes(u))) {
     results.push({
       slug: "colorado-ai-act",
-      name: "Colorado AI Act",
+      name: "Colorado AI Act (as amended by SB 26-189)",
       jurisdiction: "US · Colorado",
       status: "enacted",
-      effectiveDate: "June 30, 2026",
+      effectiveDate: "January 1, 2027",
       reason:
-        "You deploy high-risk AI affecting Colorado consumers in a covered use case (employment, credit, or healthcare). Colorado SB 24-205 requires reasonable care to prevent algorithmic discrimination.",
+        "You deploy high-risk AI affecting Colorado consumers in a covered use case (employment, credit, or healthcare). Colorado SB 24-205 (rewritten by SB 26-189) requires reasonable care to prevent algorithmic discrimination. Note: enforcement is currently stayed; AG rulemaking has not yet begun.",
       urgency: "medium",
       actions: [
         "Conduct an AI impact assessment for your high-risk systems",
@@ -282,26 +282,7 @@ function computeResults(answers: Record<string, string | string[]>): RegResult[]
     });
   }
 
-  // Virginia HB 2094
-  if (ops.includes("us_va") && uses.some((u) => ["hiring", "credit", "healthcare"].includes(u))) {
-    results.push({
-      slug: "virginia-hb-2094",
-      name: "Virginia HB 2094",
-      jurisdiction: "US · Virginia",
-      status: "enacted",
-      effectiveDate: "July 1, 2026",
-      reason:
-        "You deploy automated decision systems affecting Virginia residents in a covered use case (employment, credit, or healthcare). Virginia HB 2094 requires impact assessments, consumer notifications, and opt-out rights.",
-      urgency: "medium",
-      actions: [
-        "Conduct an impact assessment for each covered automated decision system",
-        "Add consumer notifications where AI is used in consequential decisions",
-        "Implement an opt-out / human review mechanism for Virginia residents",
-        "Obtain developer documentation from any third-party AI vendors",
-        "Update privacy policy to reflect automated decision-making disclosures",
-      ],
-    });
-  }
+  // Virginia HB 2094 — VETOED March 24, 2025. Not included in results.
 
   // No applicable regulations
   if (results.length === 0) {

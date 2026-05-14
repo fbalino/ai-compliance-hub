@@ -403,6 +403,7 @@ a { color: inherit; text-decoration: none; }
 .dot-pending { background: var(--amber); }
 .dot-proposed { background: var(--ink-soft); }
 .dot-repealed { background: var(--stone); }
+.dot-inactive { background: var(--stone); }
 
 /* ── Cards ── */
 .card {

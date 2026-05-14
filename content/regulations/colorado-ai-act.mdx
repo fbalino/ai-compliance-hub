@@ -1,17 +1,18 @@
 export const frontmatter = {
-  name: "Colorado AI Act (SB 24-205)",
-  shortName: "CO SB 24-205",
+  name: "Colorado AI Act (SB 24-205, as amended by SB 26-189)",
+  shortName: "CO AI Act",
   description:
-    "Colorado's landmark AI regulation requiring deployers of high-risk AI systems to use reasonable care to protect consumers from known risks of algorithmic discrimination.",
+    "Colorado's landmark AI regulation requiring deployers of high-risk AI systems to use reasonable care to protect consumers from known risks of algorithmic discrimination. Substantially rewritten by SB 26-189 (May 2026) with a new effective date of January 1, 2027.",
   jurisdiction: "US · Colorado",
   status: "enacted",
-  effectiveDate: "June 30, 2026",
-  enforcementDate: "June 30, 2026",
+  effectiveDate: "January 1, 2027",
+  enforcementDate: "January 1, 2027",
   maxPenalty: "$20,000 per violation",
   publishedAt: "2024-05-17",
   updatedAt: "2026-05-14",
   toc: [
     { id: "overview", label: "Overview" },
+    { id: "sb-26-189-update", label: "SB 26-189 Update (May 2026)" },
     { id: "who-it-applies-to", label: "Who It Applies To" },
     { id: "high-risk-ai-systems", label: "High-Risk AI Systems" },
     { id: "key-requirements", label: "Key Requirements" },
@@ -26,12 +27,18 @@ export const frontmatter = {
     { slug: "illinois-ai-video-interview-act", name: "Illinois AIVIRA" },
     { slug: "nist-ai-rmf", name: "NIST AI RMF" },
     { slug: "ccpa-admt", name: "CCPA ADMT" },
+    { slug: "texas-traiga", name: "Texas TRAIGA" },
   ],
   faqs: [
     {
       question: "When does the Colorado AI Act take effect?",
       answer:
-        "The Colorado AI Act (SB 24-205) takes effect on June 30, 2026.",
+        "The effective date has been moved to January 1, 2027 under SB 26-189, which substantially rewrote the original law. The previous June 30, 2026 date no longer applies.",
+    },
+    {
+      question: "What is SB 26-189 and how does it change the Colorado AI Act?",
+      answer:
+        "SB 26-189 passed the Colorado legislature on May 9, 2026 and substantially rewrites the original Colorado AI Act (SB 24-205). It pushes the effective date to January 1, 2027, mandates formal AG rulemaking before enforcement, and modifies several compliance requirements. The original June 30, 2026 enforcement date no longer applies.",
     },
     {
       question: "Does the Colorado AI Act apply to companies outside Colorado?",
@@ -49,14 +56,9 @@ export const frontmatter = {
         "The Colorado Attorney General can impose civil penalties of up to $20,000 per violation. Businesses that discover a violation and cure it within 60 days may avoid penalties under the cure provision.",
     },
     {
-      question: "What must an impact assessment include under the Colorado AI Act?",
+      question: "Has the Attorney General published guidance yet?",
       answer:
-        "An impact assessment must document: the high-risk AI system's purpose and intended use, the known risks of algorithmic discrimination, the data used to train the system, the metrics used to evaluate performance across protected classes, and the deployer's mitigation policies. Assessments must be updated annually or when significant changes are made to the system.",
-    },
-    {
-      question: "Is there a safe harbor for companies using the NIST AI Risk Management Framework?",
-      answer:
-        "Yes. The Colorado Attorney General's guidance recognizes NIST AI RMF alignment as evidence of reasonable care under SB 24-205. Companies that document their AI governance program against the NIST AI RMF Govern, Map, Measure, and Manage functions have a stronger defense against enforcement.",
+        "No. As of May 2026, the AG's office has not published formal implementing guidance. SB 26-189 mandates formal rulemaking, but that process has not yet begun. The February 1, 2026 guidance deadline from the original law was never met.",
     },
   ],
 };
@@ -68,6 +70,21 @@ The **Colorado Artificial Intelligence Act** (SB 24-205), signed into law in May
 Unlike the EU AI Act's prescriptive conformity assessments, the Colorado law centers on a **reasonable care** standard: deployers of high-risk AI systems must take reasonable care to protect consumers from known risks of **algorithmic discrimination** based on protected characteristics.
 
 The law applies to **deployers** (organizations using AI) and **developers** (organizations that develop AI for others) separately, with different — but complementary — obligations for each.
+
+**The law has been substantially rewritten by SB 26-189 (passed May 9, 2026). See the update section below for critical changes.**
+
+---
+
+## SB 26-189 Update (May 2026)
+
+**SB 26-189** passed the Colorado legislature on **May 9, 2026**, substantially rewriting the Colorado AI Act. Key changes:
+
+- **New effective date: January 1, 2027.** The original June 30, 2026 enforcement date no longer applies.
+- **Mandatory AG rulemaking.** The Attorney General must conduct formal rulemaking before enforcement. This process has not yet begun as of May 2026.
+- **AG guidance never published.** The February 1, 2026 deadline for AG implementing guidance was never met. SB 26-189 replaces the guidance requirement with mandatory formal rulemaking.
+- **Enforcement currently stayed.** A federal magistrate issued a stay of enforcement on April 27, 2026. The stay remains in effect pending resolution.
+
+Organizations should use the January 1, 2027 date for compliance planning, but monitor the rulemaking process and stay status for updates.
 
 ---
 
@@ -153,9 +170,12 @@ The law explicitly excludes:
 | Date | Milestone |
 |------|-----------|
 | **May 17, 2024** | SB 24-205 signed into law |
-| **February 1, 2026** | AG's office published final implementing guidance |
-| **June 30, 2026** | **Act takes effect — compliance required** |
-| **Ongoing** | Annual impact assessment renewal required |
+| **February 1, 2026** | Original AG guidance deadline — **guidance was never published** |
+| **April 27, 2026** | Federal magistrate stays enforcement pending litigation |
+| **May 9, 2026** | **SB 26-189 passes, substantially rewriting the law** |
+| ~~June 30, 2026~~ | ~~Original effective date~~ — **no longer applies** |
+| **January 1, 2027** | **New effective date under SB 26-189** |
+| **TBD** | AG formal rulemaking (mandated by SB 26-189 but not yet started) |
 
 ---
 
@@ -171,11 +191,15 @@ The Colorado Attorney General has exclusive enforcement authority. There is no p
 
 If you discover a violation and implement a cure plan within 60 days of the AG's notification, penalties can be avoided. This makes proactive compliance programs especially valuable.
 
+### Current Enforcement Status
+
+Enforcement is currently **stayed** by a federal magistrate (order issued April 27, 2026). Additionally, SB 26-189 mandates formal AG rulemaking before enforcement can begin, and that rulemaking process has not yet started. Monitor [coag.gov/ai](https://coag.gov/ai/) for updates.
+
 ---
 
 ## Compliance Checklist
 
-**June 30, 2026 deadline — print this checklist** _(Ctrl+P / Cmd+P to save as PDF)_
+Follow this checklist to prepare for the **January 1, 2027** effective date:
 
 Complete these 12 steps before the Colorado AI Act enforcement date:
 
@@ -203,12 +227,14 @@ Complete these 12 steps before the Colorado AI Act enforcement date:
 
 12. ☐ **Document everything.** Maintain a compliance file with impact assessments, governance policies, consumer disclosure templates, incident response procedures, and vendor documentation.
 
+9. **Monitor the rulemaking.** Watch for the AG's formal rulemaking process mandated by SB 26-189. Final rules may modify specific compliance requirements.
+
 ---
 
 ## Frequently Asked Questions
 
 **When does the Colorado AI Act take effect?**
-June 30, 2026.
+January 1, 2027 (under SB 26-189). The original June 30, 2026 date no longer applies.
 
 **Does it apply to my out-of-state company?**
 Yes, if you deploy high-risk AI that makes consequential decisions affecting Colorado consumers, regardless of where your company is based.
@@ -219,9 +245,13 @@ Yes — as the deployer, you bear compliance responsibility even if you didn't b
 **What if our AI only flags candidates for human review — are we still in scope?**
 If the AI is a "substantial factor" in the final decision, yes. Purely advisory AI with documented human override (and proper disclosure) may be treated differently, but consult legal counsel on your specific workflow.
 
+**Has the Attorney General published implementing guidance?**
+No. The February 1, 2026 guidance deadline was never met. SB 26-189 replaces the guidance requirement with mandatory formal rulemaking, but that process has not yet begun as of May 2026.
+
 ---
 
 ## Official Sources
 
 - [SB 24-205 full text (Colorado General Assembly)](https://leg.colorado.gov/bills/sb24-205)
+- [SB 26-189 full text (Colorado General Assembly)](https://leg.colorado.gov/bills/sb26-189)
 - [Colorado Attorney General — AI resources](https://coag.gov/ai/)

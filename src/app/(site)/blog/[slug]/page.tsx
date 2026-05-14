@@ -34,7 +34,11 @@ export const POSTS: Record<string, BlogPost> = {
       { slug: "nyc-local-law-144", name: "NYC Local Law 144" },
     ],
     body: `
-The Colorado AI Act takes effect June 30, 2026. Virginia's law follows the next day. The EU AI Act's high-risk provisions hit in August 2026. For the first time, AI compliance is a legal requirement — not a voluntary best practice — and regulators have teeth.
+**Update (May 2026):** The Colorado AI Act's effective date has moved to January 1, 2027 under SB 26-189. Virginia HB 2094 was vetoed. The EU AI Act's high-risk provisions take effect August 2026. The need for AI compliance teams remains urgent.
+
+---
+
+The Colorado AI Act takes effect January 1, 2027 (amended by SB 26-189). The EU AI Act's high-risk provisions hit in August 2026. Texas TRAIGA is already in effect (January 1, 2026). For the first time, AI compliance is a legal requirement — not a voluntary best practice — and regulators have teeth.
 
 The result: compliance officers, CHROs, and general counsels are urgently trying to staff AI compliance functions they've never built before. This guide is for them.
 
@@ -66,7 +70,7 @@ Not every organization needs all four. Match roles to your AI exposure.
 
 **What they do:** Own the day-to-day AI compliance program. Run impact assessments. Manage the AI inventory. Coordinate vendor due diligence. Maintain documentation. Be the internal subject matter expert for AI regulatory requirements.
 
-**Who needs this role:** Any organization subject to the Colorado AI Act, Virginia HB 2094, or EU AI Act with more than five high-risk AI systems. Mid-size companies (200–2,000 employees) typically need one person in this role.
+**Who needs this role:** Any organization subject to the Colorado AI Act, Texas TRAIGA, or EU AI Act with more than five high-risk AI systems. Mid-size companies (200–2,000 employees) typically need one person in this role.
 
 **Must-have skills:**
 - Working knowledge of at least one applicable AI law (Colorado, EU AI Act, or NYC LL 144)
@@ -277,32 +281,36 @@ If you're starting from zero in April 2026 with a Colorado/Virginia deadline:
   },
   "colorado-ai-act-60-day-checklist": {
     slug: "colorado-ai-act-60-day-checklist",
-    title: "Colorado AI Act 60-Day Compliance Checklist (SB 24-205)",
+    title: "Colorado AI Act Compliance Checklist (SB 24-205, Updated for SB 26-189)",
     excerpt:
-      "Use this step-by-step checklist to get your business compliant with the Colorado AI Act before the June 30, 2026 deadline.",
+      "Step-by-step checklist to prepare for the Colorado AI Act. Updated May 2026: SB 26-189 moves the effective date to January 1, 2027.",
     category: "Compliance Guides",
-    date: "2026-04-16",
+    date: "2026-05-14",
     readTime: "10 min read",
-    tags: ["Colorado AI Act", "Checklist", "June 2026", "SB 205"],
+    tags: ["Colorado AI Act", "Checklist", "SB 26-189", "January 2027"],
     relatedRegulations: [
       { slug: "colorado-ai-act", name: "Colorado AI Act" },
       { slug: "eu-ai-act", name: "EU AI Act" },
       { slug: "nyc-local-law-144", name: "NYC Local Law 144" },
     ],
     body: `
-The Colorado AI Act (SB 24-205) takes effect **June 30, 2026**. If your business deploys AI systems that make consequential decisions about Colorado consumers, you have a legal obligation. Penalties reach **$20,000 per violation per consumer**.
-
-This colorado ai act compliance checklist breaks the work into five phases you can execute before the deadline. Work through each section in order. Check off each item as you complete it.
+**Update (May 2026):** SB 26-189 substantially rewrote the Colorado AI Act. **The effective date has moved to January 1, 2027.** The original June 30, 2026 deadline no longer applies. AG implementing guidance was never published; formal rulemaking is now mandatory but has not started. Enforcement has been stayed by a federal magistrate (April 27, 2026). This checklist has been updated for the new timeline.
 
 ---
 
-## What Is the Colorado AI Act (SB 24-205)?
+The Colorado AI Act (SB 24-205, as amended by SB 26-189) takes effect **January 1, 2027**. If your business deploys AI systems that make consequential decisions about Colorado consumers, you have a legal obligation. Penalties reach **$20,000 per violation per consumer**.
 
-Colorado SB 24-205 — signed by Governor Polis on May 17, 2024 — is the first comprehensive US state AI law to take effect. It requires businesses that deploy **high-risk AI systems** affecting Colorado consumers to use reasonable care to prevent algorithmic discrimination.
+This compliance checklist breaks the work into five phases you can execute before the deadline. Work through each section in order. Check off each item as you complete it.
+
+---
+
+## What Is the Colorado AI Act?
+
+Colorado SB 24-205 — signed by Governor Polis on May 17, 2024 — was the first comprehensive US state AI law. It was substantially rewritten by **SB 26-189** (passed May 9, 2026), which moved the effective date to January 1, 2027. It requires businesses that deploy **high-risk AI systems** affecting Colorado consumers to use reasonable care to prevent algorithmic discrimination.
 
 The law covers **deployers** (businesses using AI to make decisions) and **developers** (businesses building or selling AI systems). Most compliance obligations fall on deployers.
 
-Enforcement begins June 30, 2026. The Colorado Attorney General has exclusive enforcement authority — there is no private right of action. However, the AG must issue a 60-day cure notice before initiating formal enforcement, so businesses that have made a documented good-faith compliance effort have a meaningful opportunity to correct issues.
+The new effective date is **January 1, 2027**. The Colorado Attorney General has exclusive enforcement authority — there is no private right of action. The AG must issue a 60-day cure notice before initiating formal enforcement, so businesses that have made a documented good-faith compliance effort have a meaningful opportunity to correct issues. Note: enforcement is currently stayed and mandatory AG rulemaking has not yet begun.
 
 ---
 
@@ -487,19 +495,23 @@ Possibly, but the exemption is narrow. Review it carefully with counsel. Do not 
   },
   "colorado-ai-act-2026-deadline": {
     slug: "colorado-ai-act-2026-deadline",
-    title: "Colorado AI Act Takes Effect June 30, 2026 — What You Need to Do Now",
+    title: "Colorado AI Act: New January 1, 2027 Deadline Under SB 26-189",
     excerpt:
-      "With months until the Colorado AI Act's effective date, here's a practical compliance checklist for businesses using high-risk AI systems in Colorado.",
+      "The Colorado AI Act has been substantially rewritten by SB 26-189. New effective date is January 1, 2027. Here's what changed and what you need to do.",
     category: "Compliance Guides",
-    date: "2026-04-10",
+    date: "2026-05-14",
     readTime: "8 min read",
-    tags: ["Colorado AI Act", "Deadline", "Action Required"],
+    tags: ["Colorado AI Act", "SB 26-189", "January 2027"],
     relatedRegulations: [
       { slug: "colorado-ai-act", name: "Colorado AI Act" },
       { slug: "eu-ai-act", name: "EU AI Act" },
     ],
     body: `
-Colorado SB 24-205 — the Colorado Artificial Intelligence Act — takes effect on **June 30, 2026**. If your business uses high-risk AI systems that make consequential decisions about Colorado consumers, you have a compliance obligation.
+**Update (May 2026):** SB 26-189 substantially rewrote the Colorado AI Act. The effective date has moved to **January 1, 2027**. The original June 30, 2026 deadline no longer applies.
+
+---
+
+Colorado SB 24-205 — the Colorado Artificial Intelligence Act, as amended by **SB 26-189** — takes effect on **January 1, 2027**. If your business uses high-risk AI systems that make consequential decisions about Colorado consumers, you have a compliance obligation.
 
 ## Who Does This Affect?
 
@@ -881,7 +893,7 @@ Even if the bill doesn't pass this session, Texas is likely to pass AI legislati
 
 ## The Bigger Picture: US AI Law Fragmentation
 
-With Colorado already enacted and Texas, Virginia, Connecticut, and Illinois considering similar bills, US businesses face a patchwork of state AI laws. The pattern is clear: Colorado was first, and others are following the same framework.
+With Colorado's amended law (effective January 1, 2027) and Texas TRAIGA already in effect (January 1, 2026), US businesses face a growing patchwork of state AI laws. Virginia HB 2094 was vetoed, but the trend continues with other states considering similar frameworks.
 
 The practical implication: **build your AI compliance program around the Colorado model now**, and you'll be largely ready for what's coming from other states.
 
@@ -894,19 +906,23 @@ The practical implication: **build your AI compliance program around the Colorad
   },
   "how-to-prepare-for-colorado-ai-act-june-2026": {
     slug: "how-to-prepare-for-colorado-ai-act-june-2026",
-    title: "How to Prepare for the Colorado AI Act Before June 30, 2026",
+    title: "How to Prepare for the Colorado AI Act (Updated for SB 26-189)",
     excerpt:
-      "A practical 5-step preparation guide for Colorado deployers: what triggers compliance, impact assessments, consumer notification, and vendor due diligence.",
+      "A practical 5-step preparation guide for Colorado deployers. Updated: effective date moved to January 1, 2027 under SB 26-189.",
     category: "Compliance Guides",
-    date: "2026-04-14",
+    date: "2026-05-14",
     readTime: "8 min read",
-    tags: ["Colorado AI Act", "Preparation", "June 2026"],
+    tags: ["Colorado AI Act", "Preparation", "SB 26-189", "January 2027"],
     relatedRegulations: [
       { slug: "colorado-ai-act", name: "Colorado AI Act" },
       { slug: "eu-ai-act", name: "EU AI Act" },
     ],
     body: `
-The Colorado AI Act (SB 24-205) takes effect **June 30, 2026** — and the clock is running. If you deploy AI systems that make consequential decisions about Colorado consumers, you have roughly two months to get ready. Here's a focused five-step guide to becoming compliant before the deadline.
+**Update (May 2026):** SB 26-189 moved the Colorado AI Act's effective date to **January 1, 2027**. The original June 30, 2026 deadline no longer applies. This guide has been updated to reflect the new timeline.
+
+---
+
+The Colorado AI Act (SB 24-205, as amended by SB 26-189) takes effect **January 1, 2027**. If you deploy AI systems that make consequential decisions about Colorado consumers, use the extended timeline to build a thorough compliance program. Here's a focused five-step guide.
 
 ## Step 1: Determine Whether You're Covered
 
@@ -985,90 +1001,69 @@ The Colorado AG's office enforces the law. Penalties can reach **$20,000 per vio
   },
   "virginia-hb-2094-what-businesses-need-to-know": {
     slug: "virginia-hb-2094-what-businesses-need-to-know",
-    title: "Virginia HB 2094: What Businesses Need to Know Before July 2026",
+    title: "Virginia HB 2094: Vetoed — What It Means for AI Compliance",
     excerpt:
-      "Virginia's new AI law takes effect July 1, 2026. Here's who it covers, how it compares to Colorado, and what you need to do now.",
+      "Governor Youngkin vetoed Virginia's AI regulation bill on March 24, 2025. Here's what the bill proposed, why it was vetoed, and what Virginia businesses should watch for next.",
     category: "Regulation Analysis",
-    date: "2026-04-12",
+    date: "2026-05-14",
     readTime: "6 min read",
-    tags: ["Virginia HB 2094", "State Laws", "July 2026"],
+    tags: ["Virginia HB 2094", "State Laws", "Vetoed"],
     relatedRegulations: [
       { slug: "colorado-ai-act", name: "Colorado AI Act" },
       { slug: "virginia-hb-2094", name: "Virginia HB 2094" },
     ],
     body: `
-Virginia has joined Colorado as the second US state to pass comprehensive AI legislation. The Virginia High-Risk Artificial Intelligence Developer and Deployer Act (HB 2094) takes effect **July 1, 2026** — one day after the Colorado AI Act. If you operate in both states, you're facing a simultaneous compliance deadline.
+**Update (May 2026):** Governor Glenn Youngkin **vetoed Virginia HB 2094 on March 24, 2025**. The bill never became law. There are no compliance obligations under HB 2094. This article has been updated to reflect the veto and its implications.
 
-## What Is Virginia HB 2094?
+---
 
-HB 2094 establishes requirements for businesses that develop or deploy "high-risk AI systems" — defined as AI that makes consequential decisions about Virginia consumers in domains including:
+## What Was Virginia HB 2094?
+
+HB 2094 was a proposed Virginia law that would have established requirements for businesses deploying "high-risk AI systems" — defined as AI that makes consequential decisions about Virginia consumers in domains including:
 
 - **Employment**: Hiring, promotion, termination, compensation decisions
 - **Housing**: Rental, purchase, and housing assistance decisions
 - **Credit and Finance**: Lending, insurance underwriting, and financial product access
 - **Education**: Admissions, financial aid, and academic evaluation
 - **Healthcare**: Diagnosis, treatment, and medication recommendations
-- **Criminal Justice**: Bail, parole, or sentencing decisions (for applicable deployers)
+- **Criminal Justice**: Bail, parole, or sentencing decisions
 
-The law applies to businesses that deploy these systems to make or substantially assist in making consequential decisions affecting Virginia residents.
+The bill was modeled on Colorado's SB 24-205 and would have required impact assessments, consumer notifications, opt-out rights, and developer documentation obligations.
 
-## How Does Virginia Compare to Colorado?
+## Why Was It Vetoed?
 
-Virginia HB 2094 was drafted with Colorado's SB 24-205 as a model — the core requirements are very similar. Here's where they align and diverge:
+Governor Youngkin cited several concerns in his veto:
 
-### Where They're the Same
+- The bill's broad scope could stifle AI innovation in Virginia
+- Compliance burdens on businesses before federal AI policy was established
+- Preference for a federal approach to AI regulation
+- Concerns about Virginia's competitiveness in the technology sector
 
-- **Impact assessments** required before deployment
-- **Consumer notice** when AI is used in a consequential decision
-- **Human review** must be available for adverse decisions
-- **Vendor documentation** obligations — deployers must get key info from developers
-- **AG enforcement** (no private right of action)
-- **Small business exemptions** (with different thresholds)
+The veto was not overridden by the General Assembly.
 
-### Key Differences
+## What This Means for Virginia Businesses
 
-- **Effective date**: Virginia is July 1, 2026 vs. Colorado's June 30 — essentially simultaneous
-- **Criminal justice coverage**: Virginia explicitly addresses AI in bail and sentencing contexts; Colorado does not
-- **Penalty structure**: Virginia penalties are per-violation, with a 30-day cure period (Colorado is 60 days)
-- **Annual reporting**: Colorado requires reporting to the AG; Virginia's reporting obligations are lighter
-- **Documentation retention**: Virginia requires a 3-year retention minimum on impact assessments
+**There are no compliance obligations under HB 2094.** The bill has no effective date, no enforcement provisions, and no penalties.
 
-## Who Is Affected?
+However, Virginia businesses deploying AI should still consider:
 
-You're affected if:
-1. You deploy AI that makes or assists in consequential decisions
-2. Affected individuals include Virginia residents
-3. The AI falls in one of the covered decision domains
+1. **Colorado AI Act** — if you serve Colorado consumers, the Colorado AI Act (effective January 1, 2027 under SB 26-189) applies regardless of where you're headquartered
+2. **Texas TRAIGA** — if you serve Texas consumers, TRAIGA took effect January 1, 2026
+3. **EU AI Act** — if you serve EU residents, the EU AI Act applies
+4. **Existing Virginia law** — consumer protection, employment discrimination, and data privacy laws (including the VCDPA) may apply to AI systems in certain contexts
 
-**Common affected use cases:**
-- HR software with AI screening for Virginia-based positions
-- Insurance underwriting tools used for Virginia policyholders
-- Mortgage/loan AI for Virginia properties or borrowers
-- Healthcare AI used in Virginia hospitals or telehealth for Virginia patients
+## Will Virginia Try Again?
 
-## What You Need to Do
+The veto does not preclude future AI legislation in Virginia. The trend toward state-level AI regulation continues, with Texas enacting TRAIGA in 2025 and Colorado's amended law taking effect in 2027. Virginia may introduce new AI proposals in future legislative sessions.
 
-**If you're already building Colorado AI Act compliance:**
-Good news — you're about 80% of the way there for Virginia. The core documents and processes are the same. You need to:
-
-1. Extend your impact assessments to explicitly cover Virginia consumers
-2. Adjust notification templates for Virginia's specific requirements
-3. Review Virginia's criminal justice provisions if applicable
-4. Align retention schedules to Virginia's 3-year minimum
-
-**If you haven't started yet:**
-Start with Colorado's framework (it's better documented and has more regulatory guidance available), then layer in Virginia-specific differences.
-
-## The Bigger Picture
-
-Virginia joining Colorado signals that US state-level AI legislation is now a durable trend — not a one-state experiment. Texas, Connecticut, and Illinois have similar bills in active consideration. If you build a robust compliance program now for Colorado + Virginia, you'll be well-positioned as more states enact similar laws.
+Building compliance programs around the Colorado AI Act or NIST AI RMF now will position you well for any future Virginia requirements.
 
 ## Resources
 
-- [Free compliance checker — does Virginia HB 2094 apply to you?](/checker)
-- [Compare US state AI laws side-by-side](/compare/us-state-ai-laws)
-- [Find AI governance consultants](/providers/categories/governance-consulting)
+- [Virginia HB 2094 regulation page](/regulations/virginia-hb-2094)
 - [Colorado AI Act compliance guide](/regulations/colorado-ai-act)
+- [Texas TRAIGA regulation page](/regulations/texas-traiga)
+- [Find AI governance consultants](/providers/categories/governance-consulting)
     `,
   },
   "request-for-quote-ai-bias-audit-what-to-expect": {
@@ -1597,20 +1592,24 @@ Colorado explicitly recognizes NIST AI RMF alignment as a good-faith compliance 
 
 ---
 
-Enforcement begins June 30, 2026. Start your assessments now \u2014 working through a thorough impact assessment for a complex system takes 6-8 weeks minimum.
+The effective date is now January 1, 2027 under SB 26-189. Start your assessments now \u2014 working through a thorough impact assessment for a complex system takes 6-8 weeks minimum.
     `,
   },
   "colorado-ai-readiness-window": {
     slug: "colorado-ai-readiness-window",
-    title: "Colorado AI Act: The Readiness Window Opens",
-    excerpt: "The Colorado AI Act enforcement date is June 30, 2026. With six months left, here\u2019s what the readiness window looks like \u2014 who\u2019s prepared, who isn\u2019t, and where to focus.",
+    title: "Colorado AI Act: Readiness Update After SB 26-189",
+    excerpt: "The effective date has moved to January 1, 2027 under SB 26-189. Here\u2019s where organizations stand and what the extended timeline means.",
     category: "Industry News",
-    date: "2026-01-15",
+    date: "2026-05-14",
     readTime: "5 min read",
-    tags: ["Colorado AI Act", "Enforcement", "June 2026", "Readiness"],
+    tags: ["Colorado AI Act", "SB 26-189", "January 2027", "Readiness"],
     relatedRegulations: [{ slug: "colorado-ai-act", name: "Colorado AI Act" }],
     body: `
-The Colorado AI Act (SB 24-205) enforcement date of June 30, 2026 is no longer abstract. As of January 2026, you have roughly six months. The readiness window is open now \u2014 and for many organizations, it\u2019s narrower than it looks.
+**Update (May 2026):** SB 26-189 moved the effective date to **January 1, 2027**. The original June 30, 2026 deadline no longer applies.
+
+---
+
+The Colorado AI Act (SB 24-205, as amended by SB 26-189) effective date is now January 1, 2027. As of January 2026, you have roughly six months. The readiness window is open now \u2014 and for many organizations, it\u2019s narrower than it looks.
 
 ---
 
@@ -1656,7 +1655,7 @@ Readiness under the Colorado AI Act means:
 
 **June 1-29, 2026:** Final review. If you\u2019re doing anything in June, it should be gap-filling and documentation review \u2014 not primary compliance work.
 
-**June 30, 2026:** Enforcement begins.
+**January 1, 2027:** Law takes effect under SB 26-189 (subject to AG rulemaking and stay resolution).
 
 ---
 
@@ -2873,7 +2872,7 @@ Minimum documentation package for Colorado safe harbor:
 5. Monitoring reports (at least quarterly)
 6. Reference to NIST AI RMF functions in each document
 
-This documentation package is also useful for the Virginia HB 2094 compliance assessment (Virginia's requirements parallel Colorado\u2019s) and provides strong foundation for EU AI Act conformity assessment.
+This documentation package is also useful for Texas TRAIGA compliance (Texas's requirements parallel Colorado's) and provides a strong foundation for EU AI Act conformity assessment.
     `,
   },
   "iso-42001-certification-guide": {

@@ -228,7 +228,7 @@ export const regulations = pgTable("regulations", {
   name: text("name").notNull(),
   // 'US-CO', 'EU', 'US-CA', 'US-NY', etc.
   jurisdiction: text("jurisdiction").notNull(),
-  // 'draft', 'enacted', 'enforced', 'rescinded'
+  // 'draft', 'enacted', 'enforced', 'rescinded', 'vetoed'
   status: text("status").notNull(),
   effectiveDate: date("effective_date"),
   enforcementDate: date("enforcement_date"),

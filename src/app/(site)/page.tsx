@@ -515,8 +515,8 @@ export default async function HomePage({
               {[
                 {
                   kind: "Guide",
-                  title: "Colorado AI Act 60-Day Compliance Checklist",
-                  desc: "Step-by-step checklist to get compliant before the June 30, 2026 deadline.",
+                  title: "Colorado AI Act Compliance Checklist",
+                  desc: "Step-by-step checklist to prepare for the January 1, 2027 effective date (updated for SB 26-189).",
                   time: "10 min",
                   slug: "colorado-ai-act-60-day-checklist",
                 },

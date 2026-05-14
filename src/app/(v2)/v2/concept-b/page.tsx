@@ -39,9 +39,9 @@ const phosphorBg = "rgba(127, 255, 195, 0.08)";
 
 const REGS = [
   { idx: "001", ticker: "EUAI", name: "EU AI Act", jur: "EU-27", status: "ACTIVE", delta: "+", eff: "2026-08-01", articles: 113 },
-  { idx: "002", ticker: "COAI", name: "Colorado AI Act", jur: "US-CO", status: "PENDING", delta: "!", eff: "2026-06-30", articles: 17 },
+  { idx: "002", ticker: "COAI", name: "Colorado AI Act", jur: "US-CO", status: "PENDING", delta: "!", eff: "2027-01-01", articles: 17 },
   { idx: "003", ticker: "NYLL144", name: "NYC Local Law 144", jur: "US-NY-NYC", status: "ACTIVE", delta: "=", eff: "2023-07-05", articles: 8 },
-  { idx: "004", ticker: "VAHB2094", name: "Virginia HB 2094", jur: "US-VA", status: "PENDING", delta: "!", eff: "2026-07-01", articles: 12 },
+  { idx: "004", ticker: "TXTRAIGA", name: "Texas TRAIGA", jur: "US-TX", status: "ACTIVE", delta: "+", eff: "2026-01-01", articles: 14 },
   { idx: "005", ticker: "CAAB2013", name: "California AB 2013", jur: "US-CA", status: "PENDING", delta: "+", eff: "2026-01-01", articles: 6 },
   { idx: "006", ticker: "ILAIVIRA", name: "Illinois AIVIRA", jur: "US-IL", status: "ACTIVE", delta: "=", eff: "2020-01-01", articles: 4 },
   { idx: "007", ticker: "UKAIB", name: "UK AI Principles", jur: "UK-GB", status: "DRAFT", delta: "?", eff: "TBD", articles: 0 },

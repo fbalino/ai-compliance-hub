@@ -6,8 +6,8 @@ export function AnnouncementStrip() {
       <div className="container" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
         <span className="dot dot-active" aria-hidden="true" />
         <span>
-          Colorado AI Act takes effect <strong style={{ fontWeight: 700 }}>June 30, 2026</strong> —{" "}
-          <Link href="/regulations/colorado-ai-act" style={{ color: "inherit", textDecoration: "underline" }}>read what it requires →</Link>
+          Colorado AI Act rewritten by SB 26-189 — new effective date <strong style={{ fontWeight: 700 }}>January 1, 2027</strong> —{" "}
+          <Link href="/regulations/colorado-ai-act" style={{ color: "inherit", textDecoration: "underline" }}>read what changed →</Link>
         </span>
       </div>
     </div>

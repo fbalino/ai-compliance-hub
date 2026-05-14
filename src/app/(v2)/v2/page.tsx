@@ -74,12 +74,12 @@ const REGS = [
     summary: "Annual bias audits required for AI used in hiring or promotion decisions affecting NYC employees.",
   },
   {
-    slug: "virginia-hb-2094",
-    name: "Virginia HB 2094",
-    jurisdiction: "US · Virginia",
-    status: "enacted",
-    effective: "Jul 1 2026",
-    summary: "Impact assessments and opt-out rights required for high-risk automated decision systems affecting Virginia residents.",
+    slug: "texas-traiga",
+    name: "Texas TRAIGA (HB 149)",
+    jurisdiction: "US · Texas",
+    status: "enforced",
+    effective: "Jan 1 2026",
+    summary: "Requires deployers of high-risk AI systems to conduct impact assessments and provide consumer notifications for Texas residents.",
   },
 ];
 
@@ -197,7 +197,7 @@ export default function V2Page() {
           {/* Announcement pill */}
           <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: t.accentLight, border: `1px solid ${t.borderAccent}`, borderRadius: 999, padding: "6px 14px", marginBottom: 24, fontSize: 13, fontWeight: 500, color: t.accentDark }}>
             <Activity size={12} />
-            Colorado AI Act effective June 30, 2026
+            Colorado AI Act effective January 1, 2027
             <ChevronRight size={12} />
           </div>
 
@@ -464,7 +464,7 @@ export default function V2Page() {
           </div>
           {[
             { title: "Product", links: ["Compliance Checker", "Provider Directory", "Regulation Tracker", "Glossary"] },
-            { title: "Regulations", links: ["EU AI Act", "Colorado AI Act", "NYC LL 144", "Virginia HB 2094"] },
+            { title: "Regulations", links: ["EU AI Act", "Colorado AI Act", "NYC LL 144", "Texas TRAIGA"] },
             { title: "Company", links: ["Blog", "Newsletter", "Privacy", "Terms"] },
           ].map((col) => (
             <div key={col.title}>

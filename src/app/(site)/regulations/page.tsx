@@ -23,6 +23,7 @@ function mapStatus(status: RegulationFrontmatter["status"]): RegulationItem["sta
     case "enacted": return "pending";
     case "draft": return "proposed";
     case "rescinded": return null;
+    case "vetoed": return null;
   }
 }
 

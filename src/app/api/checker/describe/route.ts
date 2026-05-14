@@ -25,11 +25,11 @@ Illinois AI Video Interview Act [slug: "illinois-ai-video-interview-act", jurisd
 
 Illinois BIPA [slug: "illinois-bipa", jurisdiction: "US · Illinois"]: Applies ONLY to entities collecting biometric identifiers from Illinois residents.
 
-Virginia HB 2094 [slug: "virginia-hb-2094", jurisdiction: "US · Virginia"]: Applies ONLY to automated decision systems affecting Virginia residents in employment, credit, or healthcare.
+Virginia HB 2094 [slug: "virginia-hb-2094", jurisdiction: "US · Virginia"]: VETOED by Governor Youngkin on March 24, 2025. Never became law. No compliance obligations.
 
 Texas CUBI [slug: "texas-cubi", jurisdiction: "US · Texas"]: Applies ONLY to entities capturing biometric identifiers of Texas residents.
 
-Texas HB 1709 [slug: "texas-hb-1709", jurisdiction: "US · Texas"]: Proposed law for deployers of high-risk AI systems in Texas (draft status, not yet enacted).
+Texas TRAIGA [slug: "texas-traiga", jurisdiction: "US · Texas"]: Enacted law (HB 149) requiring deployers of high-risk AI systems affecting Texas consumers to conduct impact assessments, provide consumer notifications, and report to the AG. Effective January 1, 2026.
 `;
 
 export async function POST(request: NextRequest) {

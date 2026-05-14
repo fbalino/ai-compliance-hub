@@ -53,7 +53,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 function StatusDot({ status }: { status: string }) {
   return (
     <span className="chip" style={{ fontSize: 11, padding: "2px 8px" }}>
-      <span className={`dot dot-${status === "enforced" ? "active" : status === "enacted" ? "pending" : "proposed"}`} />
+      <span className={`dot dot-${status === "enforced" ? "active" : status === "enacted" ? "pending" : status === "vetoed" ? "inactive" : "proposed"}`} />
       {status.charAt(0).toUpperCase() + status.slice(1)}
     </span>
   );

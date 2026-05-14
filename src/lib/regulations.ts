@@ -6,7 +6,7 @@ export interface RegulationFrontmatter {
   shortName?: string;
   description: string;
   jurisdiction: string;
-  status: "draft" | "enacted" | "enforced" | "rescinded";
+  status: "draft" | "enacted" | "enforced" | "rescinded" | "vetoed";
   effectiveDate?: string;
   enforcementDate?: string;
   maxPenalty?: string;
@@ -39,8 +39,8 @@ const REGULATION_MODULES: Record<string, () => Promise<MdxModule>> = {
     import("content/regulations/california-ab-2013.mdx") as Promise<MdxModule>,
   "illinois-ai-video-interview-act": () =>
     import("content/regulations/illinois-ai-video-interview-act.mdx") as Promise<MdxModule>,
-  "texas-algorithmic-accountability-act": () =>
-    import("content/regulations/texas-algorithmic-accountability-act.mdx") as Promise<MdxModule>,
+  "texas-traiga": () =>
+    import("content/regulations/texas-traiga.mdx") as Promise<MdxModule>,
   "virginia-hb-2094": () =>
     import("content/regulations/virginia-hb-2094.mdx") as Promise<MdxModule>,
   "nis2-directive": () =>

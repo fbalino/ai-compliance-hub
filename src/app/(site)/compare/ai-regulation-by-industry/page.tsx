@@ -144,8 +144,9 @@ export default function AIRegulationByIndustryPage() {
           <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 6, fontSize: 14, color: "#92400e" }}>
             <li>&bull; This matrix shows the primary AI-specific regulations. Federal laws (ECOA, FCRA, HIPAA, ADA) and general anti-discrimination laws apply independently and may impose additional requirements.</li>
             <li>&bull; &ldquo;Not covered&rdquo; means the specific law does not apply &mdash; it does not mean there are no applicable regulations in that sector.</li>
-            <li>&bull; Virginia HB 2094 (effective July 2026) follows the Colorado AI Act model and will add similar coverage for Virginia consumers across these industries.</li>
-            <li>&bull; This matrix reflects the law as of April 2026. Always verify with qualified legal counsel for your specific situation.</li>
+            <li>&bull; Virginia HB 2094 was vetoed by Governor Youngkin on March 24, 2025 and never became law. Virginia does not currently have a comprehensive AI-specific regulation.</li>
+            <li>&bull; Texas TRAIGA (HB 149) took effect January 1, 2026. Colorado AI Act effective date moved to January 1, 2027 under SB 26-189.</li>
+            <li>&bull; This matrix reflects the law as of May 2026. Always verify with qualified legal counsel for your specific situation.</li>
           </ul>
         </div>
 

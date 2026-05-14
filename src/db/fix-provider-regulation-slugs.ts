@@ -91,8 +91,8 @@ const NEW_LINKS: Array<[string, string]> = [
   ["kpmg-ai-risk", "nis2-directive"],
   ["perkins-coie-ai", "illinois-bipa"],
   ["perkins-coie-ai", "texas-cubi"],
-  ["wiley-ai-law", "texas-algorithmic-accountability-act"],
-  ["venable-ai", "texas-algorithmic-accountability-act"],
+  ["wiley-ai-law", "texas-traiga"],
+  ["venable-ai", "texas-traiga"],
 ];
 
 async function migrate() {

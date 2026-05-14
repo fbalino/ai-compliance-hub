@@ -34,7 +34,7 @@ const COMPARISON_TABLE = [
   { attribute: "Human review right", colorado: "Yes \u2014 consumers can request meaningful human review of any consequential decision", eu: "Human oversight required in system design; no individual appeal right in law itself" },
   { attribute: "Max penalty", colorado: "$20,000 per violation", eu: "\u20ac35 million or 7% of global annual turnover (prohibited AI violations)" },
   { attribute: "Private right of action", colorado: "No \u2014 AG enforcement only", eu: "No \u2014 national market surveillance authorities and European AI Office enforce" },
-  { attribute: "Enforcement date", colorado: "June 30, 2026", eu: "High-risk AI: August 2, 2026 (prohibited AI was February 2025)" },
+  { attribute: "Enforcement date", colorado: "January 1, 2027 (amended by SB 26-189; enforcement currently stayed)", eu: "High-risk AI: August 2, 2026 (prohibited AI was February 2025)" },
   { attribute: "GPAI / Foundation models", colorado: "Not specifically addressed", eu: "Dedicated GPAI chapter with systemic risk tier (>10\u00b2\u2075 FLOPs)" },
   { attribute: "Extraterritorial reach", colorado: "Yes \u2014 any entity deploying AI affecting CO consumers", eu: "Yes \u2014 any entity placing AI on EU market or affecting EU residents" },
 ];
@@ -62,7 +62,7 @@ export default function ColoradoVsEuPage() {
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Comparisons", href: "/compare" }, { label: "Colorado AI Act vs. EU AI Act" }]} />
           <h1 className="h1">Colorado AI Act vs. EU AI Act</h1>
           <p className="lede" style={{ maxWidth: 680, marginTop: 8 }}>
-            The world&apos;s most comprehensive AI regulation framework versus the first major US state AI law. Colorado takes effect June 30, 2026; EU AI Act high-risk provisions follow on August 2, 2026 &mdash; here&apos;s how they compare.
+            The world&apos;s most comprehensive AI regulation framework versus the first major US state AI law. Colorado&apos;s effective date moved to January 1, 2027 under SB 26-189; EU AI Act high-risk provisions take effect August 2, 2026 &mdash; here&apos;s how they compare.
           </p>
           <div className="tag-strip" style={{ marginTop: 16 }}>
             <Link href="/regulations/colorado-ai-act" className="btn btn-ghost" style={{ fontSize: 13 }}>Colorado AI Act Guide &rarr;</Link>
@@ -87,7 +87,7 @@ export default function ColoradoVsEuPage() {
               <li>&bull; Reasonable care standard &mdash; not a checklist approach</li>
               <li>&bull; Impact assessment + consumer rights + AG enforcement</li>
               <li>&bull; Max penalty: $20,000 per violation</li>
-              <li>&bull; Effective: June 30, 2026</li>
+              <li>&bull; Effective: January 1, 2027 (amended by SB 26-189)</li>
             </ul>
           </div>
           <div className="card" style={{ borderColor: "rgba(202,138,4,0.25)", background: "rgba(202,138,4,0.04)" }}>
@@ -148,7 +148,7 @@ export default function ColoradoVsEuPage() {
                 ["Extraterritorial reach:", "Both apply to any organization whose AI affects residents in their jurisdiction, regardless of headquarters location"],
                 ["Developer/provider obligations:", "Both place upstream documentation and disclosure obligations on the organizations that build AI systems"],
                 ["Human oversight:", "Both require that humans can meaningfully review and override AI decisions in high-risk contexts"],
-                ["Near-simultaneous enforcement:", "Colorado takes effect June 30, 2026; EU AI Act high-risk provisions follow August 2, 2026 \u2014 33 days apart, creating tightly aligned compliance deadlines"],
+                ["Staggered enforcement:", "EU AI Act high-risk provisions take effect August 2, 2026; Colorado's amended effective date is January 1, 2027 \u2014 organizations preparing for the EU deadline will have additional time before Colorado obligations begin"],
               ].map(([label, desc]) => (
                 <li key={label} style={{ display: "flex", gap: 8 }}>
                   <Check className="h-4 w-4" style={{ color: "var(--sage)", flexShrink: 0, marginTop: 2 }} aria-hidden="true" />

@@ -9,7 +9,12 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/regulations/texas-hb-1709",
-        destination: "/regulations/texas-algorithmic-accountability-act",
+        destination: "/regulations/texas-traiga",
+        permanent: true,
+      },
+      {
+        source: "/regulations/texas-algorithmic-accountability-act",
+        destination: "/regulations/texas-traiga",
         permanent: true,
       },
       {

@@ -1,0 +1,197 @@
+export const frontmatter = {
+  name: "Texas Responsible AI Governance Act (TRAIGA)",
+  shortName: "TX HB 149",
+  description:
+    "Texas law requiring deployers of high-risk AI systems to use reasonable care to protect consumers from algorithmic discrimination, with impact assessments, transparency obligations, and AG enforcement under the DTPA framework.",
+  jurisdiction: "US · Texas",
+  status: "enforced",
+  effectiveDate: "January 1, 2026",
+  enforcementDate: "January 1, 2026",
+  maxPenalty: "DTPA civil penalties (up to $10,000 per violation)",
+  publishedAt: "2025-06-22",
+  updatedAt: "2026-05-14",
+  toc: [
+    { id: "overview", label: "Overview" },
+    { id: "who-it-applies-to", label: "Who It Applies To" },
+    { id: "high-risk-ai-systems", label: "High-Risk AI Systems" },
+    { id: "key-requirements", label: "Key Requirements" },
+    { id: "differences-from-colorado", label: "Differences from Colorado" },
+    { id: "compliance-timeline", label: "Compliance Timeline" },
+    { id: "how-to-comply", label: "How to Comply" },
+    { id: "faqs", label: "Frequently Asked Questions" },
+  ],
+  relatedRegulations: [
+    { slug: "colorado-ai-act", name: "Colorado AI Act" },
+    { slug: "eu-ai-act", name: "EU AI Act" },
+    { slug: "nyc-local-law-144", name: "NYC Local Law 144" },
+  ],
+  faqs: [
+    {
+      question: "Is the Texas Responsible AI Governance Act (TRAIGA) in effect?",
+      answer:
+        "Yes. TRAIGA (HB 149) was signed into law on June 22, 2025 and took effect on January 1, 2026. It is currently enforceable.",
+    },
+    {
+      question: "What happened to Texas HB 1709?",
+      answer:
+        "HB 1709 was an earlier version of the Texas AI governance bill introduced in the 89th Legislature. It was superseded by HB 149 in March 2025. HB 149 was the bill ultimately passed by the legislature and signed into law as the Texas Responsible AI Governance Act (TRAIGA).",
+    },
+    {
+      question: "Is TRAIGA the same as the Colorado AI Act?",
+      answer:
+        "TRAIGA is closely modeled on Colorado SB 24-205 (Colorado AI Act) and covers the same high-risk AI categories. Key differences include Texas-specific enforcement via the DTPA framework, slightly different small-business exemption thresholds, and annual reporting to the Texas Attorney General.",
+    },
+    {
+      question: "What is the penalty for violating TRAIGA?",
+      answer:
+        "Civil penalties are enforced under the Texas Deceptive Trade Practices-Consumer Protection Act (DTPA), with fines up to $10,000 per violation. Willful violations may face higher penalties.",
+    },
+  ],
+};
+
+## Overview
+
+The **Texas Responsible AI Governance Act** (TRAIGA), enacted as **HB 149**, is the first comprehensive AI regulatory framework in Texas. Signed into law by Governor Abbott on **June 22, 2025**, TRAIGA took effect on **January 1, 2026** and requires deployers of high-risk AI systems to use reasonable care to protect Texas consumers from algorithmic discrimination.
+
+TRAIGA is closely modeled on Colorado SB 24-205 (the Colorado AI Act), making Texas the second US state to enact a comprehensive, risk-based AI governance law. The law superseded the earlier HB 1709 proposal, which was folded into HB 149 during the legislative process in March 2025.
+
+---
+
+## Who It Applies To
+
+TRAIGA applies to **deployers** of high-risk AI systems that make or are a substantial factor in making consequential decisions about Texas consumers.
+
+**"Deployer"** means a person doing business in Texas that deploys a high-risk AI system. This includes:
+
+- Businesses headquartered anywhere that serve Texas customers
+- Companies with Texas employees using AI in HR decisions
+- Any organization using high-risk AI that affects Texas residents
+
+**Small business exemption:** The law includes scaled-down obligations for businesses with fewer than 25 employees or less than $5 million in annual revenue.
+
+---
+
+## High-Risk AI Systems
+
+A high-risk AI system under TRAIGA is any AI system that makes, or is a substantial factor in making, a **consequential decision** about an individual in these categories:
+
+| Category | Examples |
+|---|---|
+| **Employment** | Hiring, promotion, termination, compensation |
+| **Housing** | Rental applications, mortgage, property insurance |
+| **Credit & Lending** | Loan approval, credit scoring, interest rates |
+| **Education** | Admissions, financial aid, academic evaluation |
+| **Healthcare** | Diagnosis, treatment recommendations, medication |
+| **Insurance** | Applications, underwriting, claims |
+| **Legal Services** | Legal representation or referrals |
+
+A **consequential decision** is one that produces a material legal effect or similarly significant effect — including access to services, financial outcomes, or employment status.
+
+---
+
+## Key Requirements
+
+### 1. Impact Assessment
+
+Before deploying any high-risk AI system, conduct an impact assessment documenting:
+
+- Intended purpose and reasonably foreseeable uses
+- Benefits of the system
+- Known and reasonably foreseeable risks of algorithmic discrimination
+- How the system was tested for discriminatory outcomes
+- Transparency, explainability, and human oversight mechanisms
+- How training data was collected, processed, and used
+
+Impact assessments must be updated annually and on material changes.
+
+### 2. Risk Management Program
+
+Implement a written program for managing risks of algorithmic discrimination:
+
+- Policies and procedures for high-risk AI governance
+- Vendor due diligence (require developer documentation)
+- Ongoing monitoring for discriminatory outcomes in production
+- Employee training on the use of high-risk AI systems
+
+### 3. Consumer Notifications
+
+When high-risk AI makes a consequential decision:
+
+- Notify the consumer that AI was used
+- Explain in plain language how the AI influenced the decision
+- Provide a meaningful opt-out mechanism
+- If adverse: explain the basis for the decision
+
+### 4. Annual Reporting
+
+Annual report to the Texas Attorney General summarizing:
+
+- High-risk AI systems deployed in the prior year
+- Impact assessments completed
+- Discrimination risks identified and mitigated
+- Any instances of known algorithmic discrimination
+
+---
+
+## Differences from Colorado AI Act
+
+| Aspect | Colorado AI Act | Texas TRAIGA |
+|---|---|---|
+| **Status** | Enacted (effective date moved to January 1, 2027 under SB 26-189) | Enforced (effective January 1, 2026) |
+| **Enforcement** | Colorado AG, civil penalties | DTPA framework, AG enforcement |
+| **Max penalty** | $20,000 per violation | $10,000 per violation |
+| **SMB exemption** | Under 50 employees | Under 25 employees, less than $5M revenue |
+| **Annual report** | State agency | Texas AG |
+| **Core framework** | Risk-based, high-risk AI | Identical framework |
+
+For most compliance purposes, **building to the Colorado standard means you're substantially ready for Texas**, and vice versa.
+
+---
+
+## Compliance Timeline
+
+| Date | Milestone |
+|------|-----------|
+| **March 2025** | HB 149 supersedes earlier HB 1709 during legislative session |
+| **June 22, 2025** | **TRAIGA (HB 149) signed into law** |
+| **January 1, 2026** | **Law takes effect — compliance required** |
+| **Ongoing** | Annual impact assessment renewal and AG reporting required |
+
+---
+
+## How to Comply
+
+TRAIGA is now in effect. If you have not started your compliance program, begin immediately:
+
+### Step 1: Inventory Your AI Systems
+
+Identify all AI systems you deploy that affect Texas consumers or employees. Document which are "high-risk" under TRAIGA's categories. This inventory is the foundation of your compliance program.
+
+### Step 2: Conduct Impact Assessments
+
+For each high-risk AI system, complete a written impact assessment covering the required elements. If you have already completed assessments for Colorado AI Act compliance, review them for Texas-specific requirements and update as needed.
+
+### Step 3: Build Consumer Notification Workflows
+
+Implement disclosure and opt-out mechanisms for all consequential decisions involving high-risk AI systems affecting Texas consumers.
+
+### Step 4: Establish Governance
+
+Create a written AI risk management policy, assign compliance owners, and train employees who oversee high-risk AI systems.
+
+### Step 5: Set Up AG Reporting
+
+Prepare your annual reporting process for the Texas Attorney General, covering all high-risk AI systems deployed in the prior year.
+
+### Step 6: Engage Legal Counsel
+
+Engage Texas-based legal counsel familiar with the DTPA framework. The enforcement implications are specific to Texas and differ from Colorado's approach.
+
+*Need help with compliance preparation? [Browse AI governance consultants](/providers/categories/governance-consulting)*
+
+---
+
+## Official Sources
+
+- [HB 149 full text (Texas Legislature)](https://capitol.texas.gov/BillLookup/History.aspx?LegSess=89R&Bill=HB149)
+- [HB 1709 (superseded) full text (Texas Legislature)](https://capitol.texas.gov/BillLookup/History.aspx?LegSess=89R&Bill=HB1709)

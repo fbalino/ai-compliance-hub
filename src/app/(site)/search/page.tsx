@@ -178,7 +178,7 @@ export default async function SearchPage({
                         {reg.status && (
                           <div style={{ marginTop: 8 }}>
                             <span className="chip" style={{ fontSize: 11, padding: "2px 8px" }}>
-                              <span className={`dot dot-${reg.status === "enforced" ? "active" : reg.status === "enacted" ? "pending" : reg.status}`} />
+                              <span className={`dot dot-${reg.status === "enforced" ? "active" : reg.status === "enacted" ? "pending" : reg.status === "vetoed" ? "inactive" : reg.status}`} />
                               {reg.status}
                             </span>
                           </div>
