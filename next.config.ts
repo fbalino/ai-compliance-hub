@@ -64,6 +64,14 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [
+      {
+        source: "/resources/ai-compliance-checklist",
+        destination: "/resources/ai-compliance-checklist.html",
+      },
+    ];
+  },
   turbopack: {
     root: process.cwd(),
   },
