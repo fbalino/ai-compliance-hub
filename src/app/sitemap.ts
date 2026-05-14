@@ -71,6 +71,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/compare`, lastModified: LAST_MODIFIED, changeFrequency: "weekly", priority: 0.7 },
     { url: `${SITE_URL}/about`, lastModified: LAST_MODIFIED, changeFrequency: "monthly", priority: 0.5 },
     { url: `${SITE_URL}/rfp`, lastModified: LAST_MODIFIED, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${SITE_URL}/resources/ai-compliance-checklist`, lastModified: LAST_MODIFIED, changeFrequency: "monthly", priority: 0.8 },
     { url: `${SITE_URL}/resources/ai-bias-audit`, lastModified: LAST_MODIFIED, changeFrequency: "monthly", priority: 0.8 },
     { url: `${SITE_URL}/join`, lastModified: LAST_MODIFIED, changeFrequency: "monthly", priority: 0.6 },
     { url: `${SITE_URL}/newsletter`, lastModified: LAST_MODIFIED, changeFrequency: "monthly", priority: 0.4 },
