@@ -25,6 +25,33 @@ const CATEGORIES = [
 
 const POSTS = [
   {
+    slug: "iso-42001-checklist",
+    title: "ISO 42001 Checklist: 48 Requirements for AI Management System Certification",
+    excerpt: "A complete ISO 42001 checklist covering all 48 requirements across 7 phases—from context and leadership through operations, performance evaluation, and improvement.",
+    category: "Compliance Guides",
+    date: "2026-05-14",
+    readTime: "9 min read",
+    tags: ["ISO 42001", "Checklist", "Certification"],
+  },
+  {
+    slug: "ai-compliance-checklist",
+    title: "AI Compliance Checklist 2026: 7 Steps Every Business Needs",
+    excerpt: "A practical AI compliance checklist for 2026—covering inventory, risk classification, impact assessments, governance, bias audits, documentation, and ongoing monitoring.",
+    category: "Compliance Guides",
+    date: "2026-05-14",
+    readTime: "8 min read",
+    tags: ["AI Compliance", "Checklist", "2026"],
+  },
+  {
+    slug: "ai-bias-audit",
+    title: "AI Bias Audit: What It Is, How It Works, and What It Costs in 2026",
+    excerpt: "A complete guide to AI bias audits—what they test, which laws require them, the 5-step audit process, how to choose an auditor, and what to expect on cost and timing.",
+    category: "Compliance Guides",
+    date: "2026-05-14",
+    readTime: "9 min read",
+    tags: ["AI Bias Audit", "Bias Testing", "Algorithmic Discrimination"],
+  },
+  {
     slug: "hiring-ai-compliance-2026-starter-kit",
     title: "Hiring AI Compliance in 2026: The Complete Starter Kit",
     excerpt: "Which roles to hire first, what skills actually matter, realistic salary ranges, and interview questions that separate genuine AI compliance expertise from resume inflation.",
