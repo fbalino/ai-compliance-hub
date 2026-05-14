@@ -9,7 +9,7 @@ export const frontmatter = {
   enforcementDate: "June 30, 2026",
   maxPenalty: "$20,000 per violation",
   publishedAt: "2024-05-17",
-  updatedAt: "2026-04-13",
+  updatedAt: "2026-05-14",
   toc: [
     { id: "overview", label: "Overview" },
     { id: "who-it-applies-to", label: "Who It Applies To" },
@@ -17,7 +17,7 @@ export const frontmatter = {
     { id: "key-requirements", label: "Key Requirements" },
     { id: "compliance-timeline", label: "Compliance Timeline" },
     { id: "penalties", label: "Penalties & Enforcement" },
-    { id: "compliance-steps", label: "Compliance Steps" },
+    { id: "compliance-checklist", label: "Compliance Checklist (PDF)" },
     { id: "faqs", label: "Frequently Asked Questions" },
   ],
   relatedRegulations: [
@@ -47,6 +47,16 @@ export const frontmatter = {
       question: "What are the penalties for non-compliance?",
       answer:
         "The Colorado Attorney General can impose civil penalties of up to $20,000 per violation. Businesses that discover a violation and cure it within 60 days may avoid penalties under the cure provision.",
+    },
+    {
+      question: "What must an impact assessment include under the Colorado AI Act?",
+      answer:
+        "An impact assessment must document: the high-risk AI system's purpose and intended use, the known risks of algorithmic discrimination, the data used to train the system, the metrics used to evaluate performance across protected classes, and the deployer's mitigation policies. Assessments must be updated annually or when significant changes are made to the system.",
+    },
+    {
+      question: "Is there a safe harbor for companies using the NIST AI Risk Management Framework?",
+      answer:
+        "Yes. The Colorado Attorney General's guidance recognizes NIST AI RMF alignment as evidence of reasonable care under SB 24-205. Companies that document their AI governance program against the NIST AI RMF Govern, Map, Measure, and Manage functions have a stronger defense against enforcement.",
     },
   ],
 };
@@ -163,25 +173,35 @@ If you discover a violation and implement a cure plan within 60 days of the AG's
 
 ---
 
-## Compliance Steps
+## Compliance Checklist
 
-Follow this checklist to prepare for the June 30, 2026 effective date:
+**June 30, 2026 deadline — print this checklist** _(Ctrl+P / Cmd+P to save as PDF)_
 
-1. **Inventory your AI systems.** Map all AI systems used in decision-making and determine which affect Colorado consumers.
+Complete these 12 steps before the Colorado AI Act enforcement date:
 
-2. **Classify each system.** Does it make consequential decisions in a covered category? If yes, it is likely high-risk.
+1. ☐ **Inventory all AI systems.** Map every AI system used in decision-making and identify which ones affect Colorado consumers.
 
-3. **Conduct impact assessments.** For each high-risk system, document known risks of algorithmic discrimination, the intended use case, and your mitigation policies.
+2. ☐ **Classify each system as high-risk or not.** Does it make consequential decisions in a covered category (education, employment, financial services, healthcare, housing, legal, government)? If yes, it is high-risk.
 
-4. **Update consumer-facing disclosures.** Add notices to workflows where high-risk AI is used in consequential decisions.
+3. ☐ **Conduct a written impact assessment** for each high-risk system. Document the system's purpose, training data, known discrimination risks, performance metrics across protected classes, and your mitigation policies.
 
-5. **Build an appeal process.** Create a pathway for consumers to request human review of adverse AI-driven decisions.
+4. ☐ **Update consumer-facing disclosures.** Add clear notices anywhere a high-risk AI system contributes to a consequential decision — including at the point of interaction.
 
-6. **Review vendor contracts.** If you use third-party AI (e.g., hiring software, lending models), ensure your contracts require developer-level compliance disclosures.
+5. ☐ **Build a consumer appeal process.** Create a mechanism for affected consumers to request human review of any adverse AI-driven decision within a reasonable timeframe.
 
-7. **Train your team.** Ensure the people overseeing high-risk AI systems understand the Act's requirements.
+6. ☐ **Audit vendor contracts.** If you use third-party AI tools (hiring software, credit models, clinical decision support), ensure contracts require the vendor to provide developer-level disclosures and documentation.
 
-8. **Document everything.** Regulators will want to see your governance program, impact assessments, and incident response procedures.
+7. ☐ **Establish an incident reporting workflow.** If your AI causes or is likely to cause algorithmic discrimination, you must notify the Colorado AG within 90 days of discovery.
+
+8. ☐ **Implement a written non-discrimination policy.** Adopt a governance policy committing to managing known algorithmic discrimination risks across all high-risk systems.
+
+9. ☐ **Align your governance to NIST AI RMF.** Documenting alignment to NIST Govern, Map, Measure, and Manage functions creates a safe-harbor defense under AG guidance.
+
+10. ☐ **Train responsible staff.** Ensure everyone who oversees or operates high-risk AI systems understands the Act's requirements and your internal compliance procedures.
+
+11. ☐ **Schedule annual assessment renewals.** Impact assessments must be updated at least once per year or whenever a significant change is made to the system.
+
+12. ☐ **Document everything.** Maintain a compliance file with impact assessments, governance policies, consumer disclosure templates, incident response procedures, and vendor documentation.
 
 ---
 

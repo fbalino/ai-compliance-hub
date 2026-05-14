@@ -2070,3 +2070,12 @@ dl.kv dd { margin: 0; color: var(--ink); }
   .gazette-grid { grid-template-columns: 1fr; }
   .gazette-grid article { border-right: 0 !important; padding: 24px 20px; min-height: 0; }
 }
+
+/* Print styles for compliance checklist PDF */
+@media print {
+  .page-banner, nav, aside, footer, .card.card-tint:has(.NewsletterForm), [data-noprint] { display: none !important; }
+  body { background: white; color: black; font-size: 12pt; }
+  .prose-compliance { max-width: 100%; }
+  .prose-compliance h2 { page-break-after: avoid; }
+  a[href]:after { content: none; }
+}

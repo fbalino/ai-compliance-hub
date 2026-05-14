@@ -11,6 +11,7 @@ import {
 import { getRegulationBySlug, getAllRegulationSlugs } from "@/lib/regulations";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { SITE_URL } from "@/lib/brand";
+import { CountdownTimer } from "@/components/CountdownTimer";
 
 export const revalidate = 86400;
 
@@ -431,6 +432,9 @@ export default async function RegulationPage({ params }: Props) {
             )}
           </div>
 
+          {/* Countdown timer — Colorado AI Act only */}
+          {slug === "colorado-ai-act" && <CountdownTimer />}
+
           {/* Timeline */}
           {extras.timeline && extras.timeline.length > 0 && (
             <div style={{ marginBottom: 32 }}>
@@ -468,6 +472,67 @@ export default async function RegulationPage({ params }: Props) {
           <div className="prose-compliance">
             <Content />
           </div>
+
+          {/* Industries Affected — Colorado AI Act only */}
+          {slug === "colorado-ai-act" && (
+            <div style={{ marginTop: 40, marginBottom: 40 }}>
+              <div className="eyebrow" style={{ marginBottom: 12 }}>&sect; Industries Most Affected</div>
+              <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: 16 }}>
+                {[
+                  {
+                    icon: "🏥",
+                    name: "Healthcare",
+                    reason: "AI used in diagnosis, coverage decisions, or treatment recommendations is high-risk under SB 24-205.",
+                    guide: null,
+                  },
+                  {
+                    icon: "👔",
+                    name: "HR & Hiring",
+                    reason: "Automated tools for screening, scoring, or ranking job candidates trigger deployer obligations.",
+                    guide: null,
+                  },
+                  {
+                    icon: "🏦",
+                    name: "Financial Services",
+                    reason: "Credit scoring, lending decisions, and underwriting algorithms are explicitly covered by the Act.",
+                    guide: null,
+                  },
+                  {
+                    icon: "🛡️",
+                    name: "Insurance",
+                    reason: "AI-driven underwriting or claims decisions affecting Colorado policyholders require impact assessments.",
+                    guide: null,
+                  },
+                ].map((industry) => (
+                  <div key={industry.name} className="card" style={{ padding: 20 }}>
+                    <div style={{ fontSize: 28, marginBottom: 8 }}>{industry.icon}</div>
+                    <div className="h4" style={{ marginBottom: 6 }}>{industry.name}</div>
+                    <p className="xs" style={{ color: "var(--ink-2)", lineHeight: 1.55 }}>{industry.reason}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Penalties callout — Colorado AI Act only */}
+          {slug === "colorado-ai-act" && (
+            <div
+              className="card"
+              style={{
+                marginTop: 32,
+                marginBottom: 32,
+                padding: "20px 24px",
+                borderLeft: "4px solid var(--accent)",
+                background: "var(--paper-2)",
+              }}
+            >
+              <div className="eyebrow" style={{ marginBottom: 6, color: "var(--accent)" }}>⚠ Penalty exposure</div>
+              <div className="h3 serif" style={{ color: "var(--accent)" }}>Up to $20,000 per violation</div>
+              <p className="small" style={{ marginTop: 8, color: "var(--ink-2)" }}>
+                Enforced by the Colorado Attorney General under the Colorado Consumer Protection Act. A 60-day cure window applies for non-willful violations — but only if you have an active compliance program.
+              </p>
+            </div>
+          )}
 
           {/* Penalties */}
           {extras.penalties && extras.penalties.length > 1 && (
