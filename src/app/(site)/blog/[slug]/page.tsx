@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
+import {
+  breadcrumbListSchema,
+  blogArticleSchema,
+  speakableSchema,
+  jsonLdScriptProps,
+} from "@/lib/jsonld";
 import { BlogCover } from "@/components/blog/BlogCover";
 import { SITE_URL, BRAND_EMAIL_EDITORS } from "@/lib/brand";
 
@@ -4611,18 +4616,36 @@ export default async function BlogPostPage({ params }: Props) {
   const post = POSTS[slug];
   if (!post) notFound();
 
+  const pageUrl = `/blog/${slug}`;
   const breadcrumbs = breadcrumbListSchema([
     { name: "Home", url: "/" },
     { name: "The Ledger", url: "/blog" },
-    { name: post.title, url: `/blog/${slug}` },
+    { name: post.title, url: pageUrl },
   ]);
+
+  const schemas = [
+    breadcrumbs,
+    blogArticleSchema({
+      headline: post.title,
+      description: post.excerpt,
+      url: pageUrl,
+      datePublished: post.date,
+      category: post.category,
+      tags: post.tags,
+      wordCount: post.body.split(/\s+/).length,
+    }),
+    speakableSchema({
+      url: pageUrl,
+      cssSelectors: [".ledger-hero h1", ".ledger-hero .dek", ".ledger-article-body h2"],
+    }),
+  ];
 
   const headings = extractHeadings(post.body);
   const issueNo = Object.keys(POSTS).indexOf(slug) + 1;
 
   return (
     <div className="ledger-wrap">
-      <script {...jsonLdScriptProps(breadcrumbs)} />
+      <script {...jsonLdScriptProps(schemas)} />
 
       {/* Compact masthead */}
       <header className="ledger-masthead">

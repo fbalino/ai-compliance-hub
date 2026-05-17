@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
-import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
+import { breadcrumbListSchema, speakableSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import { getGlossaryTerm, getAllGlossarySlugs } from "@/lib/glossary";
 import { SITE_URL } from "@/lib/brand";
 
@@ -58,6 +58,10 @@ export default async function GlossaryTermPage({ params }: Props) {
         url: `${SITE_URL}/glossary`,
       },
     },
+    speakableSchema({
+      url: `/glossary/${term}`,
+      cssSelectors: [".page-banner h1", ".page-banner .lede"],
+    }),
   ];
 
   return (

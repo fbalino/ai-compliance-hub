@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Stethoscope, Users, Landmark, Shield } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
-import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
+import { breadcrumbListSchema, comparisonArticleSchema, speakableSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import { SITE_URL } from "@/lib/brand";
 
 export const revalidate = false;
@@ -70,16 +70,30 @@ export default function AIRegulationByIndustryPage() {
     { name: "AI Regulation by Industry", url: "/compare/ai-regulation-by-industry" },
   ]);
 
-  const schema = {
-    "@context": "https://schema.org", "@type": "Article",
-    headline: "AI Regulation by Industry: Healthcare, HR, Fintech & Insurance (2026)",
-    description: "Industry compliance matrix showing which AI regulations apply to healthcare, HR-recruiting, fintech, and insurance.",
-    url: `${SITE_URL}/compare/ai-regulation-by-industry`, dateModified: "2026-04-14",
-  };
+  const schemas = [
+    breadcrumbs,
+    comparisonArticleSchema({
+      headline: "AI Regulation by Industry: Healthcare, HR, Fintech & Insurance (2026)",
+      description: "Industry compliance matrix showing which AI regulations apply to healthcare, HR-recruiting, fintech, and insurance.",
+      url: `/compare/ai-regulation-by-industry`,
+      datePublished: "2026-04-14",
+      dateModified: "2026-04-14",
+      aboutRegulations: [
+        { name: "EU AI Act", url: `${SITE_URL}/regulations/eu-ai-act` },
+        { name: "NYC Local Law 144", url: `${SITE_URL}/regulations/nyc-local-law-144` },
+        { name: "Colorado AI Act", url: `${SITE_URL}/regulations/colorado-ai-act` },
+        { name: "Illinois AIVIRA", url: `${SITE_URL}/regulations/illinois-ai-video-interview-act` },
+      ],
+    }),
+    speakableSchema({
+      url: `/compare/ai-regulation-by-industry`,
+      cssSelectors: [".page-banner h1", ".page-banner .lede"],
+    }),
+  ];
 
   return (
     <>
-      <script {...jsonLdScriptProps([breadcrumbs, schema])} />
+      <script {...jsonLdScriptProps(schemas)} />
 
       <div className="page-banner">
         <div className="container" style={{ maxWidth: 1100, padding: 0 }}>

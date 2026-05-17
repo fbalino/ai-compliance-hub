@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Flag, Globe, Check } from "lucide-react";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
-import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
+import { breadcrumbListSchema, comparisonArticleSchema, speakableSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import { SITE_URL } from "@/lib/brand";
 
 export const revalidate = false;
@@ -61,16 +61,28 @@ export default function NistVsIsoPage() {
     { name: "NIST AI RMF vs. ISO/IEC 42001", url: "/compare/compliance-frameworks-nist-vs-iso-42001" },
   ]);
 
-  const schema = {
-    "@context": "https://schema.org", "@type": "Article",
-    headline: "NIST AI RMF vs. ISO/IEC 42001: Which Framework Should You Use? (2026)",
-    description: "Side-by-side comparison of NIST AI RMF 1.0 and ISO/IEC 42001 \u2014 coverage, certification, cost, timeline, and regulatory alignment.",
-    url: `${SITE_URL}/compare/compliance-frameworks-nist-vs-iso-42001`, dateModified: "2026-04-14",
-  };
+  const schemas = [
+    breadcrumbs,
+    comparisonArticleSchema({
+      headline: "NIST AI RMF vs. ISO/IEC 42001: Which Framework Should You Use? (2026)",
+      description: "Side-by-side comparison of NIST AI RMF 1.0 and ISO/IEC 42001 \u2014 coverage, certification, cost, timeline, and regulatory alignment.",
+      url: `/compare/compliance-frameworks-nist-vs-iso-42001`,
+      datePublished: "2026-04-14",
+      dateModified: "2026-04-14",
+      aboutRegulations: [
+        { name: "NIST AI RMF", url: `${SITE_URL}/regulations/nist-ai-rmf` },
+        { name: "ISO/IEC 42001", url: `${SITE_URL}/regulations/iso-42001` },
+      ],
+    }),
+    speakableSchema({
+      url: `/compare/compliance-frameworks-nist-vs-iso-42001`,
+      cssSelectors: [".page-banner h1", ".page-banner .lede"],
+    }),
+  ];
 
   return (
     <>
-      <script {...jsonLdScriptProps([breadcrumbs, schema])} />
+      <script {...jsonLdScriptProps(schemas)} />
 
       <div className="page-banner">
         <div className="container" style={{ maxWidth: 1100, padding: 0 }}>

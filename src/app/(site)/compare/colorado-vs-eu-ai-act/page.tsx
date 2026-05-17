@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Mountain, Globe, Check } from "lucide-react";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
-import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
+import { breadcrumbListSchema, comparisonArticleSchema, speakableSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import { SITE_URL } from "@/lib/brand";
 
 export const revalidate = false;
@@ -46,16 +46,28 @@ export default function ColoradoVsEuPage() {
     { name: "Colorado AI Act vs. EU AI Act", url: "/compare/colorado-vs-eu-ai-act" },
   ]);
 
-  const schema = {
-    "@context": "https://schema.org", "@type": "Article",
-    headline: "Colorado AI Act vs. EU AI Act: Complete Comparison (2026)",
-    description: "Side-by-side comparison of the Colorado AI Act and EU AI Act on scope, obligations, risk classification, and penalties.",
-    url: `${SITE_URL}/compare/colorado-vs-eu-ai-act`, dateModified: "2026-04-13",
-  };
+  const schemas = [
+    breadcrumbs,
+    comparisonArticleSchema({
+      headline: "Colorado AI Act vs. EU AI Act: Complete Comparison (2026)",
+      description: "Side-by-side comparison of the Colorado AI Act and EU AI Act on scope, obligations, risk classification, and penalties.",
+      url: `/compare/colorado-vs-eu-ai-act`,
+      datePublished: "2026-04-13",
+      dateModified: "2026-04-13",
+      aboutRegulations: [
+        { name: "Colorado AI Act", url: `${SITE_URL}/regulations/colorado-ai-act` },
+        { name: "EU AI Act", url: `${SITE_URL}/regulations/eu-ai-act` },
+      ],
+    }),
+    speakableSchema({
+      url: `/compare/colorado-vs-eu-ai-act`,
+      cssSelectors: [".page-banner h1", ".page-banner .lede"],
+    }),
+  ];
 
   return (
     <>
-      <script {...jsonLdScriptProps([breadcrumbs, schema])} />
+      <script {...jsonLdScriptProps(schemas)} />
 
       <div className="page-banner">
         <div className="container" style={{ maxWidth: 1100, padding: 0 }}>

@@ -6,6 +6,7 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import {
   breadcrumbListSchema,
   regulationArticleSchema,
+  speakableSchema,
   jsonLdScriptProps,
 } from "@/lib/jsonld";
 import { getRegulationBySlug, getAllRegulationSlugs } from "@/lib/regulations";
@@ -362,6 +363,10 @@ export default async function RegulationPage({ params }: Props) {
       datePublished: frontmatter.publishedAt ?? today,
       dateModified: frontmatter.updatedAt ?? today,
       faqs: frontmatter.faqs,
+    }),
+    speakableSchema({
+      url: pageUrl,
+      cssSelectors: [".page-banner h1", ".page-banner .lede", ".prose-compliance h2", ".prose-compliance h3"],
     }),
   ];
 

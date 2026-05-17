@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Mountain, Landmark, Wheat, TreePine } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
-import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
+import { breadcrumbListSchema, comparisonArticleSchema, speakableSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import { SITE_URL } from "@/lib/brand";
 
 export const revalidate = false;
@@ -52,16 +52,30 @@ export default function UsStateAiLawsPage() {
     { name: "US State AI Laws Compared", url: "/compare/us-state-ai-laws" },
   ]);
 
-  const schema = {
-    "@context": "https://schema.org", "@type": "Article",
-    headline: "US State AI Laws Compared: Colorado, NYC, Illinois & California (2026)",
-    description: "Side-by-side comparison of the four most significant US state and local AI compliance laws.",
-    url: `${SITE_URL}/compare/us-state-ai-laws`, dateModified: "2026-04-13",
-  };
+  const schemas = [
+    breadcrumbs,
+    comparisonArticleSchema({
+      headline: "US State AI Laws Compared: Colorado, NYC, Illinois & California (2026)",
+      description: "Side-by-side comparison of the four most significant US state and local AI compliance laws.",
+      url: `/compare/us-state-ai-laws`,
+      datePublished: "2026-04-13",
+      dateModified: "2026-04-13",
+      aboutRegulations: [
+        { name: "Colorado AI Act", url: `${SITE_URL}/regulations/colorado-ai-act` },
+        { name: "NYC Local Law 144", url: `${SITE_URL}/regulations/nyc-local-law-144` },
+        { name: "Illinois AIVIRA", url: `${SITE_URL}/regulations/illinois-ai-video-interview-act` },
+        { name: "California AB 2013", url: `${SITE_URL}/regulations/california-ab-2013` },
+      ],
+    }),
+    speakableSchema({
+      url: `/compare/us-state-ai-laws`,
+      cssSelectors: [".page-banner h1", ".page-banner .lede"],
+    }),
+  ];
 
   return (
     <>
-      <script {...jsonLdScriptProps([breadcrumbs, schema])} />
+      <script {...jsonLdScriptProps(schemas)} />
 
       <div className="page-banner">
         <div className="container" style={{ maxWidth: 1100, padding: 0 }}>
