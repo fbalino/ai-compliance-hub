@@ -2,24 +2,23 @@ export const frontmatter = {
   name: "Colorado AI Act (SB 24-205, as amended by SB 26-189)",
   shortName: "CO AI Act",
   description:
-    "Colorado's landmark AI regulation requiring deployers of high-risk AI systems to use reasonable care to protect consumers from known risks of algorithmic discrimination. Substantially rewritten by SB 26-189 (May 2026) with a new effective date of January 1, 2027.",
+    "Colorado AI Act (SB 24-205, amended by SB 26-189): deployer obligations, January 1, 2027 deadline, NIST AI RMF safe harbor, and $20,000 per-consumer penalty risk explained.",
   jurisdiction: "US · Colorado",
   status: "enacted",
   effectiveDate: "January 1, 2027",
   enforcementDate: "January 1, 2027",
   maxPenalty: "$20,000 per violation",
   publishedAt: "2024-05-17",
-  updatedAt: "2026-05-14",
+  updatedAt: "2026-05-17",
   toc: [
-    { id: "overview", label: "Overview" },
-    { id: "sb-26-189-update", label: "SB 26-189 Update (May 2026)" },
-    { id: "who-it-applies-to", label: "Who It Applies To" },
-    { id: "high-risk-ai-systems", label: "High-Risk AI Systems" },
-    { id: "key-requirements", label: "Key Requirements" },
-    { id: "compliance-timeline", label: "Compliance Timeline" },
-    { id: "penalties", label: "Penalties & Enforcement" },
-    { id: "compliance-checklist", label: "Compliance Checklist (PDF)" },
-    { id: "faqs", label: "Frequently Asked Questions" },
+    { id: "what-changed-with-sb-26-189-may-2026", label: "What Changed (SB 26-189)" },
+    { id: "are-you-a-deployer-run-this-test-first", label: "Are You a Deployer?" },
+    { id: "what-deployers-must-do", label: "Deployer Obligations" },
+    { id: "what-developers-must-do", label: "Developer Obligations" },
+    { id: "the-safe-harbor-document-your-framework", label: "Safe Harbor" },
+    { id: "the-penalty-structure", label: "Penalties" },
+    { id: "the-enforcement-reality-as-of-may-2026", label: "Enforcement Reality" },
+    { id: "your-compliance-checklist", label: "Compliance Checklist" },
   ],
   relatedRegulations: [
     { slug: "eu-ai-act", name: "EU AI Act" },
@@ -33,7 +32,7 @@ export const frontmatter = {
     {
       question: "When does the Colorado AI Act take effect?",
       answer:
-        "The effective date has been moved to January 1, 2027 under SB 26-189, which substantially rewrote the original law. The previous June 30, 2026 date no longer applies.",
+        "The original effective date was June 30, 2026, but SB 26-189 (passed May 2026) moved it to January 1, 2027. The AG must also complete mandatory rulemaking before full enforcement begins.",
     },
     {
       question: "What is SB 26-189 and how does it change the Colorado AI Act?",
@@ -46,14 +45,14 @@ export const frontmatter = {
         "Yes. Any organization deploying AI systems that make consequential decisions affecting Colorado consumers must comply, regardless of where the business is headquartered.",
     },
     {
-      question: "What is a 'high-risk AI system' under the Colorado AI Act?",
+      question: "What is a 'deployer' under the Colorado AI Act?",
       answer:
-        "A high-risk AI system is any AI that makes, or is a substantial factor in making, a consequential decision — including credit, education, employment, healthcare, housing, insurance, and legal services decisions for Colorado consumers.",
+        "A deployer is any organization that uses an AI system to make or substantially influence a consequential decision — in employment, credit, education, healthcare, housing, insurance, or legal services — affecting a Colorado consumer.",
     },
     {
       question: "What are the penalties for non-compliance?",
       answer:
-        "The Colorado Attorney General can impose civil penalties of up to $20,000 per violation. Businesses that discover a violation and cure it within 60 days may avoid penalties under the cure provision.",
+        "The Colorado Attorney General can impose civil penalties of up to $20,000 per violation per consumer. The AG must issue a 60-day cure notice before formal enforcement, and deployers who demonstrate NIST AI RMF alignment benefit from a safe harbor.",
     },
     {
       question: "Has the Attorney General published guidance yet?",
@@ -63,203 +62,188 @@ export const frontmatter = {
   ],
 };
 
-## Overview
-
-Colorado SB 24-205, signed May 17, 2024 by Governor Jared Polis, was the first US state law to impose impact assessment and disclosure requirements on companies that use AI to make consequential decisions affecting Colorado residents. SB 26-189, passed May 9, 2026, substantially rewrote the original text and moved the effective date to January 1, 2027.
-
-The law's central obligation is not a compliance checklist — it is a reasonable-care standard. Under §6-1-1702, any company deploying a high-risk AI system must take reasonable care to prevent algorithmic discrimination based on protected characteristics: race, color, ethnicity, national origin, sex, religion, age, disability, and genetic information.
-
-Two categories of companies face separate duties. Developers — companies that build AI systems for others to deploy — must supply documentation covering training data, known discrimination risks, and performance metrics across protected classes. Deployers — companies integrating those systems into their own products and services — must run impact assessments, publish consumer disclosures, and build a human appeal process before each high-risk deployment.
-
-**The law was substantially rewritten by SB 26-189 (passed May 9, 2026). See the SB 26-189 Update section below for critical changes.**
+*Colorado SB 24-205 | Effective January 1, 2027 | AG enforcement authority — no private right of action*
 
 ---
 
-## SB 26-189 Update (May 2026)
+## What Changed With SB 26-189 (May 2026)
 
-**SB 26-189** passed the Colorado legislature on **May 9, 2026**, substantially rewriting the Colorado AI Act. Key changes:
+If you've been following the Colorado AI Act since 2024, your compliance calendar is out of date.
 
-- **New effective date: January 1, 2027.** The original June 30, 2026 enforcement date no longer applies.
-- **Mandatory AG rulemaking.** The Attorney General must conduct formal rulemaking before enforcement. This process has not yet begun as of May 2026.
-- **AG guidance never published.** The February 1, 2026 deadline for AG implementing guidance was never met. SB 26-189 replaces the guidance requirement with mandatory formal rulemaking.
-- **Enforcement currently stayed.** A federal magistrate issued a stay of enforcement on April 27, 2026. The stay remains in effect pending resolution.
+SB 26-189 — passed May 9, 2026 — substantially rewrote the original law. The key changes:
 
-Organizations should use the January 1, 2027 date for compliance planning, but monitor the rulemaking process and stay status for updates.
+- **Effective date moved from June 30, 2026 to January 1, 2027.** The original deadline is gone.
+- **Mandatory AG rulemaking** — the Attorney General must now issue formal implementing regulations before the law takes full effect. That rulemaking has not yet started.
+- **Enforcement stayed** — a federal magistrate stayed enforcement as of April 27, 2026. The stay is ongoing.
+- **Small business provisions revised** — the exemption thresholds were adjusted, but they remain narrow. Don't assume you qualify.
 
----
-
-## Who It Applies To
-
-The Colorado AI Act creates obligations for two distinct roles. The same company can be both a developer (for AI it licenses to others) and a deployer (for AI it uses internally) — and must meet both sets of requirements where that applies.
-
-| Role | Definition | Primary Obligation |
-|------|-----------|-------------------|
-| **Developer** | Creates a high-risk AI system for deployment by others | Provide documentation; disclose known discrimination risks |
-| **Deployer** | Integrates a high-risk AI system into its products/services | Impact assessment; consumer disclosures; appeal process |
+The practical implication: you have more time than you thought, but the law is not going away. Use the runway to build the program you'd need anyway when the enforcement stay lifts and rulemaking concludes.
 
 ---
 
-## High-Risk AI Systems
+## Are You a Deployer? Run This Test First
 
-A **high-risk AI system** is any AI system that makes, or is a substantial factor in making, a **consequential decision** in one of these categories:
+Most compliance work under the Colorado AI Act falls on **deployers** — the companies using AI to make decisions — not developers. If you're building an AI product for someone else, your obligations are narrower (primarily documentation and disclosure to deployers downstream from you).
 
-- **Education** — enrollment, financial aid
-- **Employment** — hiring, termination, compensation, promotion
-- **Financial services** — credit, lending, insurance underwriting
-- **Healthcare** — diagnosis, treatment, coverage decisions
-- **Housing** — rental, mortgage, real estate
-- **Legal services** — access to legal representation
-- **Essential government services** — benefits, licensing
+**You are a deployer under Colorado AI Act if:**
 
-### What Is NOT High-Risk?
+All three of these are true:
+1. You use an AI system that makes a **consequential decision** or is a **substantial factor** in one
+2. That decision affects a **Colorado consumer**
+3. The decision is in one of these domains:
+   - **Employment**: hiring, promotion, termination, compensation, scheduling, performance evaluation
+   - **Credit and lending**: loan approvals, credit limits, interest rates, lease decisions
+   - **Education**: admissions, financial aid, academic evaluation, credentialing
+   - **Healthcare**: diagnosis, treatment recommendations, medication decisions
+   - **Housing**: rental applications, purchase decisions, pricing
+   - **Insurance**: applications, underwriting, claims decisions, pricing
+   - **Legal services**: legal representation, referrals, bail, sentencing
+   - **Government services**: access to essential government benefits
 
-The law explicitly excludes:
-- Cybersecurity applications
-- Anti-fraud systems
-- AI used solely for research, testing, or development
-- AI systems that only assist humans who make final decisions (with proper disclosure)
+You do **not** need to be headquartered in Colorado. If your AI affects Colorado residents in these domains — even if your company has no Colorado presence — you are covered.
 
----
-
-## Key Requirements
-
-### For Deployers
-
-Deployers have five concrete obligations under §6-1-1706 before and during deployment of any high-risk AI system.
-
-1. **Impact Assessment (before first deployment)**
-
-   Conduct a written impact assessment before deploying any high-risk AI system. Under §6-1-1706(1), the assessment must document:
-   - The system's intended purpose and deployment context
-   - Known risks of algorithmic discrimination and the protected classes at risk
-   - The deployer's policies for mitigating those risks
-   - Performance metrics across protected classes where available from the developer
-
-   Assessments must be updated at least annually or whenever a material change is made to the AI system (§6-1-1706(4)).
-
-2. **Consumer Disclosure (at decision point)**
-
-   When a high-risk AI system makes a consequential decision, notify the affected consumer in writing:
-   - That a high-risk AI system was used in the decision
-   - The type and general purpose of the AI system
-   - The deployer's contact information
-   - How to request a human review of the decision
-
-   The disclosure must be provided at or near the time of the decision — not buried in a privacy policy.
-
-3. **Right to Appeal / Human Review**
-
-   Provide consumers the ability to appeal consequential decisions made or substantially influenced by a high-risk AI system. The appeal process must result in meaningful human review — not a second pass through the same algorithm.
-
-4. **Non-Discrimination Policy**
-
-   Adopt a written governance policy committing to managing known algorithmic discrimination risks. This policy must be documented and retained — it forms part of the compliance record the AG can request under §6-1-1708(2).
-
-5. **Incident Reporting (90-day window)**
-
-   If a high-risk AI system causes or is reasonably likely to cause algorithmic discrimination, notify the Colorado Attorney General within 90 days of discovery. Notification must describe the system, the affected population, and the remediation steps taken or planned.
-
-### For Developers
-
-1. **Transparency Documentation**
-   Provide deployers with documentation covering:
-   - Intended uses and known high-risk use cases
-   - Known limitations and risks of algorithmic discrimination
-   - Summary of training data
-   - Performance metrics across protected classes
-
-2. **Contractual Obligations**
-   Include terms in deployer contracts requiring the deployer to comply with the Act.
+**If you're still not sure:** The safest question to ask is: "Does this AI system's output affect whether a Colorado resident gets a job, a loan, an apartment, or healthcare?" If yes, treat yourself as in scope.
 
 ---
 
-## Compliance Timeline
+## What Deployers Must Do
 
-| Date | Milestone |
-|------|-----------|
-| **May 17, 2024** | SB 24-205 signed into law |
-| **February 1, 2026** | Original AG guidance deadline — **guidance was never published** |
-| **April 27, 2026** | Federal magistrate stays enforcement pending litigation |
-| **May 9, 2026** | **SB 26-189 passes, substantially rewriting the law** |
-| ~~June 30, 2026~~ | ~~Original effective date~~ — **no longer applies** |
-| **January 1, 2027** | **New effective date under SB 26-189** |
-| **TBD** | AG formal rulemaking (mandated by SB 26-189 but not yet started) |
+The Colorado AI Act requires deployers of high-risk AI to exercise **reasonable care** to prevent **algorithmic discrimination** — differential treatment that disadvantages individuals based on protected characteristics.
 
----
+Here's what reasonable care looks like in practice:
 
-## Penalties & Enforcement
+### 1. Conduct an Impact Assessment
 
-The Colorado Attorney General has exclusive enforcement authority. There is no private right of action.
+Before deploying a high-risk AI, and annually thereafter, you need an impact assessment that documents:
 
-- **Civil penalties**: Up to **$20,000 per violation**
-- **Cure period**: 60-day cure opportunity before penalties attach (if the violation was not willful)
-- **Injunctive relief**: AG can seek court orders to stop non-compliant practices
+- The AI system's intended purpose and use case
+- The categories of data the system processes
+- The potential benefits and risks of the deployment
+- Steps taken to test and mitigate discrimination risks
+- The level of human oversight involved
 
-### The 60-Day Cure Window (§6-1-1709)
+The NIST AI RMF is explicitly recognized as a framework for satisfying the reasonable care standard — if you're already building a NIST-aligned program, your impact assessment is part of that.
 
-If the AG notifies you of a violation and you implement a documented cure plan within 60 days, penalties can be avoided for non-willful violations. This makes the impact assessment and governance policy doubly important: organizations with documented compliance programs have a cure plan ready before a violation is discovered — and can demonstrate good-faith remediation credibly. Organizations with no documentation have nothing to cure from.
+**Key point:** The impact assessment is not a checkbox. It needs to actually document your testing and mitigation work. "We reviewed the system and it seems fine" will not survive an AG investigation.
 
-### Current Enforcement Status
+### 2. Maintain a Risk Management Program
 
-Enforcement is currently **stayed** by a federal magistrate (order issued April 27, 2026). Additionally, SB 26-189 mandates formal AG rulemaking before enforcement can begin, and that rulemaking process has not yet started. Monitor [coag.gov/ai](https://coag.gov/ai/) for updates.
+You need documented processes for identifying, assessing, and mitigating the discrimination risks from your AI systems. This is ongoing, not one-time.
 
----
+The AG's enforcement authority includes examining whether deployers have a functioning risk management program — not just whether they have paperwork.
 
-## Compliance Checklist
+### 3. Notify Consumers
 
-Follow this checklist to prepare for the **January 1, 2027** effective date:
+When an AI system makes a consequential decision about a Colorado consumer, you must:
 
-Complete these 12 steps before the Colorado AI Act enforcement date:
+- Notify the consumer that AI was used in the decision
+- Give them the principal reason(s) for an adverse decision
+- Tell them how to appeal or request human review
 
-1. ☐ **Inventory all AI systems.** Map every AI system used in decision-making and identify which ones affect Colorado consumers.
+This applies to employment decisions, credit denials, insurance adverse actions, and the other consequential decision categories.
 
-2. ☐ **Classify each system as high-risk or not.** Does it make consequential decisions in a covered category (education, employment, financial services, healthcare, housing, legal, government)? If yes, it is high-risk.
+### 4. Respond to Correction Requests
 
-3. ☐ **Conduct a written impact assessment** for each high-risk system. Document the system's purpose, training data, known discrimination risks, performance metrics across protected classes, and your mitigation policies.
+Consumers can request correction of incorrect information that was used in an AI-driven consequential decision. You need a process to handle these requests.
 
-4. ☐ **Update consumer-facing disclosures.** Add clear notices anywhere a high-risk AI system contributes to a consequential decision — including at the point of interaction.
+### 5. Document Your Developer Relationships
 
-5. ☐ **Build a consumer appeal process.** Create a mechanism for affected consumers to request human review of any adverse AI-driven decision within a reasonable timeframe.
+If you're using a third-party AI product, you need:
 
-6. ☐ **Audit vendor contracts.** If you use third-party AI tools (hiring software, credit models, clinical decision support), ensure contracts require the vendor to provide developer-level disclosures and documentation.
+- Documentation from the developer about how the system works, what bias testing was done, and what discrimination risks exist
+- A contract that allocates compliance responsibilities appropriately
+- Your own testing and monitoring on top of what the developer provides
 
-7. ☐ **Establish an incident reporting workflow.** If your AI causes or is likely to cause algorithmic discrimination, you must notify the Colorado AG within 90 days of discovery.
-
-8. ☐ **Implement a written non-discrimination policy.** Adopt a governance policy committing to managing known algorithmic discrimination risks across all high-risk systems.
-
-9. ☐ **Align your governance to NIST AI RMF.** Documenting alignment to NIST Govern, Map, Measure, and Manage functions creates a safe-harbor defense under AG guidance.
-
-10. ☐ **Train responsible staff.** Ensure everyone who oversees or operates high-risk AI systems understands the Act's requirements and your internal compliance procedures.
-
-11. ☐ **Schedule annual assessment renewals.** Impact assessments must be updated at least once per year or whenever a significant change is made to the system.
-
-12. ☐ **Document everything.** Maintain a compliance file with impact assessments, governance policies, consumer disclosure templates, incident response procedures, and vendor documentation.
-
-9. **Monitor the rulemaking.** Watch for the AG's formal rulemaking process mandated by SB 26-189. Final rules may modify specific compliance requirements.
+Your vendor's compliance documentation helps your case, but it doesn't satisfy your obligations as a deployer. You need to test the system in your deployment context.
 
 ---
 
-## Frequently Asked Questions
+## What Developers Must Do
 
-**When does the Colorado AI Act take effect?**
-January 1, 2027 (under SB 26-189). The original June 30, 2026 date no longer applies.
+If you build AI systems and sell them to deployers, your obligations are narrower:
 
-**Does it apply to my out-of-state company?**
-Yes, if you deploy high-risk AI that makes consequential decisions affecting Colorado consumers, regardless of where your company is based.
+- **Disclose** to deployers how the system works, what risks exist, and what bias testing was done
+- **Make the disclosures the deployer needs** to conduct their impact assessment
+- **Cooperate** with deployer audits and correction requests where your system is involved
 
-**We use a third-party AI tool for hiring. Are we responsible?**
-Yes — as the deployer, you bear compliance responsibility even if you didn't build the AI. You should obtain the required developer documentation from your vendor and ensure the tool is covered by your impact assessment.
-
-**What if our AI only flags candidates for human review — are we still in scope?**
-If the AI is a "substantial factor" in the final decision, yes. Purely advisory AI with documented human override (and proper disclosure) may be treated differently, but consult legal counsel on your specific workflow.
-
-**Has the Attorney General published implementing guidance?**
-No. The February 1, 2026 guidance deadline was never met. SB 26-189 replaces the guidance requirement with mandatory formal rulemaking, but that process has not yet begun as of May 2026.
+Developer obligations are primarily about transparency downstream to deployers — not about directly managing consumer relationships.
 
 ---
 
-## Official Sources
+## The Safe Harbor: Document Your Framework
 
-- [SB 24-205 full text (Colorado General Assembly)](https://leg.colorado.gov/bills/sb24-205)
-- [SB 26-189 full text (Colorado General Assembly)](https://leg.colorado.gov/bills/sb26-189)
-- [Colorado Attorney General — AI resources](https://coag.gov/ai/)
+The law includes an important safe harbor: deployers who demonstrate reasonable care through alignment with recognized AI risk management frameworks are treated more favorably in enforcement.
+
+**What this means in practice:** If the Colorado AG investigates your AI deployment and you can show:
+- A documented impact assessment
+- A functioning risk management program aligned with NIST AI RMF or equivalent
+- Evidence of bias testing and ongoing monitoring
+- Records of consumer notifications and correction processes
+
+...you are in a fundamentally different position than a deployer who deployed without documentation and is responding reactively to an enforcement action.
+
+The safe harbor is not absolute — you can still violate the law even with documentation. But documented reasonable care is your primary defense.
+
+---
+
+## The Penalty Structure
+
+The Colorado AG has exclusive enforcement authority — there is no private right of action under this law (no class action plaintiffs).
+
+**Maximum penalty:** $20,000 per violation per consumer.
+
+**Important:** The AG must issue a 60-day cure notice before initiating formal enforcement. If you have a documented compliance program and act in good faith to correct identified issues within the cure period, that meaningfully reduces your risk exposure.
+
+The $20,000 figure becomes significant quickly in hiring contexts: if an AI hiring tool discriminated against 500 candidates in Colorado, the exposure math is uncomfortable even at partial enforcement.
+
+---
+
+## The Enforcement Reality (As of May 2026)
+
+**Current status:** Enforcement is stayed by a federal magistrate order (April 27, 2026). The stay is ongoing pending resolution of the related litigation.
+
+**AG rulemaking:** SB 26-189 requires mandatory rulemaking before the law takes full effect. That rulemaking has not yet started. Formal implementing regulations could significantly clarify or modify some requirements.
+
+**What this means for your program:** Don't stop building compliance infrastructure because of the stay. The stay is litigation-related and could lift. Rulemaking will establish clearer standards — you want to be positioned to meet them when they arrive, not scrambling after they're final.
+
+---
+
+## Your Compliance Checklist
+
+Work through these before January 1, 2027:
+
+**Phase 1 — Scope assessment (do this first)**
+- Identify all AI systems that make or substantially influence consequential decisions about Colorado residents
+- Confirm which systems meet the high-risk threshold
+- Determine which third-party AI products you deploy that qualify
+
+**Phase 2 — Documentation**
+- Conduct impact assessments for each in-scope deployment
+- Document your risk management program (NIST AI RMF or equivalent)
+- Document bias testing results and methodology
+- Establish ongoing monitoring schedule
+
+**Phase 3 — Vendor management**
+- Collect developer documentation for all third-party high-risk AI
+- Update contracts to allocate AI compliance responsibilities
+- Verify developer bias testing covers your specific deployment context
+
+**Phase 4 — Consumer-facing processes**
+- Implement AI disclosure notices for consequential decisions
+- Build adverse action notice process (principal reasons + appeal path)
+- Create a correction request intake and response process
+
+**Phase 5 — Ongoing monitoring**
+- Set annual impact assessment review schedule
+- Establish bias testing cadence for each high-risk deployment
+- Brief relevant teams on consumer notification obligations
+
+For a step-by-step version of this checklist with implementation detail, see the [Colorado AI Act Compliance Checklist](/blog/colorado-ai-act-60-day-checklist) (updated for SB 26-189).
+
+---
+
+## Official Resources
+
+- [SB 24-205 (as enrolled)](https://leg.colorado.gov/bills/sb24-205)
+- [SB 26-189 (amendment)](https://leg.colorado.gov/bills/sb26-189)
+- [Colorado AG AI enforcement information](https://coag.gov/)

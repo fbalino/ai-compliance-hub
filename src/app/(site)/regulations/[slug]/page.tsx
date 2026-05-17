@@ -105,8 +105,8 @@ const REG_EXTRAS: Record<string, {
   "colorado-ai-act": {
     timeline: [
       { date: "May 2024", label: "Signed into law", reached: true },
-      { date: "Jan 2025", label: "Guidance published", reached: true },
-      { date: "Jun 2026", label: "Enforcement begins", reached: false },
+      { date: "May 2026", label: "SB 26-189 amendment", reached: true },
+      { date: "Jan 2027", label: "Effective (amended)", reached: false },
     ],
     penalties: [
       { tier: "Per violation", amount: "$20,000", scope: "each violation \u00b7 AG enforcement only" },
@@ -121,6 +121,7 @@ const REG_EXTRAS: Record<string, {
     ],
     sources: [
       { label: "SB 24-205 full text (Colorado Legislature)", url: "https://leg.colorado.gov/bills/sb24-205" },
+      { label: "SB 26-189 amendment (Colorado Legislature)", url: "https://leg.colorado.gov/bills/sb26-189" },
       { label: "Attorney General guidance", url: "https://coag.gov/resources/colorado-artificial-intelligence-act/" },
     ],
   },
@@ -254,7 +255,7 @@ const REG_EXTRAS: Record<string, {
       { date: "Oct 2023", label: "EO 14110 issued", reached: true },
       { date: "Mar 2024", label: "OMB M-24-10", reached: true },
       { date: "Jul 2024", label: "GenAI Profile", reached: true },
-      { date: "Jun 2026", label: "Colorado safe harbor", reached: false },
+      { date: "Jan 2027", label: "Colorado safe harbor", reached: false },
     ],
     penalties: [
       { tier: "Framework", amount: "Voluntary", scope: "no direct penalties" },
