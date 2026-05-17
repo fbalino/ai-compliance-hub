@@ -65,13 +65,13 @@ export const frontmatter = {
 
 ## Overview
 
-The **Colorado Artificial Intelligence Act** (SB 24-205), signed into law in May 2024 by Governor Jared Polis, is the first comprehensive US state AI law to impose substantive obligations on companies deploying AI systems in consequential decision-making contexts.
+Colorado SB 24-205, signed May 17, 2024 by Governor Jared Polis, was the first US state law to impose impact assessment and disclosure requirements on companies that use AI to make consequential decisions affecting Colorado residents. SB 26-189, passed May 9, 2026, substantially rewrote the original text and moved the effective date to January 1, 2027.
 
-Unlike the EU AI Act's prescriptive conformity assessments, the Colorado law centers on a **reasonable care** standard: deployers of high-risk AI systems must take reasonable care to protect consumers from known risks of **algorithmic discrimination** based on protected characteristics.
+The law's central obligation is not a compliance checklist — it is a reasonable-care standard. Under §6-1-1702, any company deploying a high-risk AI system must take reasonable care to prevent algorithmic discrimination based on protected characteristics: race, color, ethnicity, national origin, sex, religion, age, disability, and genetic information.
 
-The law applies to **deployers** (organizations using AI) and **developers** (organizations that develop AI for others) separately, with different — but complementary — obligations for each.
+Two categories of companies face separate duties. Developers — companies that build AI systems for others to deploy — must supply documentation covering training data, known discrimination risks, and performance metrics across protected classes. Deployers — companies integrating those systems into their own products and services — must run impact assessments, publish consumer disclosures, and build a human appeal process before each high-risk deployment.
 
-**The law has been substantially rewritten by SB 26-189 (passed May 9, 2026). See the update section below for critical changes.**
+**The law was substantially rewritten by SB 26-189 (passed May 9, 2026). See the SB 26-189 Update section below for critical changes.**
 
 ---
 
@@ -90,14 +90,7 @@ Organizations should use the January 1, 2027 date for compliance planning, but m
 
 ## Who It Applies To
 
-The Colorado AI Act applies to **any entity** that:
-
-- **Deploys** a high-risk AI system that makes, or is a substantial factor in making, a consequential decision affecting a Colorado consumer, **or**
-- **Develops** a high-risk AI system and permits others to deploy it in Colorado
-
-**There is no revenue threshold, employee count minimum, or residency requirement.** If your AI system touches Colorado consumers in a consequential decision context, you are in scope.
-
-### Developer vs. Deployer
+The Colorado AI Act creates obligations for two distinct roles. The same company can be both a developer (for AI it licenses to others) and a deployer (for AI it uses internally) — and must meet both sets of requirements where that applies.
 
 | Role | Definition | Primary Obligation |
 |------|-----------|-------------------|
@@ -132,24 +125,39 @@ The law explicitly excludes:
 
 ### For Deployers
 
-1. **Risk Assessment (Impact Assessment)**
-   Conduct an impact assessment before deploying any high-risk AI system. The assessment must evaluate the system's known risks of algorithmic discrimination and document the deployer's policies for mitigating those risks.
+Deployers have five concrete obligations under §6-1-1706 before and during deployment of any high-risk AI system.
 
-2. **Consumer Disclosure**
-   When a high-risk AI system makes a consequential decision, notify the affected consumer:
-   - That a high-risk AI system was used
-   - The type of AI system
+1. **Impact Assessment (before first deployment)**
+
+   Conduct a written impact assessment before deploying any high-risk AI system. Under §6-1-1706(1), the assessment must document:
+   - The system's intended purpose and deployment context
+   - Known risks of algorithmic discrimination and the protected classes at risk
+   - The deployer's policies for mitigating those risks
+   - Performance metrics across protected classes where available from the developer
+
+   Assessments must be updated at least annually or whenever a material change is made to the AI system (§6-1-1706(4)).
+
+2. **Consumer Disclosure (at decision point)**
+
+   When a high-risk AI system makes a consequential decision, notify the affected consumer in writing:
+   - That a high-risk AI system was used in the decision
+   - The type and general purpose of the AI system
    - The deployer's contact information
-   - How to request a human review
+   - How to request a human review of the decision
+
+   The disclosure must be provided at or near the time of the decision — not buried in a privacy policy.
 
 3. **Right to Appeal / Human Review**
-   Provide consumers the ability to appeal consequential decisions and receive a meaningful human review.
+
+   Provide consumers the ability to appeal consequential decisions made or substantially influenced by a high-risk AI system. The appeal process must result in meaningful human review — not a second pass through the same algorithm.
 
 4. **Non-Discrimination Policy**
-   Implement a governance program with a written policy stating the deployer's commitment to managing known algorithmic discrimination risks.
 
-5. **Incident Reporting**
-   If the AI system causes or is reasonably likely to cause algorithmic discrimination, notify the Colorado Attorney General within 90 days of discovery.
+   Adopt a written governance policy committing to managing known algorithmic discrimination risks. This policy must be documented and retained — it forms part of the compliance record the AG can request under §6-1-1708(2).
+
+5. **Incident Reporting (90-day window)**
+
+   If a high-risk AI system causes or is reasonably likely to cause algorithmic discrimination, notify the Colorado Attorney General within 90 days of discovery. Notification must describe the system, the affected population, and the remediation steps taken or planned.
 
 ### For Developers
 
@@ -187,9 +195,9 @@ The Colorado Attorney General has exclusive enforcement authority. There is no p
 - **Cure period**: 60-day cure opportunity before penalties attach (if the violation was not willful)
 - **Injunctive relief**: AG can seek court orders to stop non-compliant practices
 
-### The Cure Provision
+### The 60-Day Cure Window (§6-1-1709)
 
-If you discover a violation and implement a cure plan within 60 days of the AG's notification, penalties can be avoided. This makes proactive compliance programs especially valuable.
+If the AG notifies you of a violation and you implement a documented cure plan within 60 days, penalties can be avoided for non-willful violations. This makes the impact assessment and governance policy doubly important: organizations with documented compliance programs have a cure plan ready before a violation is discovered — and can demonstrate good-faith remediation credibly. Organizations with no documentation have nothing to cure from.
 
 ### Current Enforcement Status
 

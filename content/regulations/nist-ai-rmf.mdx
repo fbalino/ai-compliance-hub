@@ -64,25 +64,31 @@ export const frontmatter = {
 
 ## Overview
 
-The **NIST AI Risk Management Framework** (AI RMF 1.0, NIST AI 100-1) is the United States' primary framework for managing risks associated with artificial intelligence systems. Published by the National Institute of Standards and Technology on **January 26, 2023**, it provides organizations with a structured, flexible approach to identifying, assessing, and mitigating AI risks throughout the entire AI lifecycle.
+The NIST AI Risk Management Framework (AI RMF 1.0, published January 26, 2023 as NIST AI 100-1) gives organizations a repeatable process for identifying, measuring, and responding to AI risks across the full development and deployment lifecycle.
 
-Unlike sector-specific regulations such as the EU AI Act or DORA, the NIST AI RMF is a **voluntary framework** — it does not impose legal obligations on its own. However, its influence on the AI regulatory landscape is substantial: the Colorado AI Act explicitly references NIST AI RMF alignment as evidence of reasonable care, Executive Order 14110 directs federal agencies to use the framework, and regulators increasingly treat it as the US benchmark for responsible AI governance.
+NIST AI RMF carries no direct enforcement authority — no penalties attach to ignoring it. But two bodies of real legal obligation flow from it. First, Colorado SB 24-205 (§6-1-1702) cites alignment with recognized AI risk management frameworks as evidence of "reasonable care," creating an explicit safe harbor. Second, Executive Order 14110 (§4.1, October 2023) mandated NIST AI RMF adoption across all federal agencies, and OMB M-24-10 (March 2024) translated that mandate into specific minimum practices: every federal AI use must be inventoried, classified by risk, and tracked against AI RMF outcomes.
 
-The framework is designed to be **technology-agnostic**, **use-case-agnostic**, and applicable to organizations of all sizes — from startups deploying a single ML model to enterprises operating hundreds of AI systems across regulated industries.
+The four-function structure — Govern, Map, Measure, Manage — applies to any industry and any deployment size. A 15-person fintech running a single credit-scoring model and a health system operating 200 clinical decision-support tools both use the same framework to document AI risk ownership and track remediation progress.
 
 ---
 
 ## Who It Applies To
 
-Because the NIST AI RMF is voluntary, there is no statutory "in-scope" entity list. However, several categories of organizations have strong reasons to adopt it:
+No statutory scope rule applies — NIST AI RMF is voluntary. But adoption is functionally required in three situations:
 
-### Organizations That Should Adopt NIST AI RMF
+**Federal agencies and their contractors**
 
-- **Federal agencies and contractors** — Executive Order 14110 (October 2023) directs federal agencies to use the NIST AI RMF for AI governance, making adoption effectively mandatory for government AI programs and their contractors
-- **Companies subject to state AI laws** — The Colorado AI Act provides a safe harbor for organizations that demonstrate compliance with recognized AI risk management frameworks including NIST AI RMF
-- **Enterprises in regulated industries** — Financial services, healthcare, and insurance organizations deploying AI benefit from NIST AI RMF alignment as evidence of reasonable risk management practices
-- **AI developers and deployers** — Organizations building or deploying AI systems who want a structured approach to AI governance before mandatory regulation arrives
-- **Organizations pursuing ISO 42001 certification** — NIST AI RMF provides practical risk management substance that complements ISO 42001's management system structure
+EO 14110 (§4.1) and OMB M-24-10 require federal agencies to inventory all AI use cases, classify each by risk level, and manage identified risks against AI RMF outcomes. Agencies must designate a Chief AI Officer (CAIO) with authority over that inventory. Contractors building or operating AI systems for federal customers should treat NIST AI RMF alignment as a contract requirement, not a suggestion — procurement officers increasingly ask for it in RFPs.
+
+**Companies subject to the Colorado AI Act**
+
+SB 24-205 §6-1-1702(4) names alignment with recognized AI risk management frameworks as a factor demonstrating reasonable care. NIST AI RMF adoption is the most direct path to that defense: it generates the documented impact assessments, governance policies, and bias testing records the law requires. Organizations that complete a NIST AI RMF profile for each high-risk AI system have a documented paper trail before the January 1, 2027 enforcement date.
+
+**Financial services and healthcare firms**
+
+The OCC, FRB, FDIC, and CFPB jointly cited NIST AI RMF in their 2023 interagency guidance on AI risk. FDA's proposed framework for AI/ML-based Software as a Medical Device references the same core functions. Documented NIST AI RMF alignment gives compliance teams a pre-built answer to examiner questions about AI governance — particularly for models that affect credit decisions (subject to ECOA, FCRA) or clinical outcomes.
+
+Organizations pursuing ISO 42001 certification also benefit: NIST maintains a published crosswalk between AI RMF subcategories and ISO 42001 clauses. The two frameworks are complementary — AI RMF provides risk management operational substance, ISO 42001 provides the management system shell.
 
 ### Roles Within the Framework
 
@@ -96,72 +102,63 @@ The NIST AI RMF addresses distinct organizational roles:
 
 ## Core Functions
 
-The NIST AI RMF is organized around **four core functions** that together provide a comprehensive structure for AI risk management. Each function contains categories, and each category contains subcategories that describe specific outcomes.
+The NIST AI RMF is organized around four core functions. Each function contains categories (written as GOVERN 1, MAP 2, etc.) and subcategories (GOVERN 1.1, MAP 2.3, etc.) that describe specific outcomes organizations should achieve.
 
 ### Govern
 
-The **Govern** function establishes the organizational foundation for AI risk management. It is cross-cutting — its outcomes inform and are informed by the other three functions.
+Govern establishes the organizational infrastructure that makes AI risk management repeatable rather than ad hoc. It is cross-cutting: the policies and accountability structures defined under Govern shape how Map, Measure, and Manage operate.
 
-Key outcomes:
+Six concrete outcomes define the Govern function:
 
-- **Policies and procedures** — documented AI governance policies, roles, and responsibilities
-- **Accountability structures** — clear ownership of AI risk at leadership and board level
-- **Organizational culture** — fostering a culture of responsible AI development and use
-- **Risk tolerances** — defined risk appetite and tolerance levels for AI systems
-- **Workforce diversity and expertise** — interdisciplinary teams with the skills to identify and manage AI-specific risks
-- **Third-party oversight** — governance of AI risks in the supply chain, including vendor AI systems
+- **Documented policies and roles (GOVERN 1.1):** Who owns AI risk decisions? Which risk levels require board-level approval? Which require legal sign-off before deployment? Write these down in a policy document before your first audit or enforcement inquiry.
+- **Board-level accountability (GOVERN 1.2):** AI risk has explicit executive ownership, documented in board minutes or a designated officer's mandate — not just in a data science team's wiki.
+- **Risk tolerance statements (GOVERN 1.6):** Define in writing what levels of bias error rates, failure modes, or accuracy degradation are acceptable for each system category. A credit underwriting model and a content recommendation engine warrant different tolerance thresholds.
+- **Interdisciplinary review:** Governance bodies include legal, data science, compliance, product, and affected-community representatives — not solely the team that built the model.
+- **Third-party oversight (GOVERN 6.1–6.2):** For every vendor AI system deployed — hiring tools, credit models, clinical decision support — document the vendor's name, the documentation obtained, and how compliance obligations are enforced contractually.
+- **Organizational culture:** Regular AI risk training for staff who operate or oversee AI systems, with documented completion records.
 
 ### Map
 
-The **Map** function identifies the context and risks associated with specific AI systems. It grounds risk management in the specifics of each use case.
+Map pins each AI system to its real-world operating context before broader risk work begins. Without Map, risk assessment floats free of the specific deployment and misses use-case-specific failure modes.
 
-Key outcomes:
+Five outputs define a complete Map for each AI system:
 
-- **Intended purpose and use context** — documenting why the AI system exists, who uses it, and in what operational environment
-- **Stakeholder identification** — identifying all affected parties, including individuals and communities who may be impacted by AI system outputs
-- **Benefit and cost analysis** — assessing whether the AI system's benefits justify its risks
-- **Risk identification** — cataloguing risks across trustworthiness characteristics: validity, reliability, safety, security, accountability, transparency, explainability, privacy, and fairness
-- **Interdependency mapping** — understanding how the AI system interacts with other systems, data sources, and organizational processes
+- **Use-context documentation (MAP 1.1):** Who runs this system? What decisions does it influence? What happens downstream when it produces an error? A hiring tool screening 50,000 applications per year has different Map outputs than the same algorithm used to shortlist 20 internal transfer candidates.
+- **Affected stakeholder inventory (MAP 3.5):** Identify not just system users but communities impacted by AI outputs. For an automated benefits-eligibility system, affected parties include applicants who never interact directly with the UI.
+- **Risk catalog across seven trustworthiness dimensions (MAP 5.1):** Validity and reliability, safety, security and resilience, accountability and transparency, explainability and interpretability, privacy, and fairness. Each dimension gets a separate risk entry with likelihood, severity, and ownership assigned.
+- **Benefit-cost assessment (MAP 2.3):** Document why deploying this system is worth the identified risks. This record becomes critical if a regulator or plaintiff asks why the organization deployed the system given known limitations.
+- **Interdependency map (MAP 5.2):** What data sources feed this system? What other systems consume its output? A credit model pulling from three external data vendors whose scores feed four downstream decisions has a different risk surface than a standalone tool.
 
 ### Measure
 
-The **Measure** function provides quantitative and qualitative assessment of identified AI risks. It establishes the evidence base for risk management decisions.
+Measure provides the quantitative and qualitative evidence base for AI risk management decisions. It converts risk identification from the Map function into documented findings that can be tracked, compared, and reported.
 
-Key outcomes:
+Four outputs define the Measure function:
 
-- **Metrics and measurement approaches** — appropriate metrics for assessing AI risks, including bias metrics, performance benchmarks, and robustness tests
-- **AI system testing** — testing AI systems against identified risks, including adversarial testing, red-teaming, and scenario analysis
-- **Tracking and monitoring** — ongoing monitoring of AI system performance, drift, and emergent risks in production
-- **Feedback mechanisms** — processes for collecting input from AI system users and affected communities
-- **Independent evaluation** — third-party assessment and audit where appropriate
+- **Metrics and measurement approaches (MEASURE 1.1):** Select metrics that fit the specific risk type. Bias measurement for a hiring model uses demographic parity or equalized odds — not generic accuracy. Document which metric applies to which risk and why.
+- **AI system testing (MEASURE 2.5–2.7):** Test against identified risks before deployment and at defined post-deployment intervals. For high-risk systems in regulated industries, red-teaming and adversarial testing are standard practice. Colorado SB 24-205 requires bias testing records as part of the impact assessment.
+- **Production monitoring (MEASURE 3.1–3.3):** Track model performance, data drift, and emergent risks in production. Define thresholds that trigger review — not just alert — when crossed.
+- **Feedback mechanisms:** Collect input from AI system users and affected communities after deployment. Document what feedback was received and what changes were made in response.
 
 ### Manage
 
-The **Manage** function prioritizes and allocates resources to respond to identified and measured AI risks. It closes the loop from identification to action.
+Manage converts risk findings into decisions and action. It allocates resources, prioritizes response, and closes the cycle from measurement to treatment.
 
-Key outcomes:
+Five outputs define the Manage function:
 
-- **Risk prioritization** — ranking risks based on likelihood, severity, and organizational risk tolerance
-- **Risk treatment** — selecting and implementing responses: accept, mitigate, transfer, or avoid
-- **Resource allocation** — dedicating appropriate personnel, tools, and budget to AI risk management
-- **Incident response** — processes for responding to AI system failures, errors, and adverse impacts
-- **Risk communication** — transparent communication about AI risks to stakeholders, regulators, and the public
-- **Continuous improvement** — updating risk assessments and treatments based on new information, incidents, and evolving best practices
+- **Risk prioritization (MANAGE 1.1):** Rank identified risks by likelihood × severity × organizational risk tolerance. Not every identified risk warrants immediate remediation — document the prioritization rationale.
+- **Risk treatment (MANAGE 2.2):** Choose a response for each risk: accept (with documented rationale), mitigate (with specific control), transfer (insurance, contractual), or avoid (discontinue the use case). Accept is a legitimate answer when it is documented.
+- **Resource allocation:** Assign specific personnel, tools, and budget to each risk treatment. Underfunded risk management plans routinely fail audits.
+- **Incident response (MANAGE 3.1):** Define what constitutes an AI system incident, who gets notified, within what timeframe, and what remediation steps follow. Colorado SB 24-205 requires AG notification within 90 days of discovering algorithmic discrimination — that process must exist before the incident occurs.
+- **Continuous improvement (MANAGE 4.1–4.2):** Update risk assessments and treatments based on incidents, model changes, regulatory updates, and evolving best practices. Document each update cycle with dates and responsible parties.
 
 ---
 
 ## AI & NIST AI RMF Intersection
 
-The NIST AI RMF is, by its nature, entirely about AI — but understanding how it intersects with the broader AI regulatory landscape is critical for compliance teams managing multi-framework obligations.
+The NIST AI RMF functions as the operational backbone of AI compliance in the United States. Three enforcement-backed bodies of regulation now point to it explicitly.
 
-### The Framework as Regulatory Infrastructure
-
-The NIST AI RMF is increasingly functioning as the **infrastructure layer** for AI compliance in the United States:
-
-- **Colorado AI Act (SB 24-205)** explicitly references NIST AI RMF alignment as evidence of "reasonable care" by deployers of high-risk AI systems
-- **Executive Order 14110** (October 2023) directs all federal agencies to use the NIST AI RMF for AI risk governance
-- **OMB Memorandum M-24-10** (March 2024) requires agencies to implement minimum risk management practices for AI that align with NIST AI RMF
-- State attorneys general increasingly reference NIST AI RMF alignment in enforcement guidance and settlement negotiations
+Colorado SB 24-205 (§6-1-1702) treats NIST AI RMF alignment as evidence of "reasonable care" — the Act's central legal standard. Executive Order 14110 (§4.1) makes NIST AI RMF adoption effectively mandatory for federal agencies and their contractors. OMB M-24-10 (March 2024) specifies the minimum AI risk management practices federal programs must implement, all derived from AI RMF functions. State attorneys general in at least three states have referenced NIST AI RMF alignment in enforcement guidance and pre-litigation settlement negotiations since 2024.
 
 ### Mapping to Enforceable Requirements
 
