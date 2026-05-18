@@ -83,6 +83,10 @@ export async function getAllRegulations(): Promise<RegulationData[]> {
   return results;
 }
 
+export function isActiveRegulation(r: RegulationData): boolean {
+  return r.frontmatter.status !== "vetoed" && r.frontmatter.status !== "rescinded";
+}
+
 export async function getRegulationBySlug(
   slug: string
 ): Promise<RegulationData | null> {

@@ -4,7 +4,7 @@ import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
 import { db } from "@/db";
 import { providers } from "@/db/schema";
 import { count } from "drizzle-orm";
-import { getAllRegulationSlugs } from "@/lib/regulations";
+import { getAllRegulations, isActiveRegulation } from "@/lib/regulations";
 import { SITE_URL } from "@/lib/brand";
 
 export const revalidate = 21600;
@@ -120,12 +120,12 @@ const FEATURED_EXTRAS = [
 ];
 
 export default async function ProvidersPage() {
-  const [[providerResult], regSlugs] = await Promise.all([
+  const [[providerResult], allRegs] = await Promise.all([
     db.select({ value: count() }).from(providers),
-    getAllRegulationSlugs(),
+    getAllRegulations(),
   ]);
   const providerCount = providerResult?.value ?? 0;
-  const regCount = regSlugs.length;
+  const regCount = allRegs.filter(isActiveRegulation).length;
 
   const breadcrumbs = breadcrumbListSchema([
     { name: "Home", url: "/" },

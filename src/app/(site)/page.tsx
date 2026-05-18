@@ -7,7 +7,7 @@ import { BlogCover } from "@/components/blog/BlogCover";
 import { db } from "@/db";
 import { providers, providerRegulations } from "@/db/schema";
 import { count, eq, inArray } from "drizzle-orm";
-import { getAllRegulationSlugs, getAllRegulations } from "@/lib/regulations";
+import { getAllRegulations, isActiveRegulation } from "@/lib/regulations";
 import Anthropic from "@anthropic-ai/sdk";
 
 export const revalidate = 21600;
@@ -240,12 +240,26 @@ export default async function HomePage({
   const routeQuery = params.route ?? "";
   const isRouted = routeQuery.trim().length > 0;
 
-  const [[providerResult], regSlugs] = await Promise.all([
+  const FEATURED_SLUGS = ["eu-ai-act", "nyc-local-law-144", "colorado-ai-act", "illinois-ai-video-interview-act"];
+
+  const [[providerResult], allRegs, featuredProvCounts] = await Promise.all([
     db.select({ value: count() }).from(providers),
-    getAllRegulationSlugs(),
+    getAllRegulations(),
+    db.select({
+      regulationSlug: providerRegulations.regulationSlug,
+      cnt: count(),
+    })
+      .from(providerRegulations)
+      .where(inArray(providerRegulations.regulationSlug, FEATURED_SLUGS))
+      .groupBy(providerRegulations.regulationSlug),
   ]);
   const providerCount = providerResult?.value ?? 0;
-  const regCount = regSlugs.length;
+  const regCount = allRegs.filter(isActiveRegulation).length;
+  const regSlugs = allRegs.map(r => r.slug);
+
+  const featuredProvCountMap: Record<string, number> = Object.fromEntries(
+    featuredProvCounts.map(r => [r.regulationSlug, r.cnt]),
+  );
 
   let matchedRegs: Array<{
     slug: string; code: string; title: string; juris: string;
@@ -257,7 +271,6 @@ export default async function HomePage({
   }> = [];
 
   if (isRouted) {
-    const allRegs = await getAllRegulations();
     const regCatalog = allRegs.map((r) => ({
       slug: r.slug,
       name: r.frontmatter.name,
@@ -459,7 +472,7 @@ export default async function HomePage({
                     juris="European Union"
                     effective="02 Aug 2026"
                     status="active"
-                    providers={12}
+                    providers={featuredProvCountMap["eu-ai-act"] ?? 0}
                     topics={["Hiring AI", "High-risk"]}
                     summary="Annex III classifies hiring AI as high-risk. Conformity assessment, bias monitoring, post-market monitoring required."
                     slug="eu-ai-act"
@@ -470,7 +483,7 @@ export default async function HomePage({
                     juris="US · New York"
                     effective="05 Jul 2023"
                     status="active"
-                    providers={9}
+                    providers={featuredProvCountMap["nyc-local-law-144"] ?? 0}
                     topics={["Hiring AI", "Bias audit"]}
                     summary="Annual independent bias audit + candidate notice for automated employment decision tools used in NYC."
                     slug="nyc-local-law-144"
@@ -479,9 +492,9 @@ export default async function HomePage({
                     code="US-CO-205"
                     title="Colorado AI Act"
                     juris="US · Colorado"
-                    effective="30 Jun 2026"
+                    effective="01 Jan 2027"
                     status="pending"
-                    providers={7}
+                    providers={featuredProvCountMap["colorado-ai-act"] ?? 0}
                     topics={["Algorithmic hiring"]}
                     summary="Developers & deployers of 'high-risk' AI owe reasonable care to prevent algorithmic discrimination."
                     slug="colorado-ai-act"
@@ -492,7 +505,7 @@ export default async function HomePage({
                     juris="US · Illinois"
                     effective="01 Jan 2020"
                     status="active"
-                    providers={4}
+                    providers={featuredProvCountMap["illinois-ai-video-interview-act"] ?? 0}
                     topics={["Hiring AI", "Consent"]}
                     summary="Consent + deletion requirements for AI-analysed video job interviews in Illinois."
                     slug="illinois-ai-video-interview-act"
@@ -726,7 +739,7 @@ export default async function HomePage({
 
           <div className="col" style={{ gap: 20 }}>
             {[
-              { kind: "Guide", title: "How to Prepare for the Colorado AI Act Before June 2026", time: "8 min", slug: "how-to-prepare-for-colorado-ai-act-june-2026" },
+              { kind: "Guide", title: "How to Prepare for the Colorado AI Act (Updated for SB 26-189)", time: "8 min", slug: "how-to-prepare-for-colorado-ai-act-june-2026" },
               { kind: "Guide", title: "NIST AI RMF Explained: A Compliance Team's Field Guide", time: "9 min", slug: "nist-ai-rmf-explainer-for-compliance-teams" },
               { kind: "Update", title: "NYC LL 144 Enforcement: First Fines Issued", time: "6 min", slug: "nyc-ll-144-enforcement-update" },
             ].map((a) => (

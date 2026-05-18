@@ -69,7 +69,7 @@ export default async function SearchPage({
   ]);
 
   const allRegItems = allRegs
-    .filter((r) => r.frontmatter.status !== "rescinded")
+    .filter((r) => r.frontmatter.status !== "rescinded" && r.frontmatter.status !== "vetoed")
     .map((r) => ({
       slug: r.slug,
       name: r.frontmatter.name,

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { breadcrumbListSchema, jsonLdScriptProps } from "@/lib/jsonld";
-import { getAllRegulations } from "@/lib/regulations";
+import { getAllRegulations, isActiveRegulation } from "@/lib/regulations";
 import { SITE_URL } from "@/lib/brand";
 
 export const revalidate = 86400;
@@ -276,7 +276,7 @@ export default async function JurisdictionsPage() {
             </div>
             <p className="small" style={{ marginTop: 4 }}>
               Search our complete catalog of{" "}
-              {allRegs.length} AI regulations with
+              {allRegs.filter(isActiveRegulation).length} AI regulations with
               filters, sorting, and comparison tools.
             </p>
           </div>
