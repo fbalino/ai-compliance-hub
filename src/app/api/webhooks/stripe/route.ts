@@ -34,9 +34,17 @@ export async function POST(request: NextRequest) {
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as Stripe.Checkout.Session;
 
-    const answers = session.metadata?.answers
-      ? (JSON.parse(session.metadata.answers) as Record<string, unknown>)
-      : {};
+    // Stripe metadata is capped at 500 chars, so checkout may have truncated the
+    // answers JSON mid-string. Guard the parse — an unparseable payload must not
+    // throw a 500 here, or Stripe would retry the same event indefinitely.
+    let answers: Record<string, unknown> = {};
+    if (session.metadata?.answers) {
+      try {
+        answers = JSON.parse(session.metadata.answers) as Record<string, unknown>;
+      } catch (parseErr) {
+        console.error("[stripe-webhook] Could not parse answers metadata:", parseErr);
+      }
+    }
 
     const stripePaymentId =
       typeof session.payment_intent === "string"

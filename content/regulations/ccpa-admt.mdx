@@ -2,14 +2,14 @@ export const frontmatter = {
   name: "CCPA Automated Decision-Making Technology Regulations",
   shortName: "CCPA ADMT",
   description:
-    "California's CCPA ADMT regulations give consumers the right to opt out of automated decision-making technology used for significant decisions affecting employment, housing, finance, education, and healthcare — with mandatory pre-use notices, risk assessments, and appeal rights taking effect April 1, 2027.",
+    "California's CCPA ADMT regulations give consumers the right to opt out of automated decision-making technology used for significant decisions affecting employment (including compensation), housing, finance, education, and healthcare — with mandatory pre-use notices, risk assessments, and appeal rights taking effect January 1, 2027.",
   jurisdiction: "US · California",
   status: "enacted",
-  effectiveDate: "September 22, 2025 (finalized); January 1, 2026 (general CCPA updates); April 1, 2027 (ADMT obligations)",
-  enforcementDate: "April 1, 2027 (ADMT-specific); January 1, 2026 (risk assessments, cybersecurity audits)",
+  effectiveDate: "September 22, 2025 (OAL-approved); January 1, 2026 (general CCPA updates); January 1, 2027 (ADMT obligations)",
+  enforcementDate: "January 1, 2027 (ADMT-specific); January 1, 2026 (risk assessments, cybersecurity audits)",
   maxPenalty: "$7,500 per violation (intentional or involving minors)",
   publishedAt: "2025-09-22",
-  updatedAt: "2026-04-18",
+  updatedAt: "2026-06-21",
   toc: [
     { id: "overview", label: "Overview" },
     { id: "who-it-applies-to", label: "Who It Applies To" },
@@ -37,12 +37,12 @@ export const frontmatter = {
     {
       question: "When do the CCPA ADMT regulations take effect?",
       answer:
-        "The CPPA Board adopted the final ADMT rules on July 24, 2025, and they were approved by the Office of Administrative Law on September 22, 2025. General CCPA regulation updates took effect on January 1, 2026. The ADMT-specific obligations — including pre-use notice, opt-out rights, access rights, and appeal mechanisms — take effect on April 1, 2027.",
+        "The CPPA Board adopted the final ADMT rules on July 24, 2025, and they were approved by the Office of Administrative Law on September 22, 2025. General CCPA regulation updates took effect on January 1, 2026. The ADMT-specific obligations — including pre-use notice, opt-out rights, access rights, and appeal mechanisms — take effect on January 1, 2027. Businesses already using ADMT for significant decisions before that date must comply by January 1, 2027; businesses that begin using such ADMT after January 1, 2027 must comply before they deploy it. (April 1, 2027 was a deadline in an earlier rulemaking draft and was superseded by the final rules.)",
     },
     {
       question: "What are 'significant decisions' under the ADMT regulations?",
       answer:
-        "Significant decisions are those that result in the provision or denial of financial or lending services, housing, educational opportunities, employment, independent contracting opportunities, or healthcare services. Advertising decisions were included in earlier drafts but were removed from the final regulations.",
+        "Significant decisions are those that result in the provision or denial of financial or lending services, housing, education enrollment or opportunities, employment or independent contracting opportunities or compensation, or healthcare services. The employment category is broad — it covers hiring, allocation or assignment of work, compensation (including incentive compensation), promotion, demotion, and termination, not just hiring decisions. Advertising decisions were included in earlier drafts but were removed from the final regulations.",
     },
     {
       question: "Can consumers opt out of all ADMT processing?",
@@ -92,9 +92,11 @@ A **significant decision** is one that results in the provision or denial of:
 
 - **Financial or lending services** — credit decisions, loan approvals, account management
 - **Housing** — rental applications, mortgage underwriting, tenant screening
-- **Education** — admissions decisions, student evaluations, financial aid determinations
-- **Employment** — hiring, promotions, terminations, performance evaluations, independent contractor opportunities
+- **Education** — enrollment, admissions decisions, student evaluations, financial aid determinations
+- **Employment or independent contracting opportunities — or compensation** — hiring, allocation or assignment of work, compensation (including incentive compensation), promotion, demotion, performance evaluations, and termination
 - **Healthcare** — treatment recommendations, insurance coverage, clinical triage
+
+The final regulatory definition expressly covers "employment or independent contracting opportunities **or compensation**." This matters because it puts pay-setting, bonus, and other compensation decisions made with ADMT squarely in scope — the employment category is not limited to hiring.
 
 Advertising decisions were included in earlier drafts of the regulations but were **removed** from the final version.
 
@@ -265,7 +267,14 @@ Risk assessments must be:
 
 - Maintained for the duration of the processing activity and for **at least five years** after the processing ends
 - Updated when the processing activity materially changes
-- Made available to the CPPA upon request
+- Made available to the CPPA — or the California Attorney General — upon request
+
+In addition to producing assessments on request, businesses must **affirmatively submit information to the CPPA**. By **April 1, 2028**, a business must submit:
+
+- An **attestation** that it conducted (and, where applicable, updated) the risk assessments required for processing activities initiated in **2026 and 2027**, and
+- A **summary** of its risk assessment information
+
+The submission covers fields such as a designated contact, the time period covered, the number of risk assessments conducted during that period, and the categories of personal information involved. The attestation must be signed by a member of executive management directly responsible for risk-assessment compliance. After this first cycle, the attestation and summary are submitted on a recurring annual basis — generally by April 1 of the year after the processing activity is initiated and the assessment is prepared. Businesses submit the summary and attestation, not the full underlying assessments, although the complete assessments must still be produced to the CPPA or Attorney General on request.
 
 ---
 
@@ -280,9 +289,10 @@ Risk assessments must be:
 | **July 1, 2023** | CPPA enforcement authority begins |
 | **November 2024** | CPPA Board initiates ADMT rulemaking |
 | **July 24, 2025** | CPPA Board adopts final ADMT regulations |
-| **September 22, 2025** | OAL approves regulations; filed with Secretary of State |
-| **January 1, 2026** | General CCPA regulation updates effective (risk assessments, cybersecurity audits) |
-| **April 1, 2027** | ADMT-specific obligations effective (pre-use notice, opt-out, access, appeal) |
+| **September 22, 2025** | OAL approves regulations; filed with Secretary of State (CPPA's public announcement is dated September 23, 2025) |
+| **January 1, 2026** | General CCPA regulation updates effective; risk assessment and cybersecurity audit obligations begin |
+| **January 1, 2027** | ADMT-specific obligations compliance deadline (pre-use notice, opt-out, access, appeal) |
+| **April 1, 2028** | First deadline to submit risk assessment attestation + summary to the CPPA (covering 2026–2027 assessments); first cybersecurity audit due for largest businesses |
 
 ---
 
@@ -290,7 +300,7 @@ Risk assessments must be:
 
 Use this roadmap to prepare for CCPA ADMT compliance:
 
-1. **Inventory your automated decision-making systems.** Identify every system that processes personal information and makes or substantially facilitates decisions about consumers. Map each system to the significant decision domains (finance, housing, education, employment, healthcare). Flag systems where human review is perfunctory or where AI outputs are routinely adopted without independent evaluation.
+1. **Inventory your automated decision-making systems.** Identify every system that processes personal information and makes or substantially facilitates decisions about consumers. Map each system to the significant decision domains (finance, housing, education, employment/independent contracting/compensation, healthcare). Flag systems where human review is perfunctory or where AI outputs are routinely adopted without independent evaluation.
 
 2. **Classify ADMT exposure.** For each identified system, determine whether it meets the ADMT definition. Apply the "substantially replaces" standard: does the technology produce decisions that humans routinely accept? Document your classification rationale.
 
@@ -318,10 +328,10 @@ Use this roadmap to prepare for CCPA ADMT compliance:
 Automated Decision-Making Technology (ADMT) is any technology that processes personal information and uses computation to replace or substantially replace human decision-making. The definition is intentionally narrow — it excludes purely assistive tools, spam filters, spell-checkers, calculators, databases, and similar technologies that do not execute or substantially facilitate decisions.
 
 **When do the CCPA ADMT obligations take effect?**
-The CPPA Board adopted the final rules on July 24, 2025, and the OAL approved them on September 22, 2025. General CCPA regulation updates (risk assessments, cybersecurity audits) took effect January 1, 2026. ADMT-specific obligations — pre-use notice, opt-out, access, and appeal — take effect April 1, 2027.
+The CPPA Board adopted the final rules on July 24, 2025, and the OAL approved them on September 22, 2025. General CCPA regulation updates (risk assessments, cybersecurity audits) took effect January 1, 2026. ADMT-specific obligations — pre-use notice, opt-out, access, and appeal — must be met by January 1, 2027. Businesses already using ADMT for significant decisions before that date have until January 1, 2027 to comply; businesses that start using such ADMT after that date must comply before deploying it. (An earlier draft used an April 1, 2027 deadline, which the final rules superseded.)
 
 **Do the ADMT regulations cover AI-powered advertising?**
-No. Advertising decisions were included in earlier drafts but were removed from the final regulations. The ADMT obligations only apply to "significant decisions" affecting finance, housing, education, employment, and healthcare. However, AI-driven advertising that processes personal information may still trigger risk assessment requirements under the broader CCPA regulatory package.
+No. Advertising decisions were included in earlier drafts but were removed from the final regulations. The ADMT obligations only apply to "significant decisions" affecting finance, housing, education, employment or independent contracting (including compensation), and healthcare. However, AI-driven advertising that processes personal information may still trigger risk assessment requirements under the broader CCPA regulatory package.
 
 **How does the CCPA ADMT compare to NYC Local Law 144?**
 NYC Local Law 144 is narrower — it applies only to automated employment decision tools used in hiring and promotion in New York City, and requires third-party bias audits. The CCPA ADMT regulations are broader: they cover five significant decision domains (not just employment), apply statewide (not just one city), and focus on consumer rights (opt-out, access, appeal) rather than bias auditing.

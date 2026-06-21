@@ -1,53 +1,10 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/brand";
+import { POSTS } from "@/app/(site)/blog/[slug]/page";
 
-const BLOG_SLUGS = [
-  // Colorado AI Act cluster
-  "colorado-ai-act-60-day-checklist",
-  "how-to-prepare-for-colorado-ai-act-june-2026",
-  "colorado-ai-act-2026-deadline",
-  "colorado-ai-act-impact-assessment",
-  "colorado-ai-readiness-window",
-  // EU AI Act cluster
-  "eu-ai-act-gpai-obligations",
-  "eu-ai-act-gpai-code-of-practice",
-  "eu-ai-act-high-risk-list-annotated",
-  "eu-ai-act-vs-uk-ai-safety-bill",
-  "gdpr-vs-eu-ai-act",
-  // NYC LL 144 cluster
-  "nyc-ll-144-enforcement-update",
-  "nyc-ll-144-bias-audit-walkthrough",
-  // Virginia / Texas / California
-  "virginia-hb-2094-what-businesses-need-to-know",
-  "texas-ai-regulation-2026",
-  "texas-ag-meta-biometric-settlement",
-  "california-ab-2013-training-data",
-  // Illinois / biometric
-  "illinois-aivira-employer-guide",
-  "illinois-bipa-class-actions-2025",
-  "biometric-privacy-law-patchwork",
-  "bipa-vs-cubi-comparison",
-  // GDPR / Clearview
-  "clearview-ai-gdpr-fines",
-  // NIST AI RMF cluster
-  "nist-ai-rmf-explainer-for-compliance-teams",
-  "nist-ai-rmf-vs-iso-42001",
-  "nist-ai-rmf-four-functions-explained",
-  "nist-ai-rmf-colorado-safe-harbor",
-  // ISO 42001 cluster
-  "iso-42001-certification-guide",
-  "iso-42001-eu-ai-act-alignment",
-  // CCPA ADMT cluster
-  "ccpa-admt-ai-teams",
-  "ccpa-admt-vs-nyc-ll-144",
-  "ccpa-admt-human-in-the-loop",
-  // Bias audit / RFP
-  "bias-audit-guide",
-  "request-for-quote-ai-bias-audit-what-to-expect",
-  // Governance & hiring
-  "ai-governance-program-guide",
-  "hiring-ai-compliance-2026-starter-kit",
-];
+// Derived from the single source of truth (POSTS) so the sitemap never drifts
+// out of sync with the actual published blog posts.
+const BLOG_SLUGS = Object.keys(POSTS);
 
 const COMPARE_SLUGS = [
   "colorado-vs-eu-ai-act",

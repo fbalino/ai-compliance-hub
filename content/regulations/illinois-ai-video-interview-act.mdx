@@ -2,24 +2,26 @@ export const frontmatter = {
   name: "Illinois AI Video Interview Act",
   shortName: "IL AIVIRA",
   description:
-    "Illinois law requiring employers using AI to analyze video interviews to notify applicants, explain how the AI works, obtain explicit consent, limit video sharing, and delete recordings upon request.",
+    "Illinois law requiring employers using AI to analyze video interviews to notify applicants, explain how the AI works, obtain consent, limit video sharing, delete recordings on request, and — for employers relying solely on AI to screen for in-person interviews — report applicant demographic data to the state.",
   jurisdiction: "US · Illinois",
   status: "enforced",
   effectiveDate: "January 1, 2020",
   enforcementDate: "January 1, 2020",
-  maxPenalty: "Injunctive relief + actual damages",
+  maxPenalty: "No statutory penalty (Act is silent on enforcement)",
   publishedAt: "2019-08-09",
-  updatedAt: "2026-04-13",
+  updatedAt: "2026-06-21",
   toc: [
     { id: "overview", label: "Overview" },
     { id: "who-it-applies-to", label: "Who It Applies To" },
-    { id: "requirements", label: "Core Requirements" },
-    { id: "consent", label: "Consent Obligations" },
-    { id: "sharing-restrictions", label: "Restrictions on Sharing" },
-    { id: "deletion", label: "Data Deletion Rights" },
-    { id: "penalties", label: "Penalties & Enforcement" },
+    { id: "core-requirements", label: "Core Requirements" },
+    { id: "consent-obligations", label: "Consent Obligations" },
+    { id: "restrictions-on-sharing", label: "Restrictions on Sharing" },
+    { id: "data-deletion-rights", label: "Data Deletion Rights" },
+    { id: "demographic-data-reporting", label: "Demographic Data Reporting" },
+    { id: "enforcement-penalties", label: "Enforcement & Penalties" },
+    { id: "the-2026-ihra-ai-amendments", label: "The 2026 IHRA AI Amendments" },
     { id: "compliance-steps", label: "Compliance Steps" },
-    { id: "faqs", label: "Frequently Asked Questions" },
+    { id: "frequently-asked-questions", label: "Frequently Asked Questions" },
   ],
   relatedRegulations: [
     { slug: "nyc-local-law-144", name: "NYC Local Law 144" },
@@ -30,48 +32,51 @@ export const frontmatter = {
     {
       question: "Does the Illinois AI Video Interview Act apply to remote interviews?",
       answer:
-        "Yes. Any employer using AI to analyze video interviews — whether conducted in-person or remotely — must comply with the Act when the applicant is located in Illinois at the time of the interview.",
+        "Yes. Any employer using AI to analyze video interviews — whether conducted in-person or remotely — must comply with the Act when the applicant is interviewing for a position based in Illinois.",
     },
     {
       question: "What consent is required before using AI video analysis?",
       answer:
-        "Employers must notify applicants in advance that AI will be used to analyze the video, explain how the AI works and what characteristics it evaluates, and obtain the applicant's explicit consent before conducting the AI analysis.",
+        "Employers must notify applicants before the interview that AI may be used to analyze the video, provide information explaining how the AI works and what general types of characteristics it uses to evaluate applicants, and obtain the applicant's consent before using AI analysis.",
     },
     {
       question: "Can employers share video interview recordings with third parties?",
       answer:
-        "No. Employers may not share video interview recordings with third parties except: (1) persons whose expertise is necessary to evaluate job fitness, and (2) technology vendors providing technical services — under a binding agreement not to disclose the video.",
+        "No. Employers may not share the videos except with persons whose expertise or technology is necessary to evaluate an applicant's fitness for a position.",
     },
     {
       question: "How long can employers retain video recordings?",
       answer:
-        "Employers must delete video recordings within 30 days of an applicant's request. In the absence of a deletion request, they must destroy all recordings within a reasonable time after completing the hiring process.",
+        "Upon an applicant's request, employers must delete the videos — and instruct any others who received copies to delete them — within 30 days. The Act does not set a fixed retention limit absent a request.",
     },
     {
-      question: "What remedies are available to applicants?",
+      question: "What penalties apply for violating AIVIRA?",
       answer:
-        "Applicants may sue in Illinois state court for injunctive relief and actual damages. Courts may also award attorneys' fees to prevailing plaintiffs. There is a private right of action, unlike many AI laws.",
+        "None are written into the Act. AIVIRA is silent on enforcement: it does not create a private right of action, does not name an enforcing agency, and does not specify penalties, damages, or remedies. Law-firm and SHRM analyses consistently flag this as a gap. Note that a separate 2026 amendment to the Illinois Human Rights Act (HB 3773 / Public Act 103-0804) does carry enforcement mechanisms for AI-driven employment discrimination.",
     },
     {
-      question: "Does the law require the employer to disclose which AI vendor it uses?",
+      question: "Do some employers also have to report demographic data to the state?",
       answer:
-        "The Act requires disclosure that AI is being used and an explanation of how it works, but does not specifically mandate naming the vendor. However, explaining 'how AI works' typically requires describing the general method and what is being analyzed.",
+        "Yes. Under Section 20 (added in 2022), an employer that relies solely on AI analysis of a video interview to decide whether an applicant advances to an in-person interview must collect and report the race and ethnicity of applicants who are and are not advanced, and of applicants hired, to the Illinois Department of Commerce and Economic Opportunity (DCEO) annually by December 31.",
     },
   ],
 };
 
 ## Overview
 
-The **Illinois Artificial Intelligence Video Interview Act** (AIVIRA), signed into law on August 9, 2019 and effective January 1, 2020, is the first US law specifically regulating the use of artificial intelligence in employment video interviews. The law was motivated by the rapid adoption of AI video screening tools — platforms that analyze candidates' facial expressions, word choices, tone, and physical characteristics to score "job fit."
+The **Illinois Artificial Intelligence Video Interview Act** (AIVIRA), signed into law on August 9, 2019 and effective January 1, 2020, was the first US law specifically regulating the use of artificial intelligence in employment video interviews. The law responded to the rapid adoption of AI video screening tools — platforms that analyze candidates' facial expressions, word choices, tone, and other characteristics to score "job fit."
 
-AIVIRA establishes four core obligations for employers using such tools:
+AIVIRA establishes three core obligations for employers that use AI to analyze applicant video interviews, plus a deletion right and — since 2022 — a demographic-reporting mandate for a narrower set of employers:
 
-1. **Notify** applicants before using AI analysis
-2. **Explain** how the AI works and what characteristics it evaluates
-3. **Obtain written or electronic consent** before conducting AI analysis
+1. **Notify** applicants before the interview that AI may be used
+2. **Explain** how the AI works and what general types of characteristics it uses to evaluate applicants
+3. **Obtain consent** before using AI analysis
 4. **Delete** video recordings within 30 days of an applicant's request
+5. **Report** applicant demographic data to the state — but only for employers that rely *solely* on AI to decide who gets an in-person interview (see [Demographic Data Reporting](#demographic-data-reporting))
 
-The law applies to any employer — of any size, industry, or location — that interviews **Illinois applicants** via video and uses AI to analyze those videos.
+The law applies to any employer — of any size, industry, or location — that asks Illinois applicants to record video interviews and uses AI to analyze those videos.
+
+One thing AIVIRA does **not** do is create penalties or a lawsuit pathway. The statute is silent on enforcement (see [Enforcement & Penalties](#enforcement-penalties)). Employers should not read AIVIRA in isolation: a separate, broader Illinois law — the **2026 amendments to the Illinois Human Rights Act** (HB 3773 / Public Act 103-0804), effective January 1, 2026 — now regulates AI across employment decisions and *does* carry enforcement teeth (see [The 2026 IHRA AI Amendments](#the-2026-ihra-ai-amendments)).
 
 ---
 
@@ -80,10 +85,10 @@ The law applies to any employer — of any size, industry, or location — that 
 ### Employers
 
 Any employer that:
-- Requests video interviews from applicants, **and**
-- Uses AI to analyze the content of those videos
+- Asks an applicant to record a video interview, **and**
+- Uses AI to analyze the content of those videos when considering the applicant for a position based in Illinois
 
-The law does not require the employer to be based in Illinois. If the applicant is in Illinois at the time of the video interview, and AI is used to analyze the video, the employer must comply.
+The law does not require the employer to be based in Illinois. What matters is the position being interviewed for and the use of AI to analyze the recorded video.
 
 ### No Size or Industry Threshold
 
@@ -91,7 +96,7 @@ There is no revenue minimum, employee count requirement, or industry carve-out. 
 
 ### Staffing Agencies and Vendors
 
-Third-party staffing agencies and HR technology vendors that analyze video interviews on behalf of employers are also subject to the Act's restrictions on video sharing and deletion.
+Third-party staffing agencies and HR technology vendors that analyze video interviews on behalf of employers are practically bound by the Act's sharing and deletion provisions, because the employer must control how recordings are distributed and destroyed.
 
 ---
 
@@ -99,27 +104,26 @@ Third-party staffing agencies and HR technology vendors that analyze video inter
 
 ### 1. Pre-Interview Notification
 
-Before requesting a video interview that will be analyzed by AI, employers must notify the applicant:
+Before asking an applicant to submit a video interview that may be analyzed by AI, the employer must notify the applicant:
 
-- That artificial intelligence will be used to analyze the interview
-- What the AI evaluates (e.g., facial expressions, word choice, tone of voice)
-- How the AI analysis will be used in the hiring process
+- That artificial intelligence may be used to analyze the applicant's video interview, **and**
+- That AI may consider the applicant's fitness for the position
 
-This notification must be provided **before** the interview — not after — and must be specific enough for the applicant to make an informed decision about participating.
+This notification must be provided **before** the interview — not after.
 
-### 2. Explanation of AI Characteristics
+### 2. Information Explaining How the AI Works
 
-The notification must include an explanation of **which characteristics** the AI evaluates. For example:
-- Verbal content and keyword analysis
+The employer must provide each applicant with information **before the interview** explaining how the AI works and what general types of characteristics it uses to evaluate applicants. The statute does not require a vendor-specific technical disclosure, but the explanation must be meaningful enough for an applicant to understand the general method, for example:
+
+- Verbal content and word choice
 - Vocal tone and pacing
-- Facial expression patterns and micro-expressions
-- Body language and posture
+- Facial expression patterns
 
 Employers should work with their AI vendors to obtain accurate descriptions of these characteristics for disclosure purposes.
 
-### 3. Written or Electronic Consent
+### 3. Consent
 
-Employers must obtain the applicant's **explicit consent** before conducting the AI analysis. Passive consent (e.g., simply proceeding with the video interview after a vague disclosure) is insufficient. Acceptable consent mechanisms include:
+Employers must obtain the applicant's **consent to be evaluated by the AI program** before using such analysis. The statute requires consent but does not prescribe a specific form. As a practical matter, employers typically document consent through:
 - A checkbox in an online application or video interview platform
 - A separate consent form (digital signature acceptable)
 - An email confirmation from the applicant acknowledging the disclosure
@@ -130,34 +134,33 @@ Employers must obtain the applicant's **explicit consent** before conducting the
 
 ### Form of Consent
 
-Consent must be:
-- **Written or electronic** — verbal consent alone is not sufficient
-- **Prior to the interview** — obtained before, not during or after the video analysis occurs
-- **Informed** — based on the notification described above
+AIVIRA requires the applicant's consent before AI analysis is used, following the pre-interview notice and explanation described above. While the Act does not mandate a particular format, employers should obtain and retain a clear, documented record of consent.
 
 ### Withdrawal of Consent
 
-The law does not explicitly address consent withdrawal, but employers relying on the consent should implement a clear process for applicants who wish to withdraw consent and should document when consent was obtained.
+The law does not explicitly address consent withdrawal. Employers relying on consent should implement a clear process for applicants who wish to withdraw consent and should document when consent was obtained.
 
 ### If an Applicant Withholds Consent
 
-The Act does not prohibit employers from declining to interview applicants who refuse to consent to AI analysis. However, employers should consider whether such a policy could create disparate impact liability under other employment discrimination laws.
+The Act does not, on its face, prohibit employers from declining to interview applicants who refuse to consent to AI analysis. However, employers should consider whether such a policy could create disparate-impact liability under other employment-discrimination laws — including the 2026 amendments to the Illinois Human Rights Act (see [below](#the-2026-ihra-ai-amendments)).
 
 ---
 
 ## Restrictions on Sharing
 
-Employers may **not** share video recordings with third parties except in two narrow circumstances:
+Employers may **not** share applicant videos except with persons whose expertise or technology is necessary to evaluate an applicant's fitness for a position.
 
-1. **Persons with necessary expertise**: Individuals whose expertise is needed to evaluate job fitness — such as a technical interviewer or department manager — may view the recording. These persons must be directly involved in the hiring decision.
+In practice, this covers two categories:
 
-2. **Technology vendors providing storage or processing**: Service providers who need access to host, process, or transmit the recordings may access them — but only under a **binding contractual agreement** prohibiting the vendor from disclosing the video to any other party.
+1. **Persons with necessary expertise**: Individuals whose expertise is needed to evaluate fitness for the position — such as a technical interviewer or department manager — may view the recording.
 
-### What Is Prohibited
+2. **Technology providers**: Service providers whose technology is necessary to host, process, or analyze the recordings may access them in order to provide that service.
 
-- Sharing video recordings with other employers or affiliates
-- Providing videos to AI research teams for model training without the applicant's separate consent
-- Making videos accessible to any person not directly involved in the specific hiring decision
+### What This Restricts
+
+- Sharing video recordings with other employers or unrelated affiliates
+- Providing videos to AI research teams for model training beyond what is necessary to evaluate the applicant
+- Making videos accessible to any person whose expertise or technology is not necessary to evaluate fitness for the position
 
 ---
 
@@ -165,41 +168,84 @@ Employers may **not** share video recordings with third parties except in two na
 
 ### On-Request Deletion — 30-Day Deadline
 
-If an applicant requests deletion of their video interview recording, the employer must destroy all copies of the video within **30 days** of that request. This includes copies held by third-party technology vendors — the employer must ensure its vendor contracts include a deletion-on-request obligation.
+Upon an applicant's request, the employer must, within **30 days**, delete the applicant's interviews and instruct any other persons who received copies of the videos to also delete them — including all electronically generated backup copies. Employers should ensure their vendor contracts include a corresponding deletion-on-request obligation so that the employer can satisfy this requirement within the 30-day window.
 
-### Destruction After Hiring Process
+### No Fixed Retention Limit Absent a Request
 
-Even without a request, employers must destroy all video recordings within a **reasonable time** after the completion of the hiring process for the position in question. The Act does not define "reasonable time," but industry practice suggests 6–12 months following a final hiring decision.
+AIVIRA does not impose a specific maximum retention period in the absence of a deletion request. (Earlier readings of this page suggested a defined post-hiring destruction deadline; the statute does not set one.) Employers should nonetheless adopt a reasonable retention and deletion policy, both as a privacy best practice and to manage exposure under other Illinois laws.
 
 ### Scope of Deletion
 
-The deletion obligation covers:
+When an applicant requests deletion, the obligation reaches:
 - The original video recording
-- Any backup copies
-- Any processed or extracted features stored by AI analysis vendors
-- Transcripts generated solely from the video (if stored separately)
+- Any backup copies, including electronically generated ones
+- Copies held by any other persons or vendors who received them
 
 ---
 
-## Penalties & Enforcement
+## Demographic Data Reporting
 
-Unlike most AI regulations (which vest enforcement in a government agency only), the Illinois AI Video Interview Act provides a **private right of action** — applicants can sue employers directly.
+A material obligation that applies to a **narrower** group of employers was added to AIVIRA by **Public Act 102-0047**, effective **January 1, 2022**, as Section 20.
 
-### Available Remedies
+### Who Must Report
 
-| Remedy | Details |
-|--------|---------|
-| Injunctive relief | Court can order employer to stop non-compliant practices |
-| Actual damages | Compensation for provable harm caused by violation |
-| Attorneys' fees | Prevailing plaintiff can recover legal costs |
+An employer that relies **solely** upon an AI analysis of a video interview to determine whether an applicant will be selected for an **in-person interview** must collect and report demographic data. If a human reviewer also weighs in on the advance-to-in-person decision, this Section 20 reporting obligation is not triggered — though the notice, consent, sharing, and deletion duties above still apply.
 
-### Statute of Limitations
+### What Must Be Reported
 
-Illinois courts have generally applied a **5-year statute of limitations** for statutory violations like AIVIRA, though this has not been definitively resolved through case law.
+Covered employers must collect and report:
+- The **race and ethnicity** of applicants who are **and are not** afforded the opportunity for an in-person interview after the use of AI analysis, and
+- The **race and ethnicity** of applicants who are **hired**
 
-### No Government Enforcement Agency
+### To Whom, and By When
 
-There is no dedicated agency with authority to investigate AIVIRA complaints or assess administrative penalties. Enforcement is entirely through private litigation.
+| Step | Recipient | Deadline |
+|------|-----------|----------|
+| Employer reports demographic data | Illinois Department of Commerce and Economic Opportunity (DCEO) | Annually, by **December 31** (covering the 12-month period ending the preceding November 30) |
+| DCEO analyzes the data and reports whether it discloses a racial bias | Governor and General Assembly | Annually, by **July 1** |
+
+DCEO has published these annual analyses (for example, its 2022 and 2024 AI Video Interview Act demographic reports), confirming the reporting requirement is actively operative.
+
+---
+
+## Enforcement & Penalties
+
+**AIVIRA is silent on enforcement.** The statute does **not** create a private right of action, does **not** designate an enforcing agency, and does **not** specify any penalties, damages, or remedies for a violation.
+
+This is a well-documented gap. Authoritative analyses — from SHRM and law firms including Ogletree, Baker Sterchi, and Smith Gambrell Russell — uniformly note that the Act "does not prescribe any penalties for violating it" and "does not specify what types of remedies are available." There is no statutory injunctive relief, no statutory actual-damages provision, and no statutory attorneys'-fees provision in AIVIRA.
+
+> **Note:** An earlier version of this page described AIVIRA as creating a private right of action with injunctive relief, actual damages, and attorneys' fees. That was incorrect. No such remedies appear in 820 ILCS 42. A private right of action and damages for AI-driven employment discrimination do exist in Illinois — but they arise under the **separate** 2026 amendments to the Illinois Human Rights Act (HB 3773 / Public Act 103-0804), not under AIVIRA. See the next section.
+
+### Practical Exposure
+
+Even though AIVIRA itself carries no stated penalty, employers should not treat compliance as optional:
+
+- The Section 20 demographic-reporting data is reviewed by DCEO and reported to the legislature, creating regulatory visibility into AI-driven screening outcomes.
+- AI-driven hiring practices that produce discriminatory effects are now directly actionable under the amended Illinois Human Rights Act.
+- Mishandling video recordings can implicate other Illinois privacy laws.
+
+---
+
+## The 2026 IHRA AI Amendments
+
+For any Illinois AI-in-hiring program, AIVIRA is only half the picture as of 2026. **HB 3773**, enacted as **Public Act 103-0804** and signed by Governor Pritzker on August 9, 2024, amended the **Illinois Human Rights Act (IHRA)** and took effect **January 1, 2026**.
+
+### What It Does
+
+The amendments make it a civil rights violation for a covered employer to:
+
+- Use **AI or automated decision-making** in connection with recruitment, hiring, promotion, discipline, discharge, tenure, or the terms, privileges, or conditions of employment in a way that has a **discriminatory effect** on individuals based on a protected class, **or**
+- Use **zip code as a proxy** for a protected class.
+
+The law also requires employers to **provide notice** when AI is used in covered employment decisions.
+
+### Enforcement (Unlike AIVIRA)
+
+These obligations are enforced through the **Illinois Human Rights Act's** existing machinery: an aggrieved person may file a **charge with the Illinois Department of Human Rights (IDHR)**, with proceedings before the **Human Rights Commission** and the possibility of a civil action and IHRA remedies. This is the enforcement pathway that AIVIRA lacks.
+
+### Rulemaking Status (June 2026)
+
+IDHR proposed administrative rules (amending Title 44, Part 2520 of the Illinois Administrative Code) to implement the notice requirements, publishing them on May 15, 2026 with a comment period and a public hearing set for June 10, 2026. On **June 2, 2026, IDHR temporarily withdrew the proposed rules and canceled the June 10 hearing**, citing the need for continued collaboration with other state agencies. **The statutory obligations remain in effect** despite the rulemaking pause — only the implementing notice rules are on hold.
 
 ---
 
@@ -207,50 +253,58 @@ There is no dedicated agency with authority to investigate AIVIRA complaints or 
 
 1. **Audit your video interview tools.** Determine which platforms your company uses for video interviews and whether any of them use AI analysis (automated scoring, facial expression analysis, voice analysis, etc.).
 
-2. **Contact vendors for AI feature disclosure.** Request documentation from your video interview vendors describing exactly what characteristics their AI evaluates. This is necessary for the required applicant disclosure.
+2. **Contact vendors for AI feature disclosure.** Request documentation describing what general types of characteristics the AI uses to evaluate applicants. This supports the required applicant explanation.
 
-3. **Update your consent workflow.** Before any video interview where AI analysis is used, implement a consent step that:
-   - Notifies the applicant that AI will be used
-   - Explains what the AI evaluates
-   - Collects written or electronic consent
+3. **Update your notice and consent workflow.** Before any video interview where AI analysis may be used, implement a step that:
+   - Notifies the applicant that AI may be used and may consider their fitness for the position
+   - Provides information explaining how the AI works and what it evaluates
+   - Collects the applicant's consent
 
-4. **Review data sharing contracts.** Audit agreements with your video interview vendors to ensure they include binding restrictions on sharing recordings with third parties and deletion obligations upon your request.
+4. **Review data sharing contracts.** Audit agreements with your video interview vendors to ensure recordings are shared only with persons whose expertise or technology is necessary, and that vendors will delete recordings on your instruction.
 
-5. **Implement a deletion request process.** Create a documented process for responding to applicant deletion requests within 30 days, including a mechanism to pass deletion requests to vendors.
+5. **Implement a 30-day deletion process.** Create a documented process for responding to applicant deletion requests within 30 days, including a mechanism to instruct vendors and others holding copies to delete them.
 
-6. **Set retention policies.** Define a maximum retention period for video recordings (tied to completion of the relevant hiring process) and configure your vendor platform to auto-delete within that window.
+6. **Determine whether Section 20 applies to you.** If any hiring track relies *solely* on AI to decide who advances to an in-person interview, build a process to collect and report applicant race/ethnicity data to DCEO by December 31 each year. Consider whether keeping a human in that decision avoids triggering the reporting mandate.
 
-7. **Train recruiters and hiring managers.** Ensure anyone involved in video interviews understands AIVIRA's requirements, particularly the prohibition on sharing recordings beyond those directly involved in the decision.
+7. **Map your obligations under the amended Human Rights Act.** Separately from AIVIRA, ensure AI used in any covered employment decision does not produce a discriminatory effect, does not use zip code as a proxy, and is accompanied by the required notice. This is the regime with real enforcement.
 
-8. **Document consent records.** Retain records of when consent was obtained from each applicant, in case of later dispute.
+8. **Document consent and notice records.** Retain records of when notice was given and consent obtained from each applicant, in case of later dispute.
 
 ---
 
 ## Frequently Asked Questions
 
 **Does AIVIRA apply to remote interviews?**
-Yes. The law applies when the applicant is located in Illinois, regardless of the interview format or the employer's location.
+Yes. The law applies to recorded video interviews analyzed by AI for an Illinois position, regardless of the interview format or the employer's location.
 
 **What consent is required?**
-Written or electronic consent, obtained after providing notice of what AI will analyze and how it will be used in the decision. Passive acceptance is not enough.
+Consent to be evaluated by the AI program, obtained after the applicant receives pre-interview notice and an explanation of how the AI works and what it evaluates.
 
 **Can employers share videos with hiring managers?**
-Yes — sharing with persons whose expertise is necessary to evaluate job fitness is permitted. But they must be directly involved in the hiring decision.
+Yes — sharing with persons whose expertise (or technology) is necessary to evaluate the applicant's fitness for the position is permitted.
 
 **How fast must employers delete videos on request?**
-Within 30 days of the applicant's deletion request, including copies held by vendors.
+Within 30 days of the applicant's request, including instructing anyone else who received copies to delete them.
 
-**Is there a government agency that enforces AIVIRA?**
-No. Enforcement is through private lawsuits only. Applicants can sue for injunctive relief, actual damages, and attorneys' fees.
+**What penalties does AIVIRA impose?**
+None are written into the Act. AIVIRA is silent on enforcement — no private right of action, no enforcing agency, and no specified penalties or remedies. Enforcement of AI-driven employment discrimination instead runs through the amended Illinois Human Rights Act.
+
+**Do some employers have to report data to the state?**
+Yes. Employers that rely solely on AI to decide who advances to an in-person interview must report applicant race/ethnicity data to DCEO annually by December 31 under Section 20.
 
 **Does it cover asynchronous video interviews?**
-Yes. "One-way" or asynchronous video interviews (where candidates record answers to pre-set questions, which are later reviewed) are covered if AI is used to analyze the recording.
+Yes. "One-way" or asynchronous video interviews (where candidates record answers to pre-set questions that are later reviewed) are covered if AI is used to analyze the recording.
 
-**Do employers have to reveal which AI vendor they use?**
-The Act does not explicitly require naming the vendor, but the disclosure of "how AI works and what it evaluates" typically requires describing the vendor's methodology in enough detail to be meaningful.
+**Is AIVIRA the only Illinois AI hiring law I need to follow?**
+No. Since January 1, 2026, the Illinois Human Rights Act (as amended by HB 3773 / Public Act 103-0804) separately regulates AI in employment decisions, prohibits discriminatory effects and the use of zip code as a proxy, requires notice, and is enforced through IDHR and the Human Rights Commission.
 
 ---
 
 ## Official Sources
 
-- [AIVIRA full text — 820 ILCS 42 (Illinois General Assembly)](https://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=4015)
+- [AIVIRA full text — 820 ILCS 42 (Illinois General Assembly)](https://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=4015&ChapterID=68)
+- [820 ILCS 42 — 2025 codification (Justia)](https://law.justia.com/codes/illinois/chapter-820/act-820-ilcs-42/)
+- [SHRM — Illinois Employers Must Comply with the AI Video Interview Act](https://www.shrm.org/topics-tools/employment-law-compliance/illinois-employers-must-comply-artificial-intelligence-video-interview-act)
+- [Public Act 103-0804 (HB 3773) — Illinois General Assembly](https://www.ilga.gov/Legislation/publicacts/view/103-0804)
+- [IDHR — Artificial Intelligence in Employment (Public Act 103-0804)](https://dhr.illinois.gov/about-us/legislative-updates/artificial-intelligence-in-employment.html)
+- [DCEO — AI Video Interview Act Demographic Data Report (2024)](https://dceo.illinois.gov/content/dam/soi/en/web/dceo/aboutdceo/reportsrequiredbystatute/ai-video-interview-report-2024.pdf)

@@ -2,24 +2,26 @@ export const frontmatter = {
   name: "NIS2 Directive",
   shortName: "EU 2022/2555",
   description:
-    "The EU's updated cybersecurity directive requiring essential and important sector organizations — including those deploying AI — to implement robust security risk management, incident reporting, and supply chain controls.",
+    "The EU's updated cybersecurity directive requiring essential and important sector organizations — including those deploying AI — to implement robust security risk management, incident reporting, and supply chain controls. National transposition is still uneven, and the Commission proposed targeted amendments in January 2026.",
   jurisdiction: "European Union",
   status: "enforced",
   effectiveDate: "January 16, 2023",
   enforcementDate: "October 17, 2024",
   maxPenalty: "€10 million or 2% of global turnover (essential); €7 million or 1.4% (important)",
   publishedAt: "2022-12-27",
-  updatedAt: "2026-04-18",
+  updatedAt: "2026-06-21",
   toc: [
     { id: "overview", label: "Overview" },
-    { id: "scope", label: "Who It Applies To" },
-    { id: "sectors", label: "Covered Sectors" },
+    { id: "who-it-applies-to", label: "Who It Applies To" },
+    { id: "covered-sectors", label: "Covered Sectors" },
     { id: "key-requirements", label: "Key Requirements" },
-    { id: "ai-intersection", label: "AI & NIS2 Intersection" },
+    { id: "ai-nis2-intersection", label: "AI & NIS2 Intersection" },
     { id: "compliance-timeline", label: "Compliance Timeline" },
-    { id: "penalties", label: "Penalties & Enforcement" },
+    { id: "transposition-status", label: "Transposition Status" },
+    { id: "2026-proposed-amendments", label: "2026 Proposed Amendments" },
+    { id: "penalties-enforcement", label: "Penalties & Enforcement" },
     { id: "compliance-steps", label: "Compliance Steps" },
-    { id: "faqs", label: "Frequently Asked Questions" },
+    { id: "frequently-asked-questions", label: "Frequently Asked Questions" },
   ],
   relatedRegulations: [
     { slug: "eu-ai-act", name: "EU AI Act" },
@@ -40,7 +42,12 @@ export const frontmatter = {
     {
       question: "How does NIS2 interact with the EU AI Act?",
       answer:
-        "The EU AI Act's cybersecurity requirements for high-risk AI systems (Article 15) explicitly reference NIS2. Organizations deploying high-risk AI in NIS2-covered sectors must satisfy both frameworks simultaneously. NIS2 also covers ICT supply chains, meaning AI vendors providing services to essential/important entities may face NIS2 scrutiny.",
+        "The EU AI Act's cybersecurity requirements for high-risk AI systems (Article 15) explicitly reference NIS2, so organizations deploying high-risk AI in NIS2-covered sectors will face overlapping obligations. NIS2 also covers ICT supply chains, meaning AI vendors providing services to essential/important entities may face NIS2 scrutiny. Note that under the Digital Omnibus on AI (provisional agreement May 6, 2026; confirmed by the Council May 13, 2026), the AI Act's high-risk obligations for stand-alone Annex III systems were deferred to December 2, 2027, so the AI Act's high-risk cybersecurity duties are not yet live — but NIS2's own cybersecurity obligations apply now to in-scope entities.",
+    },
+    {
+      question: "Is NIS2 already being amended?",
+      answer:
+        "Yes — a proposal is on the table. On January 20, 2026 the European Commission published a cybersecurity package with targeted NIS2 amendments alongside a proposed new Cybersecurity Act 2 (CSA2) that would replace Regulation (EU) 2019/881. The NIS2 amendments would simplify jurisdictional and reporting rules, harmonize technical risk-management requirements (limiting national gold-plating), add ransomware-specific reporting, expand the EU-representative obligation, adjust scope (e.g., adding submarine data-transmission operators and digital identity wallet providers, removing chemical distributors while keeping manufacturers), and create a 'small mid-cap' category. It is a proposal, not yet law — adoption is expected in late 2026 or 2027, followed by a transposition period.",
     },
     {
       question: "What are the incident reporting timelines under NIS2?",
@@ -66,7 +73,9 @@ The **NIS2 Directive** (EU Directive 2022/2555 on measures for a high common lev
 
 Published on December 27, 2022, NIS2 entered into force on January 16, 2023, with EU member states required to transpose it into national law by **October 17, 2024**. The directive now covers organizations in over 18 sectors — from energy and transport to manufacturing, food production, and research institutions.
 
-For AI compliance teams, NIS2 is directly relevant: organizations deploying AI systems in any covered sector must ensure those systems and their supply chains meet NIS2's cybersecurity standards. The EU AI Act explicitly cross-references NIS2 in its cybersecurity requirements for high-risk AI, creating an overlapping compliance landscape that teams must navigate together.
+Because NIS2 is a *directive*, it only binds organizations once their member state transposes it. Most have now done so, but the picture remains uneven: as of mid-2026 around 22 of 27 member states have adopted transposing legislation, while five — France, Ireland, Luxembourg, the Netherlands, and Spain — are still in their national legislative processes. The Commission has opened infringement proceedings to push the laggards along (see [Transposition Status](#transposition-status)). Separately, on **January 20, 2026** the Commission proposed a package of **targeted NIS2 amendments** plus a new **Cybersecurity Act 2** (see [2026 Proposed Amendments](#2026-proposed-amendments)).
+
+For AI compliance teams, NIS2 is directly relevant: organizations deploying AI systems in any covered sector must ensure those systems and their supply chains meet NIS2's cybersecurity standards. The EU AI Act cross-references NIS2 in its cybersecurity requirements for high-risk AI, creating an overlapping compliance landscape that teams must navigate together — though note that the AI Act's high-risk obligations have themselves been deferred to December 2027 (covered below).
 
 ---
 
@@ -125,6 +134,8 @@ NIS2 covers organizations in two categories:
 ## Key Requirements
 
 NIS2 mandates ten baseline cybersecurity risk-management measures for all covered entities. These are minimum requirements; member states may impose stricter standards.
+
+> **Binding technical detail for digital-infrastructure and digital providers.** For one specific group of entities, the measures below are no longer described only in general terms. **Commission Implementing Regulation (EU) 2024/2690** (in force since October 2024, and directly applicable in all member states without national transposition) lays down binding technical and methodological requirements — organized into 13 thematic areas — and specifies exactly when an incident counts as "significant" for DNS service providers, TLD name registries, cloud computing providers, data centre providers, content delivery networks, managed service providers (MSPs), managed security service providers (MSSPs), online marketplaces, online search engines, social networking platforms, and trust service providers. ENISA has published accompanying *Technical Implementation Guidance*. If your organization is one of these entity types, treat the Implementing Regulation — not just the ten generic measures — as your detailed compliance baseline.
 
 ### 1. Policies on Risk Analysis and Information Security
 
@@ -196,7 +207,7 @@ NIS2's supply chain security requirements (Article 21(2)(d)) are particularly si
 
 ### EU AI Act Cross-Reference
 
-The EU AI Act's Article 15 on accuracy, robustness, and cybersecurity for high-risk AI systems explicitly references NIS2, stating that high-risk AI systems must meet NIS2 standards where applicable. Organizations deploying high-risk AI in NIS2-covered sectors face **dual compliance obligations**:
+The EU AI Act's Article 15 on accuracy, robustness, and cybersecurity for high-risk AI systems references NIS2, expecting high-risk AI systems to meet NIS2 standards where applicable. Organizations deploying high-risk AI in NIS2-covered sectors will eventually face **dual compliance obligations**:
 
 | Requirement | EU AI Act | NIS2 |
 |-------------|-----------|------|
@@ -204,6 +215,8 @@ The EU AI Act's Article 15 on accuracy, robustness, and cybersecurity for high-r
 | Incident reporting | Article 73 (serious incidents) | Articles 23-24 (significant incidents) |
 | Supply chain / third parties | Article 25 (obligations for distributors) | Article 21(2)(d) (supply chain security) |
 | Documentation | Articles 11, 18 (technical docs, logs) | Article 21 (policies and procedures) |
+
+> **Timing caveat — AI Act high-risk obligations deferred.** Under the **Digital Omnibus on AI** (Commission proposal November 19, 2025; provisional political agreement May 6, 2026; confirmed by the Council May 13, 2026; formal adoption expected before August 2, 2026), the AI Act's high-risk obligations were postponed: stand-alone Annex III high-risk systems move from August 2, 2026 to **December 2, 2027**, and Annex I embedded high-risk systems to **August 2, 2028**. The omnibus replaced the originally proposed conditional trigger with these fixed dates. Practically, the AI Act side of the "dual obligation" above is not yet live for high-risk systems — but NIS2's own cybersecurity duties apply now to in-scope entities, independent of the AI Act timeline.
 
 ### Managed Service Providers Using AI
 
@@ -217,12 +230,52 @@ MSPs and MSSPs — themselves regulated as "essential entities" under NIS2's Ann
 |------|-----------|
 | **December 27, 2022** | NIS2 Directive published in Official Journal of the EU |
 | **January 16, 2023** | NIS2 enters into force (20 days after publication) |
-| **October 17, 2024** | Deadline for EU member states to transpose NIS2 into national law |
-| **October 17, 2024** | **Organizations must comply with transposed national NIS2 laws** |
+| **October 2024** | Commission Implementing Regulation (EU) 2024/2690 enters into force — binding technical rules for digital-infrastructure and digital-provider entities |
+| **October 17, 2024** | Deadline for EU member states to transpose NIS2 into national law (most missed it) |
+| **November 28, 2024** | Commission sends letters of formal notice to 23 member states for failure to fully transpose |
 | **April 17, 2025** | Deadline for member states to establish a list of essential and important entities |
-| **Ongoing** | Member states may phase in certain sector-specific requirements |
+| **May 7, 2025** | Commission escalates to reasoned opinions against 19 member states |
+| **January 20, 2026** | Commission proposes targeted NIS2 amendments + a new Cybersecurity Act 2 (CSA2) |
+| **Mid-2026** | ~22 of 27 member states have transposed; 5 still in their national legislative process |
 
-Note: Transposition progress varies by member state. Organizations should verify which national implementing law applies to their jurisdiction(s) and monitor for jurisdiction-specific requirements that may exceed NIS2's baseline.
+> **Important:** the October 17, 2024 transposition deadline is *not* a uniform EU-wide go-live for compliance obligations. NIS2 is a directive, so an organization's concrete legal duties depend on the **national implementing law** in each member state where it operates — and several of those laws were still being adopted in mid-2026. Verify which national law applies to you and monitor for jurisdiction-specific requirements that may exceed NIS2's baseline. See [Transposition Status](#transposition-status) below.
+
+---
+
+## Transposition Status
+
+Because NIS2 binds organizations only once a member state has transposed it, the real-world picture in mid-2026 is patchy rather than uniform:
+
+- **Met the original October 17, 2024 deadline:** only a handful of states — Belgium, Croatia, Italy, and Lithuania — transposed on time.
+- **Transposed since:** by mid-2026 roughly **22 of 27** member states have adopted transposing legislation.
+- **Still in progress:** five member states — **France, Ireland, Luxembourg, the Netherlands, and Spain** — remained in their national legislative procedures as of mid-2026.
+
+The Commission has used infringement proceedings to press the laggards:
+
+| Date | Action |
+|------|--------|
+| **November 28, 2024** | Letters of formal notice to **23** member states for failing to fully notify transposition |
+| **May 7, 2025** | Reasoned opinions to **19** member states (the next escalation step before referral to the Court of Justice) |
+
+**Practical takeaway:** if you operate across multiple member states, your effective obligations and go-live dates differ by country. In jurisdictions where the national law is still pending, the directive is not yet directly enforceable against most private entities — but you should still prepare, because adoption is imminent and many national laws apply retroactively from a fixed date.
+
+---
+
+## 2026 Proposed Amendments
+
+On **January 20, 2026** the European Commission published a cybersecurity package containing two proposals: a new **Cybersecurity Act 2 (CSA2)** — which would replace the 2019 Cybersecurity Act (Regulation (EU) 2019/881) — and a set of **targeted amendments to NIS2**. These are *proposals*, not yet binding law; adoption is expected in late 2026 or 2027, followed by an implementation period (the NIS2 amendments contemplate roughly a 12-month transposition window).
+
+Key proposed NIS2 changes include:
+
+- **Simpler jurisdictional rules** to reduce ambiguity about which member state supervises an entity.
+- **Harmonized technical measures.** Where the Commission adopts implementing acts specifying technical or methodological risk-management requirements, member states would no longer be able to layer on additional national requirements on those points — curbing "gold-plating" and creating a more uniform EU-wide control baseline.
+- **Streamlined and ransomware-specific reporting.** Entities reporting significant incidents linked to ransomware would, on request, have to disclose ransom-related details (whether a demand was made, whether it was paid, the amount, and the payment method).
+- **Expanded EU-representative obligation.** The duty to designate an EU representative would extend beyond today's digital service providers to a broader set of entities offering NIS2-regulated services in the EU — for example credit institutions and certain product manufacturers.
+- **Scope adjustments.** Adds operators of **submarine data-transmission (cable) infrastructure** and providers of **European Digital Identity / Business Wallets** to the digital-infrastructure sector; **removes chemical distributors** while keeping chemical manufacturers in scope.
+- **Size-threshold tweaks**, including a new **"small mid-cap"** category intended to lower the supervisory and compliance burden on smaller players so the strictest requirements fall on larger, systemic entities.
+- **A reinforced coordinating role for ENISA**, the EU cybersecurity agency.
+
+**What to do now:** keep complying with the directive as transposed in your jurisdiction(s). The 2026 proposal does not change current obligations, but it signals where the regime is heading — especially the move toward harmonized, non-gold-plated technical measures and broader EU-representative duties.
 
 ---
 
@@ -297,11 +350,19 @@ Yes. MSPs and MSSPs are explicitly classified as essential entities under Annex 
 An incident is significant if it causes or can cause severe operational disruption, financial loss, or affect other natural or legal persons by causing considerable material or non-material damage. Indicators include the number of affected users, duration of disruption, geographic spread, and the extent of disruption to essential services.
 
 **Is NIS2 compliance the same across all EU member states?**
-No. NIS2 is a directive, meaning member states must transpose it into national law — and they have some discretion in how they do so. National laws may set higher fines, extend the scope to smaller organizations, or add sector-specific requirements. Always review the national implementing legislation in each member state where you operate.
+No. NIS2 is a directive, meaning member states must transpose it into national law — and they have some discretion in how they do so. National laws may set higher fines, extend the scope to smaller organizations, or add sector-specific requirements. The picture is also uneven in time: as of mid-2026 about 22 of 27 member states had transposed NIS2, while France, Ireland, Luxembourg, the Netherlands, and Spain were still legislating (the Commission has reasoned-opinion infringement proceedings open against the laggards). Always review the national implementing legislation in each member state where you operate.
+
+**Is NIS2 being amended?**
+Yes — a proposal is pending. On January 20, 2026 the Commission proposed targeted NIS2 amendments alongside a new Cybersecurity Act 2. The amendments would harmonize technical measures (limiting national add-ons), add ransomware-specific reporting, broaden the EU-representative duty, and adjust scope (adding submarine cable operators and digital identity wallet providers, removing chemical distributors). It is not yet law; adoption is expected in late 2026 or 2027.
 
 ---
 
 ## Official Sources
 
 - [NIS2 Directive full text (EUR-Lex)](https://eur-lex.europa.eu/eli/dir/2022/2555/oj)
+- [Commission Implementing Regulation (EU) 2024/2690 (EUR-Lex)](https://eur-lex.europa.eu/eli/reg_impl/2024/2690/oj/eng)
+- [Commission: NIS2 implementing regulation for critical entities and networks](https://digital-strategy.ec.europa.eu/en/library/nis2-commission-implementing-regulation-critical-entities-and-networks)
+- [Commission: NIS2 transposition status by member state](https://digital-strategy.ec.europa.eu/en/policies/nis-transposition)
+- [Commission: proposal to amend NIS2 (simplification + Cybersecurity Act alignment, Jan 20, 2026)](https://digital-strategy.ec.europa.eu/en/library/proposal-directive-regards-simplification-measures-and-alignment-cybersecurity-act)
+- [Council: agreement to simplify and streamline AI Act rules (Digital Omnibus, May 7, 2026)](https://www.consilium.europa.eu/en/press/press-releases/2026/05/07/artificial-intelligence-council-and-parliament-agree-to-simplify-and-streamline-rules/)
 - [ENISA NIS2 resources](https://www.enisa.europa.eu/topics/nis-directive)

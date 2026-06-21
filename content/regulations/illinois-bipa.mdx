@@ -2,14 +2,14 @@ export const frontmatter = {
   name: "Illinois Biometric Information Privacy Act",
   shortName: "IL BIPA",
   description:
-    "Illinois law regulating the collection, use, storage, and destruction of biometric identifiers and information, including fingerprints, retina scans, and facial geometry.",
+    "Illinois law regulating the collection, use, storage, and destruction of biometric identifiers and information, including fingerprints, retina scans, and facial geometry. Amended by SB 2979 (2024) to limit repeat collections to a single recovery.",
   jurisdiction: "US · Illinois",
   status: "enforced",
   effectiveDate: "October 3, 2008",
   enforcementDate: "October 3, 2008",
   maxPenalty: "$5,000 per intentional/reckless violation",
   publishedAt: "2008-10-03",
-  updatedAt: "2026-04-18",
+  updatedAt: "2026-06-21",
   toc: [
     { id: "overview", label: "Overview" },
     { id: "who-it-applies-to", label: "Who It Applies To" },
@@ -18,6 +18,7 @@ export const frontmatter = {
     { id: "retention-and-destruction", label: "Retention & Destruction" },
     { id: "disclosure-restrictions", label: "Disclosure Restrictions" },
     { id: "penalties", label: "Penalties & Enforcement" },
+    { id: "2024-amendment-sb-2979", label: "2024 Amendment (SB 2979)" },
     { id: "compliance-steps", label: "Compliance Steps" },
     { id: "faqs", label: "Frequently Asked Questions" },
   ],
@@ -40,12 +41,17 @@ export const frontmatter = {
     {
       question: "Can individuals sue under BIPA?",
       answer:
-        "Yes. BIPA provides a private right of action. Individuals can sue for $1,000 per negligent violation or $5,000 per intentional or reckless violation, plus attorneys' fees and injunctive relief. Class actions under BIPA have resulted in hundreds of millions of dollars in settlements.",
+        "Yes. BIPA provides a private right of action. Individuals can recover $1,000 per negligent violation or $5,000 per intentional or reckless violation, plus attorneys' fees and injunctive relief. Since the SB 2979 amendment (signed August 2, 2024), repeated collections of the same biometric identifier from the same person by the same method count as a single violation entitling the person to, at most, one recovery — replacing the former 'per-scan' damages theory. Class actions have still resulted in hundreds of millions of dollars in settlements.",
+    },
+    {
+      question: "Did the 2024 BIPA amendment end per-scan damages?",
+      answer:
+        "Yes. SB 2979, signed by Governor Pritzker on August 2, 2024 (effective immediately), overturned the per-scan accrual rule from Cothron v. White Castle (2023). BIPA now provides that collecting the same biometric identifier from the same person using the same method is a single violation allowing one recovery. In Clay v. Union Pacific Railroad Co. (April 1, 2026), the Seventh Circuit held this single-recovery limit applies retroactively to pending cases within the circuit.",
     },
     {
       question: "Do I need consent before collecting biometric data?",
       answer:
-        "Yes. Before collecting any biometric identifier, you must: (1) inform the individual in writing that their biometric data is being collected, (2) explain the purpose and duration of storage, and (3) obtain a written release from the individual.",
+        "Yes. Before collecting any biometric identifier, you must: (1) inform the individual in writing that their biometric data is being collected, (2) explain the purpose and duration of storage, and (3) obtain a written release from the individual. Since SB 2979 (2024), a 'written release' can be executed by electronic signature.",
     },
     {
       question: "What are the retention and destruction requirements?",
@@ -59,7 +65,9 @@ export const frontmatter = {
 
 The **Illinois Biometric Information Privacy Act** (BIPA), enacted on October 3, 2008, is the most consequential US biometric privacy law. BIPA regulates how private entities collect, use, safeguard, handle, store, retain, and destroy biometric identifiers and biometric information.
 
-BIPA was the **first US state law** to provide a private right of action for biometric privacy violations, and its enforcement through class action litigation has driven over **$4 billion in settlements** since 2015. It is the primary legal framework shaping how companies deploy facial recognition, fingerprint scanning, voiceprint analysis, and other biometric technologies in Illinois.
+BIPA was the **first US state law** to provide a private right of action for biometric privacy violations, and its enforcement through class action litigation has produced some of the largest privacy settlements in US history — including Facebook's $650 million resolution — with new filings and settlements continuing through 2025 and 2026. It is the primary legal framework shaping how companies deploy facial recognition, fingerprint scanning, voiceprint analysis, and other biometric technologies in Illinois.
+
+A major 2024 amendment, **SB 2979**, reshaped BIPA's damages exposure: it overturned the *Cothron v. White Castle* "per-scan" rule and limited repeat collections of the same biometric identifier from the same person to a **single recovery**. See the [2024 Amendment](#2024-amendment-sb-2979) section below.
 
 Key requirements:
 
@@ -133,6 +141,10 @@ The release must be a standalone document or clearly identified section — bury
 - Voluntary (not coerced or conditioned on unrelated services)
 - Written or electronic (verbal consent is insufficient)
 
+### Electronic Signature (2024 Amendment)
+
+The **SB 2979** amendment (signed August 2, 2024) expressly confirmed that a "written release" may be executed by **electronic signature**. The statute now defines an electronic signature as "an electronic sound, symbol, or process attached to or logically associated with a record and executed or adopted by a person with the intent to sign the record" (740 ILCS 14/10). This clarification lets entities collect valid BIPA consent through electronic onboarding and e-signature workflows, not only handwritten releases.
+
 ---
 
 ## Retention & Destruction
@@ -196,9 +208,33 @@ BIPA has generated the largest biometric privacy class action settlements in US 
 - **TikTok:** $92 million (2021) — biometric data collection
 - **BNSF Railway:** $228 million jury verdict (2022) — fingerprint scans without consent
 
-### Per-Scan Accrual
+### Damages Accrual: From Per-Scan to Single Recovery
 
-In *Cothron v. White Castle* (2023), the Illinois Supreme Court held that a separate BIPA violation accrues **each time** biometric data is scanned or transmitted without consent — not just upon the first collection. This ruling dramatically increased potential damages for repeat-scan scenarios like employee fingerprint time clocks.
+In *Cothron v. White Castle* (2023), the Illinois Supreme Court held that a separate BIPA violation accrued **each time** biometric data was scanned or transmitted without consent — not just upon the first collection. Because statutory damages are assessed per violation, this "per-scan" theory created the potential for astronomical exposure in repeat-scan scenarios such as employee fingerprint time clocks.
+
+That rule **no longer reflects current law**. The Illinois legislature responded with **SB 2979** (signed August 2, 2024), which limits repeat collections of the same biometric identifier from the same person by the same method to a **single recovery** — effectively eliminating per-scan stacking. See the [2024 Amendment](#2024-amendment-sb-2979) section below for the details and the Seventh Circuit's 2026 retroactivity ruling.
+
+---
+
+## 2024 Amendment (SB 2979)
+
+On **August 2, 2024**, Governor J.B. Pritzker signed **SB 2979** — the first substantive amendment to BIPA since its 2008 enactment. It took effect immediately and made two significant changes.
+
+### Single Violation, Single Recovery
+
+SB 2979 amended BIPA's damages provision (**740 ILCS 14/20**) to provide that when a private entity, in more than one instance, collects the same biometric identifier or information from the same person using the same method of collection (Section 15(b)), or discloses it to the same recipient in the same manner (Section 15(d)), the person is entitled to **at most one recovery** for that course of conduct.
+
+This **legislatively overturned** the per-scan accrual rule from *Cothron v. White Castle* (2023). The headline statutory damages amounts are unchanged ($1,000 negligent / $5,000 intentional or reckless), but they can no longer be multiplied by the number of scans for the same person and method.
+
+### Electronic Signature as Written Release
+
+SB 2979 also amended the definitions (**740 ILCS 14/10**) to confirm that a "written release" may be executed by **electronic signature**, defined as "an electronic sound, symbol, or process attached to or logically associated with a record and executed or adopted by a person with the intent to sign the record." See [Consent Requirements](#consent-requirements).
+
+### Retroactivity: *Clay v. Union Pacific Railroad* (2026)
+
+A key open question after SB 2979 was whether the single-recovery limit applied to conduct (and cases) that predated the amendment. The U.S. Court of Appeals for the Seventh Circuit answered it in ***Clay v. Union Pacific Railroad Co.***, No. 25-2185 (7th Cir. **April 1, 2026**).
+
+The court held that the SB 2979 single-recovery amendment is **remedial/procedural** rather than substantive — it modified Section 20 (damages) rather than Section 15 (the conduct prohibited) and addressed "recovery" rather than liability — and therefore applies **retroactively** to cases pending when it was enacted. The practical effect: per-scan damages are unavailable even for pre-amendment conduct in federal cases within the Seventh Circuit's jurisdiction (which includes Illinois).
 
 ---
 
@@ -208,7 +244,7 @@ In *Cothron v. White Castle* (2023), the Illinois Supreme Court held that a sepa
 
 2. **Draft and publish a retention and destruction policy.** Create a publicly available written policy with a specific retention schedule and destruction guidelines. Post it on your website or make it available upon request.
 
-3. **Implement notice and consent workflows.** Before any biometric collection, provide written notice of the specific purpose and retention period, and obtain a signed written release from each individual.
+3. **Implement notice and consent workflows.** Before any biometric collection, provide written notice of the specific purpose and retention period, and obtain a written release from each individual. Since SB 2979 (2024), the release may be captured by electronic signature.
 
 4. **Audit vendor contracts.** Ensure all third-party vendors handling biometric data have contractual obligations to comply with BIPA requirements, including deletion and security obligations.
 
@@ -231,10 +267,13 @@ Retina or iris scans, fingerprints, voiceprints, scans of hand or face geometry,
 Yes. Any system capturing or analyzing facial geometry — including AI-powered facial recognition, emotion detection, or liveness checks — must comply with BIPA when processing data of Illinois residents.
 
 **Can individuals sue under BIPA?**
-Yes. BIPA provides a private right of action with statutory damages of $1,000 per negligent violation or $5,000 per intentional violation, plus attorneys' fees.
+Yes. BIPA provides a private right of action with statutory damages of $1,000 per negligent violation or $5,000 per intentional violation, plus attorneys' fees. Since SB 2979 (signed August 2, 2024), repeated collections of the same biometric identifier from the same person by the same method count as a single violation entitling the person to at most one recovery, replacing the former per-scan damages theory from *Cothron v. White Castle*.
+
+**Did the 2024 amendment end per-scan damages?**
+Yes. SB 2979 (effective August 2, 2024) overturned *Cothron*'s per-scan accrual rule and limited repeat collections to a single recovery. In *Clay v. Union Pacific Railroad Co.* (April 1, 2026), the Seventh Circuit held the amendment applies retroactively to pending cases within the circuit.
 
 **Do I need consent before collecting biometric data?**
-Yes. Written notice and a signed written release are required before any collection of biometric identifiers.
+Yes. Written notice and a written release are required before any collection of biometric identifiers. Since SB 2979 (2024), the release may be signed electronically.
 
 **What are the retention requirements?**
 You must publish a written retention and destruction policy. Data must be destroyed when the initial purpose is satisfied or within 3 years of the individual's last interaction, whichever comes first.
@@ -247,3 +286,5 @@ Yes. If an out-of-state company collects biometric identifiers of Illinois resid
 ## Official Sources
 
 - [BIPA full text — 740 ILCS 14 (Illinois General Assembly)](https://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=3004)
+- [SB 2979 full text — 103rd General Assembly (Illinois)](https://www.ilga.gov/documents/legislation/103/SB/10300SB2979.htm)
+- [Clay v. Union Pacific Railroad Co., No. 25-2185 (7th Cir. Apr. 1, 2026)](https://law.justia.com/cases/federal/appellate-courts/ca7/25-2185/25-2185-2026-04-01.html)

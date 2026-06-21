@@ -2,14 +2,14 @@ export const frontmatter = {
   name: "NIST AI Risk Management Framework",
   shortName: "NIST AI 100-1",
   description:
-    "The NIST AI Risk Management Framework (AI RMF 1.0) provides a voluntary, flexible, and structured approach for organizations to manage AI risks throughout the AI lifecycle — widely referenced by US and international AI regulations as the baseline governance standard.",
+    "The NIST AI Risk Management Framework (AI RMF 1.0) provides a voluntary, flexible, and structured approach for organizations to manage AI risks throughout the AI lifecycle — widely adopted as the de facto US baseline for AI governance even after the 2025 federal executive-order changes and Colorado's 2026 statutory rewrite removed the specific legal mandates that once referenced it.",
   jurisdiction: "US · Federal",
   status: "enforced",
   effectiveDate: "January 26, 2023",
   enforcementDate: "Voluntary framework — no direct enforcement",
-  maxPenalty: "N/A — voluntary framework; however, referenced by enforceable state AI laws",
+  maxPenalty: "N/A — voluntary framework with no direct penalties",
   publishedAt: "2023-01-26",
-  updatedAt: "2026-04-18",
+  updatedAt: "2026-06-21",
   toc: [
     { id: "overview", label: "Overview" },
     { id: "who-it-applies-to", label: "Who It Applies To" },
@@ -32,7 +32,7 @@ export const frontmatter = {
     {
       question: "Is the NIST AI RMF legally binding?",
       answer:
-        "No. The NIST AI RMF is a voluntary framework. However, several enforceable AI laws — including the Colorado AI Act — explicitly reference NIST AI RMF compliance as evidence of reasonable care or a safe harbor. Federal agencies are required to use the framework under Executive Order 14110, and many state regulators treat alignment with NIST AI RMF as a compliance benchmark.",
+        "No. The NIST AI RMF is and has always been a voluntary framework with no penalties for non-adoption. It is not currently mandated by any executive order: Executive Order 14110, which had directed federal agencies toward NIST AI guidance, was rescinded on January 20, 2025 and replaced by EO 14179. Federal AI governance now runs through OMB Memorandum M-25-21 (April 3, 2025), which requires risk management for high-impact AI but does not prescribe the NIST AI RMF by name. The framework nonetheless remains the most widely used reference for US AI governance.",
     },
     {
       question: "What are the four core functions of the NIST AI RMF?",
@@ -47,46 +47,49 @@ export const frontmatter = {
     {
       question: "Does the NIST AI RMF apply to generative AI?",
       answer:
-        "Yes. NIST published a companion document — the Generative AI Profile (NIST AI 600-1) — in July 2024 that maps generative AI-specific risks to the AI RMF's core functions. It addresses risks unique to foundation models and generative AI systems including confabulation, data privacy, environmental impact, information integrity, and CBRN misuse.",
+        "Yes. NIST published a companion document — the Generative AI Profile (NIST AI 600-1) — on July 26, 2024 that maps generative AI-specific risks to the AI RMF's core functions. It addresses risks unique to foundation models and generative AI systems including confabulation, data privacy, environmental impact, information integrity, and CBRN misuse.",
     },
     {
-      question: "Which US state AI laws reference the NIST AI RMF?",
+      question: "Do any US state AI laws require the NIST AI RMF?",
       answer:
-        "The Colorado AI Act (SB 24-205) explicitly references the NIST AI RMF, treating alignment with the framework as evidence of reasonable care. Several other state proposals and federal agency guidance also point to the NIST AI RMF as a compliance baseline. The framework is increasingly becoming the de facto US standard for AI governance.",
+        "Not anymore in the way they once did. The original Colorado AI Act (SB 24-205) treated alignment with recognized frameworks such as the NIST AI RMF as evidence of reasonable care, but Colorado repealed and reenacted that law as SB 26-189 (signed May 14, 2026, effective January 1, 2027). SB 26-189 eliminated the duty of reasonable care and the framework-based affirmative defense, and it does not reference the NIST AI RMF. No current US state statute mandates the NIST AI RMF, though it remains the de facto operational baseline that organizations use to satisfy newer notice, documentation, and oversight duties across jurisdictions.",
     },
     {
       question: "What is a NIST AI RMF 'profile'?",
       answer:
-        "A profile is a customized selection of AI RMF outcomes tailored to a specific use case, sector, or organizational context. Profiles help organizations prioritize which AI RMF subcategories are most relevant to their situation. NIST has published profiles for generative AI (AI 600-1) and encourages sector-specific profiles for healthcare, financial services, and other domains.",
+        "A profile is a customized selection of AI RMF outcomes tailored to a specific use case, sector, or organizational context. Profiles help organizations prioritize which AI RMF subcategories are most relevant to their situation. NIST has published profiles for generative AI (AI 600-1) and continues to develop sector-specific profiles for domains such as critical infrastructure.",
     },
   ],
 };
 
 ## Overview
 
-The NIST AI Risk Management Framework (AI RMF 1.0, published January 26, 2023 as NIST AI 100-1) gives organizations a repeatable process for identifying, measuring, and responding to AI risks across the full development and deployment lifecycle.
+The NIST AI Risk Management Framework (AI RMF 1.0, published January 26, 2023 as NIST AI 100-1) gives organizations a repeatable process for identifying, measuring, and responding to AI risks across the full development and deployment lifecycle. AI RMF 1.0 remains the current version as of June 2026 — NIST has not released a 2.0 and has instead expanded the framework through companion profiles.
 
-NIST AI RMF carries no direct enforcement authority — no penalties attach to ignoring it. But two bodies of real legal obligation flow from it. First, Colorado SB 24-205 (§6-1-1702) cites alignment with recognized AI risk management frameworks as evidence of "reasonable care," creating an explicit safe harbor. Second, Executive Order 14110 (§4.1, October 2023) mandated NIST AI RMF adoption across all federal agencies, and OMB M-24-10 (March 2024) translated that mandate into specific minimum practices: every federal AI use must be inventoried, classified by risk, and tracked against AI RMF outcomes.
+NIST AI RMF carries no direct enforcement authority — no penalties attach to ignoring it, and it has always been voluntary. For a period it sat at the center of two bodies of real legal obligation, but both of those mandates have since been withdrawn or rewritten, and that history matters for understanding where the framework stands today:
 
-The four-function structure — Govern, Map, Measure, Manage — applies to any industry and any deployment size. A 15-person fintech running a single credit-scoring model and a health system operating 200 clinical decision-support tools both use the same framework to document AI risk ownership and track remediation progress.
+- **The federal mandate is gone.** Executive Order 14110 (October 2023) had directed federal agencies toward NIST AI guidance, and OMB M-24-10 (March 2024) translated that into specific minimum practices tied to AI RMF outcomes. EO 14110 was rescinded on January 20, 2025, and OMB M-24-10 was rescinded and replaced by OMB M-25-21 on April 3, 2025. Federal AI governance now flows from EO 14179 and M-25-21 — which keep risk management for "high-impact" AI but no longer prescribe the NIST AI RMF by name (see [Who It Applies To](#who-it-applies-to)).
+- **The Colorado safe harbor is gone.** The original Colorado AI Act (SB 24-205) cited alignment with recognized AI risk management frameworks as evidence of "reasonable care." Colorado repealed and reenacted that law as SB 26-189 (signed May 14, 2026, effective January 1, 2027), eliminating the duty of reasonable care and the framework-based affirmative defense. The new law does not reference the NIST AI RMF.
+
+What endures is the framework itself. The four-function structure — Govern, Map, Measure, Manage — applies to any industry and any deployment size, and it remains the most widely used operational backbone for AI governance in the US. A 15-person fintech running a single credit-scoring model and a health system operating 200 clinical decision-support tools both use the same framework to document AI risk ownership and track remediation progress — now as a voluntary best practice rather than as a statutory or safe-harbor requirement.
 
 ---
 
 ## Who It Applies To
 
-No statutory scope rule applies — NIST AI RMF is voluntary. But adoption is functionally required in three situations:
+No statutory scope rule applies — NIST AI RMF is voluntary. But adoption is functionally expected in three situations, even though the specific legal mandates that once compelled it have changed:
 
 **Federal agencies and their contractors**
 
-EO 14110 (§4.1) and OMB M-24-10 require federal agencies to inventory all AI use cases, classify each by risk level, and manage identified risks against AI RMF outcomes. Agencies must designate a Chief AI Officer (CAIO) with authority over that inventory. Contractors building or operating AI systems for federal customers should treat NIST AI RMF alignment as a contract requirement, not a suggestion — procurement officers increasingly ask for it in RFPs.
+Federal AI governance shifted in 2025. EO 14110 was rescinded on January 20, 2025 and OMB M-24-10 was rescinded and replaced by OMB M-25-21 ("Accelerating Federal Use of AI Through Innovation, Governance, and Public Trust," issued April 3, 2025) under EO 14179. M-25-21 keeps the core machinery — agencies must designate a Chief AI Officer (CAIO), publish AI use-case inventories, and apply minimum risk-management practices (including pre-deployment testing and AI impact assessments) for "high-impact" AI. But it takes a pro-innovation posture and, unlike M-24-10, does not prescribe the NIST AI RMF by name; agencies now develop their own risk-management approaches. The NIST AI RMF remains the most practical off-the-shelf structure for meeting M-25-21's high-impact requirements, and procurement officers still frequently ask for it in RFPs — but contractors should treat alignment as a strong practical expectation rather than a framework the current federal policy formally mandates.
 
-**Companies subject to the Colorado AI Act**
+**Companies operating in Colorado**
 
-SB 24-205 §6-1-1702(4) names alignment with recognized AI risk management frameworks as a factor demonstrating reasonable care. NIST AI RMF adoption is the most direct path to that defense: it generates the documented impact assessments, governance policies, and bias testing records the law requires. Organizations that complete a NIST AI RMF profile for each high-risk AI system have a documented paper trail before the January 1, 2027 enforcement date.
+Colorado's AI law was rewritten in 2026. SB 24-205 had named alignment with recognized AI risk management frameworks (including NIST AI RMF) as a factor demonstrating reasonable care. That entire reasonable-care regime — along with mandatory risk-management programs, annual impact assessments, the framework-based affirmative defense, and the duty to notify the Attorney General of discovered algorithmic discrimination — was repealed and reenacted as SB 26-189 (signed May 14, 2026, effective January 1, 2027). SB 26-189 is a narrower notice, disclosure, and consumer-rights regime for automated decision-making technology (ADMT): developers must supply documentation, deployers must give consumers clear notice before ADMT materially influences a consequential decision and a plain-language explanation within 30 days of an adverse outcome, and consumers gain rights to correction and meaningful human review. SB 26-189 does **not** reference the NIST AI RMF and does **not** grant a Colorado-specific liability shield for framework alignment. Adopting the NIST AI RMF is still the most efficient way to operationalize SB 26-189's documentation and oversight duties — it just no longer functions as a Colorado safe harbor.
 
 **Financial services and healthcare firms**
 
-The OCC, FRB, FDIC, and CFPB jointly cited NIST AI RMF in their 2023 interagency guidance on AI risk. FDA's proposed framework for AI/ML-based Software as a Medical Device references the same core functions. Documented NIST AI RMF alignment gives compliance teams a pre-built answer to examiner questions about AI governance — particularly for models that affect credit decisions (subject to ECOA, FCRA) or clinical outcomes.
+The OCC, FRB, FDIC, and CFPB have cited NIST AI RMF in interagency discussion of AI risk, and FDA's framework for AI/ML-based Software as a Medical Device references the same core functions. Documented NIST AI RMF alignment gives compliance teams a pre-built answer to examiner questions about AI governance — particularly for models that affect credit decisions (subject to ECOA, FCRA) or clinical outcomes.
 
 Organizations pursuing ISO 42001 certification also benefit: NIST maintains a published crosswalk between AI RMF subcategories and ISO 42001 clauses. The two frameworks are complementary — AI RMF provides risk management operational substance, ISO 42001 provides the management system shell.
 
@@ -136,7 +139,7 @@ Measure provides the quantitative and qualitative evidence base for AI risk mana
 Four outputs define the Measure function:
 
 - **Metrics and measurement approaches (MEASURE 1.1):** Select metrics that fit the specific risk type. Bias measurement for a hiring model uses demographic parity or equalized odds — not generic accuracy. Document which metric applies to which risk and why.
-- **AI system testing (MEASURE 2.5–2.7):** Test against identified risks before deployment and at defined post-deployment intervals. For high-risk systems in regulated industries, red-teaming and adversarial testing are standard practice. Colorado SB 24-205 requires bias testing records as part of the impact assessment.
+- **AI system testing (MEASURE 2.5–2.7):** Test against identified risks before deployment and at defined post-deployment intervals. For high-risk systems in regulated industries, red-teaming and adversarial testing are standard practice. Bias-testing records remain a strong best practice and are still required under some regimes (for example, NYC Local Law 144 bias audits), even though Colorado's SB 26-189 no longer mandates impact-assessment bias-testing records the way SB 24-205 did.
 - **Production monitoring (MEASURE 3.1–3.3):** Track model performance, data drift, and emergent risks in production. Define thresholds that trigger review — not just alert — when crossed.
 - **Feedback mechanisms:** Collect input from AI system users and affected communities after deployment. Document what feedback was received and what changes were made in response.
 
@@ -149,22 +152,25 @@ Five outputs define the Manage function:
 - **Risk prioritization (MANAGE 1.1):** Rank identified risks by likelihood × severity × organizational risk tolerance. Not every identified risk warrants immediate remediation — document the prioritization rationale.
 - **Risk treatment (MANAGE 2.2):** Choose a response for each risk: accept (with documented rationale), mitigate (with specific control), transfer (insurance, contractual), or avoid (discontinue the use case). Accept is a legitimate answer when it is documented.
 - **Resource allocation:** Assign specific personnel, tools, and budget to each risk treatment. Underfunded risk management plans routinely fail audits.
-- **Incident response (MANAGE 3.1):** Define what constitutes an AI system incident, who gets notified, within what timeframe, and what remediation steps follow. Colorado SB 24-205 requires AG notification within 90 days of discovering algorithmic discrimination — that process must exist before the incident occurs.
+- **Incident response (MANAGE 3.1):** Define what constitutes an AI system incident, who gets notified, within what timeframe, and what remediation steps follow. Strong incident-response and notification procedures remain a core MANAGE outcome and may be required by other laws (breach-notification statutes, sector regulators). Note that Colorado's earlier SB 24-205 duty to notify the Attorney General within 90 days of discovering algorithmic discrimination was eliminated by SB 26-189, so that specific Colorado deadline no longer applies.
 - **Continuous improvement (MANAGE 4.1–4.2):** Update risk assessments and treatments based on incidents, model changes, regulatory updates, and evolving best practices. Document each update cycle with dates and responsible parties.
 
 ---
 
 ## AI & NIST AI RMF Intersection
 
-The NIST AI RMF functions as the operational backbone of AI compliance in the United States. Three enforcement-backed bodies of regulation now point to it explicitly.
+The NIST AI RMF remains the operational backbone of AI compliance in the United States — but its legal footing changed sharply in 2025–2026. The mandates that once pointed to it directly have been rescinded or rewritten, so the framework now functions as a voluntary, cross-jurisdiction governance layer rather than as a directly enforced or safe-harbor-granting standard.
 
-Colorado SB 24-205 (§6-1-1702) treats NIST AI RMF alignment as evidence of "reasonable care" — the Act's central legal standard. Executive Order 14110 (§4.1) makes NIST AI RMF adoption effectively mandatory for federal agencies and their contractors. OMB M-24-10 (March 2024) specifies the minimum AI risk management practices federal programs must implement, all derived from AI RMF functions. State attorneys general in at least three states have referenced NIST AI RMF alignment in enforcement guidance and pre-litigation settlement negotiations since 2024.
+- **Federal:** EO 14110 (which had directed agencies toward NIST AI guidance) was rescinded on January 20, 2025, and OMB M-24-10 was rescinded and replaced by OMB M-25-21 on April 3, 2025 under EO 14179. M-25-21 keeps minimum risk-management practices for high-impact federal AI but no longer prescribes the NIST AI RMF by name.
+- **Colorado:** SB 24-205 had treated NIST AI RMF alignment as evidence of "reasonable care." SB 26-189 (signed May 14, 2026, effective January 1, 2027) repealed that standard entirely and does not reference the NIST AI RMF.
 
-### Mapping to Enforceable Requirements
+The framework still maps cleanly onto the obligations that *do* remain in force across these and other regimes, which is why organizations continue to use it as a single governance substrate. The table below shows how AI RMF functions correspond to the substance of common AI requirements — note that the Colorado row reflects the original SB 24-205 impact-assessment concept, which is no longer a Colorado statutory requirement but remains a useful governance practice.
 
-| Enforceable Requirement | NIST AI RMF Function | Relevant Subcategories |
+### Mapping to Common Requirements
+
+| Requirement | NIST AI RMF Function | Relevant Subcategories |
 |-------------------------|----------------------|------------------------|
-| Impact assessment (Colorado AI Act) | Map + Measure | MAP 1, MAP 2, MAP 5, MEASURE 1 |
+| Impact assessment (best practice; former Colorado SB 24-205) | Map + Measure | MAP 1, MAP 2, MAP 5, MEASURE 1 |
 | Bias testing (NYC LL 144) | Measure | MEASURE 2.6, MEASURE 2.7, MEASURE 2.11 |
 | Risk classification (EU AI Act) | Map + Govern | MAP 1, MAP 2, GOVERN 1 |
 | Transparency and disclosure | Govern + Map | GOVERN 4, MAP 3, MAP 5 |
@@ -185,7 +191,7 @@ The NIST AI RMF defines seven characteristics of trustworthy AI that organizatio
 
 ### Generative AI Profile (NIST AI 600-1)
 
-In July 2024, NIST published the **Generative AI Profile** — a companion document that maps generative AI-specific risks to the AI RMF's core functions. It identifies 12 unique risk categories for generative AI:
+On July 26, 2024, NIST published the **Generative AI Profile** — a companion document that maps generative AI-specific risks to the AI RMF's core functions. It identifies 12 unique risk categories for generative AI:
 
 - **CBRN Information** — risks of generating chemical, biological, radiological, or nuclear weapon information
 - **Confabulation** — generating false but plausible content (hallucination)
@@ -212,6 +218,7 @@ A **profile** is a customized implementation of the AI RMF tailored to a specifi
 
 - **Generative AI Profile (AI 600-1)** — maps GAI-specific risks to AI RMF subcategories
 - **Crosswalk profiles** — NIST maintains mappings between the AI RMF and other frameworks (ISO 42001, EU AI Act requirements)
+- **Sector-specific work in progress** — NIST continues to develop additional profiles (for example, a concept note for a Trustworthy AI in Critical Infrastructure profile was released in 2026)
 
 **How organizations use profiles:**
 
@@ -238,13 +245,13 @@ The NIST AI RMF is designed to be applied to specific AI use cases rather than a
 
 Use cases where AI system outputs directly affect individuals' rights, safety, or access to critical services:
 
-- **Hiring and employment decisions** — resume screening, candidate scoring, performance evaluation (governed by NYC LL 144, Colorado AI Act, Illinois AIVIRA)
+- **Hiring and employment decisions** — resume screening, candidate scoring, performance evaluation (governed by NYC LL 144, Colorado's SB 26-189 ADMT regime, Illinois AIVIRA)
 - **Credit and lending decisions** — underwriting models, credit scoring, loan approval systems (ECOA, Fair Lending)
 - **Healthcare diagnostics and treatment** — clinical decision support, diagnostic imaging, treatment recommendations (FDA, HIPAA)
 - **Criminal justice** — risk assessment tools, predictive policing, recidivism prediction (no federal law, but significant litigation and state-level scrutiny)
 - **Insurance underwriting** — pricing models, claims assessment, fraud detection (state insurance regulation)
 
-For high-risk use cases, organizations should implement **all four core functions comprehensively** and document their risk management processes in detail, as this documentation may serve as evidence of reasonable care under state AI laws.
+For high-risk use cases, organizations should implement **all four core functions comprehensively** and document their risk management processes in detail. This documentation supports defensible AI governance and helps satisfy the notice, disclosure, oversight, and record-keeping duties imposed by current state laws — even though framework alignment is no longer a statutory safe harbor in Colorado.
 
 ### Medium-Risk Use Cases
 
@@ -272,31 +279,42 @@ Even for lower-risk use cases, the **Govern** function should be in place to ens
 
 | Date | Milestone |
 |------|-----------|
-| **January 26, 2023** | NIST AI RMF 1.0 (AI 100-1) published |
-| **January 26, 2023** | AI RMF Playbook companion resource published |
-| **October 30, 2023** | Executive Order 14110 directs federal agencies to use NIST AI RMF |
-| **March 28, 2024** | OMB M-24-10 requires agency AI risk management aligned with NIST AI RMF |
+| **January 26, 2023** | NIST AI RMF 1.0 (AI 100-1) published, alongside the AI RMF Playbook companion resource |
+| **October 30, 2023** | Executive Order 14110 issued (directed federal agencies toward NIST AI guidance) — *rescinded January 20, 2025* |
+| **March 28, 2024** | OMB M-24-10 issued (required agency AI risk management aligned with NIST AI RMF) — *rescinded and replaced April 3, 2025* |
 | **July 26, 2024** | Generative AI Profile (AI 600-1) published |
-| **2025–2026** | NIST developing sector-specific profiles and crosswalk documents |
-| **January 1, 2027** | Colorado AI Act takes effect (as amended by SB 26-189) — NIST AI RMF alignment serves as evidence of reasonable care |
+| **January 20, 2025** | EO 14110 rescinded; EO 14179 ("Removing Barriers to American Leadership in AI") signed January 23, 2025 |
+| **April 3, 2025** | OMB M-25-21 replaces M-24-10 — keeps risk management for high-impact federal AI but no longer prescribes the NIST AI RMF by name |
+| **May 14, 2026** | Colorado SB 26-189 signed — repeals and reenacts the Colorado AI Act, eliminating the reasonable-care duty and the NIST AI RMF / ISO 42001 affirmative defense |
+| **2026** | NIST continues developing sector-specific profiles and crosswalk documents; AI RMF 1.0 remains the current version |
+| **January 1, 2027** | Colorado SB 26-189 ADMT notice/disclosure/consumer-rights regime takes effect (no framework safe harbor; NIST AI RMF not referenced) |
 
 ---
 
 ## Regulatory References
 
-Although the NIST AI RMF is voluntary, it is referenced by or aligned with numerous enforceable requirements:
+The NIST AI RMF is voluntary. As of June 2026 it is no longer directly mandated by federal executive order or referenced as a statutory safe harbor by Colorado law, but it remains broadly aligned with — and a practical tool for satisfying — many enforceable requirements.
 
-### Direct References
+### Federal Posture (Current)
 
-- **Colorado AI Act (SB 24-205)** — deployers who align with recognized AI risk management frameworks (including NIST AI RMF) can demonstrate reasonable care
-- **Executive Order 14110** — directs federal agencies to adopt AI governance consistent with the NIST AI RMF
-- **OMB M-24-10** — requires minimum AI risk management practices for federal agencies based on NIST AI RMF principles
+- **Executive Order 14179 ("Removing Barriers to American Leadership in Artificial Intelligence," January 23, 2025)** — the current governing executive order on federal AI; replaced the rescinded EO 14110.
+- **OMB Memorandum M-25-21 (April 3, 2025)** — "Accelerating Federal Use of AI Through Innovation, Governance, and Public Trust." Rescinded and replaced M-24-10. Retains Chief AI Officer designation, public AI use-case inventories, and minimum risk-management practices (pre-deployment testing, AI impact assessments) for "high-impact" AI, but takes a pro-innovation posture and does not prescribe the NIST AI RMF by name.
+
+### Superseded Federal Authorities (No Longer in Force)
+
+- **Executive Order 14110 (October 30, 2023)** — rescinded January 20, 2025. Had directed federal agencies toward NIST AI governance guidance.
+- **OMB Memorandum M-24-10 (March 28, 2024)** — rescinded and replaced by M-25-21 on April 3, 2025. Had required minimum AI risk-management practices for federal agencies tied to NIST AI RMF principles.
+
+### State Law
+
+- **Colorado AI Act — SB 26-189 (signed May 14, 2026; effective January 1, 2027)** — repealed and reenacted the original SB 24-205. It is a notice, disclosure, and consumer-rights regime for automated decision-making technology (ADMT). It eliminated the duty of reasonable care, mandatory risk-management programs, annual impact assessments, the AG algorithmic-discrimination notification duty, and the NIST AI RMF / ISO 42001 affirmative defense. SB 26-189 does **not** reference the NIST AI RMF and grants no framework-alignment safe harbor. Enforcement is by the Colorado Attorney General (no private right of action), with violations treated as deceptive trade practices.
+- **NYC Local Law 144** — requires independent bias audits for automated employment decision tools; the AI RMF's Measure function supports the underlying testing and documentation.
 
 ### Alignment and Crosswalks
 
-- **EU AI Act** — NIST has published crosswalk documents mapping AI RMF subcategories to EU AI Act requirements; organizations subject to both US state laws and the EU AI Act can use the AI RMF as a unifying governance layer
-- **ISO/IEC 42001** — the AI RMF's four functions (Govern, Map, Measure, Manage) map to ISO 42001's management system structure, enabling organizations pursuing certification to build on their AI RMF implementation
-- **NIST Cybersecurity Framework (CSF)** — the AI RMF is designed to complement the CSF; organizations already using CSF can extend their governance processes to cover AI-specific risks
+- **EU AI Act** — NIST has published crosswalk documents mapping AI RMF subcategories to EU AI Act requirements; organizations subject to both US state laws and the EU AI Act can use the AI RMF as a unifying governance layer. Note that the EU's "Digital Omnibus" package (provisional Council–Parliament agreement reached in early May 2026) defers the EU AI Act's high-risk obligations: stand-alone Annex III systems move from August 2, 2026 to December 2, 2027, and AI embedded in regulated products under Annex I from August 2, 2027 to August 2, 2028. These dates take legal effect upon formal adoption and publication in the Official Journal.
+- **ISO/IEC 42001** — the AI RMF's four functions (Govern, Map, Measure, Manage) map to ISO 42001's management system structure, enabling organizations pursuing certification to build on their AI RMF implementation.
+- **NIST Cybersecurity Framework (CSF)** — the AI RMF is designed to complement the CSF; organizations already using CSF can extend their governance processes to cover AI-specific risks.
 
 ---
 
@@ -310,17 +328,17 @@ Use this roadmap to implement the NIST AI RMF in your organization:
 
 3. **Categorize by risk level.** For each AI system, assess the potential impact on individuals, communities, and the organization. Use the Map function to document intended purposes, stakeholders, and identified risks. Prioritize high-risk systems for immediate attention.
 
-4. **Build your profiles.** Create a Current Profile documenting your existing AI risk management practices. Define a Target Profile based on your regulatory obligations (Colorado AI Act, EU AI Act, sector-specific requirements) and risk appetite. Identify gaps.
+4. **Build your profiles.** Create a Current Profile documenting your existing AI risk management practices. Define a Target Profile based on your regulatory obligations (Colorado SB 26-189 ADMT duties, EU AI Act, sector-specific requirements) and risk appetite. Identify gaps.
 
 5. **Implement measurement and testing (Measure).** Establish metrics for each AI system's trustworthiness characteristics. Implement bias testing, performance monitoring, adversarial testing, and drift detection. For generative AI systems, apply the AI 600-1 profile's risk categories.
 
 6. **Establish risk treatments (Manage).** For each identified and measured risk, select a treatment: mitigate, accept, transfer, or avoid. Allocate resources and assign owners. Build incident response procedures for AI system failures.
 
-7. **Document and communicate.** Maintain comprehensive documentation of your AI risk management process — this documentation is your evidence of reasonable care under state AI laws. Communicate your AI governance practices to stakeholders, regulators, and the public as appropriate.
+7. **Document and communicate.** Maintain comprehensive documentation of your AI risk management process. While framework alignment is no longer a statutory safe harbor in Colorado, this documentation is still your strongest evidence of responsible AI governance and supports the notice, disclosure, and record-keeping duties that current laws do impose. Communicate your AI governance practices to stakeholders, regulators, and the public as appropriate.
 
 8. **Monitor and iterate.** AI risk management is continuous, not one-time. Schedule regular reviews of AI system performance, risk assessments, and governance processes. Update profiles as regulations evolve, new risks emerge, and organizational context changes.
 
-9. **Align with regulatory requirements.** Map your NIST AI RMF implementation to specific regulatory obligations: Colorado AI Act impact assessments, NYC LL 144 bias audits, EU AI Act conformity assessments. Use the AI RMF as the single governance backbone that feeds compliance documentation for multiple regulations.
+9. **Align with regulatory requirements.** Map your NIST AI RMF implementation to specific regulatory obligations: Colorado SB 26-189 ADMT notices and consumer-rights workflows, NYC LL 144 bias audits, EU AI Act conformity assessments. Use the AI RMF as the single governance backbone that feeds compliance documentation for multiple regulations.
 
 10. **Engage with the NIST AI RMF community.** NIST actively solicits feedback and publishes updated resources. Monitor NIST's AI RMF website for new profiles, crosswalk documents, and playbook updates. Participate in sector-specific profile development where relevant.
 
@@ -329,22 +347,22 @@ Use this roadmap to implement the NIST AI RMF in your organization:
 ## Frequently Asked Questions
 
 **Is the NIST AI RMF legally binding?**
-No — the NIST AI RMF is a voluntary framework. However, it has quasi-regulatory force through multiple channels: Executive Order 14110 directs federal agencies to adopt it, OMB M-24-10 requires agency compliance, and the Colorado AI Act treats alignment as evidence of reasonable care. Its influence on the US AI regulatory landscape is significant and growing.
+No — the NIST AI RMF is a voluntary framework and has no direct penalties. It is not currently mandated by executive order: EO 14110, which had directed federal agencies toward NIST AI guidance, was rescinded on January 20, 2025 and replaced by EO 14179, and OMB M-25-21 (April 3, 2025) governs federal AI use without prescribing the NIST AI RMF by name. It also no longer functions as a Colorado statutory safe harbor after SB 26-189. Despite these changes, it remains the most influential and widely used reference for AI governance in the US.
 
 **What are the four core functions of the NIST AI RMF?**
 Govern (organizational AI risk governance), Map (context and risk identification), Measure (risk assessment and monitoring), and Manage (risk treatment and response). Govern is cross-cutting and informs the other three functions.
 
 **How does the NIST AI RMF relate to the EU AI Act?**
-NIST has published crosswalk documents mapping AI RMF subcategories to EU AI Act requirements. Organizations subject to both frameworks can use the AI RMF as a unifying governance layer. The AI RMF's risk management approach is broadly compatible with the EU AI Act's risk-based classification, though the EU AI Act adds prescriptive legal requirements (conformity assessments, CE marking, registration) that go beyond the AI RMF.
+NIST has published crosswalk documents mapping AI RMF subcategories to EU AI Act requirements. Organizations subject to both frameworks can use the AI RMF as a unifying governance layer. The AI RMF's risk management approach is broadly compatible with the EU AI Act's risk-based classification, though the EU AI Act adds prescriptive legal requirements (conformity assessments, CE marking, registration) that go beyond the AI RMF. Note that the EU's Digital Omnibus package has deferred several high-risk compliance deadlines into 2027–2028.
 
 **Does the NIST AI RMF cover generative AI?**
-Yes. The Generative AI Profile (NIST AI 600-1), published July 2024, extends the AI RMF to address 12 generative AI-specific risk categories including confabulation, data privacy, information integrity, and CBRN information risks.
+Yes. The Generative AI Profile (NIST AI 600-1), published July 26, 2024, extends the AI RMF to address 12 generative AI-specific risk categories including confabulation, data privacy, information integrity, and CBRN information risks.
 
 **How much does NIST AI RMF implementation cost?**
 The framework itself is free. Implementation costs vary based on organizational size and AI system portfolio. Unlike ISO 42001, there is no certification fee — the NIST AI RMF is self-assessed. Organizations typically invest in governance process development, technical tooling for bias testing and monitoring, and training for AI development and deployment teams.
 
 **Can NIST AI RMF compliance protect against enforcement actions?**
-Under the Colorado AI Act, demonstrating alignment with recognized AI risk management frameworks (including NIST AI RMF) serves as evidence of reasonable care. While this is not an absolute defense, it provides meaningful protection. Other state laws and regulators are likely to adopt similar provisions as the US AI regulatory landscape matures.
+There is no longer a statutory safe harbor tied to it. Colorado's SB 24-205 had treated alignment with recognized frameworks (including NIST AI RMF) as evidence of reasonable care, but SB 26-189 repealed that defense. Adopting the NIST AI RMF does not create an affirmative legal defense today, but it does produce the governance documentation, testing records, and oversight trail that help demonstrate responsible practice to regulators and reduce the likelihood and severity of enforcement.
 
 ---
 
@@ -353,3 +371,5 @@ Under the Colorado AI Act, demonstrating alignment with recognized AI risk manag
 - [NIST AI Risk Management Framework (AI 100-1)](https://www.nist.gov/artificial-intelligence/ai-risk-management-framework)
 - [NIST AI RMF Playbook](https://airc.nist.gov/AI_RMF_Interactivity/)
 - [Generative AI Profile (AI 600-1)](https://airc.nist.gov/Docs/1)
+- [Executive Order 14179 — Removing Barriers to American Leadership in AI (Federal Register)](https://www.federalregister.gov/documents/2025/01/31/2025-02172/removing-barriers-to-american-leadership-in-artificial-intelligence)
+- [OMB M-25-21 — Accelerating Federal Use of AI](https://www.whitehouse.gov/wp-content/uploads/2025/02/M-25-21-Accelerating-Federal-Use-of-AI-through-Innovation-Governance-and-Public-Trust.pdf)

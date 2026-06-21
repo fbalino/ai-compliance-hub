@@ -2,16 +2,17 @@ export const frontmatter = {
   name: "EU AI Act",
   shortName: "EU 2024/1689",
   description:
-    "The European Union's comprehensive risk-based framework governing AI systems, with strict requirements for high-risk applications and prohibitions on unacceptable-risk AI.",
+    "The European Union's comprehensive risk-based framework governing AI systems, with strict requirements for high-risk applications and prohibitions on unacceptable-risk AI. The 2026 Digital Omnibus defers the high-risk deadlines and adds a nudification/CSAM ban.",
   jurisdiction: "European Union",
   status: "enforced",
   effectiveDate: "August 1, 2024",
-  enforcementDate: "August 2026",
+  enforcementDate: "December 2027",
   maxPenalty: "€35 million or 7% of global turnover",
   publishedAt: "2024-07-12",
-  updatedAt: "2026-04-13",
+  updatedAt: "2026-06-21",
   toc: [
     { id: "overview", label: "Overview" },
+    { id: "2026-digital-omnibus-update", label: "2026 Digital Omnibus Update" },
     { id: "risk-classification", label: "Risk Classification" },
     { id: "prohibited-ai", label: "Prohibited AI Practices" },
     { id: "high-risk-requirements", label: "High-Risk AI Requirements" },
@@ -36,17 +37,22 @@ export const frontmatter = {
     {
       question: "What are the highest penalties under the EU AI Act?",
       answer:
-        "Up to €35 million or 7% of global annual turnover (whichever is higher) for violations of prohibited AI practices. High-risk AI violations can reach €15 million or 3% of global turnover.",
+        "Up to €35 million or 7% of global annual turnover (whichever is higher) for violations of prohibited AI practices. High-risk AI violations can reach €15 million or 3% of global turnover. The 2026 Digital Omnibus did not change these penalty tiers.",
     },
     {
       question: "What is a General Purpose AI (GPAI) model under the EU AI Act?",
       answer:
-        "A GPAI model is an AI model trained on large amounts of data, capable of serving a wide range of downstream tasks. Examples include large language models (LLMs) like GPT-4 or Claude. GPAI models with systemic risk face additional obligations.",
+        "A GPAI model is an AI model trained on large amounts of data, capable of serving a wide range of downstream tasks. Examples include large language models (LLMs) like GPT-4 or Claude. GPAI models with systemic risk face additional obligations. GPAI obligations have applied since August 2, 2025 and were not changed by the 2026 Omnibus.",
     },
     {
       question: "When do high-risk AI requirements take effect?",
       answer:
-        "The core obligations for high-risk AI systems (Annex III) take effect in August 2026. Some provisions, including prohibited AI and GPAI model rules, apply earlier — from August 2025.",
+        "The 2026 Digital Omnibus defers the high-risk deadlines. Stand-alone high-risk systems (Annex III) now apply from December 2, 2027, and AI embedded as a safety component in regulated products (Annex I) from August 2, 2028 — replacing the original August 2, 2026 and August 2, 2027 dates. These new dates become legally binding once the amending regulation is published in the EU Official Journal (expected July 2026); until then the original August 2, 2026 date formally stands.",
+    },
+    {
+      question: "What is the new 'nudification' (NCII/CSAM) prohibition?",
+      answer:
+        "The 2026 Digital Omnibus adds a new Article 5 prohibition on AI systems that generate or manipulate non-consensual intimate imagery (NCII) — including 'nudifier' apps — or child sexual abuse material (CSAM). A transitional period runs until December 2, 2026 for systems already on the market.",
     },
     {
       question: "What is a conformity assessment under the EU AI Act?",
@@ -56,18 +62,43 @@ export const frontmatter = {
     {
       question: "Do SMEs get any relief under the EU AI Act?",
       answer:
-        "Yes. SMEs and startups benefit from reduced administrative burdens, access to regulatory sandboxes, and proportionate compliance requirements. Member States must establish AI regulatory sandboxes specifically to support SME innovation.",
+        "Yes, and the 2026 Digital Omnibus widened it. SMEs benefit from simplified technical documentation, proportionate penalties, and regulatory sandbox access. The Omnibus extends these reliefs to small mid-cap companies (SMCs) — broadly, firms with up to 750 employees and up to €150 million in annual turnover.",
     },
   ],
 };
 
+_Regulation (EU) 2024/1689 of the European Parliament and of the Council of 13 June 2024 laying down harmonised rules on artificial intelligence (Artificial Intelligence Act), as amended by the 2026 Digital Omnibus on AI._
+
+---
+
 ## Overview
 
-The EU AI Act (Regulation 2024/1689) entered force on July 12, 2024. It covers every organization — EU-based or not — that places AI systems on the EU market, uses AI professionally in the EU, or imports and distributes AI systems sold into EU member states.
+The EU AI Act (Regulation 2024/1689) entered force on August 1, 2024 (the regulation was signed on July 12, 2024 and published in the Official Journal on July 12, 2024; it applies from 20 days after publication). It covers every organization — EU-based or not — that places AI systems on the EU market, uses AI professionally in the EU, or imports and distributes AI systems sold into EU member states.
 
-Four risk tiers determine compliance obligations. Unacceptable-risk systems are banned outright (enforceable since February 2, 2025). High-risk systems listed in Annex I or Annex III must clear a conformity assessment, register in the EU AI database, and carry CE marking before going to market — most Annex III providers self-assess under Article 43, while biometric identification and critical infrastructure AI require third-party assessment under Annex VII procedures. Limited-risk systems — chatbots, emotion recognition tools, deepfake generators — must disclose their AI nature to users. Minimal-risk applications (spam filters, AI in video games, inventory tools) face no mandatory requirements.
+Four risk tiers determine compliance obligations. Unacceptable-risk systems are banned outright (enforceable since February 2, 2025). High-risk systems listed in Annex I or Annex III must clear a conformity assessment, register in the EU AI database, and carry CE marking before going to market — most Annex III providers self-assess under Article 43, while biometric identification and certain critical infrastructure AI require third-party assessment under Annex VII procedures. Limited-risk systems — chatbots, emotion recognition tools, deepfake generators — must disclose their AI nature to users. Minimal-risk applications (spam filters, AI in video games, inventory tools) face no mandatory requirements.
 
 Penalties follow the same four-tier logic: up to €35 million or 7% of global annual turnover for deploying prohibited AI (Article 99); €15 million or 3% for high-risk violations; €7.5 million or 1.5% for providing false or misleading information to authorities. SME penalties are capped at the lower applicable ceiling. National AI authorities handle enforcement; the European AI Office handles GPAI model oversight.
+
+**Important — read the [2026 Digital Omnibus Update](#2026-digital-omnibus-update) before planning to any deadline.** In May 2026 the EU institutions agreed targeted amendments that postpone the high-risk obligations, add a new prohibition on non-consensual intimate imagery and CSAM, and widen SME relief to mid-caps. The European Parliament approved the text on June 16, 2026; it awaits formal Council adoption and Official Journal publication.
+
+---
+
+## 2026 Digital Omnibus Update
+
+The most significant 2026 development is the **Digital Omnibus on AI**, a Commission simplification package proposed on November 19, 2025. The co-legislators reached a provisional political agreement on May 7, 2026; Member State ambassadors (Coreper) approved it on May 13, 2026; and the **European Parliament approved the text in plenary on June 16, 2026** (423 votes in favour, 57 against, 174 abstentions). The package still needs **formal adoption by the Council** and **publication in the EU Official Journal** before it becomes law. Publication is expected in July 2026, and the regulation enters into force three days after publication.
+
+**Until Official Journal publication, the new dates are not legally binding** and the original August 2, 2026 high-risk deadline formally remains in effect. Both steps are expected to be completed before that date. The key changes are:
+
+| Change | Detail |
+|--------|--------|
+| **High-risk Annex III (stand-alone) deferred** | Application date moves from **2 August 2026** to **2 December 2027** |
+| **High-risk Annex I (product-embedded) deferred** | Application date moves from **2 August 2027** to **2 August 2028** |
+| **New Article 5 prohibition (NCII/CSAM)** | Bans AI systems that generate or manipulate non-consensual intimate imagery ("nudifiers") and child sexual abuse material; transitional period to **2 December 2026** |
+| **AI-marking (Article 50(2)) grace period** | Watermarking/machine-readable marking of AI-generated content is deferred to **2 December 2026** for systems placed on the market before 2 August 2026 |
+| **SME relief extended to mid-caps** | Simplified documentation, proportionate penalties and sandbox access now reach small mid-cap companies (SMCs) — broadly up to 750 employees and €150M turnover |
+| **High-risk registration retained** | Providers must still register high-risk systems in the EU database; those claiming the Article 6(3) exemption register with reduced information |
+
+What the Omnibus did **not** change: the penalty tiers (€35M/7%, €15M/3%, €7.5M/1.5%), the GPAI model obligations (applicable since 2 August 2025), the 10^25 FLOP systemic-risk threshold, and the original list of prohibited practices (enforceable since 2 February 2025) all remain in force as written.
 
 ---
 
@@ -83,7 +114,7 @@ AI applications that pose an unacceptable risk to fundamental rights are **banne
 
 High-risk AI systems must meet extensive requirements before they can be placed on the EU market. There are two sub-categories:
 
-**Annex I — AI used as a safety component** in products already governed by EU product safety legislation (medical devices, machinery, aviation, automotive, etc.)
+**Annex I — AI used as a safety component** in products already governed by EU product safety legislation (medical devices, machinery, lifts, toys, aviation, automotive, etc.)
 
 **Annex III — Standalone high-risk AI systems** in eight sensitive areas:
 1. Biometric identification and categorization
@@ -125,11 +156,19 @@ The following eight AI applications are banned across all EU member states. Enfo
 
 8. **Predictive policing based solely on profiling** — risk assessments for criminal behavior based purely on profiling without objective evidence of prior activity.
 
+### New prohibition added by the 2026 Digital Omnibus
+
+The Digital Omnibus adds a **ninth prohibition** to Article 5 (not yet in force pending Official Journal publication):
+
+9. **Non-consensual intimate imagery (NCII) and CSAM generation** — AI systems that generate or manipulate non-consensual intimate images, video, or audio (so-called "nudifier" tools), or child sexual abuse material. The ban also reaches systems where such output is "a reasonably foreseeable and reproducible outcome." A transitional period applies until **December 2, 2026**.
+
 ---
 
 ## High-Risk AI Requirements
 
 Providers of high-risk AI systems listed in Annex III must meet all nine requirements below before placing the system on the EU market. This is a pre-market gate, not a post-deployment obligation — CE marking and EU AI database registration must be complete before first commercial sale.
+
+> **Deadline note:** Under the 2026 Digital Omnibus, these Annex III obligations now apply from **December 2, 2027** (previously August 2, 2026), and Annex I product-embedded obligations from **August 2, 2028** (previously August 2, 2027). See the [2026 Digital Omnibus Update](#2026-digital-omnibus-update).
 
 ### 1. Risk Management System
 Implement and maintain a documented risk management system throughout the AI system's lifecycle, identifying and mitigating foreseeable risks.
@@ -153,10 +192,10 @@ Design systems to allow natural persons to effectively oversee them, detect and 
 Meet appropriate levels of accuracy for the intended purpose, demonstrate robustness against errors and adversarial attacks, and implement cybersecurity measures.
 
 ### 8. Conformity Assessment
-Before market placement, conduct a conformity assessment (self-assessment for most Annex III systems; third-party assessment for biometric identification and critical infrastructure AI) and draw up an EU Declaration of Conformity.
+Before market placement, conduct a conformity assessment (self-assessment for most Annex III systems; third-party assessment for biometric identification and certain critical infrastructure AI) and draw up an EU Declaration of Conformity.
 
 ### 9. CE Marking & Registration
-Affix CE marking and register the AI system in the EU-wide AI database operated by the European Commission.
+Affix CE marking and register the AI system in the EU-wide AI database operated by the European Commission. The 2026 Omnibus retains this registration duty; providers claiming the Article 6(3) exemption from high-risk classification must still register, with reduced information requirements.
 
 ### Obligations for Deployers
 
@@ -171,7 +210,7 @@ Organizations **using** high-risk AI (deployers) must:
 
 ## General Purpose AI Models
 
-The EU AI Act adds a separate compliance track for General Purpose AI (GPAI) models — large foundation models capable of powering multiple downstream applications. The GPAI provisions took effect August 2, 2025.
+The EU AI Act adds a separate compliance track for General Purpose AI (GPAI) models — large foundation models capable of powering multiple downstream applications. The GPAI provisions took effect August 2, 2025 and were **not changed** by the 2026 Digital Omnibus.
 
 Every GPAI provider, regardless of model size, must:
 - Maintain and update technical documentation describing the model's training approach, architecture, capabilities, and known limitations
@@ -196,21 +235,25 @@ Providers can rebut the 10^25 FLOPs presumption by demonstrating the model does 
 
 ## Compliance Timeline
 
+The table below reflects the deadlines as amended by the 2026 Digital Omnibus. The new high-risk dates become legally binding on Official Journal publication (expected July 2026); the original dates are shown for reference.
+
 | Date | Milestone |
 |------|-----------|
-| **July 12, 2024** | EU AI Act enters into force |
-| **August 1, 2024** | Act officially takes effect (20 days after publication) |
+| **July 12, 2024** | EU AI Act published in the Official Journal |
+| **August 1, 2024** | Act enters into force (20 days after publication) |
 | **February 2, 2025** | Prohibited AI provisions enforceable |
 | **August 2, 2025** | GPAI model obligations and governance provisions apply |
-| **August 2, 2026** | **High-risk AI (Annex III) requirements enforceable** |
-| **August 2, 2027** | High-risk AI (Annex I — product safety integrated) requirements enforceable |
-| **August 2, 2030** | High-risk AI systems already on the market before August 2026 must comply |
+| **December 2, 2026** | NCII/CSAM prohibition transitional period ends; Article 50(2) AI-marking grace period ends for systems on market before Aug 2, 2026 (per Digital Omnibus) |
+| **December 2, 2027** | **High-risk AI (Annex III, stand-alone) requirements enforceable** — deferred from the original August 2, 2026 date |
+| **August 2, 2028** | High-risk AI (Annex I, product safety integrated) requirements enforceable — deferred from the original August 2, 2027 date |
+
+> **Legacy systems:** The original Act gave high-risk systems already on the market a transitional runway tied to the August 2026 application date. Because the high-risk application dates themselves have moved, these legacy and transitional reference points are being re-anchored in the amending regulation. Treat the precise legacy cut-offs as provisional until the Digital Omnibus is published in the Official Journal.
 
 ---
 
 ## Penalties & Enforcement
 
-The EU AI Act establishes a tiered penalty structure:
+The EU AI Act establishes a tiered penalty structure (unchanged by the 2026 Digital Omnibus):
 
 | Violation | Maximum Fine |
 |-----------|-------------|
@@ -218,12 +261,12 @@ The EU AI Act establishes a tiered penalty structure:
 | High-risk AI obligations (Tier 2) | €15 million or 3% of global annual turnover |
 | Providing incorrect/misleading information to authorities | €7.5 million or 1.5% of global annual turnover |
 
-**SME cap**: For small and medium enterprises, fines are capped at the lower of the above amounts.
+**SME / mid-cap cap**: For small and medium enterprises — and, under the Digital Omnibus, small mid-cap companies (SMCs) — fines are capped at the lower of the applicable amounts and applied proportionately.
 
 ### Who Enforces?
 
 - **Member State authorities**: Each EU country must designate a National Competent Authority (NCA) to supervise market operators.
-- **European AI Office**: Supervises GPAI model providers directly and coordinates cross-border enforcement.
+- **European AI Office**: Supervises GPAI model providers directly and coordinates cross-border enforcement. The Digital Omnibus strengthens the Office's role, giving it exclusive competence over AI systems built on GPAI models where the model and the system come from the same provider, plus powers to investigate, conduct on-site inspections, accept binding commitments, and impose fines.
 - **Market Surveillance Authorities**: Existing product safety authorities enforce compliance for AI integrated into regulated products.
 
 ---
@@ -236,7 +279,7 @@ Follow this roadmap to prepare for EU AI Act compliance:
 
 2. **Classify each system by risk tier.** Determine if each system falls under prohibited, high-risk, limited-risk, or minimal-risk categories using Annexes I and III.
 
-3. **Check if any systems are prohibited.** If you run social scoring, mass facial scraping, or real-time RBI systems, you must cease operation by February 2, 2025.
+3. **Check if any systems are prohibited.** If you run social scoring, mass facial scraping, or real-time RBI systems, you must cease operation (these have been banned since February 2, 2025). If you operate "nudifier"/NCII or CSAM-generating systems, the new Article 5 prohibition gives a transitional window only until December 2, 2026.
 
 4. **For high-risk AI (Annex III):**
    - Build a risk management system with documented procedures
@@ -245,6 +288,7 @@ Follow this roadmap to prepare for EU AI Act compliance:
    - Implement logging and human oversight mechanisms
    - Conduct conformity assessment
    - Register in the EU AI database
+   - Plan to the new **December 2, 2027** application date — but track the Official Journal publication, since the original August 2, 2026 date stands until the Omnibus is published.
 
 5. **For GPAI models:**
    - Evaluate whether your model exceeds the 10^25 FLOP threshold (systemic risk)
@@ -252,11 +296,11 @@ Follow this roadmap to prepare for EU AI Act compliance:
    - Engage with the EU AI Code of Practice process
 
 6. **For limited-risk AI:**
-   - Implement required transparency notices (chatbots must disclose their AI nature; deepfakes must be labeled)
+   - Implement required transparency notices (chatbots must disclose their AI nature; deepfakes must be labeled). Note the Article 50(2) machine-readable marking obligation carries a grace period to December 2, 2026 for systems already on the market before August 2, 2026.
 
 7. **Appoint an EU representative** if your organization is established outside the EU and places high-risk AI on the EU market.
 
-8. **Engage with regulatory sandboxes** if you are an SME — member states are required to make these available to support compliance without full-scale implementation overhead.
+8. **Engage with regulatory sandboxes** if you are an SME or small mid-cap — member states are required to make these available, and the Digital Omnibus extends SME-style relief to SMCs (broadly, up to 750 employees and €150M turnover).
 
 ---
 
@@ -266,19 +310,19 @@ Follow this roadmap to prepare for EU AI Act compliance:
 Yes. If your AI system is placed on the EU market, used in the EU, or its outputs affect EU residents, you must comply — regardless of where your company is headquartered.
 
 **What are the highest penalties?**
-Up to €35 million or 7% of global annual turnover for prohibited AI violations. High-risk AI requirement violations: up to €15 million or 3% of global turnover.
+Up to €35 million or 7% of global annual turnover for prohibited AI violations. High-risk AI requirement violations: up to €15 million or 3% of global turnover. The 2026 Digital Omnibus left these tiers unchanged.
 
 **What is a GPAI model?**
 A general-purpose AI model capable of serving many different downstream tasks, typically a large language model. Models exceeding 10^25 FLOPs of training compute face additional systemic-risk obligations.
 
 **When do high-risk AI requirements become enforceable?**
-August 2, 2026 for most Annex III systems. Prohibited AI was enforceable from February 2025.
+Under the 2026 Digital Omnibus, stand-alone Annex III systems apply from December 2, 2027 and product-embedded Annex I systems from August 2, 2028 — replacing the original August 2, 2026 and August 2, 2027 dates. The new dates bind once the amending regulation is published in the Official Journal (expected July 2026); until then the August 2, 2026 date formally stands. Prohibited AI has been enforceable since February 2025.
 
 **Do I need a third-party assessment for all high-risk AI?**
 No — most Annex III systems can self-certify. Third-party notified body assessment is required only for real-time remote biometric identification and certain critical infrastructure AI.
 
 **What is the EU AI Office?**
-The European AI Office is a new body within the European Commission responsible for directly supervising GPAI model providers, coordinating national enforcement, and developing standardization.
+The European AI Office is a body within the European Commission responsible for directly supervising GPAI model providers, coordinating national enforcement, and developing standardization. The Digital Omnibus expands its enforcement powers and gives it exclusive competence over AI systems built on a provider's own GPAI model.
 
 **Are open-source AI models exempt?**
 GPAI models released under a free and open-source license are largely exempt from technical documentation and information-sharing requirements — unless they pose systemic risk (>10^25 FLOPs).
@@ -290,3 +334,6 @@ GPAI models released under a free and open-source license are largely exempt fro
 - [EU AI Act full text (EUR-Lex)](https://eur-lex.europa.eu/eli/reg/2024/1689/oj)
 - [EU AI Act Corrigendum](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32024R1689R%2802%29)
 - [EU AI Office](https://digital-strategy.ec.europa.eu/en/policies/ai-office)
+- [Digital Omnibus on AI — Legislative Train (European Parliament)](https://www.europarl.europa.eu/legislative-train/package-digital-package/file-digital-omnibus-on-ai)
+- [MEPs approve AI Act amendments and 'nudifier' ban (16 June 2026)](https://www.europarl.europa.eu/news/en/press-room/20260316IPR38219/meps-support-postponement-of-certain-rules-on-artificial-intelligence)
+- [Council & Parliament agree to simplify AI rules (7 May 2026) — Consilium](https://www.consilium.europa.eu/en/press/press-releases/2026/05/07/artificial-intelligence-council-and-parliament-agree-to-simplify-and-streamline-rules/)

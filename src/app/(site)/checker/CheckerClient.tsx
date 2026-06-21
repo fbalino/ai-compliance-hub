@@ -702,7 +702,9 @@ function Results({
 
       <div className="space-y-5">
         {results.map((reg) => {
-          const cfg = urgencyConfig[reg.urgency];
+          // Defense-in-depth: the API normalizes urgency, but guard here too so a
+          // stray value can never make cfg undefined and crash the render.
+          const cfg = urgencyConfig[reg.urgency] ?? urgencyConfig.medium;
           return (
             <div
               key={reg.slug}
@@ -737,7 +739,7 @@ function Results({
                   Required Actions
                 </p>
                 <ul className="space-y-1.5">
-                  {reg.actions.map((action, i) => (
+                  {(reg.actions ?? []).map((action, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm text-ink-2">
                       <span className="mt-1 h-1.5 w-1.5 rounded-full bg-ink-faint shrink-0" />
                       {action}

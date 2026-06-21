@@ -2,21 +2,23 @@ export const frontmatter = {
   name: "Texas Responsible AI Governance Act (TRAIGA)",
   shortName: "TX HB 149",
   description:
-    "Texas TRAIGA (HB 149) requires deployers of high-risk AI systems to conduct impact assessments, maintain risk management programs, provide consumer notices, and file annual reports with the AG. Effective January 1, 2026, with DTPA enforcement up to $10,000 per violation. This guide focuses on what HR and recruiting teams need to know.",
+    "Texas TRAIGA (HB 149) is a narrow, intent-based AI law codified at Tex. Bus. & Com. Code ch. 551-553. Effective January 1, 2026, it prohibits a short list of harmful AI uses, imposes disclosure duties mainly on government agencies, and is enforced exclusively by the Texas Attorney General with a 60-day cure period and penalties up to $200,000 per uncurable violation. This guide explains what the enacted law actually requires of HR and recruiting teams.",
   jurisdiction: "US · Texas",
   status: "enforced",
   effectiveDate: "January 1, 2026",
   enforcementDate: "January 1, 2026",
-  maxPenalty: "DTPA civil penalties (up to $10,000 per violation)",
+  maxPenalty: "Up to $200,000 per uncurable violation (AG-enforced, tiered)",
   publishedAt: "2025-06-22",
-  updatedAt: "2026-05-17",
+  updatedAt: "2026-06-21",
   toc: [
-    { id: "why-employment-ai", label: "Why Employment AI Is the Biggest Target" },
-    { id: "high-risk-ai-employment", label: "High-Risk AI in Employment" },
-    { id: "traiga-vs-nyc-ll144", label: "TRAIGA vs. NYC Local Law 144" },
-    { id: "core-obligations", label: "Your Four Core Obligations" },
-    { id: "enforcement-and-penalties", label: "Enforcement and Penalties" },
-    { id: "what-to-do-now", label: "What You Should Do Right Now" },
+    { id: "what-traiga-actually-is-and-isn-t", label: "What TRAIGA Actually Is (and Isn't)" },
+    { id: "the-prohibited-ai-uses", label: "The Prohibited AI Uses" },
+    { id: "who-must-comply", label: "Who Must Comply" },
+    { id: "disclosure-duties", label: "Disclosure Duties" },
+    { id: "traiga-vs-nyc-local-law-144", label: "TRAIGA vs. NYC Local Law 144" },
+    { id: "enforcement-the-60-day-cure-and-penalties", label: "Enforcement, the 60-Day Cure, and Penalties" },
+    { id: "safe-harbors-and-the-regulatory-sandbox", label: "Safe Harbors and the Regulatory Sandbox" },
+    { id: "what-hr-teams-should-do-right-now", label: "What HR Teams Should Do Right Now" },
     { id: "compliance-timeline", label: "Compliance Timeline" },
     { id: "faqs", label: "Frequently Asked Questions" },
   ],
@@ -29,172 +31,172 @@ export const frontmatter = {
     {
       question: "Is the Texas Responsible AI Governance Act (TRAIGA) in effect?",
       answer:
-        "Yes. TRAIGA (HB 149) was signed into law on June 22, 2025 and took effect on January 1, 2026. It is currently enforceable.",
+        "Yes. TRAIGA (HB 149) was signed into law by Governor Abbott on June 22, 2025 and took effect on January 1, 2026. It is currently enforceable, exclusively by the Texas Attorney General.",
+    },
+    {
+      question: "Does TRAIGA require impact assessments, risk management programs, and annual AG reports for employers?",
+      answer:
+        "No. An earlier draft (HB 1709, and the December 2024 version) was modeled on the Colorado AI Act and would have required deployers of 'high-risk' AI to conduct impact assessments, maintain risk management programs, give consumer notices, and file annual reports. The Texas legislature stripped that entire framework out in early 2025 before passage. The enacted HB 149 contains none of those obligations. It is an intent-based prohibition statute, not a high-risk compliance regime.",
     },
     {
       question: "What happened to Texas HB 1709?",
       answer:
-        "HB 1709 was an earlier version of the Texas AI governance bill introduced in the 89th Legislature. It was superseded by HB 149 in March 2025. HB 149 was the bill ultimately passed by the legislature and signed into law as the Texas Responsible AI Governance Act (TRAIGA).",
+        "HB 1709 was the original, Colorado-style version of the Texas AI governance bill introduced in the 89th Legislature. It was substantially rewritten and replaced by HB 149 in early 2025. The Colorado-modeled 'high-risk AI / consequential decision / impact assessment' framework was removed during that rewrite. HB 149 — the much narrower bill that survived — is what became the enacted TRAIGA.",
     },
     {
       question: "Is TRAIGA the same as the Colorado AI Act?",
       answer:
-        "TRAIGA is closely modeled on Colorado SB 24-205 (Colorado AI Act) and covers the same high-risk AI categories. Key differences include Texas-specific enforcement via the DTPA framework, slightly different small-business exemption thresholds, and annual reporting to the Texas Attorney General.",
+        "No, not anymore. TRAIGA started as a Colorado-style bill but dropped that model before enactment. The enacted Texas law is intent-based: it bans specific harmful AI uses rather than regulating 'high-risk' systems. Separately, Colorado itself repealed and replaced its original AI Act (SB 24-205) with SB 26-189 — signed May 14, 2026 and effective January 1, 2027 — which also abandoned the impact-assessment/risk-program model in favor of transparency obligations. So the two laws are no longer comparable on the old 'high-risk' framing.",
     },
     {
       question: "What is the penalty for violating TRAIGA?",
       answer:
-        "Civil penalties are enforced under the Texas Deceptive Trade Practices-Consumer Protection Act (DTPA), with fines up to $10,000 per violation. Each individual decision made by a non-compliant AI system could be a separate violation.",
+        "TRAIGA is enforced directly by the Texas Attorney General under the new statute (Tex. Bus. & Com. Code ch. 551-553) — not under the Deceptive Trade Practices Act. Penalties are tiered: $10,000-$12,000 per curable violation (or for breaching a statement to the AG that a violation was cured), $80,000-$200,000 per uncurable violation, and $2,000-$40,000 per day for continuing violations. There is no private right of action.",
     },
   ],
 };
 
 # Texas TRAIGA: What HR and Recruiting Teams Must Know
 
-*Texas HB 149 | Effective January 1, 2026 | AG enforcement under DTPA*
+*Texas HB 149 | Effective January 1, 2026 | Enforced exclusively by the Texas Attorney General*
 
-If you use AI to screen job candidates in Texas, this law already applies to you.
+If you use AI to screen job candidates in Texas, you should understand what this law does and does not require — because a lot of the early commentary describes a version of the bill that never became law.
 
-Texas TRAIGA — the Responsible AI Governance Act, enacted as HB 149 — took effect January 1, 2026. It was the first major US state AI law to actually go live. Colorado's law doesn't kick in until January 1, 2027. Texas got there first. And while TRAIGA covers seven categories of AI "consequential decisions," the employment provisions are where most companies carry the most exposure and have the least documentation.
+Texas TRAIGA — the Responsible AI Governance Act, enacted as HB 149 — took effect January 1, 2026. It is codified in the Texas Business & Commerce Code (chapters 551-553). It was one of the first comprehensive US state AI laws to go live; Colorado's law does not take effect until January 1, 2027.
 
-Here's what that looks like in practice: if your applicant tracking system uses AI to rank candidates, if your video interview software scores body language, or if your performance management tool generates AI-driven termination recommendations: you're operating a high-risk AI system under TRAIGA. Your obligations started January 1, 2026. If you haven't assessed your AI hiring tools yet, you're behind.
+Here is the single most important thing to know: **the enacted TRAIGA is far narrower than the bill many compliance write-ups still describe.** The original draft (HB 1709, and the December 2024 version) copied Colorado's "high-risk AI" model — mandatory impact assessments, risk management programs, consumer notices, and annual reporting to the Attorney General. The Texas legislature removed that entire framework in early 2025, before the bill passed. None of those deployer obligations exist in the law that actually took effect.
 
-This guide focuses on what HR and recruiting teams need to know, do, and document.
-
----
-
-## Why Employment AI Is TRAIGA's Biggest Compliance Target
-
-TRAIGA covers seven domains: employment, housing, credit, education, healthcare, insurance, and legal services. Employment is first on that list for a reason.
-
-AI in hiring has been the most regulated category of AI in the US since New York City's Local Law 144 went into effect in 2023. TRAIGA builds on that precedent and in several ways goes further. If you've addressed NYC LL 144 compliance, you have a head start. But the two programs are not the same, and you can't treat NYC compliance as a proxy for Texas compliance.
-
-The practical reason employment AI attracts regulatory attention: it affects the most people and produces documented evidence of disparate impact at scale. An AI screening tool that processes 50,000 applications creates a data trail. When that system produces measurably different outcomes for protected groups, the AG has documented evidence for an enforcement action.
+What survived is an **intent-based prohibition statute**: it bans a short list of clearly harmful AI uses, puts most disclosure duties on government agencies, and is enforced by the Texas AG with a 60-day cure period and tiered penalties. This guide focuses on what that means for HR and recruiting teams in practice.
 
 ---
 
-## What Counts as a High-Risk AI System in Employment
+## What TRAIGA Actually Is (and Isn't)
 
-A high-risk AI system under TRAIGA is any AI system that makes, or is a "substantial factor" in making, a **consequential decision** about an individual.
+TRAIGA does **not** create a "high-risk AI system" category, does not use the "consequential decision" or "substantial factor" concepts, and does not enumerate covered domains like employment, housing, or credit. Those are Colorado AI Act (SB 24-205) concepts that were cut from TRAIGA during the 2025 rewrite.
 
-In employment, consequential decisions include:
+Instead, the enacted law works like this:
 
-- Hiring and candidate screening
-- Promotion and advancement
-- Termination and performance evaluation
-- Compensation decisions
-- Work scheduling with material impact on compensation
+- It **prohibits** developing or deploying AI with certain harmful intents (see below).
+- It imposes **disclosure** duties primarily on **government agencies** (with a separate health-care disclosure context), not on private employers.
+- It is enforced **only by the Texas Attorney General** — no private lawsuits.
+- It provides **safe harbors** (including substantial compliance with the NIST AI Risk Management Framework) and a **regulatory sandbox**.
 
-The "substantial factor" language is where companies get caught. A system that scores candidates doesn't need to make the final decision to be covered. If a recruiter's decision is heavily influenced by an AI-generated score — even if a human technically approves it — that system is likely high-risk under TRAIGA.
+For an HR team, the practical upshot is that TRAIGA does **not** require you to:
 
-TRAIGA doesn't exempt tools that are "just" recommendations. If your HR platform includes an AI hiring module you haven't thought much about, it's worth finding out whether that module qualifies. Most do.
+- Conduct impact assessments on your hiring AI
+- Maintain a written AI risk management program
+- Send "AI was used" consumer notices with an opt-out and human-review alternative
+- File annual reports with the Texas Attorney General
+
+If you read elsewhere that Texas requires these things, that source is describing the superseded draft. That said, the prohibition on **intentional unlawful discrimination** does reach employment AI, and existing federal and Texas anti-discrimination law continues to apply independently. TRAIGA is lighter than advertised — it is not a free pass.
 
 ---
 
-## TRAIGA vs. NYC Local Law 144: What's Different
+## The Prohibited AI Uses
 
-Both laws target employment AI. The differences are significant enough that operating in both jurisdictions means running separate compliance programs.
+The core of the enacted law (Tex. Bus. & Com. Code ch. 552) is a list of things you may not develop or deploy an AI system to do. The prohibitions are **intent-based** — the AG generally must show the developer or deployer acted with the prohibited intent.
 
-| Requirement | NYC LL 144 | Texas TRAIGA |
+TRAIGA prohibits developing or deploying an AI system:
+
+- **With the intent to unlawfully discriminate** against a protected class in violation of state or federal law. Crucially, the statute states that **disparate impact alone is not sufficient** to demonstrate intent to discriminate.
+- **To incite or encourage** a person to commit self-harm, harm to another person, or criminal activity (intentional behavioral manipulation).
+- **With the sole intent of producing or distributing** child sexual abuse material or unlawful sexually explicit deepfake content involving minors.
+- **With the sole intent of infringing, restricting, or impairing** rights guaranteed under the US Constitution.
+
+Separately, the law bars **government agencies** from using AI for **social scoring** (evaluating or classifying people based on social behavior or personal characteristics in ways that lead to detrimental treatment) and restricts government use of AI-based **biometric identification** from publicly available sources without consent. There are also biometric-data provisions affecting commercial capture of identifiers (retina/iris scans, fingerprints, voiceprints, face/hand geometry) without informed consent, with several exceptions (for example, AI model training and certain security/fraud uses).
+
+For HR: the discrimination prohibition is the one that touches hiring AI. Because it requires **intent**, a tool that happens to produce uneven outcomes is not automatically a TRAIGA violation. But knowingly building or deploying a system to discriminate against a protected class is. And disparate impact remains actionable under other laws even if it does not, by itself, prove intent under TRAIGA.
+
+---
+
+## Who Must Comply
+
+TRAIGA applies broadly to a person or entity that:
+
+- Promotes, advertises, or conducts business in Texas;
+- Produces a product or service used by Texas residents; or
+- Develops or deploys an AI system in Texas.
+
+There is **no small-business carve-out** in the enacted law. (An earlier draft included a Colorado-style threshold tied to having fewer than a certain number of employees; that threshold belonged to the deployer-obligation framework that was removed, so it is not part of TRAIGA.) Because the enacted law imposes no impact-assessment or risk-program duties to begin with, there is nothing to "scale down" for smaller employers — the prohibitions apply to everyone within scope.
+
+---
+
+## Disclosure Duties
+
+This is one of the biggest differences between the enacted law and the draft many guides still describe.
+
+- **Government agencies** must clearly disclose to consumers when they are interacting with an AI system, at or before the point of interaction.
+- **Health-care** providers have a separate disclosure context for AI used in patient care.
+- **Private employers have no TRAIGA disclosure obligation.** There is no requirement to tell a candidate that AI was used, explain how it influenced a decision, or provide an opt-out with a human-reviewed alternative pathway. That opt-out regime existed only in the superseded draft.
+
+Note that other laws may still require disclosure. NYC Local Law 144 has its own candidate-notice rule for automated employment decision tools used for NYC jobs, and Illinois and other states have their own AI-in-hiring rules. TRAIGA simply is not one of them for private employers.
+
+---
+
+## TRAIGA vs. NYC Local Law 144
+
+NYC Local Law 144 is a narrow, hiring-specific transparency rule. TRAIGA is a broad, intent-based prohibition statute. They overlap only loosely, and TRAIGA imposes **fewer** affirmative duties on employers than LL 144 does.
+
+| Requirement | NYC LL 144 | Texas TRAIGA (enacted) |
 |---|---|---|
-| **Geographic scope** | AI tools used for NYC employment decisions | Any high-risk AI affecting Texas employees or applicants |
-| **Bias audit** | Annual third-party bias audit, results published publicly | No separate bias audit; covered by impact assessment |
-| **Candidate notice** | Required before using the tool in hiring | Required when AI influences any consequential decision |
-| **Opt-out mechanism** | Limited accommodation process | Explicit opt-out with an alternative pathway required |
-| **Penalties** | $1,500–$500,000 per violation | Up to $10,000 per violation under DTPA |
-| **Enforcement** | NYC DCWP, private right of action available | Texas AG, DTPA civil enforcement, no private right of action |
-| **Annual reporting** | None | Annual report filed with Texas AG |
-| **Vendor obligations** | Vendors must support the audit process | Deployer responsible; deployer must perform vendor due diligence |
+| **Core model** | Transparency rule for automated employment decision tools (AEDTs) | Intent-based prohibitions on harmful AI uses |
+| **Geographic scope** | AEDTs used for NYC employment decisions | Anyone doing business in TX, serving TX residents, or developing/deploying AI in TX |
+| **Bias audit** | Annual independent bias audit, results published publicly | None required |
+| **Candidate notice** | Required before using the tool in hiring | No private-employer notice requirement |
+| **Opt-out / alternative pathway** | Limited accommodation process | None required |
+| **Impact assessment / risk program** | None | None (removed before enactment) |
+| **Annual reporting** | None | None |
+| **Penalties** | $500-$1,500 per violation (per NYC DCWP) | $10,000-$12,000 (curable) / $80,000-$200,000 (uncurable) / $2,000-$40,000 per day (continuing) |
+| **Enforcement** | NYC DCWP | Texas AG only; no private right of action |
+| **Cure period** | None specified | 60-day cure period before enforcement |
 
-The most important operational difference: NYC LL 144 requires a specific third-party bias audit with published results — a format any candidate can find and read. TRAIGA doesn't require that specific audit structure. It requires an impact assessment that documents how you tested for discriminatory outcomes, filed with the AG rather than published. The documentation obligation under TRAIGA is broader; the specific audit format under NYC LL 144 is stricter.
-
-What TRAIGA requires that NYC LL 144 does not: a written AI risk management program, ongoing monitoring for discriminatory outcomes in production, annual AG reporting, and an explicit opt-out mechanism with an actual alternative pathway. NYC LL 144 is narrower: it targets a specific audit format. TRAIGA requires a full governance program.
-
-If you operate in both jurisdictions, you can build toward a shared documentation foundation. But you'll need the NYC LL 144 annual audit (published externally) and TRAIGA's impact assessment (submitted to the AG) as separate deliverables.
+The practical takeaway: if you have already done LL 144 work for NYC hiring, that does not "cover" Texas, and Texas does not add an impact-assessment or notice burden on top of it. What Texas adds is a prohibition on **intentional** discriminatory or harmful AI use, backed by a powerful AG enforcement tool.
 
 ---
 
-## Your Four Core Obligations Under TRAIGA
+## Enforcement, the 60-Day Cure, and Penalties
 
-### 1. Impact Assessment
+**Exclusive AG enforcement.** TRAIGA is enforced **directly by the Texas Attorney General** under the new statute (Tex. Bus. & Com. Code ch. 551-553) — **not** under the Deceptive Trade Practices Act (DTPA). The AG can seek civil penalties, injunctive relief, attorney's fees, and court costs. There is **no private right of action**, so individuals cannot sue under TRAIGA. Consumer complaints are funneled to the AG through an online portal.
 
-Before deploying a high-risk AI system, you need a written impact assessment covering:
+**The 60-day cure period — the single most important procedural feature.** Before bringing an enforcement action, the AG must give the alleged violator written notice. The recipient then has **60 days to cure** the violation, explain how it was cured, and identify the changes made to internal policies to prevent recurrence. A timely, properly certified cure bars the civil action for that violation. This notice-and-cure step drives the entire penalty structure: whether a violation is treated as "curable" or "uncurable" determines which penalty tier applies.
 
-- What the system does and what it's intended to do
-- Why the benefits justify the risks
-- How you tested the system for discriminatory outcomes — what tests, what data, what results
-- How the system handles transparency and explainability
-- What human oversight exists
-- How training data was collected and processed
+**Tiered penalties:**
 
-Impact assessments aren't one-time documents. Update them annually and when you make material changes to the system or how you use it.
+| Tier | Penalty |
+|---|---|
+| **Curable violation** (uncured, or where the party breaches a statement to the AG that it cured) | $10,000-$12,000 per violation |
+| **Uncurable violation** | $80,000-$200,000 per violation |
+| **Continuing violation** (continues beyond the cure period without a proper statement to the AG) | $2,000-$40,000 per day |
 
-In practice: if you're using a vendor-supplied AI hiring tool, the vendor should provide documentation covering most of these requirements. Review that documentation critically. Don't just accept it and file it. You're the deployer under TRAIGA, not the vendor. Responsibility runs through you.
-
-### 2. Risk Management Program
-
-You need a written AI risk management policy. For employment AI, this means:
-
-- Documented governance for each high-risk AI system
-- A vendor due diligence process that includes requesting developer documentation
-- Monitoring procedures that can detect discriminatory outcomes in production
-- Training for HR staff working with AI-assisted systems
-
-The monitoring requirement has teeth. You can't deploy a hiring AI and assume it's working correctly. You need a process — whether outcome audits, demographic analysis, or something else — that would actually catch a problem before the AG does.
-
-### 3. Consumer Notices
-
-When a high-risk AI system makes or substantially influences a consequential decision about a candidate or employee, you must:
-
-- Tell them AI was used
-- Explain in plain language how the AI influenced the decision
-- Provide a real opt-out mechanism
-- If the decision was adverse (rejection, termination, demotion), explain the basis
-
-The opt-out requirement is more demanding than it sounds. A candidate who opts out needs an actual alternative pathway — a human-reviewed process. If your only hiring pipeline runs through an AI screening tool, you need to build around it or you can't offer a real opt-out.
-
-### 4. Annual AG Reporting
-
-Each year, file a report with the Texas Attorney General covering:
-
-- All high-risk AI systems deployed in the prior year
-- Impact assessments completed
-- Discrimination risks identified and what you did about them
-- Any known instances of algorithmic discrimination
-
-This report goes to the AG's office, not the public — a meaningful difference from NYC LL 144's published audit requirement. But it creates a documentary record the AG can use in an enforcement action. What you self-report matters.
+(Separate caps apply to state agencies.) Note how far this is from the "up to $10,000 per violation under the DTPA" figure that appears in outdated write-ups: the maximum is $200,000 per uncurable violation — twenty times higher — and the legal vehicle is the TRAIGA statute itself, not the DTPA.
 
 ---
 
-## Enforcement and Penalties
+## Safe Harbors and the Regulatory Sandbox
 
-TRAIGA is enforced by the Texas Attorney General under the Deceptive Trade Practices Act (DTPA) framework.
+The enacted law includes meaningful defenses, which the earlier draft framing tends to ignore.
 
-**Civil penalties:** Up to $10,000 per violation. Under DTPA, each individual decision made by a non-compliant AI system could be a separate violation. A hiring system that processed 1,000 Texas applicants without proper impact assessments or notices creates meaningful penalty exposure — do that math.
+**Affirmative defenses / safe harbor.** A person may avoid liability by showing, among other things, **substantial compliance with the NIST AI Risk Management Framework** (or another recognized risk-management framework), discovery and correction of a violation through internal or adversarial/red-team testing, compliance with state-agency guidance, or that the harm resulted from a third party's misuse. This makes adopting a recognized AI governance framework genuinely useful in Texas, even though the law does not mandate one.
 
-**No private right of action:** Unlike some state consumer protection laws, TRAIGA doesn't give individual consumers the right to sue. Enforcement runs through the AG's office. That reduces litigation risk but doesn't eliminate it — an AG investigation can be expensive to respond to even without penalties.
-
-**Small business relief:** Companies with fewer than 25 employees or less than $5 million in annual revenue get scaled-down obligations, not exemptions. The AG can still pursue enforcement against small businesses for serious violations.
-
-**Investigation triggers:** The AG is most likely to open an investigation after a complaint from an applicant, employee, or advocacy group — or after a media event around an AI hiring decision gone wrong. Companies with documented compliance programs are in substantially better position to resolve those investigations without major penalties. Companies that can't produce impact assessments or monitoring records have limited defenses.
+**Regulatory sandbox (Tex. Bus. & Com. Code ch. 553).** TRAIGA establishes an AI Regulatory Sandbox Program administered by the **Texas Department of Information Resources (DIR)**. Approved participants can test AI systems for a limited time — generally **up to 36 months** unless DIR finds good cause to extend — without obtaining certain licenses or regulatory authorizations, in exchange for filing confidential quarterly and annual reports on performance, risk mitigation, and stakeholder feedback. The AG generally cannot bring enforcement action against a participant for conduct within the scope of the approved test (the core prohibitions still apply). For companies developing novel AI products, the sandbox is worth evaluating.
 
 ---
 
-## What You Should Do Right Now
+## What HR Teams Should Do Right Now
 
-TRAIGA is in effect. These are the immediate priorities if you haven't started:
+TRAIGA is in effect, but the to-do list is shorter than older guides suggest. Focus on what the enacted law actually reaches.
 
-**Inventory your AI systems.** List every AI tool used in employment decisions — your ATS screening features, video interview tools, performance management systems with AI components, and any AI that touches hiring, evaluation, or termination decisions. This inventory is the foundation.
+**Inventory your AI hiring tools.** Knowing what AI touches hiring, evaluation, and termination is still good practice — both for TRAIGA's discrimination prohibition and for other laws (LL 144, federal EEO law).
 
-**Request vendor documentation.** For each vendor-supplied system, ask for impact assessment documentation and bias testing results. A vendor that can't provide this creates risk for you. That's a negotiation point on your next contract renewal.
+**Confirm there is no intentional discrimination.** TRAIGA bans deploying AI with intent to unlawfully discriminate. Make sure no one is configuring or using a tool to screen out protected classes, and document that your selection criteria are job-related.
 
-**Conduct impact assessments.** For each high-risk AI system, complete a written impact assessment. If you've already done this for Colorado AI Act compliance, review it for Texas-specific requirements and update as needed.
+**Keep testing — and keep the records.** Bias and adversarial testing is not mandated by TRAIGA, but it underpins the law's safe harbor (discovery/correction through internal testing) and supports your defense under other anti-discrimination laws. Disparate-impact testing remains important even though impact alone does not prove TRAIGA intent.
 
-**Build notification workflows.** Put disclosure and opt-out mechanisms in place for candidates and employees in Texas. Check that your adverse action notices reference AI when AI was involved.
+**Consider adopting the NIST AI RMF.** Substantial compliance with the NIST AI Risk Management Framework is an explicit affirmative defense. Aligning your AI governance to it is one of the highest-leverage steps available.
 
-**Set up AG reporting.** Plan your annual reporting process now. You need to file with the Texas AG covering all high-risk AI systems deployed since January 1, 2026.
+**Do not over-build for requirements that do not exist.** You are not required by TRAIGA to file impact assessments with the AG, run an annual AG report, or offer an AI opt-out with a human alternative. Build those only if another law (or your own policy) calls for them.
 
-**Get Texas-specific legal advice.** The DTPA enforcement framework is specific to Texas and different from Colorado's approach. Engage legal counsel familiar with both the DTPA and Texas AG enforcement patterns before you finalize your compliance program.
+**Get Texas-specific legal advice.** Confirm scope, the cure-period mechanics, and how the discrimination prohibition interacts with your existing EEO compliance with counsel familiar with the enacted statute.
 
 ---
 
@@ -202,16 +204,19 @@ TRAIGA is in effect. These are the immediate priorities if you haven't started:
 
 | Date | Milestone |
 |---|---|
-| **March 2025** | HB 149 supersedes earlier HB 1709 during legislative session |
-| **June 22, 2025** | TRAIGA signed into law by Governor Abbott |
-| **January 1, 2026** | Law takes effect — compliance required |
-| **Ongoing** | Annual impact assessment renewal and AG reporting required |
+| **Dec 2024 / HB 1709** | Original Colorado-style draft (high-risk AI, impact assessments, deployer obligations) introduced |
+| **Early 2025** | Draft rewritten as HB 149 — the Colorado-modeled high-risk framework is removed |
+| **June 22, 2025** | TRAIGA (HB 149) signed into law by Governor Abbott |
+| **January 1, 2026** | Law takes effect — prohibitions and disclosure duties enforceable |
+| **Ongoing** | AG enforcement with 60-day cure; DIR regulatory sandbox open to applicants |
 
 ---
 
 ## Official Sources
 
-- [HB 149 full text (Texas Legislature)](https://capitol.texas.gov/BillLookup/History.aspx?LegSess=89R&Bill=HB149)
+- [HB 149 full text and history (Texas Legislature)](https://capitol.texas.gov/BillLookup/History.aspx?LegSess=89R&Bill=HB149)
+- [HB 149 enrolled text (PDF, Texas Legislature)](https://capitol.texas.gov/tlodocs/89R/billtext/pdf/HB00149F.pdf)
+- [Tex. Bus. & Com. Code ch. 552 — Artificial Intelligence Protection](https://statutes.capitol.texas.gov/GetStatute.aspx?Code=BC&Value=552)
 - [HB 1709 (superseded) full text (Texas Legislature)](https://capitol.texas.gov/BillLookup/History.aspx?LegSess=89R&Bill=HB1709)
 
 *Need help with TRAIGA compliance preparation? [Browse AI governance consultants](/providers/categories/governance-consulting)*

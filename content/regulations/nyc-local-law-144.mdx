@@ -9,7 +9,7 @@ export const frontmatter = {
   enforcementDate: "July 5, 2023",
   maxPenalty: "$1,500 per violation per day",
   publishedAt: "2021-12-11",
-  updatedAt: "2026-04-13",
+  updatedAt: "2026-06-21",
   toc: [
     { id: "overview", label: "Overview" },
     { id: "who-it-applies-to", label: "Who It Applies To" },
@@ -51,7 +51,7 @@ export const frontmatter = {
     {
       question: "What are the penalties for non-compliance?",
       answer:
-        "Civil penalties range from $375 for the first violation (if cured within 30 days) up to $1,500 per violation per day for repeated or uncured violations. The NYC Department of Consumer and Worker Protection (DCWP) enforces the law.",
+        "Under NYC Administrative Code § 20-872, the penalty is not more than $500 for a first violation (and for each additional violation occurring on the same day as the first), and not less than $500 nor more than $1,500 for each subsequent violation. There is no statutory cure period that reduces the penalty. Because each day an AEDT is used in violation, and each failure to provide a required notice, is a separate violation, penalties can accumulate to $1,500 per violation per day. The NYC Department of Consumer and Worker Protection (DCWP) enforces the law.",
     },
     {
       question: "Does NYC Local Law 144 apply to remote workers?",
@@ -77,6 +77,8 @@ The law was motivated by growing evidence that algorithmic hiring tools can perp
 3. **Advance notice** to candidates and employees that an AEDT will be used
 
 The NYC Department of Consumer and Worker Protection (DCWP) issued final implementing rules in April 2023, which clarified key definitions and set audit methodology standards.
+
+> **2026 enforcement update:** On December 2, 2025, the New York State Comptroller published an audit concluding that DCWP's enforcement of Local Law 144 has been **"ineffective."** Employment counsel (e.g., DLA Piper, January 2026) are warning employers to expect a new phase of stricter enforcement, more frequent investigations, and higher penalties. See **[Penalties & Enforcement](#penalties)** below for details.
 
 ---
 
@@ -186,21 +188,23 @@ Employers must accommodate **reasonable requests** from candidates who object to
 | **December 11, 2021** | Local Law 144 signed into law |
 | **April 6, 2023** | DCWP final implementing rules effective |
 | **July 5, 2023** | **Law fully enforceable** (bias audit + notice requirements) |
+| **December 2, 2025** | NY State Comptroller audit finds DCWP enforcement "ineffective"; DCWP commits to reforms |
 | **Annually** | Bias audit must be renewed each year |
 
 ---
 
 ## Penalties & Enforcement
 
-The NYC Department of Consumer and Worker Protection (DCWP) has exclusive enforcement authority. There is no private right of action.
+The NYC Department of Consumer and Worker Protection (DCWP) has exclusive enforcement authority. There is no private right of action. The civil penalties are set by **NYC Administrative Code § 20-872**:
 
 | Violation | Penalty |
 |-----------|---------|
-| First violation (cured within 30 days) | $375 |
-| First violation (not cured within 30 days) | Up to $1,500 |
-| Each subsequent violation | Up to $1,500 **per day** |
+| First violation (and each additional violation occurring on the same day as the first) | Not more than **$500** |
+| Each subsequent violation | Not less than **$500** and not more than **$1,500** |
 
-"Per violation per day" means that failing to post audit results, failing to provide required candidate notice, and using an unaudited AEDT are each treated as separate violations — and fines accrue daily for uncured violations.
+> **Note:** Local Law 144 does **not** contain a $375 penalty tier or a 30-day cure period that lowers the fine — those figures do not appear in the statute. The penalty floor is **$500**.
+
+Critically, **each day** an AEDT is used in violation of the law is a **separate violation**, and **each failure to provide** a required notice to a candidate or employee is also a separate violation. Because failing to post audit results, failing to provide required candidate notice, and using an unaudited AEDT are each treated as separate violations — and a fresh violation accrues for each day of continued non-compliant use — penalties can compound to as much as **$1,500 per violation per day**.
 
 ### DCWP Enforcement Process
 
@@ -209,6 +213,16 @@ DCWP may:
 - Conduct proactive investigations
 - Issue subpoenas and inspect records
 - Impose civil penalties
+
+### December 2025 State Comptroller Audit
+
+On **December 2, 2025**, New York State Comptroller Thomas P. DiNapoli released an audit finding that DCWP's enforcement of Local Law 144 has been **"ineffective."** Key findings included:
+
+- **Misrouted complaints.** **75%** of test calls placed to NYC's 311 system about AEDT issues were improperly routed and never reached DCWP, and the website instructions for filing complaints were unclear.
+- **Superficial compliance reviews.** Of 32 employer and vendor bias-audit disclosures DCWP reviewed, the agency identified only **1** likely instance of non-compliance — while the Comptroller's review of the **same** 32 found at least **17** potential non-compliance issues.
+- **Unused tools.** DCWP did not use its own "Enforcement Workbook" and did not consult the city's Office of Technology and Innovation (OTI) when evaluating whether tools were AEDTs.
+
+DCWP agreed to implement most of the Comptroller's recommendations, including improving complaint routing, training staff, and strengthening its review process. Employment counsel (e.g., DLA Piper, January 2026) have read the audit as a signal that a stricter enforcement phase — with more frequent investigations and higher penalties — is likely. Employers who have treated Local Law 144 as low-enforcement-risk should re-verify that their bias audits, public disclosures, and candidate notices are current and defensible.
 
 ---
 
@@ -261,3 +275,5 @@ No. Only DCWP can enforce the law. Individuals cannot sue employers directly und
 
 - [NYC Local Law 144 of 2021 (NYC Council)](https://legistar.council.nyc.gov/LegislationDetail.aspx?ID=4344524)
 - [DCWP Automated Employment Decision Tools rules](https://www.nyc.gov/site/dca/about/automated-employment-decision-tools.page)
+- [NY State Comptroller — Enforcement of Local Law 144 (audit, Dec. 2, 2025)](https://www.osc.ny.gov/state-agencies/audits/2025/12/02/enforcement-local-law-144-automated-employment-decision-tools)
+- [DLA Piper — Critical audit of NYC's AI hiring law signals increased risk for employers (Jan. 2026)](https://www.dlapiper.com/en-us/insights/publications/2026/01/critical-audit-of-nyc-ai-hiring-law-signals-increased-risk-for-employers)

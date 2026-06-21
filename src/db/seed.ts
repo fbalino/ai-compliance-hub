@@ -799,6 +799,77 @@ const REGULATIONS = [
   },
 ];
 
+// ── Provider→regulation slug hygiene ────────────────────────────────────────────
+// Registered regulation slugs (must match content/regulations/*.mdx). Any provider
+// link to a slug NOT in this set is dropped so provider matching never silently
+// breaks on a non-existent regulation.
+const VALID_REGULATION_SLUGS = new Set([
+  "colorado-ai-act", "eu-ai-act", "nyc-local-law-144", "california-ab-2013",
+  "illinois-ai-video-interview-act", "texas-traiga", "virginia-hb-2094",
+  "nis2-directive", "dora", "illinois-bipa", "gdpr", "texas-cubi",
+  "nist-ai-rmf", "iso-42001", "ccpa-admt",
+]);
+
+// Per-provider corrections for legacy seed slugs that pointed at regulations we
+// don't publish. Keyed "<providerSlug>:<oldSlug>" → corrected slug. Previously
+// applied by the one-off fix-provider-regulation-slugs.ts script, now folded in
+// here so re-seeding produces the correct state on its own.
+const PROVIDER_SLUG_FIXES: Record<string, string> = {
+  "babl-ai:eeoc-guidelines": "illinois-ai-video-interview-act",
+  "orcaa:fair-housing-act": "illinois-ai-video-interview-act",
+  "orcaa:ecoa": "ccpa-admt",
+  "fairly-ai:sr-11-7": "ccpa-admt",
+  "ai-policy-lab:uk-ai-regulations": "virginia-hb-2094",
+  "ai-policy-lab:singapore-ai-governance": "ccpa-admt",
+  "fieldfisher-ai:eu-product-liability-directive": "nis2-directive",
+  "wiley-ai-law:federal-ai-guidance": "virginia-hb-2094",
+  "venable-ai:ftc-guidelines": "ccpa-admt",
+  "venable-ai:california-ai-laws": "california-ab-2013",
+  "ai-governance-professional:oecd-ai-principles": "colorado-ai-act",
+  "isaca-ai-audit:cobit": "eu-ai-act",
+  "monitaur:sr-11-7": "dora",
+  "bcg-x-ai:oecd-ai-principles": "colorado-ai-act",
+  "kpmg-ai-risk:sr-11-7": "dora",
+  "covington-burling-ai:california-ai-laws": "california-ab-2013",
+  "covington-burling-ai:federal-ai-guidance": "ccpa-admt",
+  "perkins-coie-ai:california-ai-laws": "ccpa-admt",
+  "sidley-austin-ai:sr-11-7": "dora",
+  "sidley-austin-ai:california-ai-laws": "ccpa-admt",
+  "logicgate-ai:sr-11-7": "dora",
+  "ai-for-good:oecd-ai-principles": "nist-ai-rmf",
+  "ai-for-good:un-ai-governance": "iso-42001",
+  "ieee-ai-ethics-training:ieee-ethically-aligned-design": "iso-42001",
+  "mit-sloan-ai-compliance:oecd-ai-principles": "iso-42001",
+  "coursera-ai-governance:oecd-ai-principles": "iso-42001",
+};
+
+// Additional provider→regulation links (previously added by the migration).
+const PROVIDER_EXTRA_LINKS: Record<string, string[]> = {
+  "holistic-ai": ["illinois-bipa"],
+  "babl-ai": ["ccpa-admt"],
+  "credo-ai": ["ccpa-admt"],
+  "fairly-ai": ["dora"],
+  "impartial-ai": ["illinois-ai-video-interview-act"],
+  "monitaur": ["ccpa-admt"],
+  "fieldfisher-ai": ["dora"],
+  "mit-sloan-ai-compliance": ["colorado-ai-act"],
+  "coursera-ai-governance": ["colorado-ai-act"],
+  "onetrust-ai": ["nis2-directive", "illinois-bipa", "texas-cubi"],
+  "kpmg-ai-risk": ["nis2-directive"],
+  "perkins-coie-ai": ["illinois-bipa", "texas-cubi"],
+  "wiley-ai-law": ["texas-traiga"],
+  "venable-ai": ["texas-traiga"],
+};
+
+// Resolve a provider's final, valid regulation slug list.
+function resolveRegulationSlugs(providerSlug: string, slugs: string[]): string[] {
+  const corrected = slugs.map((s) => PROVIDER_SLUG_FIXES[`${providerSlug}:${s}`] ?? s);
+  const extra = PROVIDER_EXTRA_LINKS[providerSlug] ?? [];
+  return Array.from(new Set([...corrected, ...extra])).filter((s) =>
+    VALID_REGULATION_SLUGS.has(s)
+  );
+}
+
 // ── Main seed function ─────────────────────────────────────────────────────────
 
 async function seed() {
@@ -901,11 +972,12 @@ async function seed() {
       );
     }
 
-    // Clear and re-insert regulations
+    // Clear and re-insert regulations (legacy-slug corrections + extra links folded in)
     await db.delete(providerRegulations).where(eq(providerRegulations.providerId, providerId));
-    if (p.regulationSlugs.length > 0) {
+    const finalRegulationSlugs = resolveRegulationSlugs(p.slug, p.regulationSlugs);
+    if (finalRegulationSlugs.length > 0) {
       await db.insert(providerRegulations).values(
-        p.regulationSlugs.map((regulationSlug) => ({ providerId, regulationSlug }))
+        finalRegulationSlugs.map((regulationSlug) => ({ providerId, regulationSlug }))
       );
     }
 

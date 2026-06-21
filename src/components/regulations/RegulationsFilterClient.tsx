@@ -36,6 +36,22 @@ function deriveJurisdictionGroup(jurisdiction: string): string {
   return jurisdiction;
 }
 
+// effectiveDate is a free-text frontmatter string and can hold multiple dates
+// (e.g. CCPA-ADMT: "September 22, 2025 (finalized); ... April 1, 2027 (ADMT ...)").
+// `new Date()` on the whole string returns NaN, which previously collapsed such
+// rows to the 1970 epoch. Parse the first recognizable date token instead.
+function effectiveTime(raw: string | undefined): number | null {
+  if (!raw) return null;
+  const full = raw.match(/[A-Z][a-z]+ \d{1,2},? \d{4}/);
+  if (full) {
+    const t = new Date(full[0]).getTime();
+    if (!Number.isNaN(t)) return t;
+  }
+  const year = raw.match(/\b(19|20)\d{2}\b/);
+  if (year) return new Date(`${year[0]}-01-01`).getTime();
+  return null;
+}
+
 const SORT_OPTIONS = [
   { value: "newest", label: "Newest first" },
   { value: "oldest", label: "Oldest first" },
@@ -108,17 +124,15 @@ export function RegulationsFilterClient({ regulations }: Props) {
       return true;
     });
 
-    if (sort === "newest") {
+    if (sort === "newest" || sort === "oldest") {
+      const dir = sort === "newest" ? -1 : 1;
       result.sort((a, b) => {
-        const dateA = new Date(a.effectiveDate).getTime() || 0;
-        const dateB = new Date(b.effectiveDate).getTime() || 0;
-        return dateB - dateA;
-      });
-    } else if (sort === "oldest") {
-      result.sort((a, b) => {
-        const dateA = new Date(a.effectiveDate).getTime() || 0;
-        const dateB = new Date(b.effectiveDate).getTime() || 0;
-        return dateA - dateB;
+        const ta = effectiveTime(a.effectiveDate);
+        const tb = effectiveTime(b.effectiveDate);
+        if (ta === null && tb === null) return 0;
+        if (ta === null) return 1; // unparseable dates always sort to the end
+        if (tb === null) return -1;
+        return dir * (ta - tb);
       });
     } else if (sort === "name") {
       result.sort((a, b) => a.name.localeCompare(b.name));

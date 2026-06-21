@@ -8,6 +8,7 @@ import { db } from "@/db";
 import { providers } from "@/db/schema";
 import { ilike, or, and, count } from "drizzle-orm";
 import { getAllRegulations } from "@/lib/regulations";
+import { POSTS } from "@/app/(site)/blog/[slug]/page";
 import { SITE_URL } from "@/lib/brand";
 
 export const revalidate = false;
@@ -26,12 +27,14 @@ export const metadata: Metadata = {
   },
 };
 
-const SAMPLE_ARTICLES = [
-  { title: "The biometric patchwork, mapped", slug: "biometric-privacy-law-patchwork" },
-  { title: "Clearview AI GDPR fines across Europe", slug: "clearview-ai-gdpr-fines" },
-  { title: "BIPA class actions in 2025", slug: "illinois-bipa-class-actions-2025" },
-  { title: "The EU AI Act high-risk list, annotated", slug: "eu-ai-act-high-risk-list-annotated" },
-];
+const ALL_ARTICLES = Object.values(POSTS).map((p) => ({
+  title: p.title,
+  slug: p.slug,
+  excerpt: p.excerpt,
+  haystack: [p.title, p.excerpt, p.category, p.slug, ...(p.tags ?? [])]
+    .join(" ")
+    .toLowerCase(),
+}));
 
 export default async function SearchPage({
   searchParams,
@@ -90,9 +93,13 @@ export default async function SearchPage({
       }).slice(0, 20)
     : allRegItems.slice(0, 20);
 
+  const matchedArticles = hasQuery
+    ? ALL_ARTICLES.filter((a) => queryWords.every((w) => a.haystack.includes(w))).slice(0, 12)
+    : [];
+
   const regTotal = allRegItems.length;
   const providerTotal = providerCountResult?.value ?? 0;
-  const totalResults = matchedRegs.length + matchedProviders.length;
+  const totalResults = matchedRegs.length + matchedProviders.length + matchedArticles.length;
 
   const breadcrumbs = breadcrumbListSchema([
     { name: "Home", url: "/" },
@@ -109,10 +116,12 @@ export default async function SearchPage({
     { label: "All", value: "all", count: totalResults },
     { label: "Regulations", value: "regulations", count: matchedRegs.length },
     { label: "Providers", value: "providers", count: matchedProviders.length },
+    { label: "Articles", value: "articles", count: matchedArticles.length },
   ];
 
   const showRegs = activeTab === "all" || activeTab === "regulations";
   const showProviders = activeTab === "all" || activeTab === "providers";
+  const showArticles = activeTab === "all" || activeTab === "articles";
 
   return (
     <>
@@ -218,15 +227,25 @@ export default async function SearchPage({
           </div>
         )}
 
-        {hasQuery && (
+        {hasQuery && showArticles && (
           <div>
-            <div className="eyebrow" style={{ marginBottom: 16 }}>From The Ledger</div>
+            <div className="eyebrow" style={{ marginBottom: 16 }}>
+              From The Ledger \u00b7 {matchedArticles.length} {matchedArticles.length === 1 ? "result" : "results"}
+            </div>
             <div className="col" style={{ gap: 12 }}>
-              {SAMPLE_ARTICLES.map((article) => (
-                <Link key={article.title} href={`/blog/${article.slug}`} style={{ textDecoration: "none" }}>
+              {matchedArticles.length === 0 && (
+                <p className="small">No articles matched your search.</p>
+              )}
+              {matchedArticles.map((article) => (
+                <Link key={article.slug} href={`/blog/${article.slug}`} style={{ textDecoration: "none" }}>
                   <div className="card" style={{ padding: 14, cursor: "pointer" }}>
                     <div className="eyebrow" style={{ marginBottom: 4, color: "var(--accent)" }}>{"\u25b8"} Article</div>
                     <div className="h4">{article.title}</div>
+                    {article.excerpt && (
+                      <div className="small" style={{ marginTop: 4, color: "var(--ink-2)" }}>
+                        {article.excerpt.length > 120 ? article.excerpt.slice(0, 120) + "\u2026" : article.excerpt}
+                      </div>
+                    )}
                   </div>
                 </Link>
               ))}

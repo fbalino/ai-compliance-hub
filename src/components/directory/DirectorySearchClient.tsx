@@ -12,7 +12,19 @@ const ICON_MAP: Record<string, LucideIcon> = {
   bookopen: BookOpen,
 };
 
-const SERVICE_TYPES = ["Software", "Advisory", "Legal counsel", "Audit"];
+// Provider specializations are stored as free-text (e.g. "Bias Audits",
+// "AI Governance Platform", "EU AI Act Counsel"), so the service filter matches
+// on keywords rather than exact strings — otherwise no provider ever matches.
+const SERVICE_FILTERS: { label: string; keywords: string[] }[] = [
+  { label: "Software", keywords: ["software", "platform", "automation", "monitoring", "observability", "mlops", "grc", "tracking", "inventory"] },
+  { label: "Advisory", keywords: ["advisory", "advice", "consult", "strategy", "board", "policy"] },
+  { label: "Legal counsel", keywords: ["counsel", "legal", "law", "litigation", "defense", "liability"] },
+  { label: "Audit", keywords: ["audit", "assurance"] },
+];
+const SERVICE_KEYWORDS: Record<string, string[]> = Object.fromEntries(
+  SERVICE_FILTERS.map((s) => [s.label, s.keywords])
+);
+const SERVICE_TYPES = SERVICE_FILTERS.map((s) => s.label);
 const REGIONS = ["EU", "UK", "US", "APAC", "LATAM"];
 
 export interface ProviderSearchItem {
@@ -67,7 +79,14 @@ export function DirectorySearchClient({ providers, categories }: Props) {
     return providers.filter((p) => {
       if (activeCategory !== null && p.category !== activeCategory) return false;
 
-      if (activeServices.size > 0 && !p.specializations.some((s) => activeServices.has(s))) return false;
+      if (activeServices.size > 0) {
+        const specs = p.specializations.map((s) => s.toLowerCase());
+        const matchesService = Array.from(activeServices).some((svc) => {
+          const kws = SERVICE_KEYWORDS[svc] ?? [svc.toLowerCase()];
+          return specs.some((spec) => kws.some((kw) => spec.includes(kw)));
+        });
+        if (!matchesService) return false;
+      }
 
       if (activeRegions.size > 0 && !p.jurisdictions.some((j) => activeRegions.has(j))) return false;
 

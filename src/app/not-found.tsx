@@ -6,7 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 export const metadata: Metadata = {
   title: "Not on the register — § 404",
   description:
-    "The page you requested isn't on the Regulome register. Search 912 AI regulations or browse common destinations.",
+    "The page you requested isn't on the Regulome register. Search the AI regulations catalog or browse common destinations.",
   robots: { index: false, follow: true },
 };
 
@@ -14,7 +14,7 @@ const SUGGESTED = [
   {
     kicker: "§ Catalog",
     title: "Browse all regulations",
-    body: "AI & cyber regulations across 40+ jurisdictions, with status and effective dates.",
+    body: "AI & cyber regulations across the US, EU, and international frameworks, with status and effective dates.",
     href: "/regulations",
   },
   {

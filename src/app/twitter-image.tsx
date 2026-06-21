@@ -78,7 +78,7 @@ export default function Image() {
             maxWidth: "700px",
           }}
         >
-          Search 912+ AI regulations. EU AI Act, US state laws, and more.
+          Search AI regulations. EU AI Act, US state laws, and more.
         </div>
 
         <div

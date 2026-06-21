@@ -9,7 +9,7 @@ export const frontmatter = {
   enforcementDate: "May 25, 2018",
   maxPenalty: "€20 million or 4% of global annual turnover",
   publishedAt: "2016-04-27",
-  updatedAt: "2026-04-18",
+  updatedAt: "2026-06-21",
   toc: [
     { id: "overview", label: "Overview" },
     { id: "who-it-applies-to", label: "Who It Applies To" },
@@ -19,6 +19,7 @@ export const frontmatter = {
     { id: "ai-and-automated-decisions", label: "AI & Automated Decision-Making" },
     { id: "special-categories", label: "Special Categories (Art. 9)" },
     { id: "penalties", label: "Penalties & Enforcement" },
+    { id: "recent-pending-developments", label: "Recent & Pending Developments" },
     { id: "compliance-steps", label: "Compliance Steps" },
     { id: "faqs", label: "Frequently Asked Questions" },
   ],
@@ -53,6 +54,11 @@ export const frontmatter = {
       question: "What is a Data Protection Impact Assessment?",
       answer:
         "A DPIA (Article 35) is a mandatory risk assessment for processing likely to result in high risk to individuals' rights and freedoms. It is required for systematic profiling with significant effects, large-scale processing of special categories, and large-scale systematic monitoring of public areas — all common in AI deployments.",
+    },
+    {
+      question: "Is the GDPR being amended or reformed?",
+      answer:
+        "The core Regulation (EU) 2016/679 remains in force and unamended in substance. However, two changes matter for AI compliance. First, the GDPR Procedural Regulation (EU) 2025/2518 — adopted in November 2025 and in force since early 2026 — harmonizes cross-border complaint handling and imposes binding investigation deadlines; it applies from April 2, 2027. Second, the Commission's Digital Omnibus package, proposed on November 19, 2025, would amend the GDPR itself (information/access rights, breach notification, SME relief). The Digital Omnibus is still a proposal — not yet law — with adoption not expected before mid-2027.",
     },
   ],
 };
@@ -149,6 +155,8 @@ GDPR establishes comprehensive rights for individuals:
 | Object | 21 | Right to object to processing based on legitimate interests or public interest |
 | Automated decisions | 22 | Right not to be subject to solely automated decisions with significant effects |
 
+> **Note:** The Articles 13/14/15 information and access rights described above are the rights in force today. The Commission's proposed Digital Omnibus would narrow some of them (see [Recent & Pending Developments](#recent-pending-developments)). Those proposed limitations are not yet law.
+
 ---
 
 ## AI & Automated Decision-Making
@@ -227,15 +235,49 @@ AI systems frequently process or infer special category data — for example, fa
 
 ### Enforcement Authorities
 
-Each EU member state has an independent **Data Protection Authority** (DPA) responsible for enforcement. The lead supervisory authority is determined by where the controller has its main establishment.
+Each EU member state has an independent **Data Protection Authority** (DPA) responsible for enforcement. For cross-border processing, a **lead supervisory authority** — determined by where the controller has its main establishment — coordinates enforcement through the GDPR's "one-stop-shop" mechanism, with cooperation and consistency overseen by the European Data Protection Board (EDPB).
+
+The one-stop-shop has become a decisive factor in AI enforcement. As the OpenAI case below shows, the timing of when an AI provider establishes an EU main establishment — and which authority becomes its lead supervisor — can determine whether a national DPA's action survives appeal. From April 2, 2027, the new **GDPR Procedural Regulation** (see [Recent & Pending Developments](#recent-pending-developments)) will harmonize how cross-border complaints are handled and impose binding investigation deadlines.
 
 ### Notable AI-Related Enforcement
 
-| Entity | Fine | Year | Issue |
-|--------|------|------|-------|
-| Clearview AI | €20M (France), €20M (Italy), €9M (UK) | 2022 | Scraping facial images for AI training without consent |
-| Meta | €1.2B (Ireland) | 2023 | EU-US data transfers (affecting AI model training) |
-| OpenAI | Under investigation | 2024+ | GDPR compliance of ChatGPT data processing |
+| Entity | Outcome | Year | Issue |
+|--------|---------|------|-------|
+| Clearview AI | €30.5M (Netherlands, 2024); €20M (France, 2022); €20M (Italy, 2022); €20M (Greece, 2022) — roughly €100M cumulative | 2022–2024 | Scraping facial images to build a biometric database for facial recognition without a lawful basis |
+| Meta | €1.2B (Ireland) | 2023 | Unlawful EU–US data transfers via SCCs (affecting data used for AI and ad systems) |
+| OpenAI | €15M fine imposed by Italy's Garante (Dec 2024) — **annulled** by the Court of Rome (judgment Mar 2026) on jurisdictional grounds | 2024–2026 | ChatGPT training data, transparency, age verification, and an unreported 2023 data breach |
+
+**Clearview AI — incomplete picture corrected.** Clearview's largest single GDPR penalty is the **Dutch DPA's €30.5 million fine** of September 3, 2024 (with an additional non-compliance penalty of up to €5.1 million for failing to stop). It joins €20 million fines from France, Italy, and Greece (all 2022), bringing cumulative EU penalties to roughly €100 million. The UK ICO separately issued a ~£7.5 million penalty in 2022; a First-tier Tribunal overturned it on jurisdictional grounds in October 2023, but in **October 2025 the UK Upper Tribunal allowed most of the ICO's appeal**, held that the ICO did have jurisdiction, and remitted the case for a substantive hearing — so the UK matter is back in active litigation rather than a settled €9M fine.
+
+**OpenAI — fine imposed, then annulled.** Italy's Garante did not merely "investigate" — it concluded its inquiry and, in a decision adopted in late 2024 (provvedimento n. 755, announced December 20, 2024), fined OpenAI **€15 million** and ordered a mandatory six-month public information campaign for unlawful processing of training data, transparency failures, inadequate age verification, and an unreported March 2023 data breach. OpenAI appealed. The Court of Rome (Tribunale Ordinario di Roma) **annulled the fine** — judgment of March 18, 2026, with full reasoning published in May 2026 — finding the Garante lacked jurisdiction to issue a final decision because the Irish Data Protection Commission had become OpenAI's lead supervisory authority on February 15, 2024, triggering the one-stop-shop. The court did not rule on the substance of the alleged violations, which may yet be pursued by the Irish DPC.
+
+---
+
+## Recent & Pending Developments
+
+The core text of Regulation (EU) 2016/679 remains in force and unamended in substance. Two 2025–2026 developments, however, change how GDPR is enforced and signal possible amendments to the law itself.
+
+### GDPR Procedural Regulation (EU) 2025/2518 — adopted, now in force
+
+The Council adopted the **GDPR Procedural Regulation** on November 17, 2025 (the regulation is dated November 26, 2025), and it was published in the Official Journal on December 12, 2025. It **entered into force 20 days after publication** (early January 2026) and **applies from April 2, 2027**.
+
+This is a procedural instrument that sits alongside the GDPR rather than amending its substantive rights. It:
+
+- **Harmonizes the admissibility of cross-border complaints** — the same information requirements apply wherever in the EU a complaint is filed.
+- **Imposes binding investigation deadlines** — cross-border investigations should conclude within **15 months**, extendable by up to **12 months** for the most complex cases; simpler cooperation procedures should finish within 12 months.
+- **Strengthens procedural rights** — both complainants and parties under investigation gain rights to be heard and to access the administrative file (excluding confidential information).
+
+For AI providers facing complaints across multiple member states, this should make cross-border enforcement faster and more predictable from 2027 onward.
+
+### Digital Omnibus — proposed GDPR amendments (not yet law)
+
+On **November 19, 2025**, the European Commission published the **Digital Omnibus** package, a set of proposals to simplify EU digital law. Unlike the Procedural Regulation, the Digital Omnibus would **amend the GDPR itself**. Key proposals include:
+
+- **Limits on the Articles 13/14/15 information and access rights**, including measures aimed at curbing abusive or disproportionate access requests.
+- A **consolidated breach-notification regime** with a single reporting entry point and the deadline to notify the supervisory authority potentially **extended from 72 to 96 hours**, alongside a higher risk threshold for when notification is required.
+- **Relief for SMEs and small mid-cap companies**, and common templates for breach notifications and DPIAs.
+
+This is a **proposal only**. The EDPB and EDPS issued **Joint Opinion 2/2026** (adopted February 10, 2026) broadly supporting simplification — including the breach-notification changes — while warning against weakening core data-subject protections. Adoption is not expected before roughly mid-2027, and the text may change significantly. Organizations should treat the current Articles 13/14/15 rights and the 72-hour breach window as the law in force today, while tracking the proposal.
 
 ---
 
@@ -256,6 +298,8 @@ Each EU member state has an independent **Data Protection Authority** (DPA) resp
 7. **Establish data processing agreements.** Ensure contracts with AI vendors (processors) include Article 28-compliant terms covering data protection obligations, sub-processing, security measures, and audit rights.
 
 8. **Appoint a DPO if required.** Organizations whose core activities involve large-scale processing of special category data or systematic monitoring must appoint a Data Protection Officer.
+
+9. **Confirm your EU main establishment and lead authority.** Determine which DPA is your lead supervisory authority under the one-stop-shop, and track the new cross-border procedural timelines that apply from April 2, 2027.
 
 ---
 
@@ -279,10 +323,15 @@ When AI processing is likely to result in high risk — including systematic pro
 **How does GDPR interact with the EU AI Act?**
 They are complementary. The EU AI Act regulates AI systems by risk level; GDPR regulates the personal data those systems process. Organizations deploying AI in the EU must comply with both simultaneously.
 
+**Is the GDPR changing in 2026–2027?**
+The substantive Regulation is unchanged, but two developments matter. The GDPR Procedural Regulation (EU) 2025/2518 — in force since early 2026, applying from April 2, 2027 — harmonizes cross-border complaint handling and sets binding investigation deadlines. Separately, the Commission's Digital Omnibus (proposed November 19, 2025) would amend the GDPR's information/access rights and breach-notification rules, but it is not yet law and is unlikely to be adopted before mid-2027.
+
 ---
 
 ## Official Sources
 
 - [GDPR full text (EUR-Lex)](https://eur-lex.europa.eu/eli/reg/2016/679/oj)
+- [GDPR Procedural Regulation (EU) 2025/2518 (EUR-Lex)](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202502518)
 - [European Data Protection Board (EDPB)](https://www.edpb.europa.eu/)
+- [EDPB-EDPS Joint Opinion 2/2026 on the Digital Omnibus](https://www.edpb.europa.eu/our-work-tools/our-documents/edpbedps-joint-opinion/edpb-edps-joint-opinion-22026-proposal_en)
 - [GDPR info portal](https://gdpr-info.eu/)

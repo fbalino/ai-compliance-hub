@@ -1,5 +1,6 @@
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://regulome.io";
-const SITE_NAME = "regulome.io";
+// Brand display name for schema.org name/author/publisher fields (not the bare domain).
+const SITE_NAME = "Regulome";
 const LOGO_URL = `${SITE_URL}/logo.png`;
 
 const PUBLISHER = {
@@ -44,7 +45,7 @@ export function organizationSchema() {
       url: LOGO_URL,
     },
     description:
-      "The global register of AI regulations. Search 912+ AI and cyber regulations, find vetted compliance providers, and determine which laws apply to your business.",
+      "The global register of AI regulations. Search AI and cyber regulations, find vetted compliance providers, and determine which laws apply to your business.",
     foundingDate: "2024",
     knowsAbout: [
       "AI regulation",

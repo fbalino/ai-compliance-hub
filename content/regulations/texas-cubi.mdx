@@ -2,16 +2,17 @@ export const frontmatter = {
   name: "Texas Capture or Use of Biometric Identifier Act",
   shortName: "TX CUBI",
   description:
-    "Texas law regulating the capture, use, storage, and destruction of biometric identifiers including retina scans, iris scans, voiceprints, and hand or face geometry records.",
+    "Texas law regulating the capture, use, storage, and destruction of biometric identifiers — retina/iris scans, fingerprints, voiceprints, and hand or face geometry — now amended by HB 149 (TRAIGA) to exempt most AI training and development from its consent rules effective January 1, 2026.",
   jurisdiction: "US · Texas",
   status: "enforced",
   effectiveDate: "September 1, 2009",
   enforcementDate: "September 1, 2009",
   maxPenalty: "$25,000 per violation (AG enforcement)",
   publishedAt: "2009-06-19",
-  updatedAt: "2026-04-18",
+  updatedAt: "2026-06-21",
   toc: [
     { id: "overview", label: "Overview" },
+    { id: "the-hb-149-traiga-ai-amendment", label: "The HB 149 (TRAIGA) AI Amendment" },
     { id: "who-it-applies-to", label: "Who It Applies To" },
     { id: "biometric-identifiers", label: "Biometric Identifiers Covered" },
     { id: "consent-and-notice", label: "Consent & Notice Requirements" },
@@ -40,12 +41,12 @@ export const frontmatter = {
     {
       question: "How does Texas CUBI compare to Illinois BIPA?",
       answer:
-        "Both laws regulate biometric data collection and require consent, but they differ significantly. BIPA provides a private right of action and statutory damages; CUBI is AG-enforced only. BIPA requires written consent; CUBI requires informed consent without specifying written form. BIPA has generated billions in class action settlements; CUBI has seen limited enforcement until the 2022 Meta action.",
+        "Both laws regulate biometric data collection and require consent, but they differ significantly. BIPA provides a private right of action and statutory damages; CUBI is AG-enforced only. BIPA requires written consent; CUBI requires informed consent without specifying written form. BIPA has generated billions in class action settlements; CUBI has seen limited but headline-grabbing enforcement, including the $1.4 billion Meta settlement (2024) and the $1.375 billion Google settlement (2025).",
     },
     {
       question: "Does CUBI apply to AI facial recognition systems?",
       answer:
-        "Yes. Any system that captures or uses face geometry records — including AI-powered facial recognition, verification, or analysis — must comply with CUBI's notice, consent, and data handling requirements when processing the biometric data of Texas residents.",
+        "It depends on how the system is used. Effective January 1, 2026, HB 149 (TRAIGA) amended CUBI so its capture and consent rules do NOT apply to the training, processing, or storage of biometric identifiers used to develop, train, evaluate, disseminate, or otherwise offer an AI model or system. But that exemption disappears the moment a system is used or deployed to uniquely identify a specific individual — so an AI facial-recognition or verification system that identifies people generally still triggers CUBI's notice and consent requirements (subject to a separate carve-out for security/fraud purposes).",
     },
     {
       question: "What are the destruction requirements under CUBI?",
@@ -59,7 +60,7 @@ export const frontmatter = {
 
 The **Texas Capture or Use of Biometric Identifier Act** (CUBI), codified as Texas Business & Commerce Code Chapter 503, was enacted on June 19, 2009 and became effective September 1, 2009. CUBI regulates the capture, use, storage, and destruction of biometric identifiers by commercial entities operating in Texas.
 
-While CUBI predates the current AI regulation wave, it has become increasingly relevant as companies deploy facial recognition, voice authentication, and other biometric AI technologies that process Texas residents' data. The law gained national attention in 2022 when the Texas Attorney General filed a landmark $1.4 billion enforcement action against Meta for alleged violations related to Facebook's facial recognition feature.
+CUBI predates the current AI regulation wave, and for years it sat largely dormant. That changed dramatically beginning in 2022, when the Texas Attorney General brought the first enforcement actions under the statute — and again on **January 1, 2026**, when the Texas Responsible Artificial Intelligence Governance Act (**TRAIGA**, House Bill 149) took effect and **amended CUBI to carve most AI model development out of its consent rules**. As a result, CUBI today is best understood in two layers: the long-standing biometric-consent regime, and a new AI exemption that narrows when that regime applies. The most consequential implication is summarized in [The HB 149 (TRAIGA) AI Amendment](#the-hb-149-traiga-ai-amendment) below.
 
 Key requirements:
 
@@ -68,6 +69,33 @@ Key requirements:
 3. **Reasonable care** in storing and protecting biometric data
 4. **Destruction within one year** of when the purpose for collection expires
 5. **Prohibition on selling** biometric identifiers
+
+> **Important change (effective Jan. 1, 2026):** HB 149 added a statutory AI exemption to CUBI. The capture and consent rules now do **not** apply to the training, processing, or storage of biometric identifiers used to develop, train, evaluate, disseminate, or otherwise offer AI models or systems — **unless** the system is used or deployed to uniquely identify a specific individual. A separate carve-out covers AI used for security, fraud, and identity-theft purposes. See [The HB 149 (TRAIGA) AI Amendment](#the-hb-149-traiga-ai-amendment).
+
+---
+
+## The HB 149 (TRAIGA) AI Amendment
+
+On **June 22, 2025**, Governor Greg Abbott signed **House Bill 149**, the Texas Responsible Artificial Intelligence Governance Act (TRAIGA). Among other things, HB 149 amended CUBI's core provision (Section 503.001), and those amendments took effect **January 1, 2026**. This is the single most important update to CUBI since enactment for anyone working with AI.
+
+### What the amendment does
+
+Before HB 149, the common reading was that *any* commercial system capturing or using a covered biometric identifier — including AI-powered facial recognition or voice systems — had to satisfy CUBI's notice and consent rules. HB 149 narrowed that reading by adding two new exemptions:
+
+**1. AI development and training exemption.** CUBI's capture/consent restrictions do **not** apply to the training, processing, or storage of biometric identifiers involved in developing, training, evaluating, disseminating, or otherwise offering an artificial intelligence model or system — **unless** the system is used or deployed for the purpose of uniquely identifying a specific individual.
+
+**2. Security and fraud-prevention exemption.** CUBI's capture/consent restrictions also do **not** apply to the development or deployment of an AI model or system for purposes such as preventing, detecting, protecting against, or responding to security incidents, identity theft, fraud, harassment, malicious or deceptive activities, or other illegal activity; preserving the integrity or security of a system; or investigating, reporting, or prosecuting those responsible.
+
+### The "uniquely identify a specific individual" trigger
+
+The AI development exemption is **conditional**. The moment an AI system is *used or deployed to uniquely identify a specific individual*, the exemption falls away and ordinary CUBI obligations apply again. In practice:
+
+- **Likely exempt:** Using face or voice data to build, train, fine-tune, evaluate, or host a general AI model — provided the resulting system is not identifying particular people.
+- **Likely NOT exempt:** Running facial recognition, facial verification, or speaker identification to determine *who* a specific person is — that is "uniquely identifying a specific individual," and CUBI's notice and consent rules still apply (unless a separate exemption, such as the security/fraud carve-out, applies).
+
+### What did NOT change
+
+The amendment narrows *when* consent is required; it does **not** repeal CUBI. The statute's other duties continue to apply to non-exempt activity, and they can re-attach to AI-training data that is later put to a non-exempt commercial purpose. Reasonable-care storage obligations, the disclosure/sale restrictions, the one-year destruction rule, and the $25,000-per-violation penalty all remain in force. If biometric identifiers gathered under the AI-development exemption are subsequently used to uniquely identify individuals (or otherwise deployed for a non-exempt commercial purpose), CUBI's full obligations apply to that use.
 
 ---
 
@@ -79,19 +107,21 @@ CUBI applies to any **person** — defined broadly to include corporations, part
 
 ### Commercial Purpose Requirement
 
-CUBI's consent and handling requirements apply only when biometric identifiers are collected for a **commercial purpose**. This includes:
+CUBI's consent and handling requirements apply when biometric identifiers are collected for a **commercial purpose**, subject to the HB 149 AI exemptions described above. Common commercial uses include:
 - Employee time-and-attendance tracking
 - Customer identity verification
 - Access control systems
-- AI-powered facial recognition in retail or services
+- AI-powered facial recognition deployed to identify specific individuals in retail or services (note: training such a model may be exempt, but *deploying it to identify people* is not)
 - Voice authentication for financial transactions
 
 ### Exemptions
 
 CUBI does **not** apply to:
+- **AI model development** — the training, processing, or storage of biometric identifiers used to develop, train, evaluate, disseminate, or offer AI models or systems, **unless** the system is used or deployed to uniquely identify a specific individual (added by HB 149, effective Jan. 1, 2026)
+- **AI for security and fraud purposes** — developing or deploying AI to address security incidents, identity theft, fraud, harassment, malicious or deceptive activity, or other illegal activity (added by HB 149)
 - Biometric data collected for **healthcare** purposes by covered entities under HIPAA
 - Biometric data collected for **scientific research** by academic institutions
-- **Voiceprints** used by financial institutions for fraud prevention (specific carve-out)
+- **Voiceprint data retained by a financial institution or an affiliate of a financial institution** as those terms are defined under the Gramm-Leach-Bliley Act (15 U.S.C. § 6809) — a financial-institution carve-out tied to GLBA-covered entities, not a general "fraud prevention" exception
 - **Law enforcement** activities and government agencies
 - **Photographs or video recordings** (unless used to extract a biometric identifier)
 
@@ -115,6 +145,9 @@ CUBI explicitly excludes:
 - Items that do not contain biometric identifiers (photographs, voice recordings, video recordings — unless used to create a covered identifier)
 - Data captured for health care purposes by HIPAA-covered entities
 - Data captured for scientific research
+- Voiceprint data retained by a financial institution or its affiliate under the Gramm-Leach-Bliley Act (15 U.S.C. § 6809)
+
+> Note: As of January 1, 2026, the *activities* of training, processing, and storing biometric identifiers to develop AI models or systems are also exempt from CUBI's capture/consent rules unless the system uniquely identifies a specific individual. See [The HB 149 (TRAIGA) AI Amendment](#the-hb-149-traiga-ai-amendment).
 
 ---
 
@@ -122,7 +155,9 @@ CUBI explicitly excludes:
 
 ### Informed Consent
 
-Before capturing a biometric identifier, the collecting entity must **inform the individual** and receive the individual's **consent** to the capture. Unlike Illinois BIPA, CUBI does not explicitly require the consent to be **written** — but obtaining written or electronic consent is strongly recommended as evidence of compliance.
+Before capturing a biometric identifier **for a non-exempt commercial purpose**, the collecting entity must **inform the individual** and receive the individual's **consent** to the capture. Unlike Illinois BIPA, CUBI does not explicitly require the consent to be **written** — but obtaining written or electronic consent is strongly recommended as evidence of compliance.
+
+Because of the HB 149 amendment, the threshold question is now whether the activity is exempt at all: training or building an AI model is generally exempt, while deploying a system to uniquely identify a specific individual is not and therefore triggers these notice and consent duties.
 
 ### No Specific Notice Format
 
@@ -144,7 +179,7 @@ Consent is not required when biometric identifiers are captured for law enforcem
 
 Biometric identifiers must be destroyed within a **reasonable time**, but not later than the **first anniversary (one year)** of the date the purpose for collecting the identifier expires.
 
-This is notably shorter than Illinois BIPA's three-year retention window, making Texas CUBI's destruction requirements more aggressive.
+This is notably shorter than Illinois BIPA's three-year retention window, making Texas CUBI's destruction requirements more aggressive. These possession and destruction duties continue to apply even where the original collection was exempt as AI development — for example, once biometric identifiers are repurposed for a non-exempt commercial use, the destruction clock and other duties attach.
 
 ### What Triggers the Clock
 
@@ -199,12 +234,14 @@ The AG may also seek:
 
 | Entity | Action | Year | Details |
 |--------|--------|------|---------|
-| Meta (Facebook) | AG lawsuit | 2022 | $1.4 billion sought for capturing facial geometry of millions of Texans without consent; settled for $1.4 billion in 2024 — the largest privacy settlement by a single state |
-| Google | AG lawsuit | 2022 | Alleged capture of voiceprints and face geometry through Google Assistant, Photos, and Nest without consent |
+| Meta (Facebook) | AG lawsuit | 2022 | Settled for **$1.4 billion** on July 30, 2024 over capturing facial geometry of millions of Texans without consent through Facebook's "tag suggestions" feature — the **largest settlement ever obtained from an action brought by a single state** |
+| Google | AG lawsuit / settled | 2022 → 2025 | Settled for **$1.375 billion**; the AG announced the settlement agreement on May 9, 2025 and finalized it on October 31, 2025. Resolved CUBI biometric claims (voiceprints and facial geometry captured via Google Photos, Google Assistant, and Nest Hub Max) alongside geolocation and Incognito claims |
+
+The Meta and Google resolutions together represent the two largest privacy settlements ever obtained by a single state, with Meta's $1.4 billion edging out Google's $1.375 billion.
 
 ### Increased Enforcement Trend
 
-The Texas AG's office has significantly increased biometric privacy enforcement since 2022, signaling that CUBI — once considered dormant — is now actively enforced against major technology companies deploying AI and biometric technologies.
+The Texas AG's office significantly increased biometric privacy enforcement from 2022 onward, signaling that CUBI — once considered dormant — is now actively enforced against major technology companies. The HB 149 amendment narrows the consent rules for AI *development*, but it does not blunt enforcement against systems deployed to identify specific individuals without consent.
 
 ---
 
@@ -212,19 +249,21 @@ The Texas AG's office has significantly increased biometric privacy enforcement 
 
 1. **Inventory biometric collection points.** Identify every system capturing biometric identifiers — fingerprint scanners, facial recognition cameras, voice authentication, AI-powered identity verification, and access control systems.
 
-2. **Implement consent workflows.** Before capturing any biometric identifier, provide clear notice and obtain the individual's consent. Document consent electronically for each individual.
+2. **Classify AI uses against the HB 149 exemptions.** For each AI use, determine whether it is exempt model *development/training* or non-exempt *deployment to uniquely identify a specific individual*. Document the classification — it determines whether CUBI's notice and consent rules apply at all. Watch for downstream repurposing of training data into identification, which removes the exemption.
 
-3. **Review the commercial purpose.** Confirm that your biometric data collection is for a commercial purpose (triggering CUBI) and check whether any exemptions apply (healthcare, law enforcement, research).
+3. **Implement consent workflows for non-exempt uses.** Before capturing any biometric identifier for a non-exempt commercial purpose, provide clear notice and obtain the individual's consent. Document consent electronically for each individual.
 
-4. **Set destruction timelines.** Configure systems to destroy biometric identifiers within one year of when the purpose for collection expires. This is shorter than BIPA's timeline — audit retention periods accordingly.
+4. **Review the commercial purpose and exemptions.** Confirm that your biometric data collection is for a commercial purpose (triggering CUBI) and check whether any exemption applies (AI development, AI security/fraud, healthcare, financial-institution voiceprints under GLBA, law enforcement, research).
 
-5. **Audit third-party sharing.** Review all vendor and processor agreements involving biometric data. Ensure consent covers any third-party transfers, and that vendors have destruction obligations.
+5. **Set destruction timelines.** Configure systems to destroy biometric identifiers within one year of when the purpose for collection expires. This is shorter than BIPA's timeline — audit retention periods accordingly. These duties can apply even to data initially gathered under the AI-development exemption once it is repurposed.
 
-6. **Implement security safeguards.** Store biometric identifiers using reasonable care and in a manner that is the same as or more protective than the manner in which you store other confidential information.
+6. **Audit third-party sharing.** Review all vendor and processor agreements involving biometric data. Ensure consent covers any third-party transfers, and that vendors have destruction obligations.
 
-7. **Monitor AG enforcement guidance.** Track Texas Attorney General enforcement actions and guidance for evolving interpretation of CUBI requirements, particularly around AI and facial recognition technologies.
+7. **Implement security safeguards.** Store biometric identifiers using reasonable care and in a manner that is the same as or more protective than the manner in which you store other confidential information.
 
-8. **Coordinate with other biometric laws.** If you operate across multiple states, coordinate CUBI compliance with Illinois BIPA and other state biometric privacy laws — requirements differ significantly on consent form, retention periods, and enforcement mechanisms.
+8. **Monitor AG enforcement and TRAIGA guidance.** Track Texas Attorney General enforcement actions and guidance for evolving interpretation of CUBI and the new HB 149 exemptions, particularly the line between exempt AI training and non-exempt identification.
+
+9. **Coordinate with other biometric laws.** If you operate across multiple states, coordinate CUBI compliance with Illinois BIPA and other state biometric privacy laws — requirements differ significantly on consent form, retention periods, AI carve-outs, and enforcement mechanisms.
 
 ---
 
@@ -237,19 +276,22 @@ Retina or iris scans, fingerprints, voiceprints, and records of hand or face geo
 No. Only the Texas Attorney General can enforce CUBI. Individuals cannot file private lawsuits, unlike under Illinois BIPA.
 
 **How does CUBI compare to Illinois BIPA?**
-Both regulate biometric data, but BIPA allows private lawsuits with statutory damages while CUBI is AG-enforced only. CUBI requires destruction within one year (vs. BIPA's three years). BIPA requires written consent; CUBI requires informed consent without specifying written form.
+Both regulate biometric data, but BIPA allows private lawsuits with statutory damages while CUBI is AG-enforced only. CUBI requires destruction within one year (vs. BIPA's three years). BIPA requires written consent; CUBI requires informed consent without specifying written form. CUBI also now contains an AI-development exemption (HB 149) that BIPA does not.
 
 **Does CUBI apply to AI systems?**
-Yes. Any AI system capturing or using face geometry, voiceprints, or other covered biometric identifiers must comply with CUBI when processing data of Texas residents.
+Not uniformly anymore. Effective January 1, 2026, HB 149 (TRAIGA) exempts the training, processing, and storage of biometric identifiers used to develop, train, evaluate, disseminate, or offer AI models or systems — **unless** the system is used or deployed to uniquely identify a specific individual. So building or training an AI model with biometric data is generally exempt, but deploying a system that identifies specific people (e.g., facial recognition or speaker identification) still triggers CUBI's notice and consent rules, subject to a separate security/fraud carve-out.
 
 **What are the destruction requirements?**
 Biometric identifiers must be destroyed within a reasonable time, not later than one year after the purpose for collection expires.
 
 **How large can CUBI fines be?**
-Up to $25,000 per violation. In the Meta case, the Texas AG sought $1.4 billion based on millions of individual violations, demonstrating that aggregate penalties can be enormous.
+Up to $25,000 per violation. Aggregated across millions of individual violations, penalties can be enormous — Texas's CUBI-related matters produced the $1.4 billion Meta settlement (2024) and the $1.375 billion Google settlement (2025).
 
 ---
 
 ## Official Sources
 
 - [TX CUBI full text — Business & Commerce Code Chapter 503 (Texas Statutes)](https://statutes.capitol.texas.gov/Docs/BC/htm/BC.503.htm)
+- [HB 149 (TRAIGA) enrolled bill text — 89th Legislature (Texas Legislature Online)](https://capitol.texas.gov/tlodocs/89R/billtext/pdf/HB00149F.pdf)
+- [Texas AG — Paxton finalizes $1.375 billion Google settlement (Oct. 31, 2025)](https://www.texasattorneygeneral.gov/news/releases/attorney-general-ken-paxton-finalizes-historic-settlement-google-and-secures-1375-billion-big-tech)
+- [Texas AG — $1.4 billion Meta settlement, largest ever by a single state (July 2024)](https://www.texasattorneygeneral.gov/news/releases/attorney-general-ken-paxton-secures-14-billion-settlement-meta-over-its-unauthorized-capture)

@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     template: "%s | Regulome",
   },
   description:
-    "Search the register of 912 AI regulations — or describe your situation and let us route you. Find vetted providers. EU AI Act, US state laws, and more.",
+    "Search the register of AI regulations — or describe your situation and let us route you. Find vetted providers. EU AI Act, US state laws, and more.",
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://regulome.io"
   ),

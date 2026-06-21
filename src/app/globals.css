@@ -52,6 +52,11 @@
 :root {
   color-scheme: light;
 
+  /* Tailwind v4 emits the @theme radius token as --radius-DEFAULT, not a bare
+     --radius. Several rules use border-radius: var(--radius); alias it here so
+     those rules actually round (otherwise they fell back to sharp corners). */
+  --radius: var(--radius-DEFAULT);
+
   --paper: #fbfbfd;
   --paper-2: #eef0f7;
   --paper-3: #e1e5f0;
@@ -401,9 +406,8 @@ a { color: inherit; text-decoration: none; }
 .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--ink); margin-right: 6px; vertical-align: 1px; }
 .dot-active { background: var(--sage); }
 .dot-pending { background: var(--amber); }
-.dot-proposed { background: var(--ink-soft); }
-.dot-repealed { background: var(--stone); }
-.dot-inactive { background: var(--stone); }
+.dot-proposed, .dot-draft { background: var(--ink-soft); }
+.dot-inactive, .dot-vetoed, .dot-rescinded, .dot-repealed { background: var(--stone); }
 
 /* ── Cards ── */
 .card {

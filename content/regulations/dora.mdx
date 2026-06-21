@@ -9,7 +9,7 @@ export const frontmatter = {
   enforcementDate: "January 17, 2025",
   maxPenalty: "Up to 2% of total annual worldwide turnover; criminal sanctions vary by member state",
   publishedAt: "2022-12-27",
-  updatedAt: "2026-04-18",
+  updatedAt: "2026-06-21",
   toc: [
     { id: "overview", label: "Overview" },
     { id: "who-it-applies-to", label: "Who It Applies To" },
@@ -35,7 +35,7 @@ export const frontmatter = {
     {
       question: "Does DORA apply to AI vendors providing services to financial institutions?",
       answer:
-        "Yes, if they qualify as 'critical ICT third-party service providers' (CTPPs). The European Supervisory Authorities (ESAs) designate CTPPs and subject them to direct regulatory oversight. Even non-critical AI vendors face contractual and monitoring requirements under DORA's third-party ICT risk management framework.",
+        "Yes, if they qualify as 'critical ICT third-party service providers' (CTPPs). The European Supervisory Authorities (ESAs) designate CTPPs and subject them to direct regulatory oversight. The ESAs published the first official list of 19 designated CTPPs on November 18, 2025, and active oversight of those providers is underway in 2026. Even non-critical AI vendors face contractual and monitoring requirements under DORA's third-party ICT risk management framework.",
     },
     {
       question: "How does DORA differ from NIS2 for financial institutions?",
@@ -45,7 +45,7 @@ export const frontmatter = {
     {
       question: "What is a 'critical ICT third-party service provider' under DORA?",
       answer:
-        "A CTPP is an ICT service provider (including cloud providers, AI platform vendors, and data analytics firms) designated as critical by the Joint Committee of the European Supervisory Authorities based on the systemic importance of the services they provide to the financial sector. CTPPs are subject to direct supervisory oversight by an EU 'lead overseer' (EBA, ESMA, or EIOPA).",
+        "A CTPP is an ICT service provider (including cloud providers, AI platform vendors, and data analytics firms) designated as critical by the European Supervisory Authorities based on the systemic importance of the services they provide to the financial sector. CTPPs are subject to direct supervisory oversight by an EU 'lead overseer' (EBA, ESMA, or EIOPA). The first list of 19 designated CTPPs was published on November 18, 2025 and includes Amazon Web Services EMEA, Microsoft Ireland, Google Cloud EMEA, IBM, Oracle, and SAP. The list is updated and re-published annually.",
     },
     {
       question: "What ICT-related incidents must be reported under DORA?",
@@ -197,7 +197,7 @@ AI vendors providing services to financial institutions — including foundation
 - Subject to direct oversight by an EU "lead overseer" (EBA, ESMA, or EIOPA)
 - Must submit information to the lead overseer on request
 - Lead overseer can conduct inspections, issue recommendations, and require remediation plans
-- Systemic AI providers serving large portions of EU financial institutions are most likely to be designated as CTPPs
+- Systemic providers serving large portions of EU financial institutions are the most likely candidates for designation. The first CTPP list, published on November 18, 2025, already captures the major cloud and platform providers most commonly used to run AI workloads (Amazon Web Services EMEA, Microsoft Ireland, Google Cloud EMEA, Oracle, IBM, and SAP), so AI services delivered on top of these providers now sit within a supervised supply chain.
 
 ### Intersection with EU AI Act
 
@@ -233,6 +233,8 @@ All written agreements with ICT service providers (including AI vendors) must in
 8. **Termination rights** — explicit rights to exit the arrangement in specified circumstances including regulatory non-compliance, security failures, or provider insolvency
 9. **Exit assistance** — provider must support migration of data and services to successor provider upon termination
 
+Where ICT services supporting critical or important functions are subcontracted, financial entities must also apply the dedicated subcontracting standards in **Delegated Regulation (EU) 2025/532**, which has applied since **July 22, 2025**. These require firms to assess and monitor the full subcontracting chain, set conditions for when such subcontracting is permitted, and preserve the right to terminate where subcontracting arrangements create unacceptable risk.
+
 ### The CTPP Oversight Regime
 
 The European Supervisory Authorities (EBA, ESMA, EIOPA) designate CTPPs based on:
@@ -240,6 +242,10 @@ The European Supervisory Authorities (EBA, ESMA, EIOPA) designate CTPPs based on
 - Systemic impact of potential failure (number of financial entities relying on the provider)
 - Substitutability (how easily the service could be replaced)
 - Criticality and importance of the ICT services provided
+
+**The first list is now live.** On **November 18, 2025**, the ESAs published the first official list of **19 designated CTPPs**, drawn from the data financial entities reported in their registers of information. The named providers are: Accenture, Amazon Web Services EMEA, Bloomberg, Capgemini, Colt Technology Services, Deutsche Telekom, Equinix (EMEA), Fidelity National Information Services (FIS), Google Cloud EMEA, IBM, InterXion HeadQuarters, Kyndryl, LSEG Data & Risk, Microsoft Ireland Operations, NTT DATA, Oracle Nederland, Orange, SAP, and Tata Consultancy Services. Each designated CTPP must name an EU coordination point for its lead overseer and pay annual oversight fees, and the list is re-assessed and re-published by the ESAs annually. Active oversight of these providers is underway in 2026.
+
+Designation is a data-driven annual exercise. Providers not yet on the list can also request designation through a voluntary opt-in process, which carries a non-refundable EUR 50,000 opt-in fee.
 
 Once designated, CTPPs face a structured oversight regime including:
 - Annual self-assessments and information submissions to the lead overseer
@@ -256,9 +262,10 @@ Once designated, CTPPs face a structured oversight regime including:
 | **December 27, 2022** | DORA published in Official Journal of the EU |
 | **January 16, 2023** | DORA enters into force |
 | **January 17, 2025** | **DORA becomes fully applicable** — all in-scope entities must comply |
-| **January 17, 2025** | DORA regulatory technical standards (RTS) and implementing technical standards (ITS) apply |
-| **2025–2026** | ESAs designating critical ICT third-party providers (CTPPs) |
-| **2025–2026** | First CTPP oversight cycles begin; financial institutions subject to TLPT begin scheduling assessments |
+| **January 17, 2025** | First wave of DORA regulatory technical standards (RTS) and implementing technical standards (ITS) apply — including the major-incident reporting RTS/ITS (Delegated Regulation (EU) 2025/301 and Implementing Regulation (EU) 2025/302) |
+| **July 22, 2025** | RTS on subcontracting ICT services supporting critical or important functions (Delegated Regulation (EU) 2025/532) applies |
+| **November 18, 2025** | **ESAs publish the first official list of 19 designated CTPPs** (AWS EMEA, Microsoft Ireland, Google Cloud EMEA, Oracle, IBM, SAP, and others) |
+| **2026** | Active oversight of designated CTPPs underway; first hard supervisory test of register-of-information submissions, with national authorities cross-referencing the data; financial institutions subject to TLPT continue assessment cycles |
 
 ---
 

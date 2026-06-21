@@ -2,14 +2,14 @@ export const frontmatter = {
   name: "California AB 2013",
   shortName: "CA AB 2013",
   description:
-    "California law requiring developers of generative AI systems trained on large compute budgets to publicly disclose training data sources, known biases, data licensing, and documentation of content used for training.",
+    "California law requiring developers of generative AI systems made publicly available to Californians to post a high-level summary of the datasets used to train those systems. Applies broadly with no compute threshold; covers any system released or substantially modified on or after January 1, 2022.",
   jurisdiction: "US · California",
   status: "enacted",
   effectiveDate: "January 1, 2026",
   enforcementDate: "January 1, 2026",
-  maxPenalty: "Civil action for injunctive relief + actual damages",
+  maxPenalty: "No statutory penalties; expected to be enforced under California's Unfair Competition Law (Bus. & Prof. Code § 17200)",
   publishedAt: "2024-09-28",
-  updatedAt: "2026-04-13",
+  updatedAt: "2026-06-21",
   toc: [
     { id: "overview", label: "Overview" },
     { id: "who-it-applies-to", label: "Who It Applies To" },
@@ -29,48 +29,54 @@ export const frontmatter = {
     {
       question: "Who does California AB 2013 apply to?",
       answer:
-        "AB 2013 applies to developers of generative AI systems that are trained primarily on California consumers' data or that are made publicly available to California consumers, and that exceed the compute training thresholds specified in the Act.",
+        "AB 2013 applies to any 'developer' — a person, business, or government agency that designs, codes, produces, or substantially modifies a generative AI system — that makes the system publicly available to Californians, where the system was released or substantially modified on or after January 1, 2022. There is no compute threshold and no minimum size; the law applies broadly regardless of how much compute was used to train the system.",
     },
     {
       question: "What must be disclosed under AB 2013?",
       answer:
-        "Covered developers must publish documentation covering: the categories and sources of training data, whether the data was licensed, known limitations and biases in the data and the resulting model, and whether synthetic data was used.",
+        "Covered developers must post a high-level summary of the datasets used to train the system. The summary must cover the data's sources or owners, how the datasets further the system's intended purpose, the number of data points (ranges or estimates are acceptable), the types of data points, whether the datasets are protected by copyright/trademark/patent or are in the public domain, whether the data was purchased or licensed, whether the data includes personal information or aggregate consumer information (as defined by the CCPA), whether and how the data was cleaned or processed, the time period the data was collected, the dates the datasets were first used during development, and whether synthetic data was used.",
     },
     {
-      question: "What is the compute threshold for AB 2013?",
+      question: "Is there a compute or FLOP threshold for AB 2013?",
       answer:
-        "The law applies to generative AI systems trained using computational power that exceeds the threshold set by reference to the California Privacy Protection Agency's rules. The initial reference point is large-scale systems comparable to those trained with more than 10^23 floating point operations.",
+        "No. AB 2013 contains no compute threshold and no reference to floating-point operations. This is a key difference from California's vetoed SB 1047, which targeted frontier models by compute. AB 2013 applies to qualifying generative AI systems regardless of training compute.",
     },
     {
       question: "When does AB 2013 take effect?",
       answer:
-        "California AB 2013 took effect on January 1, 2026. Covered developers must publish compliant training data transparency documentation by that date.",
+        "California AB 2013 took effect on January 1, 2026. By that date, covered developers had to post compliant training-data summaries — including for systems already in the market that were released or substantially modified on or after January 1, 2022. The law is now in force.",
     },
     {
       question: "Does AB 2013 require disclosure of individual data sources?",
       answer:
-        "AB 2013 requires disclosure of categories and sources of training data, not individual data records. However, developers must describe the general provenance of their datasets and whether they included web-scraped data, licensed data, synthetic data, or user-generated content.",
+        "No. AB 2013 requires a high-level summary that identifies the sources or owners of the datasets and describes their characteristics — not a complete list of every URL, file, or record in the training corpus.",
     },
     {
       question: "Is there a private right of action under AB 2013?",
       answer:
-        "Yes. Individuals may bring civil actions for injunctive relief and actual damages. The California Attorney General may also bring enforcement actions.",
+        "AB 2013 itself specifies no penalties and no dedicated enforcement mechanism. Commentators expect it to be enforced under California's Unfair Competition Law (Bus. & Prof. Code § 17200), which can be enforced by the Attorney General, district attorneys, and other public prosecutors. Any private right of action under the UCL is narrow — limited to plaintiffs who lost money or property as a result of a violation — and is not a general right to sue for damages over a missing disclosure.",
     },
   ],
 };
 
+_California Assembly Bill 2013 (2023–2024 Reg. Sess.) — Generative artificial intelligence: training data transparency. Cal. Civ. Code § 3111. Signed September 28, 2024; effective January 1, 2026._
+
+---
+
 ## Overview
 
-**California AB 2013** (Artificial Intelligence Training Data Transparency Act), signed by Governor Gavin Newsom on September 28, 2024, is California's entry into the growing movement for **AI training data transparency**. The law requires developers of generative AI systems — those trained on large amounts of data at significant computational scale — to publicly disclose information about their training data.
+**California AB 2013** (Generative Artificial Intelligence: Training Data Transparency), signed by Governor Gavin Newsom on September 28, 2024, is California's entry into the movement for **AI training data transparency**. The law requires developers of generative AI systems that are made publicly available to Californians to post a **high-level summary of the datasets** used to train those systems.
 
-The legislation responds to mounting concerns from creators, publishers, and researchers about the lack of visibility into what AI systems are trained on. By mandating disclosure, California aims to:
+The legislation responds to concerns from creators, publishers, and the public about the lack of visibility into what AI systems are trained on. By mandating disclosure, California aims to:
 
-- Enable scrutiny of potential copyright infringement in training datasets
-- Surface known biases and limitations in AI training data
+- Enable scrutiny of potential copyright and intellectual-property issues in training datasets
+- Surface whether personal or consumer information was used in training
 - Support regulators, researchers, and the public in evaluating AI systems
-- Create accountability incentives for AI developers to carefully curate and document their data
+- Create accountability incentives for AI developers to document their data
 
-Unlike content moderation laws or bias audit requirements, AB 2013 focuses entirely on the **supply side** of AI — the data that goes into training systems — rather than the outputs or deployment context.
+Unlike content-moderation laws or bias-audit requirements, AB 2013 focuses entirely on the **supply side** of AI — the data that goes into training systems — rather than on outputs or deployment context.
+
+> **Important — this is not a frontier-model / compute-threshold law.** AB 2013 has **no compute or FLOP threshold** and makes **no reference to the California Privacy Protection Agency (CPPA)**. It applies broadly to any qualifying generative AI system regardless of how much compute was used to train it. The compute-keyed approach belonged to a different bill — **SB 1047**, which Governor Newsom **vetoed** in 2024. If you have seen AB 2013 described as keyed to systems trained above ~10^23 FLOPs, that description is incorrect.
 
 ---
 
@@ -78,88 +84,71 @@ Unlike content moderation laws or bias audit requirements, AB 2013 focuses entir
 
 ### Covered Developers
 
-AB 2013 applies to **developers** of generative AI systems that:
+AB 2013 applies to a **"developer,"** defined as a person, partnership, state or local government agency, or corporation that **designs, codes, produces, or substantially modifies** an artificial intelligence system or service for use by members of the public. A developer must comply when it makes a covered generative AI system — or a substantial modification of one — **publicly available to Californians for use**.
 
-1. **Are made publicly available to California consumers**, or are offered as a service to businesses operating in California, **and**
-2. **Were trained using computational power** at or above the threshold referenced in the California Privacy Protection Agency's implementing guidance (initially keyed to systems trained with more than 10^23 FLOPs)
+The obligation attaches to systems that were **released or substantially modified on or after January 1, 2022**. This is a **backward-looking** requirement: it captures models already deployed in the market, not just new releases. As a result, the major foundation-model providers had to post training-data summaries for their existing systems by the January 1, 2026 effective date.
+
+There is **no compute threshold** and **no minimum model size** — the law applies regardless of the computational resources used to train the system. This is the principal distinction between AB 2013 and the vetoed SB 1047.
 
 ### What Is a "Generative AI System"?
 
-Under AB 2013, a generative AI system is any AI model capable of generating text, images, audio, video, code, or other outputs in response to prompts or other inputs — including large language models, image generation models, audio synthesis models, and multimodal systems.
+Under AB 2013, **"generative artificial intelligence"** means AI that can generate derived synthetic content — such as text, images, video, and audio — that emulates the structure and characteristics of the AI's training data. This covers large language models, image-generation models, audio-synthesis models, and multimodal systems.
 
 ### Territorial Scope
 
-The law applies based on where the system is **made available**, not where the developer is headquartered. A developer in New York, London, or Tokyo that offers a generative AI product to California consumers must comply if the compute threshold is met.
-
-### Who Is NOT Covered
-
-The law exempts:
-- **Non-publicly available systems**: Internal R&D tools, proprietary enterprise systems not offered to external users
-- **Systems below the compute threshold**: Smaller models trained with substantially less compute
-- **Open-source models**: Models released under open-source licenses may have modified obligations (see [Exemptions](#exemptions))
+The law applies based on whether the system is **made publicly available to Californians**, not on where the developer is headquartered. A developer in New York, London, or Tokyo that offers a covered generative AI product to Californians must comply.
 
 ---
 
 ## Disclosure Requirements
 
-Covered developers must publish **training data transparency documentation** on their website or in documentation accompanying the AI system. The documentation must address:
+Covered developers must **post on their website** a **high-level summary of the datasets** used to train the generative AI system. (The statute requires posting on the developer's website — there is no alternative repository-based path; see [Exemptions](#exemptions).) The summary must address each of the following:
 
-### 1. Data Categories and Sources
+### 1. Sources and Ownership
 
-Developers must disclose the **general categories of data** used to train the system, organized by:
+- The **sources or owners** of the datasets
 
-- **Source type**: Web-scraped data, licensed datasets, user-generated content, synthetic data, curated datasets, proprietary data
-- **Domain**: News articles, books, code repositories, social media, scientific papers, etc.
-- **Temporal range**: Approximate dates or ranges when data was collected or published
+### 2. Purpose and Composition
 
-### 2. Data Licensing and Consent
+- **How the datasets further the intended purpose** of the AI system or service
+- The **number of data points** included in the datasets (which may be in general ranges, and may use estimates for dynamic datasets)
+- A **description of the types of data points** within the datasets
 
-For each major data category, developers must disclose:
-- Whether the data was **licensed from rightsholders** or scraped without a specific licensing agreement
-- Whether data subjects whose information appeared in training data were provided an **opt-out** mechanism
-- Whether any data was subject to a **robots.txt** exclusion that was not honored
+### 3. Intellectual-Property and Licensing Status
 
-### 3. Known Limitations and Biases
+- Whether the datasets include data **protected by copyright, trademark, or patent**, or whether the datasets are **entirely in the public domain**
+- Whether the datasets were **purchased or licensed** by the developer
 
-Documentation must identify known limitations of the training data that could affect model outputs, including:
-- **Demographic underrepresentation** — categories of people, languages, or geographic regions that are underrepresented in training data
-- **Temporal limitations** — the knowledge cutoff date and how this affects model outputs
-- **Domain-specific gaps** — areas where the training data is sparse or unreliable
-- **Known bias characteristics** — documented tendencies to produce outputs that disadvantage particular groups
+### 4. Personal and Consumer Information
 
-### 4. Synthetic Data Disclosure
+- Whether the datasets include **personal information**, as defined in the California Consumer Privacy Act (CCPA)
+- Whether the datasets include **aggregate consumer information**, as defined in the CCPA
 
-If the training dataset included **synthetically generated data** (data generated by another AI system), developers must disclose:
-- The proportion of training data that was synthetic
-- The method used to generate synthetic data
-- Any known quality or accuracy limitations of the synthetic data
+> Note: the CCPA is referenced here only to define "personal information" and "aggregate consumer information." AB 2013 does not import CCPA's enforcement mechanism, and the CPPA has no role under AB 2013.
 
-### 5. Data Governance Practices
+### 5. Processing and Timing
 
-Developers must describe the general **data governance processes** applied during dataset construction, including:
-- Methods used to filter harmful, illegal, or low-quality content
-- Deduplication and quality control approaches
-- How the training corpus was validated
+- Whether there was any **cleaning, processing, or other modification** to the datasets by the developer, including the intended purpose of those efforts
+- The **time period** during which the data was collected, including notice if collection is ongoing
+- The **dates** the datasets were first used during the development of the AI system
+
+### 6. Synthetic Data
+
+- Whether the datasets include **data generated by other AI** (synthetic data)
 
 ---
 
 ## Exemptions
 
-### Open-Source Models
+AB 2013's exemptions are **narrow and specific**. The documentation requirement does **not** apply to a generative AI system or service whose **sole purpose** is one of the following:
 
-AB 2013 provides a modified compliance path for developers who release their models under an approved open-source license. Open-source model developers may satisfy the disclosure requirement by including training data documentation in the model repository (e.g., a Model Card or dataset documentation in a GitHub repository or Hugging Face model page) rather than on a separate website.
+| Exemption | Scope |
+|-----------|-------|
+| **Security and integrity** | An AI system or service whose sole purpose is to help ensure security and integrity |
+| **Aircraft operation** | An AI system or service whose sole purpose is the operation of aircraft in the national airspace |
+| **National security / defense** | An AI system or service developed for national security, military, or defense purposes that is made available only to a federal entity |
 
-### Internal Enterprise Models
-
-Models not offered to external users or the public are exempt. A company training a proprietary model solely for its own internal use does not trigger AB 2013.
-
-### Research and Academic Models
-
-Models developed solely for academic research, not intended for commercial deployment or public availability, may qualify for an exemption under implementing rules established by the California Privacy Protection Agency.
-
-### Below-Threshold Models
-
-AI systems trained with compute below the specified threshold are not covered. The threshold is designed to target only the largest, most commercially significant AI systems.
+> **There is no open-source exemption, no internal/enterprise exemption, no research/academic exemption, and no below-compute-threshold exemption.** Any description of AB 2013 that lists those carve-outs — or that ties an exemption to CPPA rulemaking — is inaccurate. Open-source developers are not exempt and must post the required summary on their website like any other covered developer.
 
 ---
 
@@ -167,85 +156,88 @@ AI systems trained with compute below the specified threshold are not covered. T
 
 | Date | Milestone |
 |------|-----------|
+| **January 1, 2022** | Start of the **backward-looking coverage window** — systems released or substantially modified on or after this date are in scope |
 | **September 28, 2024** | AB 2013 signed into law by Governor Newsom |
-| **January 1, 2026** | **Act takes effect — disclosure obligations in force** |
-| **Ongoing** | Documentation must be updated when new versions of the model are released |
+| **January 1, 2026** | **Act takes effect — training-data summaries must be posted**, including for already-deployed systems within the coverage window |
+| **Each subsequent release / substantial modification** | A new or updated summary must be posted before the system or its substantial modification is made publicly available to Californians |
+
+By the January 1, 2026 effective date, major foundation-model developers — including OpenAI and Anthropic — had posted training-data summaries to comply.
 
 ---
 
 ## Penalties & Enforcement
 
-### Private Right of Action
+### No Statutory Penalty or Dedicated Enforcer
 
-Individuals may bring a civil action against developers who fail to comply with AB 2013's disclosure requirements. Available remedies include:
-- **Injunctive relief**: Court orders requiring the developer to publish compliant documentation
-- **Actual damages**: Compensation for harm resulting from the non-disclosure
+AB 2013 **does not itself specify any penalties** and **does not create a dedicated enforcement mechanism or a private right of action** for non-disclosure. The statute states what must be posted but is silent on consequences.
 
-### California Attorney General
+### Likely Enforcement Under the Unfair Competition Law
 
-The California Attorney General may also bring enforcement actions for violations of AB 2013, including seeking civil penalties and injunctive relief.
+Legal commentators expect AB 2013 to be enforced as an **unlawful business practice** under California's **Unfair Competition Law (UCL)**, Business & Professions Code § 17200. The UCL authorizes enforcement by the **California Attorney General, district attorneys, and other public prosecutors**.
+
+### Narrow UCL Private Right of Action
+
+The UCL allows a **private right of action**, but it is **narrow**: a private plaintiff must have **lost money or property as a result of** the violation in order to sue. There is **no** general right for individuals to sue for "injunctive relief and actual damages" simply because a developer failed to post a training-data summary. Any earlier description of AB 2013 as creating a broad private right of action overstates the law.
 
 ### Relationship to Other California AI Laws
 
-AB 2013 is one of several California AI transparency laws in effect from 2026. It operates alongside:
-- **SB 1047** (vetoed) — which would have imposed safety testing requirements on large models
-- **AB 2602** — which addresses AI's use of likeness in digital performances
-- **AB 1836** — which restricts use of deceased individuals' digital likeness
+AB 2013 is one of several California AI laws now in effect. It operates alongside:
+
+- **SB 1047** (**vetoed** by Governor Newsom in 2024) — would have imposed safety-testing requirements on large frontier models defined by training compute; it was the compute-threshold bill and is **not law**
+- **SB 942** (California AI Transparency Act) — content-provenance / AI-detection disclosure requirements (with its own quantitative user threshold, unlike AB 2013)
+- **AB 2602** — addresses AI use of a performer's digital likeness
+- **AB 1836** — restricts use of deceased individuals' digital likeness
 
 ---
 
 ## Compliance Steps
 
-1. **Determine if your model crosses the compute threshold.** Review the California Privacy Protection Agency's implementing guidance on the compute threshold. Models trained with more than 10^23 FLOPs of compute are presumed to be in scope.
+1. **Confirm you are a "developer" in scope.** Determine whether you design, code, produce, or substantially modify a generative AI system that you make publicly available to Californians. There is **no compute threshold** to clear — if you make a covered system publicly available, you are likely in scope.
 
-2. **Audit your training datasets.** Conduct a systematic inventory of all data sources used to train the model, organized by source type (web-scraped, licensed, user-generated, synthetic).
+2. **Apply the January 1, 2022 lookback.** Inventory every generative AI system you have released or substantially modified on or after January 1, 2022 that is available to Californians, including already-deployed models — not just new launches.
 
-3. **Document data licensing.** Review each major dataset for:
-   - Licensing agreements with rightsholders
-   - Presence of robots.txt exclusions
-   - Whether opt-out mechanisms were honored
+3. **Audit your training datasets.** Conduct a systematic inventory of the datasets used to train each in-scope system: their sources/owners, types, and approximate size (ranges and estimates are acceptable).
 
-4. **Prepare a known limitations and bias report.** Work with your evaluation team to document:
-   - Demographic underrepresentation in training data
-   - Knowledge cutoff dates
-   - Domain-specific data gaps
-   - Documented output biases
+4. **Determine intellectual-property and licensing status.** For each dataset, record whether it includes copyrighted, trademarked, or patented material or is public domain, and whether it was purchased or licensed.
 
-5. **Document synthetic data usage.** If any synthetic data was used, record the generation method, proportion, and known quality characteristics.
+5. **Assess personal and consumer information.** Determine whether the datasets include personal information or aggregate consumer information as defined by the CCPA.
 
-6. **Create a public disclosure page.** Publish the required documentation on your website in a format accessible to consumers. Consider adopting a standardized format (e.g., a Model Card or Datasheet for Datasets) to satisfy multiple disclosure frameworks simultaneously.
+6. **Document processing, timing, and synthetic data.** Record any cleaning/processing you performed and its purpose, the collection time period (and whether collection is ongoing), the dates the datasets were first used in development, and whether any synthetic (AI-generated) data was used.
 
-7. **Establish an update process.** Implement a process to update the disclosure documentation whenever a new version of the model is released with materially changed training data.
+7. **Post the high-level summary on your website.** Publish the required summary on the **developer's website**. There is **no** alternative compliance path through a model repository, Model Card, or open-source license.
 
-8. **Review open-source model compliance path.** If you are releasing under an open-source license, confirm your model repository documentation satisfies the Act's disclosure requirements.
+8. **Repeat before each release or substantial modification.** Post a new or updated summary before each future release or substantial modification of the system is made publicly available to Californians.
 
 ---
 
 ## Frequently Asked Questions
 
 **Who does AB 2013 apply to?**
-Developers of generative AI systems made publicly available to California consumers that were trained at or above the specified compute threshold (initially keyed to ~10^23 FLOPs).
+Any developer — anyone who designs, codes, produces, or substantially modifies a generative AI system — that makes the system publicly available to Californians, where the system was released or substantially modified on or after January 1, 2022. There is no compute threshold.
 
 **What must be disclosed?**
-Training data categories and sources, data licensing status, whether opt-outs were honored, known biases and limitations, synthetic data usage, and data governance practices.
+A high-level summary of the training datasets: their sources/owners, how they further the system's purpose, the number and types of data points, copyright/trademark/patent or public-domain status, whether the data was purchased or licensed, whether it includes personal or aggregate consumer information (CCPA terms), how it was cleaned or processed, the collection period, the dates first used in development, and whether synthetic data was used.
+
+**Is there a compute threshold?**
+No. AB 2013 has no compute or FLOP threshold and no CPPA role. The compute-keyed approach belonged to the vetoed SB 1047.
 
 **When did the law take effect?**
 January 1, 2026.
 
 **Does it require listing every website scraped?**
-No — disclosure of categories and source types is required, not a complete list of every URL or document in the training corpus.
+No — a high-level summary of dataset sources and characteristics is required, not a complete list of every URL or document.
 
 **Is there a private right of action?**
-Yes. Individuals can sue for injunctive relief and actual damages. The California AG can also enforce the law.
+The statute itself creates none. Enforcement is expected under the Unfair Competition Law (Bus. & Prof. Code § 17200) by the Attorney General, district attorneys, and prosecutors. The UCL private right of action is narrow — only plaintiffs who lost money or property as a result of a violation.
 
 **Does it apply to open-source models?**
-Yes, but open-source developers may publish their disclosures in the model repository (e.g., a Model Card) rather than a separate website.
-
-**What about models updated frequently?**
-Documentation must be updated when new model versions are released with materially changed training data. Developers should build a versioned documentation update process.
+Yes. There is no open-source exemption and no repository-based compliance path. Open-source developers must post the required summary on their website like everyone else.
 
 ---
 
 ## Official Sources
 
-- [AB 2013 full text (California Legislative Information)](https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240AB2013)
+- [AB 2013 full text (California Legislative Information)](https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202320240AB2013)
+- [Cooley — California's new AI laws focus on training data and content transparency](https://www.cooley.com/news/insight/2024/2024-10-16-californias-new-ai-laws-focus-on-training-data-content-transparency)
+- [Crowell & Moring — California's AB 2013 requires generative AI data disclosure by January 1, 2026](https://www.crowell.com/en/insights/client-alerts/californias-ab-2013-requires-generative-ai-data-disclosure-by-january-1-2026)
+- [Goodwin — California's AB 2013 takes effect](https://www.goodwinlaw.com/en/insights/publications/2026/01/alerts-otherindustries-californias-ab-2013-takes-effect)

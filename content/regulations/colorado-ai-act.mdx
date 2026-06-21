@@ -1,23 +1,24 @@
 export const frontmatter = {
-  name: "Colorado AI Act (SB 24-205, as amended by SB 26-189)",
+  name: "Colorado AI Act (repealed and reenacted by SB 26-189)",
   shortName: "CO AI Act",
   description:
-    "Colorado AI Act (SB 24-205, amended by SB 26-189): deployer obligations, January 1, 2027 deadline, NIST AI RMF safe harbor, and $20,000 per-consumer penalty risk explained.",
+    "Colorado's AI law after SB 26-189 (signed May 14, 2026): the 2024 risk-management framework was repealed and replaced with an automated decision-making (ADMT) disclosure-and-rights regime. January 1, 2027 effective date, AG enforcement, and $20,000 per-violation penalty risk explained.",
   jurisdiction: "US · Colorado",
   status: "enacted",
   effectiveDate: "January 1, 2027",
   enforcementDate: "January 1, 2027",
   maxPenalty: "$20,000 per violation",
   publishedAt: "2024-05-17",
-  updatedAt: "2026-05-17",
+  updatedAt: "2026-06-21",
   toc: [
-    { id: "what-changed-with-sb-26-189-may-2026", label: "What Changed (SB 26-189)" },
+    { id: "what-changed-with-sb-26-189", label: "What Changed (SB 26-189)" },
+    { id: "what-was-repealed-do-not-build-to-the-old-law", label: "What Was Repealed" },
     { id: "are-you-a-deployer-run-this-test-first", label: "Are You a Deployer?" },
     { id: "what-deployers-must-do", label: "Deployer Obligations" },
     { id: "what-developers-must-do", label: "Developer Obligations" },
-    { id: "the-safe-harbor-document-your-framework", label: "Safe Harbor" },
+    { id: "is-there-still-a-nist-safe-harbor", label: "NIST Safe Harbor?" },
     { id: "the-penalty-structure", label: "Penalties" },
-    { id: "the-enforcement-reality-as-of-may-2026", label: "Enforcement Reality" },
+    { id: "the-enforcement-reality", label: "Enforcement Reality" },
     { id: "your-compliance-checklist", label: "Compliance Checklist" },
   ],
   relatedRegulations: [
@@ -32,218 +33,231 @@ export const frontmatter = {
     {
       question: "When does the Colorado AI Act take effect?",
       answer:
-        "The original effective date was June 30, 2026, but SB 26-189 (passed May 2026) moved it to January 1, 2027. The AG must also complete mandatory rulemaking before full enforcement begins.",
+        "January 1, 2027. The original 2024 law (SB 24-205) was set to take effect June 30, 2026, but SB 26-189 — signed May 14, 2026 — repealed and reenacted the statute and moved the effective date to January 1, 2027. The Attorney General must also adopt implementing rules by January 1, 2027.",
     },
     {
-      question: "What is SB 26-189 and how does it change the Colorado AI Act?",
+      question: "What is SB 26-189 and how did it change the Colorado AI Act?",
       answer:
-        "SB 26-189 passed the Colorado legislature on May 9, 2026 and substantially rewrites the original Colorado AI Act (SB 24-205). It pushes the effective date to January 1, 2027, mandates formal AG rulemaking before enforcement, and modifies several compliance requirements. The original June 30, 2026 enforcement date no longer applies.",
+        "SB 26-189 did not just amend the 2024 Colorado AI Act — it repealed and reenacted it. The legislature passed the bill and sent it to the Governor on May 12, 2026, and Governor Polis signed it into law on May 14, 2026. The new law scraps the EU-style risk-management framework (no more risk management program, impact assessments, or duty of reasonable care) and replaces it with a narrower disclosure-and-rights regime for automated decision-making technology (ADMT): pre-use notice, an adverse-decision explanation, consumer rights to inspect/correct data and request human review, and three-year recordkeeping. It also removed the original under-50-employee small-business exemption.",
     },
     {
       question: "Does the Colorado AI Act apply to companies outside Colorado?",
       answer:
-        "Yes. Any organization deploying AI systems that make consequential decisions affecting Colorado consumers must comply, regardless of where the business is headquartered.",
+        "Yes. Any organization deploying covered automated decision-making technology that makes or substantially influences a consequential decision affecting a Colorado consumer must comply, regardless of where the business is headquartered.",
     },
     {
       question: "What is a 'deployer' under the Colorado AI Act?",
       answer:
-        "A deployer is any organization that uses an AI system to make or substantially influence a consequential decision — in employment, credit, education, healthcare, housing, insurance, or legal services — affecting a Colorado consumer.",
+        "A deployer is any organization that uses covered automated decision-making technology (ADMT) to make, or to be a substantial factor in, a consequential decision — in employment, education, housing, financial/lending services, insurance, health care, or essential government services — affecting a Colorado consumer.",
     },
     {
       question: "What are the penalties for non-compliance?",
       answer:
-        "The Colorado Attorney General can impose civil penalties of up to $20,000 per violation per consumer. The AG must issue a 60-day cure notice before formal enforcement, and deployers who demonstrate NIST AI RMF alignment benefit from a safe harbor.",
+        "Violations are treated as deceptive trade practices under the Colorado Consumer Protection Act and enforced exclusively by the Colorado Attorney General, with civil penalties of up to $20,000 per violation. There is no private right of action. The AG must give 60 days' written notice and an opportunity to cure before enforcement, but that right-to-cure provision sunsets on January 1, 2030 and does not apply to knowing or repeated violations.",
+    },
+    {
+      question: "Is there still a NIST AI RMF safe harbor?",
+      answer:
+        "No. The NIST AI RMF / ISO 42001 rebuttable-presumption safe harbor (an affirmative defense) was part of the original SB 24-205. It was not carried forward into SB 26-189. There is no codified NIST safe harbor or affirmative defense under current Colorado law. NIST AI RMF and ISO 42001 are still useful documentation backbones, but they are no longer a statutory defense.",
     },
     {
       question: "Has the Attorney General published guidance yet?",
       answer:
-        "No. As of May 2026, the AG's office has not published formal implementing guidance. SB 26-189 mandates formal rulemaking, but that process has not yet begun. The February 1, 2026 guidance deadline from the original law was never met.",
+        "Not yet. SB 26-189 directs the AG to adopt implementing rules by January 1, 2027, but that rulemaking has not been completed. Separately, enforcement is currently suspended under a federal court order in xAI v. Weiser (April 27, 2026) that bars the AG from enforcing the Act or any successor statute enacted this session.",
     },
   ],
 };
 
-*Colorado SB 24-205 | Effective January 1, 2027 | AG enforcement authority — no private right of action*
+*Colorado SB 24-205, repealed and reenacted by SB 26-189 (signed May 14, 2026) | Effective January 1, 2027 | Exclusive AG enforcement — no private right of action*
 
 ---
 
-## What Changed With SB 26-189 (May 2026)
+## What Changed With SB 26-189
 
-If you've been following the Colorado AI Act since 2024, your compliance calendar is out of date.
+If you built (or planned) a Colorado AI Act compliance program around the 2024 law, **stop and re-scope it.** The obligations you were preparing for no longer exist.
 
-SB 26-189 — passed May 9, 2026 — substantially rewrote the original law. The key changes:
+SB 26-189 was passed by the legislature and sent to the Governor on **May 12, 2026**, and Governor Polis signed it into law on **May 14, 2026**. It did not merely amend the 2024 Colorado AI Act (SB 24-205) — it **repealed and reenacted** the statute, replacing one regulatory model with a fundamentally different one.
+
+The 2024 law was an EU-style, risk-management framework built around a freestanding duty of reasonable care to prevent algorithmic discrimination. The new law throws that out. In its place is a narrower **disclosure-and-rights regime for automated decision-making technology (ADMT)**: tell consumers when covered ADMT is used, explain adverse outcomes, let consumers correct their data and ask for human review, and keep records.
+
+The key changes:
 
 - **Effective date moved from June 30, 2026 to January 1, 2027.** The original deadline is gone.
-- **Mandatory AG rulemaking** — the Attorney General must now issue formal implementing regulations before the law takes full effect. That rulemaking has not yet started.
-- **Enforcement stayed** — a federal magistrate stayed enforcement as of April 27, 2026. The stay is ongoing.
-- **Small business provisions revised** — the exemption thresholds were adjusted, but they remain narrow. Don't assume you qualify.
+- **The risk-management framework was eliminated.** No more mandatory risk management program, no annual impact assessments, no freestanding duty of reasonable care (see the next section).
+- **New ADMT disclosure and consumer-rights obligations** replace those duties (covered in "What Deployers Must Do").
+- **The under-50-employee small-business exemption from the 2024 law was removed.** The new law applies to deployers regardless of size, subject to a limited and conditional employer carve-out for very small employers — do not assume you qualify; check the enrolled bill text.
+- **Mandatory AG rulemaking** — the Attorney General must adopt implementing rules by January 1, 2027.
+- **Enforcement is currently stayed** under a federal court order in *xAI v. Weiser* dated April 27, 2026.
 
-The practical implication: you have more time than you thought, but the law is not going away. Use the runway to build the program you'd need anyway when the enforcement stay lifts and rulemaking concludes.
+The practical implication: you have more time than the old calendar suggested, but the substance of what you must build has changed entirely. Building to the 2024 obligations now is wasted effort.
+
+---
+
+## What Was Repealed (Do Not Build to the Old Law)
+
+This is the most important section on this page, because a lot of guidance still circulating online describes the **repealed** 2024 law as if it were current.
+
+The following obligations were part of SB 24-205 and **no longer exist** under the reenacted statute:
+
+- **The duty of reasonable care** to prevent algorithmic discrimination — eliminated. (Existing federal and Colorado anti-discrimination laws still apply; they always did. But there is no standalone AI "reasonable care" duty.)
+- **The mandatory risk management program** — eliminated.
+- **Annual impact assessments** — eliminated.
+- **The NIST AI RMF / ISO 42001 safe harbor** (a rebuttable-presumption affirmative defense for documented, framework-aligned programs) — not carried forward.
+
+If a checklist tells you to "conduct an annual impact assessment," "maintain a documented risk management program," or "rely on the NIST safe harbor as your primary defense" under Colorado law, that checklist is describing the law that was repealed in May 2026.
 
 ---
 
 ## Are You a Deployer? Run This Test First
 
-Most compliance work under the Colorado AI Act falls on **deployers** — the companies using AI to make decisions — not developers. If you're building an AI product for someone else, your obligations are narrower (primarily documentation and disclosure to deployers downstream from you).
+Most compliance work falls on **deployers** — the companies using ADMT to make decisions — not developers. If you build an AI product for someone else, your obligations are narrower (primarily technical documentation and disclosure to deployers downstream from you).
 
-**You are a deployer under Colorado AI Act if:**
+**You are a deployer under the Colorado AI Act if:**
 
 All three of these are true:
-1. You use an AI system that makes a **consequential decision** or is a **substantial factor** in one
+1. You use **automated decision-making technology (ADMT)** that makes, or is a **substantial factor** in, a **consequential decision**
 2. That decision affects a **Colorado consumer**
-3. The decision is in one of these domains:
-   - **Employment**: hiring, promotion, termination, compensation, scheduling, performance evaluation
-   - **Credit and lending**: loan approvals, credit limits, interest rates, lease decisions
+3. The decision is in one of these enumerated domains:
+   - **Employment**: hiring, promotion, termination, compensation, and similar decisions
    - **Education**: admissions, financial aid, academic evaluation, credentialing
-   - **Healthcare**: diagnosis, treatment recommendations, medication decisions
    - **Housing**: rental applications, purchase decisions, pricing
+   - **Financial or lending services**: loan approvals, credit limits, interest rates
    - **Insurance**: applications, underwriting, claims decisions, pricing
-   - **Legal services**: legal representation, referrals, bail, sentencing
-   - **Government services**: access to essential government benefits
+   - **Health care**: access to and eligibility for health-care services
+   - **Essential government services and public benefits**
 
-You do **not** need to be headquartered in Colorado. If your AI affects Colorado residents in these domains — even if your company has no Colorado presence — you are covered.
+"ADMT" is defined broadly: technology that processes personal data and uses computation to generate output — predictions, recommendations, classifications, rankings, scores — used to make, guide, or assist a consequential decision.
 
-**If you're still not sure:** The safest question to ask is: "Does this AI system's output affect whether a Colorado resident gets a job, a loan, an apartment, or healthcare?" If yes, treat yourself as in scope.
+You do **not** need to be headquartered in Colorado. If your ADMT affects Colorado residents in these domains — even with no Colorado presence — you are covered.
+
+**If you're still not sure:** ask, "Does this system's output affect whether a Colorado resident gets a job, a loan, an apartment, insurance, health care, education, or a government benefit?" If yes, treat yourself as in scope.
+
+> **Note on scope:** The 2024 law's broad list once referenced categories like "legal services." The reenacted law's enumerated domains are the seven listed above. Confirm any edge-case domain against the enrolled bill text.
 
 ---
 
 ## What Deployers Must Do
 
-The Colorado AI Act requires deployers of high-risk AI to exercise **reasonable care** to prevent **algorithmic discrimination** — differential treatment that disadvantages individuals based on protected characteristics.
+Under SB 26-189, deployer obligations are **disclosure and consumer-rights** duties — not a risk-management program. There are four core operative duties, effective January 1, 2027.
 
-Here's what reasonable care looks like in practice:
+### 1. Provide Pre-Use Notice
 
-### 1. Conduct an Impact Assessment
+Before using covered ADMT to make or substantially influence a consequential decision, give the consumer **clear and conspicuous notice** that ADMT will be used, with instructions for how to obtain additional information. A deployer can generally satisfy this with a prominent, reasonably accessible public notice at points of consumer interaction.
 
-Before deploying a high-risk AI, and annually thereafter, you need an impact assessment that documents:
+### 2. Explain Adverse Decisions (Within ~30 Days)
 
-- The AI system's intended purpose and use case
-- The categories of data the system processes
-- The potential benefits and risks of the deployment
-- Steps taken to test and mitigate discrimination risks
-- The level of human oversight involved
+When a consequential decision results in an **adverse outcome** for the consumer, the deployer must provide, **within 30 days**, a **plain-language description** of:
 
-The NIST AI RMF is explicitly recognized as a framework for satisfying the reasonable care standard — if you're already building a NIST-aligned program, your impact assessment is part of that.
+- The decision and the adverse outcome
+- The role the covered ADMT played in the decision
+- Instructions for requesting additional information about the ADMT
+- How the consumer can exercise their rights (below)
 
-**Key point:** The impact assessment is not a checkbox. It needs to actually document your testing and mitigation work. "We reviewed the system and it seems fine" will not survive an AG investigation.
+### 3. Honor Consumer Rights: Inspect, Correct, and Human Review
 
-### 2. Maintain a Risk Management Program
+A consumer who receives an adverse outcome can request:
 
-You need documented processes for identifying, assessing, and mitigating the discrimination risks from your AI systems. This is ongoing, not one-time.
+- **Access and correction** of the personal data the ADMT used in the decision (consistent with the Colorado Privacy Act)
+- **Meaningful human review and reconsideration** of the consequential decision, **to the extent commercially reasonable**
 
-The AG's enforcement authority includes examining whether deployers have a functioning risk management program — not just whether they have paperwork.
+You need a process to receive and respond to these requests.
 
-### 3. Notify Consumers
+### 4. Keep Records for Three Years
 
-When an AI system makes a consequential decision about a Colorado consumer, you must:
+Retain records sufficient to demonstrate compliance for **at least three years** from the date of the consequential decision.
 
-- Notify the consumer that AI was used in the decision
-- Give them the principal reason(s) for an adverse decision
-- Tell them how to appeal or request human review
-
-This applies to employment decisions, credit denials, insurance adverse actions, and the other consequential decision categories.
-
-### 4. Respond to Correction Requests
-
-Consumers can request correction of incorrect information that was used in an AI-driven consequential decision. You need a process to handle these requests.
-
-### 5. Document Your Developer Relationships
-
-If you're using a third-party AI product, you need:
-
-- Documentation from the developer about how the system works, what bias testing was done, and what discrimination risks exist
-- A contract that allocates compliance responsibilities appropriately
-- Your own testing and monitoring on top of what the developer provides
-
-Your vendor's compliance documentation helps your case, but it doesn't satisfy your obligations as a deployer. You need to test the system in your deployment context.
+> **What's gone:** Notice there is no impact-assessment requirement, no documented risk management program, and no "reasonable care" standard in this list. Those were the heart of the 2024 law and were repealed.
 
 ---
 
 ## What Developers Must Do
 
-If you build AI systems and sell them to deployers, your obligations are narrower:
+If you build covered ADMT and supply it to deployers, your obligations are primarily about giving deployers the information they need:
 
-- **Disclose** to deployers how the system works, what risks exist, and what bias testing was done
-- **Make the disclosures the deployer needs** to conduct their impact assessment
-- **Cooperate** with deployer audits and correction requests where your system is involved
+- **Document and disclose** to deployers the technical information about the system — including the categories of data used to train the system, known limitations/constraints, and the inputs tied to decision-making — so deployers can meet their disclosure duties.
+- **Retain compliance records** for at least three years.
+- **Cooperate** with deployers' consumer-facing obligations where your system is involved.
 
-Developer obligations are primarily about transparency downstream to deployers — not about directly managing consumer relationships.
+Developer duties are about transparency downstream to deployers, not managing consumer relationships directly.
 
 ---
 
-## The Safe Harbor: Document Your Framework
+## Is There Still a NIST Safe Harbor?
 
-The law includes an important safe harbor: deployers who demonstrate reasonable care through alignment with recognized AI risk management frameworks are treated more favorably in enforcement.
+**No.** This is a common and dangerous misconception, because the repealed 2024 law *did* include one.
 
-**What this means in practice:** If the Colorado AG investigates your AI deployment and you can show:
-- A documented impact assessment
-- A functioning risk management program aligned with NIST AI RMF or equivalent
-- Evidence of bias testing and ongoing monitoring
-- Records of consumer notifications and correction processes
+Under SB 24-205, a deployer (or developer) who maintained a program aligned with the **NIST AI Risk Management Framework** (or an equivalent like **ISO/IEC 42001**) could claim a **rebuttable presumption** — effectively an affirmative defense — that it had used reasonable care. SB 26-189 did **not** carry that forward. With the reasonable-care duty itself repealed, there is nothing for a NIST-aligned program to be a "safe harbor" against.
 
-...you are in a fundamentally different position than a deployer who deployed without documentation and is responding reactively to an enforcement action.
+**What this means in practice:**
 
-The safe harbor is not absolute — you can still violate the law even with documentation. But documented reasonable care is your primary defense.
+- There is **no codified NIST safe harbor or affirmative defense** under current Colorado law.
+- NIST AI RMF and ISO 42001 are still worthwhile as a **documentation and governance backbone** — and they help with overlapping obligations (the Colorado Privacy Act, anti-discrimination law, other state AI laws). But do not present them, internally or to a vendor, as a statutory Colorado defense.
+- Your real exposure-reduction levers under the new law are **doing the disclosures correctly**, **responding to consumer rights requests**, and **keeping the three-year records** that prove you did.
 
 ---
 
 ## The Penalty Structure
 
-The Colorado AG has exclusive enforcement authority — there is no private right of action under this law (no class action plaintiffs).
+Enforcement is **exclusive to the Colorado Attorney General** — there is **no private right of action** (no class-action plaintiffs).
 
-**Maximum penalty:** $20,000 per violation per consumer.
+**Legal basis:** A violation is treated as a **deceptive trade practice under the Colorado Consumer Protection Act (CCPA)**.
 
-**Important:** The AG must issue a 60-day cure notice before initiating formal enforcement. If you have a documented compliance program and act in good faith to correct identified issues within the cure period, that meaningfully reduces your risk exposure.
+**Maximum penalty:** up to **$20,000 per violation**.
 
-The $20,000 figure becomes significant quickly in hiring contexts: if an AI hiring tool discriminated against 500 candidates in Colorado, the exposure math is uncomfortable even at partial enforcement.
+**Right to cure (with a sunset):** The AG must give **60 days' written notice and an opportunity to cure** before bringing an enforcement action — but:
+
+- The right-to-cure provision **sunsets on January 1, 2030.** After that date, the AG is not required to offer a cure period.
+- **No cure period applies** to **knowing or repeated** violations.
+
+The $20,000-per-violation figure scales quickly in high-volume contexts: a disclosure failure applied across thousands of Colorado consumers is a large theoretical exposure even before any per-consumer multiplication the AG might pursue.
 
 ---
 
-## The Enforcement Reality (As of May 2026)
+## The Enforcement Reality
 
-**Current status:** Enforcement is stayed by a federal magistrate order (April 27, 2026). The stay is ongoing pending resolution of the related litigation.
+**Current status: enforcement is suspended by a federal court order.** In *xAI v. Weiser* (U.S. District Court for the District of Colorado), the court — on a joint motion — entered an order dated **April 27, 2026** providing that the Colorado AG **shall not initiate enforcement** (including opening an investigation) of the Colorado AI Act, **or any legislation replacing or amending it enacted this session** (i.e., SB 26-189), until 14 days after the court rules on xAI's forthcoming preliminary-injunction motion. That motion is not due until 28 days after the AG completes rulemaking. The U.S. Department of Justice has intervened in the case.
 
-**AG rulemaking:** SB 26-189 requires mandatory rulemaking before the law takes full effect. That rulemaking has not yet started. Formal implementing regulations could significantly clarify or modify some requirements.
+**AG rulemaking:** SB 26-189 directs the AG to **adopt implementing rules by January 1, 2027.** Those rules are expected to clarify the disclosure and consumer-rights mechanics and have not yet been finalized.
 
-**What this means for your program:** Don't stop building compliance infrastructure because of the stay. The stay is litigation-related and could lift. Rulemaking will establish clearer standards — you want to be positioned to meet them when they arrive, not scrambling after they're final.
+**What this means for your program:** the new obligations are narrower and more concrete than the old framework, which makes them easier to operationalize. Don't pause indefinitely on the strength of the stay — it is litigation-driven and could lift, and the law's effective date is January 1, 2027. Build the disclosure, consumer-rights, and recordkeeping plumbing now, and watch the AG rulemaking for the operational details.
 
 ---
 
 ## Your Compliance Checklist
 
-Work through these before January 1, 2027:
+Work through these before January 1, 2027. This reflects the **reenacted** law (SB 26-189), not the repealed 2024 framework.
 
 **Phase 1 — Scope assessment (do this first)**
-- Identify all AI systems that make or substantially influence consequential decisions about Colorado residents
-- Confirm which systems meet the high-risk threshold
-- Determine which third-party AI products you deploy that qualify
+- Inventory all systems that use covered ADMT to make, or substantially influence, consequential decisions about Colorado residents
+- Confirm which fall in the seven enumerated domains (employment, education, housing, financial/lending, insurance, health care, essential government services)
+- Identify which third-party ADMT products you deploy that qualify — and remember the under-50-employee blanket exemption is gone
 
-**Phase 2 — Documentation**
-- Conduct impact assessments for each in-scope deployment
-- Document your risk management program (NIST AI RMF or equivalent)
-- Document bias testing results and methodology
-- Establish ongoing monitoring schedule
+**Phase 2 — Pre-use disclosure**
+- Draft clear-and-conspicuous pre-use notices stating that ADMT is used and how to get more information
+- Decide where notice lives (point-of-interaction notice vs. a prominent public notice)
 
-**Phase 3 — Vendor management**
-- Collect developer documentation for all third-party high-risk AI
-- Update contracts to allocate AI compliance responsibilities
-- Verify developer bias testing covers your specific deployment context
+**Phase 3 — Adverse-outcome process**
+- Build a process to issue plain-language adverse-decision explanations within 30 days
+- Include the ADMT's role and instructions for requesting more information and exercising rights
 
-**Phase 4 — Consumer-facing processes**
-- Implement AI disclosure notices for consequential decisions
-- Build adverse action notice process (principal reasons + appeal path)
-- Create a correction request intake and response process
+**Phase 4 — Consumer rights**
+- Stand up intake for data access/correction requests (align with your Colorado Privacy Act processes)
+- Build a meaningful human-review-and-reconsideration path (to the extent commercially reasonable)
 
-**Phase 5 — Ongoing monitoring**
-- Set annual impact assessment review schedule
-- Establish bias testing cadence for each high-risk deployment
-- Brief relevant teams on consumer notification obligations
+**Phase 5 — Recordkeeping and vendor management**
+- Retain compliance records for at least three years per consequential decision
+- Collect developer technical documentation for third-party ADMT and confirm it supports your disclosures
+- Update contracts to allocate ADMT compliance responsibilities
 
-For a step-by-step version of this checklist with implementation detail, see the [Colorado AI Act Compliance Checklist](/blog/colorado-ai-act-60-day-checklist) (updated for SB 26-189).
+**Phase 6 — Watch rulemaking**
+- Track the AG's implementing rules (due January 1, 2027) and the *xAI v. Weiser* docket; adjust your disclosures when rules are finalized
+
+For a step-by-step version of this checklist with implementation detail, see the [Colorado AI Act Compliance Checklist](/blog/colorado-ai-act-60-day-checklist).
 
 ---
 
 ## Official Resources
 
-- [SB 24-205 (as enrolled)](https://leg.colorado.gov/bills/sb24-205)
-- [SB 26-189 (amendment)](https://leg.colorado.gov/bills/sb26-189)
-- [Colorado AG AI enforcement information](https://coag.gov/)
+- [SB 26-189 — Automated Decision-Making Technology (Colorado General Assembly)](https://leg.colorado.gov/bills/sb26-189)
+- [SB 24-205 (original 2024 law, repealed and reenacted)](https://leg.colorado.gov/bills/sb24-205)
+- [Colorado Attorney General](https://coag.gov/)

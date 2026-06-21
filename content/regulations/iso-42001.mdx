@@ -2,20 +2,20 @@ export const frontmatter = {
   name: "ISO/IEC 42001",
   shortName: "ISO 42001",
   description:
-    "ISO/IEC 42001:2023 is the first international standard for AI management systems. This guide covers what the certification audit actually involves, realistic timelines (9–18 months), total costs ($80,000–$200,000 first year), the major certification bodies, and whether certification is worth the investment at your organization's current stage.",
+    "ISO/IEC 42001:2023 is the first international standard for AI management systems. This guide covers what the certification audit actually involves, realistic timelines (9–18 months), total costs ($80,000–$200,000 first year), the major certification bodies, how it relates to the EU AI Act's separate harmonized standard (prEN 18286), and whether certification is worth the investment at your organization's current stage.",
   jurisdiction: "International",
   status: "enforced",
   effectiveDate: "December 18, 2023",
-  enforcementDate: "Certification available from accredited bodies",
+  enforcementDate: "Accredited certification available from November 2025",
   maxPenalty: "N/A — voluntary standard; loss of certification for non-conformance",
   publishedAt: "2023-12-18",
-  updatedAt: "2026-05-17",
+  updatedAt: "2026-06-21",
   toc: [
     { id: "what-iso-42001-is", label: "What ISO 42001 Is" },
     { id: "certification-timeline", label: "The Real Certification Timeline" },
     { id: "certification-costs", label: "What Certification Costs" },
     { id: "iso-27001-fast-track", label: "The ISO 27001/9001 Fast Track" },
-    { id: "eu-ai-act-harmonization", label: "EU AI Act Harmonization" },
+    { id: "eu-ai-act-harmonization", label: "EU AI Act: ISO 42001 vs prEN 18286" },
     { id: "management-system-structure", label: "Management System Structure" },
     { id: "regulatory-alignment", label: "Regulatory Alignment" },
     { id: "faqs", label: "Frequently Asked Questions" },
@@ -38,9 +38,9 @@ export const frontmatter = {
         "Certification audit fees range from $15,000 to $60,000+ depending on organization size, scope, and the certification body. Annual surveillance audits add $5,000–$20,000 per year. Total first-year costs including internal preparation work and staff time run $80,000–$200,000 for a mid-market company. Organizations with existing ISO 27001 certification typically come in at $60,000–$130,000.",
     },
     {
-      question: "How does ISO 42001 relate to the EU AI Act?",
+      question: "Does ISO 42001 give me a presumption of conformity under the EU AI Act?",
       answer:
-        "ISO 42001 is a candidate harmonized standard under the EU AI Act. When formally listed in the Official Journal, certification may provide a presumption of conformity with quality management and risk management requirements. This simplifies but doesn't replace the conformity assessment requirement for high-risk AI systems.",
+        "No. ISO/IEC 42001 is not part of the EU AI Act harmonization process. The EU AI Office indicated in May 2024 that ISO 42001 is not fully aligned with the final Act text. The EU's dedicated harmonized quality management standard is prEN 18286 (developed by CEN-CENELEC JTC 21), a separate EU-specific standard whose public enquiry closed in January 2026 and which still needs comment resolution, a formal vote, and citation in the Official Journal before it can confer a presumption of conformity. prEN 18286 maps to ISO 42001's Annex A controls (in its Annex D), so an existing ISO 42001 program is a strong head start — but ISO 42001 certification by itself will not be cited in the Official Journal.",
     },
     {
       question: "How is ISO 42001 different from NIST AI RMF?",
@@ -68,7 +68,7 @@ The fastest way to describe what ISO 42001 certification actually requires: plan
 
 If you're already ISO 27001 certified, you can cut that timeline by three to six months and reuse a substantial portion of your existing management system infrastructure. That's the real fast track — not a special program, just the natural advantage of having built a management system before.
 
-This guide covers what the certification process actually looks like, who the major certification bodies are, what the EU AI Act harmonized standard process means for your compliance posture, and whether certification is worth the investment at your organization's current stage.
+This guide covers what the certification process actually looks like, who the major certification bodies are, how ISO 42001 relates to the EU AI Act's separate harmonized standard, and whether certification is worth the investment at your organization's current stage.
 
 ---
 
@@ -76,7 +76,7 @@ This guide covers what the certification process actually looks like, who the ma
 
 ISO/IEC 42001:2023 is the first international standard for AI management systems (AIMS). Published December 18, 2023, it uses the same Annex SL management system structure as ISO 27001 (information security) and ISO 9001 (quality management). That shared architecture is why existing ISO holders get a meaningful head start.
 
-The standard is voluntary. No regulation currently mandates ISO 42001 certification. The EU AI Act doesn't require it. But ISO 42001 is in the process of becoming a harmonized standard under the Act, which would make it the most efficient path to meeting specific EU AI Act quality and risk management requirements.
+The standard is voluntary. No regulation currently mandates ISO 42001 certification. The EU AI Act doesn't require it, and — contrary to a common misconception — ISO 42001 is not itself a candidate harmonized standard under the Act. (The EU's harmonized quality management standard is a separate, EU-specific document, prEN 18286; see the EU AI Act section below.) ISO 42001 remains the most widely recognized international benchmark for AI governance, and an ISO 42001 program maps closely to what the EU standard will require.
 
 Certification matters because it gives you third-party evidence of AI governance maturity. Enterprise procurement teams are starting to ask for it. Regulated-industry clients expect it. Insurance underwriters pricing AI-related liability are factoring it in. The question isn't whether ISO 42001 becomes a default enterprise procurement requirement. It's when.
 
@@ -134,11 +134,11 @@ These are the fees paid directly to the certification body:
 
 Smaller organizations with limited scope pay closer to the lower end. Large enterprises with complex AI programs and multiple sites pay more.
 
-### The Major Accredited Certification Bodies
+### The Major Certification Bodies
 
-Four certification bodies dominate the ISO 42001 market:
+A handful of certification bodies dominate the ISO 42001 market. One distinction worth understanding: there is a difference between a certificate issued by a certification body and an *accredited* certificate, where the certification body is itself accredited by a national accreditation body (such as UKAS in the UK or RvA in the Netherlands). Accredited certification only became available in late 2025, which is why audit programs and the pool of accredited certificates were still maturing through 2026.
 
-**BSI (British Standards Institution)** — BSI issued the world's first ISO 42001 certificates in June 2024. They have the largest pool of trained ISO 42001 auditors globally and the most established audit program. Strong choice for UK- and EU-based organizations, or those prioritizing EU AI Act readiness.
+**BSI (British Standards Institution)** — BSI issued the first ISO 42001 certificate globally, to KPMG Australia in October 2024. In November 2025 BSI became the first certification body accredited by UKAS and RvA to deliver ISO/IEC 42001 certification. It has one of the largest pools of trained ISO 42001 auditors globally and the most established audit program. Strong choice for UK- and EU-based organizations, or those prioritizing EU AI Act readiness.
 
 **SGS** — Global coverage with strong presence in Asia-Pacific and Latin America alongside Europe and North America. SGS offers standalone ISO 42001 and combined audits for multi-standard certification programs. Competitive pricing on large enterprise scopes.
 
@@ -147,6 +147,8 @@ Four certification bodies dominate the ISO 42001 market:
 **TÜV (TÜV Rheinland, TÜV SÜD)** — German-based certification bodies with strong EU regulatory expertise. If EU AI Act compliance is a primary driver of your certification program, TÜV's familiarity with EU regulatory interpretation is worth the consideration. Active in EU AI Act readiness assessments alongside certification.
 
 **DNV** — Known for combined ISO 42001 and ISO 27001 audit programs. Good option for organizations that want to consolidate their certification overhead under a single auditor relationship.
+
+When you select a certification body, confirm whether the certificate it will issue is accredited (and by which accreditation body), since procurement teams and regulators increasingly distinguish accredited certificates from unaccredited ones.
 
 ### Internal and Preparation Costs
 
@@ -184,19 +186,28 @@ For ISO 27001-certified organizations, expect 30–50% of your existing processe
 
 ---
 
-## ISO 42001 and the EU AI Act: What Harmonization Actually Means
+## ISO 42001 and the EU AI Act: ISO 42001 vs prEN 18286
 
-ISO 42001 is a candidate harmonized standard under the EU AI Act. This process is moving through the European standardization bodies as of mid-2026, and the practical implications are significant.
+There is a widespread misconception that ISO 42001 is a "candidate harmonized standard" under the EU AI Act and that certification will confer a presumption of conformity. It will not. Understanding why matters for how you plan.
 
-**What "harmonized standard" means:** When the European Commission formally lists ISO 42001 in the EU Official Journal as a harmonized standard, certified organizations gain a rebuttable presumption of conformity for the requirements the standard covers. Auditors and regulators assume you're compliant with those specific AI Act requirements unless evidence shows otherwise. You don't need to prove it from scratch.
+**ISO 42001 is not part of the EU AI Act harmonization process.** The EU AI Office indicated in May 2024 that ISO/IEC 42001 is not fully aligned with the final text of the Act. As a result, ISO 42001 itself will not be cited in the Official Journal as a harmonized standard, and certification to it does not by itself trigger Article 40's presumption of conformity.
 
-**Which EU AI Act requirements ISO 42001 covers:** Harmonization is expected to address quality management system requirements (Article 17) and risk management requirements (Article 9). These are the backbone requirements for providers of high-risk AI systems under the Act.
+**The EU's harmonized quality management standard is a different document: prEN 18286.** Its full title is *"Artificial intelligence — Quality management system for EU AI Act regulatory purposes."* It is being developed by CEN-CENELEC's Joint Technical Committee 21 (JTC 21) specifically to map onto the Act's requirements (particularly the Article 17 quality management system obligation for providers of high-risk AI). prEN 18286 went out for public enquiry from late October 2025 to January 22, 2026; that enquiry has now closed and comments are under resolution. Remaining steps are comment resolution, a formal vote by the national standardization bodies, and citation in the Official Journal. Only after Official Journal citation will conformity to the standard confer a presumption of conformity.
 
-**What it doesn't replace:** Certification to ISO 42001 doesn't replace the conformity assessment requirement for high-risk AI systems. You still need a conformity assessment for any AI system in the Act's high-risk categories. What ISO 42001 certification does is make that conformity assessment substantially easier — your governance documentation is organized, audited, and independently verified. The auditor isn't starting from a blank page.
+**ISO 42001 still helps — as a head start, not as the harmonization vehicle.** prEN 18286 includes an Annex D that maps the European standard's requirements onto ISO 42001's Annex A controls. An organization that already runs an ISO 42001 AIMS can reuse much of that work to meet prEN 18286, rather than rebuilding from a blank page. But prEN 18286 adds EU-specific, product-centric depth that ISO 42001 does not contain — Article 17 topics such as serious-incident reporting, post-market monitoring, and technical documentation. The two are complementary, not interchangeable.
 
-**The timing implication:** The EU AI Act's main obligations apply in August 2026. ISO 42001 harmonization is expected around the same timeframe. Providers of high-risk AI systems in the EU who start the certification process in mid-2026 will almost certainly not complete it before August 2026 obligations hit. Starting in 2025 or early 2026 is the defensible posture.
+**What none of this replaces:** Even once prEN 18286 is cited, a harmonized standard provides only a presumption of conformity, not a substitute for conformity assessment. Providers of high-risk AI systems still owe the underlying obligations and the relevant conformity assessment under the Act.
 
-**For GPAI model providers:** The August 2025 GPAI obligations already apply. ISO 42001 is referenced in the GPAI code of practice as evidence of responsible AI governance practices. It's not mandatory for GPAI providers, but certification strengthens your position in code of practice reporting and in the event of regulator inquiry.
+**The timing has shifted — significantly.** The EU AI Act's high-risk obligations were originally scheduled to apply from August 2, 2026. The **Digital Omnibus on AI** changed that. After a provisional political agreement reached on May 6–7, 2026 and confirmed by the Council on May 13, 2026 (with formal adoption and Official Journal publication expected before August 2, 2026), the high-risk applicability dates were deferred:
+
+| Category | Original date | New date under the Digital Omnibus |
+| --- | --- | --- |
+| Stand-alone high-risk systems (Annex III) | August 2, 2026 | **December 2, 2027** |
+| AI embedded in regulated products (Annex I) | August 2, 2027 | **August 2, 2028** |
+
+So August 2026 is no longer the high-risk applicability or enforcement date. That removes the artificial "certify before August 2026" pressure that earlier guidance (including older versions of this page) created. Note, however, that the **Article 50 transparency obligations** (for example, disclosing that users are interacting with an AI system or that content is AI-generated) still apply from **August 2, 2026** — they were largely unaffected by the omnibus, aside from a short grandfathering window for the machine-readable marking requirement under Article 50(2).
+
+**For GPAI model providers:** The GPAI obligations have applied since August 2, 2025 and were not deferred by the omnibus. ISO 42001 is referenced in the GPAI code of practice ecosystem as evidence of responsible AI governance practices. It's not mandatory for GPAI providers, but certification strengthens your position in code of practice reporting and in the event of regulator inquiry.
 
 ---
 
@@ -241,15 +252,15 @@ Every Annex A control requires a documented decision: applicable or not, and why
 
 ### EU AI Act
 
-ISO 42001 is a candidate harmonized standard under the EU AI Act. When formally listed, certified organizations may benefit from a presumption of conformity with quality management (Article 17) and risk management (Article 9) requirements. Certification supports but doesn't replace the conformity assessment for high-risk AI systems.
+ISO 42001 is *not* a harmonized standard under the EU AI Act, and certification to it does not confer a presumption of conformity. The Act's dedicated harmonized quality management standard is prEN 18286 (CEN-CENELEC JTC 21), which is still progressing through the standardization process (enquiry closed January 2026; comment resolution, formal vote, and Official Journal citation remain). prEN 18286 maps to ISO 42001's Annex A controls in its Annex D, so an existing ISO 42001 program substantially accelerates prEN 18286 readiness — but the two are distinct. Separately, the Digital Omnibus on AI (provisionally agreed May 6–7, 2026; Council-confirmed May 13, 2026) deferred high-risk obligations to December 2, 2027 (Annex III stand-alone) and August 2, 2028 (Annex I embedded). Article 50 transparency obligations still apply from August 2, 2026.
 
 ### NIST AI RMF
 
 ISO 42001 and NIST AI RMF are complementary. NIST AI RMF provides practical risk management guidance — the what and how of AI risk management. ISO 42001 provides the certifiable management system structure — the documented evidence that you're doing it. Most organizations benefit from using both: NIST AI RMF for substantive risk management methodology, ISO 42001 for certifiable governance.
 
-### Colorado AI Act (and US State AI Laws)
+### Colorado AI Act and US State AI Laws
 
-No US state law specifically requires ISO 42001, but certification demonstrates a structured AI governance program (relevant to Colorado's governance expectations), systematic risk assessment processes, and third-party validation of AI governance practices (supports "reasonable care" arguments under Texas TRAIGA and similar laws).
+No US state law specifically requires ISO 42001. The Colorado AI Act was significantly rewritten in 2026: Senate Bill 26-189, signed May 14, 2026, repealed and reenacted the original 2024 act (SB 24-205) and removed the duty of care, risk management program, and impact assessment requirements in favor of a pre-use notice, a post-adverse-outcome disclosure, and a narrower set of consumer rights tied to "covered automated decision-making technology." The revised law takes effect January 1, 2027. Even under the narrowed Colorado regime, an ISO 42001 program demonstrates a structured AI governance program and documented, systematic risk assessment, and third-party validation of those practices supports "reasonable care" arguments under laws such as Texas's Responsible Artificial Intelligence Governance Act (TRAIGA, HB 149, effective January 1, 2026).
 
 ---
 
@@ -261,8 +272,8 @@ ISO/IEC 42001:2023 is the first international standard for AI management systems
 **How much does ISO 42001 certification cost?**
 Certification audit fees range from $15,000 to $60,000+ depending on organization size, scope, and the certification body. Annual surveillance audits add $5,000–$20,000 per year. Total first-year costs including internal preparation work and staff time run $80,000–$200,000 for a mid-market company. Organizations with existing ISO 27001 certification typically come in at $60,000–$130,000.
 
-**How does ISO 42001 relate to the EU AI Act?**
-ISO 42001 is a candidate harmonized standard under the EU AI Act. When formally listed in the Official Journal, certification may provide a presumption of conformity with quality management and risk management requirements. This simplifies but doesn't replace the conformity assessment requirement for high-risk AI systems.
+**Does ISO 42001 give me a presumption of conformity under the EU AI Act?**
+No. ISO 42001 is not part of the EU AI Act harmonization process — the EU AI Office indicated in May 2024 that it is not fully aligned with the final Act text. The Act's harmonized quality management standard is a separate, EU-specific document, prEN 18286 (CEN-CENELEC JTC 21), whose public enquiry closed in January 2026 and which still needs comment resolution, a formal vote, and Official Journal citation before it can confer a presumption of conformity. prEN 18286 maps to ISO 42001's Annex A (in its Annex D), so an existing ISO 42001 program is a strong head start — but ISO 42001 certification by itself will not be cited in the Official Journal.
 
 **How is ISO 42001 different from NIST AI RMF?**
 NIST AI RMF is a free, US-government-published voluntary framework with no certification mechanism. It provides practical risk management guidance. ISO 42001 is a certifiable international standard with a formal audit process. Most organizations benefit from using both: NIST AI RMF for substantive risk management methodology, ISO 42001 for certifiable governance documentation.
@@ -281,9 +292,9 @@ For most organizations that develop or sell AI systems: yes, but timeline and co
 
 The clearest cases for certifying now:
 
-**You sell AI-powered products to enterprise customers.** Procurement teams are starting to require it. Having certification shortens sales cycles and eliminates a negotiation point. If your competitors get certified and you don't, expect to answer for it in RFPs.
+**You sell AI-powered products to enterprise customers.** Procurement teams are starting to require it. Having certification shortens sales cycles and eliminates a negotiation point. If your competitors get certified and you don't, expect to answer for it in RFPs. (Where it's available, an *accredited* certificate carries more weight in procurement than an unaccredited one.)
 
-**You're subject to the EU AI Act as a provider of high-risk AI.** Certification will be central to your conformity posture when harmonization is finalized. The time to complete an 18-month certification process is before the August 2026 enforcement deadline, not after.
+**You're subject to the EU AI Act as a provider of high-risk AI.** ISO 42001 won't itself give you a presumption of conformity, but it's the most efficient way to build the governance foundation the EU's harmonized standard (prEN 18286) will require, since prEN 18286 maps directly onto ISO 42001's Annex A. The earlier "complete an 18-month process before August 2026" pressure no longer applies: the Digital Omnibus deferred high-risk obligations to December 2, 2027 (Annex III stand-alone) and August 2, 2028 (Annex I embedded). That gives you more runway — but it's runway to use deliberately, not to ignore, especially if you also fall under the Article 50 transparency obligations that still hit on August 2, 2026.
 
 **You have ISO 27001 already.** The marginal cost is manageable and the combined governance posture is valuable for both customer trust and regulatory positioning.
 
@@ -291,11 +302,11 @@ The clearest cases for waiting:
 
 **You have no AI systems in production.** There's nothing to certify against. Document the standard as a future requirement and revisit when you're building your first AI system.
 
-**You have no EU customers and no planned EU market.** The regulatory pressure for US-only businesses is lower. ISO 42001 may become more relevant as US state AI laws mature, but it's not a 2026 urgency for companies with no EU exposure.
+**You have no EU customers and no planned EU market.** The regulatory pressure for US-only businesses is lower. ISO 42001 may become more relevant as US state AI laws mature, but it's not an immediate urgency for companies with no EU exposure.
 
 **You're a very small organization.** Maintaining a full management system adds overhead that may not be proportionate. Consider NIST AI RMF alignment (free, no audit overhead) as your governance foundation until you have enterprise customers or regulatory requirements driving certification.
 
-The honest middle ground: US-only mid-market companies using AI internally but not selling AI products should treat ISO 42001 as a 2027 planning item. Put it in your roadmap, budget for it, and start building the internal governance practices that will accelerate the eventual certification process.
+The honest middle ground: US-only mid-market companies using AI internally but not selling AI products should treat ISO 42001 as a planning item for 2027 or later. Put it in your roadmap, budget for it, and start building the internal governance practices that will accelerate the eventual certification process.
 
 ---
 
@@ -304,4 +315,5 @@ The honest middle ground: US-only mid-market companies using AI internally but n
 - [ISO/IEC 42001:2023 (ISO)](https://www.iso.org/standard/81230.html)
 - [ISO/IEC 23894:2023 (AI risk management)](https://www.iso.org/standard/77304.html)
 - [ISO/IEC 42006 (certification body requirements)](https://www.iso.org/standard/44546.html)
-- [EU AI Act harmonization roadmap](https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai)
+- [EU AI Act standardisation (European Commission)](https://digital-strategy.ec.europa.eu/en/policies/ai-act-standardisation)
+- [prEN 18286 (CEN catalogue)](https://standards.iteh.ai/catalog/standards/cen/34ea911c-a980-4433-85ac-1344f93da01b/pren-18286)
