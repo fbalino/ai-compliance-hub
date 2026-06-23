@@ -22,15 +22,12 @@
   --color-accent: #3d4ee3;
   --color-accent-soft: #d7dcfb;
   --color-accent-ink: #1f2ab4;
-  --color-gold: #e89a2b;
-  --color-gold-soft: #fce3b8;
 
   --color-sage: #2e7d5b;
   --color-amber: #e89a2b;
   --color-stone: #a4475a;
 
   --color-background: #fbfbfd;
-  --color-surface: #fbfbfd;
   --color-foreground: #0e1330;
   --color-muted: #5a6180;
   --color-border: #d9dcea;
@@ -38,9 +35,6 @@
   --font-serif: var(--font-fraunces), 'Fraunces', 'Times New Roman', serif;
   --font-sans: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: var(--font-jetbrains), 'JetBrains Mono', 'SF Mono', Menlo, monospace;
-
-  --spacing-18: 4.5rem;
-  --spacing-22: 5.5rem;
 
   --radius-sm: 3px;
   --radius-DEFAULT: 6px;
@@ -71,12 +65,11 @@
   --accent-soft: #d7dcfb;
   --accent-ink: #1f2ab4;
 
-  --gold: #e89a2b;
+  --amber: #e89a2b;
+  --gold: var(--amber); /* gold and amber are the same hue; single source */
   --gold-soft: #fce3b8;
 
   --sage: #2e7d5b;
-  --amber: #e89a2b;
-  --gray: #8990ae;
   --stone: #a4475a;
 
   --surface: #f8fafc;
@@ -117,7 +110,6 @@
   --paper:      #15161c;
   --paper-2:    #1c1e25;
   --paper-3:    #252731;
-  --paper-4:    #2e313d;
   --surface:    #1c1e25;
 
   --ink:        #f4eee1;
@@ -131,12 +123,11 @@
   --accent-soft: rgba(108,123,255,0.18);
   --accent-ink:  #8f9cff;
 
-  --gold:        #f0b050;
+  --amber:  #f0b050;
+  --gold:        var(--amber);
   --gold-soft:   rgba(240,176,80,0.18);
 
   --sage:   #5fb387;
-  --amber:  #f0b050;
-  --gray:   #9a9488;
   --stone:  #d06a7e;
 
   --shadow-xs: 0 1px 2px rgba(0,0,0,0.35);
@@ -171,15 +162,12 @@
   --color-accent: #6c7bff;
   --color-accent-soft: rgba(108,123,255,0.18);
   --color-accent-ink: #8f9cff;
-  --color-gold: #f0b050;
-  --color-gold-soft: rgba(240,176,80,0.18);
 
   --color-sage: #5fb387;
   --color-amber: #f0b050;
   --color-stone: #d06a7e;
 
   --color-background: #15161c;
-  --color-surface: #1c1e25;
   --color-foreground: #f4eee1;
   --color-muted: #9a9488;
   --color-border: rgba(244,238,225,0.08);
@@ -191,7 +179,6 @@
     --paper:      #15161c;
     --paper-2:    #1c1e25;
     --paper-3:    #252731;
-    --paper-4:    #2e313d;
     --surface:    #1c1e25;
     --ink:        #f4eee1;
     --ink-2:      #d8d3c7;
@@ -202,11 +189,10 @@
     --accent:      #6c7bff;
     --accent-soft: rgba(108,123,255,0.18);
     --accent-ink:  #8f9cff;
-    --gold:        #f0b050;
+    --amber:  #f0b050;
+    --gold:        var(--amber);
     --gold-soft:   rgba(240,176,80,0.18);
     --sage:   #5fb387;
-    --amber:  #f0b050;
-    --gray:   #9a9488;
     --stone:  #d06a7e;
     --shadow-xs: 0 1px 2px rgba(0,0,0,0.35);
     --shadow-sm: 0 2px 6px rgba(0,0,0,0.4);
