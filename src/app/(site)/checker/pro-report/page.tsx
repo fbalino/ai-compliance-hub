@@ -58,8 +58,8 @@ const SAMPLE_REGULATIONS = [
 ];
 
 function urgencyStyle(urgency: string) {
-  if (urgency === "high") return { background: "rgba(220,38,38,0.1)", color: "#b91c1c" };
-  if (urgency === "medium") return { background: "rgba(217,119,6,0.1)", color: "#92400e" };
+  if (urgency === "high") return { background: "rgba(220,38,38,0.1)", color: "var(--sev-high)" };
+  if (urgency === "medium") return { background: "rgba(217,119,6,0.1)", color: "var(--sev-medium)" };
   return { background: "var(--paper-2)", color: "var(--ink-2)" };
 }
 
@@ -85,7 +85,7 @@ export default function ProReportPage() {
           />
           <div style={{ marginTop: 16, display: "flex", gap: 24, flexWrap: "wrap", alignItems: "flex-start", justifyContent: "space-between" }}>
             <div style={{ flex: 1, minWidth: 280 }}>
-              <span className="chip" style={{ background: "rgba(217,119,6,0.12)", color: "#92400e", marginBottom: 12 }}>
+              <span className="chip" style={{ background: "rgba(217,119,6,0.12)", color: "var(--sev-medium)", marginBottom: 12 }}>
                 <svg style={{ width: 14, height: 14 }} fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                 </svg>
@@ -112,9 +112,9 @@ export default function ProReportPage() {
           <div className="eyebrow" style={{ marginBottom: 16 }}>Sample: What Your Report Includes</div>
           <div className="card" style={{ padding: 0, overflow: "hidden" }}>
             <div style={{ padding: "10px 20px", background: "var(--paper-2)", borderBottom: "1px solid var(--line)", display: "flex", alignItems: "center", gap: 8 }}>
-              <span style={{ width: 12, height: 12, borderRadius: "50%", background: "#f87171" }} />
-              <span style={{ width: 12, height: 12, borderRadius: "50%", background: "#fbbf24" }} />
-              <span style={{ width: 12, height: 12, borderRadius: "50%", background: "#4ade80" }} />
+              <span style={{ width: 12, height: 12, borderRadius: "50%", background: "var(--dot-red)" }} />
+              <span style={{ width: 12, height: 12, borderRadius: "50%", background: "var(--dot-amber)" }} />
+              <span style={{ width: 12, height: 12, borderRadius: "50%", background: "var(--dot-green)" }} />
               <span className="mono xs" style={{ marginLeft: 8, color: "var(--ink-2)" }}>AI Compliance Gap Analysis Report.pdf</span>
             </div>
             <div style={{ padding: 20 }}>
@@ -131,10 +131,10 @@ export default function ProReportPage() {
               <div style={{ borderTop: "1px solid var(--line)", marginTop: 16, paddingTop: 16 }}>
                 <h3 className="h4" style={{ marginBottom: 8 }}>Priority Action Items</h3>
                 <ol style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 6, fontSize: 14, color: "var(--ink-2)" }}>
-                  <li style={{ display: "flex", gap: 8 }}><span style={{ color: "#b91c1c", fontWeight: 700 }}>1.</span> Commission NYC LL 144 bias audit before Q3 2026</li>
-                  <li style={{ display: "flex", gap: 8 }}><span style={{ color: "#b91c1c", fontWeight: 700 }}>2.</span> Complete EU AI Act high-risk system documentation by July 2026</li>
-                  <li style={{ display: "flex", gap: 8 }}><span style={{ color: "#92400e", fontWeight: 700 }}>3.</span> Complete Colorado AI Act impact assessment by May 2026</li>
-                  <li style={{ display: "flex", gap: 8 }}><span style={{ color: "#92400e", fontWeight: 700 }}>4.</span> Publish California AB 2013 training data transparency report by December 2026</li>
+                  <li style={{ display: "flex", gap: 8 }}><span style={{ color: "var(--sev-high)", fontWeight: 700 }}>1.</span> Commission NYC LL 144 bias audit before Q3 2026</li>
+                  <li style={{ display: "flex", gap: 8 }}><span style={{ color: "var(--sev-high)", fontWeight: 700 }}>2.</span> Complete EU AI Act high-risk system documentation by July 2026</li>
+                  <li style={{ display: "flex", gap: 8 }}><span style={{ color: "var(--sev-medium)", fontWeight: 700 }}>3.</span> Complete Colorado AI Act impact assessment by May 2026</li>
+                  <li style={{ display: "flex", gap: 8 }}><span style={{ color: "var(--sev-medium)", fontWeight: 700 }}>4.</span> Publish California AB 2013 training data transparency report by December 2026</li>
                   <li style={{ display: "flex", gap: 8 }}><span style={{ color: "var(--ink-2)", fontWeight: 700 }}>5.</span> Add Illinois AIVIRA candidate notices to hiring process</li>
                 </ol>
               </div>

@@ -23,10 +23,10 @@ export const metadata: Metadata = {
 };
 
 const REGULATIONS = [
-  { key: "eu", label: "EU AI Act", short: "Reg. 2024/1689", bg: "rgba(202,138,4,0.06)", border: "rgba(202,138,4,0.2)", text: "#713f12", badge: "rgba(202,138,4,0.12)" },
-  { key: "nyc", label: "NYC LL 144", short: "NYC Local Law 144", bg: "rgba(37,99,235,0.06)", border: "rgba(37,99,235,0.2)", text: "#1e3a5f", badge: "rgba(37,99,235,0.12)" },
-  { key: "co", label: "Colorado AI Act", short: "CO SB 24-205", bg: "rgba(22,163,74,0.06)", border: "rgba(22,163,74,0.2)", text: "#14532d", badge: "rgba(22,163,74,0.12)" },
-  { key: "il", label: "IL AIVIRA", short: "Illinois AIVIRA", bg: "rgba(147,51,234,0.06)", border: "rgba(147,51,234,0.2)", text: "#3b0764", badge: "rgba(147,51,234,0.12)" },
+  { key: "eu", label: "EU AI Act", short: "Reg. 2024/1689", bg: "rgba(202,138,4,0.06)", border: "rgba(202,138,4,0.2)", text: "var(--hue-amber-ink)", badge: "rgba(202,138,4,0.12)" },
+  { key: "nyc", label: "NYC LL 144", short: "NYC Local Law 144", bg: "rgba(37,99,235,0.06)", border: "rgba(37,99,235,0.2)", text: "var(--hue-blue-ink)", badge: "rgba(37,99,235,0.12)" },
+  { key: "co", label: "Colorado AI Act", short: "CO SB 24-205", bg: "rgba(22,163,74,0.06)", border: "rgba(22,163,74,0.2)", text: "var(--hue-green-ink)", badge: "rgba(22,163,74,0.12)" },
+  { key: "il", label: "IL AIVIRA", short: "Illinois AIVIRA", bg: "rgba(147,51,234,0.06)", border: "rgba(147,51,234,0.2)", text: "var(--hue-purple-ink)", badge: "rgba(147,51,234,0.12)" },
 ];
 
 interface Cell { applies: boolean; note: string; }
@@ -139,7 +139,7 @@ export default function AIRegulationByIndustryPage() {
                     <div key={reg.key} style={{ padding: 16, borderBottom: "1px solid var(--line)" }}>
                       <div className="between" style={{ marginBottom: 8 }}>
                         <span className="xs" style={{ fontWeight: 600, color: reg.text }}>{reg.label}</span>
-                        <span className="chip" style={cell.applies ? { background: "rgba(220,38,38,0.1)", color: "#b91c1c" } : { background: "var(--paper-2)", color: "var(--ink-2)" }}>
+                        <span className="chip" style={cell.applies ? { background: "rgba(220,38,38,0.1)", color: "var(--sev-high)" } : { background: "var(--paper-2)", color: "var(--ink-2)" }}>
                           {cell.applies ? "Applies" : "Not covered"}
                         </span>
                       </div>
@@ -154,8 +154,8 @@ export default function AIRegulationByIndustryPage() {
 
         {/* Important notes */}
         <div className="card" style={{ marginTop: 32, borderColor: "rgba(217,119,6,0.3)", background: "rgba(217,119,6,0.06)" }}>
-          <h2 className="h5" style={{ color: "#78350f", marginBottom: 8 }}>Important Notes</h2>
-          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 6, fontSize: 14, color: "#92400e" }}>
+          <h2 className="h5" style={{ color: "var(--hue-amber-ink)", marginBottom: 8 }}>Important Notes</h2>
+          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 6, fontSize: 14, color: "var(--sev-medium)" }}>
             <li>&bull; This matrix shows the primary AI-specific regulations. Federal laws (ECOA, FCRA, HIPAA, ADA) and general anti-discrimination laws apply independently and may impose additional requirements.</li>
             <li>&bull; &ldquo;Not covered&rdquo; means the specific law does not apply &mdash; it does not mean there are no applicable regulations in that sector.</li>
             <li>&bull; Virginia HB 2094 was vetoed by Governor Youngkin on March 24, 2025 and never became law. Virginia does not currently have a comprehensive AI-specific regulation.</li>

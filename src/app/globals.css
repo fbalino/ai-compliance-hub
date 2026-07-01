@@ -93,6 +93,31 @@
   --shadow-lg: 0 10px 30px rgba(14,19,48,0.10);
 
   --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* Form state (referenced by JoinForm/RfpForm as var(--error, …) etc.).
+     These were previously undefined, so components always used the literal
+     fallback and had no dark-mode variant. */
+  --border: var(--line);
+  --error: #c0392b;
+  --error-bg: #fef2f2;
+
+  /* Comparison & severity hues — theme-aware tokens for the compare/severity
+     UI that previously hardcoded off-palette hex with no dark variant (dark
+     text went nearly invisible on the Night background). Light values match
+     the prior hardcoded colors exactly; dark values are lightened below. */
+  --hue-blue: #2563eb;
+  --hue-blue-ink: #1e3a5f;
+  --hue-blue-mute: #60a5fa;
+  --hue-amber: #ca8a04;
+  --hue-amber-ink: #713f12;
+  --hue-purple: #9333ea;
+  --hue-purple-ink: #3b0764;
+  --hue-green-ink: #14532d;
+  --sev-high: #b91c1c;
+  --sev-medium: #92400e;
+  --dot-red: #f87171;
+  --dot-amber: #fbbf24;
+  --dot-green: #4ade80;
 }
 
 /* ──────────────────────────────────────────────────────────────
@@ -144,6 +169,21 @@
   --hero-grad-b: #15161c;
   --hero-glow-accent: rgba(108,123,255,0.14);
   --hero-glow-gold:   rgba(240,176,80,0.06);
+
+  /* Form state + comparison/severity hues, lightened for legibility on the
+     dark Night background. (--border tracks --line automatically.) */
+  --error:      #f08a8a;
+  --error-bg:   rgba(208,106,126,0.14);
+  --hue-blue:      #6ea8ff;
+  --hue-blue-ink:  #a9c7f5;
+  --hue-blue-mute: #7fb0f0;
+  --hue-amber:     #e0b44e;
+  --hue-amber-ink: #e8c98f;
+  --hue-purple:     #c08cf0;
+  --hue-purple-ink: #d3b3f2;
+  --hue-green-ink:  #8fd6a8;
+  --sev-high:   #f08a8a;
+  --sev-medium: #e0a86a;
 
   --theme-name: "Night";
   --theme-kind: "dark";

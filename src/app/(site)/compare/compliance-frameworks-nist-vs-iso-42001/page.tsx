@@ -104,11 +104,11 @@ export default function NistVsIsoPage() {
         <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 16, marginBottom: 48 }}>
           <div className="card" style={{ borderColor: "rgba(37,99,235,0.25)", background: "rgba(37,99,235,0.04)" }}>
             <div className="flex items-center" style={{ gap: 8, marginBottom: 12 }}>
-              <Flag className="h-5 w-5" style={{ color: "#2563eb", flexShrink: 0 }} aria-hidden="true" />
-              <strong style={{ color: "#1e3a5f" }}>NIST AI RMF 1.0</strong>
-              <span className="mono xs" style={{ marginLeft: "auto", color: "#60a5fa" }}>NIST AI 100-1</span>
+              <Flag className="h-5 w-5" style={{ color: "var(--hue-blue)", flexShrink: 0 }} aria-hidden="true" />
+              <strong style={{ color: "var(--hue-blue-ink)" }}>NIST AI RMF 1.0</strong>
+              <span className="mono xs" style={{ marginLeft: "auto", color: "var(--hue-blue-mute)" }}>NIST AI 100-1</span>
             </div>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 6, fontSize: 14, color: "#1e3a5f" }}>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 6, fontSize: 14, color: "var(--hue-blue-ink)" }}>
               <li>&bull; Published by NIST, January 2023</li>
               <li>&bull; Voluntary &mdash; no certification, no penalties</li>
               <li>&bull; Four functions: GOVERN, MAP, MEASURE, MANAGE</li>
@@ -119,11 +119,11 @@ export default function NistVsIsoPage() {
           </div>
           <div className="card" style={{ borderColor: "rgba(147,51,234,0.25)", background: "rgba(147,51,234,0.04)" }}>
             <div className="flex items-center" style={{ gap: 8, marginBottom: 12 }}>
-              <Globe className="h-5 w-5" style={{ color: "#9333ea", flexShrink: 0 }} aria-hidden="true" />
-              <strong style={{ color: "#3b0764" }}>ISO/IEC 42001:2023</strong>
-              <span className="mono xs" style={{ marginLeft: "auto", color: "#9333ea" }}>ISO 42001</span>
+              <Globe className="h-5 w-5" style={{ color: "var(--hue-purple)", flexShrink: 0 }} aria-hidden="true" />
+              <strong style={{ color: "var(--hue-purple-ink)" }}>ISO/IEC 42001:2023</strong>
+              <span className="mono xs" style={{ marginLeft: "auto", color: "var(--hue-purple)" }}>ISO 42001</span>
             </div>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 6, fontSize: 14, color: "#3b0764" }}>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 6, fontSize: 14, color: "var(--hue-purple-ink)" }}>
               <li>&bull; Published by ISO/IEC, December 2023</li>
               <li>&bull; Certifiable &mdash; third-party audit available</li>
               <li>&bull; PDCA management system (like ISO 27001)</li>
@@ -141,12 +141,12 @@ export default function NistVsIsoPage() {
             <thead>
               <tr>
                 <th style={{ width: 180 }}>Attribute</th>
-                <th style={{ color: "#2563eb" }}>
+                <th style={{ color: "var(--hue-blue)" }}>
                   <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
                     <Flag className="h-3.5 w-3.5" aria-hidden="true" /> NIST AI RMF 1.0
                   </span>
                 </th>
-                <th style={{ color: "#9333ea" }}>
+                <th style={{ color: "var(--hue-purple)" }}>
                   <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
                     <Globe className="h-3.5 w-3.5" aria-hidden="true" /> ISO/IEC 42001
                   </span>
@@ -168,22 +168,22 @@ export default function NistVsIsoPage() {
         {/* Decision guide */}
         <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 16, marginTop: 48 }}>
           <div className="card" style={{ borderColor: "rgba(37,99,235,0.25)", background: "rgba(37,99,235,0.04)" }}>
-            <strong style={{ color: "#1e3a5f", marginBottom: 12, display: "block" }}>Choose NIST AI RMF if...</strong>
+            <strong style={{ color: "var(--hue-blue-ink)", marginBottom: 12, display: "block" }}>Choose NIST AI RMF if...</strong>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 8 }}>
               {CHOOSE_NIST.map((item, i) => (
-                <li key={i} style={{ display: "flex", gap: 8, fontSize: 14, color: "#1e3a5f" }}>
-                  <Check className="h-4 w-4" style={{ color: "#3b82f6", flexShrink: 0, marginTop: 2 }} aria-hidden="true" />
+                <li key={i} style={{ display: "flex", gap: 8, fontSize: 14, color: "var(--hue-blue-ink)" }}>
+                  <Check className="h-4 w-4" style={{ color: "var(--hue-blue)", flexShrink: 0, marginTop: 2 }} aria-hidden="true" />
                   <span>{item}</span>
                 </li>
               ))}
             </ul>
           </div>
           <div className="card" style={{ borderColor: "rgba(147,51,234,0.25)", background: "rgba(147,51,234,0.04)" }}>
-            <strong style={{ color: "#3b0764", marginBottom: 12, display: "block" }}>Choose ISO/IEC 42001 if...</strong>
+            <strong style={{ color: "var(--hue-purple-ink)", marginBottom: 12, display: "block" }}>Choose ISO/IEC 42001 if...</strong>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 8 }}>
               {CHOOSE_ISO.map((item, i) => (
-                <li key={i} style={{ display: "flex", gap: 8, fontSize: 14, color: "#3b0764" }}>
-                  <Check className="h-4 w-4" style={{ color: "#9333ea", flexShrink: 0, marginTop: 2 }} aria-hidden="true" />
+                <li key={i} style={{ display: "flex", gap: 8, fontSize: 14, color: "var(--hue-purple-ink)" }}>
+                  <Check className="h-4 w-4" style={{ color: "var(--hue-purple)", flexShrink: 0, marginTop: 2 }} aria-hidden="true" />
                   <span>{item}</span>
                 </li>
               ))}

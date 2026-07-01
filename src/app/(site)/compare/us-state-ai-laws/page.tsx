@@ -168,10 +168,10 @@ export default function UsStateAiLawsPage() {
         <div style={{ marginTop: 40 }}>
           <div className="eyebrow" style={{ marginBottom: 16 }}>Key Insight: The Patchwork Problem</div>
           <div className="card" style={{ borderColor: "rgba(217,119,6,0.3)", background: "rgba(217,119,6,0.06)" }}>
-            <p className="small" style={{ color: "#78350f", lineHeight: 1.7 }}>
+            <p className="small" style={{ color: "var(--hue-amber-ink)", lineHeight: 1.7 }}>
               Unlike the EU AI Act &mdash; which creates a unified framework across 27 countries &mdash; US AI compliance is a growing patchwork of state and local laws, each with different triggers, obligations, and enforcement mechanisms. A single AI product used across the US may be subject to NYC&apos;s bias audit requirements, Colorado&apos;s impact assessment mandate, Illinois&apos;s consent and deletion rules, and California&apos;s training data disclosure requirements &mdash; simultaneously.
             </p>
-            <p className="small" style={{ marginTop: 12, color: "#78350f", lineHeight: 1.7 }}>
+            <p className="small" style={{ marginTop: 12, color: "var(--hue-amber-ink)", lineHeight: 1.7 }}>
               The practical solution is to build the most demanding requirement into your baseline. A compliance program designed for the Colorado AI Act and NYC LL 144 simultaneously &mdash; combined with California AB 2013 disclosure documentation &mdash; will satisfy most US AI compliance obligations as additional states pass laws.
             </p>
             <div style={{ marginTop: 16 }}>

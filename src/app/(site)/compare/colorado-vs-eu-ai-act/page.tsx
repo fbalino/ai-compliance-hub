@@ -89,11 +89,11 @@ export default function ColoradoVsEuPage() {
         <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 16, marginBottom: 48 }}>
           <div className="card" style={{ borderColor: "rgba(37,99,235,0.25)", background: "rgba(37,99,235,0.04)" }}>
             <div className="flex items-center" style={{ gap: 8, marginBottom: 12 }}>
-              <Mountain className="h-5 w-5" style={{ color: "#2563eb", flexShrink: 0 }} aria-hidden="true" />
-              <strong style={{ color: "#1e3a5f" }}>Colorado AI Act</strong>
-              <span className="mono xs" style={{ marginLeft: "auto", color: "#60a5fa" }}>CO SB 24-205</span>
+              <Mountain className="h-5 w-5" style={{ color: "var(--hue-blue)", flexShrink: 0 }} aria-hidden="true" />
+              <strong style={{ color: "var(--hue-blue-ink)" }}>Colorado AI Act</strong>
+              <span className="mono xs" style={{ marginLeft: "auto", color: "var(--hue-blue-mute)" }}>CO SB 24-205</span>
             </div>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 6, fontSize: 14, color: "#1e3a5f" }}>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 6, fontSize: 14, color: "var(--hue-blue-ink)" }}>
               <li>&bull; First comprehensive US state AI law</li>
               <li>&bull; Focuses on algorithmic discrimination in 8 domains</li>
               <li>&bull; Reasonable care standard &mdash; not a checklist approach</li>
@@ -104,11 +104,11 @@ export default function ColoradoVsEuPage() {
           </div>
           <div className="card" style={{ borderColor: "rgba(202,138,4,0.25)", background: "rgba(202,138,4,0.04)" }}>
             <div className="flex items-center" style={{ gap: 8, marginBottom: 12 }}>
-              <Globe className="h-5 w-5" style={{ color: "#ca8a04", flexShrink: 0 }} aria-hidden="true" />
-              <strong style={{ color: "#713f12" }}>EU AI Act</strong>
-              <span className="mono xs" style={{ marginLeft: "auto", color: "#ca8a04" }}>Reg. 2024/1689</span>
+              <Globe className="h-5 w-5" style={{ color: "var(--hue-amber)", flexShrink: 0 }} aria-hidden="true" />
+              <strong style={{ color: "var(--hue-amber-ink)" }}>EU AI Act</strong>
+              <span className="mono xs" style={{ marginLeft: "auto", color: "var(--hue-amber)" }}>Reg. 2024/1689</span>
             </div>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 6, fontSize: 14, color: "#713f12" }}>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 6, fontSize: 14, color: "var(--hue-amber-ink)" }}>
               <li>&bull; World&apos;s first comprehensive AI regulation</li>
               <li>&bull; Risk-based: 4 tiers from prohibited to minimal</li>
               <li>&bull; Detailed technical conformity requirements</li>
@@ -126,12 +126,12 @@ export default function ColoradoVsEuPage() {
             <thead>
               <tr>
                 <th style={{ width: 160 }}>Attribute</th>
-                <th style={{ color: "#2563eb" }}>
+                <th style={{ color: "var(--hue-blue)" }}>
                   <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
                     <Mountain className="h-3.5 w-3.5" aria-hidden="true" /> Colorado AI Act
                   </span>
                 </th>
-                <th style={{ color: "#ca8a04" }}>
+                <th style={{ color: "var(--hue-amber)" }}>
                   <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
                     <Globe className="h-3.5 w-3.5" aria-hidden="true" /> EU AI Act
                   </span>
